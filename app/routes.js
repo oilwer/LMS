@@ -2,7 +2,7 @@
 
 // grab the nerd model we just created
 var Nerd = require('./models/nerd');
-var User = require('./models/user'); // get our mongoose model
+var User = require('./models/user'); 
 
     module.exports = function(app) {
 
@@ -24,7 +24,7 @@ var User = require('./models/user'); // get our mongoose model
             });
         });
         
-        
+        // Login function
         app.get('/api/login', function (req,res) {
         
         	// recover parameters
@@ -58,21 +58,37 @@ var User = require('./models/user'); // get our mongoose model
 			
 				}
 			}
-			/*
-			    
-			    var user = new User({ 
-					username: username, 
-					password: password
-		  		});
-		  		
-		  		user.save(function(err) {
-		  			if (err) throw err;
-		  		
-		  		console.log('User saved successfully');
-		  		res.json({ success: true });
-		  		});
-		  		*/
-			           
+
+ 		});
+ 		
+ 		// Profile function
+        app.get('/api/profile', function (req,res) {
+        
+        	// recover parameters
+			var username = req.query.username;
+			
+			console.log(username);
+			
+			if( (username !== "") && (username !== null))
+			{
+				
+					User.findOne({ 'username': username},  function (err, user) {
+					if (err) return handleError(err);
+				
+					if(!user)
+					{
+						console.log('Incorrect username'); 
+						res.json(false);	
+					}	
+					else
+					{
+						console.log('Returning data; user name: %s.', user.username); 
+						res.json(user.username);
+					}
+					});
+			
+			}
+
  		});
  	       
        /*
@@ -93,7 +109,14 @@ var User = require('./models/user'); // get our mongoose model
 		  });
 		});
 		*/
-
+		
+		// sample api route
+        app.get('/api', function(req, res) {
+            
+            res.json("Welcome to our api! /login & /profile works");
+            
+        });
+		
 		// sample api route
         app.get('/api/login', function(req, res) {
             

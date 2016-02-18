@@ -11,7 +11,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	var redirectAfterLogin = function()
 	{
 		// Change URL & reload route
-		$location.path('/nerds');
+		$location.path('/profile');
 		
 		/*
 		$location.update_path('/nerds');

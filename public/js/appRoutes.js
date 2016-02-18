@@ -15,10 +15,16 @@
             controller: 'NerdController'
         })
         
-        // Add kitten page
+        // Add login page
         .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
+        })
+        
+        // Add login page
+        .when('/profile', {
+            templateUrl: 'views/profile.html',
+            controller: 'ProfileController'
         });
 
     $locationProvider.html5Mode(true);
