@@ -7,20 +7,8 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	$scope.style = function(red) {
           return { "background-color": color };
       };
-	
-	var redirectAfterLogin = function()
-	{
-		// Change URL & reload route
-		$location.path('/profile');
-		
-		/*
-		$location.update_path('/nerds');
-		
-		// Reroute to "/nerds"	
-		$route.reload();
-		*/
-	}
-	
+
+	// Function that triggers the API call and manages GUI changes
 	var alertToCheck = function() {
 					
 				Login.get($scope.name, $scope.password)
@@ -29,7 +17,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 						{
 							console.log("Logged in");
 							color = "green";
-							setTimeout(redirectAfterLogin, 100);
+							$location.path('/profile');
 							
 						}
 						
@@ -37,6 +25,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 						{
 							color = "red";
 							console.log("Tried to log in, did not work");
+							
 						}
 
             		});	
@@ -44,24 +33,31 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 				$scope.showMe = !$scope.showMe;
 				return true;
 			}
+
+			// Timer
+			var timeoutHandle;
 			
-			var checked = false;
-			$scope.showMe = false;
+			// Function gets trigged from GUI on change
 			$scope.checkIfValid = function() {
+				
+				// Resets the timer
+				clearTimeout(timeoutHandle);
+				
+				// Sets the timer to 0.4 sec and then checks againt DB
+				timeoutHandle = setTimeout(runCheckIfVaild, 400);
+
+				}
+			
+			// Function to run username and password againt DB
+			var runCheckIfVaild = function() {
 
 				if(($scope.name != undefined) && ($scope.name !== "")){
 					if(($scope.password != undefined) && ($scope.password !== "")){
-						if(checked == true){
-			        		$scope.cancel(alertToCheck());
-							checked = false;
-		        		}
-		        
-			        $scope.showMe = !$scope.showMe;
-			        checked = setTimeout(alertToCheck, 300);
+			        alertToCheck();
 		        
 				}
 				}
-		        
+				
 		    };
  
 });
