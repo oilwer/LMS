@@ -1,0 +1,31 @@
+<!-- public/views/login.html -->
+
+<style>
+	input {
+      -webkit-appearance: none;
+      height:45px;
+      margin-bottom:15px;
+      width:200px;
+      border:1px solid lightgray;
+      text-align: center;
+      border-radius: 15px;   }
+</style>
+
+<div class="jumbotron text-center">
+    <h1>Login page</h1>
+    <p> Login here </p>
+        
+    <div ng-controller="LoginController">
+    <form>
+        <input ng-style="style(color)" type="text" ng-model="name" ng-change="checkIfValid()" placeholder="Username">  
+        <br/>
+        <input ng-style="style(color)" type="password" ng-model="password" ng-change="checkIfValid()" placeholder="Password">
+     
+      <p>  <br/> When you have typed your username & password you will get logged in. </p>
+	<br/> 
+        
+    </form>
+  </div>
+
+
+</div>

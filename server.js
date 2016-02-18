@@ -6,6 +6,7 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose	   = require('mongoose');
+var User 		   = require('./app/models/user'); // get our mongoose model
 
 // configuration ===========================================
     
@@ -38,18 +39,39 @@ var testdbfunc = function()
 	// Runs fluffys method "Speak"
 	fluffy.speak(); // "Meow name is fluffy"
 	
-	// Save this stuff to DB
+	process.stdout.write("Lets find all the Kittens");
+	
+	/* 
+		var myCursor = Kitten.find(
+	{name: "Silence"}
+	);
+
+	 console.log(myCursor);
+	 */
+
+	// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+	Kitten.findOne({ 'name': 'fluffy' }, 'name', function (err, kitten) {
+	if (err) return handleError(err);
+	console.log('Returning data; Cat name: %s.', kitten.name); // Space Ghost is a talk show host.
+	});
+
+	
+	/* Save this stuff to DB
 	fluffy.save(function (err, fluffy) {
 	  if (err) return console.error(err);
 	  
 	  process.stdout.write("Document saved to DB");
 	  
-	  process.stdout.write("Lets find all the Kittens");
-	
+	*/ 	
 	// Find everything on kittens
 	 Kitten.find(function (err, kittens) {
 	  if (err) return console.error(err);
 	  console.log(kittens);
+	});
+	
+	 User.find(function (err, users) {
+	  if (err) return console.error(err);
+	  console.log(users);
 	});
 	  
 	  /*var callback;
@@ -61,7 +83,7 @@ var testdbfunc = function()
 	  console.log(callback);
 	  */
 	  
-	});
+	// });
 	
 	
 	

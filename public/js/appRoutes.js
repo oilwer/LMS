@@ -13,6 +13,12 @@
         .when('/nerds', {
             templateUrl: 'views/nerd.html',
             controller: 'NerdController'
+        })
+        
+        // Add kitten page
+        .when('/login', {
+            templateUrl: 'views/login.html',
+            controller: 'LoginController'
         });
 
     $locationProvider.html5Mode(true);
