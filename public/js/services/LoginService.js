@@ -4,7 +4,10 @@ angular.module('LoginService', []).factory('Login', ['$http', function($http) {
     return {
         // call to get all nerds
         get : function(username, password) {
-	        console.log(username + " " + password);
+	        
+	        // console.log(username + " " + password);
+	        
+            // Makes API call w/ username and password
             return $http.get('/api/login?username=' + username + '&password=' + password);
         },
 

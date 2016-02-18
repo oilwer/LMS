@@ -1,18 +1,24 @@
 // public/js/controllers/LoginCtrl.js
 
 
-angular.module('LoginCtrl', []).controller('LoginController', function($scope, $document, $window, $http, Login) {
+angular.module('LoginCtrl', []).controller('LoginController', function($scope, $location, $http, Login) {
 	
 	var color = "white";
 	$scope.style = function(red) {
           return { "background-color": color };
       };
-
-	console.log("hej");
 	
 	var redirectAfterLogin = function()
 	{
-		$window.location.href = '/nerds';	
+		// Change URL & reload route
+		$location.path('/nerds');
+		
+		/*
+		$location.update_path('/nerds');
+		
+		// Reroute to "/nerds"	
+		$route.reload();
+		*/
 	}
 	
 	var alertToCheck = function() {
@@ -23,8 +29,6 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 						{
 							console.log("Logged in");
 							color = "green";
-							document.activeElement.blur();
-							
 							setTimeout(redirectAfterLogin, 100);
 							
 						}
