@@ -1,2 +1,0 @@
-# LMS
-Learning made simple
