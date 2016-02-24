@@ -50,10 +50,13 @@ var testdbfunc = function()
 	 */
 
 	// find each person with a last name matching 'Ghost', selecting the `name` and `occupation` fields
+	
+	/*
 	Kitten.findOne({ 'name': 'fluffy' }, 'name', function (err, kitten) {
 	if (err) return handleError(err);
 	console.log('Returning data; Cat name: %s.', kitten.name); // Space Ghost is a talk show host.
 	});
+	*/
 
 	
 	/* Save this stuff to DB
