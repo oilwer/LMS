@@ -1,7 +1,5 @@
  // app/routes.js
 
-// grab the nerd model we just created
-var Nerd = require('./models/nerd');
 var User = require('./models/user'); 
 var session = require('express-session');
 
@@ -10,16 +8,7 @@ var session = require('express-session');
         // server routes ===========================================================
         // handle things like api calls
         // authentication routes
-        
-        // sample api route
-        app.get('/a', function(req, res) {
-            
-           User.test(function(err, callback){
-				res.json("så");
-			});
-
-            
-        });
+       
 		
         
         // Test session
@@ -63,7 +52,7 @@ var session = require('express-session');
 		//Register new user
 		app.post('/api/userlist', function(req, res){
 			console.log("object: "+req.body);
-			if(req.body.name !== undefined && req.body.email !== undefined && req.body.number !== undefined) {
+			if(req.body.first_name !== undefined && req.body.email !== undefined && req.body.phone_number !== undefined) {
 				User.register(req.body, function (err, callback) {
 					res.json(callback);
 				});
@@ -88,22 +77,7 @@ var session = require('express-session');
 			});
 		});
 
-		
-
-        // sample api route
-        app.get('/api/nerds', function(req, res) {
-            // use mongoose to get all nerds in the database
-            Nerd.find(function(err, nerds) {
-
-                // if there is an error retrieving, send the error. 
-                                // nothing after res.send(err) will execute
-                if (err)
-                    res.send(err);
-
-                res.json(nerds); // return all nerds in JSON format
-            });
-        });
-        
+	
         // Logout function
         app.get('/api/logout', function (req,res) {
 	        
@@ -133,12 +107,12 @@ var session = require('express-session');
 	        	else
 	        	{
 					// Triggers login function in the User model
-					User.login(req.query.username, req.query.password, function(err, callback){
+					User.login(req.query.email, req.query.password, function(err, callback){
 				
 						// If user gets logged in -> Set session isLoggedIn to true. 
 						if(callback){
 							sess.isLoggedIn = true;
-							sess.username = req.query.username;
+							sess.email = req.query.email;
 						}
 						
 						// Returns the login value (bool) to LoginCtrl
@@ -157,24 +131,26 @@ var session = require('express-session');
 	        var sess = req.session;
         
         	// recover parameters
-			var username = sess.username;
+			var email = sess.email;
+			
+			console.log(sess);
 			
 			
-			if( (username !== "") && (username !== null))
+			if( (email !== "") && (email !== null))
 			{
 				
-					User.db.findOne({ 'username': username},  function (err, user) {
+					User.db.findOne({ 'email': email},  function (err, user) {
 					if (err) return handleError(err);
 				
 					if(!user)
 					{
-						console.log('Incorrect username'); 
+						console.log('Incorrect email'); 
 						res.json(false);	
 					}	
 					else
 					{
-						console.log('Profile fetched; user name: %s.', user.username); 
-						res.json(user.username);
+						console.log('Profile fetched; email: %s.', user.email); 
+						res.json(user);
 					}
 					});
 			

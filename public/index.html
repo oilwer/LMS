@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <base href="/">
 
-    <title>Starter Node and Angular</title>
+    <title>LMS</title>
 
     <!-- CSS -->
     <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
@@ -17,14 +17,12 @@
 
     <!-- ANGULAR CONTROLLERS -->
     <script src="js/controllers/MainCtrl.js"></script>
-    <script src="js/controllers/NerdCtrl.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/ProfileCtrl.js"></script>
     <script src="js/controllers/ChatCtrl.js"></script>
     <script src="js/controllers/UserCtrl.js"></script>
     
     <!-- ANGULAR SERVICES -->
-    <script src="js/services/NerdService.js"></script>
     <script src="js/services/LoginService.js"></script>
     <script src="js/services/ProfileService.js"></script>
     <script src="js/services/UserService.js"></script>
@@ -37,7 +35,7 @@
      <script src="//anglibs.github.io/angular-location-update/angular-location-update.min.js"></script>
      
 </head>
-<body ng-app="sampleApp" ng-controller="NerdController">
+<body ng-app="sampleApp" ng-controller="MainController">
 <div class="container">
 
     <!-- HEADER -->
@@ -48,11 +46,11 @@
 
         <!-- LINK TO OUR PAGES. ANGULAR HANDLES THE ROUTING HERE -->
         <ul class="nav navbar-nav">
-            <li><a href="/nerds">Nerds</a></li>
             <li><a href="/login">Login</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/chat">Chat (Slack API)</a></li>
             <li><a href="/user">User List</a></li>
+            <li><a href="/api/logout">Log out</a></li>
         </ul>
     </nav>
 

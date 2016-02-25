@@ -11,7 +11,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	// Function that triggers the API call and manages GUI changes
 	var alertToCheck = function() {
 					
-				Login.get($scope.username, $scope.password)
+				Login.get($scope.email, $scope.password)
 					.success(function(data) {
 						if(data == true)
 						{
@@ -50,7 +50,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 			// Function to run username and password againt DB
 			var runCheckIfVaild = function() {
 
-				if(($scope.username != undefined) && ($scope.username !== "")){
+				if(($scope.email != undefined) && ($scope.email !== "")){
 					if(($scope.password != undefined) && ($scope.password !== "")){
 			        alertToCheck();
 		        

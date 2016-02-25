@@ -10,38 +10,37 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({ 
-    profilePic: String,
-    username: String,
-    name: String,
-    email: String,
-    number: String,
-    password: String
+  //  profilePic: String,
+  	email: String,
+  	password: String,
+  	first_name: String,
+    phone_number: String
 });
 
 // set up a mongoose model and pass it using User.DB (User is a object w/ db as a property) 
 User.db = mongoose.model('User', userSchema);
 
 // Login function. Callback is the variable that returns the value
-User.login = function (username, password, callback) {  
+User.login = function (email, password, callback) {  
    	
    					
-			if( (username !== "") && (password !== ""))
+			if( (email !== "") && (password !== ""))
 			{
 			
-				if( (username !== null) && (password !== null))
+				if( (email !== null) && (password !== null))
 				{
 			    
-					User.db.findOne({ 'username': username, 'password': password },  function (err, user) {
+					User.db.findOne({ 'email': email, 'password': password },  function (err, user) {
 					if (err) return handleError(err);
 				
 					if(user)
 					{
-						console.log(username + ' logged in.'); 
+						console.log(user.first_name + ' logged in.'); 
 						callback(null, true);
 					}	
 					else
 					{
-						console.log(username + ' tried to log in: Incorrect username or password.'); 
+						console.log(email + ' tried to log in: Incorrect email or password.'); 
 						callback(null, false);
 					}
 					});
@@ -77,7 +76,7 @@ User.getById = function(id, callback){
 
 //insert new user in db
 User.register = function (user, callback) {
-    var newUser = new User.db({name: user.name, email: user.email, number: user.number });
+    var newUser = new User.db({first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password });
 
     newUser.save ( function(err, ret){
         if (err) return console.error(err);
@@ -87,14 +86,15 @@ User.register = function (user, callback) {
 };
 
 //insert new user in db
-User.test = function () {
-    var newUser = new User.db({username: "oliver", password: "password" });
+/*User.test = function () {
+    var newUser = new User.db({email: "oliver", password: "password" });
 
     newUser.save ( function(err, ret){
         if (err) return console.error(err);
         console.log(ret);
     });
 };
+*/
 
 //delete user in db
 User.remove = function(id, callback){
@@ -108,7 +108,7 @@ User.remove = function(id, callback){
 
 //modify selected user
 User.modify = function(user, callback){
-    User.db.findByIdAndUpdate(user._id, {name: user.name, email: user.email, number: user.number}, {new: true}, function (err, ret){
+    User.db.findByIdAndUpdate(user._id, {first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password}, {new: true}, function (err, ret){
         console.log(ret);
         callback(null, ret);
     });

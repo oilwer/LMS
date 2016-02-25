@@ -5,13 +5,13 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
 					.success(function(data) {
 						if(data != false)
 						{
-							$scope.username = data;
+							$scope.first_name = data.first_name;
 							
 						}
 						
 						else 
 						{
-							$scope.username = "No profile found";
+							$scope.first_name = "No profile found";
 						}
 					});
 });

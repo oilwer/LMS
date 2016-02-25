@@ -3,16 +3,16 @@ angular.module('LoginService', []).factory('Login', ['$http', function($http) {
 
     return {
         // call to get all nerds
-        get : function(username, password) {
+        get : function(email, password) {
 	        
 	        // console.log(username + " " + password);
 	        
             // Makes API call w/ username and password
-            return $http.get('/api/login?username=' + username + '&password=' + password);
+            return $http.get('/api/login?email=' + email + '&password=' + password);
         },
 
 
-		// http://localhost:8080/api/login?username=oliver&password=password
+		// http://localhost:8080/api/login?email=oliver&password=password
 
                 // these will work when more API routes are defined on the Node side of things
         // call to POST and create a new nerd

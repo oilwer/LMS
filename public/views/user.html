@@ -10,9 +10,10 @@
         </thead>
         <tbody ng-controller="UserController">
             <tr>
-                <td><input class="form-control" ng-model="user.name" required="true"></td>
+                <td><input class="form-control" ng-model="user.first_name" required="true"></td>
                 <td><input class="form-control" ng-model="user.email" required="true"></td>
-                <td><input class="form-control" ng-model="user.number" required="true"></td>
+                <td><input class="form-control" ng-model="user.phone_number" required="true"></td>
+                <td><input class="form-control" ng-model="user.password" required="true"></td>
                 <td> <button class="btn btn-primary" ng-click="addUser()">{{update}}</button></td>
                 <!-- <td>
                      <button class="btn btn-info" ng-click="update()">Update</button>
@@ -20,9 +21,10 @@
                 </td>-->
             </tr>
            <tr ng-repeat="user in userlist">
-                <td>{{user.name}}</td>
+                <td>{{user.first_name}}</td>
                 <td>{{user.email}}</td>
-                <td>{{user.number}}</td>
+                <td>{{user.phone_number}}</td>
+                <td>{{user.password}}</td>
                 <td><button class="btn btn-warning" ng-click="edit(user._id)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>
            </tr>
