@@ -15,16 +15,22 @@
             controller: 'NerdController'
         })
         
-        // Add login page
+        // Login
         .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
         })
         
-        // Add login page
+        // Profile
         .when('/profile', {
             templateUrl: 'views/profile.html',
             controller: 'ProfileController'
+        })
+        
+        // Chat
+        .when('/chat', {
+            templateUrl: 'views/chat.html',
+            controller: 'ChatController'
         });
 
     $locationProvider.html5Mode(true);
