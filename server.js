@@ -7,8 +7,14 @@ var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose	   = require('mongoose');
 var User 		   = require('./app/models/user'); // get our mongoose model
+var session = require('express-session');
+
 
 // configuration ===========================================
+
+// Use the session middleware
+app.use(session({ secret: 'b1k3z 4r3333 450m3', cookie: { maxAge: 180000 }}))
+
     
 // Test functions
 var testdbfunc = function()
