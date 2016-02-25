@@ -11,6 +11,17 @@ var session = require('express-session');
         // handle things like api calls
         // authentication routes
         
+        // sample api route
+        app.get('/a', function(req, res) {
+            
+           User.test(function(err, callback){
+				res.json("så");
+			});
+
+            
+        });
+		
+        
         // Test session
         app.get('/awesometestsession', function(req, res) {
 			var sess = req.session;

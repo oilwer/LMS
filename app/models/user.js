@@ -86,6 +86,16 @@ User.register = function (user, callback) {
     });
 };
 
+//insert new user in db
+User.test = function () {
+    var newUser = new User.db({username: "oliver", password: "password" });
+
+    newUser.save ( function(err, ret){
+        if (err) return console.error(err);
+        console.log(ret);
+    });
+};
+
 //delete user in db
 User.remove = function(id, callback){
     //send res back to controller
