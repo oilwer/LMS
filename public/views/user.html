@@ -1,0 +1,31 @@
+<!-- public/views/user.html -->
+
+<div class="container" >
+    <h1>User List App</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Name</th>   <th>Email</th>  <th>Number</th>
+        </tr>
+        </thead>
+        <tbody ng-controller="UserController">
+            <tr>
+                <td><input class="form-control" ng-model="user.name" required="true"></td>
+                <td><input class="form-control" ng-model="user.email" required="true"></td>
+                <td><input class="form-control" ng-model="user.number" required="true"></td>
+                <td> <button class="btn btn-primary" ng-click="addUser()">{{update}}</button></td>
+                <!-- <td>
+                     <button class="btn btn-info" ng-click="update()">Update</button>
+                   &nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button>
+                </td>-->
+            </tr>
+           <tr ng-repeat="user in userlist">
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.number}}</td>
+                <td><button class="btn btn-warning" ng-click="edit(user._id)">Edit</button></td>
+                <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>
+           </tr>
+        </tbody>
+    </table>
+</div>

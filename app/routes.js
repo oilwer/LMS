@@ -30,6 +30,54 @@ var session = require('express-session');
   				}
 		});
 		
+		//Get all users
+		app.get('/api/userlist', function(req, res){
+			console.log("I got the GET req! Pink FLuff");
+			//get the whole list from the database
+			User.getAllUsers(function(err, callback){
+				res.json(callback);
+			});
+
+		});
+
+		//get by id
+		app.get('/api/user', function(req, res){
+			var id = req.query.id;
+			//console.log("TEST!!!"+id);
+			User.getById(id, function(err, callback){
+				res.json(callback);
+			});
+		});
+
+		//Register new user
+		app.post('/api/userlist', function(req, res){
+			console.log("object: "+req.body);
+			if(req.body.name !== undefined && req.body.email !== undefined && req.body.number !== undefined) {
+				User.register(req.body, function (err, callback) {
+					res.json(callback);
+				});
+			}
+		});
+
+		//delete selected user by id
+		app.delete('/api/userlist', function(req, res){
+			var id = req.query.id;
+			console.log("Id to delete: "+id);
+			//remove from database
+			User.remove(id, function(err, callback){
+				res.json(callback);
+			});
+		});
+
+		//update selected users data
+		app.put('/api/userlist', function(req, res){
+			console.log(req.body);
+			User.modify(req.body, function(err, callback){
+				res.json(callback);
+			});
+		});
+
+		
 
         // sample api route
         app.get('/api/nerds', function(req, res) {

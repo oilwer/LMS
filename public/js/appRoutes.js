@@ -31,6 +31,12 @@
         .when('/chat', {
             templateUrl: 'views/chat.html',
             controller: 'ChatController'
+        })
+        
+        // User management page
+        .when('/user', {
+            templateUrl: 'views/user.html',
+            controller: 'UserController'
         });
 
     $locationProvider.html5Mode(true);

@@ -10,7 +10,11 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var userSchema = new Schema({ 
-    username: String, 
+    profilePic: String,
+    username: String,
+    name: String,
+    email: String,
+    number: String,
     password: String
 });
 
@@ -48,6 +52,58 @@ User.login = function (username, password, callback) {
         
     
 }
+
+//returns all users
+User.getAllUsers = function (callback){
+
+    User.db.find({}, function(err, users){
+        if (err) return console.error(err);
+        callback(null, users);
+     //   console.log(users);
+        //console.log(docs);
+
+    });
+};
+
+//update selected users data
+User.getById = function(id, callback){
+    User.db.findOne ( {_id: id}, function(err, ret){
+        if (err) return console.error(err);
+        //console.log(ret);
+        //send res back to controller
+        callback(null, ret);
+    });
+};
+
+//insert new user in db
+User.register = function (user, callback) {
+    var newUser = new User.db({name: user.name, email: user.email, number: user.number });
+
+    newUser.save ( function(err, ret){
+        if (err) return console.error(err);
+        callback(null, ret);
+        console.log(ret);
+    });
+};
+
+//delete user in db
+User.remove = function(id, callback){
+    //send res back to controller
+    User.db.remove ( {_id : id}, function(err, ret){
+        if (err) return console.error(err);
+        console.log(ret);
+        callback(null, ret);
+    });
+};
+
+//modify selected user
+User.modify = function(user, callback){
+    User.db.findByIdAndUpdate(user._id, {name: user.name, email: user.email, number: user.number}, {new: true}, function (err, ret){
+        console.log(ret);
+        callback(null, ret);
+    });
+};
+
 
 // Exports the object as a whole
 module.exports = User;
