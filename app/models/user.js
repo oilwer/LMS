@@ -9,11 +9,13 @@ var User = function (data) {
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-// set up a mongoose model and pass it using User.DB (User is a object w/ db as a property) 
-User.db = mongoose.model('User', new Schema({ 
+var userSchema = new Schema({ 
     username: String, 
     password: String
-}));
+});
+
+// set up a mongoose model and pass it using User.DB (User is a object w/ db as a property) 
+User.db = mongoose.model('User', userSchema);
 
 // Login function. Callback is the variable that returns the value
 User.login = function (username, password, callback) {  
