@@ -3,7 +3,24 @@
 
 <div class="jumbotron text-center">
     <h1>Chat</h1>
+    
+    <div ng-controller="ChatController">
+    <form>
+        <input ng-style="style(color)" type="text" ng-model="text" placeholder="text">  
+        <button ng-click="sendMsg()">Send!</button>
         
-    <p> test: {{ chat }}!  </p>
+       <!-- <button ng-click="fetchMsg()">fetch!</button> -->
+        
+    </form>
+    
+    
+    <tr ng-repeat="msg in channel">
+                <td>{{msg.username}}</td>
+                <td>{{msg.text}}</td>
+           </tr>
+  </div>
+  
+  
+  
 
 </div>

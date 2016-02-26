@@ -1,6 +1,7 @@
  // app/routes.js
 
 var User = require('./models/user'); 
+var Chat = require('./models/chat'); 
 var session = require('express-session');
 
     module.exports = function(app) {
@@ -181,6 +182,46 @@ var session = require('express-session');
         app.get('/api', function(req, res) {
             
             res.json("Welcome to our api! /login & /profile works");
+            
+        });
+		
+		
+		// chat api route
+        app.get('/api/chat', function(req, res) {
+            
+
+			// Triggers login function in the User model
+					Chat.send(req.query.username, req.query.text, function(err, callback){
+				
+						// If user gets logged in -> Set session isLoggedIn to true. 
+						if(callback){
+							console.log(callback);
+						}
+						
+						
+					});
+            
+            res.json("hej");
+            
+        });
+        
+          app.get('/api/getchatmsg', function(req, res) {
+            
+            console.log("??");
+            
+			// Triggers login function in the User model
+					Chat.fetchMsg(function(err, callback){
+				
+						// If user gets logged in -> Set session isLoggedIn to true. 
+						if(callback){
+							 res.json(callback);
+							console.log(callback);
+						}
+						
+						
+					});
+            
+           
             
         });
 		
