@@ -15,7 +15,7 @@
                 <td><input class="form-control" ng-model="user.email" required="true"></td>
                 <td><input class="form-control" ng-model="user.phone_number" required="true"></td>
                 <td><input class="form-control" ng-model="user.password" required="true"></td>
-                <td> <button class="btn btn-primary" ng-click="addUser()">{{update}}</button></td>
+                <td> <button class="btn btn-primary" ng-click="addOrUpdateUser()">{{btnAddOrUpdateText}}</button></td>
                 <!-- <td>
                      <button class="btn btn-info" ng-click="update()">Update</button>
                    &nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button>
@@ -26,7 +26,7 @@
                 <td>{{user.email}}</td>
                 <td>{{user.phone_number}}</td>
                 <td>{{user.password}}</td>
-                <td><button class="btn btn-warning" ng-click="edit(user._id)">Edit</button></td>
+                <td><button class="btn btn-warning" ng-click="prepareEdit(user._id)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>
            </tr>
         </tbody>

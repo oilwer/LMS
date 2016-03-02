@@ -1,30 +1,31 @@
-/**
- * Created by simon on 2/24/16.
- */
-
 // public/js/services/UserService.js
-angular.module('UserService', []).factory('us', ['$http', function($http) {
+angular.module('UserService', []).factory('UserService', ['$http', function($http) {
 
     return {
-        // call to get all users
-        get : function() {
-            return $http.get('/api/userlist');
+	    
+        // Get user list
+        getUserList : function() {
+            return $http.get('/api/userlist/');
         },
-        //get one user by id
-        getbyId : function(id) {
-            return $http.get('/api/user/?id=' + id);
+        
+        // Get user by ID
+        getById : function(id) {
+            return $http.get('/api/user?id=' + id);
         },
-        //Update user by id
-        put : function (user){
-            return $http.put('/api/userlist', user);
+        
+        // Update user by ID
+        updateUser : function (user){
+            return $http.put('/api/userlist/', user);
         },
-        // call to POST and add a new user to the db
-        post : function(user) {
-            return $http.post('/api/userlist', user);
+        
+        // Add user
+        addUser : function(user) {
+            return $http.post('/api/user/', user);
         },
-        // call to DELETE a user by id
+        
+        // Delete user by ID
         delete : function(id) {
-            return $http.delete('/api/userlist/?id=' + id);
+            return $http.delete('/api/user?id=' + id);
         }
     }
 }]);

@@ -1,64 +1,79 @@
 // public/js/controllers/userCtrl.js
-angular.module('UserCtrl', []).controller('UserController', function($scope, $http, us) {
+angular.module('UserCtrl', []).controller('UserController', function($scope, $http, UserService) {
 
-    $scope.update = 'Add user';
-    var editTrigger = false;
+    $scope.btnAddOrUpdateText = 'Add user';
+    
+    // Updates the GUI according to edit/add-state
+    var isEditing = false;
 
-     //Update list from node
+     //Function that refreshes list from DB
     var refresh = function(){
-        us.get().success(function(res){
-            console.log("Got the new data, ty mannilyman");
-            $scope.userlist = res;
+	    
+	    // Asks UserService for the Userlist
+        UserService.getUserList().success(function(response){
+            
+            // Updates the gui with the userListData
+            $scope.userlist = response;
             $scope.user = "";
         });
     };
+    
     //Runs on page update
     refresh();
 
-    //add user
-    $scope.addUser = function() {
-        if(!editTrigger){
-            console.log("users: "+ $scope.user);
-            //Show the response from backend
-            us.post($scope.user).success(function(response){
-                console.log(response);
-                //refresh
-                //refresh();
+    //Gui function add user
+    $scope.addOrUpdateUser = function() {
+	    
+	    // TODO: Check if not empty
+       
+        // If it's not editing
+        if(!isEditing){
+
+            //Asks the UserService to add a user
+            UserService.addUser($scope.user).success(function(response){
+                
+                // Pushes (updates) the GUI with the new user
                 $scope.userlist.push(response);
                 $scope.user = "";
             });
-        } else {
-            console.log($scope.user._id);
-            $scope.update = 'Add user';
-            //send everything from form boex labeled user to server
-            us.put($scope.user).success(function (response) {
-               // $scope.userlist.remove(response);
+            
+        }
+        
+        // If editing 
+        else {
+
+            $scope.btnAddOrUpdateText = 'Add user';
+            
+            //Asks UserService to update User
+            UserService.updateUser($scope.user).success(function (response) {
+
+				// Refresh GUI
                 refresh();
                 $scope.user = "";
 
             });
-            editTrigger = false;
+            isEditing = false;
         }
     };
 
-    //remove user
+    //Gui function remove user
     $scope.remove = function(id){
       console.log("Removed: "+id);
         $scope.user = "";
-        $scope.update = 'Add user';
+        $scope.btnAddOrUpdateText = 'Add user';
          //show the result from the ndoe
-        us.delete(id).success(function(response){
+        UserService.delete(id).success(function(response){
             //refresh
             refresh();
         });
     };
 
-    //edit user
-    $scope.edit = function (id){
-        editTrigger = true;
-        $scope.update = 'Update';
-        //console.log("Editing: "+id);
-        us.getbyId(id).success(function(response){
+    //Gui function fetch selected user data for editing
+    $scope.prepareEdit = function (id){
+        isEditing = true;
+        $scope.btnAddOrUpdateText = 'Update';
+
+        UserService.getById(id).success(function(response){
             //get info from db to put in the form boxes
            $scope.user = response;
         });

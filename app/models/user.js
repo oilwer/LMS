@@ -9,6 +9,7 @@ var User = function (data) {
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+// Defines the user Schema (How the DB is structured)
 var userSchema = new Schema({ 
   //  profilePic: String,
   	email: String,
@@ -23,24 +24,32 @@ User.db = mongoose.model('User', userSchema);
 // Login function. Callback is the variable that returns the value
 User.login = function (email, password, callback) {  
    	
-   					
-			if( (email !== "") && (password !== ""))
-			{
+   			// If email and password is not empty		
+			if( (email !== "") && (password !== "")) {
 			
-				if( (email !== null) && (password !== null))
-				{
+				// If they are not null
+				if( (email !== null) && (password !== null)) {
 			    
+			    	// Then try to find one in the DB
 					User.db.findOne({ 'email': email, 'password': password },  function (err, user) {
+					
+					// DB error
 					if (err) return handleError(err);
 				
-					if(user)
-					{
+					// If the result exists (User found)
+					if(user) {
+						
+						//TODO: Log into textfile instead?
 						console.log(user.first_name + ' logged in.'); 
+						
+						// Sets the return value to true
 						callback(null, true);
 					}	
-					else
-					{
+					
+					// No user found
+					else {
 						console.log(email + ' tried to log in: Incorrect email or password.'); 
+						// Return false
 						callback(null, false);
 					}
 					});
@@ -52,65 +61,77 @@ User.login = function (email, password, callback) {
     
 }
 
-//returns all users
+// Function that returns all users
 User.getAllUsers = function (callback){
 
     User.db.find({}, function(err, users){
         if (err) return console.error(err);
-        callback(null, users);
-     //   console.log(users);
-        //console.log(docs);
-
+        
+        // If the result exists (Users found)
+		if(users) {
+        	callback(null, users);
+        }
+        
+        // No results found
+        else {
+	        callback(null, false);
+        }
     });
 };
 
-//update selected users data
+// Function that returns a user by ID
 User.getById = function(id, callback){
-    User.db.findOne ( {_id: id}, function(err, ret){
+    User.db.findOne ( {_id: id}, function(err, user){
         if (err) return console.error(err);
-        //console.log(ret);
-        //send res back to controller
-        callback(null, ret);
+        
+         // If the result exists (User found)
+		if(user) {
+        	callback(null, user);
+        }
+        
+        // No results found
+        else {
+	        callback(null, false);
+        }
     });
 };
 
-//insert new user in db
+//Function that inserts a new user in db
 User.register = function (user, callback) {
+	
+	// Inits user.db object
     var newUser = new User.db({first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password });
 
-    newUser.save ( function(err, ret){
+	// Save to the mongo DB
+    newUser.save ( function(err, response){
         if (err) return console.error(err);
-        callback(null, ret);
-        console.log(ret);
+        callback(null, response);
+        console.log(response);
     });
 };
 
-//insert new user in db
-/*User.test = function () {
-    var newUser = new User.db({email: "oliver", password: "password" });
 
-    newUser.save ( function(err, ret){
-        if (err) return console.error(err);
-        console.log(ret);
-    });
-};
-*/
-
-//delete user in db
+// Function that removes a user in db by ID
 User.remove = function(id, callback){
-    //send res back to controller
-    User.db.remove ( {_id : id}, function(err, ret){
+    
+    //send response back to controller
+    User.db.remove ( {_id : id}, function(err, response){
         if (err) return console.error(err);
-        console.log(ret);
-        callback(null, ret);
+        console.log(response);
+        callback(null, response);
     });
 };
 
-//modify selected user
+//Function that modifies selected user
 User.modify = function(user, callback){
-    User.db.findByIdAndUpdate(user._id, {first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password}, {new: true}, function (err, ret){
-        console.log(ret);
-        callback(null, ret);
+	
+	// Find by id and update user
+    User.db.findByIdAndUpdate(user._id, {first_name: user.first_name, email: user.email, 
+	    								phone_number: user.phone_number, password: user.password},
+	    								{new: true}, function (err, response){ // TODO: What is new: true?
+		if (err) return console.error(err);
+        console.log(response);
+        callback(null, response);
     });
 };
 
