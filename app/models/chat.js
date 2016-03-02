@@ -1,4 +1,4 @@
-// app/js/models/user.js
+// app/js/models/chat.js
 
 // Constructor
 var Chat = function (data) {  

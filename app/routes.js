@@ -165,7 +165,7 @@ var session = require('express-session');
 		
 		
 		// chat api route
-        app.get('/api/chat', function(req, res) {
+        app.post('/api/chat', function(req, res) {
 
 			// Asks chat service to send message 
 			Chat.send(req.query.username, req.query.text, function(err, callback){
