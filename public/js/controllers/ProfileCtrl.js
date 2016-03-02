@@ -1,12 +1,14 @@
 // public/js/controllers/ProfileCtrl.js
 angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, Profile, UserService) {
 
+
 	Profile.get()
 					.success(function(data) {
 						if(data != false)
 						{
 							$scope.first_name = data.first_name;
 							$scope.user = data;
+							$scope.role = data.role;
 							
 						}
 						
