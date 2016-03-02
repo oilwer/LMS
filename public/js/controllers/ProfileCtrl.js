@@ -1,11 +1,14 @@
 // public/js/controllers/ProfileCtrl.js
-angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, Profile) {
+angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, Profile, UserService) {
 
-	Profile.get("oliver")
+	// Get profile data from DB
+	Profile.get()
 					.success(function(data) {
 						if(data != false)
 						{
 							$scope.first_name = data.first_name;
+							$scope.user = data;
+							$scope.role = data.role;
 							
 						}
 						
@@ -14,4 +17,16 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
 							$scope.first_name = "No profile found";
 						}
 					});
+					
+					
+    //Gui function update profile
+    $scope.updateProfile = function() {
+            
+            //Asks UserService to update User
+            UserService.updateUser($scope.user).success(function (response) {
+				console.log(response);
+            });
+					
+	};
+
 });

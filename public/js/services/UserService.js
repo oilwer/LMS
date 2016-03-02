@@ -15,7 +15,7 @@ angular.module('UserService', []).factory('UserService', ['$http', function($htt
         
         // Update user by ID
         updateUser : function (user){
-            return $http.put('/api/userlist/', user);
+            return $http.put('/api/user/', user);
         },
         
         // Add user

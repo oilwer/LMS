@@ -12,7 +12,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
       };
 
 	// Function that triggers the API login call and manages GUI changes
-	var Login = function() {
+	var loginFunc = function() {
 					
 		Login.get($scope.email, $scope.password).success(function(response) {
 			
@@ -50,7 +50,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 
 		if(($scope.email != undefined) && ($scope.email !== "")){
 			if(($scope.password != undefined) && ($scope.password !== "")){
-	        	Login();
+	        	loginFunc();
 			}
 		}	
     };

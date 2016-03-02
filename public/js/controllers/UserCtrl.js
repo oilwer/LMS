@@ -43,7 +43,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
         else {
 
             $scope.btnAddOrUpdateText = 'Add user';
-            
+         
             //Asks UserService to update User
             UserService.updateUser($scope.user).success(function (response) {
 

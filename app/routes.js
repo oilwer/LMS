@@ -16,15 +16,15 @@ var session = require('express-session');
 				if(sess.isLoggedIn) console.log("You are logged in");
 			
   				if (sess.views) {
-  				  sess.views++
-  				  res.setHeader('Content-Type', 'text/html')
-  				  res.write('<p>views: ' + sess.views + '</p>')
-  				  res.write('<p>Logged in : ' + sess.isLoggedIn + '</p>')
-  				  res.write('<p>expires in: ' + (sess.cookie.maxAge / 1000) + 's</p>')
-  				  res.end()
+  					sess.views++
+  				  	res.setHeader('Content-Type', 'text/html')
+	  				res.write('<p>views: ' + sess.views + '</p>')
+	  				res.write('<p>Logged in : ' + sess.isLoggedIn + '</p>')
+	  				res.write('<p>expires in: ' + (sess.cookie.maxAge / 1000) + 's</p>')
+	  				res.end()
   				} else {
-  				  sess.views = 1
-  				  res.end('welcome to the session demo. refresh!')
+  				  	sess.views = 1
+  				  	res.end('welcome to the session demo. refresh!')
   				}
 		});
 		
@@ -51,8 +51,8 @@ var session = require('express-session');
 		app.post('/api/user', function(req, res){
 			
 			// Checks for empty fields
-			if(req.body.first_name !== undefined && req.body.email !== undefined && req.body.phone_number !== undefined) {
-			
+			if(req.body.role !== undefined && req.body.first_name !== undefined && req.body.email !== undefined && req.body.phone_number !== undefined) {
+	
 				// Adds the new user to DB
 				User.register(req.body, function (err, callback) {
 					res.json(callback);
@@ -70,8 +70,8 @@ var session = require('express-session');
 		});
 
 		//update selected users data
-		app.put('/api/userlist', function(req, res){
-
+		app.put('/api/user', function(req, res){
+		
 			// Updates user
 			User.modify(req.body, function(err, callback){
 				res.json(callback);
@@ -119,8 +119,6 @@ var session = require('express-session');
 					});
 			
 				}
-
-
  		});
  		
  		// Function that gets the logged in user's profile 
@@ -133,7 +131,6 @@ var session = require('express-session');
 			var email = sess.email; //TODO: use id instead of email
 			
 			console.log(sess);
-			
 			
 			if( (email !== "") && (email !== null))	{ 
 				
@@ -148,7 +145,7 @@ var session = require('express-session');
 					}
 					//if a user was found 	
 					else {
-						console.log('Profile fetched; email: %s.', user.email); 
+						console.log('Profile fetched; email: %s', user.email); 
 						res.json(user);
 					}
 				});
