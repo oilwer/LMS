@@ -1,5 +1,5 @@
 // public/js/controllers/userCtrl.js
-angular.module('UserCtrl', []).controller('UserController', function($scope, $http, UserService) {
+angular.module('UserCtrl', []).controller('UserController', function($scope, UserService) {
 
     $scope.btnAddOrUpdateText = 'Add user';
     
@@ -8,10 +8,10 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, $ht
 
      //Function that refreshes list from DB
     var refresh = function(){
-	    
+
 	    // Asks UserService for the Userlist
         UserService.getUserList().success(function(response){
-            
+
             // Updates the gui with the userListData
             $scope.userlist = response;
             $scope.user = "";
