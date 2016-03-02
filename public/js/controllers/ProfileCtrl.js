@@ -1,7 +1,7 @@
 // public/js/controllers/ProfileCtrl.js
 angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, Profile, UserService) {
 
-
+	// Get profile data from DB
 	Profile.get()
 					.success(function(data) {
 						if(data != false)
@@ -24,12 +24,7 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
             
             //Asks UserService to update User
             UserService.updateUser($scope.user).success(function (response) {
-
 				console.log(response);
-				// Refresh GUI
-                // refresh();
-                //$scope.user = "";
-
             });
 					
 	};
