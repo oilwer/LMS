@@ -70,8 +70,8 @@ var session = require('express-session');
 		});
 
 		//update selected users data
-		app.put('/api/userlist', function(req, res){
-
+		app.put('/api/user', function(req, res){
+		
 			// Updates user
 			User.modify(req.body, function(err, callback){
 				res.json(callback);

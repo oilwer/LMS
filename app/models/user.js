@@ -11,11 +11,17 @@ var Schema = mongoose.Schema;
 
 // Defines the user Schema (How the DB is structured)
 var userSchema = new Schema({ 
-  //  profilePic: String,
+    profilePic: String,
   	email: String,
-  	password: String,
   	first_name: String,
-    phone_number: String
+  	last_name: String,
+  	description: String,
+  	personality: String,
+    phone_number: String,
+    password: String,
+    courses: {
+	    course_name: String
+	    }
 });
 
 // set up a mongoose model and pass it using User.DB (User is a object w/ db as a property) 
@@ -125,10 +131,31 @@ User.remove = function(id, callback){
 //Function that modifies selected user
 User.modify = function(user, callback){
 	
+	/*
+		    profilePic: String,
+  	email: String,
+  	first_name: String,
+  	last_name: String,
+  	description: String,
+  	personality: String,
+    phone_number: String,
+    password: String,
+    courses: {
+	    course_name: String
+	    }
+		*/
+	
 	// Find by id and update user
-    User.db.findByIdAndUpdate(user._id, {first_name: user.first_name, email: user.email, 
-	    								phone_number: user.phone_number, password: user.password},
-	    								{new: true}, function (err, response){ // TODO: What is new: true?
+    User.db.findByIdAndUpdate(user._id, {
+	    	first_name: user.first_name, 
+			email: user.email, 
+	    	phone_number: user.phone_number, 
+	    	password: user.password,
+	    	description: user.description,
+	    	last_name: user.last_name,
+	    	personality: user.personality,
+	    	courses: user.courses
+	    	},{new: true}, function (err, response){ // TODO: What is new: true?
 		if (err) return console.error(err);
         console.log(response);
         callback(null, response);

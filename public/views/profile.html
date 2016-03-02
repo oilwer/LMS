@@ -2,8 +2,42 @@
 
 
 <div class="jumbotron text-center">
-    <h1>Profile</h1>
-        
-    <p> Hello {{ first_name }}!  </p>
+
+<h1>Basic profile management system</h1>
+
+<p> Hello {{ first_name }}!  </p>
+    
+        <div ng-controller="ProfileController">
+            
+            	<p> First name </p>
+                <input class="form-control" ng-model="user.first_name" required="true">
+                <p> Last name </p>
+                <input class="form-control" ng-model="user.last_name" required="true">
+                <p> Description </p>
+                <input class="form-control" ng-model="user.description" required="true">
+                <p> Personality </p>
+                <input class="form-control" ng-model="user.personality" required="true">
+                <p> Courses </p>
+                <input class="form-control" ng-model="user.courses.course_name" required="true">
+                <p> Email </p>
+                <input class="form-control" disabled="disabled" ng-model="user.email" required="true">
+                <p> Phone number </p>
+                <input class="form-control" ng-model="user.phone_number" required="true">
+                <p> Password </p>
+                <input class="form-control" ng-model="user.password" required="true">
+                
+                 <button class="btn btn-primary" ng-click="updateProfile()">Update</button>
+
+<!--
+           <div ng-repeat="user in userlist">
+                <p> {{user.first_name}} </p>
+                <p> {{user.email}} </p>
+               <p> {{user.phone_number}} </p>
+               <p> {{user.password}} </p>
+           </div>
+           
+           -->
+        </div>
+
 
 </div>

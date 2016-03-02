@@ -2,13 +2,9 @@
 angular.module('ProfileService', []).factory('Profile', ['$http', function($http) {
 
     return {
-        // call to get all nerds
-        get : function(email) {
-	        
-	        // console.log(username + " " + password);
-	        
-            // Makes API call w/ username and password
-            return $http.get('/api/profile?email=' + email);
+        
+        get : function() {
+            return $http.get('/api/profile');
         },
 
 
