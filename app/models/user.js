@@ -15,7 +15,8 @@ var userSchema = new Schema({
   	email: String,
   	password: String,
   	first_name: String,
-    phone_number: String
+    phone_number: String,
+    role: String //student/admin/teacher
 });
 
 // set up a mongoose model and pass it using User.DB (User is a object w/ db as a property) 
@@ -24,41 +25,38 @@ User.db = mongoose.model('User', userSchema);
 // Login function. Callback is the variable that returns the value
 User.login = function (email, password, callback) {  
    	
-   			// If email and password is not empty		
-			if( (email !== "") && (password !== "")) {
+		// If email and password is not empty		
+	if( (email !== "") && (password !== "")) {
+	
+		// If they are not null
+		if( (email !== null) && (password !== null)) {
+	    
+	    	// Then try to find one in the DB
+			User.db.findOne({ 'email': email, 'password': password },  function (err, user) {
 			
-				// If they are not null
-				if( (email !== null) && (password !== null)) {
-			    
-			    	// Then try to find one in the DB
-					User.db.findOne({ 'email': email, 'password': password },  function (err, user) {
+				// DB error
+				if (err) return handleError(err);
+			
+				// If the result exists (User found)
+				if(user) {
 					
-					// DB error
-					if (err) return handleError(err);
+					//TODO: Log into textfile instead?
+					console.log(user.first_name + ' logged in.'); 
+					
+					// Sets the return value to true
+					callback(null, true);
+				}	
 				
-					// If the result exists (User found)
-					if(user) {
-						
-						//TODO: Log into textfile instead?
-						console.log(user.first_name + ' logged in.'); 
-						
-						// Sets the return value to true
-						callback(null, true);
-					}	
-					
-					// No user found
-					else {
-						console.log(email + ' tried to log in: Incorrect email or password.'); 
-						// Return false
-						callback(null, false);
-					}
-					});
-			
+				// No user found
+				else {
+					console.log(email + ' tried to log in: Incorrect email or password.'); 
+					// Return false
+					callback(null, false);
 				}
-			}
-					
-        
-    
+			});
+	
+		}
+	}
 }
 
 // Function that returns all users
@@ -98,9 +96,8 @@ User.getById = function(id, callback){
 
 //Function that inserts a new user in db
 User.register = function (user, callback) {
-	
 	// Inits user.db object
-    var newUser = new User.db({first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password });
+    var newUser = new User.db({role: user.role, first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password });
 
 	// Save to the mongo DB
     newUser.save ( function(err, response){
@@ -126,7 +123,7 @@ User.remove = function(id, callback){
 User.modify = function(user, callback){
 	
 	// Find by id and update user
-    User.db.findByIdAndUpdate(user._id, {first_name: user.first_name, email: user.email, 
+    User.db.findByIdAndUpdate(user._id, {role: user.role, first_name: user.first_name, email: user.email, 
 	    								phone_number: user.phone_number, password: user.password},
 	    								{new: true}, function (err, response){ // TODO: What is new: true?
 		if (err) return console.error(err);
