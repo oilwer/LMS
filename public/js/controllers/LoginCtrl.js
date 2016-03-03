@@ -5,13 +5,13 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	
 	// Variable that resets error message
     $scope.errorMsg = "Enter your credentials";
-    $scope.class ="login--hide"
+    $scope.class ="login--error-hide"
 
 	// Function that triggers the API login call and manages GUI changes
 	$scope.loginFunc = function() {
         
         $scope.errorMsg = "Enter your credentials";
-        $scope.class = "login--hide"; //reset class
+        $scope.class = "login--error-hide"; //reset class
 					
 		Login.get($scope.email, $scope.password).success(function(response) {
 			
@@ -25,7 +25,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 			// Login failed
 			else {
                 $scope.errorMsg = "Wrong email or password, please try again"; //update error message
-                $scope.class = "login--show"; //show error message
+                $scope.class = "login--error-show"; //show error message
 				console.log("Tried to log in, did not work");
 			}
     	});	

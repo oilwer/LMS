@@ -58,6 +58,14 @@ body,html {
 }
 
 
+.container__flexcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    height: 100%;
+}
+
 /* * * * * * * * * * * * * * * *   
 
             LOGIN     
@@ -74,34 +82,32 @@ body,html {
     background-size: cover;
 }
 
-.login--form {
-    /*background: rgba(255,255,255,0.9);*/
+.login--error-hide {
+    opacity: 0;
+}
+
+.login--error-show {
+    color: #e74c3c;
+    transition: all 0.5s ease;
+}
+
+.form--login {
     padding: 20px;
     background: rgba(255,255,255,0.95);
     border-radius: 2px;
     box-shadow: 0 2px 5px 0px rgba(0,0,0,0.1);
-    transition: all 5s ease;
 }
 
-
-.login--hide {
-    opacity: 0;
-}
-
-.login--show {
-    opacity: 1;
-}
-
-.login--form ::-webkit-input-placeholder {
+.form--login ::-webkit-input-placeholder {
     color: rgba(135,121,78,1);
 }
 
-.login--form input[type="text"]:focus::-webkit-input-placeholder, .login--form input[type="password"]:focus::-webkit-input-placeholder  {
+.form--login input[type="text"]:focus::-webkit-input-placeholder, .form--login input[type="password"]:focus::-webkit-input-placeholder  {
     color: rgba(135,121,78,0.3);
     transition: all 0.1s ease;
 }
 
-.login--form input[type="text"], .login--form input[type="password"]{
+.form--login input[type="text"], .form--login input[type="password"]{
     display: block;
     margin: auto;
     width: 80%;
@@ -113,11 +119,11 @@ body,html {
     text-align: center;
 }
 
-.login--form input[type="password"] {
+.form--login input[type="password"] {
     border-top: none;
 }
 
-.login--form input[type="submit"] {
+.form--login input[type="submit"] {
     display: block;
     margin: auto;
     width: 80%;
@@ -126,31 +132,18 @@ body,html {
     padding: 5px;
 }
 
-.login--form h1 img {
+.form--login h1 img {
     padding: 5px 70px 0px 70px;
 }
 
-.login--show {
-    color: #e74c3c;
-    transition: all 0.5s ease;
-}
-.login--form a {
+.form--login a {
     color: #87794e;
     text-decoration: underline;
     padding: 15px 0px 20px 0px;
     display: inline-block;
 }
 
-.login--form a:hover {
+.form--login a:hover {
     text-decoration: none;
     cursor: pointer;
-}
-
-.container--flexcenter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    height: 100%;
-    
 }
