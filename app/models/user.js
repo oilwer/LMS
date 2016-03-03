@@ -106,9 +106,9 @@ User.register = function (user, callback) {
 	
 	// Inits user.db object
     var newUser = new User.db({role: user.role, first_name: user.first_name, 
-    	email: user.email, phone_number: user.phone_number, 
-    	password: user.password, description: user.description,
-    	last_name: user.last_name, personality: user.personality });
+    	last_name: user.last_name, email: user.email, phone_number: 
+    	user.phone_number, password: user.password, description: user.description,
+    	personality: user.personality });
     
 	// Save to the mongo DB
     newUser.save ( function(err, response){
