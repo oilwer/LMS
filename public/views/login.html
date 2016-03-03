@@ -1,30 +1,17 @@
 <!-- public/views/login.html -->
-
-<style>
-	input {
-      -webkit-appearance: none;
-      height:45px;
-      margin-bottom:15px;
-      width:200px;
-      border:1px solid lightgray;
-      text-align: center;
-      border-radius: 15px;   }
-</style>
-
-<div class="jumbotron text-center">
-    <h1>Enter the magical learning platform here</h1>
-        
-    <div ng-controller="LoginController">
-    <form>
-        <input ng-style="style(color)" type="text" ng-model="email" ng-change="checkIfValid()" placeholder="Email">  
-        <br/>
-        <input ng-style="style(color)" type="password" ng-model="password" ng-change="checkIfValid()" placeholder="Password">
-     
-      <p>  <br/> When you have typed your email & password you will get logged in. <br/> <i> Cool, right? </i> </p>
-	<br/> 
-        
-    </form>
-  </div>
-
-
-</div>
+<div class="container-fluid login">
+    <div class="row heightfull">
+        <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 heightfull" ng-controller="LoginController">
+            <div class="container--flexcenter">
+                <div class="login--form text-center">
+                    <h1><img src="/img/logotype.png"></h1>
+                    <form>
+                        <input ng-style="style(color)" type="text" ng-model="email" ng-change="checkIfValid()" placeholder="Email">  
+                        <input ng-style="style(color)" type="password" ng-model="password" ng-change="checkIfValid()" placeholder="Password"> <input class="button" type="submit" value="Log in">
+                        <a href="">I've forgot my password</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div><!---.row-->
+</div><!---container-->
