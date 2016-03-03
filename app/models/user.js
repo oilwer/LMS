@@ -71,6 +71,7 @@ User.getAllUsers = function (callback){
     User.db.find({}, function(err, users){
         if (err) return console.error(err);
         
+        //TODO: users is always true, check if elements exist in array instead
         // If the result exists (Users found)
 		if(users) {
         	callback(null, users);
@@ -102,11 +103,16 @@ User.getById = function(id, callback){
 
 //Function that inserts a new user in db
 User.register = function (user, callback) {
+	
 	// Inits user.db object
-    var newUser = new User.db({role: user.role, first_name: user.first_name, email: user.email, phone_number: user.phone_number, password: user.password });
-
+    var newUser = new User.db({role: user.role, first_name: user.first_name, 
+    	email: user.email, phone_number: user.phone_number, 
+    	password: user.password, description: user.description,
+    	last_name: user.last_name, personality: user.personality });
+    
 	// Save to the mongo DB
     newUser.save ( function(err, response){
+    	
         if (err) return console.error(err);
         callback(null, response);
         console.log(response);
