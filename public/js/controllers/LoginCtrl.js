@@ -29,10 +29,11 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 				console.log("Tried to log in, did not work");
 			}
     	});	
-	}
+	};
     
     $scope.forgotPassword = function() {
-        console.log("forgot password func, placeholder")
+        console.log("forgot password func, placeholder");
+
+		//TODO: Alt1: Ask user for email and send new? password to email (for that user)
     }
-    
 });
