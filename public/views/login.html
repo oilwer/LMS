@@ -6,8 +6,8 @@
                 <div class="login--form text-center">
                     <h1><img src="/img/logotype.png"></h1>
                     <form>
-                        <input ng-style="style(color)" type="text" ng-model="email" ng-change="checkIfValid()" placeholder="Email">  
-                        <input ng-style="style(color)" type="password" ng-model="password" ng-change="checkIfValid()" placeholder="Password"> <input class="button" type="submit" value="Log in">
+                        <input ng-style="style(color)" type="text" ng-model="email" placeholder="Email">  
+                        <input ng-style="style(color)" type="password" ng-model="password" placeholder="Password"> <input class="button" type="submit" value="Log in" ng-click="checkIfValid()">
                         <a href="">I've forgot my password</a>
                     </form>
                 </div>

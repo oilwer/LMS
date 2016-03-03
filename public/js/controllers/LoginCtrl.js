@@ -38,20 +38,21 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	// Gui Function that fires on key event from GUI. 
 	$scope.checkIfValid = function() {
 		
-		// Resets the timer
+		/* Resets the timer
 		clearTimeout(timer);
 		
 		// Sets the timer to 0.4 sec and then checks against DB
-		timer = setTimeout(runCheckIfVaild, 400);
-	}
-	
-	// Function to run username and password against DB
-	var runCheckIfVaild = function() {
-
-		if(($scope.email != undefined) && ($scope.email !== "")){
+		timer = setTimeout(runCheckIfVaild, 400);*/
+        if(($scope.email != undefined) && ($scope.email !== "")){
 			if(($scope.password != undefined) && ($scope.password !== "")){
 	        	loginFunc();
 			}
-		}	
-    };
+		}
+	}
+	
+	/* Function to run username and password against DB
+	var runCheckIfVaild = function() {
+
+			
+    };*/
 });
