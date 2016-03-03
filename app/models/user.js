@@ -19,6 +19,7 @@ var userSchema = new Schema({
   	personality: String,
     phone_number: String,
     password: String,
+	public_url: String,
     courses: {
 	    course_name: String
 	    },
@@ -100,6 +101,23 @@ User.getById = function(id, callback){
     });
 };
 
+// Function that returns a user by public URL
+User.getByPublicURL = function(public_url, callback){
+    User.db.findOne ( {public_url: public_url}, function(err, user){
+        if (err) return console.error(err);
+
+         // If the result exists (User found)
+		if(user) {
+        	callback(null, user);
+        }
+
+        // No results found
+        else {
+	        callback(null, false);
+        }
+    });
+};
+
 //Function that inserts a new user in db
 User.register = function (user, callback) {
 	// Inits user.db object
@@ -132,14 +150,15 @@ User.modify = function(user, callback){
 	// Find by id and update user
     User.db.findByIdAndUpdate(user._id, {
 	    	role: user.role,
-	    	first_name: user.first_name, 
+	    	first_name: user.first_name,
+			last_name: user.last_name,
 			email: user.email, 
 	    	phone_number: user.phone_number, 
 	    	password: user.password,
 	    	description: user.description,
-	    	last_name: user.last_name,
 	    	personality: user.personality,
-	    	courses: user.courses
+	    	courses: user.courses,
+			public_url: user.public_url
 	    	},{new: true}, function (err, response){ // TODO: What is new: true?
 		if (err) return console.error(err);
         console.log(response);

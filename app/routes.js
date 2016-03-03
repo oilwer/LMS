@@ -22,7 +22,7 @@ var session = require('express-session');
 	  				res.write('<p>Logged in : ' + sess.isLoggedIn + '</p>')
 	  				res.write('<p>expires in: ' + (sess.cookie.maxAge / 1000) + 's</p>')
 	  				res.end()
-  				} else {
+  				} else{
   				  	sess.views = 1
   				  	res.end('welcome to the session demo. refresh!')
   				}
@@ -35,14 +35,22 @@ var session = require('express-session');
 			User.getAllUsers(function(err, callback){
 				res.json(callback);
 			});
-
 		});
 
 		//Get user by id
 		app.get('/api/user/', function(req, res){
-			
 			// Fetches User by ID
 			User.getById(req.query.id, function(err, callback){
+				res.json(callback);
+			});
+		});
+
+		//Get user by public url
+		app.get('/api/public/user', function(req, res){
+
+            console.log("Routes: "+req.query.url);
+			// Fetches User by public url
+			User.getByPublicURL(req.query.url, function(err, callback){
 				res.json(callback);
 			});
 		});
@@ -51,7 +59,8 @@ var session = require('express-session');
 		app.post('/api/user', function(req, res){
 			
 			// Checks for empty fields
-			if(req.body.role !== undefined && req.body.first_name !== undefined && req.body.email !== undefined && req.body.phone_number !== undefined) {
+			if(req.body.role !== undefined && req.body.first_name !== undefined
+                && req.body.email !== undefined && req.body.phone_number !== undefined) {
 	
 				// Adds the new user to DB
 				User.register(req.body, function (err, callback) {
@@ -95,30 +104,29 @@ var session = require('express-session');
         // Login function
         app.get('/api/login', function (req,res) {
 	        	
-	        	// Fetches session variable
-	        	var sess = req.session;
-	        	
-	        	// If already logged in - return true (No need to DB query's)
-	        	if(sess.isLoggedIn == true) {
-		        	res.json(true);
-		        }
-		        
-		        // Not logged in
-	        	else {
-					// Triggers login function in the User model
-					User.login(req.query.email, req.query.password, function(err, callback){
-				
-						// If user gets logged in -> Set session isLoggedIn to true. 
-						if(callback){
-							sess.isLoggedIn = true;
-							sess.email = req.query.email;
-						}
-						
-						// Returns the login value (bool) to LoginCtrl
-						res.json(callback);
-					});
-			
-				}
+            // Fetches session variable
+            var sess = req.session;
+
+            // If already logged in - return true (No need to DB query's)
+            if(sess.isLoggedIn == true) {
+                res.json(true);
+            }
+
+            // Not logged in
+            else {
+                // Triggers login function in the User model
+                User.login(req.query.email, req.query.password, function(err, callback){
+
+                    // If user gets logged in -> Set session isLoggedIn to true.
+                    if(callback){
+                        sess.isLoggedIn = true;
+                        sess.email = req.query.email;
+                    }
+
+                    // Returns the login value (bool) to LoginCtrl
+                    res.json(callback);
+                });
+            }
  		});
  		
  		// Function that gets the logged in user's profile 
@@ -130,7 +138,7 @@ var session = require('express-session');
         	// recover parameters
 			var email = sess.email; //TODO: use id instead of email
 			
-			console.log(sess);
+			//console.log(sess);
 			
 			if( (email !== "") && (email !== null))	{ 
 				

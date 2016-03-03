@@ -26,6 +26,13 @@
             templateUrl: 'views/chat.html',
             controller: 'ChatController'
         })
+
+        // Public profile
+        //dynamic url (listen on whats in the URL)
+        .when('/public/:url', {
+            templateUrl: 'views/profilePublic.html',
+            controller: 'ProfilePublicController'
+        })
         
         // User management page
         .when('/user', {

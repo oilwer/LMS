@@ -21,20 +21,22 @@
     <script src="js/controllers/ProfileCtrl.js"></script>
     <script src="js/controllers/ChatCtrl.js"></script>
     <script src="js/controllers/UserCtrl.js"></script>
-    
+    <script src="js/controllers/ProfilePublicCtrl.js"></script>
+
     <!-- ANGULAR SERVICES -->
     <script src="js/services/LoginService.js"></script>
     <script src="js/services/ProfileService.js"></script>
     <script src="js/services/UserService.js"></script>
     <script src="js/services/ChatService.js"></script>
-    
+    <script src="js/services/ProfilePublicService.js"></script>
+
     <!-- NODE STUFF -->
     <script src="js/appRoutes.js"></script>
     <script src="js/app.js"></script>
 
     <!-- TEST SCRIPTS -->
-     <script src="//anglibs.github.io/angular-location-update/angular-location-update.min.js"></script>
-     
+    <script src="//anglibs.github.io/angular-location-update/angular-location-update.min.js"></script>
+
 </head>
 <body ng-app="sampleApp" ng-controller="MainController">
 <div class="container">
@@ -51,6 +53,7 @@
             <li><a href="/profile">Profile</a></li>
             <li><a href="/chat">Chat (Slack API)</a></li>
             <li><a href="/user">User List</a></li>
+            <li><a href="/public/">public Profile</a></li>
             <li><a href="/api/logout">Log out</a></li>
         </ul>
     </nav>
