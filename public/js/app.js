@@ -1,4 +1,15 @@
 // public/js/app.js
-angular.module('sampleApp', ['ngLocationUpdate', 'ngRoute', 'appRoutes', 
-'MainCtrl', 'LoginCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl', 'ProfilePublicCtrl',
+
+var lmsApp = angular.module('lmsApp', ['ngLocationUpdate', 'ngRoute', 'appRoutes',
+    'LoginCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl', 'ProfilePublicCtrl',
 'ProfileService', 'LoginService', 'UserService', 'ChatService', 'ProfilePublicService']);
+
+
+
+lmsApp.directive('appNav', function(){
+    return{
+        restrict: 'E',
+        templateUrl: 'js/directives/nav.html'
+    };
+});
+

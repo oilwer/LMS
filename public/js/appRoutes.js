@@ -5,12 +5,6 @@
 
         // home page
         .when('/', {
-            templateUrl: 'views/home.html',
-            controller: 'MainController'
-        })
-        
-        // Login
-        .when('/login', {
             templateUrl: 'views/login.html',
             controller: 'LoginController'
         })
