@@ -7,7 +7,6 @@ angular.module('ProfileService', []).factory('Profile', ['$http', function($http
             return $http.get('/api/profile');
         },
 
-
 		// http://localhost:8080/api/profile?email=oliver
 
                 // these will work when more API routes are defined on the Node side of things

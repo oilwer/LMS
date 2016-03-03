@@ -6,7 +6,6 @@ var app            = express();
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var mongoose	   = require('mongoose');
-var User 		   = require('./app/models/user'); // get our mongoose model
 var session = require('express-session');
 
 

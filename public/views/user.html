@@ -1,21 +1,25 @@
 <!-- public/views/user.html -->
-
+<app-nav></app-nav>
 <div class="container" >
     <h1>Basic user management system</h1>
     <p> (that could be used for anything..) </p>
     <table class="table">
         <thead>
         <tr>
-            <th>User role</th> <th>First name</th>   <th>Email</th>  <th>Phone number</th> <th>Password</th>
-        </tr>
+            <th>User role</th> <th>First name</th> <th>Last Name</th> <th>Email</th>  <th>Phone number</th> <th>Password</th> <th>Description</th> <th>Personality</th>
+        </tr> 
         </thead>
         <tbody ng-controller="UserController">
             <tr>
                 <td><input class="form-control" ng-model="user.role" required="true"></td>
                 <td><input class="form-control" ng-model="user.first_name" required="true"></td>
+                <td><input class="form-control" ng-model="user.last_name" required="true"></td>
                 <td><input class="form-control" ng-model="user.email" required="true"></td>
                 <td><input class="form-control" ng-model="user.phone_number" required="true"></td>
                 <td><input class="form-control" ng-model="user.password" required="true"></td>
+                <td><input class="form-control" ng-model="user.description" required="true"></td>
+                <td><input class="form-control" ng-model="user.personality" required="true"></td>
+
                 <td> <button class="btn btn-primary" ng-click="addOrUpdateUser()">{{btnAddOrUpdateText}}</button></td>
                 <!-- <td>
                      <button class="btn btn-info" ng-click="update()">Update</button>
@@ -25,9 +29,13 @@
            <tr ng-repeat="user in userlist">
                 <td>{{user.role}}</td>
                 <td>{{user.first_name}}</td>
+                <td>{{user.last_name}}</td>
                 <td>{{user.email}}</td>
                 <td>{{user.phone_number}}</td>
                 <td>{{user.password}}</td>
+                <td>{{user.description}}</td>
+                <td>{{user.personality}}</td>
+
                 <td><button class="btn btn-warning" ng-click="prepareEdit(user._id)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>
            </tr>
