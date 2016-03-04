@@ -22,7 +22,7 @@
         })
 
         // Public profile
-        //dynamic url (listen on whats in the URL)
+        //dynamic url (listen on whats in the :url)
         .when('/public/:url', {
             templateUrl: 'views/profilePublic.html',
             controller: 'ProfilePublicController'

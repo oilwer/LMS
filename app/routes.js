@@ -120,7 +120,7 @@ var session = require('express-session');
                     // If user gets logged in -> Set session isLoggedIn to true.
                     if(callback){
                         sess.isLoggedIn = true;
-                        sess.email = req.query.email;
+                        sess.userid = callback.id;
                     }
 
                     // Returns the login value (bool) to LoginCtrl
@@ -135,37 +135,25 @@ var session = require('express-session');
 	        // Fetches session variable
 	        var sess = req.session;
         
-        	// recover parameters
-			var email = sess.email; //TODO: use id instead of email
+        	// recover Users ID from current sessions parameters
+			var userId = sess.userid; //TODO: use id instead of email
 			
-			//console.log(sess);
+			//console.log("SessionID: "+sess.userid);
 			
-			if( (email !== "") && (email !== null))	{ 
+			if( (userId !== "") && (userId !== null))	{
 				
 				//looks for one user in db with email from session
-				User.db.findOne({ 'email': email},  function (err, user) {
-					if (err) return handleError(err);
-			
-					//if a user was not found in db
-					if(!user) {
-						console.log('User does not exist'); 
-						res.json(false);	
-					}
-					//if a user was found 	
-					else {
-						console.log('Profile fetched; email: %s', user.email); 
-						res.json(user);
-					}
+				User.getById(userId, function(err, callback){
+					res.json(callback);
 				});
 			}
-
  		});
  	       
 		
 		// Api start, TODO: documentation
         app.get('/api', function(req, res) {
             
-            res.json("Welcome to our api! /login & /profile works");
+            res.json("Welcome to our api! /login, /public/:url & /profile works");
         });
 		
 		
