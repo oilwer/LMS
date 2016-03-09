@@ -1,0 +1,52 @@
+<!-- public/views/courses.html -->
+
+<app-nav></app-nav>
+<div class="app_container">
+    <div class="container courses" ng-controller="CoursesController">
+        <div class="row">
+            
+            <div class="col-md-12">
+                <h1>{{ heading }}</h1>
+            </div>
+            <div class="col-md-1 courses_filter_header">
+                <p>Sort:</p>
+            </div>
+            <div class="col-md-3">
+                <p class="courses_filter">Active</p>
+            </div>
+            <div class="col-md-3">
+                <p class="courses_filter">Date</p>
+            </div>
+            <div class="col-md-3">
+                <p class="courses_filter">Deadline</p>
+            </div>
+
+        </div>
+        
+        <div class="row">
+            
+            <div ng-repeat="course in courses">
+                <!--repeat all courses that the user belongs to-->
+                <div class="col-md-3 box--courses">
+                    <a href="courses/{{ course.url }} ">
+                        <div class="box">
+                            <div class="box__header">
+                                <h2>{{ course.name }}</h2>
+                            </div>
+                            <div class="box__content">
+                                <p> {{ course.assignment }}  </p>
+                                <p> {{ course.status }}  </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div><!--ng-repeat-->
+            
+        </div><!--.row-->
+    </div><!--.dashboard-->
+</div><!--.app_container-->
+
+
+
+
+            

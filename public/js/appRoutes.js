@@ -15,6 +15,18 @@
             controller: 'HomeController'
         })
     
+        // courses
+        .when('/courses', {
+            templateUrl: 'views/courses.html',
+            controller: 'CoursesController'
+        })
+    
+        // courses
+        .when('/courses/testcourse', {
+            templateUrl: 'views/testcourse.html',
+            controller: 'TestCourseController'
+        })
+    
         // Profile
         .when('/profile', {
             templateUrl: 'views/profile.html',

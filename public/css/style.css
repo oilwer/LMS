@@ -278,12 +278,53 @@ body, html {
 
 /* * * * * * * * * * * * * * * *   
 
-            DASHBOARD    
+            PAGES  
 
 * * * * * * * * * * * * * * * * */  
 
-.dashboard {
+.dashboard, .courses {
+    padding-top: 50px;
 }
+
+.box--courses a{
+    text-decoration: none;
+}
+
+.box--courses a:hover {
+    text-decoration: none;
+}
+
+.box--courses .box {
+    transition: all 0.3s ease;
+}
+
+.box--courses:hover .box {
+    margin-top: -3px;
+    transition: all 0.3s ease;
+    
+}
+
+/* * * * * * * * * * * * * * * *   
+
+            COURSES   
+
+* * * * * * * * * * * * * * * * */  
+
+.courses_filter {
+    border: 2px solid rgba(0,0,0,0.1);
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.courses_filter_header {
+    margin-top: 50px;
+    margin-bottom: 20px;
+    padding: 5px;
+    text-align: right;
+}
+
 
 
 /* * * * * * * * * * * * * * * *   
