@@ -1,9 +1,26 @@
 <!-- public/views/home.html -->
 
 <app-nav></app-nav>
-<div class="jumbotron text-center" ng-controller="HomeController">
-
-    <h1>Start</h1>
+<div class="container dashboard" ng-controller="HomeController">
+    <div class="row">
+        <!--DASHBOARD ITEMS-->
         
-    <p> Hello {{ test }}  </p>
+        <div class="col-md-6">
+            <div class="box">
+                <h2>Test</h2>
+                <div class="box__content">
+                    <p> Hello {{ test }}  </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="box">
+                <h2>Test</h2>
+                <div class="box__content">
+                    <p> Hello {{ test }}  </p>
+                </div>
+            </div>
+        </div>
+        
+    </div>
 </div>
