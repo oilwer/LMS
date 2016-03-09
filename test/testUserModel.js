@@ -20,7 +20,8 @@ var testUser1 = new Object({
     courses: {
       course_name: "courseTest"
       },
-    role: "testRole" //student/admin/teacher
+    role: "testRole", //student/admin/teacher
+    public_url: "url"
 });
 var testUser2 = new Object({ 
     profilePic: "testPic2",
@@ -34,7 +35,8 @@ var testUser2 = new Object({
     courses: {
       course_name: "courseTest2"
       },
-    role: "testRole2" //student/admin/teacher
+    role: "testRole2", //student/admin/teacher
+    public_url: "url2"
 });
 
 describe('Users: models', function () {
@@ -43,7 +45,7 @@ describe('Users: models', function () {
     it('should return true on successfull login', function (done) {
       User.register(testUser1, function (err, createdUser) {
         User.login(createdUser.email, createdUser.password, function (err, res) {
-          res.should.equal(true);
+          res.first_name.should.equal(testUser1.first_name);
           done();
         });
       });

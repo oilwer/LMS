@@ -6,7 +6,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>User role</th> <th>First name</th> <th>Last Name</th> <th>Email</th>  <th>Phone number</th> <th>Password</th> <th>Description</th> <th>Personality</th>
+            <th>User role</th> <th>First name</th> <th>Last Name</th> <th>Email</th>  <th>Phone number</th> <th>Password</th> <th>Description</th> <th>Personality</th><th>Public Url</th>
         </tr> 
         </thead>
         <tbody ng-controller="UserController">
@@ -19,6 +19,7 @@
                 <td><input class="form-control" ng-model="user.password" required="true"></td>
                 <td><input class="form-control" ng-model="user.description" required="true"></td>
                 <td><input class="form-control" ng-model="user.personality" required="true"></td>
+                <td><input class="form-control" ng-model="user.public_url" required="true"></td>
 
                 <td> <button class="btn btn-primary" ng-click="addOrUpdateUser()">{{btnAddOrUpdateText}}</button></td>
                 <!-- <td>
@@ -35,6 +36,7 @@
                 <td>{{user.password}}</td>
                 <td>{{user.description}}</td>
                 <td>{{user.personality}}</td>
+                <td>{{user.public_url}}</td>
 
                 <td><button class="btn btn-warning" ng-click="prepareEdit(user._id)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>
