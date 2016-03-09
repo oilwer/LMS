@@ -27,7 +27,7 @@ p {
     color: #404040;
 }
 
-body,html {
+body, html {
     width: 100%;
     height: 100%;
     margin: 0px;
@@ -35,14 +35,14 @@ body,html {
     font-family: "Open Sans", sans-serif;
 }
 
-body {
-    padding-left: 80px;
-}
-
 .heightfull {
     height: 100%;
 }
 
+.app_container { /*remove space hidden by nav*/
+    padding-left: 80px;
+    padding-top: 50px;
+}
 
 
 /* * * * * * * * * * * * * * * *   
@@ -58,16 +58,21 @@ body {
     padding: 0px;
 }
 
-.box__content {
-    padding: 10px;
-}
-
-.box h2 {
+.box__header {
     border-radius: 5px 5px 0px 0px;
     background: rgba(47, 155, 134, 1);
     color: rgba(255,255,255,1);
     padding: 10px;
     font-size: 1.2em;
+}
+
+.box__header h2 {
+    color: rgba(255,255,255,1);
+    font-size: 1.2em;
+}
+
+.box__content {
+    padding: 10px;
 }
 
 .button {
@@ -161,6 +166,21 @@ body {
     transition: all 0.5s ease;
 }
 
+.nav--global a:active {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+}
+
+.nav--global a:focus {
+    text-decoration: none;
+    color: rgba(255,255,255,1);
+}
+
+.nav--global a:visited {
+    text-decoration: none;
+    color: rgba(255,255,255,1);
+}
+
 .nav--global a:hover {
     text-decoration: none;
     color: rgba(255,255,255,0.5);
@@ -176,9 +196,9 @@ body {
 /*Share li/a space with global_listitem*/
 .nav--global li img, .nav--global li svg {
     width: auto;
-    height: 60%;
+    height: 70%;
     padding: 10% 0px;
-    display: inline-block;
+    display: block;
     margin: auto;
 }
 
@@ -199,17 +219,12 @@ body {
     transition: all 0.5s ease;
 }
 
-
-
-
 .nav--global_profilitem img {
-    height: 40%;
     border-radius: 50%;
 }
 
 .nav--global_profilename {
     text-transform: none;
-    font-size: 10px;
 }
 
 /* * * * * * * * * * * * * * * *   
@@ -219,7 +234,6 @@ body {
 * * * * * * * * * * * * * * * * */  
 
 .dashboard {
-    padding: 50px 0px;
 }
 
 

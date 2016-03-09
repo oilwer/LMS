@@ -1,26 +1,32 @@
 <!-- public/views/home.html -->
 
 <app-nav></app-nav>
-<div class="container dashboard" ng-controller="HomeController">
-    <div class="row">
-        <!--DASHBOARD ITEMS-->
-        
-        <div class="col-md-6">
-            <div class="box">
-                <h2>Test</h2>
-                <div class="box__content">
-                    <p> Hello {{ test }}  </p>
+<div class="app_container">
+    <div class="container dashboard" ng-controller="HomeController">
+        <div class="row">
+            <!--DASHBOARD ITEMS-->
+
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box__header">
+                        <h2>Test</h2>
+                    </div>
+                    <div class="box__content">
+                        <p> Hello {{ test }}  </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-6">
-            <div class="box">
-                <h2>Test</h2>
-                <div class="box__content">
-                    <p> Hello {{ test }}  </p>
+            <div class="col-md-6">
+                <div class="box">
+                    <div class="box__header">
+                        <h2>Test</h2>
+                    </div>
+                    <div class="box__content">
+                        <p> Hello {{ test }}  </p>
+                    </div>
                 </div>
             </div>
-        </div>
-        
-    </div>
-</div>
+
+        </div><!--.row-->
+    </div><!--.dashboard-->
+</div><!--.app_container-->
