@@ -23,7 +23,7 @@ describe("Test Routes: webPage",function(){
     .expect("Content-type",/json/)
     .expect(200) // THis is HTTP response
     .end(function(err,res){
-    	res.body.should.equal("Welcome to our api! /login & /profile works");
+    	res.body.should.equal("Welcome to our api! /login, /public/:url & /profile works");
     });
     done();
   });
