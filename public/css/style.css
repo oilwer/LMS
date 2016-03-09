@@ -1,4 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Comfortaa:400,300,700);
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300italic,400italic,600,600italic,700,700italic,300,800,800italic);
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
 
 * {
     margin: 0;
@@ -13,6 +15,7 @@
 body,html {
     width: 100%;
     height: 100%;
+    font-family: "Open Sans", sans-serif;
 }
 
 .heightfull {
@@ -33,30 +36,36 @@ body,html {
     color: #fff;
     border: none;
     border-radius: 2px;
-    position: relative;
-    margin: 0;
-    padding: 0 16px;
+    padding: 9.9px 18px;
     display: inline-block;
     font-family: "Roboto","Helvetica","Arial",sans-serif;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 500;
     text-transform: uppercase;
-    letter-spacing: 0;
+    letter-spacing: 2;
     will-change: box-shadow;
     transition: box-shadow .2s cubic-bezier(.4,0,1,1),background-color .2s cubic-bezier(.4,0,.2,1),color .2s cubic-bezier(.4,0,.2,1);
     outline: none;
     cursor: pointer;
     text-decoration: none;
     text-align: center;
-    line-height: 36px;
+    line-height: 34px;
     vertical-align: middle;
     box-shadow: 0 2px 2px 0 rgba(0,0,0,.14),0 3px 1px -2px rgba(0,0,0,.2),0 1px 5px 0 rgba(0,0,0,.12);
+    border-radius: 3px;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 .button:active {
     box-shadow: 0 0 0 0 rgba(0,0,0,.14);
+    outline: none;
 }
 
+.button:hover {
+    background: rgba(47, 155, 134, 0.9);
+    transition: all 1s ease;
+}
 
 .container__flexcenter {
     display: flex;
@@ -73,13 +82,15 @@ body,html {
 * * * * * * * * * * * * * * * * */                
 
 .login {
-    background: url("/img/tree.jpeg") center center fixed;
+    background: url("/img/login-study-blur-light.png") center center fixed;
     width: 100%;
     height: 100%;
+    /*background: rgba(235,235,235,1);*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    
 }
 
 .login--error-hide {
@@ -92,14 +103,11 @@ body,html {
 }
 
 .form--login {
-    padding: 20px;
-    background: rgba(255,255,255,0.95);
-    border-radius: 2px;
-    box-shadow: 0 2px 5px 0px rgba(0,0,0,0.1);
+    padding: 0px 0px;
 }
 
 .form--login ::-webkit-input-placeholder {
-    color: rgba(135,121,78,1);
+    color: #707070; /*brun #87794e #707070*/
 }
 
 .form--login input[type="text"]:focus::-webkit-input-placeholder, .form--login input[type="password"]:focus::-webkit-input-placeholder  {
@@ -110,34 +118,34 @@ body,html {
 .form--login input[type="text"], .form--login input[type="password"]{
     display: block;
     margin: auto;
-    width: 80%;
-    background: rgba(255,255,255,0.7);
+    width: 85%;
+    background: rgba(255,255,255,1);
     margin-top: 0px;
-    border: 1px solid rgba(155,155,155,0.4);
-    margin-bottom: 0px;
-    padding: 13px;
-    text-align: center;
-}
-
-.form--login input[type="password"] {
-    border-top: none;
+    border: 0px solid rgba(155,155,155,0.4);
+    border-bottom: 2px solid rgba(155,155,155,0.4);
+    margin-bottom: 5px;
+    padding: 12px 20px;;
+    text-align: left;
+    outline: none;
+    box-shadow: 0 0px 1px 0px rgba(0,0,0,.14);
 }
 
 .form--login input[type="submit"] {
     display: block;
     margin: auto;
-    width: 80%;
-    margin-top: 10px;
+    width: 85%;
+    margin-top: 20px;
     margin-bottom: 0px;
     padding: 5px;
 }
 
 .form--login h1 img {
-    padding: 5px 70px 0px 70px;
+    padding: 5px 70px 25px 70px;
 }
 
 .form--login a {
-    color: #87794e;
+    font-weight: 600;
+    color: #404040;
     text-decoration: underline;
     padding: 15px 0px 20px 0px;
     display: inline-block;

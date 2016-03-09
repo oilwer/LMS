@@ -4,12 +4,12 @@
         <div class="col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3 heightfull" ng-controller="LoginController">
             <div class="container__flexcenter">
                 <div class="form--login text-center">
-                    <h1><img src="/img/logotype.png"></h1>
-                    <p ng-Class="class">{{errorMsg}}</p>
+                    <h1><img src="/img/learning_logo_2.png"></h1>
                     <form>
                         <input type="text" ng-model="email" placeholder="Email">  
                         <input type="password" ng-model="password" placeholder="Password"> <input class="button" type="submit" value="Log in" ng-click="loginFunc()">
-                        <a ng-click="forgotPassword()">I've forgot my password</a>
+                        <a ng-click="forgotPassword()">Reset password</a>
+                        <p ng-Class="class">{{errorMsg}}</p>
                     </form>
                 </div>
             </div>
