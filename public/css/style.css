@@ -41,14 +41,6 @@ body, html {
     height: 100%;
 }
 
-<<<<<<< HEAD
-.app_container { /*remove space hidden by nav*/
-    padding-left: 80px;
-}
-
-=======
->>>>>>> a7f527f28a8beaf80c90be2b9b6cb202dd5a8a33
-
 /* * * * * * * * * * * * * * * *   
 
         GLOBAL COMPONENTS    
@@ -141,7 +133,6 @@ body, html {
 
 .app_container { /*remove space hidden by nav*/
     padding-left: 0px;
-    padding-top: 50px;
 }
 
 .nav--global { /*nav*/
@@ -253,7 +244,6 @@ body, html {
     
     .app_container { /*remove space hidden by nav*/
     padding-left: 80px;
-    padding-top: 50px;
     }
     
     .nav--global { /*nav*/
