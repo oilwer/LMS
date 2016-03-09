@@ -8,7 +8,7 @@
     position: fixed;
     bottom:0px;
     right: 0px;
-    /*display: none;*/
+    display: none;
 }
 * {
     margin: 0px;
@@ -39,11 +39,6 @@ body, html {
     height: 100%;
 }
 
-.app_container { /*remove space hidden by nav*/
-    padding-left: 80px;
-    padding-top: 50px;
-}
-
 
 /* * * * * * * * * * * * * * * *   
 
@@ -56,23 +51,32 @@ body, html {
     box-shadow: 0.5px 2px 0px 1px rgba(0,0,0,.08);
     border-radius: 5px;
     padding: 0px;
+    margin-bottom: 10px;
+}
+
+.box__header svg {
+    padding: 0px 5px;
+    width: 25px;
+    height: auto;
+    display: inline-block
 }
 
 .box__header {
     border-radius: 5px 5px 0px 0px;
     background: rgba(47, 155, 134, 1);
     color: rgba(255,255,255,1);
-    padding: 10px;
+    padding: 12px 10px;
     font-size: 1.2em;
 }
 
 .box__header h2 {
+    display: inline-block;
     color: rgba(255,255,255,1);
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .box__content {
-    padding: 10px;
+    padding: 20px;
 }
 
 .button {
@@ -124,15 +128,21 @@ body, html {
 
             NAV--global     
 
-* * * * * * * * * * * * * * * * */    
+* * * * * * * * * * * * * * * * */  
+
+.app_container { /*remove space hidden by nav*/
+    padding-left: 0px;
+    padding-top: 50px;
+}
 
 .nav--global { /*nav*/
     position: fixed;
     left: 0;
-    top: 0;
-    width: 80px;
-    height: 100%;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
     background: rgba(62,71,79,1);
+    z-index: 50;
 }
 
 .nav--global ul {
@@ -140,17 +150,19 @@ body, html {
     height: 100%;
     margin: 0px;
     padding: 0px;
-}
-
-.nav--global li {
-    width: 100%;
-    padding: 5px;
-    margin: 5px 0px;
-    height: 80px;
     text-align: center;
 }
 
-.nav--global a {
+.nav--global li {
+    display: inline-block;
+    height: 100%;
+    width: 17%;
+    padding: 0px;
+    margin: 0px 0px;
+    text-align: center;
+}
+
+ .nav--global a {
     font-family: "Roboto", sans-serif;
     font-weight: 600;
     text-transform: uppercase;
@@ -159,7 +171,7 @@ body, html {
     color: rgba(255,255,255,1);
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
+    -moz-osx-font-smoothing: grayscale;
     display: inline-block;
     width: 100%;
     height: 100%;
@@ -188,9 +200,7 @@ body, html {
 }
 
 .nav--global_logotype {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    display: none;
 }
 
 /*Share li/a space with global_listitem*/
@@ -225,6 +235,46 @@ body, html {
 
 .nav--global_profilename {
     text-transform: none;
+}
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    
+    .app_container { /*remove space hidden by nav*/
+    padding-left: 80px;
+    padding-top: 50px;
+    }
+    
+    .nav--global { /*nav*/
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 80px;
+        height: 100%;
+        background: rgba(62,71,79,1);
+    }
+
+    .nav--global li {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0px;
+        height: 80px;
+        text-align: center;
+        display: block;
+    }
+
+    .nav--global a {
+        font-size: 11px;
+    }
+
+    .nav--global_logotype {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
 }
 
 /* * * * * * * * * * * * * * * *   
@@ -406,3 +456,36 @@ body, html {
 .ex {
     background-color: #ccc;
 }
+
+
+
+/*==================================================
+=            Bootstrap 3 Media Queries             =
+==================================================*/
+
+    /*==========  Mobile First Method  ==========*/
+
+    /* Custom, iPhone Retina */ 
+    @media only screen and (min-width : 320px) {
+        
+    }
+    /* Extra Small Devices, Phones */ 
+    @media only screen and (min-width : 480px) {
+
+    }
+
+    /* Small Devices, Tablets */
+    @media only screen and (min-width : 768px) {
+
+    }
+
+    /* Medium Devices, Desktops */
+    @media only screen and (min-width : 992px) {
+
+    }
+
+    /* Large Devices, Wide Screens */
+    @media only screen and (min-width : 1200px) {
+
+    }
+
