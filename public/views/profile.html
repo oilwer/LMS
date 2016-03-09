@@ -1,13 +1,84 @@
 <!-- public/views/profile.html -->
 
 <app-nav></app-nav>
-<div class="jumbotron text-center">
+<div class="app_container heightfull">
+    <div class="container-fluid profile heightfull">
+        <div class="row heightfull">
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfileController">
+                <div class="profile__about">
+                    <div class="profile__about__img"></div>
+                    <h1> {{ first_name }} {{ last_name }} </h1>
+                    <h2> {{ role }} </h2>
+                    <p> {{ description }}</p>
+                </div><!---.profile__about-->
+                
+                <div class="profile__contact">
+                    
+                    <p><i class="fa fa-envelope-o"></i>{{ email }} </p>
+                    
+                    <p><i class="fa fa-phone"></i> {{ phone_number }}</p>
+                    
+                    <p><i class="fa fa-home"></i> http://www.elle.com </p>
+                </div><!---.profile__contact-->
+                
+                <div class="profile__personality">
+                    <p> {{ personality }}</p>
+                </div><!---.profile__personality-->
 
-<h1>Basic profile management system</h1>
+                <div class="profile__links">
+                    
+                    <p>Follow me</p>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-google-plus"></i>
+                </div><!---.profile__links-->
 
-<p> Hello {{ first_name }}!  </p>
+                    <!--Hidden for now
+                    <p> Password </p>
+                    <input class="form-control" ng-model="user.password" required="true">
+                    <p> Role </p>
+                    <input class="form-control" ng-model="user.role" required="true">-->
+
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
+                <div class="row heightfull">
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__courses">
+                        <p>Courses</p>
+                        <input class="form-control" ng-model="user.courses.course_name" required="true">
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__skills">
+                        <p>Skills</p>
+                        <input class="form-control" >
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__experience">
+                        <p>Experience</p>
+                        <input class="form-control" >
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__projects">
+                        <p>Projects/Other from courses</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
+                        <p>Tutorials or other stuff from modules</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
+                        <p>Other services (portfolio export/import</p>
+                    </div>
+                </div>
+            </div><!---.col-->
+        </div><!---.row-->
+    </div><!---container-->
+</div>
+
     
-        <div ng-controller="ProfileController">
+       <!-- <div ng-controller="ProfileController">
             
             	<p> First name </p>
                 <input class="form-control" ng-model="user.first_name" required="true">
@@ -41,10 +112,3 @@
            </div>
            
            -->
-        </div>
-
-    <h1>Profile</h1>
-        
-    <p> Hello {{ first_name }}!  </p>
-    <p> You are a {{ role }}!  </p>
-</div>

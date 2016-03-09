@@ -12,7 +12,7 @@ var session = require('express-session');
 // configuration ===========================================
 
 // Use the session middleware
-app.use(session({ secret: 'b1k3z 4r3333 450m3', cookie: { maxAge: 180000 }}));
+app.use(session({ secret: 'b1k3z 4r3333 450m3', cookie: { maxAge: 180000000000 }})); /*180000*/
 
 // config files
 var db = require('./config/db');
