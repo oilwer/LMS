@@ -4,6 +4,7 @@
 // import the moongoose helper utilities
 var utils = require('../test/utils');
 var should = require('should');
+
 // import our User mongoose model
 var User = require('../app/models/user.js');
 

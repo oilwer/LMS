@@ -46,12 +46,12 @@ User.login = function (email, password, callback) {
 			
 				// If the result exists (User found)
 				if(user) {
-					
+
 					//TODO: Log into textfile instead?
-					console.log(user.first_name + ' logged in.'); 
-					
+					console.log(user.first_name + ' logged in.');
+
 					// Sets the return value to true
-					callback(null, true);
+					callback(null, user);
 				}	
 				
 				// No user found
@@ -97,7 +97,8 @@ User.getById = function(id, callback){
         
         // No results found
         else {
-	        callback(null, false);
+			console.log('User does not exist');
+			callback(null, false);
         }
     });
 };
@@ -110,6 +111,7 @@ User.getByPublicURL = function(public_url, callback){
          // If the result exists (User found)
 		if(user) {
         	callback(null, user);
+			console.log('Profile fetched; email: %s', user.id);
         }
 
         // No results found

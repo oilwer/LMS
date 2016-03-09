@@ -5,7 +5,8 @@ var lmsApp = angular.module('lmsApp', ['ngLocationUpdate', 'ngRoute', 'appRoutes
 'ProfileService', 'LoginService', 'UserService', 'ChatService', 'ProfilePublicService']);
 
 
-//directives
+//Directives
+//Navigation directive
 lmsApp.directive('appNav', function(){
     return{
         restrict: 'E',
