@@ -1,13 +1,74 @@
 <!-- public/views/profile.html -->
 
 <app-nav></app-nav>
-<div class="jumbotron text-center">
+<div class="container-fluid profile">
+    <div class="row heightfull">
+        <div class="col-sm-3 col-md-3 col-lg-3  heightfull profile__container" ng-controller="ProfileController">
+            <div class="profile__about">
+                <div class="profile__about__img"></div>
+                <h1> {{ first_name }} {{ last_name }} </h1>
+                <h2> {{ role }} </h2>
+                <textarea disabled="true" ng-model="user.description"></textarea>
+            </div><!---.profile__about-->
+            
+            <div class="profile__contact">
+                <i class="fa fa-envelope"></i>
+                <input disabled="disabled" ng-model="user.email" required="true">
+                <i class="fa fa-phone"></i>
+                <input ng-model="user.phone_number" required="true">
+                <i class="fa fa-comment"></i>
+            </div><!---.profile__contact-->
+            
+            <div class="profile__personality">
+                <div class="profile__personality__img" ng-model="user.personality"></div>
+            </div><!---.profile__personality-->
+            <div class="profile__links">
+                <p> {{ url }} </p>
+                <input class="form-control" ng-model="user.public_url" required="true">
+                <p>Follow in other channels</p>
+            </div><!---.profile__links-->
+            
+                <!--Hidden for now
+                <p> Password </p>
+                <input class="form-control" ng-model="user.password" required="true">
+                <p> Role </p>
+                <input class="form-control" ng-model="user.role" required="true">-->
+            
+        </div>
+        <div class="col-sm-9 col-md-9 col-lg-9">
+            <div class="row heightfull">
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <p>Courses</p>
+                    <input class="form-control" ng-model="user.courses.course_name" required="true">
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4">
+                    <p>Skills</p>
+                </div>
+                <div class="col-sm-4 col-md-4 col-lg-4 ex">
+                    <p>Experience</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-sm-12">
+                    <p>Projects/Other from courses</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-sm-12">
+                    <p>Tutorials or other stuff from modules</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-md-12 col-sm-12">
+                    <p>Other services (portfolio export/import</p>
+                </div>
+            </div>
+        </div><!---.col-->
+    </div><!---.row-->
+</div><!---container-->
 
-<h1>Basic profile management system</h1>
-
-<p> Hello {{ first_name }}!  </p>
     
-        <div ng-controller="ProfileController">
+       <!-- <div ng-controller="ProfileController">
             
             	<p> First name </p>
                 <input class="form-control" ng-model="user.first_name" required="true">
@@ -41,10 +102,3 @@
            </div>
            
            -->
-        </div>
-
-    <h1>Profile</h1>
-        
-    <p> Hello {{ first_name }}!  </p>
-    <p> You are a {{ role }}!  </p>
-</div>

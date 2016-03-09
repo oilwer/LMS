@@ -6,6 +6,8 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
 
 		if(data != false) {
 			$scope.first_name = data.first_name;
+            $scope.last_name = data.last_name;
+            $scope.url = data.public_url;
 			$scope.user = data;
 			$scope.role = data.role;
 

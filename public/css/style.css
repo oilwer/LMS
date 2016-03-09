@@ -155,3 +155,92 @@ body,html {
     text-decoration: none;
     cursor: pointer;
 }
+
+/* * * * * * * * * * * * * * * *   
+
+            PROFILE    
+
+* * * * * * * * * * * * * * * * */    
+
+.profile{
+    width:90%;
+    margin-left:8%;
+    margin-right: 2%;
+}
+
+.profile__container {
+    width:20%;
+    border-right:1px solid #ccc;
+}
+
+.profile__personality, .profile__about, .profile__contact, .profile__links{
+    margin-top: 30px;
+}
+
+.profile__about__img {
+    background: url("/img/profile_default.png");
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    margin:0 auto;
+    margin-top: 1%;
+    width:120px;
+    height:120px;
+    border-radius: 50%;
+}
+
+.profile__about h1{
+    padding-top: 20px;
+    text-align: center;
+    font-size: 1.15em;
+    font-family: 'Open Sans';
+}
+
+.profile__about h2{
+    padding-top: 8px;
+    text-align: center;
+    font-size: 1em;
+    font-family: 'Open Sans';
+}
+
+.profile__about textarea{
+    padding-top: 20px;
+    font-size: .95em;
+    height:100px;
+    width:100%;
+    border:none;
+    resize: none;
+}
+
+.profile__about input{
+    
+}
+
+.profile__contact .fa {
+    width:5%;
+    font-size: 1.2em;
+    padding-top:10px;
+}
+
+.profile__contact input{
+    width:90%;
+    padding-left:3%;
+    border:none;
+}
+
+
+.profile__personality__img{
+    background: url("/img/default_image.jpeg");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height:80px;
+    width:80px;
+    margin:auto;
+}
+
+.ex {
+    background-color: #ccc;
+}
