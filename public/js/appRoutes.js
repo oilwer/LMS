@@ -9,6 +9,12 @@
             controller: 'LoginController'
         })
         
+        // dashboard
+        .when('/home', {
+            templateUrl: 'views/home.html',
+            controller: 'HomeController'
+        })
+    
         // Profile
         .when('/profile', {
             templateUrl: 'views/profile.html',

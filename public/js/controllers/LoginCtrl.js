@@ -19,7 +19,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 			if(response == true){
 
 				// Redirects to profile
-				$location.path('/profile');
+				$location.path('/home');
 			}
 			
 			// Login failed

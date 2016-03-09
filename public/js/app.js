@@ -1,7 +1,7 @@
 // public/js/app.js
 
 var lmsApp = angular.module('lmsApp', ['ngLocationUpdate', 'ngRoute', 'appRoutes',
-    'LoginCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl', 'ProfilePublicCtrl',
+    'LoginCtrl', 'HomeCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl', 'ProfilePublicCtrl',
 'ProfileService', 'LoginService', 'UserService', 'ChatService', 'ProfilePublicService']);
 
 
