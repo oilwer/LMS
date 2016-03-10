@@ -174,6 +174,16 @@ User.modify = function(user, callback){
     });
 };
 
+User.resetPassword = function(email, callback){
+      var newPass = Math.floor(Math.random()*(99999-10000+1)+10000);
+      User.db.findOneAndUpdate( { "email" : email }, {
+            password: newPass
+            },{new: true}, function (err, response){ 
+        if (err) return console.error(err);
+        callback(null, true);
+    }); 
+ };
+
 
 // Exports the object as a whole
 module.exports = User;

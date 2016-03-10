@@ -135,4 +135,22 @@ describe('Users: models', function () {
       });
     });
   });
+
+  describe('#resetPassword()', function () {
+    it('should reset a user password', function (done) {
+      User.register(testUser1, function (err, createdUser) {
+        var id = createdUser._id;
+        User.getById(createdUser._id, function (err, fetchedUser) {
+          var oldPass = fetchedUser.password;
+          User.resetPassword(fetchedUser.email, function (err, response) {
+            response.should.equal(true);
+            User.getById(id, function (err, fetchedUser) {
+              fetchedUser.password.should.not.equal(oldPass);
+              done();
+            });
+          });
+        });
+      });
+    });
+  });
 });
