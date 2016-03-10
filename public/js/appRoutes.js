@@ -50,6 +50,11 @@
         .when('/user', {
             templateUrl: 'views/user.html',
             controller: 'UserController'
+        })
+
+        .when('/resetPassword', {
+            templateUrl: 'views/forgotPassword.html',
+            controller: 'LoginController'
         });
 
     $locationProvider.html5Mode(true);

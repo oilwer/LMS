@@ -87,6 +87,14 @@ var session = require('express-session');
 			});
 		});
 
+		//Reset Password
+		app.put('/api/userPassReset', function(req, res) {
+			//Resets Password
+			User.resetPassword(req.query.email, function(err, callback){
+				res.json(callback);
+			});
+		});
+
 	
         // Logout function
         app.get('/api/logout', function (req,res) {
