@@ -20,6 +20,7 @@
             <div class="col-md-3">
                 <p class="courses_filter">Deadline</p>
             </div>
+            
 
         </div>
         
@@ -28,7 +29,7 @@
             <div ng-repeat="course in courses">
                 <!--repeat all courses that the user belongs to-->
                 <div class="col-md-3 box--courses">
-                    <a href="courses/{{ course.url }} ">
+                    <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header">
                                 <h2>{{ course.name }}</h2>

@@ -20,11 +20,11 @@
             templateUrl: 'views/courses.html',
             controller: 'CoursesController'
         })
-    
-        // courses
+        
+        // static course, to be updated with dynamic course url
         .when('/courses/testcourse', {
             templateUrl: 'views/testcourse.html',
-            controller: 'TestCourseController'
+            controller: 'CoursesController'
         })
     
         // Profile
@@ -55,6 +55,12 @@
         .when('/resetPassword', {
             templateUrl: 'views/forgotPassword.html',
             controller: 'LoginController'
+        })
+        
+		  // Modelanything
+        .when('/modelanything', {
+            templateUrl: 'views/modelanything.html',
+            controller: 'ModelAnythingController'
         });
 
     $locationProvider.html5Mode(true);

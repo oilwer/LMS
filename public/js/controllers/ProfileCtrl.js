@@ -8,7 +8,6 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
 
     // Get profile data from DB
     Profile.get().success(function (data) {
-
         if (data != false) {
             $scope.first_name = data.first_name;
             $scope.last_name = data.last_name;
@@ -25,7 +24,6 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
             $scope.first_name = "No profile found";
         }
     });
-
 
 
     $scope.enableEditor = function ($event) {
@@ -61,3 +59,4 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
         });
     };
 });
+
