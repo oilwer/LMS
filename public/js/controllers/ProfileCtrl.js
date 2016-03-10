@@ -1,6 +1,6 @@
 // public/js/controllers/ProfileCtrl.js
 angular.module('ProfileCtrl', []).controller('ProfileController', function($scope, Profile, UserService) {
-
+    
 	// Get profile data from DB
 	Profile.get().success(function(data) {
 
@@ -29,3 +29,5 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function($scop
 		});
 	};
 });
+
+

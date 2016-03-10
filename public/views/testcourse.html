@@ -1,0 +1,39 @@
+<!-- public/views/testcourse.html -->
+
+<app-nav></app-nav>
+<div class="app_container course heightfull" ng-controller="CoursesController">
+    <div class="container-fluid heightfull" >
+        <div class="row table-row heightfull">
+            <nav class="col-md-2 nav--local">
+        
+                <ul>
+                    <li class="active"><a href="">Overview</a></li>
+                    <li><a href="">Participants</a></li>
+                    <li ><a ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChildOpen">
+                            <li><a href="">Assignment 1</a></li>
+                            <li><a href="">Assignment 2</a></li>
+                        </ul>
+                    </li>
+                    <li ><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChild2Open">
+                            <li><a href="">Assignment 1</a></li>
+                            <li><a href="">Assignment 2</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </nav>
+            
+            <div class="col-md-10 body--paddingtop coursebody">
+                <h1>{{ course.name }}</h1>
+            </div>
+        </div>
+        
+    </div><!--.dashboard-->
+</div><!--.app_container-->
+
+
+
+
+            

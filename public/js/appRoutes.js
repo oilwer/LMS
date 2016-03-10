@@ -20,11 +20,11 @@
             templateUrl: 'views/courses.html',
             controller: 'CoursesController'
         })
-    
-        // courses
+        
+        // static course, to be updated with dynamic course url
         .when('/courses/testcourse', {
             templateUrl: 'views/testcourse.html',
-            controller: 'TestCourseController'
+            controller: 'CoursesController'
         })
     
         // Profile

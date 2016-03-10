@@ -38,8 +38,10 @@ body, html {
 }
 
 .heightfull {
-    height: 100%;
+    min-height: 100%;
+    min-height: 100vh;
 }
+
 
 /* * * * * * * * * * * * * * * *   
 
@@ -121,8 +123,8 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
-    
     height: 100%;
+    height: 100vh;
 }
 
 /* * * * * * * * * * * * * * * *   
@@ -133,6 +135,7 @@ body, html {
 
 .app_container { /*remove space hidden by nav*/
     padding-left: 0px;
+    overflow: hidden;
 }
 
 .nav--global { /*nav*/
@@ -229,14 +232,49 @@ body, html {
     transition: all 0.5s ease;
 }
 
-.nav--global_profilitem img {
+.profileitem {
+    position: absolute;
+    right: 0;
+    top: 0;
+    color: rgba(62,71,79,0.9);
+    font-family: "Roboto";
+    font-size: 1em;
+    font-weight: 600;
+    height: 40px;
+    padding: 5px 15px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    z-index: 40;
+}
+
+.profileitem img {
+    width: auto;
+    height: 70%;
     border-radius: 50%;
+    padding: 0px 10px;
 }
 
-.nav--global_profilename {
-    text-transform: none;
+.profileitem span {
+    height: auto;
 }
 
+.profileitem:visited {
+    color: rgba(62,71,79,0.9);
+}
+
+.profileitem:focus {
+    color: rgba(62,71,79,0.9);
+}
+
+.profileitem:hover, .profileitem:active {
+    color: rgba(0,0,0,0.2);
+    text-decoration: none;
+}
+
+.profileitem:hover, img .profileitem:active img {
+    opacity: 0.8;
+}
 
 
 /* Small Devices, Tablets */
@@ -286,6 +324,9 @@ body, html {
     padding-top: 50px;
 }
 
+.body--paddingtop {
+    padding-top: 50px;
+}
 .box--courses a{
     text-decoration: none;
 }
@@ -303,6 +344,54 @@ body, html {
     transition: all 0.3s ease;
     
 }
+
+/* * * * * * * * * * * * * * * *   
+
+            NAV local (courses) 
+
+* * * * * * * * * * * * * * * * */  
+
+
+.nav--local {
+    background: rgba(62,71,79,0.5);
+    padding-right: 0px;
+    padding-left: 0px;
+}
+
+.nav--local ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.nav--local li ul li a {
+    padding-left: 40px;
+}
+
+.nav--local .fa {
+    float: right;
+}
+
+.nav--local a {
+    cursor: pointer;
+    width: 100%;
+    display: inline-block;
+    padding: 10px 20px;
+    color: rgba(255,255,255,1);
+}
+
+.nav--local a:hover {
+    background-color: rgba(62,71,79,0.7);
+}
+
+
+.nav--local li.active {
+    background-color: rgba(47, 155, 134, 1);
+}
+
+
+
 
 /* * * * * * * * * * * * * * * *   
 
@@ -325,7 +414,72 @@ body, html {
     text-align: right;
 }
 
+.coursebody {
+    min-height: 100%;
+    height: 100vh;
+}
 
+.course .container-fluid { /* full col padding fix*/
+    margin-right: -30px;
+}
+
+
+/* * * * * * * * * * * * * * * *   
+
+        BS full height col 
+
+* * * * * * * * * * * * * * * * */  
+/* FIX: remove container padding*/
+
+@media (min-width: 768px) {
+  .row.table-row {
+      display:table;
+      width:100%;
+      margin-right: -15px;
+      margin-left: -15px;      
+    }
+
+  .row.table-row > [class*="col-"] {
+    float:none;
+    display:table-cell;
+    vertical-align:top;
+      overflow: hidden;
+  }
+
+  .row.table-row > .col-sm-11 {
+    width: 91.66666666666666%;
+  }
+  .row.table-row > .col-sm-10 {
+    width: 83.33333333333334%;
+  }
+  .row.table-row > .col-sm-9 {
+    width: 75%;
+  }
+  .row.table-row > .col-sm-8 {
+    width: 66.66666666666666%;
+  }
+  .row.table-row > .col-sm-7 {
+    width: 58.333333333333336%;
+  }
+  .row.table-row > .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-5 {
+    width: 41.66666666666667%;
+  }
+  .col-sm-4 {
+    width: 33.33333333333333%;
+  }
+  .row.table-row > .col-sm-3 {
+    width: 25%;
+  }
+  .row.table-row > .col-sm-2 {
+    width: 16.666666666666664%;
+  }
+  .row.table-row > .col-sm-1 {
+    width: 8.333333333333332%;
+  }
+}
 
 /* * * * * * * * * * * * * * * *   
 
@@ -337,11 +491,13 @@ body, html {
     background: url("/img/login-study-blur-light.png") center center fixed;
     width: 100%;
     height: 100%;
+    height: 100vh;
     /*background: rgba(235,235,235,1);*/
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    overflow: hidden;
     
 }
 
