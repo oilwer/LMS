@@ -1,7 +1,7 @@
 // public/js/controllers/LoginCtrl.js
 
 
-angular.module('LoginCtrl', []).controller('LoginController', function($scope, $location, $http, Login) {
+angular.module('LoginCtrl', []).controller('LoginController', function($scope, $location, $http, Login, UserService) {
 	
 	// Variable that resets error message
     $scope.errorMsg = "Enter your credentials";
@@ -32,8 +32,15 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	};
     
     $scope.forgotPassword = function() {
-        console.log("forgot password func, placeholder");
-
-		//TODO: Alt1: Ask user for email and send new? password to email (for that user)
+        $location.path('/resetPassword')
     }
+
+    $scope.resetPassword = function() {
+    	UserService.resetPass($scope.email).success(function (response) {
+    		if(response == true){
+    			$scope.formBoxHide = true;
+    			$scope.resultMessage = true;
+    		}
+    	});
+    };
 });
