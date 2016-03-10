@@ -55,6 +55,12 @@
         .when('/resetPassword', {
             templateUrl: 'views/forgotPassword.html',
             controller: 'LoginController'
+        })
+        
+		  // Modelanything
+        .when('/modelanything', {
+            templateUrl: 'views/modelanything.html',
+            controller: 'ModelAnythingController'
         });
 
     $locationProvider.html5Mode(true);
