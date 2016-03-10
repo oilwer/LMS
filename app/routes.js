@@ -80,7 +80,7 @@ var session = require('express-session');
 
 		//update selected users data
 		app.put('/api/user', function(req, res){
-		
+		  console.log("Workss");
 			// Updates user
 			User.modify(req.body, function(err, callback){
 				res.json(callback);
