@@ -1,19 +1,120 @@
 <app-nav></app-nav>
-<div class="jumbotron text-center">
-        <h1>This is the public profile, woop!</h1>
+<!-- public/views/profile.html -->
 
-    <div ng-controller="ProfilePublicController">
-        <label> First name </label>
-        <p>{{first_name}}</p>
-        <label> Last name </label>
-        <p>{{user.last_name}}</p>
-        <label> Description </label>
-        <p>{{user.description}}</p>
-        <label> Personality </label>
-        <p>{{user.personality}}</p>
-        <label> Email </label>
-        <p>{{user.email}}</p>
-        <label> Phone number </label>
-        <p>{{user.phone_number}}</p>
-    </div>
+<app-nav></app-nav>
+<div class="app_container heightfull">
+    <div class="container-fluid profile heightfull">
+        <div class="row heightfull">
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfilePublicController">
+                <div class="profile__about">
+                    <div class="profile__about__img"></div>
+                    <h1> {{ first_name }} {{ last_name }} </h1>
+                    <h2> {{ role }} </h2>
+                    <div class="profile__about__description">  
+                        <p> {{ description }}</p>
+                    </div>
+                    
+</p>
+                </div><!---.profile__about-->
+                
+                <div class="profile__contact">
+                    
+                    <p><i class="fa fa-envelope-o"></i>{{ email }}</p>
+                    
+                    <p><i class="fa fa-phone"></i> {{ phone_number }}</p>
+                    
+                    <p><i class="fa fa-home"></i> http://www.elle.com </p>
+                </div><!---.profile__contact-->
+                
+                <div class="profile__personality">
+                    <h1>I am a</h1>
+                    <p> {{ personality }}</p>
+                </div><!---.profile__personality-->
+
+                <div class="profile__links">
+                    
+                    <p>Follow me</p>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-google-plus"></i>
+                </div><!---.profile__links-->
+
+                    <!--Hidden for now
+                    <p> Password </p>
+                    <input class="form-control" ng-model="user.password" required="true">
+                    <p> Role </p>
+                    <input class="form-control" ng-model="user.role" required="true">-->
+
+            </div>
+            <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
+                <div class="row heightfull">
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__courses">
+                        <p>Courses</p>
+                        <input class="form-control" ng-model="user.courses.course_name" required="true">
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__skills">
+                        <p>Skills</p>
+                        <input class="form-control" >
+                    </div>
+                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__experience">
+                        <p>Experience</p>
+                        <input class="form-control" >
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__projects">
+                        <p>Projects/Other from courses</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
+                        <p>Tutorials or other stuff from modules</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
+                        <p>Other services (portfolio export/import</p>
+                    </div>
+                </div>
+            </div><!---.col-->
+        </div><!---.row-->
+    </div><!---container-->
 </div>
+
+    
+       <!-- <div ng-controller="ProfileController">
+            
+            	<p> First name </p>
+                <input class="form-control" ng-model="user.first_name" required="true">
+                <p> Last name </p>
+                <input class="form-control" ng-model="user.last_name" required="true">
+                <p> Description </p>
+                <input class="form-control" ng-model="user.description" required="true">
+                <p> Personality </p>
+                <input class="form-control" ng-model="user.personality" required="true">
+                <p> Courses </p>
+                <input class="form-control" ng-model="user.courses.course_name" required="true">
+                <p> Email </p>
+                <input class="form-control" disabled="disabled" ng-model="user.email" required="true">
+                <p> Phone number </p>
+                <input class="form-control" ng-model="user.phone_number" required="true">
+                <p> Password </p>
+                <input class="form-control" ng-model="user.password" required="true">
+                <p> Role </p>
+                <input class="form-control" ng-model="user.role" required="true">
+                <p> Public URL </p>
+                <input class="form-control" ng-model="user.public_url" required="true">
+
+                 <button class="btn btn-primary" ng-click="updateProfile()">Update</button>
+
+<!--
+           <div ng-repeat="user in userlist">
+                <p> {{user.first_name}} </p>
+                <p> {{user.email}} </p>
+               <p> {{user.phone_number}} </p>
+               <p> {{user.password}} </p>
+           </div>
+           
+           -->
