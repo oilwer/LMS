@@ -156,14 +156,12 @@ var session = require('express-session');
                 // Triggers login function in the User model
                 User.login(req.query.email, req.query.password, function(err, callback){
 
-                    // If user gets logged in -> Set session isLoggedIn to true. 
-						if(callback){
-							
-							// Saves login status and email to session
-							sess.isLoggedIn = true;
-							sess.email = req.query.email;
 
-								// Asks ModelAnything for the Config file 
+                    // If user gets logged in -> Set session isLoggedIn to true.
+                    if(callback){
+                        sess.isLoggedIn = true;
+                        sess.userid = callback.id;
+                        // Asks ModelAnything for the Config file 
 								ModelAnything.readConfig(function(err, response){
 								
 									// Saves the config in session
@@ -172,12 +170,14 @@ var session = require('express-session');
 									console.log("Fetched config file.");
 									
 									res.json(true);
-        						});		
-						}
-						else
-						{
-							res.json(false);	
-						}
+        						});	
+                        
+                    }
+                    else
+                    {
+	                    res.json(false);
+                    }
+
                     
                 });
             }
@@ -188,6 +188,8 @@ var session = require('express-session');
 	        
 	        // Fetches session variable
 	        var sess = req.session;
+	        
+	        console.log(sess);
         
         	// recover Users ID from current sessions parameters
 			var userId = sess.userid; //TODO: use id instead of email
