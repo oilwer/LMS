@@ -3,7 +3,7 @@
 <app-nav></app-nav>
 <div class="app_container heightfull">
     <div class="container-fluid profile heightfull">
-        <div class="row heightfull">
+        <div class="row heightfull table-row">
             <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfileController">
                 <div class="profile__about">
                     <div class="profile__about__img"></div>
@@ -59,42 +59,45 @@
 
             <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
                 <div class="row">
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__courses">
-                        <h1>Courses</h1>
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__courses">
+                        
+                        <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
                         <i class="fa fa-pencil"></i>
                         <!--<input class="form-control" ng-model="user.courses.course_name" required="true">-->
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
 
 
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__skills">
-                        <h1>Skills</h1>
+                    <div class="col-sm-6 col-md-6 col-sm-6 profile__stuff__projects">
+                        <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
+                    </div>
+                    
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__skills">
+                        <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
                         <i class="fa fa-pencil"></i>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__ex">
-                        <h1>Experience</h1>
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__ex">
+                        <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
                         <i class="fa fa-pencil"></i>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                    </div>
+                </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
+                        <h1><i class="fa fa-2x fa-file-text"></i>Tutorials</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__projects">
-                        <h1>Projects/Other from courses</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
-                    </div>
-                </div>
-                <div class="row profile__stuff--secondrow">
-                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
-                        <h1>Tutorials or other stuff from modules</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
-                    </div>
-                </div>
-                <div class="row profile__stuff--secondrow">
                     <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
-                        <h1>Other services (portfolio export/import</h1>
+                        <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
                         <i class="fa fa-pencil"></i>
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
                     </div>
