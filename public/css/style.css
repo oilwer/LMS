@@ -35,6 +35,7 @@ body, html {
     margin: 0px;
     padding: 0px;
     font-family: "Open Sans", sans-serif;
+    background-color: rgba(233,235,236,1);
 }
 
 .heightfull {
@@ -525,6 +526,8 @@ body, html {
 
 .profile{
     width:100%;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
 }
 
 .profile hr{
@@ -533,15 +536,17 @@ body, html {
 
 .profile__container {
     padding:0 2%;
-    background-color: #ccc;
+    background-color: rgba(132,182,182,1);
     padding-top: 30px!important;
-    background: rgba(80, 174, 156, 1);
+    position: relative;
+    height: auto !important; /* for modern browsers */
+	min-height: 100%; /* for IE */
+    top: 0;
+    max-height: 1200px;
 }
 
 .profile__container h1, .profile__container h2, .profile__container p, .profile__container i{
     color: rgba(255,255,255,1) !important;
-    font-smoothing: antialiased;
-    -webkit-font-smoothing: antialiased;
 }
 
 .profile__contact{
@@ -549,14 +554,9 @@ body, html {
     text-align: left;
 }
 
-.profile__stuff__courses, profile__stuff__experience, .profile__stuff__skills{
-    padding-left:20px;
-    height: 250px;
-}
-
 .profile__stuff__tutorials, .profile__stuff__projects, .profile__stuff__other{
     padding-left:20px;
-    height:150px;
+    height:200px;
 }
 
 .profile__personality, .profile__contact, .profile__links, .profile__about{
@@ -612,6 +612,102 @@ body, html {
 .profile__contact i:last-child:hover, .profile__about__description i:hover{
     font-size: 1em;    
 }
+
+.profile__stuff__courses, .profile__stuff__skills, .profile__stuff__ex{
+    width:31%;
+    background-color: #fff;  
+    margin: 7% 1.5% 0 0;
+    padding:0;
+    height:250px;
+    border-radius: 5px;
+    
+}
+
+.test{
+    display: block;
+    height:10px;
+    background: #000;
+    clear:both;
+    overflow: hidden;
+}
+
+.profile__stuff__projects, .profile__stuff__tutorials, .profile__stuff__other {
+    width:96%;
+    background-color: #fff;  
+    margin: 3.5% 2% 0 2%;
+    padding:0;
+    height:250px;
+    border-radius: 5px;
+}
+
+.profile__stuff__courses i, .profile__stuff__skills i, .profile__stuff__ex i, .profile__stuff__projects i, .profile__stuff__tutorials i, .profile__stuff__other i{
+    position: absolute;
+    top:20px;
+    right:15px;
+    color:#fff;
+}
+
+.profile__stuff__courses{
+    margin-left:2%;
+}
+
+.profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1{
+    text-align: center;
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding:20px 30px;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 5%;
+}
+
+.profile__stuff__projects h1, .profile__stuff__tutorials h1, .profile__stuff__other h1{
+    text-align: center;
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding:20px 30px;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 2%;
+}
+
+.profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p{
+    padding:5px 30px;
+}
+
+.profile__stuff__projects p, .profile__stuff__tutorials p, .profile__stuff__other p{
+    padding:5px 30px 20px 30px;
+}
+
+.profile__stuff__courses h1{
+    background-color: rgba(100,87,139,1);
+}
+
+.profile__stuff__skills h1{
+    background-color: rgba(166,80,101,1);
+}
+
+.profile__stuff__ex h1{
+    background-color: rgba(213,107,47,1);
+}
+
+.profile__stuff__projects h1{
+    background-color: rgba(61,128,98,1);
+}
+
+.profile__stuff__tutorials h1{
+    background-color: rgba(199,77,78,1);
+}
+
+.profile__stuff__other h1{
+    background-color: rgba(49,102,152,1);
+}
+
+.profile__stuff {
+    margin-bottom: 30px;
+    overflow: hidden;
+}
+
 
 
 /*==================================================
