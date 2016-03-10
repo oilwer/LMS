@@ -8,6 +8,7 @@
 
 .development_nav {
     position: fixed;
+    z-index:99;
     bottom:0px;
     right: 0px;
     /*display: none;*/
@@ -621,14 +622,6 @@ body, html {
     height:250px;
     border-radius: 5px;
     
-}
-
-.test{
-    display: block;
-    height:10px;
-    background: #000;
-    clear:both;
-    overflow: hidden;
 }
 
 .profile__stuff__projects, .profile__stuff__tutorials, .profile__stuff__other {
