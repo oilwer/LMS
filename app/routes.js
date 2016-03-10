@@ -2,12 +2,43 @@
 
 var User = require('./models/user'); 
 var Chat = require('./models/chat'); 
+var ModelAnything = require('./models/modelAnything'); 
 var session = require('express-session');
 
     module.exports = function(app) {
 
         // server routes ===========================================================
         // handle things like api calls
+        
+         //Modelanything read config file
+		app.get('/readconfig/', function(req, res){
+			
+			// Fetches User by ID
+			ModelAnything.readConfig(function(err, callback){
+				console.log("CB: " + callback);
+				res.json(callback);
+			});
+		});
+		
+		//Init plug
+		app.get('/plug/', function(req, res){
+			
+			// Fetches User by ID
+			ModelAnything.init(req.query.plug_id, function(err, callback){
+				res.json(callback);
+			});
+		});
+		
+		// Fetch config file sessions
+        app.get('/fetchconfigfile', function (req,res) {
+	        	
+				ModelAnything.initPlugs(function(err, response){
+					
+					res.send(response);
+        		});	
+	    
+
+	        });
         
         // Test session
         app.get('/awesometestsession', function(req, res) {
@@ -125,14 +156,29 @@ var session = require('express-session');
                 // Triggers login function in the User model
                 User.login(req.query.email, req.query.password, function(err, callback){
 
-                    // If user gets logged in -> Set session isLoggedIn to true.
-                    if(callback){
-                        sess.isLoggedIn = true;
-                        sess.userid = callback.id;
-                    }
+                    // If user gets logged in -> Set session isLoggedIn to true. 
+						if(callback){
+							
+							// Saves login status and email to session
+							sess.isLoggedIn = true;
+							sess.email = req.query.email;
 
-                    // Returns the login value (bool) to LoginCtrl
-                    res.json(callback);
+								// Asks ModelAnything for the Config file 
+								ModelAnything.readConfig(function(err, response){
+								
+									// Saves the config in session
+									sess.config = response;
+
+									console.log("Fetched config file.");
+									
+									res.json(true);
+        						});		
+						}
+						else
+						{
+							res.json(false);	
+						}
+                    
                 });
             }
  		});
