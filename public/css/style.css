@@ -148,6 +148,7 @@ body, html {
     height: 80px;
     background: rgba(62,71,79,1);
     z-index: 50;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 0px 6px rgba(0,0,0,0.33);
 }
 
 .nav--global ul {
@@ -338,14 +339,14 @@ body, html {
 }
 
 .box--courses .box {
-    transition: all 0.3s ease;
+    transition: all 0.2s ease-in-out; 
 }
 
 .box--courses:hover .box {
-    margin-top: -3px;
-    transition: all 0.3s ease;
-    
+    box-shadow: 0 2px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: all 0.2s ease-in-out; 
 }
+
 
 /* * * * * * * * * * * * * * * *   
 
@@ -355,15 +356,21 @@ body, html {
 
 
 .nav--local {
-    background: rgba(62,71,79,0.5);
+    background: rgba(255,255,255,1);
     padding-right: 0px;
     padding-left: 0px;
+    margin-right: -15px;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
 }
 
 .nav--local ul {
     list-style: none;
     padding: 0;
     margin: 0;
+    width: 100%;
+}
+
+.nav--local li {
     width: 100%;
 }
 
@@ -377,21 +384,42 @@ body, html {
 
 .nav--local a {
     cursor: pointer;
+    font-weight: 600;
     width: 100%;
     display: inline-block;
     padding: 10px 20px;
-    color: rgba(255,255,255,1);
+    color: rgba(62,71,79,1);
+    border-left: 3px solid rgba(255, 255,255, 1);
 }
 
 .nav--local a:hover {
-    background-color: rgba(62,71,79,0.7);
+    background: rgba(77, 177, 157,0.5);
+    border-left: 3px solid rgba(27, 105, 84, 1);
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    transition: all 0.2s ease;
 }
 
 
-.nav--local li.active {
-    background-color: rgba(47, 155, 134, 1);
+.nav--local li.active a {
+    color: rgba(255,255,255,1);
+    background: rgba(77, 177, 157,1);
+    border-left: 3px solid rgba(27, 105, 84, 1);
 }
 
+.nav--local_notification:after {
+    content: "2";
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    height: 20px;
+    margin: 0px 10px;
+    color: #fff;
+    background: #ff4081;
+    border-radius: 20%;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+}
 
 
 
@@ -422,7 +450,7 @@ body, html {
 }
 
 .course .container-fluid { /* full col padding fix*/
-    margin-right: -30px;
+    margin-right: -15px;
 }
 
 
