@@ -11,7 +11,7 @@
                     <h2> {{ role }} </h2>
                     <div class="profile__about__description">
                         <i ng-class="class" ng-click="enableEditor($event)"></i>
-                        <p>Description</p>
+                        <p class="uppercase">Description</p>
                         <hr>
                         <p ng-show="editorEnabled"> {{ description }}</p>
                         <textarea ng-model="description" ng-show="editorDisabled">{{ description }}</textarea>
@@ -21,7 +21,7 @@
 
                 <div class="profile__contact">
                     <i class="fa fa-pencil fa-first"></i>
-                    <p>Contact details</p>
+                    <p class="uppercase">Contact details</p>
                     <hr>
                     <p><i class="fa fa-envelope-o"></i>{{ email }} </p>
 
@@ -32,11 +32,19 @@
                 </div>
                 <!---.profile__contact-->
 
-                <div class="profile__personality">
-                    <h1>Personality</h1>
+                <div class="profile__social">
+                    <i class="fa fa-pencil fa-first"></i>
+                    <p class="uppercase">Social links</p>
                     <hr>
-                    <p>Your Belbin team role is: {{ personality }}</p>
-                    <p>Provide the necessary drive to ensure that the team keep moving and do not lose focus or momentum</p>
+                    
+                    <p><i class="fa fa-linkedin"></i></p>
+                    
+                    <p><i class="fa fa-github"></i></p>
+
+                    <p><i class="fa fa-facebook"></i>  </p>
+
+                    <p><i class="fa fa-twitter"></i> </p>
+                    
                 </div>
                 <!---.profile__personality-->
 

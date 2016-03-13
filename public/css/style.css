@@ -714,6 +714,12 @@ body, html {
     max-height: 1200px;
 }
 
+.uppercase{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .9em!important;
+}
+
 .profile__container h1, .profile__container h2, .profile__container p, .profile__container i{
     color: rgba(255,255,255,1) !important;
 }
@@ -723,19 +729,19 @@ body, html {
     text-align: left;
 }
 
-.profile__personality, .profile__contact, .profile__links, .profile__about{
+.profile__social, .profile__contact, .profile__links, .profile__about{
     margin-top: 10%;
 }
 
-.profile__personality h1{
+.profile__social h1{
     padding-top: 4%;
     font-size: .9em;
 }
 
 
-.profile__about__description i, .profile__contact .fa-first {
+.profile__about__description i, .profile__contact .fa-first, .profile__social .fa-first {
     font-size: .9em;
-    float: right;
+    float:right;
 }
 
 .profile__about__img {
@@ -763,6 +769,7 @@ body, html {
     text-align: center;
     font-size: .95em;
     font-family: 'Open Sans';
+    font-style: italic;
 }
 
 .profile p{
@@ -780,7 +787,7 @@ body, html {
 .profile__stuff__courses, .profile__stuff__projects {
     width: 47.5%;
     background-color: #fff;
-    margin: 3.5% 1% 0 0;
+    margin: 4% 1% 0 0;
     padding: 0;
     border-radius: 0 5px 5px 0;
     
@@ -834,8 +841,6 @@ body, html {
 .profile__stuff__other{
     border-left:5px solid rgba(49,102,153,1);
 }
-
-
 
 .profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1, .profile__stuff__projects h1{
     font-size: 1.15em;
@@ -899,10 +904,18 @@ body, html {
 
 .profile__about__description textarea{
     width:100%;
-    height:80px;
+    height:100px;
     border:none;
     padding:5px;
     font-size: .9em;
+    border-radius: 5px;
+    resize: none;
+    overflow: auto;
+    background: #fff;
+}
+
+.profile__about__description textarea:focus{
+    outline: none;
 }
 
 
