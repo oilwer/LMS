@@ -3,21 +3,27 @@
 
 <app-nav></app-nav>
 <div class="app_container heightfull">
-    <div class="container-fluid profile heightfull">
-        <div class="row heightfull">
-            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfilePublicController">
-                <div class="profile__about">
+    <div class="container-fluid pbl-profile heightfull">
+        <div class="row heightfull table-row">
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull pbl-profile__container" ng-controller="ProfilePublicController">
+                <div class="pbl-profile__about">
                     <div class="profile__about__img"></div>
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
-                    <div class="profile__about__description">  
+                    
+                    <h1 class="uppercase">About me</h1>
+                    <hr>
+                    <div class="pbl-profile__about__description">  
                         <p> {{ description }}</p>
                     </div>
                     
 </p>
                 </div><!---.profile__about-->
+            
                 
-                <div class="profile__contact">
+                <div class="pbl-profile__contact">
+                    <h1 class="uppercase">Contact me</h1>
+                    <hr>
                     
                     <p><i class="fa fa-envelope-o"></i>{{ email }}</p>
                     
@@ -25,15 +31,13 @@
                     
                     <p><i class="fa fa-home"></i> http://www.elle.com </p>
                 </div><!---.profile__contact-->
-                
-                <div class="profile__personality">
-                    <h1>I am a</h1>
-                    <p> {{ personality }}</p>
-                </div><!---.profile__personality-->
+            
+            
 
-                <div class="profile__links">
+                <div class="pbl-profile__links">
                     
-                    <p>Follow me</p>
+                    <h1 class="uppercase">Follow me</h1>
+                    <hr>
                     <i class="fa fa-linkedin"></i>
                     <i class="fa fa-twitter"></i>
                     <i class="fa fa-facebook"></i>
@@ -47,42 +51,52 @@
                     <input class="form-control" ng-model="user.role" required="true">-->
 
             </div>
-            <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
-                <div class="row heightfull">
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__courses">
-                        <p>Courses</p>
-                        <input class="form-control" ng-model="user.courses.course_name" required="true">
+                        <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__courses">
+                        
+                        <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
+                        <!--<input class="form-control" ng-model="user.courses.course_name" required="true">-->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+
+
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__skills">
-                        <p>Skills</p>
-                        <input class="form-control" >
+                    <div class="col-sm-6 col-md-6 col-sm-6 profile__stuff__projects">
+                        <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
                     </div>
-                    <div class="col-sm-4 col-md-4 col-lg-4 profile__stuff__experience">
-                        <p>Experience</p>
-                        <input class="form-control" >
+                    
+                <div class="row">
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__skills">
+                        <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                    </div>
+                    <div class="col-sm-6 col-md-6 col-lg-6 profile__stuff__ex">
+                        <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__projects">
-                        <p>Projects/Other from courses</p>
-                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
-                        <p>Tutorials or other stuff from modules</p>
+                        <h1><i class="fa fa-2x fa-file-text"></i>Tutorials</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
-                        <p>Other services (portfolio export/import</p>
+                        <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
                     </div>
                 </div>
-            </div><!---.col-->
-        </div><!---.row-->
-    </div><!---container-->
+            </div>
+            <!---.col-->
+        </div>
+        <!---.row-->
+    </div>
+    <!---container-->
 </div>
-
-    
        <!-- <div ng-controller="ProfileController">
             
             	<p> First name </p>

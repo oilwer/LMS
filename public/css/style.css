@@ -572,112 +572,93 @@ body, html {
 
 * * * * * * * * * * * * * * * * */    
 
-/*.profile{
+.pbl-profile{
     font-family: 'Open Sans';
     width:100%;
 }
 
-.profile__container {
+.pbl-profile__container {
     text-align: center;
     background-color: #ccc;
     padding-top: 30px!important;
     background: rgba(80, 174, 156, 1);
+    background: -webkit-linear-gradient(left,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Fx 3.6-15*/
+    background: linear-gradient(to right, rgba(80, 174, 156, 1),rgba(80, 174, 156,.6)); /*Standard*/
+    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
+    /*rgba(132,182,182,1)*/;
 }
 
-.profile__container h1, .profile__container h2, .profile__container p, .profile__container i{
+.pbl-profile__container h1, .pbl-profile__container h2, .pbl-profile__container p, .pbl-profile__container i{
     color: rgba(255,255,255,1) !important;
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
 }
 
-.profile__contact{
+.pbl-profile__about__description{
+    margin-bottom: 15%;
+}
+
+.pbl-profile__contact{
     padding:0 0 0 0;
+    margin:10% 0 0 0%;
 }
 
-.profile__stuff__courses, profile__stuff__experience, .profile__stuff__skills{
-    padding-left:20px;
-    height: 250px;
+.pblprofile__contact, .pbl-profile__links{
+    margin-top: 5%;
 }
 
-.profile__stuff__tutorials, .profile__stuff__projects, .profile__stuff__other{
-    padding-left:20px;
-    height:150px;
+.pbl-profile__about{
+    margin-top: 10%;
 }
 
-.profile__personality, .profile__contact, .profile__links, .profile__about{
-    margin-top: 15%;
-}
-
-.profile__personality h1{
-    padding-top: 4%;
-    /*font-size: 1.1em;
-}
-
-.profile__personality p{
-    font-size: 3em !important;
-    font-family: 'Gravitas One' !important; 
-}
-
-.profile__about__description i {
+.pbl-profile__about__description i {
     font-size: .9em;
     float: right;
 }
 
-.profile__about__img {
-    background: url("/img/profile_default.png");
-    -webkit-background-size: contain;
-    -moz-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
-    margin:0 auto;
-    margin-top: 1%;
-    width:120px;
-    height:120px;
-    border-radius: 50%;
-}
-
-.profile__about h1{
+.pbl-profile__about h1, .pbl-profile__contact h1, .pbl-profile__links h1{
     padding-top: 4%;
     text-align: center;
     font-size: 1.05em;
     font-family: 'Open Sans';
 }
 
-.profile__about h2{
-    padding: 3% 0;
+.pbl-profile__about h2{
+    padding: 3% 0 5% 0;
     text-align: center;
     font-size: .95em;
     font-family: 'Open Sans';
+    font-style: italic;
 }
 
-.profile__about p{
+.pbl-profile__about p{
     padding:0% 10%;
 }
 
-.profile p{
+.pbl-profile p{
     font-size: .9em;
 }
 
-.profile__contact .fa {
+.pbl-profile__contact .fa {
     font-size: 1em;
     padding:0px 10px 5px 0;
 }
 
 
-.profile__links .fa{
+.pbl-profile__links .fa{
     padding:0 5px;
     font-size: 1.6em;
 }
 
-.profile__links{ 
+.pbl-profile__links{ 
     margin-top:15%;
 }
 
-*/
-
 /* * * * * * * * * * * * * * * *   
 
-            PROFILE    
+            PRIVATE PROFILE    
 
 * * * * * * * * * * * * * * * * */    
 
@@ -696,15 +677,35 @@ body, html {
     margin-top:10px !important;
 }
 
+.profile__container .fa-arrow-right{
+    padding-left: 5%;
+}
+
+.pbl-profile-link{
+    position: absolute;
+    bottom:10px;
+    right:0px;
+    display: inline-block;
+    width:50%;
+    color:#fff;
+    padding-top:5%;
+    transition: all 1.2s ease;
+}
+
+.pbl-profile-link:hover{
+    transform: translate(5px,0);
+    color:#fff;
+    text-decoration: none;
+}
+
 .profile__container {
     padding:0 2%;
-    background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.3));
     background: red; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Safari 5.1-6*/
     background: -o-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Opera 11.1-12*/
     background: -moz-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Fx 3.6-15*/
-    background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.6)); /*Standard*/
-
+    /*background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.6)); /*Standard*/
+    (to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
     /*rgba(132,182,182,1)*/;
     padding-top: 30px!important;
     position: relative;
@@ -772,7 +773,7 @@ body, html {
     font-style: italic;
 }
 
-.profile p{
+.profile p, .pbl-profile p{
     font-size: .95em;
 }
 
