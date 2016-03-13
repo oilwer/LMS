@@ -600,112 +600,93 @@ body, html {
 
 * * * * * * * * * * * * * * * * */    
 
-/*.profile{
+.pbl-profile{
     font-family: 'Open Sans';
     width:100%;
 }
 
-.profile__container {
+.pbl-profile__container {
     text-align: center;
     background-color: #ccc;
     padding-top: 30px!important;
     background: rgba(80, 174, 156, 1);
+    background: -webkit-linear-gradient(left,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Fx 3.6-15*/
+    background: linear-gradient(to right, rgba(80, 174, 156, 1),rgba(80, 174, 156,.6)); /*Standard*/
+    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
+    /*rgba(132,182,182,1)*/;
 }
 
-.profile__container h1, .profile__container h2, .profile__container p, .profile__container i{
+.pbl-profile__container h1, .pbl-profile__container h2, .pbl-profile__container p, .pbl-profile__container i{
     color: rgba(255,255,255,1) !important;
     font-smoothing: antialiased;
     -webkit-font-smoothing: antialiased;
 }
 
-.profile__contact{
+.pbl-profile__about__description{
+    margin-bottom: 15%;
+}
+
+.pbl-profile__contact{
     padding:0 0 0 0;
+    margin:10% 0 0 0%;
 }
 
-.profile__stuff__courses, profile__stuff__experience, .profile__stuff__skills{
-    padding-left:20px;
-    height: 250px;
+.pblprofile__contact, .pbl-profile__links{
+    margin-top: 5%;
 }
 
-.profile__stuff__tutorials, .profile__stuff__projects, .profile__stuff__other{
-    padding-left:20px;
-    height:150px;
+.pbl-profile__about{
+    margin-top: 10%;
 }
 
-.profile__personality, .profile__contact, .profile__links, .profile__about{
-    margin-top: 15%;
-}
-
-.profile__personality h1{
-    padding-top: 4%;
-    font-size: 1.1em;
-}
-
-.profile__personality p{
-    font-size: 3em !important;
-    font-family: 'Gravitas One' !important; 
-}
-
-.profile__about__description i {
+.pbl-profile__about__description i {
     font-size: .9em;
     float: right;
 }
 
-.profile__about__img {
-    background: url("/img/profile_default.png");
-    -webkit-background-size: contain;
-    -moz-background-size: contain;
-    -o-background-size: contain;
-    background-size: contain;
-    margin:0 auto;
-    margin-top: 1%;
-    width:120px;
-    height:120px;
-    border-radius: 50%;
-}
-
-.profile__about h1{
+.pbl-profile__about h1, .pbl-profile__contact h1, .pbl-profile__links h1{
     padding-top: 4%;
     text-align: center;
     font-size: 1.05em;
     font-family: 'Open Sans';
 }
 
-.profile__about h2{
-    padding: 3% 0;
+.pbl-profile__about h2{
+    padding: 3% 0 5% 0;
     text-align: center;
     font-size: .95em;
     font-family: 'Open Sans';
+    font-style: italic;
 }
 
-.profile__about p{
+.pbl-profile__about p{
     padding:0% 10%;
 }
 
-.profile p{
+.pbl-profile p{
     font-size: .9em;
 }
 
-.profile__contact .fa {
+.pbl-profile__contact .fa {
     font-size: 1em;
     padding:0px 10px 5px 0;
 }
 
 
-.profile__links .fa{
+.pbl-profile__links .fa{
     padding:0 5px;
     font-size: 1.6em;
 }
 
-.profile__links{ 
+.pbl-profile__links{ 
     margin-top:15%;
 }
 
-*/
-
 /* * * * * * * * * * * * * * * *   
 
-            PROFILE    
+            PRIVATE PROFILE    
 
 * * * * * * * * * * * * * * * * */    
 
@@ -715,19 +696,57 @@ body, html {
     -webkit-font-smoothing: antialiased;
 }
 
+.profile__stuff .row{
+    margin:0 !important;
+    margin-right: -30px !important
+}
+
 .profile hr{
     margin-top:10px !important;
 }
 
+.profile__container .fa-arrow-right{
+    padding-left: 5%;
+}
+
+.pbl-profile-link{
+    position: absolute;
+    bottom:10px;
+    right:0px;
+    display: inline-block;
+    width:50%;
+    color:#fff;
+    padding-top:5%;
+    transition: all 1.2s ease;
+}
+
+.pbl-profile-link:hover{
+    transform: translate(5px,0);
+    color:#fff;
+    text-decoration: none;
+}
+
 .profile__container {
     padding:0 2%;
-    background-color: rgba(132,182,182,1);
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Safari 5.1-6*/
+    background: -o-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Opera 11.1-12*/
+    background: -moz-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Fx 3.6-15*/
+    /*background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.6)); /*Standard*/
+    (to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
+    /*rgba(132,182,182,1)*/;
     padding-top: 30px!important;
     position: relative;
     height: auto !important; /* for modern browsers */
 	min-height: 100%; /* for IE */
     top: 0;
     max-height: 1200px;
+}
+
+.uppercase{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .9em!important;
 }
 
 .profile__container h1, .profile__container h2, .profile__container p, .profile__container i{
@@ -739,24 +758,19 @@ body, html {
     text-align: left;
 }
 
-.profile__stuff__tutorials, .profile__stuff__projects, .profile__stuff__other{
-    padding-left:20px;
-    height:200px;
-}
-
-.profile__personality, .profile__contact, .profile__links, .profile__about{
+.profile__social, .profile__contact, .profile__links, .profile__about{
     margin-top: 10%;
 }
 
-.profile__personality h1{
+.profile__social h1{
     padding-top: 4%;
     font-size: .9em;
 }
 
 
-.profile__about__description i, .profile__contact .fa-first {
+.profile__about__description i, .profile__contact .fa-first, .profile__social .fa-first {
     font-size: .9em;
-    float: right;
+    float:right;
 }
 
 .profile__about__img {
@@ -784,9 +798,10 @@ body, html {
     text-align: center;
     font-size: .95em;
     font-family: 'Open Sans';
+    font-style: italic;
 }
 
-.profile p{
+.profile p, .pbl-profile p{
     font-size: .95em;
 }
 
@@ -798,91 +813,138 @@ body, html {
     font-size: 1em;    
 }
 
-.profile__stuff__courses, .profile__stuff__skills, .profile__stuff__ex{
-    width:31%;
-    background-color: #fff;  
-    margin: 7% 1.5% 0 0;
-    padding:0;
-    height:250px;
-    border-radius: 5px;
+.profile__stuff__courses, .profile__stuff__projects {
+    width: 47.5%;
+    background-color: #fff;
+    margin: 4% 1% 0 0;
+    padding: 0;
+    border-radius: 0 5px 5px 0;
     
 }
 
-.profile__stuff__projects, .profile__stuff__tutorials, .profile__stuff__other {
+.profile__stuff__ex, .profile__stuff__skills {
+    width:46%;
+    background-color: #fff;  
+    margin: 3.5% 1% 0 0;
+    padding:0;
+    border-radius: 0 5px 5px 0
+    
+}
+
+.profile__stuff__tutorials, .profile__stuff__other {
     width:96%;
     background-color: #fff;  
     margin: 3.5% 2% 0 2%;
     padding:0;
-    height:250px;
-    border-radius: 5px;
+    border-radius: 0 5px 5px 0;
 }
 
-.profile__stuff__courses i, .profile__stuff__skills i, .profile__stuff__ex i, .profile__stuff__projects i, .profile__stuff__tutorials i, .profile__stuff__other i{
+.profile__stuff__courses .fa-pencil, .profile__stuff__skills .fa-pencil, .profile__stuff__ex .fa-pencil, .profile__stuff__projects .fa-pencil, .profile__stuff__tutorials .fa-pencil, .profile__stuff__other .fa-pencil{
     position: absolute;
     top:20px;
     right:15px;
-    color:#fff;
 }
 
 .profile__stuff__courses{
     margin-left:2%;
+    border-left:5px solid rgba(100,87,138,1);
 }
 
-.profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1{
-    text-align: center;
+.profile__stuff__skills{
+    margin-left:2%;
+    border-left:5px solid rgba(166,80,100,1);
+}
+
+.profile__stuff__projects{
+    border-left:5px solid rgba(61,128,99,1);
+}
+
+.profile__stuff__ex{
+    border-left:5px solid rgba(213,107,48,1);
+}
+
+.profile__stuff__tutorials{
+    border-left:5px solid rgba(199,77,79,1);
+}
+
+.profile__stuff__other{
+    border-left:5px solid rgba(49,102,153,1);
+}
+
+.profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1, .profile__stuff__projects h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding:20px 30px;
+    padding:20px 0px 0 75px;
     color:#fff;
     border-radius: 5px 5px 0 0;
     margin-bottom: 5%;
 }
 
-.profile__stuff__projects h1, .profile__stuff__tutorials h1, .profile__stuff__other h1{
-    text-align: center;
+ .profile__stuff__tutorials h1, .profile__stuff__other h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding:20px 30px;
+    padding:20px 0px 0 75px;
     color:#fff;
     border-radius: 5px 5px 0 0;
-    margin-bottom: 2%;
+    margin-bottom: 2.5%;
 }
 
-.profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p{
-    padding:5px 30px;
+.profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p, .profile__stuff__projects p{
+    padding:0px 30px;
 }
 
-.profile__stuff__projects p, .profile__stuff__tutorials p, .profile__stuff__other p{
-    padding:5px 30px 20px 30px;
+.profile__stuff__tutorials p, .profile__stuff__other p{
+    padding:0px 30px 5px 30px;
 }
 
-.profile__stuff__courses h1{
-    background-color: rgba(100,87,139,1);
+.fa-book, .fa-cogs, .fa-folder-open, .fa-certificate, .fa-file-text, .fa-archive {
+    position: absolute !important;
+    left:30px;
+    top:10px !important;
 }
 
-.profile__stuff__skills h1{
-    background-color: rgba(166,80,101,1);
+.profile__stuff__courses h1, .profile__stuff__courses i{
+    color:rgba(100,87,138,1);
 }
 
-.profile__stuff__ex h1{
-    background-color: rgba(213,107,47,1);
+.profile__stuff__skills h1, .profile__stuff__skills i{
+    color: rgba(166,80,100,1);
 }
 
-.profile__stuff__projects h1{
-    background-color: rgba(61,128,98,1);
+.profile__stuff__ex h1, .profile__stuff__ex i{
+    color: rgba(213,107,48,1);
 }
 
-.profile__stuff__tutorials h1{
-    background-color: rgba(199,77,78,1);
+.profile__stuff__projects h1, .profile__stuff__projects i{
+    color: rgba(61,128,99,1);
 }
 
-.profile__stuff__other h1{
-    background-color: rgba(49,102,152,1);
+.profile__stuff__tutorials h1, .profile__stuff__tutorials i{
+    color: rgba(199,77,79,1);
 }
 
-.profile__stuff {
-    margin-bottom: 30px;
-    overflow: hidden;
+.profile__stuff__other h1, .profile__stuff__other i{
+    color: rgba(49,102,153,1);
+}
+
+.profile__stuff__other {
+    margin-bottom: 20px !important;
+}
+
+.profile__about__description textarea{
+    width:100%;
+    height:100px;
+    border:none;
+    padding:5px;
+    font-size: .9em;
+    border-radius: 5px;
+    resize: none;
+    overflow: auto;
+    background: #fff;
+}
+
+.profile__about__description textarea:focus{
+    outline: none;
 }
 
 
