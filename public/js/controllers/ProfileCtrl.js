@@ -1,9 +1,12 @@
 // public/js/controllers/ProfileCtrl.js
 angular.module('ProfileCtrl', []).controller('ProfileController', function ($scope, Profile, UserService) {
     //Controlls that switches input
-    $scope.editorEnabled = true;
-    $scope.editorDisabled = false;
+    $scope.descriptionEnabled = true;
+    $scope.contactEnabled = true;
+    $scope.linksEnabled = true;
     $scope.class = "fa fa-pencil";
+    $scope.contact_class = "fa fa-pencil";
+    $scope.links_class = "fa fa-pencil";
     var obj = null;
 
     // Get profile data from DB
@@ -25,31 +28,42 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
         }
     });
 
-
-    $scope.enableEditor = function ($event) {
+    $scope.editDescription = function () {
         if ($scope.class == "fa fa-pencil") {
             $scope.class = "fa fa-check"
-            $scope.editorEnabled = false;
-            $scope.editorDisabled = true;
+            $scope.descriptionEnabled = false;
         } else {
-            var elem = $event.currentTarget
-            
-
-         
             obj.description = $scope.description;
             $scope.updateProfile(obj);
-
-            $scope.disableEditor();
+            $scope.descriptionEnabled = true;
             $scope.class = "fa fa-pencil"
         }
     };
-
-    $scope.disableEditor = function () {
-        
-
-        $scope.editorEnabled = true;
-        $scope.editorDisabled = false;
+    
+    $scope.editContact = function () {
+        if ($scope.contact_class == "fa fa-pencil") {
+            $scope.contact_class = "fa fa-check"
+            $scope.contactEnabled = false;
+        } else {
+            obj.phone_number = $scope.phone_number;
+            obj.public_url = $scope.url;
+            $scope.updateProfile(obj);
+            $scope.contactEnabled = true;
+            $scope.contact_class = "fa fa-pencil"
+        }
     };
+    
+    $scope.editLinks = function () {
+        if ($scope.links_class == "fa fa-pencil") {
+            $scope.links_class = "fa fa-check"
+            $scope.linksEnabled = false;
+        } else {
+            $scope.updateProfile(obj);
+            $scope.linksEnabled = true;
+            $scope.links_class = "fa fa-pencil"
+        }
+    };
+
 
     //Gui function update profile
     $scope.updateProfile = function (obj) {

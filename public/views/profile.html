@@ -10,40 +10,59 @@
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
                     <div class="profile__about__description">
-                        <i ng-class="class" ng-click="enableEditor($event)"></i>
+                        <i ng-class="class" ng-click="editDescription()"></i>
                         <p class="uppercase">Description</p>
                         <hr>
-                        <p ng-show="editorEnabled"> {{ description }}</p>
-                        <textarea ng-model="description" ng-show="editorDisabled">{{ description }}</textarea>
+                        <p ng-show="descriptionEnabled"> {{ description }}</p>
+                        <textarea ng-model="description" ng-hide="descriptionEnabled">{{ description }}</textarea>
                     </div>
                 </div>
                 <!---.profile__about-->
 
                 <div class="profile__contact">
-                    <i class="fa fa-pencil fa-first"></i>
+                    <i ng-class="contact_class" class="fa-first" ng-click="editContact()"></i>
                     <p class="uppercase">Contact details</p>
                     <hr>
-                    <p><i class="fa fa-envelope-o"></i>{{ email }} </p>
-
-                    <p><i class="fa fa-phone"></i> {{ phone_number }} </p>
-
-                    <p><i class="fa fa-home"></i> http://www.elle.com</p>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-envelope-o"></i><p>{{ email }} </p>
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-phone"></i><p ng-show="contactEnabled"> {{ phone_number }} </p>
+                        <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
+                    </div>
+                    
+                    <div class="profile__icon_first">
+                        <i class="fa fa-home"></i><p ng-show="contactEnabled"> http://www.elle.com</p>
+                        <input type="text" ng-hide="contactEnabled" ng-model="">
+                    </div>
 
                 </div>
                 <!---.profile__contact-->
 
                 <div class="profile__social">
-                    <i class="fa fa-pencil fa-first"></i>
+                    <i ng-class="links_class" class="fa-first" ng-click="editLinks()"></i>
                     <p class="uppercase">Social links</p>
                     <hr>
-                    
-                    <p><i class="fa fa-linkedin"></i></p>
-                    
-                    <p><i class="fa fa-github"></i></p>
-
-                    <p><i class="fa fa-facebook"></i>  </p>
-
-                    <p><i class="fa fa-twitter"></i> </p>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-linkedin"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-github"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-facebook"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-twitter"></i> 
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
                     <a class="pbl-profile-link" href="public/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
                 </div>
                 
