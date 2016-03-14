@@ -1,6 +1,6 @@
 'use strict';
 
-
+/*
 // import the moongoose helper utilities
 var utils = require('../test/utils');
 var should = require('should');
@@ -136,3 +136,4 @@ describe('Users: models', function () {
     });
   });
 });
+*/
