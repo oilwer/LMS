@@ -133,7 +133,7 @@ User.getByPublicURL = function(public_url, callback){
 
 //Function that inserts a new user in db
 User.register = function (user, callback) {
-<<<<<<< HEAD
+
 		// Inits user.db object
     var newUser = new User.db({role: user.role, first_name: user.first_name, 
     	last_name: user.last_name, email: user.email, phone_number: 
@@ -174,13 +174,7 @@ User.remove = function(id, callback){
 
 //Function that modifies selected user
 User.modify = function(user, callback){
-<<<<<<< HEAD
-	
-	console.log(user);
-	
-=======
 
->>>>>>> 3b4f094b95bcf22da39baf479db8a95b489216e9
 	// Find by id and update user
     User.db.findByIdAndUpdate(user._id, {
 	    	role: user.role,
