@@ -37,12 +37,33 @@
                         <li>Overview</li>
                     </ul>
                 </nav>
-                <div class="col-sm-12 box--label box--label--courses">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <h1 class="box--label_heading--courses"><i class="fa--heading fa fa-info-circle"></i>Course details</h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <!--wall-->
+                        <div class="box--label box--label--courses">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-file-text-o"></i>
+                                Wall
+                            </h2>
+                            <div class="wall_content">
+                                <div class="wall_content_item">
+                                    <h3>Titel</h3>
+                                    <p>Course messages from teachers</p>
+                                    <p>TEacher one</p>
+                                </div>
+
+                            </div>
                         </div>
-                        <div class="col-md-8">
+                    </div><!--.col-->
+                    <div class="col-md-6">
+                        
+                        <!--left content / details / assignment / resources-->
+                        <div class="col-sm-12 box--label box--label--courses">
+                            <h1 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-info-circle"></i>
+                                Course details
+                            </h1>
+
                             <div class="row course--details">
                                 <div class="col-sm-12">
                                     <h2 class="coursedescription_titel">Name:</h2>
@@ -57,67 +78,48 @@
                                     <p> {{ course.description }}</p>
                                 </div>
                             </div>
+
+                            <div class="col-md-4">
+                                <h2 class="course_teacher">Teaching</h2>
+                                <p ng-repeat="teacher in course.teaching">
+                                    <a href="{{teacher.profile}}">{{teacher.name}}</a>
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-md-4">
-                            <h2 class="course_teacher">Teaching</h2>
-                            <p ng-repeat="teacher in course.teaching">
-                                <a href="{{teacher.profile}}">{{teacher.name}}</a>
-                            </p>
+                        
+                        <div class="col-sm-12 box--label box--label--courses">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-file-text-o"></i>
+                                Assignments
+                            </h2>
+                            <p>New, deadline, feedback avaiable</p>
+                        </div>
+
+                        <div class="col-sm-12 box--label box--label--courses">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-book"></i>
+                                Resources
+                            </h2>
+                            <p>New, edited, latest view</p>
+                        </div>
+                
+                    </div><!--.col-->
+                    
+                </div><!--.row-->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box--label box--label--courses">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-question-circle"></i>
+                                Questions and Answers
+                            </h2>
+                            <p> Placeholder </p>
                         </div>
                     </div>
                 </div>
-                
-                <div class="col-md-12">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="box--label box--label--courses">
-                                <h2 class="box--label_heading--courses">
-                                    <i class="fa--heading fa fa-file-text-o"></i>
-                                    Wall
-                                </h2>
-                                <p>Course messages from teachers</p>
-                            </div>
-                        </div>
-                        <div class="col-md-6"> 
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div class="box--label box--label--courses">
-                                        <h2 class="box--label_heading--courses">
-                                            <i class="fa--heading fa fa-file-text-o"></i>
-                                            Assignments
-                                        </h2>
-                                        <p>New, deadline, feedback avaiable</p>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12">
-                                    <div class="box--label box--label--courses">
-                                        <h2 class="box--label_heading--courses">
-                                            <i class="fa--heading fa fa-book"></i>
-                                            Resources
-                                        </h2>
-                                        <p>New, edited, latest view</p>
-                                    </div>
-                                </div>
-                            </div><!--.row-->
-                        </div> 
-                        <div class="col-md-12">
-                            <div class="box--label box--label--courses">
-                                <h2 class="box--label_heading--courses">
-                                    <i class="fa--heading fa fa-question-circle"></i>
-                                    Questions and Answers
-                                </h2>
-                                <p> Latest? </p>
-                            </div>
-                        </div>
-                    </div><!--.row-->
-                </div>
-                
-                  
-                
-            </div>
+                        
+            </div><!--coursebody-->
         </div>
-        
     </div><!--.dashboard-->
 </div><!--.app_container-->
 
