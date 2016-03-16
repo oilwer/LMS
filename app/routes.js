@@ -317,7 +317,7 @@ var session = require('express-session');
                res.json("Welcome to our api! /login, /public/:url & /profile works");
            });
 
-app.
+
     // chat api route
     app.post('/api/chat', function(req, res) {
 
@@ -359,8 +359,7 @@ app.
                     res.json(callback);
                 }
             });
-        });
-
+    });
 
     // frontend routes =========================================================
     // route to handle all angular requests
