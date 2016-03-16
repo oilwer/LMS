@@ -50,6 +50,7 @@ app.use(express.static(__dirname + '/public'));
 
 // routes ==================================================
 require('./app/routes')(app); // configure our routes
+require('./app/routesCourses')(app); // configure our routes
 
 // start app ===============================================
 // startup our app at http://localhost:8080

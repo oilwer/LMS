@@ -150,6 +150,21 @@ var session = require('express-session');
             if(sess.isLoggedIn == true) {
                 res.json(true);
             }
+            // Not logged in
+            else {
+                // Triggers login function in the User model
+                User.login(req.query.email, req.query.password, function(err, callback){
+
+                    // If user gets logged in -> Set session isLoggedIn to true.
+                    if(callback){
+                        sess.isLoggedIn = true;
+                        sess.userid = callback.id;
+                    }
+
+                    // Returns the login value (bool) to LoginCtrl
+                    res.json(callback);
+                });
+            }
     });
 
     //Get all users

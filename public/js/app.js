@@ -1,8 +1,10 @@
 // public/js/app.js
 
 var lmsApp = angular.module('lmsApp', ['ngLocationUpdate', 'ngRoute', 'appRoutes',
-    'LoginCtrl', 'HomeCtrl', 'CoursesCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl', 'ProfilePublicCtrl', 'ModelAnythingCtrl', 'TestplugCtrl',
-'ProfileService', 'LoginService', 'UserService', 'ModelAnythingService', 'ChatService', 'ProfilePublicService']);
+    'LoginCtrl', 'HomeCtrl', 'CourseCtrl', 'ProfileCtrl', 'ChatCtrl', 'UserCtrl',
+    'ProfilePublicCtrl', 'ModelAnythingCtrl', 'TestplugCtrl',
+    'ProfileService', 'LoginService', 'UserService', 'ModelAnythingService',
+    'ChatService', 'ProfilePublicService', "CourseService"]);
 
 
 //Directives
