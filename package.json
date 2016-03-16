@@ -2,11 +2,20 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "dependencies": {
+<<<<<<< HEAD
     "body-parser": "~1.4.2",
     "express": "~4.5.1",
     "express-session": "^1.13.0",
     "method-override": "~2.0.2",
     "mongoose": "~3.8.0",
+=======
+    "body-parser": "^1.4.3",
+    "express": "^4.5.1",
+    "express-session": "^1.13.0",
+    "method-override": "^2.0.2",
+    "mongoose": "^3.8.39",
+    "nodemailer": "^2.3.0",
+>>>>>>> dev
     "slack-node": "^0.2.0"
   },
   "devDependencies": {
