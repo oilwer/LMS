@@ -1,38 +1,15 @@
 // public/js/controllers/ModelAnythingCtrl.js
-angular.module('ModelAnythingCtrl', []).controller('ModelAnythingController', function($scope, $sce, $timeout, ModelAnything, $compile) {
+angular.module('ModelAnythingCtrl', []).controller('ModelAnythingController', function($scope, ModelAnything) {
 	
 
-	var config = [];
-	
-	//TODO: Rename
-	var derpFunc = function(){
-		
-		//TODO: rename
-		ModelAnything.fetchConfigFileFromSession().success(function(response){
+		// Asks the ModelAnythingService to fetch plugins
+		ModelAnything.fetchDashboardPlugsConfigFromSession().success(function(response){
 
-			console.log("test");
-			$scope.response = $sce.trustAsHtml(response);
-            config = response;
-            console.log(response);
-            
+			// Sets the HTML div to be filled up w/ the plugins
             $scope.html = response;
-	
-			$scope.click = function(arg) {
-			alert('Clicked ' + arg);
-  			}
-
-            
-            // console.log(response);
-           // var template = response;
-            
-            // $compile(response)($scope);
-            
-            
+   
     });
-		
-	}
 	
-	$scope.response = derpFunc();  
 	
 	      
 });

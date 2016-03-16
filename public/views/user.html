@@ -23,12 +23,12 @@
                 <td><input class="form-control" ng-model="user.description" required="true"></td>
                 <td><input class="form-control" ng-model="user.personality" required="true"></td>
                 <td><input class="form-control" ng-model="user.public_url" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].id" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].name" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].path" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].isActive" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].x" required="true"></td>
-                <td><input class="form-control" ng-model="user.dashboard_config[0].y" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].id" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].name" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].path" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].isActive" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].x" required="true"></td>
+                <td><input class="form-control" ng-model="user.plugs[0].y" required="true"></td>
 
    
 
@@ -51,13 +51,13 @@
                 <td>{{user.public_url}}</td>
        
                 
-                <td ng-repeat="plug in user.dashboard_config">
-					{{plug.plug.id}}
-					{{plug.plug.name}}
-					{{plug.plug.path}}
-					{{plug.plug.isActive}}
-					{{plug.plug.x}}
-					{{plug.plug.y}}
+                <td ng-repeat="plug in user.plugs">
+					{{plug.id}}
+					{{plug.name}}
+					{{plug.path}}
+					{{plug.isActive}}
+					{{plug.x}}
+					{{plug.y}}
                 </td>
                 
            <!--     <td>{{user.dashboard_config[0].plug.id}}</td>
