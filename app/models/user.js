@@ -9,6 +9,10 @@ var User = function (data) {
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Import nodeMailer and create a tansporter
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://lms.siasolutions%40gmail.com:lmsisbest@smtp.gmail.com');
+
 // Defines the user Schema (How the DB is structured)
 var userSchema = new Schema({ 
     profilePic: String,
@@ -22,7 +26,17 @@ var userSchema = new Schema({
 	public_url: String,
     courses: {
 	    course_name: String
-	    },
+	},
+    dashboard_config:[{
+        plug:{
+            id: String,
+            name: String,
+            path: String,
+            isActive: Boolean,
+            x: Number,
+            y: Number
+        }
+    }],
     role: String //student/admin/teacher
 });
 
@@ -123,18 +137,23 @@ User.getByPublicURL = function(public_url, callback){
 
 //Function that inserts a new user in db
 User.register = function (user, callback) {
-	
-	// Inits user.db object
-    var newUser = new User.db({
-		role: user.role,
-		first_name: user.first_name,
-    	last_name: user.last_name,
-		email: user.email,
-		phone_number: user.phone_number,
-		password: user.password,
-		description: user.description,
-    	personality: user.personality,
-		public_url: user.public_url });
+
+		// Inits user.db object
+    var newUser = new User.db({role: user.role, first_name: user.first_name, 
+    	last_name: user.last_name, email: user.email, phone_number: 
+    	user.phone_number, password: user.password, description: user.description,
+    	personality: user.personality, public_url: user.public_url, 
+        dashboard_config: [{
+            plug: { 
+                id: user.dashboard_config[0].id,
+                name: user.dashboard_config[0].name, 
+                path: user.dashboard_config[0].path,
+                isActive: user.dashboard_config[0].isActive,
+                x: user.dashboard_config[0].x,
+                y: user.dashboard_config[0].y
+            }
+        }]
+    });
     
 	// Save to the mongo DB
     newUser.save ( function(err, response){
@@ -142,7 +161,7 @@ User.register = function (user, callback) {
         if (err) return console.error(err);
         callback(null, response);
         console.log(response);
-    });
+    });	
 };
 
 
@@ -171,7 +190,17 @@ User.modify = function(user, callback){
 	    	description: user.description,
 	    	personality: user.personality,
 	    	courses: user.courses,
-			public_url: user.public_url
+			public_url: user.public_url,
+            dashboard_config: [{
+                plug: { 
+                    id: user.dashboard_config[0].id,
+                    name: user.dashboard_config[0].name, 
+                    path: user.dashboard_config[0].path,
+                    isActive: user.dashboard_config[0].isActive,
+                    x: user.dashboard_config[0].x,
+                    y: user.dashboard_config[0].y
+                }
+            }]
 	    	},{new: true}, function (err, response){ // TODO: What is new: true?
 		if (err) return console.error(err);
         console.log(response);
@@ -203,12 +232,9 @@ User.resetPassword = function(email, callback){
     }); 
  };
 
-//Import nodeMailer and create a tansporter
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://lms.siasolutions%40gmail.com:lmsisbest@smtp.gmail.com');
-
 // Send an email to parameter email with password parameter password
 User.sendPasswordReset = function(email, password, callback){
+		
     var mailOptions = {
         from: '"Learning Made Simple" <lms.siasolutions@gmail.com>', // sender address
         to: email, // list of receivers

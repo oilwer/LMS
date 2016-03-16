@@ -15,7 +15,7 @@ var courseSchema = new Schema({
     description: String,
     start: String,
     end: String,
-    status: String,
+    status: Boolean,
     url: String,
     teacher: String,
     assignments: {
