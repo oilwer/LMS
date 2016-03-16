@@ -3,13 +3,16 @@
 <div class="container" >
     <h1>Basic user management system</h1>
     <p> (that could be used for anything..) </p>
+    
+    
+    
     <table class="table">
         <thead>
         <tr>
-            <th>User role</th> <th>First name</th> <th>Last Name</th> <th>Email</th>  <th>Phone number</th> <th>Password</th> <th>Description</th> <th>Personality</th><th>Public Url</th>
+            <th>User role</th> <th>First name</th> <th>Last Name</th> <th>Email</th>  <th>Phone number</th> <th>Password</th> <th>Description</th> <th>Personality</th><th>Public Url</th><th>plug object (AND ID)</th><th>plug name</th><th>plug path</th><th>plug isactive</th><th>plug x</th><th>plug y</th>
         </tr> 
         </thead>
-        <tbody ng-controller="UserController">
+        <tbody>
             <tr>
                 <td><input class="form-control" ng-model="user.role" required="true"></td>
                 <td><input class="form-control" ng-model="user.first_name" required="true"></td>
@@ -20,6 +23,14 @@
                 <td><input class="form-control" ng-model="user.description" required="true"></td>
                 <td><input class="form-control" ng-model="user.personality" required="true"></td>
                 <td><input class="form-control" ng-model="user.public_url" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].id" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].name" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].path" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].isActive" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].x" required="true"></td>
+                <td><input class="form-control" ng-model="user.dashboard_config[0].y" required="true"></td>
+
+   
 
                 <td> <button class="btn btn-primary" ng-click="addOrUpdateUser()">{{btnAddOrUpdateText}}</button></td>
                 <!-- <td>
@@ -27,6 +38,7 @@
                    &nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button>
                 </td>-->
             </tr>
+			
            <tr ng-repeat="user in userlist | orderBy:'-_id'">
                 <td>{{user.role}}</td>
                 <td>{{user.first_name}}</td>
@@ -37,6 +49,40 @@
                 <td>{{user.description}}</td>
                 <td>{{user.personality}}</td>
                 <td>{{user.public_url}}</td>
+       
+                
+                <td ng-repeat="plug in user.dashboard_config">
+					{{plug.plug.id}}
+					{{plug.plug.name}}
+					{{plug.plug.path}}
+					{{plug.plug.isActive}}
+					{{plug.plug.x}}
+					{{plug.plug.y}}
+                </td>
+                
+           <!--     <td>{{user.dashboard_config[0].plug.id}}</td>
+                <td>{{user.dashboard_config[0].plug.name}}</td>
+                <td>{{user.dashboard_config[0].plug.path}}</td>
+                <td>{{user.dashboard_config[0].plug.isActive}}</td>
+                <td>{{user.dashboard_config[0].plug.x}}</td>
+                <td>{{user.dashboard_config[0].plug.y}}</td>
+                
+             -->
+                
+                
+                <!--
+                <td> {{ user }} </td>
+
+
+                    <td ng-repeat="(key, val) in user.dashboard_config">
+                        <td>{{key}}</td>
+                    </td>
+                    -->
+                    
+
+                
+              
+                
 
                 <td><button class="btn btn-warning" ng-click="prepareEdit(user._id)">Edit</button></td>
                 <td><button class="btn btn-danger" ng-click="remove(user._id)">Remove</button></td>

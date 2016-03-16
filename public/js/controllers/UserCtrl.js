@@ -75,6 +75,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
 
         UserService.getById(id).success(function(response){
             //get info from db to put in the form boxes
+            console.log("User response:");
            $scope.user = response;
         });
     };

@@ -31,8 +31,10 @@ var session = require('express-session');
 		
 		// Fetch config file sessions
         app.get('/fetchconfigfile', function (req,res) {
+	        
+	        var sess = req.session.dashboard_config;
 	        	
-				ModelAnything.initPlugs(function(err, response){
+				ModelAnything.initPlugs(sess, function(err, response){
 					
 					res.send(response);
         		});	
@@ -142,7 +144,7 @@ var session = require('express-session');
         
         // Login function
         app.get('/api/login', function (req,res) {
-	        	
+	        	        	
             // Fetches session variable
             var sess = req.session;
 
@@ -155,29 +157,20 @@ var session = require('express-session');
             else {
                 // Triggers login function in the User model
                 User.login(req.query.email, req.query.password, function(err, callback){
-
-
-                    // If user gets logged in -> Set session isLoggedIn to true.
+  
+                        // If user gets logged in -> Set session isLoggedIn to true.
                     if(callback){
                         sess.isLoggedIn = true;
                         sess.userid = callback.id;
-                        // Asks ModelAnything for the Config file 
-								ModelAnything.readConfig(function(err, response){
-								
-									// Saves the config in session
-									sess.config = response;
-
-									console.log("Fetched config file.");
-									
-									res.json(true);
-        						});	
-                        
+                        sess.dashboard_config = callback.dashboard_config;
+                      
+						res.json(true);    
                     }
+
                     else
                     {
 	                    res.json(false);
                     }
-
                     
                 });
             }
@@ -189,7 +182,8 @@ var session = require('express-session');
 	        // Fetches session variable
 	        var sess = req.session;
 	        
-	        console.log(sess);
+	        console.log("Dashboard config");
+	        console.log(sess.dashboard_config);
         
         	// recover Users ID from current sessions parameters
 			var userId = sess.userid; //TODO: use id instead of email
