@@ -15,7 +15,7 @@ slack = new Slack(apiToken);
  
 Chat.send = function (username, text, callback) {
 
-    //send message
+    //sends message
     slack.api('chat.postMessage', {
           text:text,
           as_user:true,
@@ -27,13 +27,22 @@ Chat.send = function (username, text, callback) {
 
 Chat.getMessage = function (channelID, callback){
 
-
-var time = Date.now();
-//console.log("Time: " + time);
     slack.api('channels.history', {
         token:apiToken,
-        channel:channelID//,
-        //latest:time
+        channel:channelID
+        }, function(err, response){
+            callback(null, response);
+        });
+}
+
+//For the testcase
+Chat.getLatestMessage = function (channelID, callback){
+
+    var time = Date.now();
+    slack.api('channels.history', {
+        token:apiToken,
+        channel:channelID,
+        latest: time
         }, function(err, response){
             callback(null, response);
         });
