@@ -356,11 +356,26 @@ var session = require('express-session');
 
             // If user gets logged in -> Set session isLoggedIn to true.
             if(callback){
-                console.log("Get chat message callback: " + callback);
+                console.log("Get chat message callback: ");
+                 console.log(callback);
                 res.json(callback);
             }
         });
     });
+
+    app.get('/api/getlatestchatmsg', function(req, res) {
+
+            // Triggers login function in the User model
+            Chat.getLatestMessage(req.query.channel, function(err, callback){
+
+                // If user gets logged in -> Set session isLoggedIn to true.
+                if(callback){
+                    console.log("Get Latest message callback: ");
+                     console.log(callback);
+                    res.json(callback);
+                }
+            });
+        });
 
     app.get('/api/getchannellist', function(req, res) {
 
