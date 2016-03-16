@@ -5,7 +5,7 @@ angular.module('ModelAnythingCtrl', []).controller('ModelAnythingController', fu
 		// Asks the ModelAnythingService to fetch plugins
 		ModelAnything.fetchDashboardPlugsConfigFromSession().success(function(response){
 
-			// Sets the HTML div to be filled up w/ the plugins
+			// Sets the HTML div to be filled up with the plugins
             $scope.html = response;
    
     });
