@@ -39,22 +39,31 @@ ModelAnything.readConfig = function (callback){
 	});
 };
 
-ModelAnything.initPlugs = function (callback){
+ModelAnything.initPlugs = function (sess, callback){
 	
-	var fetch = "";
-	console.log(configArray.length);
+
+
 	
-	for (var i = 0; i < configArray.length; i++){
-		if(configArray[i].isActive == 1){
-			var plug = require(configArray[i].path);
+	 var fetch = "";
+	
+	
+	for (var i = 0; i < sess.length; i++){
+		console.log("SESS i:");
+		console.log(sess[i].plug.isActive);
+		
+		if(sess[i].plug.isActive == true){
+			var plug = require(sess[i].plug.path);
 			
 			fetch += plug.fetch();
+		
 			
 			
 		}
+		
 	}
 	
-	callback(null, fetch);
+	
+	 callback(null, fetch);
 
 	
 };
