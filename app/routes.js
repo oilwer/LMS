@@ -32,9 +32,9 @@ var session = require('express-session');
 		// Fetch config file sessions
         app.get('/fetchconfigfile', function (req,res) {
 	        
-	        var sess = req.session.dashboard_config;
+	        var fetched_plugins = req.session.dashboard_config;
 	        	
-				ModelAnything.initPlugs(sess, function(err, response){
+				ModelAnything.initPlugs(fetched_plugins, function(err, response){
 					
 					res.send(response);
         		});	

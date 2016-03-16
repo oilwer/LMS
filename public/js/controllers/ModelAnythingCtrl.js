@@ -4,8 +4,10 @@ angular.module('ModelAnythingCtrl', []).controller('ModelAnythingController', fu
 
 	var config = [];
 	
+	//TODO: Rename
 	var derpFunc = function(){
 		
+		//TODO: rename
 		ModelAnything.fetchConfigFileFromSession().success(function(response){
 
 			console.log("test");

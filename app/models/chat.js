@@ -25,6 +25,7 @@ Chat.send = function (username, text, callback) {
         });
 }
 
+//TODO: getMessages
 Chat.getMessage = function (channelID, callback){
 
 
