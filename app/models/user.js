@@ -3,7 +3,7 @@
 // Constructor
 var User = function (data) {  
     this.data = data;
-}
+};
 
 // get an instance of mongoose and mongoose.Schema
 var mongoose = require('mongoose');
@@ -64,7 +64,7 @@ User.login = function (email, password, callback) {
 	
 		}
 	}
-}
+};
 
 // Function that returns all users
 User.getAllUsers = function (callback){
@@ -125,10 +125,16 @@ User.getByPublicURL = function(public_url, callback){
 User.register = function (user, callback) {
 	
 	// Inits user.db object
-    var newUser = new User.db({role: user.role, first_name: user.first_name, 
-    	last_name: user.last_name, email: user.email, phone_number: 
-    	user.phone_number, password: user.password, description: user.description,
-    	personality: user.personality, public_url: user.public_url });
+    var newUser = new User.db({
+		role: user.role,
+		first_name: user.first_name,
+    	last_name: user.last_name,
+		email: user.email,
+		phone_number: user.phone_number,
+		password: user.password,
+		description: user.description,
+    	personality: user.personality,
+		public_url: user.public_url });
     
 	// Save to the mongo DB
     newUser.save ( function(err, response){
