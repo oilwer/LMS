@@ -1,6 +1,16 @@
 // public/js/controllers/ProfileCtrl.js
 angular.module('HomeCtrl', []).controller('HomeController', function($scope) {
     
-    $scope.heading = "Test heading"
-	$scope.body = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco [...]";
+    $scope.heading1 = "Webdevelopment"
+
+    $scope.heading2 = "Introduction to JavaScript"
+
+    $scope.heading3 = "Systemarchitecture"
+
+    $scope.heading4 = "Schedule"
+
+    $scope.heading5 = "Questions and answers"
+	
+    $scope.heading6 = "Circles"
+	;
 });
