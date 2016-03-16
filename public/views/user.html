@@ -27,7 +27,7 @@
                    &nbsp;&nbsp;<button class="btn btn-info" ng-click="deselect()">Clear</button>
                 </td>-->
             </tr>
-           <tr ng-repeat="user in userlist">
+           <tr ng-repeat="user in userlist | orderBy:'-_id'">
                 <td>{{user.role}}</td>
                 <td>{{user.first_name}}</td>
                 <td>{{user.last_name}}</td>

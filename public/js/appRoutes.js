@@ -15,6 +15,18 @@
             controller: 'HomeController'
         })
     
+        // courses
+        .when('/courses', {
+            templateUrl: 'views/courses.html',
+            controller: 'CoursesController'
+        })
+        
+        // static course, to be updated with dynamic course url
+        .when('/courses/testcourse', {
+            templateUrl: 'views/testcourse.html',
+            controller: 'CoursesController'
+        })
+    
         // Profile
         .when('/profile', {
             templateUrl: 'views/profile.html',
@@ -38,6 +50,17 @@
         .when('/user', {
             templateUrl: 'views/user.html',
             controller: 'UserController'
+        })
+
+        .when('/resetPassword', {
+            templateUrl: 'views/forgotPassword.html',
+            controller: 'LoginController'
+        })
+        
+		  // Modelanything
+        .when('/modelanything', {
+            templateUrl: 'views/modelanything.html',
+            controller: 'ModelAnythingController'
         });
 
     $locationProvider.html5Mode(true);

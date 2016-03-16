@@ -1,74 +1,139 @@
 <!-- public/views/profile.html -->
 
 <app-nav></app-nav>
-<div class="container-fluid profile">
-    <div class="row heightfull">
-        <div class="col-sm-3 col-md-3 col-lg-3  heightfull profile__container" ng-controller="ProfileController">
-            <div class="profile__about">
-                <div class="profile__about__img"></div>
-                <h1> {{ first_name }} {{ last_name }} </h1>
-                <h2> {{ role }} </h2>
-                <textarea disabled="true" ng-model="user.description"></textarea>
-            </div><!---.profile__about-->
-            
-            <div class="profile__contact">
-                <i class="fa fa-envelope"></i>
-                <input disabled="disabled" ng-model="user.email" required="true">
-                <i class="fa fa-phone"></i>
-                <input ng-model="user.phone_number" required="true">
-                <i class="fa fa-comment"></i>
-            </div><!---.profile__contact-->
-            
-            <div class="profile__personality">
-                <div class="profile__personality__img" ng-model="user.personality"></div>
-            </div><!---.profile__personality-->
-            <div class="profile__links">
-                <p> {{ url }} </p>
-                <input class="form-control" ng-model="user.public_url" required="true">
-                <p>Follow in other channels</p>
-            </div><!---.profile__links-->
-            
-                <!--Hidden for now
-                <p> Password </p>
-                <input class="form-control" ng-model="user.password" required="true">
-                <p> Role </p>
-                <input class="form-control" ng-model="user.role" required="true">-->
-            
-        </div>
-        <div class="col-sm-9 col-md-9 col-lg-9">
-            <div class="row heightfull">
-                <div class="col-sm-4 col-md-4 col-lg-4">
-                    <p>Courses</p>
-                    <input class="form-control" ng-model="user.courses.course_name" required="true">
+<div class="app_container heightfull">
+    <div class="container-fluid profile heightfull">
+        <div class="row heightfull table-row newtable-row">
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfileController">
+                <div class="profile__about">
+                    <div class="profile__about__img"></div>
+                    <h1> {{ first_name }} {{ last_name }} </h1>
+                    <h2> {{ role }} </h2>
+                    <div class="profile__about__description">
+                        <i ng-class="class" ng-click="editDescription()"></i>
+                        <p class="uppercase">Description</p>
+                        <hr>
+                        <p ng-show="descriptionEnabled"> {{ description }}</p>
+                        <textarea ng-model="description" ng-hide="descriptionEnabled">{{ description }}</textarea>
+                    </div>
                 </div>
-                <div class="col-sm-4 col-md-4 col-lg-4">
-                    <p>Skills</p>
-                </div>
-                <div class="col-sm-4 col-md-4 col-lg-4 ex">
-                    <p>Experience</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-sm-12">
-                    <p>Projects/Other from courses</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-sm-12">
-                    <p>Tutorials or other stuff from modules</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-md-12 col-sm-12">
-                    <p>Other services (portfolio export/import</p>
-                </div>
-            </div>
-        </div><!---.col-->
-    </div><!---.row-->
-</div><!---container-->
+                <!---.profile__about-->
 
-    
-       <!-- <div ng-controller="ProfileController">
+                <div class="profile__contact">
+                    <i ng-class="contact_class" class="fa-first" ng-click="editContact()"></i>
+                    <p class="uppercase">Contact details</p>
+                    <hr>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-envelope-o"></i><p>{{ email }} </p>
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-phone"></i><p ng-show="contactEnabled"> {{ phone_number }} </p>
+                        <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
+                    </div>
+                    
+                    <div class="profile__icon_first">
+                        <i class="fa fa-home"></i><p ng-show="contactEnabled"> http://www.elle.com</p>
+                        <input type="text" ng-hide="contactEnabled" ng-model="">
+                    </div>
+
+                </div>
+                <!---.profile__contact-->
+
+                <div class="profile__social">
+                    <i ng-class="links_class" class="fa-first" ng-click="editLinks()"></i>
+                    <p class="uppercase">Social links</p>
+                    <hr>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-linkedin"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-github"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-facebook"></i>
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <div class="profile__icon_first">
+                        <i class="fa fa-twitter"></i> 
+                        <p ng-show="linksEnabled"></p>
+                        <input type="text" ng-hide="linksEnabled">
+                    </div>
+                    <a class="pbl-profile-link" href="public/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
+                </div>
+                
+                <!---.profile__personality-->
+
+                <!--<div class="profile__links">
+                    
+                    <p>Follow me</p>
+                    <i class="fa fa-linkedin"></i>
+                    <i class="fa fa-twitter"></i>
+                    <i class="fa fa-facebook"></i>
+                    <i class="fa fa-google-plus"></i>
+                </div><!---.profile__links-->
+
+                <!--Hidden for now
+                    <p> Password </p>
+                    <input class="form-control" ng-model="user.password" required="true">
+                    <p> Role </p>
+                    <input class="form-control" ng-model="user.role" required="true">-->
+
+            </div>
+
+            <div class="col-sm-9 col-md-9 col-lg-9 profile__stuff">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 profile__stuff__courses">
+                        <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
+                        <i class="fa fa-pencil"></i>
+                        <!--<input class="form-control" ng-model="user.courses.course_name" required="true">-->
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                    </div> <!--- .col -->
+                    <div class="col-sm-12 col-md-6 col-lg-6 profile__stuff__projects">
+                        <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
+                    </div>
+                </div> <!--- .row-->
+                    
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6 profile__stuff__skills">
+                        <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6 profile__stuff__ex">
+                        <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
+                        <h1><i class="fa fa-2x fa-file-text"></i>Tutorials</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
+                        <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
+                        <i class="fa fa-pencil"></i>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
+                    </div>
+                </div>
+            </div><!---.col-->
+        </div><!---.row-->
+    </div><!---container-->
+</div>
+
+
+<!-- <div ng-controller="ProfileController">
             
             	<p> First name </p>
                 <input class="form-control" ng-model="user.first_name" required="true">
