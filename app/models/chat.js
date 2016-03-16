@@ -29,11 +29,9 @@ Chat.getMessage = function (channelID, callback){
 
 
 var time = Date.now();
-//console.log("Time: " + time);
     slack.api('channels.history', {
         token:apiToken,
-        channel:channelID//,
-        //latest:time
+        channel:channelID
         }, function(err, response){
             callback(null, response);
         });

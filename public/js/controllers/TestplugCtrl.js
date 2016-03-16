@@ -1,11 +1,11 @@
 angular.module('TestplugCtrl', []).controller('TestplugController', function($scope) {
   var self = this;
   
-  $scope.test = "hejhej";
+  $scope.test = "Testplug.js";
   
   self.list = [
-    {text: 'Hello, World! deerp'},
-    {text: 'This is a message'},
+    {text: 'A sample plugin'},
+    {text: 'for the modular dashboard'},
     {text: 'And this is another message'}
   ];
   
