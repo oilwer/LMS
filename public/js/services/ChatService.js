@@ -6,15 +6,15 @@ angular.module('ChatService', []).factory('Chat', ['$http', function($http) {
         // Send message
         sendMessage : function(username, text) {
 
-		
+            //" '?channel=' + " is used for non-object variables
             return $http.post('/api/chat?username=' + username + '&text=' + text);
         },
-        
-         test : function() {
 
-            return $http.get('/api/getchatmsg');
+        //get latest message
+         getMessage : function(channel) {
+
+            //" '?channel=' + " is used for non-object variables
+            return $http.get('/api/getchatmsg?channel=' + channel);
         }
-        
-    }       
-
+    }
 }]);

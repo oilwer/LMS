@@ -560,6 +560,12 @@ body, html {
       margin-right: -15px;
       margin-left: -15px;      
     }
+    
+    /*Fix for profile width problem*/
+    .row.newtable-row{
+        width: 101.2% !important;
+        margin-right: 5px!important;
+    }
 
   .row.table-row > [class*="col-"] {
     float:none;
@@ -780,7 +786,7 @@ body, html {
 
             PRIVATE PROFILE    
 
-* * * * * * * * * * * * * * * * */    
+* * * * * * * * * * * * * * * * */   
 
 .profile{
     width:100%;
@@ -788,9 +794,12 @@ body, html {
     -webkit-font-smoothing: antialiased;
 }
 
+.profile__stuff{
+    padding-right: 0;
+}
+
 .profile__stuff .row{
     margin:0 !important;
-    margin-right: -30px !important
 }
 
 .profile hr{
@@ -824,15 +833,10 @@ body, html {
     background: -webkit-linear-gradient(left,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Safari 5.1-6*/
     background: -o-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Opera 11.1-12*/
     background: -moz-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Fx 3.6-15*/
-    /*background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.6)); /*Standard*/
-    (to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
+    background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.8)); /*Standard*/
+    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
     /*rgba(132,182,182,1)*/;
-    padding-top: 30px!important;
-    position: relative;
-    height: auto !important; /* for modern browsers */
-	min-height: 100%; /* for IE */
-    top: 0;
-    max-height: 1200px;
+    padding-top: 3%!important;
 }
 
 .uppercase{
@@ -906,28 +910,28 @@ body, html {
 }
 
 .profile__stuff__courses, .profile__stuff__projects {
-    width: 47.5%;
     background-color: #fff;
-    margin: 4% 1% 0 0;
+    margin: 4% 0% 0 0;
     padding: 0;
+    padding-bottom: 1%;
     border-radius: 0 5px 5px 0;
     
 }
 
 .profile__stuff__ex, .profile__stuff__skills {
-    width:46%;
     background-color: #fff;  
-    margin: 3.5% 1% 0 0;
+    margin: 3.5% 0% 0 0;
     padding:0;
+    padding-bottom: 1%;
     border-radius: 0 5px 5px 0
     
 }
 
 .profile__stuff__tutorials, .profile__stuff__other {
-    width:96%;
     background-color: #fff;  
-    margin: 3.5% 2% 0 2%;
+    margin: 3.5% 0% 0 0%;
     padding:0;
+    padding-bottom: 1%;
     border-radius: 0 5px 5px 0;
 }
 
@@ -938,12 +942,10 @@ body, html {
 }
 
 .profile__stuff__courses{
-    margin-left:2%;
     border-left:5px solid rgba(100,87,138,1);
 }
 
 .profile__stuff__skills{
-    margin-left:2%;
     border-left:5px solid rgba(166,80,100,1);
 }
 
@@ -966,7 +968,7 @@ body, html {
 .profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1, .profile__stuff__projects h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding:20px 0px 0 75px;
+    padding:4% 0 0 17%;
     color:#fff;
     border-radius: 5px 5px 0 0;
     margin-bottom: 5%;
@@ -975,14 +977,14 @@ body, html {
  .profile__stuff__tutorials h1, .profile__stuff__other h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding:20px 0px 0 75px;
+    padding: 2% 0 0 8%;
     color:#fff;
     border-radius: 5px 5px 0 0;
     margin-bottom: 2.5%;
 }
 
 .profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p, .profile__stuff__projects p{
-    padding:0px 30px;
+    padding:0 4%;
 }
 
 .profile__stuff__tutorials p, .profile__stuff__other p{
@@ -1025,18 +1027,41 @@ body, html {
 
 .profile__about__description textarea{
     width:100%;
-    height:100px;
+    height:88px;
+    margin-left: 0px;
     border:none;
-    padding:5px;
+    padding:2px;
     font-size: .9em;
-    border-radius: 5px;
     resize: none;
     overflow: auto;
-    background: #fff;
+    background:#fff;
+    font-family: 'Open Sans';
+    color:rgba(62,71,79,1);
 }
 
 .profile__about__description textarea:focus{
     outline: none;
+}
+
+.profile__container input{
+    width:90%;
+    background: #fff;
+    border:none;
+    color:rgba(62,71,79,1);
+    font-size: .95em;
+}
+
+.profile__contact input{
+    margin-bottom:2%;
+}
+
+.profile__icon_first{
+    position: relative;
+    margin-bottom: 2%;
+}
+
+.profile__icon_first p, .profile__icon_first input{
+    position: absolute; top: 1px; left: 25px;
 }
 
 
@@ -1052,7 +1077,11 @@ body, html {
         
     }
     /* Extra Small Devices, Phones */ 
-    @media only screen and (min-width : 480px) {
+    @media only screen and (max-width : 480px) {
+        .profile__stuff{
+            padding: 0px;
+
+        }
 
     }
 
