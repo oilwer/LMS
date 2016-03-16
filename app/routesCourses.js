@@ -16,10 +16,9 @@ module.exports = function(app) {
 
 
 
-
+//hej
     //Get all courses
     app.get('/api/courselist', function(req, res){
-
         //Get the course list from the database
         Course.getAllCourses(function(err, callback){
             res.json(callback);
