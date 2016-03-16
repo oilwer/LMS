@@ -8,8 +8,10 @@
     "express-session": "^1.13.0",
     "method-override": "^2.0.2",
     "mongoose": "^3.8.39",
+    "node-mailer": "^0.1.1",
     "nodemailer": "^2.3.0",
     "slack-node": "^0.2.0",
+    "supertest": "^1.2.0",
     "utils-merge": "^1.0.0"
   },
   "devDependencies": {
