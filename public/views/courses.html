@@ -28,11 +28,11 @@
             
             <div ng-repeat="course in courses">
                 <!--repeat all courses that the user belongs to-->
-                <div class="col-md-3 box--courses">
+                <div class="col-md-6 box--courses">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header">
-                                <h2>{{ course.name }}</h2>
+                                <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
                             <div class="box__content">
                                 <p> {{ course.assignment }}  </p>
