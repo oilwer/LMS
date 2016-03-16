@@ -3,7 +3,7 @@
 // Constructor
 var User = function (data) {  
     this.data = data;
-}
+};
 
 // get an instance of mongoose and mongoose.Schema
 var mongoose = require('mongoose');
@@ -74,7 +74,7 @@ User.login = function (email, password, callback) {
 	
 		}
 	}
-}
+};
 
 // Function that returns all users
 User.getAllUsers = function (callback){
@@ -133,6 +133,7 @@ User.getByPublicURL = function(public_url, callback){
 
 //Function that inserts a new user in db
 User.register = function (user, callback) {
+<<<<<<< HEAD
 		// Inits user.db object
     var newUser = new User.db({role: user.role, first_name: user.first_name, 
     	last_name: user.last_name, email: user.email, phone_number: 
@@ -149,7 +150,6 @@ User.register = function (user, callback) {
             }
         }]
     });
-
     
 	// Save to the mongo DB
     newUser.save ( function(err, response){
@@ -174,9 +174,13 @@ User.remove = function(id, callback){
 
 //Function that modifies selected user
 User.modify = function(user, callback){
+<<<<<<< HEAD
 	
 	console.log(user);
 	
+=======
+
+>>>>>>> 3b4f094b95bcf22da39baf479db8a95b489216e9
 	// Find by id and update user
     User.db.findByIdAndUpdate(user._id, {
 	    	role: user.role,
@@ -206,16 +210,52 @@ User.modify = function(user, callback){
     });
 };
 
+//Create random 8 character string
+var randomPassword = function(max, min){
+    var newPass = "";
+    for (var i = 0; i < 4; i++) {
+        var num = Math.floor(Math.random()*(max-min+1)+min);
+        var letter = String.fromCharCode(97 + Math.floor(Math.random() * 26));
+        newPass += num.toString();
+        newPass += letter;
+    };
+    return newPass;
+}
+
+//Reset a user password, identifies with parameter "email"
 User.resetPassword = function(email, callback){
-      var newPass = Math.floor(Math.random()*(99999-10000+1)+10000);
+      var newPass = randomPassword(1, 9);
       User.db.findOneAndUpdate( { "email" : email }, {
             password: newPass
             },{new: true}, function (err, response){ 
         if (err) return console.error(err);
+        User.sendPasswordReset(email, newPass);
         callback(null, true);
     }); 
  };
 
+//Import nodeMailer and create a tansporter
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://lms.siasolutions%40gmail.com:lmsisbest@smtp.gmail.com');
+
+// Send an email to parameter email with password parameter password
+User.sendPasswordReset = function(email, password, callback){
+    var mailOptions = {
+        from: '"Learning Made Simple" <lms.siasolutions@gmail.com>', // sender address
+        to: email, // list of receivers
+        subject: 'Password Reset', // Subject line
+        text: 'text body', // plaintext body
+        html: '<p>Your password has been reset! Your new password: ' + password + '</p>' // html body
+    };
+    // send mail with defined transport object
+    if(transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+            return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+        return true;
+    })){ callback(null, true) };
+}
 
 // Exports the object as a whole
 module.exports = User;
