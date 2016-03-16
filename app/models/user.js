@@ -9,6 +9,10 @@ var User = function (data) {
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
+//Import nodeMailer and create a tansporter
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport('smtps://lms.siasolutions%40gmail.com:lmsisbest@smtp.gmail.com');
+
 // Defines the user Schema (How the DB is structured)
 var userSchema = new Schema({ 
     profilePic: String,
@@ -228,12 +232,9 @@ User.resetPassword = function(email, callback){
     }); 
  };
 
-//Import nodeMailer and create a tansporter
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport('smtps://lms.siasolutions%40gmail.com:lmsisbest@smtp.gmail.com');
-
 // Send an email to parameter email with password parameter password
 User.sendPasswordReset = function(email, password, callback){
+		
     var mailOptions = {
         from: '"Learning Made Simple" <lms.siasolutions@gmail.com>', // sender address
         to: email, // list of receivers
