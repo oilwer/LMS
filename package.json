@@ -19,6 +19,7 @@
     "gulp-nodemon": "^2.0.6",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
+    "nodemon": "^1.9.1",
     "should": "^8.2.2",
     "supertest": "^1.2.0"
   }

@@ -34,6 +34,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
                 
                 // Pushes (updates) the GUI with the new user
                 $scope.userlist.push(response);
+                $scope.$apply();
                 $scope.user = "";
             });
             
@@ -49,6 +50,7 @@ angular.module('UserCtrl', []).controller('UserController', function($scope, Use
 
 				// Refresh GUI
                 refresh();
+                $scope.$apply();
                 $scope.user = "";
 
             });
