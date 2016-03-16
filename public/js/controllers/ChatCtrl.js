@@ -6,6 +6,7 @@ angular.module('ChatCtrl', []).controller('ChatController', function($scope, Cha
 
         // Asks chat service
         Chat.sendMessage("oliver", $scope.text).success(function(response){
+	        this.getMessage();
             $scope.chat = response;
             console.log(response);
         });
