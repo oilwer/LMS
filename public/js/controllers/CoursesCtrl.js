@@ -6,22 +6,22 @@ angular.module('CoursesCtrl', []).controller('CoursesController', function($scop
     
     //placeholder for all the users courses, get from db
     $scope.courses = [{
-        name: "Course 1",
+        name: "Web development",
         assignment: "Assignment 1",
         status: "active",
         url: "testcourse"
     }, {
-        name: "Course 2",
+        name: "National economics",
         assignment: "Assignment 2",
         status: "active",
         url: "testcourse"
     }, {
-        name: "Course 3",
+        name: "Project management",
         assignment: "Assignment 3",
         status: "inactive",
         url: "testcourse"
     }, {
-        name: "Course 4",
+        name: "Project course: IT",
         assignment: "Assignment 12",
         status: "active",
         url: "testcourse"
@@ -29,8 +29,8 @@ angular.module('CoursesCtrl', []).controller('CoursesController', function($scop
     
     //the current courseobject, get from db
     $scope.course = {
-        name: "Course 1",
-        description: "Test description",
+        name: "Web development",
+        description: "Communication for Development is an interdisciplinary field of study and practice, combining studies on culture, communication and development and integrating them with practical fieldwork. It explores the use of communication – both as a tool and as a way of articulating processes of social change – within the contexts of globalisation.",
         start: "16-03-09",
         end: "16-06-04",
         assignments: [{
@@ -40,12 +40,25 @@ angular.module('CoursesCtrl', []).controller('CoursesController', function($scop
             name: "assigment 2",
             deadline: "date"
         }],
+        messages: [{
+            title: "assigment 1",
+            content: "test content",
+            creator: "teacher", //obj?
+            date: "datum"
+        }, {
+            title: "assigment 1",
+            content: "test content",
+            creator: "teacher", //obj?
+            date: "datum"
+        }],
         teaching: [{ //contacts and info
-            name: "Teacher One", //obj
-            role: "teacher"
+            name: "Teacher One", //obj?
+            role: "teacher",
+            profile: "teacherone"
         }, {
             name: "Teacher Two", //obj?
-            role: "admin"
+            role: "admin",
+            profile: "teachertwo"
         }],
         resources: [{ //resources linked to course? obj?
             name: "The resource name",
