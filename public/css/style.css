@@ -63,7 +63,7 @@ body, html {
 
 .box__header i {
     padding: 0px 10px;
-=======
+}
 .box--label {
     background-color: #fff;
     padding: 0;
@@ -631,7 +631,7 @@ body, html {
 .course--details p {
     display: inline;
 }
-
+/*yolo*/
 .course_teacher {
     clear: both;
 }
