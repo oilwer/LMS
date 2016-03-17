@@ -2,24 +2,13 @@
   "name": "starter-node-angular",
   "main": "server.js",
   "dependencies": {
-<<<<<<< HEAD
     "body-parser": "~1.4.2",
     "express": "~4.5.1",
     "express-session": "^1.13.0",
     "method-override": "^2.3.5",
     "mongoose": "~3.8.0",
     "slack-node": "^0.2.0"
-=======
-    "body-parser": "^1.4.3",
-    "crc": "^3.4.0",
-    "express": "^4.13.4",
-    "express-session": "^1.13.0",
-    "method-override": "^2.0.2",
-    "mongoose": "^3.8.39",
-    "nodemailer": "^2.3.0",
-    "slack-node": "^0.2.0",
     "utils-merge": "^1.0.0"
->>>>>>> 2741fe93af9ab84bd27ccc7e5a38b60447a4c5a6
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -31,10 +20,7 @@
     "gulp-nodemon": "^2.0.6",
     "karma": "^0.13.22",
     "karma-chrome-launcher": "^0.2.2",
-<<<<<<< HEAD
-=======
     "nodemon": "^1.9.1",
->>>>>>> 2741fe93af9ab84bd27ccc7e5a38b60447a4c5a6
     "should": "^8.2.2",
     "supertest": "^1.2.0"
   }
