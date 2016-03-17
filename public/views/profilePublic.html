@@ -5,24 +5,20 @@
 <div class="app_container heightfull">
     <div class="container-fluid pbl-profile heightfull">
         <div class="row heightfull table-row newtable-row">
-            <div class="col-sm-3 col-md-3 col-lg-3 heightfull pbl-profile__container" ng-controller="ProfilePublicController">
-                <div class="pbl-profile__about">
-                    <div class="profile__about__img"></div>
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfilePublicController">
+                <div class="profile__about">
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
-                    
-                    <h1 class="uppercase">About me</h1>
-                    <hr>
-                    <div class="pbl-profile__about__description">  
-                        <p> {{ description }}</p>
-                    </div>
+                    <div class="profile__about__img"></div>
                 </div><!---.profile__about-->
+                    
+                <div class="text-center profile__description">
+                    <p> {{ description }}</p>
+                </div><!---.profile__description-->
             
                 
-                <div class="pbl-profile__contact">
-                    <h1 class="uppercase">Contact me</h1>
-                    <hr>
-                    
+                <div class="text-center pbl-profile__contact">
+                    <h2 class="uppercase">Contact me</h2>                    
                     <p><i class="fa fa-envelope-o"></i>{{ email }}</p>
                     
                     <p><i class="fa fa-phone"></i> {{ phone_number }}</p>
@@ -32,10 +28,8 @@
             
             
 
-                <div class="pbl-profile__links">
-                    
-                    <h1 class="uppercase">Follow me</h1>
-                    <hr>
+                <div class="text-center pbl-profile__links">
+                    <h2 class="uppercase">Follow me</h2>
                     <i class="fa fa-linkedin"></i>
                     <i class="fa fa-twitter"></i>
                     <i class="fa fa-facebook"></i>

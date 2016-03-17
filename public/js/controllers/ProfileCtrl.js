@@ -7,6 +7,8 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
     $scope.class = "fa fa-pencil";
     $scope.contact_class = "fa fa-pencil";
     $scope.links_class = "fa fa-pencil";
+    $scope.isStudent = false;
+    $scope.homepage = "http://www.myhomepage.com";
     var obj = null;
 
     // Get profile data from DB
@@ -21,6 +23,11 @@ angular.module('ProfileCtrl', []).controller('ProfileController', function ($sco
             $scope.user = data;
             obj = data;
             $scope.role = data.role;
+            
+            if(data.role == "Student")
+                {
+                    $scope.isStudent = true;
+                }
             $scope.personality = data.personality;
 
         } else {

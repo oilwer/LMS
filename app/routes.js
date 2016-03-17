@@ -61,7 +61,7 @@ var session = require('express-session');
 		});
 
 		//Get user by id
-		app.get('/api/user/', function(req, res){
+		app.get('/api/user', function(req, res){
 			// Fetches User by ID
 			User.getById(req.query.id, function(err, callback){
 				res.json(callback);
@@ -325,7 +325,6 @@ var session = require('express-session');
     });
 
 
-    // Api start, TODO: documentation
            app.get('/api', function(req, res) {
 
                res.json("Welcome to our api! /login, /public/:url & /profile works");
@@ -338,7 +337,7 @@ var session = require('express-session');
         // Asks chat service to send message
         Chat.send(req.query.username, req.query.text, function(err, callback){
 
-            //TODO: Do something, user feedback on sending message
+            //TODO: user feedback on sending message
             if(callback) {
                 console.log(callback);
                 res.json(callback);
@@ -347,16 +346,13 @@ var session = require('express-session');
     });
 
 
-    //WIP
     app.get('/api/getchatmsg', function(req, res) {
 
-        // Triggers login function in the User model
         Chat.getMessage(req.query.channel, function(err, callback){
 
-            // If user gets logged in -> Set session isLoggedIn to true.
             if(callback){
                 console.log("Get chat message callback: ");
-                 console.log(callback);
+                console.log(callback);
                 res.json(callback);
             }
         });
@@ -364,10 +360,8 @@ var session = require('express-session');
 
     app.get('/api/getlatestchatmsg', function(req, res) {
 
-            // Triggers login function in the User model
             Chat.getLatestMessage(req.query.channel, function(err, callback){
 
-                // If user gets logged in -> Set session isLoggedIn to true.
                 if(callback){
                     console.log("Get Latest message callback: ");
                      console.log(callback);
@@ -382,7 +376,6 @@ var session = require('express-session');
             // Triggers login function in the User model
             Chat.getMessage(req.query.channel, function(err, callback){
 
-                // If user gets logged in -> Set session isLoggedIn to true.
                 if(callback){
                     console.log(callback);
                     res.json(callback);
