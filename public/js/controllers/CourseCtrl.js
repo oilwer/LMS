@@ -89,7 +89,7 @@ angular.module('CourseCtrl', []).controller('CourseController', function($scope,
     };
     
     // Get profile data from session needed?
-    // fetch userobject and data
+    // fetch usero  bject and data
 	Profile.get().success(function(data) {
 		if(data != false) {
 			$scope.user = data;
@@ -97,5 +97,8 @@ angular.module('CourseCtrl', []).controller('CourseController', function($scope,
 			$scope.first_name = "No profile found";
 		}
 	});
-    
+     $scope.toggleCustom = function() {
+        
+        $scope.custom = $scope.custom === false ? true: false;
+    };
 });

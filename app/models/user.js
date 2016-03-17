@@ -27,15 +27,13 @@ var userSchema = new Schema({
     courses: {
 	    course_name: String
 	},
-    dashboard_config:[{
-        plug:{
-            id: String,
-            name: String,
-            path: String,
-            isActive: Boolean,
-            x: Number,
-            y: Number
-        }
+    plugs:[{
+        id: String,
+        name: String,
+        path: String,
+        isActive: Boolean,
+        x: Number,
+        y: Number
     }],
     role: String //student/admin/teacher
 });
@@ -143,15 +141,13 @@ User.register = function (user, callback) {
     	last_name: user.last_name, email: user.email, phone_number: 
     	user.phone_number, password: user.password, description: user.description,
     	personality: user.personality, public_url: user.public_url, 
-        dashboard_config: [{
-            plug: { 
-                id: user.dashboard_config[0].id,
-                name: user.dashboard_config[0].name, 
-                path: user.dashboard_config[0].path,
-                isActive: user.dashboard_config[0].isActive,
-                x: user.dashboard_config[0].x,
-                y: user.dashboard_config[0].y
-            }
+        plugs: [{
+            id: user.plugs[0].id,
+            name: user.plugs[0].name, 
+            path: user.plugs[0].path,
+            isActive: user.plugs[0].isActive,
+            x: user.plugs[0].x,
+            y: user.plugs[0].y
         }]
     });
     
@@ -191,15 +187,13 @@ User.modify = function(user, callback){
 	    	personality: user.personality,
 	    	courses: user.courses,
 			public_url: user.public_url,
-            dashboard_config: [{
-                plug: { 
-                    id: user.dashboard_config[0].id,
-                    name: user.dashboard_config[0].name, 
-                    path: user.dashboard_config[0].path,
-                    isActive: user.dashboard_config[0].isActive,
-                    x: user.dashboard_config[0].x,
-                    y: user.dashboard_config[0].y
-                }
+            plugs: [{
+                id: user.plugs[0].id,
+                name: user.plugs[0].name, 
+                path: user.plugs[0].path,
+                isActive: user.plugs[0].isActive,
+                x: user.plugs[0].x,
+                y: user.plugs[0].y
             }]
 	    	},{new: true}, function (err, response){ // TODO: What is new: true?
 		if (err) return console.error(err);
