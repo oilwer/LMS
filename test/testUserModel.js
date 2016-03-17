@@ -153,4 +153,13 @@ describe('Users: models', function () {
       });
     });
   });
+
+  describe('#sendPasswordReset()', function () {
+    it('should send an email with password', function (done) {
+      User.sendPasswordReset('lms.siasolutions@gmail.com', 'newPass', function (err, response) {
+        response.should.equal(true);
+      });
+      done();
+    });
+  });
 });

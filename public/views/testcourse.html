@@ -1,0 +1,127 @@
+<!-- public/views/testcourse.html -->
+
+<app-nav></app-nav>
+<div class="app_container course heightfull" ng-controller="CoursesController">
+    <div class="container-fluid heightfull" >
+        <div class="row table-row heightfull">
+            <nav class="col-sm-3 col-md-3 nav--local">
+                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h1>
+                <ul>
+                    <li class="active"><a href="">Overview</a></li>
+                    <li><a href="">Participants</a></li>
+                    <li ><a class="nav--local_notification" ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChildOpen">
+                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 2</a></li>
+                        </ul>
+                    </li>
+                    <li ><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChild2Open">
+                            <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital book with great name</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital material by Other Author</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </nav>
+            
+            <div class="col-sm-10 col-md-10 body--paddingtop coursebody">
+                <nav class="nav--breadcrumbs">
+                    <ul class="list-inline">
+                        <li><a href="/courses">Courses</a></li> / <!---->
+                        <li><a href="/courses/testcourse">Web development</a></li> /
+                        <li>Overview</li>
+                    </ul>
+                </nav>
+                <div class="col-sm-12 box--label box--label--courses">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <h1 class="box--label_heading--courses"><i class="fa--heading fa fa-info-circle"></i>Course details</h1>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row course--details">
+                                <div class="col-sm-12">
+                                    <h2 class="coursedescription_titel">Name:</h2>
+                                    <p> {{ course.name }}</p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h2 class="coursedescription_titel">Date:</h2>
+                                    <p> {{ course.start }} - {{ course.end}}</p>
+                                </div>
+                                <div class="col-sm-12">
+                                    <h2 class="coursedescription_titel">Description:</h2>
+                                    <p> {{ course.description }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h2 class="course_teacher">Teaching</h2>
+                            <p ng-repeat="teacher in course.teaching">
+                                <a href="{{teacher.profile}}">{{teacher.name}}</a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="box--label box--label--courses">
+                                <h2 class="box--label_heading--courses">
+                                    <i class="fa--heading fa fa-file-text-o"></i>
+                                    Wall
+                                </h2>
+                                <p>Course messages from teachers</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6"> 
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="box--label box--label--courses">
+                                        <h2 class="box--label_heading--courses">
+                                            <i class="fa--heading fa fa-file-text-o"></i>
+                                            Assignments
+                                        </h2>
+                                        <p>New, deadline, feedback avaiable</p>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-12">
+                                    <div class="box--label box--label--courses">
+                                        <h2 class="box--label_heading--courses">
+                                            <i class="fa--heading fa fa-book"></i>
+                                            Resources
+                                        </h2>
+                                        <p>New, edited, latest view</p>
+                                    </div>
+                                </div>
+                            </div><!--.row-->
+                        </div> 
+                        <div class="col-md-12">
+                            <div class="box--label box--label--courses">
+                                <h2 class="box--label_heading--courses">
+                                    <i class="fa--heading fa fa-question-circle"></i>
+                                    Questions and Answers
+                                </h2>
+                                <p> Latest? </p>
+                            </div>
+                        </div>
+                    </div><!--.row-->
+                </div>
+                
+                  
+                
+            </div>
+        </div>
+        
+    </div><!--.dashboard-->
+</div><!--.app_container-->
+
+
+
+
+            
