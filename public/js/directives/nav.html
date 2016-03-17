@@ -34,7 +34,7 @@
     </ul>
 </nav>
 <a class="profileitem" href="/profile">
-    <span>Profile</span><!--TODO: create controller to fetch user info-->
+    <span ng-controller="ProfileController">{{ first_name }} {{ last_name }}</span><!--TODO: create controller to fetch user info-->
     <img src="/img/person.png">
 </a>
 
