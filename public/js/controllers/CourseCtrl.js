@@ -96,10 +96,9 @@ angular.module('CourseCtrl', []).controller('CourseController', function($scope,
 		}else {
 			$scope.first_name = "No profile found";
 		}
-    $scope.toggleCustom = function() {
+	});
+     $scope.toggleCustom = function() {
         
         $scope.custom = $scope.custom === false ? true: false;
-    }
-	});
-    
+    };
 });

@@ -2,12 +2,8 @@
 
 <app-nav></app-nav>
 <div class="app_container">
-<<<<<<< HEAD
-    <div class="container courses" ng-controller="CoursesController">
-        <!--
-=======
     <div class="container courses" ng-controller="CourseController">
->>>>>>> 14bdf73fe353f5886912b7e83e3edb09d6070eed
+        <!--
         <div class="row">
 
             
@@ -40,7 +36,7 @@
         </div>
         -->
         <div class="row">
-            <button class="btn btn-primary testbtn"ng-click="toggleCustom()">Hide content!</button>
+            <button class="btn btn-primary testbtn" ng-click="toggleCustom()">Hide content!</button>
             <!--ng-repeat--><!-- IF ACTIVE START -->
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'active'">
@@ -82,14 +78,10 @@
                 <div class="col-md-7 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
-<<<<<<< HEAD
                             <div class="box__header--inactive">
                                 <h2 class="chck_course">{{ course.status }}
                                 <i class="fa fa-circle"></i></h2>
                                 
-=======
-                            <div class="box__header box__header--green">
->>>>>>> 14bdf73fe353f5886912b7e83e3edb09d6070eed
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
                             <div class="box__content" ng-hide="custom">
