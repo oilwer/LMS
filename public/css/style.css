@@ -111,11 +111,35 @@ body, html {
     background: rgba(47,155,134,1);
 }
 
-
 .box__header--courses h2 {
     display: inline-block;
     color: rgba(255,255,255,1);
     font-size: 1.2em;
+}
+
+.box__header--active {
+    border-radius: 5px 5px 0px 0px;
+    background: rgba(213, 107, 47, 1);
+    color: rgba(255,255,255,1);
+    padding: 12px 10px;
+    font-size: 1.2em;
+}
+.box__header--inactive {
+    border-radius: 5px 5px 5px 5px;
+    background: rgba(61, 128, 98, 1);
+    color: rgba(255,255,255,1);
+    padding: 12px 10px;
+    font-size: 1.2em;
+}
+.box__header--inactive h2 {
+    display: inline-block;
+    color: rgba(255,255,255,1);
+    font-size: 1em;
+}
+.box__header--active h2 {
+    display: inline-block;
+    color: rgba(255,255,255,1);
+    font-size: 1em;
 }
 
 .box__header--schedule h2 {
@@ -151,7 +175,7 @@ body, html {
 
 .box__header--questions {
     
-    background: rgba(61,128,98,1);
+    background: rgba(62,71,79,1);
     color: rgba(255,255,255,1);
     
 }
@@ -160,7 +184,7 @@ body, html {
     
     background: rgba(49,102,152,1);
     color: rgba(255,255,255,1);
-    
+
 }
 
 .box__content {
@@ -175,13 +199,17 @@ body, html {
     border-right: 2px solid rgba(228,230,231,1);
     height:9.3em;
     width:50%;
-    position:absolute;
+    position:relative;
+    
+    
 }
 
 .box__content__right {
     padding: 20px;
     float:auto;
     padding-left: 300px;
+    position:relative;
+    height:9.3em;
 }
 
 .box__content__right .fa-eye{
@@ -200,7 +228,30 @@ body, html {
 
 .box__content__right .fa-users{
     
-    float:left;
+    background-position: center center;
+    height: 24px;
+    line-height: 24px;
+    width: 20px;
+    padding-left:5px;
+    padding-right:20px;
+    margin:auto;align-content: 
+    
+    
+        
+    
+}
+
+.box__content__left .fa-users{
+    
+    background-position: center center;
+    height: 24px;
+    line-height: 24px;
+    width: 20px;
+    padding-left:5px;
+    padding-right:20px;
+    
+    
+        
     
 }
 
@@ -209,13 +260,14 @@ body, html {
 .round-button {
     width:11%;
     float:right;
+    padding-top:40px;
 }
 .round-button-circle {
     width: 100%;
     height:0;
     padding-bottom: 100%;
-   border-radius: 50%;
-   overflow:hidden;
+    border-radius: 50%;
+    overflow:hidden;
    
    background: rgba(61,128,98,1); 
 }
@@ -247,6 +299,58 @@ body, html {
    font-weight:bold;
    text-decoration:none;
 }
+
+/*Chat button Dashboard */
+/*Modifiera om du vill, kan funka som rektangulär också, positioneringen är inte bestämd heller. */   
+
+
+.message-button {
+    background:rgba(61,128,98,1) ;
+    margin-top: 55px;
+    
+    
+
+}
+
+.message-button-circle .fa-plus{
+    display:block;
+    color:#fff;
+    position:absolute;
+    padding-left:56px;
+    padding-top: 40px; 
+    font-size: 30px;
+    margin-top:-0.5em;
+    text-align: center;
+    
+}
+
+
+
+.message-button:hover {
+    background: rgba(61,128,98, 0.8);
+}
+.message-button a {
+    display:block;
+    float:left;
+    width:12%;
+    padding-top:4%;
+    padding-bottom:4%;
+    margin-top:-0.3em;
+    margin-bottom: -0.3em; 
+    text-align:center;
+    color:#e2eaf3 ;
+    font-family:Open Sans;
+    font-size:0.8em;
+    font-weight:bold;
+    text-decoration:none;
+    position:relative;
+    border: 0px solid #000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
 
 /*Button Other*/
 
@@ -500,6 +604,10 @@ body, html {
 .body--paddingtop {
     padding-top: 50px;
 }
+.box--courses {
+    padding-left: 12px;
+    padding-bottom: 8px;
+}
 .box--courses a{
     text-decoration: none;
 }
@@ -510,11 +618,13 @@ body, html {
 
 .box--courses .box {
     transition: all 0.2s ease-in-out; 
+    color: blue;
 }
 
 .box--courses:hover .box {
     box-shadow: 0 2px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    transition: all 0.2s ease-in-out; 
+    transition: all 0.2s ease-in-out;
+    
 }
 
 /* * * * * * * * * * * * * * * *   
@@ -821,7 +931,50 @@ body, html {
     margin-right: -15px;
 }
 
+.chck_course {
+    float: right;
 
+}
+.box_cont_left  {
+    float: left;
+    width: 30%;
+    position: relative;
+}
+.box_cont_left a {
+    font-style: none;
+    list-style: none;
+    margin-right:-2em ;
+    margin-left: 60px;
+    font-family: sans-serif;
+    font-size: 13px;
+}
+.box_cont_right  {
+    position: relative;
+    margin-left: 190px;
+
+}
+.box_cont_right_right-active  {
+    margin-top:-13.5%;
+    float: right;
+    margin-right: 2em;
+}
+.box_cont_right_right-inactive  {
+    margin-top:-9.5%;
+    float: right;
+    margin-right: 7em;
+}
+.upgText{
+    color: blue;
+    background-position: center center;
+    text-decoration: underline;
+    font-size: 12px;
+    font-style: none;
+    font-family: sans-serif;
+}
+.testbtn {
+    float: right;
+    margin-right: 330px;
+}
 /* * * * * * * * * * * * * * * *   
 
         BS full height col 

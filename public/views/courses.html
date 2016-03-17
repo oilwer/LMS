@@ -3,7 +3,9 @@
 <app-nav></app-nav>
 <div class="app_container">
     <div class="container courses" ng-controller="CourseController">
+        <!--
         <div class="row">
+
             
             <div class="col-md-12">
                 <h1>{{ heading }}</h1>
@@ -11,41 +13,101 @@
             <div class="col-md-1 courses_filter_header">
                 <p>Sort:</p>
             </div>
+            start of filter(Placeholder) 
             <div class="col-md-3">
-                <p class="courses_filter">Active</p>
+                <select class="courses_filter">
+                    <option>Active</option>
+                    <option>Inactive</option>
+                    
+                </select>
             </div>
             <div class="col-md-3">
-                <p class="courses_filter">Date</p>
+                <select class="courses_filter">
+                    <option value="date">2-3-2016</option>
+                    <option value="date">12-2-2016</option>
+                    <option value="date">23-5-2016</option>
+                    <option value="date">1-9-2016</option>
+                </select>
             </div>
             <div class="col-md-3">
                 <p class="courses_filter">Deadline</p>
             </div>
             
         </div>
-        
+        -->
         <div class="row">
-            
+            <button class="btn btn-primary testbtn" ng-click="toggleCustom()">Hide content!</button>
+            <!--ng-repeat--><!-- IF ACTIVE START -->
             <div ng-repeat="course in courses">
-                <!--repeat all courses that the user belongs to-->
-                <div class="col-md-6 box--courses">
+                <div ng-if="course.status == 'active'">
+                <!--repeat all courses that the user belongs to -->
+                <div class="col-md-7 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
-                            <div class="box__header box__header--green">
+                            <div class="box__header--active">
+                                <h2 class="chck_course">{{ course.status }}
+                                <i class="fa fa-check-circle"></i></h2>
+                                
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
-                            <div class="box__content">
-                                <p> {{ course.assignment }}  </p>
-                                <p> {{ course.status }}  </p>
+                            <div class="box__content" ng-hide="custom">
+                                <div class="box_cont_left">
+                                    <p>Info:</p>
+                                    <p><i class="fa fa-book"></i> {{ course.assignment }}  </p>
+                                    
+                                </div>
+                                <div class="box_cont_right">
+                                    <p>Kommande händelser:</p>
+                                    <a href="{{ url }}"><p class="upgText">  Seminarie      24/3 9:55</p></a>
+                                    <a href="{{ url }}"><p class="upgText">  Seminarie      31/3 12:55</p></a>
+                                </div>
+                                <div class="box_cont_right_right-active">
+                                    <p>Uppgifter:</p>
+                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Uppgift 1      12/3 12:55</p></a>
+                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Uppgift 2      27/3 23:55</p></a>
+                                </div>
                             </div>
                         </div>
                     </a>
                 </div>
+            </div>
+            </div><!--ng-repeat--><!-- IF INACTIVE START -->
+            <div ng-repeat="course in courses">
+                <div ng-if="course.status == 'inactive'">
+                <!--repeat all courses that the user belongs to-->
+                <div class="col-md-7 box--courses ">
+                    <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                        <div class="box">
+                            <div class="box__header--inactive">
+                                <h2 class="chck_course">{{ course.status }}
+                                <i class="fa fa-circle"></i></h2>
+                                
+                                <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
+                            </div>
+                            <div class="box__content" ng-hide="custom">
+                                <div class="box_cont_left">
+                                    <p>Info:</p>
+                                    <p><i class="fa fa-book"></i> {{ course.assignment }}  </p>
+                                    
+                                </div>
+                                <div class="box_cont_right">
+                                    <p>Kommande händelser:</p>
+                                    <p> None</p>
+                                </div>
+                                <div class="box_cont_right_right-inactive">
+                                    <p>Uppgifter:</p>
+                                    <p><i class="fa fa-paperclip"></i> None</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                    
+                </div>
+                </select>
             </div><!--ng-repeat-->
-            
         </div><!--.row-->
     </div><!--.dashboard-->
 </div><!--.app_container-->
-
 
 
 
