@@ -51,19 +51,35 @@ body, html {
 
 * * * * * * * * * * * * * * * * */  
 
+.coursor--pointer:hover {
+    cursor: pointer;
+}
 .box {
     background: rgba(255,255,255,1);
     /*box-shadow: 0.5px 2px 0px 1px rgba(0,0,0,.08);*/
     border-radius: 5px;
     padding: 0px;
     margin-bottom: 10px;
+    height:auto;
 }
 
+.box--wall {
+    background: rgba(255,255,255,1);
+}
+
+
+.box__header i {
+    padding: 0px 10px;
+}
 .box--label {
     background-color: #fff;
     padding: 0;
     border-radius: 0 5px 5px 0;
     margin-bottom: 10px;
+}
+
+.box--label_content {
+    padding-top: 15px;
 }
 
 .box--label--courses {
@@ -80,13 +96,27 @@ body, html {
     display: inline-block
 }
 
-.box__header {
-    border-radius: 5px 5px 0px 0px;
-    background: rgba(47, 155, 134, 1);
-    color: rgba(255,255,255,1);
-    padding: 12px 10px;
+
+.box h2 {
     font-size: 1.2em;
 }
+.box__header {
+    background: rgba(62,71,79,1);
+    color: rgba(255,255,255,1);
+    border-radius: 5px 5px 0px 0px;
+    padding: 12px 10px;
+}
+
+.box__header--green {
+    background: rgba(47,155,134,1);
+}
+
+.box__header--courses h2 {
+    display: inline-block;
+    color: rgba(255,255,255,1);
+    font-size: 1.2em;
+}
+
 .box__header--active {
     border-radius: 5px 5px 0px 0px;
     background: rgba(213, 107, 47, 1);
@@ -111,15 +141,138 @@ body, html {
     color: rgba(255,255,255,1);
     font-size: 1em;
 }
-.box__header h2 {
+
+.box__header--schedule h2 {
     display: inline-block;
     color: rgba(255,255,255,1);
-    font-size: 1em;
+    font-size: 1.2em;
+}
+
+.box__header--questions h2 {
+    display: inline-block;
+    color: rgba(255,255,255,1);
+    font-size: 1.2em;
+}
+
+.box__header--circles h2 {
+    display: inline-block;
+    color: rgba(255,255,255,1);
+    font-size: 1.2em;
+}
+
+
+.box__header--courses {
+    background: rgba(213,107,47,1);
+    color: rgba(255,255,255,1);   
+}
+
+.box__header--schedule {
+    
+    background: rgba(166,80,101,1);
+    color: rgba(255,255,255,1);
+    
+}
+
+.box__header--questions {
+    
+    background: rgba(61,128,98,1);
+    color: rgba(255,255,255,1);
+    
+}
+
+.box__header--circles {
+    
+    background: rgba(49,102,152,1);
+    color: rgba(255,255,255,1);
+    
 }
 
 .box__content {
-    padding: 20px;
+    
+    padding:20px;
 }
+
+.box__content__left {
+    padding: 20px;
+    padding-right: 50px;
+    float:left;
+    border-right: 2px solid rgba(228,230,231,1);
+    height:9.3em;
+    width:50%;
+    position:absolute;
+}
+
+.box__content__right {
+    padding: 20px;
+    float:auto;
+    padding-left: 300px;
+}
+
+.box__content__right .fa-eye{
+    float:right;
+    margin-right: 80px;
+    margin-top: 3px; 
+}
+
+.box__content__right .fa-exclamation{
+    float:right;
+    margin-right: 80px;
+    margin-top: 3px;
+    color:red;
+}
+
+
+.box__content__right .fa-users{
+    
+    float:left;
+    
+}
+
+/*Button Dashboard */
+
+.round-button {
+    width:11%;
+    float:right;
+}
+.round-button-circle {
+    width: 100%;
+    height:0;
+    padding-bottom: 100%;
+   border-radius: 50%;
+   overflow:hidden;
+   
+   background: rgba(61,128,98,1); 
+}
+
+.round-button-circle .fa-plus{
+    display:block;
+    color:#fff;
+    position:absolute;
+    padding-left:52px;
+    padding-top: 40px; 
+    font-size: 30px;
+}
+
+
+.round-button-circle:hover {
+    background: rgba(61,128,98, 0.8);
+}
+.round-button a {
+   display:block;
+    float:left;
+    width:100%;
+    padding-top:35%;
+   padding-bottom:50%;
+    margin-top:-0.5em;
+    text-align:center;
+    color:#e2eaf3 ;
+   font-family:Verdana;
+   font-size:0.8em;
+   font-weight:bold;
+   text-decoration:none;
+}
+
+/*Button Other*/
 
 .button {
     /*background: rgb(66,161,151);*/
@@ -503,7 +656,7 @@ body, html {
 
 * * * * * * * * * * * * * * * * */  
 
-.course .box,.course .box--label {
+.course .box--label {
     padding: 20px;
 }
 
@@ -523,7 +676,7 @@ body, html {
 .course--details p {
     display: inline;
 }
-
+/*yolo*/
 .course_teacher {
     clear: both;
 }
@@ -531,10 +684,14 @@ body, html {
     padding: 0px 10px 0px 0px;
 }
 
-.course .box--label h1, .course .box--label h2, .course .box h1, .course .box h2 {
+.box--label_heading--courses .fa--toggle {
+    float: right;
+}
+
+.course .box--label h1, .course .box--label h2 {
     font-size: 1.4em;
     letter-spacing: 0.02em;
-    padding-bottom: 10px;
+    padding-bottom: 0px;
     font-family: "Open Sans";
 }
 
@@ -544,6 +701,126 @@ body, html {
     color: rgba(77, 177, 157,1);
 }
 
+.padding--none {
+    padding: 0px;
+}
+
+.wall_content {
+    width: 100%;
+}
+
+.wall_content_item:nth-child(odd) {
+    /*background: rgba(62,71,79,0.05);*/
+}
+
+.wall_content_item {
+    padding: 20px 20px 5px 20px;
+    background: rgba(255,255,255,1);
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.wall_content_item p {
+    padding: 5px 0px 0px 0px;
+    font-size: 0.9em;
+}
+
+.wall_content_item h3 {
+    font-size: 1.2em;
+    font-weight: 500;
+}
+
+.wall_loadmore {
+    text-align: center;
+    padding: 20px;
+    text-transform: uppercase;
+    font-size: 0.8em;
+}
+.wall_author {
+    font-size: 0.8em;
+    font-weight: 600;
+    display: inline-block;
+    color: rgba(62,71,79,0.9);
+}
+
+.wall_time {
+    padding-left: 8px !important;
+    font-size: 0.8em;
+    font-weight: 600;
+    display: inline-block;
+    font-size: 0.85em !important;
+    color: rgba(62,71,79,0.9);
+}
+.wall_img {
+    width: 17px;
+    padding-right: 5px;
+    display: inline-block;
+}
+
+.form--wall {
+    width: 100%;
+    padding: 20px 10px;
+    background: rgba(62,71,79,0.2);
+    position: relative;
+}
+
+.form--wall label {
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+.form--wall input, .form--wall textarea {
+    display: block;
+    width: 100%;
+    border: none;
+    padding: 15px 10px;
+    border-radius: 8px;
+    background: rgba(255,255,255,0.5);
+    color: #222;
+}
+
+.form--wall input[type="textarea"] {
+}
+
+.form--wall button {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+/*Assignments*/
+
+.box--label--assignments {
+    padding: 0px 0px 20px 0px !important;
+}
+
+.box--label--assignments h2 {
+    padding: 20px;
+    padding-bottom: 20px !important;
+}
+.courses_assignments {
+    list-style: none;
+}
+
+.course_heading {
+    font-weight: 600;
+    padding: 7px 25px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    color: rgba(62,71,79,0.8);
+}
+
+.course_heading span {
+    width: 33%;
+    text-align: right;
+    display: inline-block;
+}
+
+.course_heading span:first-child {
+    text-align: left;
+}
+.courses_assignmentitem {
+    border-top: 1px solid rgba(0,0,0,0.1);  
+    padding: 7px 25px;
+}
 /* * * * * * * * * * * * * * * *   
 
             COURSES   
@@ -779,13 +1056,7 @@ body, html {
     text-align: center;
     background-color: #ccc;
     padding-top: 30px!important;
-    background: rgba(80, 174, 156, 1);
-    background: -webkit-linear-gradient(left,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Fx 3.6-15*/
-    background: linear-gradient(to right, rgba(80, 174, 156, 1),rgba(80, 174, 156,.6)); /*Standard*/
-    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
-    /*rgba(132,182,182,1)*/;
+    background: rgba(47,155,134,1);
 }
 
 .pbl-profile__container h1, .pbl-profile__container h2, .pbl-profile__container p, .pbl-profile__container i{
@@ -901,13 +1172,8 @@ body, html {
 
 .profile__container {
     padding:0 2%;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Fx 3.6-15*/
-    background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.8)); /*Standard*/
-    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
-    /*rgba(132,182,182,1)*/;
+    background: rgba(47,155,134,1);
+    color: #fff;
     padding-top: 3%!important;
 }
 

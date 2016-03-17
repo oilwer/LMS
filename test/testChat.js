@@ -43,11 +43,22 @@ var channelID = "C0RRZEDK4";
   });
 
   describe('#getChannelList()', function(){
-        it('should do nothing', function(done){
+        it('should do nothing for now', function(done){
             Chat.getChannelList(function (err, msgData){
                 done();
             });
         });
     });
+
+  describe('#getLatestMessage()', function(){
+        it('should return inputted data', function(done){
+            Chat.send(message.username, "testChat data X");
+            Chat.getLatestMessage(function (err, msgData){
+                msgData.ok.should.equal("testChat data X");
+                done();
+            });
+        });
+    });
+
 
 });

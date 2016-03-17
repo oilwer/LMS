@@ -7,19 +7,8 @@ var session = require('express-session');
 
     module.exports = function(app) {
 
-        // server routes ===========================================================
-        // handle things like api calls
-        
-         //Modelanything read config file
-		app.get('/readconfig/', function(req, res){
-			
-			// Fetches User by ID
-			ModelAnything.readConfig(function(err, callback){
-				console.log("CB: " + callback);
-				res.json(callback);
-			});
-		});
-		
+
+        		
 		//Init plug
 		app.get('/plug/', function(req, res){
 			
@@ -30,10 +19,13 @@ var session = require('express-session');
 		});
 		
 		// Fetch config file sessions
-        app.get('/fetchconfigfile', function (req,res) {
-	        	
-				ModelAnything.initPlugs(function(err, response){
+        app.get('/fetchconfig', function (req,res) {
+	        
+	        
+				// Initializes plugins with config form session
+				ModelAnything.initPlugs(req.session.plugs, function(err, response){
 					
+					// Returns the HTML of all the plugins
 					res.send(response);
         		});	
 	    
@@ -142,13 +134,34 @@ var session = require('express-session');
         
         // Login function
         app.get('/api/login', function (req,res) {
-	        	
+	        	        	
             // Fetches session variable
             var sess = req.session;
 
             // If already logged in - return true (No need to DB query's)
             if(sess.isLoggedIn == true) {
                 res.json(true);
+            }
+            // Not logged in
+            else {
+                // Triggers login function in the User model
+                User.login(req.query.email, req.query.password, function(err, callback){
+  
+                        // If user gets logged in -> Set session isLoggedIn to true.
+                    if(callback){
+                        sess.isLoggedIn = true;
+                        sess.userid = callback.id;
+                        sess.plugs = callback.plugs;
+                      
+						res.json(true);    
+                    }
+
+                    else
+                    {
+	                    res.json(false);
+                    }
+                    
+                });
             }
     });
 
@@ -183,7 +196,8 @@ var session = require('express-session');
 	        // Fetches session variable
 	        var sess = req.session;
 	        
-	        console.log(sess);
+	        console.log("Dashboard config");
+	        console.log(sess.dashboard_config);
         
         	// recover Users ID from current sessions parameters
 			var userId = sess.userid; //TODO: use id instead of email
@@ -341,11 +355,26 @@ var session = require('express-session');
 
             // If user gets logged in -> Set session isLoggedIn to true.
             if(callback){
-                console.log("Get chat message callback: " + callback);
+                console.log("Get chat message callback: ");
+                 console.log(callback);
                 res.json(callback);
             }
         });
     });
+
+    app.get('/api/getlatestchatmsg', function(req, res) {
+
+            // Triggers login function in the User model
+            Chat.getLatestMessage(req.query.channel, function(err, callback){
+
+                // If user gets logged in -> Set session isLoggedIn to true.
+                if(callback){
+                    console.log("Get Latest message callback: ");
+                     console.log(callback);
+                    res.json(callback);
+                }
+            });
+        });
 
     app.get('/api/getchannellist', function(req, res) {
 

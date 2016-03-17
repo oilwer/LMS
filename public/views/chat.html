@@ -3,16 +3,17 @@
 <app-nav></app-nav>
 <div class="jumbotron text-center">
     <h1>Chat</h1>
-    
-    <div ng-controller="ChatController">
+
+
+
         <form>
             <input ng-style="style(color)" type="text" ng-model="text" placeholder="text">
             <button ng-click="sendMessage()">Send!</button>
-            <button ng-click="getMessage()">Get First Message!</button>
+            <button ng-click="getMessage()">Get Chat History</button>
 
         </form>
 
-        <table ng-repeat="msg in channel">
+        <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channel">
             <tr>
                 <th>User</th>
                 <th>Message</th>
@@ -22,7 +23,7 @@
                 <td>{{msg.text}}</td>
             </tr>
         </table>
-  </div>
+
   
   
   

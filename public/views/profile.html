@@ -3,8 +3,9 @@
 <app-nav></app-nav>
 <div class="app_container heightfull">
     <div class="container-fluid profile heightfull">
+
         <div class="row heightfull table-row newtable-row">
-            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container" ng-controller="ProfileController">
+            <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container">
                 <div class="profile__about">
                     <div class="profile__about__img"></div>
                     <h1> {{ first_name }} {{ last_name }} </h1>
@@ -21,7 +22,7 @@
 
                 <div class="profile__contact">
                     <i ng-class="contact_class" class="fa-first" ng-click="editContact()"></i>
-                    <p class="uppercase">Contact details</p>
+                    <h2 class="uppercase">Contact details</h2>
                     <hr>
                     <div class="profile__icon_first">
                         <i class="fa fa-envelope-o"></i><p>{{ email }} </p>
@@ -41,7 +42,7 @@
 
                 <div class="profile__social">
                     <i ng-class="links_class" class="fa-first" ng-click="editLinks()"></i>
-                    <p class="uppercase">Social links</p>
+                    <h2 class="uppercase">Social links</h2>
                     <hr>
                     <div class="profile__icon_first">
                         <i class="fa fa-linkedin"></i>

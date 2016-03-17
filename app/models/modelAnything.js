@@ -5,62 +5,35 @@ var ModelAnything = function (data) {
     this.data = data;
 }
 
-// Defines the array that will contain the config
-var tempConfigArray = [];
-
-var configArray = [];
-
-// Read config
-ModelAnything.readConfig = function (callback){
-	var filename = "././public/plugs/config.txt"
+// Function that initializes all the plug's dependeing on the config session
+ModelAnything.initPlugs = function (plugConfig, callback){
 	
-	// Read the file and print its contents.
-	var fs = require('fs');
-	fs.readFile(filename, 'utf8', function(err, data) {
-		if (err) throw err;
-		console.log('OK: ' + filename);
-		console.log(data);
+	
+	// Container for all the plug's html
+	var html = "";
+	
+	// For each plug - fetch() the plug's html.
+	for (var i = 0; i < plugConfig.length; i++){
 		
-		tempConfigArray = data.split(",");
-		
-		
-		for(var i=0;i<tempConfigArray.length;i+=4) {
-			var obj = {
-				name:tempConfigArray[i], 
-				path:tempConfigArray[i+1], 
-				guiPos:tempConfigArray[i+2], 
-				isActive:tempConfigArray[i+3]
-			}
-			configArray.push(obj); 
-			console.log(obj);
-		}
-		
-		callback(null, JSON.stringify(configArray));
-	});
+		// If the plug is activated
+		if(plugConfig[i].isActive == true){
+			
+			// Init plug
+			var plug = require(plugConfig[i].path);
+			
+			// Adds html to all plugins
+			html += '<div id="plugin{{$id}}" class="plugin testplug jumbotron">';
+			
+			// Run fetch method from plug
+			html += plug.fetch();
+			
+			// And close the plugin div
+			html += '</div>';
+		}	
+	}	
+	
+	callback(null, html);
 };
-
-ModelAnything.initPlugs = function (callback){
-	
-	var fetch = "";
-	console.log(configArray.length);
-	
-	for (var i = 0; i < configArray.length; i++){
-		if(configArray[i].isActive == 1){
-			var plug = require(configArray[i].path);
-			
-			fetch += plug.fetch();
-			
-			
-		}
-	}
-	
-	callback(null, fetch);
-
-	
-};
-
-
 
 // Exports the object as a whole
 module.exports = ModelAnything;
-

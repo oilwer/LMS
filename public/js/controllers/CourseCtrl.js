@@ -1,5 +1,5 @@
-// public/js/controllers/coursesCtrl.js
-angular.module('CoursesCtrl', []).controller('CoursesController', function($scope, Profile, UserService, $location) {
+// public/js/controllers/courseCtrl.js
+angular.module('CourseCtrl', []).controller('CourseController', function($scope, Profile, UserService, CourseService,  $location) {
     //controller for course overview and course page, split?
     
     $scope.heading = "My courses";
@@ -80,13 +80,13 @@ angular.module('CoursesCtrl', []).controller('CoursesController', function($scop
     
     $scope.openClose = function() {
         $scope.class="fa fa-chevron-right"
-    }
+    };
     
     
     $scope.courseLocation = function(obj) {
         // Redirects to cource url saved in the clicked elements dataLocation attr
         $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
-    }
+    };
     
     // Get profile data from session needed?
     // fetch usero  bject and data

@@ -32,7 +32,7 @@ angular.module('LoginCtrl', []).controller('LoginController', function($scope, $
 	};
     
     $scope.forgotPassword = function() {
-        $location.path('/resetPassword')
+        $location.path('/resetPassword');
     }
 
     $scope.resetPassword = function() {
