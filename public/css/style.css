@@ -145,7 +145,7 @@ body, html {
     
     background: rgba(49,102,152,1);
     color: rgba(255,255,255,1);
-    
+
 }
 
 .box__content {
@@ -160,13 +160,17 @@ body, html {
     border-right: 2px solid rgba(228,230,231,1);
     height:9.3em;
     width:50%;
-    position:absolute;
+    position:relative;
+    
+    
 }
 
 .box__content__right {
     padding: 20px;
     float:auto;
     padding-left: 300px;
+    position:relative;
+    height:9.3em;
 }
 
 .box__content__right .fa-eye{
@@ -185,7 +189,30 @@ body, html {
 
 .box__content__right .fa-users{
     
-    float:left;
+    background-position: center center;
+    height: 24px;
+    line-height: 24px;
+    width: 20px;
+    padding-left:5px;
+    padding-right:20px;
+    margin:auto;align-content: 
+    
+    
+        
+    
+}
+
+.box__content__left .fa-users{
+    
+    background-position: center center;
+    height: 24px;
+    line-height: 24px;
+    width: 20px;
+    padding-left:5px;
+    padding-right:20px;
+    
+    
+        
     
 }
 
@@ -194,13 +221,14 @@ body, html {
 .round-button {
     width:11%;
     float:right;
+    padding-top:40px;
 }
 .round-button-circle {
     width: 100%;
     height:0;
     padding-bottom: 100%;
-   border-radius: 50%;
-   overflow:hidden;
+    border-radius: 50%;
+    overflow:hidden;
    
    background: rgba(61,128,98,1); 
 }
@@ -232,6 +260,58 @@ body, html {
    font-weight:bold;
    text-decoration:none;
 }
+
+/*Chat button Dashboard */
+/*Modifiera om du vill, kan funka som rektangulär också, positioneringen är inte bestämd heller. */   
+
+
+.message-button {
+    background:rgba(61,128,98,1) ;
+    margin-top: 55px;
+    
+    
+
+}
+
+.message-button-circle .fa-plus{
+    display:block;
+    color:#fff;
+    position:absolute;
+    padding-left:56px;
+    padding-top: 40px; 
+    font-size: 30px;
+    margin-top:-0.5em;
+    text-align: center;
+    
+}
+
+
+
+.message-button:hover {
+    background: rgba(61,128,98, 0.8);
+}
+.message-button a {
+    display:block;
+    float:left;
+    width:12%;
+    padding-top:4%;
+    padding-bottom:4%;
+    margin-top:-0.3em;
+    margin-bottom: -0.3em; 
+    text-align:center;
+    color:#e2eaf3 ;
+    font-family:Open Sans;
+    font-size:0.8em;
+    font-weight:bold;
+    text-decoration:none;
+    position:relative;
+    border: 0px solid #000;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+
+}
+
 
 /*Button Other*/
 
