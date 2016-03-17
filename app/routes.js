@@ -7,19 +7,8 @@ var session = require('express-session');
 
     module.exports = function(app) {
 
-        // server routes ===========================================================
-        // handle things like api calls
-        
-         //Modelanything read config file
-		app.get('/readconfig/', function(req, res){
-			
-			// Fetches User by ID
-			ModelAnything.readConfig(function(err, callback){
-				console.log("CB: " + callback);
-				res.json(callback);
-			});
-		});
-		
+
+        		
 		//Init plug
 		app.get('/plug/', function(req, res){
 			
@@ -30,12 +19,13 @@ var session = require('express-session');
 		});
 		
 		// Fetch config file sessions
-        app.get('/fetchconfigfile', function (req,res) {
+        app.get('/fetchconfig', function (req,res) {
 	        
-	        var sess = req.session.dashboard_config;
-	        	
-				ModelAnything.initPlugs(sess, function(err, response){
+	        
+				// Initializes plugins with config form session
+				ModelAnything.initPlugs(req.session.plugs, function(err, response){
 					
+					// Returns the HTML of all the plugins
 					res.send(response);
         		});	
 	    
@@ -161,7 +151,7 @@ var session = require('express-session');
                     if(callback){
                         sess.isLoggedIn = true;
                         sess.userid = callback.id;
-                        sess.dashboard_config = callback.dashboard_config;
+                        sess.plugs = callback.plugs;
                       
 						res.json(true);    
                     }

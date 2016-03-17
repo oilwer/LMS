@@ -18,23 +18,23 @@ var courseSchema = new Schema({
     status: Boolean,
     url: String,
     teacher: String,
-    assignments: {
+    assignments: [{
         assignment_name: String,
         assignment_deadline: String
-    },
-    students: {
+    }],
+    students: [{
         student_name: String
-    },
-    resources: {
+    }],
+    resources: [{
         resource_name: String,
         resource_creator: String
-    },
-    messages: {
+    }],
+    messages: [{
         title: String,
         content: String,
         creator: String,
         date: String
-    }
+    }]
 });
 
 // set up a mongoose model and pass it using Course.DB (Course is a object w/ db as a property)

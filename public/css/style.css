@@ -983,13 +983,7 @@ body, html {
     text-align: center;
     background-color: #ccc;
     padding-top: 30px!important;
-    background: rgba(80, 174, 156, 1);
-    background: -webkit-linear-gradient(left,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(right,rgba(80, 174, 156, 1),rgba(80, 174, 156.3)); /*Fx 3.6-15*/
-    background: linear-gradient(to right, rgba(80, 174, 156, 1),rgba(80, 174, 156,.6)); /*Standard*/
-    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
-    /*rgba(132,182,182,1)*/;
+    background: rgba(47,155,134,1);
 }
 
 .pbl-profile__container h1, .pbl-profile__container h2, .pbl-profile__container p, .pbl-profile__container i{
@@ -1105,13 +1099,8 @@ body, html {
 
 .profile__container {
     padding:0 2%;
-    background: red; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Safari 5.1-6*/
-    background: -o-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Opera 11.1-12*/
-    background: -moz-linear-gradient(right,rgba(241,108,32,1),rgba(241,108,32,.3)); /*Fx 3.6-15*/
-    background: linear-gradient(to right, rgba(241,108,32,1),rgba(241,108,32,.8)); /*Standard*/
-    /*(to right, rgba(47, 155, 134, 1),rgba(47, 155, 134, .3));
-    /*rgba(132,182,182,1)*/;
+    background: rgba(47,155,134,1);
+    color: #fff;
     padding-top: 3%!important;
 }
 
