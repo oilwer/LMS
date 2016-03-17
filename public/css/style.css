@@ -126,7 +126,7 @@ body, html {
 }
 .box__header--inactive {
     border-radius: 5px 5px 5px 5px;
-    background: rgba(61, 128, 98, 1);
+    background: rgba(115, 114, 115, 1);
     color: rgba(255,255,255,1);
     padding: 12px 10px;
     font-size: 1.2em;
@@ -935,45 +935,32 @@ body, html {
     float: right;
 
 }
-.box_cont_left  {
-    float: left;
-    width: 30%;
-    position: relative;
-}
-.box_cont_left a {
-    font-style: none;
-    list-style: none;
-    margin-right:-2em ;
-    margin-left: 60px;
-    font-family: sans-serif;
-    font-size: 13px;
-}
-.box_cont_right  {
-    position: relative;
-    margin-left: 190px;
 
+.rubtxt {
+    text-align: center;
+    font-weight:bolder;
+    text
 }
-.box_cont_right_right-active  {
-    margin-top:-13.5%;
-    float: right;
-    margin-right: 2em;
-}
-.box_cont_right_right-inactive  {
-    margin-top:-9.5%;
-    float: right;
-    margin-right: 7em;
+
+.infotxt {
+    text-align: center;
 }
 .upgText{
+    text-align: center;
     color: blue;
     background-position: center center;
     text-decoration: underline;
     font-size: 12px;
     font-style: none;
     font-family: sans-serif;
+    margin-top: 0px;
 }
+
 .testbtn {
-    float: right;
-    margin-right: 330px;
+    font-size: 40px;
+    cursor: pointer;
+    float: left;
+    margin-right: 440px;
 }
 /* * * * * * * * * * * * * * * *   
 

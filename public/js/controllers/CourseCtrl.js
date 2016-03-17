@@ -97,8 +97,14 @@ angular.module('CourseCtrl', []).controller('CourseController', function($scope,
 			$scope.first_name = "No profile found";
 		}
 	});
+    
+      //$scope.class = "fa-plus-square-o"; 
+    
      $scope.toggleCustom = function() {
-        
-        $scope.custom = $scope.custom === false ? true: false;
+       // $scope.changeClass = function(){
+         $scope.custom = $scope.custom === false ? true: false;
     };
+        
+        
+    
 });

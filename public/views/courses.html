@@ -36,12 +36,12 @@
         </div>
         -->
         <div class="row">
-            <button class="btn btn-primary testbtn" ng-click="toggleCustom()">Hide content!</button>
+            <i class="fa fa-plus-square-o fa-3x testbtn" ng-click="toggleCustom()"></i>
             <!--ng-repeat--><!-- IF ACTIVE START -->
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'active'">
                 <!--repeat all courses that the user belongs to -->
-                <div class="col-md-7 box--courses ">
+                <div class="col-md-10 col-md-offset-1 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header--active">
@@ -50,21 +50,21 @@
                                 
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
-                            <div class="box__content" ng-hide="custom">
-                                <div class="box_cont_left">
-                                    <p>Info:</p>
-                                    <p><i class="fa fa-book"></i> {{ course.assignment }}  </p>
+                            <div class="row" ng-hide="custom">
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Info</p>
+                                    <p class="infotxt"><i class="fa fa-info"></i> This Info is about this course... </p>
                                     
                                 </div>
-                                <div class="box_cont_right">
-                                    <p>Kommande händelser:</p>
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Upcoming events</p>
                                     <a href="{{ url }}"><p class="upgText">  Seminarie      24/3 9:55</p></a>
                                     <a href="{{ url }}"><p class="upgText">  Seminarie      31/3 12:55</p></a>
                                 </div>
-                                <div class="box_cont_right_right-active">
-                                    <p>Uppgifter:</p>
-                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Uppgift 1      12/3 12:55</p></a>
-                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Uppgift 2      27/3 23:55</p></a>
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Assignments</p>
+                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Assignment 1      12/3 12:55</p></a>
+                                    <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Assignment 2      27/3 23:55</p></a>
                                 </div>
                             </div>
                         </div>
@@ -75,7 +75,7 @@
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'inactive'">
                 <!--repeat all courses that the user belongs to-->
-                <div class="col-md-7 box--courses ">
+                <div class="col-md-10 col-md-offset-1 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header--inactive">
@@ -84,19 +84,20 @@
                                 
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
-                            <div class="box__content" ng-hide="custom">
-                                <div class="box_cont_left">
-                                    <p>Info:</p>
-                                    <p><i class="fa fa-book"></i> {{ course.assignment }}  </p>
+                            <div class="row" ng-hide="custom">
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Info</p>
+                                    <p class="infotxt"><i class="fa fa-info"></i> This Info is about this course... </p>
                                     
                                 </div>
-                                <div class="box_cont_right">
-                                    <p>Kommande händelser:</p>
-                                    <p> None</p>
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Upcoming events</p>
+                                    <p class="upgText"> None</p>
                                 </div>
-                                <div class="box_cont_right_right-inactive">
-                                    <p>Uppgifter:</p>
-                                    <p><i class="fa fa-paperclip"></i> None</p>
+                                <div class="col-md-4">
+                                    <p class="rubtxt">Assignments</p>
+                                    <a href="{{ url }}"><p
+                                    <p class="upgText"><i class="fa fa-paperclip"></i> None</p>
                             </div>
                         </div>
                     </a>
