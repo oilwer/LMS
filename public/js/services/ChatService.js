@@ -17,11 +17,11 @@ angular.module('ChatService', []).factory('Chat', ['$http', function($http) {
             return $http.get('/api/getchatmsg?channel=' + channel);
         }
 
-        //get latest message only (testcase purposes)
-        /*getLatestMessage : function(channel) {
+  /*      //get latest message only (testcase purposes)
+        getLatestMessage : function(channel) {
 
             //" '?channel=' + " is used for non-object variables
-            return $http.get('/api/getlatestchatmsg?channel=' + channel);         }*/
-
+            return $http.get('/api/getlatestchatmsg?channel=' + channel);         }
+*/
     }
 }]);
