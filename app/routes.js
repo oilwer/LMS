@@ -61,7 +61,7 @@ var session = require('express-session');
 		});
 
 		//Get user by id
-		app.get('/api/user/', function(req, res){
+		app.get('/api/user', function(req, res){
 			// Fetches User by ID
 			User.getById(req.query.id, function(err, callback){
 				res.json(callback);
