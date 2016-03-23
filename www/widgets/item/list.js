@@ -10,21 +10,10 @@ app.directive('itemList', [
       templateUrl: settings.widgets + 'item/list.html',
       link: function(scope, element, attrs) {
 
-        /*
-          Item
-            .create()
-            .show()
-            .index()
-            .update()
-            .remove();
-
-          new Item()
-            .$create()
-            .$show()
-            .$index()
-            .$update()
-            .$remove();
-        */
+        Item.create({
+          title: "testTitle",
+          content: "testContent"
+        });
         
         scope.items = Item.index();
 
