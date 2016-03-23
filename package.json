@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "dependencies": {
     "body-parser": "*",
-    "cookie-parser": "*",
+    "cookie-parser": "^1.4.1",
     "debug": "*",
-    "express": "*",
-    "serve-favicon": "*",
-    "mongoose": "*",
+    "express": "^4.13.4",
+    "express-session": "*",
     "gulp": "*",
     "gulp-less": "*",
-    "express-session": "*",
+    "mongoose": "*",
+    "serve-favicon": "^2.3.0",
     "sha1": "*"
   }
 }
