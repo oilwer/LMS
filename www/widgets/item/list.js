@@ -26,11 +26,11 @@ app.directive('itemList', [
             .$remove();
         */
         
-        scope.items = Item.index();
+        scope.items = Item.get();
 
         // "synthetic" event subscriber
         scope.$on('newItem', function() {
-          scope.items = Item.index();
+          scope.items = Item.get();
         });
       }
     };
