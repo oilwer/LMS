@@ -51,6 +51,10 @@ app.get('/apidoc/', function (req, res) {
   res.sendFile('templates/apidocumentation.html', {root: './www'});
 });
 
+// Route everything "else" (not "/api/**/*") to angular (in html5mode)
+//app.get('/admin/', function (req, res) {
+ // res.sendFile('templates/admin.html', {root: './www'});
+//});
 
 // Route everything "else" (not "/api/**/*") to angular (in html5mode)
 app.get('*', function (req, res) {

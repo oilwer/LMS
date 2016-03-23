@@ -11,6 +11,9 @@ app.config([
         templateUrl: "templates/home.html",
         controller: "homeCtrl"
       })
+      .when("/admin/", {
+        templateUrl: "templates/admin.html",
+      })
       .otherwise({
         redirectTo: "/"
       });

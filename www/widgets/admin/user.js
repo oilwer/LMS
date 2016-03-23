@@ -1,6 +1,6 @@
-app.directive('adminList', [
+app.directive('adminUser', [
   "settings",
-  "user",
+//  "user",
   "Item",
   function(
     settings,
@@ -9,7 +9,7 @@ app.directive('adminList', [
   ) {
 
     return {
-      templateUrl: settings.widgets + 'item/list.html',
+      templateUrl: settings.widgets + 'admin/user.html',
       link: function(scope, element, attrs) {
 
         
