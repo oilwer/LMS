@@ -30,10 +30,6 @@ app.use(m.expresssession({
 }));
 
 
-// Route file
-require('./routes/routes')(app); // configure our routes
-
-
 
 // Initialize our own REST api - mongresto
 var customRoutes = [
