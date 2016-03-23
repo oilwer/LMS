@@ -30,7 +30,6 @@ app.use(m.expresssession({
 }));
 
 
-
 // Initialize our own REST api - mongresto
 var customRoutes = [
   {
@@ -46,6 +45,12 @@ var options = {
 };
 
 m.mongresto.init(app, options);
+
+// Route everything "else" (not "/api/**/*") to angular (in html5mode)
+app.get('/apidoc/', function (req, res) {
+  res.sendFile('templates/apidocumentation.html', {root: './www'});
+});
+
 
 // Route everything "else" (not "/api/**/*") to angular (in html5mode)
 app.get('*', function (req, res) {
