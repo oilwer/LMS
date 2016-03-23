@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mongr</title>
+    <meta charset="utf-8">
+    <!-- set base href for angular html5 mode -->
+    <base href="/"/>
+
+
+    <!-- JS libs -->
+    <!-- https://jquery.com/download/ -->
+    <script src="libs/jquery.min.js"></script>
+    <!-- https://code.angularjs.org/1.5.0/ -->
+    <script src="libs/angular.min.js"></script>
+    <script src="libs/angular-touch.min.js"></script>
+    <script src="libs/angular-route.min.js"></script>
+    <script src="libs/angular-resource.min.js"></script>
+    <!-- https://angular-ui.github.io/bootstrap/ -->
+    <script src="libs/ui-bootstrap-tpls.min.js"></script>
+
+
+    <!-- our JS -->
+    <!-- configs -->
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <!-- mongresto $resources -->
+    <script src="/api/ngResources/app"></script>
+    <!-- controllers -->
+    <script src="controllers/homeCtrl.js"></script>
+    <!-- directives (widgets) -->
+    <script src="widgets/header/nav.js"></script>
+    <script src="widgets/form/base.js"></script>
+    <script src="widgets/item/base.js"></script>
+    <script src="widgets/item/list.js"></script>
+
+
+    <!-- all CSS -->
+    <link rel="stylesheet" href="css/all.css">
+  </head>
+  <body ng-app="mongr">
+    <!-- nav area -->
+    <header-nav></header-nav>
+    <!-- app view area -->
+    <div ng-view></div>
+  </body>
+</html>
