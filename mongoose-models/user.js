@@ -4,19 +4,19 @@ module.exports = function(mongoose){
 
   // Defines the user Schema (How the DB is structured)
   var UserSchema = new mongoose.Schema({ 
-   profilePic: String,
-     email: String,
-     first_name: String,
-     last_name: String,
-     description: String,
-     personality: String,
-   phone_number: String,
-   password: String,
+    profilePic: String,
+    email: String,
+    first_name: String,
+    last_name: String,
+    description: String,
+    personality: String,
+    phone_number: String,
+    password: String,
     public_url: String,
-   courses: [{
+    courses: [{
         course_name: String
     }],
-   plugs:[{
+    plugs:[{
        id: String,
        name: String,
        path: String,

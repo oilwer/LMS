@@ -9,7 +9,7 @@ app.directive('adminUser', [
       templateUrl: settings.widgets + 'admin/user.html',
       link: function($scope, element, attrs) {
 
-        $scope.btnAddOrUpdateText = 'Add user';
+        $scope.btnAddOrUpdateTextUser = 'Add user';
         
         // Updates the GUI according to edit/add-state
         var isEditing = false;
@@ -65,7 +65,7 @@ app.directive('adminUser', [
               // If editing 
               else {
 
-                $scope.btnAddOrUpdateText = 'Add user';
+                $scope.btnAddOrUpdateTextUser = 'Add user';
                 var user = $scope.user;
                 //Asks UserService to update User
                 User.update({
@@ -108,7 +108,7 @@ app.directive('adminUser', [
           $scope.remove = function(targetUser){
             console.log("Removed: ", cickedUser);
             $scope.user = "";
-            $scope.btnAddOrUpdateText = 'Add user';
+            $scope.btnAddOrUpdateTextUser = 'Add user';
           
             // removes user with a surtain id
             User.remove({_id: targetUser._id});
@@ -118,7 +118,7 @@ app.directive('adminUser', [
           //Gui function fetch selected user data for editing
           $scope.prepareEdit = function (id){
               isEditing = true;
-              $scope.btnAddOrUpdateText = 'Update';
+              $scope.btnAddOrUpdateTextUser = 'Update';
               //get info from db to put in the form boxes
               $scope.user = User.getById(id);
           };
