@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mongr</title>
+    <title>LMS</title>
     <meta charset="utf-8">
     <!-- set base href for angular html5 mode -->
     <base href="/"/>
@@ -25,20 +25,22 @@
     <script src="config.js"></script>
     <!-- mongresto $resources -->
     <script src="/api/ngResources/app"></script>
-    <!-- controllers -->
-    <script src="controllers/homeCtrl.js"></script>
+    <!-- controllers are not that nice -->
+
     <!-- directives (widgets) -->
-    <script src="widgets/header/nav.js"></script>
-    <script src="widgets/form/base.js"></script>
-    <script src="widgets/item/base.js"></script>
-    <script src="widgets/item/list.js"></script>
     <script src="widgets/modelanything/modelanythingstart.js"></script>
     <script src="widgets/modelanything/dynamic.js"></script>
     <script src="widgets/modelanything/plugins/testplug.js"></script>
+    <script src="widgets/admin/user.js"></script>
+    <script src="widgets/header/nav.js"></script>
+
 
 
     <!-- all CSS -->
     <link rel="stylesheet" href="css/all.css">
+    <link rel="stylesheet" href="css/style.css">
+    
+    
   </head>
   <body ng-app="mongr">
     <!-- nav area -->
