@@ -99,7 +99,8 @@ var mongresto = module.exports = (function _mongresto(){ return {
     // Connect to mongoose
     var dbName = this.dbName;
     this.mongoose = require("mongoose");
-    this.mongoose.connect('mongodb://localhost/' + dbName);
+    this.mongoose.connect('mongodb://admin:dbpass@128.199.49.28:27017/' + dbName); //Server Database
+    //this.mongoose.connect('mongodb://localhost/' + dbName); //Local Database
     
     // Check connection
     this.mongoose.connection.once('open', function() {
