@@ -1,0 +1,62 @@
+<div class="container">
+<h1> API documentation </h1>
+<br/>
+
+<h2> API LOGIN </h2>
+<h3> URI: http://localhost:3000/api/login </h3>
+
+<p> HTTP REQUEST: POST </p>
+<b> DESC: Try to login </b>
+<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} </p>
+<p> RETURNS: bool </p>
+<br/>
+
+<p> HTTP REQUEST: GET </p>
+<b> DESC: Check if logged in </b>
+<p> PAYLOAD: none </p>
+<p> RETURNS: bool </p>
+<br/>
+
+<p> HTTP REQUEST: DELETE </p>
+<b> DESC: Logout </b>
+<p> PAYLOAD: none</p>
+<p> RETURNS: bool </p>
+<br/>
+
+<hr/> 
+
+<h2> API USER </h2>
+<h3> URI: http://localhost:3000/api/user </h3>
+
+<p> HTTP REQUEST: POST </p>
+<b> DESC: Adds user </b>
+<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields) </p>
+<p> RETURNS: json </p>
+<br/>
+
+<p> HTTP REQUEST: GET </p>
+<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+<b> DESC: Gets all the users </b>
+<p> PAYLOAD: none </p>
+<p> RETURNS: json </p>
+<br/>
+
+<p> HTTP REQUEST: UPDATE </p>
+<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+<b> DESC: Update user </b>
+<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields that you want to update) </p>
+<p> RETURNS: json </p>
+<br/>
+
+<p> HTTP REQUEST: DELETE </p>
+<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+<b> DESC: Delete user </b>
+<p> PAYLOAD: none</p>
+<p> RETURNS: json </p>
+<br/>
+
+<hr/> 
+
+
+
+</div>

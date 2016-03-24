@@ -1,0 +1,16 @@
+{
+  "name": "mongr",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "*",
+    "cookie-parser": "^1.4.1",
+    "debug": "*",
+    "express": "^4.13.4",
+    "express-session": "*",
+    "gulp": "*",
+    "gulp-less": "*",
+    "mongoose": "*",
+    "serve-favicon": "^2.3.0",
+    "sha1": "*"
+  }
+}
