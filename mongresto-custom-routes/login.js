@@ -2,7 +2,7 @@ module.exports = function(mongoose) {
   var sha1 = require('sha1');
 
   return [function (req, res) {
-    var User = mongoose.model('user');
+    var User = mongoose.model('User');
     
     // check if logged in
     if (req.method == 'GET') {

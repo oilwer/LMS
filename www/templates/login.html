@@ -18,7 +18,6 @@
     <!-- https://angular-ui.github.io/bootstrap/ -->
     <script src="libs/ui-bootstrap-tpls.min.js"></script>
 
-
     <!-- our JS -->
     <!-- configs -->
     <script src="app.js"></script>
@@ -26,18 +25,10 @@
     <!-- mongresto $resources -->
     <script src="/api/ngResources/app"></script>
     <!-- controllers are not that nice -->
-    
-    <!-- Services -->
-   <!-- <script src="services/LoginService.js"></script>
 
     <!-- directives (widgets) -->
-    <script src="widgets/modelanything/modelanythingstart.js"></script>
-    <script src="widgets/modelanything/dynamic.js"></script>
-    <script src="widgets/modelanything/plugins/testplug.js"></script>
-    <script src="widgets/admin/user.js"></script>
     <script src="widgets/header/nav.js"></script>
     <script src="widgets/login/loginstart.js"></script>
-    <script src="widgets/forgotpassword/forgotpassword.js"></script>
 
 
 
@@ -48,9 +39,7 @@
     
   </head>
   <body ng-app="mongr">
-    <!-- nav area -->
-    <header-nav></header-nav>
-    <!-- app view area -->
-    <div ng-view></div>
+  	<login-loginstart> </login-loginstart>
   </body>
 </html>
+

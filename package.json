@@ -10,6 +10,7 @@
     "gulp": "*",
     "gulp-less": "*",
     "mongoose": "*",
+    "nodemailer": "^2.3.0",
     "serve-favicon": "^2.3.0",
     "sha1": "*"
   }
