@@ -25,9 +25,9 @@ app.use(m.express.static(m.path.join(__dirname, 'www')));
 //https://github.com/expressjs/session
 app.use(m.expresssession({
   secret: 'keyboard cat',
-  resave: true,
-  saveUninitialized: true,
-  cookie: { secure: true }
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: false }
 }));
 
 
@@ -43,6 +43,11 @@ var customRoutes = [
     method: 'all',
     controller: require('./mongresto-custom-routes/resetPassword.js')
     
+  },
+  {
+    path: 'session',
+    method: 'get',
+    controller: require('./mongresto-custom-routes/session.js')
   }
 ];
 

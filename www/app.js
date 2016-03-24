@@ -46,3 +46,15 @@ app.service('LoginService', function($http) {
     }
     
 });
+
+app.service('SessionService', function($http) {
+
+	return {
+		//get session if user is logged in
+		getSession : function() {
+			return $http.get("/api/session").success(function(response) {
+				//console.log(response);
+			});
+		}
+	}
+});

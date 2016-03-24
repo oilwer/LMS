@@ -1,11 +1,12 @@
 app.directive('profilePrivateprofile', [
   "settings",
   "User",
-  "$http",
+  "SessionService",
   function(
     settings,
     User,
-    $http ) {
+    SessionService
+     ) {
 
     return {
       templateUrl: settings.widgets + 'profile/privateprofile.html',
@@ -25,22 +26,17 @@ app.directive('profilePrivateprofile', [
 
 		    var getUser = function () {
 
- 				var fetchedUser = $http.get('/api/login');
- 				console.log(fetchedUser);
-		    
-		        console.log("Dashboard config");
-		        console.log(fetchedUser.dashboard_config);
-	        
-	        	// recover Users ID from http get on login
-				var userId = fetchedUser.userid;
-				
-				//console.log("SessionID: "+sess.userid);
-				
-				if( (userId !== "") && (userId !== null))	{
-					return fetchedUser;
-				} else {
-					return false;
-				}	
+ 				SessionService.getSession().success(function(response) {
+ 					
+ 					fetchedUser = response.user;
+
+	 				if( (fetchedUser._id !== "") && (fetchedUser._id !== null))	{
+						initializeProfile(fetchedUser);
+					} else {
+						return false;
+					}	
+	 				
+				}); 
 		    }
 
 		    // Get profile data from DB
@@ -67,10 +63,7 @@ app.directive('profilePrivateprofile', [
 		        }
 		    };
 			
-			if(getUser()){
-				initializeProfile(getUser());
-			}
-			
+			getUser();
 
 
 		    $scope.editDescription = function () {

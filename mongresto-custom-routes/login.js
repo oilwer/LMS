@@ -33,6 +33,7 @@ module.exports = function(mongoose) {
         // we found a user!
         // create session?
         req.session.user = found;
+        console.log(req.session);
         res.json(true);
       });
     }
@@ -41,6 +42,12 @@ module.exports = function(mongoose) {
     if (req.method == 'DELETE') {
       req.session.destroy();
       res.json(true);
+    }
+
+    // logout
+    if (req.method == 'PUT') {
+      console.log(req.session);
+        res.json(req.session);
     }
   }];
 };
