@@ -20,8 +20,9 @@ app.directive('modelanythingModelanythingstart', [
 				  if(user.plugs[i].isActive == true){
 					  // Adds html to all plugins
 					  var plug = user.plugs[i].name;
+					  var id = user.plugs[i].id;
 					  console.log(plug);
-					  scope.html += "<" + "modelanything-plugins-" + plug + "/>";
+					  scope.html += "<div class='plugin' id='" + plug + id + "'> <" + "modelanything-plugins-" + plug + "/> </div>";
 			  	  }
 			  }
 		      //scope.html = '<div class="col-xs-12" form-base>';

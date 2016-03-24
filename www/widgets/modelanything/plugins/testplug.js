@@ -5,7 +5,7 @@ app.directive('modelanythingPluginsTestplug', [
   ) {
 
     return {
-      templateUrl: settings.widgets + 'modelanything/testplug.html',
+      templateUrl: settings.widgets + 'modelanything/plugins/testplug.html',
       replace: true,
       link: function(scope, element, attrs) {
 	      
