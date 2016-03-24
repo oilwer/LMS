@@ -13,6 +13,20 @@ app.config([
       .when("/admin/", {
         templateUrl: "templates/admin.html",
       })
+       .when("/courses/", {
+        templateUrl: "templates/courses.html",
+      })
+       //
+       .when("/courses/:id", {
+        templateUrl: "templates/course.html",
+      })
+        .when("/courses/:type/:id", {
+        templateUrl: "templates/course.html",
+      })
+       // static course, to be updated with dynamic course url
+      .when('/courses/testcourse', {
+          templateUrl: 'templates/course.html',
+      })
       .when("/dash", {
         templateUrl: "templates/dash.html"
       })

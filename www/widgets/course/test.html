@@ -1,0 +1,182 @@
+<!-- public/views/testcourse.html -->
+
+<!--  -->  
+<div class="app_container course heightfull">
+    <div class="container-fluid heightfull" >
+        <div class="row table-row heightfull">
+            <nav class="col-sm-2 col-md-2 nav--local">
+                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h1>
+                <ul>
+                    <li class="active"><a href="">Overview</a></li>
+                    <li><a href="">Participants</a></li>
+                    <li><a href="">Questions and Answers</a></li>
+                    <li ><a class="nav--local_notification" ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChildOpen">
+                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 2</a></li>
+                        </ul>
+                    </li>
+                    <li ><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
+                        <ul ng-show="isChild2Open">
+                            <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital book with great name</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 1</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
+                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital material by Other Author</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                
+            </nav>
+            
+            <div class="col-sm-10 col-md-10 body--paddingtop coursebody">
+                <nav class="nav--breadcrumbs">
+                    <ul class="list-inline">
+                        <li><a href="/courses">Courses</a></li> / <!---->
+                        <li><a href="/courses/testcourse">Web development</a></li> /
+                        <li>Overview</li>
+                    </ul>
+                </nav>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="box box--wall wall">
+                        <!--wall-->
+                            <h2 class="box__header">
+                                <i class="fa--heading fa fa-file-text-o"></i>
+                                Wall
+                            </h2>
+                            <div class="box_content">
+                                <div class="wall_content_item">
+                                    <h3>Workshop with hypertext AB</h3>
+                                    <p>Course messages from teachers, this is a course message regarding something important. Course messages from teachers, this is a course message regarding something important. </p>
+                                    <img class="wall_img" src="/img/person.png">
+                                    <p class="wall_author">Teacher one</p>
+                                    <p class="wall_time">16-07-02</p>
+                                </div>
+                                <div class="wall_content_item">
+                                    <h3>New assignments</h3>
+                                    <p>
+                                        Course messages from teachers, this is a course message regarding something important. Course messages from teachers.
+                                    </p>
+                                    <img class="wall_img" src="/img/person.png">
+                                    <p class="wall_author">Teacher one</p>
+                                    <p class="wall_time">16-07-02</p>
+                                </div>
+                                <div class="wall_content_item">
+                                    <h3>Course Meetup</h3>
+                                    <p>Course messages from teachers</p>
+                                    <img class="wall_img" src="/img/person.png">
+                                    <p class="wall_author">Teacher one</p>
+                                    <p class="wall_time">16-07-02</p>
+                                </div>
+                                <div class="wall_content_item">
+                                    <h3>Welcome</h3>
+                                    <p>Welcome to the new course - we'll hope you'll be happy with.</p>
+                                    <img class="wall_img" src="/img/person.png">
+                                    <p class="wall_author">Teacher one</p>
+                                    <p class="wall_time">16-07-02</p>
+                                </div>
+                            </div>
+                            <div class="wall_loadmore">
+                            <i class="fa fa-plus-circle"></i> Load more
+                            </div>
+                            <form class="form--wall">
+                                <label for="title">Titel</label>
+                                <input type="text" name="title" id="title">
+                                <label for="title">Message</label>
+                                <textarea name="message" id="message" placeholder="write your message ...">
+                                </textarea>
+                                <button>Publish</button>
+                            </form>
+                        </div>
+                        
+                    </div><!--.col-->
+                    <div class="col-md-6 padding--none">
+                        
+                        <!--left content / details / assignment / resources-->
+                        <div class="col-sm-24 box--label box--label--courses coursor--pointer">
+                            <h1 class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
+                                <i class="fa--heading fa fa-info-circle"></i>
+                                Course details
+                                <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i>
+                            </h1>
+
+                            <div class="row box--label_content course--details" ng-show="isCoursesOpen">
+                                <div class="col-sm-24">
+                                    <h2 class="coursedescription_titel">Name:</h2>
+                                    <p> {{ course.name }}</p>
+                                </div>
+                                <div class="col-sm-24">
+                                    <h2 class="coursedescription_titel">Date:</h2>
+                                    <p> {{ course.start }} - {{ course.end}}</p>
+                                </div>
+                                <div class="col-sm-24">
+                                    <h2 class="coursedescription_titel">Description:</h2>
+                                    <p> {{ course.description }}</p>
+                                </div>
+                                <div class="col-md-4">
+                                    <h2 class="course_teacher">Teaching</h2>
+                                    <p ng-repeat="teacher in course.teaching">
+                                        <a href="{{teacher.profile}}">{{teacher.name}}</a>
+                                    </p>
+                                </div>
+                            </div>                            
+                        </div>
+                        
+                        <div class="col-sm-24 box--label box--label--courses box--label--assignments">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-file-text-o"></i>
+                                Assignments
+                            </h2>
+                            <div class="">
+                                <ul class="courses_assignments">
+                                    <li class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></li>
+                                    <li class="courses_assignmentitem">Assignment 1</li>
+                                    <li class="courses_assignmentitem">Assignment 2</li>
+                                    <li class="courses_assignmentitem">Assignment 3</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-24 box--label box--label--courses box--label--assignments">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-book"></i>
+                                Resources
+                            </h2>
+                            <div class="">
+                                <ul class="courses_assignments">
+                                    <li class="course_heading">
+                                        <span>Name</span><span>Time</span><span>Status</span>
+                                    </li>
+                                    <li class="courses_assignmentitem">New resource 1</li>
+                                    <li class="courses_assignmentitem">Changed resource 2</li>
+                                    <li class="courses_assignmentitem">New resource 3</li>
+                                </ul>
+                            </div>
+                
+                        </div><!--.col-->
+                        
+                        <div class="col-md-24 box">
+                                <h2 class="box__header">
+                                    <i class="fa--heading fa fa-question-circle"></i>
+                                    Questions and Answers
+                                </h2>
+                                <div class="box__content">
+                                    <p> Placeholder </p>
+                                </div>
+                        </div>
+                        
+                    </div><!--.col-->
+                    
+                </div><!--.row-->
+                        
+            </div><!--coursebody-->
+        </div>
+    </div><!--.dashboard-->
+</div><!--.app_container-->
+
+
+
+
+            
