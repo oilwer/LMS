@@ -14,6 +14,9 @@ app.config([
       .when("/admin/", {
         templateUrl: "templates/admin.html",
       })
+      .when("/chat/", {
+        templateUrl: "templates/chat_template.html",
+      })
       .otherwise({
         redirectTo: "/"
       });

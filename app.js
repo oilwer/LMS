@@ -7,7 +7,8 @@ var m = {};
   "cookie-parser",
   "body-parser",
   "express-session",
-  "./mongresto"
+  "./mongresto",
+  "slack-node"
 ].forEach(function(x){
   // store required modules in m
   m[x.replace(/\W/g,'')] = require(x);
@@ -36,6 +37,11 @@ var customRoutes = [
     path: 'login',
     method: 'all',
     controller: require('./mongresto-custom-routes/login.js')
+  },
+  {
+    path: 'chat',
+    method: 'all',
+    controller: require('./mongresto-custom-routes/chat.js')
   }
 ];
 

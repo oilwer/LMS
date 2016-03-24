@@ -1,6 +1,6 @@
 app.directive('adminUser', [
   "settings",
-//  "user",
+//  "user", //Here you can pass in models
   "Item",
   function(
     settings,
@@ -10,7 +10,7 @@ app.directive('adminUser', [
 
     return {
       templateUrl: settings.widgets + 'admin/user.html',
-      link: function(scope, element, attrs) {
+      link: function($scope, element, attrs) {
 
         
         Item.create({
