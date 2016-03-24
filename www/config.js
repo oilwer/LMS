@@ -30,6 +30,12 @@ app.config([
       .when("/dash", {
         templateUrl: "templates/dash.html"
       })
+      .when("/myprofile/", {
+        templateUrl: "templates/privateprofile.html",
+      })
+      .when("/profile/:url", {
+        templateUrl: "templates/publicprofile.html",
+      })
       .otherwise({
         redirectTo: "/"
       });
