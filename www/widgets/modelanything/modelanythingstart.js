@@ -20,7 +20,7 @@ app.directive('modelanythingModelanythingstart', [
 				  if(user.plugs[i].isActive == true){
 					  // Adds html to all plugins
 					  var plug = user.plugs[i].name;
-					  var id = user.plugs[i].id;
+					  var id = user.plugs[i]._id;
 					  console.log(plug);
 					  scope.html += "<div class='plugin' id='" + plug + id + "'> <" + "modelanything-plugins-" + plug + "/> </div>";
 			  	  }

@@ -7,6 +7,7 @@ var m = {};
   "cookie-parser",
   "body-parser",
   "express-session",
+  "nodemailer",
   "./mongresto"
 ].forEach(function(x){
   // store required modules in m
@@ -36,6 +37,12 @@ var customRoutes = [
     path: 'login',
     method: 'all',
     controller: require('./mongresto-custom-routes/login.js')
+    },
+    {
+    path: 'resetpassword',
+    method: 'all',
+    controller: require('./mongresto-custom-routes/resetPassword.js')
+    
   }
 ];
 
@@ -48,6 +55,13 @@ m.mongresto.init(app, options);
 
 app.get('/apidoc/', function (req, res) {
   res.sendFile('templates/apidocumentation.html', {root: './www'});
+});
+
+app.get('/login/', function (req, res) {
+  res.sendFile('templates/login.html', {root: './www'});
+});
+app.get('/forgotPassword/', function (req, res) {
+  res.sendFile('templates/forgotPassword.html', {root: './www'});
 });
 
 // Route everything "else" (not "/api/**/*") to angular (in html5mode)
