@@ -627,6 +627,41 @@ body, html {
     
 }
 
+
+/* * * * * * * * * * * * * * * *   
+
+        CONNECT STUDENTS  
+
+* * * * * * * * * * * * * * * * */  
+
+.whole_container {
+    width: 60%;
+    height: 200px;
+    margin-left: 20%;
+}
+
+.whole_container_header {
+    
+    background-color: gray;
+    
+}
+
+.whole_container_header i{
+    
+    float:right;
+    
+}
+
+.whole_container_list_view {
+    
+}
+
+.whole_container_search {
+    
+    margin-top: 10px;
+}
+
+
 /* * * * * * * * * * * * * * * *   
 
             NAV breadcrumbs
