@@ -7,6 +7,15 @@ app.directive('courseTest', [
     return {
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
+          
+      //placeholder for all the users courses, get from db
+      $scope.courses = {
+          name: "Web development",
+          assignment: "Assignment 1",
+          status: "active",
+          url: "testcourse"
+        };
+          
         // a clock
         scope.showTime = function() {
           // shows how angular digests scope
