@@ -1,9 +1,11 @@
 app.directive('courseList', [
   "settings", 
   "$location",
+  "SessionService",
   function(
     settings,
-    $location
+    $location,
+    SessionService
     ) {
 
     return {
@@ -100,7 +102,7 @@ app.directive('courseList', [
           
           // Get profile data from session needed?
           // fetch usero  bject and data
-          Profile.get().success(function(data) {
+          SessionService.getSession().success(function(data) {
             if(data != false) {
               $scope.user = data;
             }else {
@@ -114,10 +116,6 @@ app.directive('courseList', [
              // $scope.changeClass = function(){
                $scope.custom = $scope.custom === false ? true: false;
           };
-              
-              
-
-
       }
     };
   }

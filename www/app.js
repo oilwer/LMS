@@ -18,7 +18,6 @@ app.service('LoginService', function($http) {
 	        return $http.post("/api/login/", data).success(function(response, status) {
 	            // console.log(response);            
 	        });
-	        
         },
         
         checkIfUserExists : function(email) {
