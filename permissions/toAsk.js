@@ -51,6 +51,7 @@ module.exports = function(modelName, method, query, rbody) {
 			else
 			{
 				// TODO: This shall be true, BUT in toAnswer we shall not return everything
+				//Only return public data
 				if(method == "GET")
 				{
 					console.log("Full get on somebody else OR get all users");
