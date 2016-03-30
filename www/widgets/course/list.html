@@ -40,7 +40,7 @@
                 <div ng-if="course.status == 'active'">
                 <!--repeat all courses that the user belongs to -->
                 
-                <div class="col-md-10 col-md-offset-1 box--courses ">
+                <div class="col-md-20 col-md-offset-2 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header--active">
@@ -50,17 +50,17 @@
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
                             <div class="row" ng-hide="custom">
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Info</p>
                                     <p class="infotxt"><i class="fa fa-info"></i> This Info is about this course... </p>
                                     
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Upcoming events</p>
                                     <a href="{{ url }}"><p class="upgText">  Seminarie      24/3 9:55</p></a>
                                     <a href="{{ url }}"><p class="upgText">  Seminarie      31/3 12:55</p></a>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Assignments</p>
                                     <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Assignment 1      12/3 12:55</p></a>
                                     <a href="{{ url }}"><p class="upgText"><i class="fa fa-paperclip"></i>  Assignment 2      27/3 23:55</p></a>
@@ -75,7 +75,7 @@
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'inactive'">
                 <!--repeat all courses that the user belongs to-->
-                <div class="col-md-10 col-md-offset-1 box--courses ">
+                <div class="col-md-20 col-md-offset-2 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">
                             <div class="box__header--inactive">
@@ -85,16 +85,16 @@
                                 <h2><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h2>
                             </div>
                             <div class="row" ng-hide="custom">
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Info</p>
                                     <p class="infotxt"><i class="fa fa-info"></i> This Info is about this course... </p>
                                     
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Upcoming events</p>
                                     <p class="upgText"> None</p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-8">
                                     <p class="rubtxt">Assignments</p>
                                     <a href="{{ url }}"><p
                                     <p class="upgText"><i class="fa fa-paperclip"></i> None</p>
