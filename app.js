@@ -55,13 +55,13 @@ var customRoutes = [
 var options = {
 	 // A function written by you - it gets access to the current question
   // and can deny Mongresto permission to run it
-  //permissionToAsk:
-    //require('./permissions/toAsk'),
+  permissionToAsk:
+    require('./permissions/toAsk'),
 
   // A function written by you - it gets access to the current result
   // (and question) and can deny Mongresto permission to return it
   permissionToAnswer:
-    function(modelName, method, query, req, result){ return true; },
+    require('./permissions/toAnswer'),
     
   customRoutes: customRoutes
 };
