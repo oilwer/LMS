@@ -22,7 +22,7 @@ app.directive('loginLoginstart', [
 	  		
 	  		LoginService.login(scope.email, scope.password).success(function(response){
 		  		console.log(response);
-		  		if(response) $window.location.href = '/dash';
+		  		if(response) $window.location.href = '/';
 	  		});
 	  
 		

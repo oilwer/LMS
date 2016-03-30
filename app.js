@@ -42,7 +42,6 @@ var customRoutes = [
     path: 'resetpassword',
     method: 'all',
     controller: require('./mongresto-custom-routes/resetPassword.js')
-    
   },
   {
     path: 'session',

@@ -24,18 +24,19 @@ app.directive('profilePrivateprofile', [
 		    var obj = null;
 
 
+		    var loadUser = function() {
+  			 	if( (fetchedUser._id !== "") && (fetchedUser._id !== null))	{
+						initializeProfile(fetchedUser);
+				} else {
+					return false;
+				}	
+	      	}
+	      
 		    var getUser = function () {
 
- 				SessionService.getSession().success(function(response) {
- 					
- 					fetchedUser = response.user;
-
-	 				if( (fetchedUser._id !== "") && (fetchedUser._id !== null))	{
-						initializeProfile(fetchedUser);
-					} else {
-						return false;
-					}	
-	 				
+ 				SessionService.getSession().success(function(response) {	
+ 					var fetchedUser = User.get({ _id:response.user._id });
+ 					User.onQueueDone (loadUser);
 				}); 
 		    }
 

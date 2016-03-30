@@ -8,7 +8,7 @@ app.config([
     //route config
     $routeProvider
       .when("/", {
-        templateUrl: "templates/dash.html",
+        templateUrl: "templates/home.html",
       })
       .when("/admin/", {
         templateUrl: "templates/admin.html",
