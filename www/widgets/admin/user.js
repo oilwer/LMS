@@ -106,7 +106,7 @@ app.directive('adminUser', [
 
           //Gui function remove user
           $scope.remove = function(targetUser){
-            console.log("Removed: ", cickedUser);
+            console.log("Removed: ", targetUser);
             $scope.user = "";
             $scope.btnAddOrUpdateTextUser = 'Add user';
           
