@@ -25,7 +25,6 @@ app.directive('profilePrivateprofile', [
 
 
 		    var loadUser = function() {
-		    	console.log(fetchedUser);
   			 	if( (fetchedUser._id !== "") && (fetchedUser._id !== null))	{
 						initializeProfile(fetchedUser);
 				} else {
