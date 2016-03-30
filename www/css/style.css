@@ -406,12 +406,6 @@ body, html {
 
 * * * * * * * * * * * * * * * * */  
 
-.app_container { /*remove space hidden by nav*/
-    padding-left: 0px;
-    overflow: hidden;
-    margin-bottom: 80px;
-}
-
 .nav--global { /*nav*/
     position: fixed;
     left: 0;
@@ -599,9 +593,6 @@ body, html {
 
 * * * * * * * * * * * * * * * * */  
 
-.dashboard, .courses {
-    padding-top: 50px;
-}
 
 .body--paddingtop {
     padding-top: 50px;
