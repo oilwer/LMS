@@ -22,26 +22,22 @@ module.exports = function(modelName, method, query, rbody) {
 				
 			if(method == "GET")
 			{
+				// If the current user want's to get his own profile
 				if(query._id == rbody.session.user._id)
 				{
 					console.log("ASK full get on himself", modelName, method, query);
 					return true;
 				}	
+				
+				// Current user want's to get somebody else's profile
 				else
 				{
-					console.log("Full get on somebody else");
+					console.log("Full get on somebody else OR get all users");
 					return false;
 				}
 			} 
 		}
 		
 	}
-  
- /* if((modelName == "User") && (method == "GET") && (rbody.session.user == undefined))
-  {
-	  console.log("We are not logged in");
-  }
-  */
-   // console.log("ask:", modelName, method);
-  // return true;
+
 };
