@@ -13,10 +13,13 @@ app.config([
       .when("/admin/", {
         templateUrl: "templates/admin.html",
       })
-    .when("/connectstudents/", {
+        .when("/create-course/", {
+        templateUrl: "templates/createcourse.html",
+      })
+        .when("/connectstudents/", {
         templateUrl: "templates/connectstudents.html",
       })
-    .when("/participants/", {
+        .when("/participants/", {
         templateUrl: "templates/connectstudents.html",
       })
        .when("/courses/", {
