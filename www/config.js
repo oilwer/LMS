@@ -19,8 +19,11 @@ app.config([
         .when("/connectstudents/", {
         templateUrl: "templates/connectstudents.html",
       })
-        .when("/participants/", {
+      .when("/participants/:url", {
         templateUrl: "templates/connectstudents.html",
+    })
+    .when("/studentsaddremove/", {
+        templateUrl: "templates/studentsaddremove.html",
       })
        .when("/courses/", {
         templateUrl: "templates/courses.html",

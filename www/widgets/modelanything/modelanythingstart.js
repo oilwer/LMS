@@ -11,21 +11,24 @@ app.directive('modelanythingModelanythingstart', [
     return {
       templateUrl: settings.widgets + 'modelanything/modelanythingstart.html',
       link: function(scope, element, attrs) {
+	      
 	  		
         SessionService.getSession().success(function(response){
           //gets the users id from current sessions
           //console.log(response.user._id);
           var user = response.user;
+          loadPlugs(user);
           //var user = User.getById('56fb84b7e5054020401557e1');
           //console.log(user._id);
         });
 
 
-        var loadPlugs = function() {
+        var loadPlugs = function(user) {
 
   			  scope.html = "";
+  			  // console.log(user);
   			  
-          console.log(user.plugs.length);
+         // console.log(user.plugs.length);
 
   			  for(var i = 0; i < user.plugs.length; i++) {
   				  if(user.plugs[i].isActive == true){
@@ -39,7 +42,7 @@ app.directive('modelanythingModelanythingstart', [
   		      //scope.html = '<div class="col-xs-12" form-base>';
 	      }
 	      
-	      User.onQueueDone (loadPlugs);
+	      // User.onQueueDone (loadPlugs);
   	      // console.log(kk);
       }
     };

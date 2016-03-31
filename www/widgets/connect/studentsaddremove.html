@@ -1,0 +1,54 @@
+<div class="app_container">
+    
+    <div class="row">
+        <div class="container ng-scope">
+            <div class="row whole_container">
+                
+                
+                <div class="whole_container_header">
+                    <h3>Add / Remove students
+                    <i class="fa fa-user "></i></h3>
+                
+                </div>
+                
+                    <div class="col-md-10 studlist">
+                <div class="col-md-24 searchdiv">
+                    <select class="form-control">
+                      <option value="program 1">Program 1</option>
+                      <option value="program 2">Program 2</option>
+                      <option value="program 3">Program 3</option>
+                      <option value="program 4">Program 4</option>
+                    </select>
+                </div>
+                        <button type="button" class="btn btn-success button_student_list_markall">MARK ALL</button>
+                        <div ng-init="index=0; classes=['example_student_left', 'example_student_active_left']" ng-click="index = index + 1" ng-class="classes[index % classes.length]" ng-repeat="student in students"  class="col-md-23">
+                           
+                        <p>Example {{ student.name }}
+                        
+                        <i class="fa fa-minus minus"></i>
+                            <i class="fa fa-plus plus"  ></i>
+                            
+                        
+                         </p>
+                        </div>
+                    </div>
+                    <div class="col-md-10 studlist1">
+                    
+                        <div ng-init="index=0; classes=['example_student_right', 'example_student_active_right']" ng-click="index = index + 1" ng-class="classes[index % classes.length]" class="col-md-23 studlist_card">
+                           
+                        <p>Example {{ students.name }}
+                        <i class="fa fa-minus minus"></i>
+                    
+                        
+                         </p>
+                        </div>
+                        
+                    </div>
+                    <button type="button" class="btn btn-success button_student_list_send">DONE</button>
+                <!-- SEND TO PARTICIPANTS-->
+                
+                </div>
+             </div> 
+        </div>
+    </div>
+</div>

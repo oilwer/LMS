@@ -24,19 +24,20 @@ app.directive('profilePrivateprofile', [
 		    var obj = null;
 
 
-		    var loadUser = function() {
-  			 	if( (fetchedUser._id !== "") && (fetchedUser._id !== null))	{
-						initializeProfile(fetchedUser);
-				} else {
-					return false;
-				}	
+		    var loadUser = function(newuser) {
+	  			 		console.log(newuser);
+						initializeProfile(newuser);
 	      	}
 	      
 		    var getUser = function () {
 
  				SessionService.getSession().success(function(response) {	
- 					var fetchedUser = User.get({ _id:response.user._id });
- 					User.onQueueDone (loadUser);
+	 				
+ 					User.get({_id:response.user._id},function(newUser){
+	 					loadUser(newUser[0]);
+					});
+ 					
+ 					
 				}); 
 		    }
 
@@ -63,9 +64,7 @@ app.directive('profilePrivateprofile', [
 		            $scope.first_name = "No profile found";
 		        }
 		    };
-			
-			getUser();
-
+		
 
 		    $scope.editDescription = function () {
 		        if ($scope.class == "fa fa-pencil") {
@@ -73,6 +72,7 @@ app.directive('profilePrivateprofile', [
 		            $scope.descriptionEnabled = false;
 		        } else {
 		            obj.description = $scope.description;
+		            console.log(obj);
 		            $scope.updateProfile(obj);
 		            $scope.descriptionEnabled = true;
 		            $scope.class = "fa fa-pencil"
@@ -122,27 +122,15 @@ app.directive('profilePrivateprofile', [
                       personality: user.personality,
                       phone_number: user.phone_number,
                       password: user.password,
-                      public_url: user.public_url,
-                        courses: {
-                          course_name: user.course_name
-                      },
-                      dashboard_config:[{
-                          plug:{
-                              id: user.id,
-                              name: user.name,
-                              path: user.path,
-                              isActive: user.Boolean,
-                              x: user.x,
-                              y: user.y
-                          }
-                      }],
-                      role: user.role //student/admin/teacher
+                      public_url: user.public_url
                   });
 
 		        if(user != null){	        	
 		            $scope.user = user;
 		        }
 		    };
+		    
+		getUser();
       }
     };
   }

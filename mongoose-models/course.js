@@ -15,7 +15,7 @@ var CourseSchema = new mongoose.Schema({
         assignment_deadline: String
     }],
     students: [{
-        student_name: String
+        type: mongoose.Schema.Types.ObjectId, ref: 'User'
     }],
     resources: [{
         resource_name: String,
