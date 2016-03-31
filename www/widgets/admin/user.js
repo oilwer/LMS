@@ -19,6 +19,7 @@ app.directive('adminUser', [
           $scope.userlist = User.get();
         };
         
+      
         //Runs on page update
         refresh();
 
@@ -80,7 +81,7 @@ app.directive('adminUser', [
                       phone_number: user.phone_number,
                       password: user.password,
                       public_url: user.public_url,
-                        courses: {
+                      courses: {
                           course_name: user.course_name
                       },
                       dashboard_config:[{

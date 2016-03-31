@@ -8,7 +8,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Course name</th>
+                    <th>Course code</th>
                     <th>Wall</th>
                     <th>Assignm.</th>
                     <th>FAQ</th>
@@ -18,11 +18,11 @@
         
             <!--repeat all courses that the user belongs to -->
             <tbody ng-repeat="course in courses">
-                <tr ng-if="course.status == 'active'">
+                <tr ng-if="course.status == true"> 
                     <td>
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.name}}</p>
+                            <p>{{course.code}}</p>
                         </a> 
                     </td>
                     <td><i class="fa fa-thumb-tack">
@@ -45,10 +45,10 @@
                         </i>
                     </td>
                 </tr>
-                <tr ng-if="course.status == 'inactive'">
+                <tr ng-if="course.status == false">
                     <td>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.name}}</p>
+                            <p>{{course.code}}</p>
                         </a>
                     </td>
                     <td>

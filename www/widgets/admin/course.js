@@ -36,7 +36,12 @@ app.directive('adminCourse', [
           var c = Course.create([
             {
               status: false,
-              code: course.code
+              code: course.code,
+              url: course.url,
+              name: course.name,
+              description: course.description,
+              start: course.start,
+              end: course.end
             }
           ]);
           Course.onQueueDone(console.log(c));
@@ -44,19 +49,11 @@ app.directive('adminCourse', [
 
           User.update({_relate:{items:session_user,courses:c}}); //no
           Course.update({_relate:{items:c,creator:session_user}}); //works
-
-            // User.update({
-            //   _id : session_user._id
-            // },{
-            //   courses : [{
-            //     createdByMe : true
-            //   }]
-            // })
             
-            $scope.courselist.push($scope.course); 
+          $scope.courselist.push($scope.course); 
           //  refresh();
-            $scope.course = "";
-            course = null;
+          $scope.course = "";
+          course = null;
         };
 
         var updateCourse = function(){
@@ -67,8 +64,12 @@ app.directive('adminCourse', [
                 _id: course._id
               },{
                 status: true,
-                code: course.code
-                //all fields to update
+                code: course.code,
+                url: course.url,
+                name: course.name,
+                description: course.description,
+                start: course.start,
+                end: course.end
             });
             // Refresh GUI
             refresh();
