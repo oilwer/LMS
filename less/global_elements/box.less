@@ -1,0 +1,97 @@
+/*Styles for global .box classes
+    
+This is a LESS file; only style for the element class .box allowed!
+
+    Naming example for .box elements and modifiers:
+    .element__element--modifier
+    .element--modifier
+
+*/
+
+.box {
+    background: rgba(255,255,255,1);
+    padding: 0px;
+    margin-bottom: 10px;
+    height: auto;
+    .border-radius(5px); //uses mixin in mixins.less
+}
+
+//
+// BOX__HEADER
+//
+.box__header {
+    background: @LMSdark;
+    color: @LMSdark--text;
+    padding: 12px 10px;
+    .border-radius-custom(5px, 5px, 0px, 0px); //uses mixin in mixins.less
+    
+    .box__header i {
+        padding: 0px 10px;
+    }
+    
+    .box__header svg {
+        padding: 0px 5px;
+        width: 25px;
+        height: auto;
+        display: inline-block;
+    }
+}
+
+.box__header--courses {
+    background: @RGBcourses;
+}
+
+.box__header--schedule {
+    background: @RGBschedule;
+}
+
+.box__header--questions {
+    background: @RGBquestions;
+}
+
+.box__header--circles {
+    background: @RGBcircles;
+}
+
+.box__header--inactive {
+    background: rgba(62,71,79,0.5);
+}
+
+//
+// BOX__CONTENT
+//
+.box__content {
+    padding: 20px;
+}
+
+//
+// BOX--LABEL
+//
+.box--label {
+    background-color: #fff;
+    padding: 0;
+    border-radius: 0 5px 5px 0;
+    margin-bottom: 10px;
+    border-left: 5px solid @LMSdark; /*black*/
+}
+
+.box--label--courses {
+    border-left: 5px solid @RGBcourses;
+}
+
+.box--label_heading--courses {
+    color: @RGBcourses;
+}
+
+.box--label_content {
+    padding-top: 15px;
+}
+
+.box--courses a:hover {
+    text-decoration: none;
+}
+
+.box--courses:hover .box {
+    box-shadow: 0 2px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    transition: all 0.2s ease-in-out;
+}
