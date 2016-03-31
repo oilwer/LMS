@@ -1,8 +1,22 @@
 // http://getbootstrap.com/getting-started/#download
 @import '../bootstrap_less/bootstrap.less';
-// our LESS
+
+
+//
+@import './mixins.less';
+@import './variables.less';
+@import './typography.less';
+
+//
 @import './main.less';
 @import './form.less';
-@import './item.less';
+
+//global elements
+@import './global_elements/box.less';
+@import './global_elements/nav.less';
+
+//widget directives
 @import './dashboard/activities.less';
 @import './dashboard/mycourses.less';
+@import './connect/studentsaddremove.less';
+@import './connect/connectstudents.less';

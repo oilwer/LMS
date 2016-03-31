@@ -1,0 +1,243 @@
+//
+// BREADCRUMBS
+//
+.nav--breadcrumbs {
+    padding-left: 20px;
+}
+
+.nav--breadcrumbs {
+    margin-top: -40px;
+    padding: 5px 0px 10px 9px;
+    font-size: 0.9em;
+}
+
+.nav--breadcrumbs li {
+    padding: 0;
+    margin: 0;
+}
+
+.nav--breadcrumbs a {
+    text-decoration: underline;
+    color: rgba(0,0,0,0.8);
+}
+
+.nav--breadcrumbs a:hover {
+    color: rgba(0,0,0,0.4);
+}
+
+//
+// NAV--GLOBAL
+//
+
+.nav--global .active a{
+    color: @RGBcourses !important;
+}
+
+.nav--global .active .nav--global_svg {
+    fill: @RGBcourses !important;
+}
+
+.nav--global { /*nav*/
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
+    background: rgba(62,71,79,1);
+    z-index: 50;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 0px 2px rgba(0,0,0,0.23);
+}
+
+.nav--global ul {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+}
+
+.nav--global li {
+    display: inline-block;
+    height: 100%;
+    width: 17%;
+    padding: 0px;
+    margin: 0px 0px;
+    text-align: center;
+}
+
+ .nav--global a {
+    font-family: "Roboto", sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    text-align: center;
+    color: rgba(255,255,255,1);
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    transition: all 0.5s ease;
+}
+
+.nav--global a:active {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+}
+
+.nav--global a:focus {
+    text-decoration: none;
+    color: rgba(255,255,255,1);
+}
+
+.nav--global a:visited {
+    text-decoration: none;
+    color: rgba(255,255,255,1);
+}
+
+.nav--global a:hover {
+    text-decoration: none;
+    color: rgba(255,255,255,0.5);
+    transition: all 0.5s ease;
+}
+
+.nav--global_logotype {
+    display: none;
+}
+
+/*Share li/a space with global_listitem*/
+.nav--global li img, .nav--global li svg, .nav--global i {
+    width: auto;
+    height: 70%;
+    padding: 10% 0px;
+    display: block;
+    margin: auto;
+}
+
+.nav--global_svg {
+    fill: rgba(255,255,255,1);
+    transition: all 0.5s ease;
+}
+
+.nav--global .fa {
+    font-size: 3.3em;
+}
+/*Share li/a space with img*/
+.nav--global li span {
+    height: 20%;
+    display: block;
+}
+
+/*Change color on hover (svg and span of item)*/
+.nav--global a:hover .nav--global_svg {
+    fill: rgba(255,255,255,0.5);
+    transition: all 0.5s ease;
+}
+
+
+//
+// NAV LOCAL
+//
+.nav--local {
+    background: rgba(255,255,255,1);
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: -15px;
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 0px 2px rgba(0,0,0,0.23);
+}
+
+.nav--local ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.nav--local .fa--itemtype {
+    padding: 0px 7px 0px 0px;
+}
+.nav--local li {
+    width: 100%;
+}
+
+.nav--local li ul li a {
+    padding-left: 40px;
+}
+
+.nav--local .fa--toggle {
+    float: right;
+}
+
+.nav--local a {
+    cursor: pointer;
+    font-weight: 600;
+    width: 100%;
+    display: inline-block;
+    padding: 13px 20px;
+    color: rgba(62,71,79,1);
+    border-left: 3px solid rgba(255, 255,255, 1);
+}
+
+.nav--local a:hover {
+    background: rgba(44, 201, 144, 0.5);
+    border-left: 3px solid rgba(44, 201, 144, 1);
+    color: rgba(255,255,255,1);
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+
+.nav--local li.active a {
+    color: rgba(255,255,255,1);
+    background: rgba(44, 201, 144, 1);
+    border-left: 3px solid rgba(36, 163, 116, 1); /*rgba(27, 105, 84, 1);*/
+}
+
+.nav--local_notification:after {
+    content: "2";
+    display: inline-block;
+    text-align: center;
+    width: 25px;
+    height: 20px;
+    margin: 0px 10px;
+    color: #fff;
+    background: #ff4081;
+    border-radius: 20%;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    
+    .nav--global { /*nav*/
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 80px;
+        height: 100%;
+    }
+
+    .nav--global li {
+        width: 100%;
+        padding: 5px;
+        margin: 5px 0px;
+        height: 80px;
+        text-align: center;
+        display: block;
+    }
+
+    .nav--global a {
+        font-size: 11px;
+    }
+
+    .nav--global_logotype {
+        display: block;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+    }
+}

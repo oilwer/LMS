@@ -1,9 +1,32 @@
 // alter bootstrap column #
 @grid-columns: 24;
 
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
 
+body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    background-color: rgba(235,235,236,0.2);
+}
 
-.app_container { /*remove space hidden by nav*/
+//fix for padding with nav--local
+.body--paddingtop {
+    padding-top: 50px;
+}
+
+.heightfull {
+    min-height: 100%;
+    min-height: 100vh;
+}
+
+//remove space hidden by nav
+.app_container { 
     padding-left: 0px;
     overflow: hidden;
     margin-bottom: 80px;
@@ -11,4 +34,28 @@
 
 .app_container--padding {
     padding-top: 50px;
+}
+
+.development_nav {
+    position: fixed;
+    z-index:99;
+    bottom:0px;
+    right: 0px;
+    display: none;
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+    
+    .app_container { /*remove space hidden by nav*/
+        padding-left: 80px;
+        margin-bottom: 0px;
+    }
+}
+
+/*List of students with background*/
+.studlist-container {
+    
+    background-color: rgba(0,0,0,0.2);
+    padding: 0px;
 }

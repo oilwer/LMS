@@ -1,14 +1,17 @@
 app.directive('dashboardActivities', [
-  "settings",
+    "settings",
+    "$location",
+    "$window",
   function(
-    settings
+    settings,
+    $location,
+    $window
   ) {
 
     return {
       templateUrl: settings.widgets + 'dashboard/activities.html',
       link: function(scope, element, attrs) {
         
-      scope.name = "test activity";
           
       }
     };

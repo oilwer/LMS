@@ -1,0 +1,43 @@
+<div class="app-container">
+    <div class="row">
+        <ul class="col-md-12 col-md-offset-6 nav nav-tabs">
+            <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex()}">
+              <a href="javascript:void(0)" ng-click="goToStep($index)">{{step}}</a>
+            </li>
+          </ul>
+        <div ng-switch on="selection">
+        <div class="stepOne col-md-12 col-md-offset-6" ng-switch-when="Step 1: Create or copy">
+            <fieldset>
+                <input type="radio" name="courseType" value="CreateNew"> Create new course
+                <input type="radio" name="courseType" value="CopyCourse"> Copy Course
+            </fieldset>
+        </div>
+        <div class="stepTwo col-md-12 col-md-offset-6" ng-switch-when="Step 2: Course details">
+            <fieldset>
+                <label for="courseName">Course name</label>
+                <input type="text" name="courseName" class="form-control" ng-model="course.name" required="true">
+                <label for="courseCode">Course code</label>
+                <input type="text" name="courseCode" class="form-control" ng-model="course.code" required="true">
+                <label for="courseDescription">Course description</label>
+                <input type="text" class="form-control" ng-model="course.description" required="true">
+                <label for="courseStart">Course start</label>
+                <input type="date" name="courseStart" class="form-control" ng-model="course.start" required="true">
+                <label for="courseEnd">Course end</label>
+                <input type="date" class="form-control" ng-model="course.end" required="true">
+            </fieldset>
+        </div>
+        <div class="stepTree col-md-12 col-md-offset-6" ng-switch-when="Step 3: Preview">
+        3
+        </div>
+        </div>
+    
+        <ul class="pager pull-left">
+            <li class="">
+                <a href="" ng-click="decrementStep()">&larr; Previous</a>
+            </li>
+            <li class="">
+                <a href="" ng-click="incrementStep()">Next &rarr;</a>
+            </li>
+        </ul>
+    </div><!--.row-->
+</div><!--.app-container-->
