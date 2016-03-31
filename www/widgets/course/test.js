@@ -4,17 +4,20 @@ app.directive('courseTest', [
   "SessionService",
   "Course",
   "User",
+  "$routeParams",
   function(
     settings,
     $location,
     SessionService,
     Course,
-    User
+    User,
+    $routeParams
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
+
 
         var session_user;
         SessionService.getSession().success(function(response){
@@ -65,6 +68,22 @@ app.directive('courseTest', [
         //     //display changes in view (notifications)
         //     //Progress
         // };
+	
+        console.log($routeParams.id);
+        Course.get({ name: $routeParams.id }, function(res){
+          console.log(res[0]);
+          scope.course = res[0];
+        });
+
+      //placeholder for all the users courses, get from db
+     /* $scope.course = {
+          name: "Web development",
+          assignment: "Assignment 1",
+          status: "active",
+          url: "testcourse"
+        }; */
+          
+       
       }
     };
   }

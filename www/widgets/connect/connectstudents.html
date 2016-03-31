@@ -10,12 +10,12 @@
        <!-- SEARCH -->
        <div class="whole_container_search">   
          <form id="newsearch" method="get">
-           <input type="text" id="hej" placeholder="Search">
+           <input type="text" id="hej" ng-model="searchStudents" placeholder="Search">
          </form>  
        </div>
         <!-- LIST -->
        <div class="whole_container_list_view">
-        <connect-individual ng-repeat="user in users"></connect-individual>         
+        <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>         
        </div>  <!-- END LIST -->   
      </div>  
    </div>  
