@@ -13,11 +13,9 @@
                 
                     <div class="col-md-10 studlist">
                 <div class="col-md-24 searchdiv">
-                    <select class="form-control">
-                      <option value="program 1">Program 1</option>
-                      <option value="program 2">Program 2</option>
-                      <option value="program 3">Program 3</option>
-                      <option value="program 4">Program 4</option>
+                    <select ng-change="selectCourseChanged(id)" ng-model="courseSelect.repeatSelect" name="repeatSelect" class="form-control">
+	                      <option value=""> --- Course list ---</option>
+                      <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> {{ option.name }}</option>
                     </select>
                 </div>
                         
