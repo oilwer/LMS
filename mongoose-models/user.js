@@ -14,7 +14,7 @@ module.exports = function(mongoose){
     password: String,
     public_url: String,
     courses: [{
-        course_name: String
+       type: mongoose.Schema.Types.ObjectId, ref: 'Course' 
     }],
     plugs:[{
        id: String,

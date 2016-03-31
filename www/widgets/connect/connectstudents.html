@@ -1,75 +1,23 @@
-<div class="app_container">
-    
-    <div class="row">
-        <div class="container ng-scope">
-            
-           <div class="whole_container">
-            
-               <div class="whole_container_header">
-               <h1>Participants</h1>
-               <i class="fa fa-user"></i>
-               </div>
-               
-               
-               <div class="whole_container_search">
-                   
-               <form id="newsearch" method="get">
-                   <input type="text" id="hej" placeholder="Search">
-                   
-                   </form>
-                
-                     
-               </div>
-               
-               
-               <div class="whole_container_list_view">
-                   
-                    <div class="whole_container_individual">
-                        <div class="whole_container_individual_label_IA">
-                            <h5>IA</h5>
-                        </div>
-                        <img src="https://birthnavigators.files.wordpress.com/2011/10/swedish-man.jpg" class="img-responsive"/>
-                        <h3>Jesper Larsson</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p></div>
-                        <div class="whole_container_individual">
-                            <div class="whole_container_individual_label_SU">
-                            <h5>SU</h5>
-                            </div>
-                        <img src="http://www.beyondblackwhite.com/wp-content/uploads/2015/02/iStock_000050131992_Medium-684x500.jpg" class="img-responsive"/>
-                            <h3>Adi Dulah</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p></div>
-                   <div class="whole_container_individual">
-                       <div class="whole_container_individual_label_IA"><h5>IA</h5>
-                       </div>
-                        <h3>Jesper Larsson</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p></div>
-                   <div class="whole_container_individual">
-                       <div class="whole_container_individual_label_IA"><h5>IA</h5>
-                       </div>
-                        <h3>Jesper Larsson</h3>
-                        <p>
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. </p></div>
-                        <div class="individual_label">
-                        
-                        </div>
-                    </div>
-                   
-               </div>
-               
-               
-               
-            </div>
-            
-            
-                     
-            
-            
-        </div>
-    
-    
-    
-    </div>
+<div class="app_container">  
+ <div class="row">
+   <div class="container ng-scope"> 
+     <div class="whole_container">
+       <!-- HEADER -->
+       <div class="whole_container_header">
+         <h1>Participants</h1>
+         <i class="fa fa-user"></i>
+       </div>
+       <!-- SEARCH -->
+       <div class="whole_container_search">   
+         <form id="newsearch" method="get">
+           <input type="text" id="hej" placeholder="Search">
+         </form>  
+       </div>
+        <!-- LIST -->
+       <div class="whole_container_list_view">
+        <connect-individual ng-repeat="user in users"></connect-individual>         
+       </div>  <!-- END LIST -->   
+     </div>  
+   </div>  
+ </div>
 </div>

@@ -13,10 +13,7 @@ app.config([
       .when("/admin/", {
         templateUrl: "templates/admin.html",
       })
-    .when("/connectstudents/", {
-        templateUrl: "templates/connectstudents.html",
-      })
-    .when("/participants/", {
+      .when("/participants/:url", {
         templateUrl: "templates/connectstudents.html",
     })
     .when("/studentsaddremove/", {
