@@ -13,8 +13,8 @@ module.exports = function(mongoose){
     phone_number: String,
     password: String,
     public_url: String,
-    courses: [{
-        course_name: String
+    courses: [{ 
+        type: mongoose.Schema.Types.ObjectId, ref: 'Course' 
     }],
     plugs:[{
        id: String,
