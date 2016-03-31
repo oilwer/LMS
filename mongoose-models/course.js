@@ -2,11 +2,8 @@ module.exports = function(mongoose){
 
   
  // Defines the Course Schema (How the DB is structured)
-var CourseSchema = new mongoose.Schema({
-    name: String,
-    description: String,
-    start: String,
-    end: String,
+var CourseSchema = new mongoose.Schema({    
+    code: String,
     status: Boolean,
     url: String,
     teacher: String,
@@ -27,6 +24,7 @@ var CourseSchema = new mongoose.Schema({
         creator: String,
         date: String
     }]
+    creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
   // Return the model

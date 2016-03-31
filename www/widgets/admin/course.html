@@ -2,19 +2,20 @@
 <table class="table">
     <thead>
     <tr>
-        <th>name</th> <th>start</th>  <th>end</th> <th>status</th> <th>url</th>  <th>teacher</th> <th>description</th> 
+        <th>code</th><th>status</th> <th>creator</th> 
     </tr>  
     </thead>
     <tbody>
         <tr>
-            <td><input class="form-control" ng-model="course.name" required="true"></td>
+            <td><input class="form-control" ng-model="course.code" required="true"></td>
+            <!-- <td><input class="form-control" ng-model="course.status" required="true"></td>
+            <td><input class="form-control" ng-model="course.creator" required="true"></td>
             <td><input class="form-control" ng-model="course.start" required="true"></td>
             <td><input class="form-control" ng-model="course.end" required="true"></td>
-            <td><input class="form-control" ng-model="course.status" required="true"></td>
             <td><input class="form-control" ng-model="course.url" required="true"></td>
             <td><input class="form-control" ng-model="course.teacher" required="true"></td>
             <td><input class="form-control" ng-model="course.description" required="true"></td>
-                     
+             -->        
 
 
             <td> <button class="btn btn-primary" ng-click="addOrUpdateCourse()">{{btnAddOrUpdateTextCourse}}</button></td>
@@ -25,14 +26,16 @@
         </tr>
     
        <tr ng-repeat="course in courselist | orderBy:'-_id'">
-            <td>{{course.name}}</td>
+            <td>{{course.code}}</td>
+            <td>{{course.status}}</td>
+            <td>{{course.creator}}</td>
+            <!--
             <td>{{course.start}}</td>
             <td>{{course.end}}</td>
-            <td>{{course.status}}</td>
             <td>{{course.url}}</td>
             <td>{{course.teacher}}</td>
             <td>{{course.description}}</td>
-   
+            -->
            <td><button class="btn btn-warning" ng-click="prepareEditCourse(course._id)">Edit</button></td>
            <td><button class="btn btn-danger" ng-click="removeCourse(course)">Remove</button></td>
        </tr>
