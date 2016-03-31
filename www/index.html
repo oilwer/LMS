@@ -33,7 +33,6 @@
     <!-- directives (widgets) -->
     <script src="widgets/modelanything/modelanythingstart.js"></script>
     <script src="widgets/modelanything/dynamic.js"></script>
-    <script src="widgets/modelanything/plugins/plug.js"></script>
     <script src="widgets/modelanything/plugins/testplug.js"></script>
     <script src="widgets/admin/user.js"></script>
     <script src="widgets/admin/course.js"></script>
@@ -48,6 +47,8 @@
     <script src="widgets/course/list.js"></script>
     <script src="widgets/dashboard/activities.js"></script>
     <script src="widgets/dashboard/mycourses.js"></script>
+    <script src="widgets/login/checklogin.js"></script>
+    <script src="widgets/connect/individual.js"></script>
 
 
     <!-- all CSS -->
@@ -57,6 +58,9 @@
     
   </head>
   <body ng-app="mongr">
+	  
+	  <!-- redirects users depending on their logged-in-status -->
+	  <login-checklogin/>
    
     <header-nav></header-nav>
     <!-- app view area -->

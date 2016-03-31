@@ -52,7 +52,7 @@ app.service('SessionService', function($http) {
 		//get session if user is logged in
 		getSession : function() {
 			return $http.get("/api/session").success(function(response) {
-				//console.log(response);
+				// console.log(response);
 			});
 		}
 	}
