@@ -26,9 +26,9 @@ app.directive('modelanythingModelanythingstart', [
         var loadPlugs = function(user) {
 
   			  scope.html = "";
-  			  console.log(user);
+  			  // console.log(user);
   			  
-          console.log(user.plugs.length);
+         // console.log(user.plugs.length);
 
   			  for(var i = 0; i < user.plugs.length; i++) {
   				  if(user.plugs[i].isActive == true){

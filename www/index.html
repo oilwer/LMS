@@ -47,6 +47,7 @@
     <script src="widgets/course/list.js"></script>
     <script src="widgets/dashboard/activities.js"></script>
     <script src="widgets/dashboard/mycourses.js"></script>
+    <script src="widgets/login/checklogin.js"></script>
 
 
     <!-- all CSS -->
@@ -56,6 +57,9 @@
     
   </head>
   <body ng-app="mongr">
+	  
+	  <!-- redirects users depending on their logged-in-status -->
+	  <login-checklogin/>
    
     <header-nav></header-nav>
     <!-- app view area -->

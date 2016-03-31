@@ -18,10 +18,13 @@ app.directive('loginChecklogin', [
 	  	SessionService.getSession().success(function(response){
 
           var user = response.user;
-          console.log(user);
+          if(user == undefined)
+          {
+	          $window.location.href = '/login';
+          }
         });
 		
-			// $window.location.href = '/forgotPassword';
+			
 		
 		
 
