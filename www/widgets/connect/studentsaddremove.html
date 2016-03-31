@@ -20,32 +20,34 @@
                       <option value="program 4">Program 4</option>
                     </select>
                 </div>
-                        <button type="button" class="btn btn-success button_student_list_markall">MARK ALL</button>
-                        <div ng-init="index=0; classes=['example_student_left', 'example_student_active_left']" ng-click="index = index + 1" ng-class="classes[index % classes.length]" ng-repeat="student in students"  class="col-md-23">
-                           
-                        <p>Example {{ student.name }}
                         
-                        <i class="fa fa-minus minus"></i>
-                            <i class="fa fa-plus plus"  ></i>
+                        <button type="button" class="btn btn-success button_student_list_markall">MARK ALL</button>
+                        
+                        <div ng-init="index=0; classes=['example_student_left', 'example_student_active_left']" ng-click="stageMeToCourse($index)" ng-class="classes[index % classes.length]" ng-repeat="student in students"  class="col-md-23">
+                           
+                        <p>email: {{ student.email }}</p>
+                        <p>Name: {{ student.first_name }} {{ student.last_name }}</p>
+                        
                             
                         
                          </p>
                         </div>
                     </div>
+                    
                     <div class="col-md-10 studlist1">
                     
-                        <div ng-init="index=0; classes=['example_student_right', 'example_student_active_right']" ng-click="index = index + 1" ng-class="classes[index % classes.length]" class="col-md-23 studlist_card">
+                        <div ng-init="index=0; classes=['example_student_right', 'example_student_active_right']" ng-click="unstageMeToCourse($index)" ng-class="classes[index % classes.length]" ng-repeat="student in studentsToBeAdded" class="col-md-23 studlist_card">
                            
-                        <p>Example {{ students.name }}
-                        <i class="fa fa-minus minus"></i>
-                    
+                        <p>email: {{ student.email }}</p>
+                        <p>Name: {{ student.first_name }} {{ student.last_name }}</p>
+                            
                         
                          </p>
-                        </div>
+                    </div>
                         
                     </div>
-                    <button type="button" ng-click="addUsers()" class="btn btn-success button_student_list_send">ADD USERS</button>
-                <!-- SEND TO PARTICIPANTS-->
+                    <button type="button" ng-click="addUsers()" class="btn btn-success button_student_list_send">SAVE USERS</button>
+           
                 
                 </div>
              </div> 
