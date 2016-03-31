@@ -7,37 +7,89 @@
           </ul>
         <div ng-switch on="selection">
         <div class="stepOne col-md-12 col-md-offset-6" ng-switch-when="Step 1: Create or copy">
-            <fieldset>
-                <input type="radio" name="courseType" value="CreateNew"> Create new course
-                <input type="radio" name="courseType" value="CopyCourse"> Copy Course
-            </fieldset>
-        </div>
-        <div class="stepTwo col-md-12 col-md-offset-6" ng-switch-when="Step 2: Course details">
-            <fieldset>
-                <label for="courseName">Course name</label>
-                <input type="text" name="courseName" class="form-control" ng-model="course.name" required="true">
-                <label for="courseCode">Course code</label>
-                <input type="text" name="courseCode" class="form-control" ng-model="course.code" required="true">
-                <label for="courseDescription">Course description</label>
-                <input type="text" class="form-control" ng-model="course.description" required="true">
-                <label for="courseStart">Course start</label>
-                <input type="date" name="courseStart" class="form-control" ng-model="course.start" required="true">
-                <label for="courseEnd">Course end</label>
-                <input type="date" class="form-control" ng-model="course.end" required="true">
-            </fieldset>
+            <form name="courseType">
+                <div class="checkbox">
+                    <label ng-click="incrementStep()"><input type="radio" name="create" value="new" ng-model="$parent.copy" ng-value="false">Create new course</label>
+                </div>
+                <div class="checkbox">
+                    <label><input type="radio" name="create" value="copy" ng-model="$parent.copy" ng-value="true">Copy Course</label>
+                </div>
+            </form>
+            <ul class="pager">
+                <li class="">
+                    <button>Close</button>
+                </li>
+            </ul>
+        </div> <!--StepOne-->
+            <div class="stepTwo col-md-12 col-md-offset-6" ng-switch-when="Step 2: Course details">
+                <form name="courseDetails">
+                    <label for="courseName">Course name</label>
+                        <input type="text" name="courseName" class="form-control" ng-model="$parent.name" required="true">
+                        <span 
+                        class="error" 
+                        ng-show="courseDetails.courseName.$touched && courseDetails.courseName.$invalid"
+                        class="formError">
+                        <p>required!</p>
+                        </span>
+                    <label for="courseCode">Course code</label>
+                        <input type="text" name="courseCode" class="form-control" ng-model="$parent.code" required="true">
+                        <span 
+                        class="error" 
+                        ng-show="courseDetails.courseCode.$touched && courseDetails.courseCode.$invalid"
+                        class="formError">
+                        <p>required!</p>
+                        </span>
+                    <label for="courseDescription">Course description</label>
+                        <input type="text" name="courseDescription" class="form-control" ng-model="$parent.description" required="true">
+                        <span 
+                        class="error" 
+                        ng-show="courseDetails.courseDescription.$touched && courseDetails.courseDescription.$invalid"
+                        class="formError">
+                        <p>required!</p>
+                        </span>
+                    <label for="courseStart">Course start</label>
+                        <input type="date" name="courseStart" class="form-control" ng-model="$parent.start" required="true">
+                        <span 
+                        class="error" 
+                        ng-show="courseDetails.courseStart.$touched && courseDetails.courseStart.$invalid"
+                        class="formError">
+                        <p>required!</p>
+                        </span>
+                    <label for="courseEnd">Course end</label>
+                        <input type="date" name="courseEnd" class="form-control" ng-model="$parent.end" required="true">
+                        <span 
+                        class="error" 
+                        ng-show="courseDetails.courseEnd.$touched && courseDetails.courseEnd.$invalid"
+                        class="formError">
+                        <p>required!</p>
+                        </span>
+                </form>
+                <ul class="pager">
+                    <li class="">
+                        <a href="" ng-click="decrementStep()">&larr; Previous</a>
+                    </li>
+                    <li class="">
+                        <a href="" ng-click="courseDetails.$valid && incrementStep()">Create course &rarr;</a>
+                    </li>
+                </ul>
         </div>
         <div class="stepTree col-md-12 col-md-offset-6" ng-switch-when="Step 3: Preview">
-        3
+            <p>Name: {{name}}</p>
+            <p>Course code: {{code}}</p>
+            <p>Description: {{description}}</p>
+            <p>Period: {{start}} - {{end}}</p>
+            
+            <p>Kopia: {{copy}}</p>
+            <p>User: {{session_user}}</p>
+            <p>ID: {{id}}</p>
+            <button class="btn">Preview course</button>
+            <button class="btn">Back to dashboard</button>
+            <ul class="pager">
+                <li class="">
+                    <a href="" ng-click="decrementStep()">&larr; Edit details</a>
+                </li>
+            </ul>
         </div>
         </div>
-    
-        <ul class="pager pull-left">
-            <li class="">
-                <a href="" ng-click="decrementStep()">&larr; Previous</a>
-            </li>
-            <li class="">
-                <a href="" ng-click="incrementStep()">Next &rarr;</a>
-            </li>
-        </ul>
     </div><!--.row-->
 </div><!--.app-container-->
