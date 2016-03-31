@@ -41,9 +41,6 @@ app.directive('adminUser', [
                       phone_number: user.phone_number,
                       password: user.password,
                       public_url: user.public_url,
-                        courses: {
-                          course_name: user.course_name
-                      },
                       dashboard_config:[{
                           plug:{
                               id: user.id,
@@ -56,6 +53,7 @@ app.directive('adminUser', [
                       }],
                       role: user.role //student/admin/teacher
                   });
+
                     // Pushes (updates) the GUI with the new user
                   $scope.userlist.push(user);
                   $scope.user = "";
