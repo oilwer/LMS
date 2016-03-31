@@ -13,7 +13,7 @@
                 
                     <div class="col-md-10 studlist">
                 <div class="col-md-24 searchdiv">
-                    <select ng-change="selectCourseChanged(id)" ng-model="courseSelect.repeatSelect" name="repeatSelect" class="form-control">
+                    <select id="selectCourse" ng-change="selectCourseChanged(id)" ng-model="courseSelect.repeatSelect" name="repeatSelect" class="form-control">
 	                      <option value=""> --- Course list ---</option>
                       <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> {{ option.name }}</option>
                     </select>

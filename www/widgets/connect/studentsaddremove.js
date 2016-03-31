@@ -54,7 +54,7 @@ app.directive('connectStudentsaddremove', [
 		
 						  	for (var x = 0; x < user[i].courses.length; x++)
 						  	{
-								if(user[i].courses[x].name == "epiccourse")
+								if(user[i].courses[x].name === courseName)
 								{
 							  		console.log("Dont add", user[i].email);
 							  		// scope.students.push(user[i]);
@@ -85,7 +85,7 @@ app.directive('connectStudentsaddremove', [
 		
 		*/
 					
-				Course.get({name: "epiccourse", _populate:"students"},function(course){
+				Course.get({name: courseName, _populate:"students"},function(course){
 					console.log(course[0].students);
 					scope.studentsToBeAdded = "";
 				  	scope.studentsToBeAdded = course[0].students;
@@ -101,7 +101,7 @@ app.directive('connectStudentsaddremove', [
 		    
 			scope.studentsToBeAdded.push(scope.students[index]);
 		    
-		    Course.get({name: "epiccourse"},function(course){
+		    Course.get({name: courseName},function(course){
 			               
 							 	
 							 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
@@ -134,10 +134,10 @@ app.directive('connectStudentsaddremove', [
 	   
 		// Remove user from course
     	
-    	Course.get({name: "epiccourse"}, function(course){
+    	Course.get({name: courseName}, function(course){
 	    
 	    	Course.update(
-        	{name: "epiccourse"},
+        	{name: courseName},
         	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
 	        	
 	        	console.log(res);
