@@ -25,7 +25,7 @@
                         
                         <div ng-init="index=0; classes=['example_student_left', 'example_student_active_left']" ng-click="stageMeToCourse($index)" ng-class="classes[index % classes.length]" ng-repeat="student in students"  class="col-md-23">
                            
-                        <p>email: {{ student.email }}</p>
+                        <p>id: {{ student._id }}</p>
                         <p>Name: {{ student.first_name }} {{ student.last_name }}</p>
                         
                             
@@ -38,7 +38,7 @@
                     
                         <div ng-init="index=0; classes=['example_student_right', 'example_student_active_right']" ng-click="unstageMeToCourse($index)" ng-class="classes[index % classes.length]" ng-repeat="student in studentsToBeAdded" class="col-md-23 studlist_card">
                            
-                        <p>email: {{ student.email }}</p>
+                        <p>id: {{ student._id }}</p>
                         <p>Name: {{ student.first_name }} {{ student.last_name }}</p>
                             
                         

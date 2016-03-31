@@ -11,17 +11,56 @@ app.directive('connectStudentsaddremove', [
     return {
       templateUrl: settings.widgets + 'connect/studentsaddremove.html',
       link: function(scope, element, attrs) {
-          
-	  		
 	      
-	      
-	    User.get({},function(users){
+	   scope.students = [];
+
+	  	User.get({_populate:"courses"},function(user)
+	  	{
+		  	for(var i = 0; i < user.length; i++)
+		  	{
+			  	
+			  	
+			  	if(user[i].courses.length > 0)
+			  	{
+				  	
+				  	console.log(user[i]);
+				  	
+				  	for (var x = 0; x < user[i].courses.length; x++)
+				  	{
+						if(user[i].courses[x].name == "epiccourse")
+						{
+					  		console.log("Dont add", user[i].email);
+					  		// scope.students.push(user[i]);
+				  		}
+				  		else
+				  		{
+					  		console.log("Add", user[i].email);
+					  		scope.students.push(user[i]);
+				  		}
+				  	}
+			  	}
+			  	
+			  	else
+			  	{
+		  
+			  		console.log("Add", user[i].email);
+			  		scope.students.push(user[i]);
+		  	
+			  	}
+		  	}
+	  	});
+	  	
+	  	/*
+	    User.get({courses: {name: "epiccourse"}, _populate:"courses"},function(users){
+		    scope.students = "";
 		  	scope.students = users;
 		});
 		
+		*/
 			
 		Course.get({name: "epiccourse", _populate:"students"},function(course){
 			console.log(course[0].students);
+			scope.studentsToBeAdded = "";
 		  	scope.studentsToBeAdded = course[0].students;
 		});
 	                
@@ -31,22 +70,22 @@ app.directive('connectStudentsaddremove', [
           // Add Item to Checked List and delete from Unchecked List
     scope.stageMeToCourse = function (index) {
 	    
-	    alert(index);
-	    
-	  //  scope.studentsToBeAdded.push(scope.students[index]);
+		scope.studentsToBeAdded.push(scope.students[index]);
 	    
 	    Course.get({name: "epiccourse"},function(course){
-	              			            
+		               
 						 	
 						 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
 						 		console.log(res);
 						 		console.log("updated");
 						 		
-						 		User.update({_relate:{items:scope.studentsToBeAdded[index],courses:course[0]}},
-						 		function(newres)
-						 		{
+						 		// console.log(scope.studentsToBeAdded);
+						 		
+						 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 							 		console.log(newres);
+							 		scope.students.splice(index, 1);
 							 	});
+							 	
 
 						 	});
 		             
@@ -54,26 +93,47 @@ app.directive('connectStudentsaddremove', [
 
 	    
         
-        scope.students.splice(index, 1);
+       
     };
     
               // Add Item to Checked List and delete from Unchecked List
     scope.unstageMeToCourse = function (index) {
 	    
-	    console.log(index);
+	    // console.log(index);
 	    
-	     scope.students.push(scope.studentsToBeAdded[index]);
-	    	    
-    	Course.update(
+	    // scope.students.push(scope.studentsToBeAdded[index]);
+	   
+		// Remove user from course
+    	
+    	Course.get({name: "epiccourse"}, function(course){
+	    
+	    	Course.update(
         	{name: "epiccourse"},
-        	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res)
-        	{
+        	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
+	        	
 	        	console.log(res);
-        	}
-    	);
+	        	
+	        	
+	        	User.update(
+					{_id: scope.studentsToBeAdded[index]._id},
+					{ $pull: { 'courses': course[0]._id}}, function(rnes){
+						
+						scope.students.push(scope.studentsToBeAdded[index]);
+						scope.studentsToBeAdded.splice(index, 1);
+						console.log(rnes);
+					}
+				);
+				
+        	
+				}
+			);
+	    	
+    	});
+    	
+    	
 	    
         
-        scope.studentsToBeAdded.splice(index, 1);
+        
     	};
     
 		    	
