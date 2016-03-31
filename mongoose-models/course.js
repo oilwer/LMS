@@ -5,28 +5,30 @@ module.exports = function(mongoose){
 var CourseSchema = new mongoose.Schema({    
     code: String,
     status: Boolean,
-    creator: mongoose.Schema.Types.ObjectId,
-    //name: String,
+    creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+    // name: String,
     // description: String,
     // start: String,
     // end: String,    
-    // url: String,    
-    // teacher: String,
-    // assignments: [{
-    //     assignment_name: String,
-    //     assignment_deadline: String
+    // url: String,  
+    // teachers: [{
+    //   type: mongoose.Schema.Types.ObjectId, ref: 'User'
     // }],
     // students: [{
-    //     student_name: String
-    // }],
+    //   type: mongoose.Schema.Types.ObjectId, ref: 'User'
+    // }],  
+    // assignments: [{
+    //     assignment_id:  mongoose.Schema.Types.ObjectId,
+    //     assignment_deadline: String
+    // }], 
     // resources: [{
-    //     resource_name: String,
-    //     resource_creator: String
+    //     resource_id:  mongoose.Schema.Types.ObjectId,
+    //     resource_creator:  mongoose.Schema.Types.ObjectId
     // }],
     // messages: [{
     //     title: String,
     //     content: String,
-    //     creator: String,
+    //     creator:  mongoose.Schema.Types.ObjectId,
     //     date: String
     // }]
 });

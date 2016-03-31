@@ -13,9 +13,7 @@ module.exports = function(mongoose){
     phone_number: String,
     password: String,
     public_url: String,
-    courses: [{ 
-        type: mongoose.Schema.Types.ObjectId, ref: 'Course' 
-    }],
+    courses:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
     plugs:[{
        id: String,
        name: String,

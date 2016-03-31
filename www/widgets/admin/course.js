@@ -2,10 +2,12 @@ app.directive('adminCourse', [
   "settings",
   "Course",
   "SessionService",
+  "User",
   function(
     settings,
     Course  ,
-    SessionService) {
+    SessionService,
+    User) {
 
     return {
       templateUrl: settings.widgets + 'admin/course.html',
@@ -31,14 +33,28 @@ app.directive('adminCourse', [
         var createCourse = function(){
           //$scope.course = ""; //för att course inte ska vara undefined
           var course = $scope.course;
-            Course.create({
+          var c = Course.create([
+            {
               status: false,
-              code: course.code,
-              creator: session_user._id
-            });
+              code: course.code
+            }
+          ]);
+          Course.onQueueDone(console.log(c));
+          
+
+          User.update({_relate:{items:session_user,courses:c}}); //no
+          Course.update({_relate:{items:c,creator:session_user}}); //works
+
+            // User.update({
+            //   _id : session_user._id
+            // },{
+            //   courses : [{
+            //     createdByMe : true
+            //   }]
+            // })
             
             $scope.courselist.push($scope.course); 
-                 refresh();
+          //  refresh();
             $scope.course = "";
             course = null;
         };
@@ -52,6 +68,7 @@ app.directive('adminCourse', [
               },{
                 status: true,
                 code: course.code
+                //all fields to update
             });
             // Refresh GUI
             refresh();
@@ -68,6 +85,24 @@ app.directive('adminCourse', [
             updateCourse();
           }
         }
+
+         //Gui function remove course
+        $scope.removeCourse = function(targetcourse){
+          $scope.course = "";
+          $scope.btnAddOrUpdateTextCourse = 'Add course';
+        
+          // removes course with a surtain id
+          Course.remove({_id: targetcourse._id});
+          refresh();
+        };
+
+        //Gui function fetch selected course data for editing
+        $scope.prepareEditCourse = function (id){
+            isEditingCourse = true;
+            $scope.btnAddOrUpdateTextCourse = 'Update';
+            //get info from db to put in the form boxes
+            $scope.course = Course.getById(id);
+        };
 
         // $scope.addOrUpdateCourse = function() {
 
@@ -150,28 +185,7 @@ app.directive('adminCourse', [
         //         $scope.course = "";
         //         isEditingCourse = false;
         //       }
-        //   };
-
-          //Gui function remove course
-          $scope.removeCourse = function(targetcourse){
-            //console.log("Removed: ", targetcourse);
-            $scope.course = "";
-            $scope.btnAddOrUpdateTextCourse = 'Add course';
-          
-            // removes course with a surtain id
-            Course.remove({_id: targetcourse._id});
-            refresh();
-          };
-
-          //Gui function fetch selected course data for editing
-          $scope.prepareEditCourse = function (id){
-              isEditingCourse = true;
-              $scope.btnAddOrUpdateTextCourse = 'Update';
-              //get info from db to put in the form boxes
-              $scope.course = Course.getById(id);
-          };
-      
-
+        //   };     
       }
     };
   }
