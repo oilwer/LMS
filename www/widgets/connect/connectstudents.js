@@ -11,9 +11,10 @@ app.directive('connectConnectstudents', [
       link: function(scope, element, attrs) {
 	  		
 	      console.log("Page loaded :)");
+          
+
 
       }
     };
   }
 ]);
-
