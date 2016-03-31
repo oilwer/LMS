@@ -7313,3 +7313,69 @@ button.close {
   font-weight: bold;
   color: red;
 }
+dashboard-courses table {
+  position: relative;
+  border-collapse: separate;
+  border-spacing: 0 2px;
+}
+dashboard-courses thead td {
+  font-size: .65em;
+}
+dashboard-courses thead td:first-child {
+  padding-left: 2%!important;
+  text-align: left;
+  width: 72%;
+}
+dashboard-courses thead td {
+  width: 7%;
+  text-align: center;
+}
+dashboard-courses tbody {
+  position: relative;
+}
+dashboard-courses tbody td:first-child {
+  padding: 2.2% 0 0% 2%;
+  text-align: left;
+  width: 72%;
+}
+dashboard-courses tbody td {
+  position: relative;
+  background-color: #ddd;
+  padding: 2% 0 2% 2%;
+  margin-bottom: 5%;
+  width: 7%;
+  text-align: center;
+}
+dashboard-courses tbody .fa-exclamation {
+  border-right: none !important;
+  color: red;
+  margin-right: 2.5% !important;
+  font-size: 1.35em !important;
+  float: left;
+  padding: 1px 0px 0px 0px !important;
+}
+dashboard-courses tbody tr > td > .fa {
+  font-size: 1.2em;
+  position: relative;
+  text-align: center;
+  border-right: 1px solid darkgrey;
+  padding: 0px 18px 0px 8px;
+}
+dashboard-courses tbody tr > td > .fa-book {
+  border: none;
+}
+dashboard-courses .assignClass {
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 25px;
+  width: auto;
+  height: auto;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-radius: 50%!important;
+  color: white;
+  font-size: .5em;
+  padding: 3px 2px 2px 2px;
+}

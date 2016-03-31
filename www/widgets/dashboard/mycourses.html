@@ -1,3 +1,71 @@
 <div class="box">
-    <p>{{ test }}</p>
+    
+    <div class="box__header">
+        <h2>My courses</h2>
+    </div>
+    
+    
+    
+    <div class="box__content">
+        
+        <table>
+            <thead>
+                <td>Course name</td>
+                <td>Wall</td>
+                <td>Assignm.</td>
+                <td>FAQ</td>
+                <td>Resources</td>
+            </thead>
+        
+            <!--repeat all courses that the user belongs to -->
+            
+            <tbody ng-repeat="course in courses">
+                <tr ng-if="course.status == 'active'">
+                    <td>
+                        <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
+                        <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                            <p>{{course.name}}</p>
+                        </a> 
+                    </td>
+                    <td><i class="fa fa-thumb-tack">
+                            <span ng-if=""></span>
+                        </i>
+                    </td>
+                    <td>
+                        <i class="fa fa-file-text-o"></i>
+                            <span ng-class="class" ng-if="course.assignments > 0">+{{ course.assignments }}</span>
+                        </i>
+                    </td>
+                    <td>
+                        <i class="fa fa-question-circle"></i>
+                            <span  ng-if=""></span>
+                        </i>
+                    </td>
+                    <td>
+                        <i class="fa fa-book">
+                            <span ng-class="class" ng-if=""></span>
+                        </i>
+                    </td>
+                </tr>
+                <tr ng-if="course.status == 'inactive'">
+                    <td>
+                        <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                            <p>{{course.name}}</p>
+                        </a>
+                    </td>
+                    <td><i class="fa fa-thumb-tack"><span ng-if=""></span></i></td>
+                    <td><i class="fa fa-file-text-o"></i><span ng-class="class" ng-if="course.assignments > 0">+{{ course.assignments }}</span></i></td>
+                    <td><i class="fa fa-question-circle"></i><span  ng-if=""></span></i></td>
+                    <td><i class="fa fa-book"><span ng-class="class" ng-if=""></span></i></td>
+                </tr>
+            </tbody>
+
+
+
+        </table>
+        
+    
+    
+    
+    </div>
 </div>
