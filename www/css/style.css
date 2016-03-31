@@ -634,22 +634,23 @@ body, html {
     height: 60%;
     margin-left: 10%;
     margin-top: 3%;
-    background-color: lightgray;
+    background-color: rgba(0,0,0,0.3);
 }
 
 .whole_container_header {
     
-    background: #2CC990 ;
+    background: rgba(62,71,76,1) ;
     padding: 2% 2%;
     border-radius: 0px 0px 5px 5px;
     color:#fff;
+    
     
 }
 
 .whole_container_header i{
     
     float:right;
-    margin-left: 3%;
+    
     
     
 }
@@ -750,6 +751,77 @@ body, html {
     float:right;
     font-size: 1.1em;
     color:white;
+}
+
+/* * * * * * * * * * * * * * * *   
+
+    LÄGG TILL & TA BORT STUDENT
+
+* * * * * * * * * * * * * * * * */ 
+.studlist {
+    background-color: rgba(255,255,255,0.7);
+    height:400px;
+    border-radius: 7px;
+    margin-top: 2%;
+    margin-left: 5%;
+    margin-bottom: 2%;
+    overflow-y:scroll;
+    width: 90%;
+}
+.studlistHeader {
+    margin-top: 2%;
+    margin-left: 5%;
+    font-weight: bold;
+    font-size: 20px;
+}
+.searchdiv {
+    margin-top: 2%;
+    margin-bottom: 1%;
+    margin-right: 3.3%;
+    float: right;
+}
+
+.example_student {
+    cursor: pointer;
+    height: 50px;
+    box-shadow: 5px 5px 5px #999999;
+    margin-left: 2%;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    padding-top: 2%;
+    padding-left: 3%;
+    background-color: lightgrey;
+}
+.example_student_active {
+     cursor: pointer;
+    height: 50px;
+    box-shadow: 5px 5px 5px #999999;
+    margin-left: 2%;
+    margin-right: 1%;
+    margin-top: 1%;
+    margin-bottom: 1%;
+    font-weight: bold;
+    padding-top: 2%;
+    padding-left: 3%;
+    background-color:lightgreen;
+}
+
+.plus {
+    float:right;
+    padding-top:3px;
+    padding-right: 10px;
+    color:green;
+}
+
+
+.minus {
+    
+    float:right;
+    padding-top:3px;
+    padding-right: 10px;
+    color:red;
 }
 
 /* * * * * * * * * * * * * * * *   
