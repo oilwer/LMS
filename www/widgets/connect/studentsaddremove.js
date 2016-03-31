@@ -80,12 +80,13 @@ app.directive('connectStudentsaddremove', [
               
           }];
           
-          /*
-          scope.testfunc = function()
+          
+          scope.addUsers = function()
           {
-              alert("SLUTA TA BORT MINA FUNKTIONER :(");
+              alert("Adding users");
+              console.log(scope.students);
           }
-          */
+          
           
           
           
