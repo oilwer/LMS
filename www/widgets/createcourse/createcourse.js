@@ -18,26 +18,22 @@ app.directive('createCourse', [
       templateUrl: settings.widgets + 'createcourse/createcourse.html',
       link: function(scope, element, attrs) {
         
-          
           // CURRENT COURSE VARIABLES
           //
-          // session_user : creates by system CHECK
-          // id : creates by system
+          // session_user : ._id
+          // id : creates by system - returns
+          // url: creates by function
           // name : view
           // description : view
           // start, end : view
           //
           
-        var session_user;
-        SessionService.getSession().success(function(response){
-            session_user = response.user;
-        });
           
-        
-        //completed steps
-        var stepOne = false; //choose to create or copy course
-        var stepTwo = false; //create course
-        var stepTree = false; //preview course
+        //get user
+        scope.session_user;
+        SessionService.getSession().success(function(response){
+            scope.session_user = response.user;
+        });
           
         //All the avaible steps in the create course process
         scope.steps = [
@@ -113,45 +109,30 @@ app.directive('createCourse', [
           };
           
           
-        
-        var createCourse = function(){
-          var course = scope.course;
-            Course.create({
-              status: false,
-              code: course.code,
-              creator: session_user._id
-            });
-            
-            scope.courselist.push(scope.course); 
-                 refresh();
-            scope.course = "";
-            course = null;
-        };
+          scope.createCourse = function(){
+              var course = scope.course;
+                Course.create(
+                {
+                    //how to add creator?
+                    status: false,
+                    code: scope.code,
+                    url: scope.url,
+                    name: scope.name,
+                    description: scope.description,
+                    creator: scope.session_user._id
+                }, function(course)
+                    {
+                        scope.incrementStep();
+                        console.log(course[0]);
+                        alert(course[0].name);  
+                    }
+              );  
+              // console.log(c);
+              // Course.onQueueDone(console.log(c));
+            };
 
         var updateCourse = function(){
-          scope.btnAddOrUpdateTextCourse = 'Add course';
-            var course = scope.course;
-            console.log(course);
-             Course.update({
-                _id: course._id
-              },{
-                status: true,
-                code: course.code
-            });
-            // Refresh GUI
-            refresh();
-            scope.course = "";
-            isEditingCourse = false;
-        }
-
-        //Gui function add course
-        scope.addOrUpdateCourse = function(){
-          if(!isEditingCourse){
-            createCourse();
-          }
-          else{
-            updateCourse();
-          }
+            //update existing course
         }
           
       }//end link

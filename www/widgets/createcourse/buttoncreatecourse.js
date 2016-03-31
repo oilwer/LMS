@@ -1,11 +1,9 @@
 app.directive('createcourseButtoncreatecourse', [
     "settings",
     "$location",
-    "$window",
   function(
     settings,
-    $location,
-    $window
+    $location
   ) {
 
     return {
@@ -14,7 +12,7 @@ app.directive('createcourseButtoncreatecourse', [
 
         
       scope.createCourse = function() {
-          $window.location.href = '/create-course';
+          $location.path('/create-course');
       };
           
       }

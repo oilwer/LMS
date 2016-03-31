@@ -69,7 +69,7 @@
                         <a href="" ng-click="decrementStep()">&larr; Previous</a>
                     </li>
                     <li class="">
-                        <a href="" ng-click="courseDetails.$valid && incrementStep()">Create course &rarr;</a>
+                        <a href="" ng-click="courseDetails.$valid && createCourse()">Create course &rarr;</a>
                     </li>
                 </ul>
         </div>
@@ -80,7 +80,7 @@
             <p>Period: {{start}} - {{end}}</p>
             
             <p>Kopia: {{copy}}</p>
-            <p>User: {{session_user}}</p>
+            <p>User: {{session_user._id}}</p>
             <p>ID: {{id}}</p>
             <button class="btn">Preview course</button>
             <button class="btn">Back to dashboard</button>
