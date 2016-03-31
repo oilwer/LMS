@@ -1,28 +1,31 @@
 app.directive('courseTest', [
   "settings",
+  "Course",
+  "$routeParams",
   function(
-    settings
+    settings,
+    Course,
+    $routeParams
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
-          
+        console.log($routeParams.id);
+        Course.get({ name: $routeParams.id }, function(res){
+          console.log(res[0]);
+          scope.course = res[0];
+        });
+
       //placeholder for all the users courses, get from db
-      $scope.courses = {
+     /* $scope.course = {
           name: "Web development",
           assignment: "Assignment 1",
           status: "active",
           url: "testcourse"
-        };
+        }; */
           
-        // a clock
-        scope.showTime = function() {
-          // shows how angular digests scope
-          // only when user interacts with form
-          // if done without interval (and $apply() ?)
-          return new Date();
-        };
+       
       }
     };
   }
