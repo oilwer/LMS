@@ -1,46 +1,39 @@
 dashboard-courses {
 
     table{
-        position:relative;
+        width:100%;
         border-collapse: separate;
         border-spacing: 0 2px;
     }
     
     thead{
-        td{
-            font-size: .65em;
-        }
-        
-        td:first-child{
-            padding-left:2%!important;
-            text-align: left;
-            width:72%;
-        }
-    
-    td{
-            width:7%;
+        th{
+            font-size: .65em !important;
+            text-transform: uppercase;
+            font-weight: 400;
             text-align: center;
         }
+
+        th:first-child{
+            width:72%;
+            padding-left:2%!important;
+            text-align: left;
+        }
     }
-    
+
     tbody{
-        position:relative;
         td:first-child{
             padding:2.2% 0 0% 2%;
             text-align: left;
-            width:72%;
         }
         
         td{
             position:relative;
             background-color: #ddd;
-            padding:2% 0 2% 2%;
-            margin-bottom: 5%;
-            width:7%;
+            width:30px;
             text-align: center;
         }   
-        
-        
+
         .fa-exclamation{
             border-right:none !important;
             color:red;
@@ -55,7 +48,7 @@ dashboard-courses {
             position:relative;
             text-align: center;
             border-right:1px solid darkgrey;
-            padding:0px 18px 0px 8px;
+            padding:0px 18px 0px 18px;
         }
         
         tr > td > .fa-book{
