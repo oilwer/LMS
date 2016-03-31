@@ -802,6 +802,8 @@ body, html {
     padding-left: 3%;
     background-color: lightgrey;
 }
+
+
 .example_student_active_left {
      cursor: pointer;
     height: 50px;
@@ -815,6 +817,7 @@ body, html {
     padding-left: 3%;
     background-color:lightgreen;
 }
+
 .example_student_right {
     cursor: pointer;
     height: 50px;
@@ -828,6 +831,7 @@ body, html {
     padding-left: 3%;
     background-color: lightgrey;
 }
+
 .example_student_active_right {
      cursor: pointer;
     height: 50px;
