@@ -23,7 +23,7 @@ var CourseSchema = new mongoose.Schema({
         content: String,
         creator: String,
         date: String
-    }]
+    }],
     creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
