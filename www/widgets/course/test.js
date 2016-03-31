@@ -18,7 +18,6 @@ app.directive('courseTest', [
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
 
-
         var session_user;
         SessionService.getSession().success(function(response){
           session_user = response.user;
@@ -40,8 +39,7 @@ app.directive('courseTest', [
             //     return result[0].first_name;
             // });
         }
-        
-      
+              
         //Runs on page update
         refresh();
 
@@ -67,23 +65,7 @@ app.directive('courseTest', [
         //     //TODO: 
         //     //display changes in view (notifications)
         //     //Progress
-        // };
-	
-        console.log($routeParams.id);
-        Course.get({ name: $routeParams.id }, function(res){
-          console.log(res[0]);
-          scope.course = res[0];
-        });
-
-      //placeholder for all the users courses, get from db
-     /* $scope.course = {
-          name: "Web development",
-          assignment: "Assignment 1",
-          status: "active",
-          url: "testcourse"
-        }; */
-          
-       
+        // };       
       }
     };
   }
