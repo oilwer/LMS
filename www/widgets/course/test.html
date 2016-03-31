@@ -5,7 +5,7 @@
     <div class="container-fluid heightfull" >
         <div class="row table-row heightfull">
             <nav class="col-sm-2 col-md-2 nav--local">
-                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.name }}</h1>
+                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.code }} - {{course.name}}</h1>
                 <ul>
                     <li class="active"><a href="">Overview</a></li>
                     <li><a href="participants/">Participants</a></li>
@@ -46,36 +46,13 @@
                                 <i class="fa--heading fa fa-file-text-o"></i>
                                 Wall
                             </h2>
-                            <div class="box_content">
+                            <div class="box_content" ng-repeat="message in course.messages">
                                 <div class="wall_content_item">
-                                    <h3>Workshop with hypertext AB</h3>
-                                    <p>Course messages from teachers, this is a course message regarding something important. Course messages from teachers, this is a course message regarding something important. </p>
+                                    <h3>{{message.title}}</h3>
+                                    <p>{{message.content}}</p>
                                     <img class="wall_img" src="/img/person.png">
-                                    <p class="wall_author">Teacher one</p>
-                                    <p class="wall_time">16-07-02</p>
-                                </div>
-                                <div class="wall_content_item">
-                                    <h3>New assignments</h3>
-                                    <p>
-                                        Course messages from teachers, this is a course message regarding something important. Course messages from teachers.
-                                    </p>
-                                    <img class="wall_img" src="/img/person.png">
-                                    <p class="wall_author">Teacher one</p>
-                                    <p class="wall_time">16-07-02</p>
-                                </div>
-                                <div class="wall_content_item">
-                                    <h3>Course Meetup</h3>
-                                    <p>Course messages from teachers</p>
-                                    <img class="wall_img" src="/img/person.png">
-                                    <p class="wall_author">Teacher one</p>
-                                    <p class="wall_time">16-07-02</p>
-                                </div>
-                                <div class="wall_content_item">
-                                    <h3>Welcome</h3>
-                                    <p>Welcome to the new course - we'll hope you'll be happy with.</p>
-                                    <img class="wall_img" src="/img/person.png">
-                                    <p class="wall_author">Teacher one</p>
-                                    <p class="wall_time">16-07-02</p>
+                                    <p class="wall_author">{{ getName(message.creator) }}</p>
+                                    <p class="wall_time">{{message.date}}</p>
                                 </div>
                             </div>
                             <div class="wall_loadmore">
@@ -83,11 +60,11 @@
                             </div>
                             <form class="form--wall">
                                 <label for="title">Titel</label>
-                                <input type="text" name="title" id="title">
+                                <input type="text" ng-model="title" name="title" id="title">
                                 <label for="title">Message</label>
-                                <textarea name="message" id="message" placeholder="write your message ...">
+                                <textarea name="message" ng-model="content" id="message" placeholder="write your message ...">
                                 </textarea>
-                                <button>Publish</button>
+                                <button ng-click="publishMsg()">Publish</button>
                             </form>
                         </div>
                         
@@ -105,7 +82,7 @@
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Name:</h2>
-                                    <p> {{ course.name }}</p>
+                                    <p> {{ course.code }} - {{ course.name }}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Date:</h2>

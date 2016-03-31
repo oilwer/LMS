@@ -1,64 +1,70 @@
 app.directive('courseTest', [
   "settings",
+  "$location",
+  "SessionService",
+  "Course",
+  "User",
   function(
-    settings
+    settings,
+    $location,
+    SessionService,
+    Course,
+    User
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
-          
-      //placeholder for all the users courses, get from db
-      //the current courseobject, get from db
-          scope.course = {
-              name: "Web development",
-              description: "Communication for Development is an interdisciplinary field of study and practice, combining studies on culture, communication and development and integrating them with practical fieldwork. It explores the use of communication – both as a tool and as a way of articulating processes of social change – within the contexts of globalisation.",
-              start: "16-03-09",
-              end: "16-06-04",
-              assignments: [{
-                  name: "assigment 1",
-                  deadline: "datum"
-              }, {
-                  name: "assigment 2",
-                  deadline: "date"
-              }],
-              messages: [{
-                  title: "assigment 1",
-                  content: "test content",
-                  creator: "teacher", //obj?
-                  date: "datum"
-              }, {
-                  title: "assigment 1",
-                  content: "test content",
-                  creator: "teacher", //obj?
-                  date: "datum"
-              }],
-              teaching: [{ //contacts and info
-                  name: "Teacher One", //obj?
-                  role: "teacher",
-                  profile: "teacherone"
-              }, {
-                  name: "Teacher Two", //obj?
-                  role: "admin",
-                  profile: "teachertwo"
-              }],
-              resources: [{ //resources linked to course? obj?
-                  name: "The resource name",
-                  creator: "Teacher One" //obj?
-              }, {
-                  name: "The resource name",
-                  creator: "Teacher Two" //obj?
-              }],
-              students: [{ //contacts and info
-                  name: "Student One", //obj
-              }, {
-                  name: "Student Two", //obj?
-              }]        
+
+        var session_user;
+        SessionService.getSession().success(function(response){
+          session_user = response.user;
+        });
+
+        var refresh = function(){
+            var url = $location.path().split(/[\s/]+/).pop();
+            Course.get({url: url}, function(result){ 
+              scope.course = result[0];
+          });
+        };  
+
+        scope.getName = function(messageid){ 
+            // User.getById(messageid, function(result){
+            //     console.log(result.first_name);
+            // });
+            // User.get({_id: messageid}, function(result){ 
+            //    console.log(result[0].first_name);
+            //     return result[0].first_name;
+            // });
+        }
+        
+      
+        //Runs on page update
+        refresh();
+
+        scope.publishMsg = function(){
+            var course = scope.course;
+            var date = new Date();
+            var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+
+            Course.update({
+                _id: course._id
+            },{
+              messages:[{
+                  title: scope.title,
+                  content: scope.content,
+                  creator: session_user,
+                  date: today                  
+              }]
+            });
+            // Refresh GUI
+            refresh();              
+        }    
               
-              //TODO: 
-              //display changes in view (notifications)
-              //Progress
-          };
+        //     //TODO: 
+        //     //display changes in view (notifications)
+        //     //Progress
+        // };
       }
     };
   }

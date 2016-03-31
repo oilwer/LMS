@@ -57,3 +57,21 @@ app.service('SessionService', function($http) {
 		}
 	}
 });
+
+// app.service('CourseService', function($http) {
+
+// 	return {
+// 		//get session if user is logged in
+// 		getActive : function() {
+// 			Boolean b = true;
+// 			var data = '{status: ' + '"' + b + '"' + '}';
+// 	       // Makes API call w/ email 
+//            //  return $http.get('/api/user/{"email": email};
+           
+//            console.log("data", data);
+// 			return $http.get("/api/course/", data).success(function(response) {
+// 				// console.log(response);
+// 			});
+// 		}
+// 	}
+// });
