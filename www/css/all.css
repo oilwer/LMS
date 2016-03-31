@@ -7782,36 +7782,29 @@ dashboard-activities button:focus {
   outline: none;
 }
 dashboard-courses table {
-  position: relative;
+  width: 100%;
   border-collapse: separate;
   border-spacing: 0 2px;
 }
-dashboard-courses thead td {
-  font-size: .65em;
-}
-dashboard-courses thead td:first-child {
-  padding-left: 2%!important;
-  text-align: left;
-  width: 72%;
-}
-dashboard-courses thead td {
-  width: 7%;
+dashboard-courses thead th {
+  font-size: .65em !important;
+  text-transform: uppercase;
+  font-weight: 400;
   text-align: center;
 }
-dashboard-courses tbody {
-  position: relative;
+dashboard-courses thead th:first-child {
+  width: 72%;
+  padding-left: 2%!important;
+  text-align: left;
 }
 dashboard-courses tbody td:first-child {
   padding: 2.2% 0 0% 2%;
   text-align: left;
-  width: 72%;
 }
 dashboard-courses tbody td {
   position: relative;
   background-color: #ddd;
-  padding: 2% 0 2% 2%;
-  margin-bottom: 5%;
-  width: 7%;
+  width: 30px;
   text-align: center;
 }
 dashboard-courses tbody .fa-exclamation {
@@ -7827,7 +7820,7 @@ dashboard-courses tbody tr > td > .fa {
   position: relative;
   text-align: center;
   border-right: 1px solid darkgrey;
-  padding: 0px 18px 0px 8px;
+  padding: 0px 18px 0px 18px;
 }
 dashboard-courses tbody tr > td > .fa-book {
   border: none;
