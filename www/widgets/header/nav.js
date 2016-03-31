@@ -1,9 +1,11 @@
 app.directive('headerNav', [
   "settings",
   "SessionService",
+    "$location",
   function(
     settings,
-    SessionService
+    SessionService,
+     $location
   ) {
 
     return {
@@ -12,6 +14,11 @@ app.directive('headerNav', [
       link: function(scope, element, attrs) {
        
        //logic
+          
+        
+        scope.isActive = function(route) {
+            return route === $location.path();
+        }
 
         SessionService.getSession().success(function(response) {
           
