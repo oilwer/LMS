@@ -1,17 +1,26 @@
-<div class="app_container">
+<div class="app_container app_container--padding">
     
     <div class="row">
         <div class="container ng-scope">
-            <div class="row whole_container">
+            <div class="row">
+                <div class="col-md-18 col-md-offset-3 studlist-container">
                 
                 
-                <div class="whole_container_header">
+                <div class="box__header">
                     <h3>Add / Remove students
                     <i class="fa fa-user "></i></h3>
                 
                 </div>
-                
-                    <div class="col-md-10 studlist">
+                <div class="col-md-10 stud_header1">
+                    <h3>Add student</h3>
+                    
+                </div>
+                <div class="col-md-10 stud_header">
+                    <h3>Course name</h3>
+                    
+                </div>
+                    
+                <div class="col-md-10 studlist">
                 <div class="col-md-24 searchdiv">
                     <select class="form-control">
                       <option value="program 1">Program 1</option>
@@ -25,9 +34,9 @@
                            
                         <p>Example {{ student.name }}
                         
-                        <i class="fa fa-minus minus"></i>
+                        <i class="fa fa-minus minus"  ></i>
                             <i class="fa fa-plus plus"  ></i>
-                            
+                        
                         
                          </p>
                         </div>
@@ -48,7 +57,8 @@
                 <!-- SEND TO PARTICIPANTS-->
                 
                 </div>
-             </div> 
+                </div><!--.col-*-->
+             </div> <!--.row-->
         </div>
     </div>
 </div>
