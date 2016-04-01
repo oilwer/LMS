@@ -48,7 +48,7 @@ app.directive('createCourse', [
         });
           
         //used to rouate in step 3 : updates by 'courses/'+scope.url path in createCourse().
-        scope.finalUrl;
+        //scope.finalUrl;
 
         // Updates the GUI according to edit/add-state
         var isEditingCourse = false;
@@ -150,8 +150,8 @@ app.directive('createCourse', [
         //create a new course and set GUI edit options
         scope.createCourse = function(){
             
-            scope.finalUrl = '/courses/' + scope.url;
-            console.log(scope.finalUrl)
+            //scope.finalUrl = '/courses/' + scope.url;
+            //console.log(scope.finalUrl)
             
             var course = scope.course;
             console.log(course); //gets undefined?
@@ -159,7 +159,7 @@ app.directive('createCourse', [
             {
                 status: false,
                 code: scope.code,
-                url: scope.finalUrl,
+                url: scope.url,
                 name: scope.name,
                 description: scope.description,
                 creator: scope.session_user._id
@@ -183,7 +183,7 @@ app.directive('createCourse', [
               },{
                 status: true,
                 code: scope.code,
-                url: scope.finalUrl,
+                url: scope.url,
                 name: scope.name,
                 description: scope.description,
                 start: scope.start,
