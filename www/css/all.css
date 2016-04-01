@@ -7452,6 +7452,10 @@ html {
 .body--paddingtop {
   padding-top: 50px;
 }
+.body--margin {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
 .heightfull {
   min-height: 100%;
   min-height: 100vh;
@@ -7481,8 +7485,9 @@ html {
 }
 /*List of students with background*/
 .studlist-container {
+  border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.2);
-  padding: 0px;
+  overflow: hidden;
 }
 .formError {
   font-weight: bold;
@@ -8037,6 +8042,26 @@ dashboard-courses .assignClass {
   margin-left: 10px;
   width: 95%;
 }
+.box__header h2 {
+  display: inline;
+}
+.box__header .edit {
+  text-decoration: underline;
+  font-size: 15px;
+  margin-right: 10px;
+  margin-top: 0%;
+  float: right;
+  color: white;
+}
+.box__header .edit .done {
+  margin-right: 4px;
+  margin-top: 2%;
+  color: white;
+}
+.box__header .fa-cog {
+  float: left;
+  margin-right: 10px;
+}
 .studlist-container {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 0px;
@@ -8107,4 +8132,24 @@ dashboard-courses .assignClass {
   float: right;
   font-size: 1.1em;
   color: white;
+}
+.box__header h2 {
+  display: inline;
+}
+.box__header .edit {
+  text-decoration: underline;
+  font-size: 15px;
+  margin-right: 10px;
+  margin-top: 0%;
+  float: right;
+  color: white;
+}
+.box__header .edit .cog {
+  margin-right: 4px;
+  margin-top: 7%;
+  color: white;
+}
+.box__header .fa-user {
+  float: left;
+  margin-right: 8px;
 }
