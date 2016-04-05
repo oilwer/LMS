@@ -1,9 +1,13 @@
-<div class="whole_container_individual">
-  <div class="whole_container_individual_label_IA">
-      <h5>IA</h5>
-  </div>
-  <img src="https://birthnavigators.files.wordpress.com/2011/10/swedish-man.jpg"/>
-  <a ng-href="profile/{{ user.public_url }}"><h3>{{user.first_name}} {{user.last_name}}</h3></a>
-  <p>
+<li class="col-xs-24">
+    <a class="list--students_item" ng-href="profile/{{ user.public_url }}">
+      <!-- Statisk info, lägga till grupptillhörighet - prioritera grupper?
+        <div class="whole_container_individual_label_IA">
+          <h5>IA</h5>
+      </div>
+        -->
+      <img src="https://birthnavigators.files.wordpress.com/2011/10/swedish-man.jpg" alt="profile picture of {{ student.first_name }}"/>
+      <h3>{{user.first_name}} {{user.last_name}}</h3>
+      <p>
       {{ user.description }} </p>
-</div>
+    </a>
+</li>

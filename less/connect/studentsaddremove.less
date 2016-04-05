@@ -1,121 +1,159 @@
-.studlist {
-    background-color: rgba(255,255,255,0.7);
-    height:600px;
-    border-radius: 7px;
-    margin-top: 2%;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    overflow-y:scroll;
+.list--students {
+    min-height: 600px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border-radius: 3px;
+    overflow-y:scroll;  
+    //border: 1px solid fade(@LMSlight,20%);
+}
+
+.list--students ul {
+    list-style: none;
+}
+
+.list--students h3:first-child {
+    text-transform: uppercase;
+    background: fade(@LMSlight,30%);
+    padding: 12px 10px;
+    font-size: 0.8em;
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.list--students--added h3:first-child {
+    background: @RGBcourses;
+    color: #fff;
+}
+.list--students_options {
+    margin-top: 20px;
+    margin-bottom: 5px;
+}
+
+.list--students_item{
+    color: @RGBFontFaimly;
+    text-decoration: none;
+    display: block;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: @LMSdark;
+    padding: 12px 8px;
+    cursor: pointer;
+    border: 1px solid fade(@LMSlight,10%);
+    border-left: 5px solid fade(@LMSlight,20%);
+}
+
+.list--students_item:hover {
+    color: @RGBFontFaimly;
+    text-decoration: none;
+}
+
+.list--students_item h3, .list--students_item--added h3, .list--students_item h4, .list--students_item--added h4 {
+    /*line-height: 2.2em;*/
+    font-size: 1em;
+    font-weight: 600;
+}
+
+.list--students_item--added h3, .list--students_item--added h4 {
+    text-align: right;
+}
+
+.list--students_item--added {
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: @LMSdark;
+    padding: 12px 8px;
+    cursor: pointer;
+    border: 1px solid fade(@LMSlight,20%);
+    border-right: 5px solid fade(@LMSlight,20%);
+}
+
+.list--students_item .role, .list--students_item--added .role {
+    padding: 0px 10px;
+    font-weight: 400;
+    font-style: italic;
+}
+
+.display-none {
+    display: none;
+}
+
+.list--students_item img {
+    margin: 0px 15px 0px 5px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     float: left;
-    
 }
-.studlist1 {
-    background-color: rgba(255,255,255,0.7);
-    height:600px;
-    border-radius: 7px;
-    margin-top: 2%;
-    margin-right:5%;
-    margin-left: 5%;
-    margin-bottom: 2%;
-    overflow-y:scroll;
+
+.list--students_item--added img {
+    margin: 0px 5px 0px 15px;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
     float: right;
-    
 }
 
-.searchdiv {
-    
-    margin-top: 2%;
-    width:100%;
-    margin-bottom: 2%;
+.list--students_item i {
+    line-height: 2.2em;
+    float: right;
+    padding: 0px 5px;
 }
 
-.example_student_left {
+.list--students_item--added i {
+    line-height: 2.2em;
+    float: left;
+    padding: 0px 10px;
+}
+
+.list--students_item:hover {
     cursor: pointer;
-    height: 50px;
-    box-shadow: 5px 5px 5px #999999;
-    margin-left: 2%;
-    margin-right: 1%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-weight: bold;
-    padding-top: 4%;
-    padding-left: 3%;
-    background-color: lightgrey;
-}
-.example_student_active_left {
-     cursor: pointer;
-    height: 50px;
-    box-shadow: 5px 5px 5px #999999;
-    margin-left: 2%;
-    margin-right: 1%;
-    margin-top: 2%;
-    margin-bottom: 1%;
-    font-weight: bold;
-    padding-top: 4%;
-    padding-left: 3%;
-    background-color:lightgreen;
-}
-.example_student_right {
-    cursor: pointer;
-    height: 50px;
-    box-shadow: 5px 5px 5px #999999;
-    margin-left: 2%;
-    margin-right: 1%;
-    margin-top: 5%;
-    margin-bottom: 1%;
-    font-weight: bold;
-    padding-top: 4%;
-    padding-left: 3%;
-    background-color: lightgrey;
-}
-.example_student_active_right {
-     cursor: pointer;
-    height: 50px;
-    box-shadow: 5px 5px 5px #999999;
-    margin-left: 2%;
-    margin-right: 1%;
-    margin-top: 5%;
-    margin-bottom: 1%;
-    font-weight: bold;
-    padding-top: 4%;
-    padding-left: 3%;
-    background-color:lightcoral;
+    border-left: 5px solid @LMSlight;
+    background: fade(@LMSlight,10%);
 }
 
+.list--students_item--added:hover {
+    cursor: pointer;
+    border-right: 5px solid @LMSlight;
+    background: fade(@LMSlight,10%);
+}
+
+.list--students_item--active {
+    background-color: fade(@LMSlight,20%);
+}
+
+
+.list--students_item p, .list--students_item--added p {
+    font-weight: 400;
+    font-size: 0.9em;
+    padding: 0px;
+    margin: 0px;
+}
+
+.list--students_item--added p {
+    text-align: right;
+}
+
+.student_nr {
+    font-size: 0.8em;
+    margin: 5px 0px 0px 0px !important;
+}
 .plus {
     float:right;
     padding-top:3px;
     padding-right: 10px;
     color:green;
 }
-
-
 .minus {
-    
     float:right;
     padding-top:3px;
     padding-right: 10px;
     color:red;
 }
 
-.button_student_list_send {
-    
-  
-    
-    margin-left: 35%;
-    margin-bottom: 2%;
-    width: 30%;
-    
-}
-
-.button_student_list_markall {
-    margin-bottom: 2%;
-    margin-left: 10px;
-    width: 95%;
-}
 .box__header h2 {
     display: inline;
 }
+
 .box__header .edit {
     text-decoration: underline;
     font-size: 15px;
@@ -124,11 +162,13 @@
     float: right;
     color: white;
 }
+
 .box__header .edit .done{
     margin-right: 4px;
     margin-top: 2%;
     color: white;
 }
+
 .box__header .fa-cog {
   float: left;
   margin-right: 10px;

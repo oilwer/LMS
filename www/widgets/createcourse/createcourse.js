@@ -153,8 +153,8 @@ app.directive('createCourse', [
             //scope.finalUrl = '/courses/' + scope.url;
             //console.log(scope.finalUrl)
             
-            var course = scope.course;
-            console.log(course); //gets undefined?
+            //var course = scope.course;
+            //console.log(course); //gets undefined?
             Course.create(
             {
                 status: false,
@@ -166,6 +166,7 @@ app.directive('createCourse', [
             }, function(course)
                 {
                     //update GUI edit mode
+                    scope.course = course;
                     isEditingCourse = true;
                     scope.btnAddOrUpdate = 'Update details';
                     scope.incrementStep();
@@ -176,10 +177,10 @@ app.directive('createCourse', [
         //update a course
         scope.updateCourse = function(){
             //update existing course
-            var course = scope.course;
-            console.log(course);
+            //var course = scope.course;
+            console.log(scope.course);
             Course.update({
-                _id: course._id
+                _id: scope.course._id
               },{
                 status: true,
                 code: scope.code,
@@ -189,8 +190,8 @@ app.directive('createCourse', [
                 start: scope.start,
                 end: scope.end
             });
-            console.log(course[0]);
-            alert(course[0].name);
+            console.log(scope.course[0]);
+            alert(scope.course[0].name);
             scope.incrementStep();
         };
           
@@ -198,6 +199,7 @@ app.directive('createCourse', [
         scope.pathLocation = function(newLocation) {
             //add if statement for previous location - get prev path and back-forward
             console.log(newLocation);
+            scope.$parent.hideModal();
             $location.path(newLocation);
         }
             

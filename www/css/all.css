@@ -7405,9 +7405,9 @@ button.close {
 }
 /*colors */
 /*green*/
-/*red*/
-/*grey*/
 /*blue*/
+/*grey*/
+/*red*/
 /* font style variables and mixins */
 body,
 html,
@@ -7425,16 +7425,11 @@ h6 {
   margin-bottom: 0px;
   font-family: 'Open Sans', 'Helvetiva', 'Arial', sans-serif;
 }
-.stud_header1 h3 {
-  margin-left: 10%;
-  padding-top: 2%;
-}
-.stud_header h3 {
-  margin-left: 26%;
-  padding-top: 2%;
-}
 h2 {
   font-size: 1.2em;
+}
+h3 {
+  font-size: 1.1em;
 }
 * {
   margin: 0px;
@@ -7455,6 +7450,9 @@ html {
 .body--margin {
   margin-top: 50px;
   margin-bottom: 50px;
+}
+.row--marginleft {
+  margin-left: 0px;
 }
 .heightfull {
   min-height: 100%;
@@ -7489,9 +7487,49 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.formError {
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.8;
+}
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  /* Default */
+  min-height: 80%;
+  overflow: scroll;
+  /* Center the dialog */
+  top: 10%;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.ng-modal-dialog-content {
+  padding: 10px;
+  text-align: left;
+}
+.ng-modal-close {
+  position: absolute;
+  z-index: 9999;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
   font-weight: bold;
-  color: red;
+  font-family: 'arial', 'sans-serif';
 }
 /*Styles for global .box classes
     
@@ -7507,6 +7545,7 @@ This is a LESS file; only style for the element class .box allowed!
   padding: 0px;
   margin-bottom: 10px;
   height: auto;
+  overflow: hidden;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   border-radius: 5px;
@@ -7535,13 +7574,13 @@ This is a LESS file; only style for the element class .box allowed!
   background: #2CC990;
 }
 .box__header--schedule {
-  background: #F1654C;
+  background: #00B5B5;
 }
 .box__header--questions {
   background: #bababa;
 }
 .box__header--circles {
-  background: #00B5B5;
+  background: #F1654C;
 }
 .box__header--inactive {
   background: rgba(62, 71, 79, 0.5);
@@ -7851,27 +7890,51 @@ This is a LESS file; only style for the element class .box allowed!
 .process_view .pager {
   padding: 20px;
 }
-.process_view .checkbox--process {
-  padding: 15px 5px;
-  margin-bottom: 20px;
-  border: 2px solid rgba(62, 71, 79, 0.5);
-  color: rgba(16, 18, 20, 0.75);
-  border-radius: 10px;
-  overflow: hidden;
-  text-align: center;
+label {
+  color: rgba(62, 71, 79, 0.5);
   text-transform: uppercase;
-  font-size: 0.9em;
+  font-size: 0.8em;
+}
+form[name="courseType"] {
+  text-align: center;
+}
+form[name="courseType"] button {
+  padding: 20px 0px;
+  margin: 20px 10px;
+  border: 2px solid rgba(62, 71, 79, 0.1);
+  background: rgba(62, 71, 79, 0.05);
+  border-radius: 2px;
+  width: 40%;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: rgba(35, 41, 45, 0.6);
   transition: all 0.3s ease;
 }
-.process_view .checkbox--process:hover {
-  background: rgba(62, 71, 79, 0.3);
+form[name="courseType"] button:hover {
+  background: rgba(62, 71, 79, 0.1);
   transition: all 0.3s ease;
 }
-.process_view input[type="radio"] {
+.form-control {
+  border: 2px solid rgba(62, 71, 79, 0.15);
+  box-shadow: none;
+  padding: 10px 10px;
+  margin-bottom: 5px;
+  height: 40px;
+}
+.error {
+  font-weight: bold;
+  margin-top: -35px;
   margin-right: 10px;
-  margin-left: -20px;
+  float: right;
+  width: 20px;
+  height: 20px;
+  color: #fff;
+  background: #e74c3c;
+  border-radius: 50%;
+  text-align: center;
 }
-dashboard-activities button {
+dashboard-activities .activities-button {
   background: #2CC990;
   color: #ffffff;
   width: 70px;
@@ -7942,83 +8005,128 @@ dashboard-courses .assignClass {
   font-size: .5em;
   padding: 3px 2px 2px 2px;
 }
-.studlist {
-  background-color: rgba(255, 255, 255, 0.7);
-  height: 600px;
-  border-radius: 7px;
-  margin-top: 2%;
-  margin-left: 5%;
-  margin-bottom: 2%;
+.list--students {
+  min-height: 600px;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  border-radius: 3px;
   overflow-y: scroll;
+}
+.list--students ul {
+  list-style: none;
+}
+.list--students h3:first-child {
+  text-transform: uppercase;
+  background: rgba(62, 71, 79, 0.3);
+  padding: 12px 10px;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.list--students--added h3:first-child {
+  background: #2CC990;
+  color: #fff;
+}
+.list--students_options {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+.list--students_item {
+  color: #404040;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #3e474f;
+  padding: 12px 8px;
+  cursor: pointer;
+  border: 1px solid rgba(62, 71, 79, 0.1);
+  border-left: 5px solid rgba(62, 71, 79, 0.2);
+}
+.list--students_item:hover {
+  color: #404040;
+  text-decoration: none;
+}
+.list--students_item h3,
+.list--students_item--added h3,
+.list--students_item h4,
+.list--students_item--added h4 {
+  /*line-height: 2.2em;*/
+  font-size: 1em;
+  font-weight: 600;
+}
+.list--students_item--added h3,
+.list--students_item--added h4 {
+  text-align: right;
+}
+.list--students_item--added {
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #3e474f;
+  padding: 12px 8px;
+  cursor: pointer;
+  border: 1px solid rgba(62, 71, 79, 0.2);
+  border-right: 5px solid rgba(62, 71, 79, 0.2);
+}
+.list--students_item .role,
+.list--students_item--added .role {
+  padding: 0px 10px;
+  font-weight: 400;
+  font-style: italic;
+}
+.display-none {
+  display: none;
+}
+.list--students_item img {
+  margin: 0px 15px 0px 5px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   float: left;
 }
-.studlist1 {
-  background-color: rgba(255, 255, 255, 0.7);
-  height: 600px;
-  border-radius: 7px;
-  margin-top: 2%;
-  margin-right: 5%;
-  margin-left: 5%;
-  margin-bottom: 2%;
-  overflow-y: scroll;
+.list--students_item--added img {
+  margin: 0px 5px 0px 15px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
   float: right;
 }
-.searchdiv {
-  margin-top: 2%;
-  width: 100%;
-  margin-bottom: 2%;
+.list--students_item i {
+  line-height: 2.2em;
+  float: right;
+  padding: 0px 5px;
 }
-.example_student_left {
-  cursor: pointer;
-  height: 50px;
-  box-shadow: 5px 5px 5px #999999;
-  margin-left: 2%;
-  margin-right: 1%;
-  margin-top: 2%;
-  margin-bottom: 1%;
-  font-weight: bold;
-  padding-top: 4%;
-  padding-left: 3%;
-  background-color: lightgrey;
+.list--students_item--added i {
+  line-height: 2.2em;
+  float: left;
+  padding: 0px 10px;
 }
-.example_student_active_left {
+.list--students_item:hover {
   cursor: pointer;
-  height: 50px;
-  box-shadow: 5px 5px 5px #999999;
-  margin-left: 2%;
-  margin-right: 1%;
-  margin-top: 2%;
-  margin-bottom: 1%;
-  font-weight: bold;
-  padding-top: 4%;
-  padding-left: 3%;
-  background-color: lightgreen;
+  border-left: 5px solid rgba(62, 71, 79, 0.5);
+  background: rgba(62, 71, 79, 0.1);
 }
-.example_student_right {
+.list--students_item--added:hover {
   cursor: pointer;
-  height: 50px;
-  box-shadow: 5px 5px 5px #999999;
-  margin-left: 2%;
-  margin-right: 1%;
-  margin-top: 5%;
-  margin-bottom: 1%;
-  font-weight: bold;
-  padding-top: 4%;
-  padding-left: 3%;
-  background-color: lightgrey;
+  border-right: 5px solid rgba(62, 71, 79, 0.5);
+  background: rgba(62, 71, 79, 0.1);
 }
-.example_student_active_right {
-  cursor: pointer;
-  height: 50px;
-  box-shadow: 5px 5px 5px #999999;
-  margin-left: 2%;
-  margin-right: 1%;
-  margin-top: 5%;
-  margin-bottom: 1%;
-  font-weight: bold;
-  padding-top: 4%;
-  padding-left: 3%;
-  background-color: lightcoral;
+.list--students_item--active {
+  background-color: rgba(62, 71, 79, 0.2);
+}
+.list--students_item p,
+.list--students_item--added p {
+  font-weight: 400;
+  font-size: 0.9em;
+  padding: 0px;
+  margin: 0px;
+}
+.list--students_item--added p {
+  text-align: right;
+}
+.student_nr {
+  font-size: 0.8em;
+  margin: 5px 0px 0px 0px !important;
 }
 .plus {
   float: right;
@@ -8031,16 +8139,6 @@ dashboard-courses .assignClass {
   padding-top: 3px;
   padding-right: 10px;
   color: red;
-}
-.button_student_list_send {
-  margin-left: 35%;
-  margin-bottom: 2%;
-  width: 30%;
-}
-.button_student_list_markall {
-  margin-bottom: 2%;
-  margin-left: 10px;
-  width: 95%;
 }
 .box__header h2 {
   display: inline;
@@ -8066,43 +8164,34 @@ dashboard-courses .assignClass {
   background-color: rgba(0, 0, 0, 0.2);
   padding: 0px;
 }
-.whole_container_list_view {
-  background-color: rgba(255, 255, 255, 0.7);
-  margin-top: 2%;
-  margin-left: 3%;
-  margin-bottom: 2%;
-  overflow-y: scroll;
-}
-.whole_container_search input {
+.list--publicstudents input {
   margin-top: 10px;
-  margin-left: 3%;
+  margin-bottom: 20px;
   border-radius: 5px 5px 5px 5px;
-  width: 200px;
-  height: 30px;
-  padding-left: 5px;
+  border: 2px solid rgba(62, 71, 79, 0.2);
+  padding: 7px;
+  width: 100%;
 }
-.whole_container_individual {
+.individual {
+  padding: 10px;
+  margin: 5px 0px;
   -webkit-border-bottom-right-radius: 10px;
   -moz-border-radius-bottomright: 10px;
   border-bottom-right-radius: 10px;
   -webkit-border-bottom-left-radius: 10px;
   -moz-border-radius-bottomleft: 10px;
   border-bottom-left-radius: 10px;
-  box-shadow: 5px 7px 5px #999999;
-  padding: 0px 0px 10px 10px;
-  margin: 3% 10% 3% 3%;
   background-color: lightgrey;
 }
-.whole_container_individual img {
+.individual img {
+  margin: 0px 15px 0px 5px;
   width: 50px;
-  height: 60px;
+  height: 50px;
+  border-radius: 50%;
   float: left;
-  margin-right: 20px;
-  margin-top: 20px;
 }
-.whole_container_individual p {
+.individual p {
   padding: 0px 0px 10px 10px;
-  margin: 2% 10% 2% 3%;
   font-style: italic;
 }
 .whole_container_individual_label_IA {
