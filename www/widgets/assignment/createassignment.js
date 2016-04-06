@@ -1,4 +1,4 @@
-app.directive('createAssignment', [
+app.directive('assignmentCreateassignment', [
     "settings",
     "$location",
     "$window",
