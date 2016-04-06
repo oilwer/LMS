@@ -1,4 +1,4 @@
-app.directive('createcourseButtoncreatecourse', [
+app.directive('courseCreateButtoncreatecourse', [
     "settings",
     "$location",
   function(
@@ -7,7 +7,7 @@ app.directive('createcourseButtoncreatecourse', [
     ) {
 
     return {
-      templateUrl: settings.widgets + 'createcourse/buttoncreatecourse.html',
+      templateUrl: settings.widgets + 'course/create/buttoncreatecourse.html',
       link: function($scope, element, attrs) {
           
        $scope.modalShown = false;

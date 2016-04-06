@@ -1,4 +1,4 @@
-app.directive('createCourse', [
+app.directive('courseCreateCreatecourse', [
     "settings",
     "$location",
     "$window",
@@ -13,7 +13,7 @@ app.directive('createCourse', [
   ) {
         
     return {
-      templateUrl: settings.widgets + 'createcourse/createcourse.html',
+      templateUrl: settings.widgets + 'course/create/createcourse.html',
       link: function(scope, element, attrs) {
         
           // CURRENT COURSE VARIABLES
