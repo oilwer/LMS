@@ -8005,6 +8005,34 @@ dashboard-courses .assignClass {
   font-size: .5em;
   padding: 3px 2px 2px 2px;
 }
+.box__info {
+  height: auto;
+}
+.box__info--h1 {
+  text-decoration: underline;
+  text-align: center;
+  color: grey;
+}
+.box__info--text {
+  text-align: justify;
+  font-family: sans-serif;
+  margin-bottom: 1%;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+.box__info--list {
+  font-weight: bold;
+  list-style: none;
+  margin-left: 20%;
+  font-family: sans-serif;
+  margin-top: 2%;
+}
+.submit__button {
+  padding-bottom: 3%;
+  margin-top: 3%;
+  text-align: center;
+}
 .list--students {
   min-height: 600px;
   margin-top: 20px;
