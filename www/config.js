@@ -51,6 +51,9 @@ app.config([
       .when("/profile/:url", {
         templateUrl: "templates/publicprofile.html",
       })
+      .when("/chat/", {
+        templateUrl: "templates/chat_template.html",
+      })
       .otherwise({
         redirectTo: "/"
       });
