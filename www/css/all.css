@@ -8020,25 +8020,69 @@ dashboard-courses .assignClass {
   text-align: center;
   color: grey;
 }
+.box__info--h2 {
+  margin-left: 10%;
+  text-decoration: underline;
+  text-align: center;
+  color: grey;
+}
 .box__info--text {
   text-align: justify;
   font-family: sans-serif;
   margin-bottom: 1%;
-  margin-top: 5%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-top: 1%;
+}
+.box__info--mainlist {
+  height: 10px;
+  margin-left: 4%;
 }
 .box__info--list {
+  margin-left: 2%;
+  font-size: 10px;
+  display: inline-block;
   font-weight: bold;
   list-style: none;
-  margin-left: 20%;
   font-family: sans-serif;
-  margin-top: 2%;
+}
+.failed {
+  margin-left: 3px;
+  color: white;
+  padding-right: 3px;
+  padding-left: 3px;
+  font-family: sans-serif;
+  float: right;
+  text-align: center;
+  background-color: red;
+  border-radius: 3px;
+}
+.komp {
+  margin-left: 3px;
+  color: white;
+  padding-right: 3px;
+  padding-left: 3px;
+  font-family: sans-serif;
+  text-align: center;
+  float: right;
+  background-color: yellow;
+  border-radius: 3px;
+}
+.done {
+  margin-left: 3px;
+  color: white;
+  padding-right: 3px;
+  padding-left: 3px;
+  font-family: sans-serif;
+  text-align: center;
+  float: right;
+  background-color: green;
+  border-radius: 3px;
 }
 .box__file {
+  margin-top: 5%;
+  margin-left: 10%;
+  margin-bottom: 5%;
   height: 150px;
-  width: 60%;
-  margin-left: 20%;
+  width: 90%;
   border-radius: 5px;
   border-style: dashed;
   border-color: grey;
@@ -8048,22 +8092,69 @@ dashboard-courses .assignClass {
   background-color: lightgreen;
 }
 .box__file--icon {
-  margin-top: 4%;
-  margin-left: 47%;
+  margin-top: 6%;
+  margin-left: 45%;
   color: grey;
 }
 .box__file--text {
-  margin-left: 40%;
+  margin-left: 35%;
   color: black;
 }
 .file__button {
-  margin-left: 33%;
+  margin-left: 25%;
   font-size: 10px;
+}
+.box__rubrik {
+  height: 2%;
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 5%;
+}
+.box__comment {
+  width: 90%;
+  margin-top: 2%;
+  margin-left: 10%;
+  margin-right: 5%;
 }
 .submit__button {
   padding-bottom: 3%;
   margin-top: 3%;
   text-align: center;
+}
+.send__button {
+  padding-bottom: 3%;
+  margin-top: 3%;
+  margin-right: 5%;
+  text-align: right;
+}
+.resource_list {
+  margin-top: 2%;
+  margin-left: 3%;
+  width: 60%;
+  height: 300px;
+  border-radius: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: auto;
+  margin-bottom: 3%;
+}
+.resource_list_items {
+  list-style: square;
+  color: grey;
+  margin-top: 1%;
+  margin-left: 10%;
+  font-style: italic;
+  text-decoration: underline;
+}
+.resource_list_items:hover {
+  cursor: pointer;
+  color: blue;
+}
+.crusive {
+  text-decoration: underline;
+  margin-left: 4px;
+  float: right;
+  font-family: serif;
 }
 .list--students {
   min-height: 600px;
