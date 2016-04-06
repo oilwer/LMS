@@ -10,15 +10,16 @@ module.exports = function(mongoose){
         start: { type: Date, default: Date.now },
         end: { type: Date, default: Date.now },
         assignments: [{
-            assignment_name: String,
-            assignment_deadline: String
+            name: String,
+            url: String
         }],
         students: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'User'
         }],
         resources: [{
-            resource_name: String,
-            resource_creator: String
+            name: String,
+            creator: String,
+            url: String
         }],
         messages: [{
             title: String,
