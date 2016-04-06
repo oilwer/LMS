@@ -28,8 +28,8 @@ app.config([
        .when("/courses/", {
         templateUrl: "templates/courses.html",
       })
-       .when("/answer/", {
-        templateUrl: "templates/answer.html",
+       .when("/assignment/:id", {
+        templateUrl: "templates/assignment.html",
       })
        // 
        .when("/courses/:id", {

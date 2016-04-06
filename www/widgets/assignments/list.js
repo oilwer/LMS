@@ -1,12 +1,8 @@
 app.directive('assignmentsList', [
   "settings",
-  "User",
-  "Course",
   "$routeParams",
   function(
     settings,
-    User,
-    Course,
     $routeParams
   ) {
     
@@ -14,14 +10,14 @@ app.directive('assignmentsList', [
       templateUrl: settings.widgets + 'assignments/list.html',
       link: function(scope, element, attrs) {
         
-        var url = $routeParams.url;
+          var url = $routeParams.url;
 
-        //Get all courses by name from url, populate fills all the 
-        //connected studests so we can get their data. 
-        //ng repeat with response of students
-        var course = Course.get({ name: url , _populate:"students"}, function(res){
-          scope.users = res[0].students;
-        });
+          //Get all courses by name from url, populate fills all the 
+          //connected studests so we can get their data. 
+          //ng repeat with response of students
+          Assignment.get({ name: url}, function(res){
+              // scope.assignments = res[0].assignments;
+          });
       }
     };
   }
