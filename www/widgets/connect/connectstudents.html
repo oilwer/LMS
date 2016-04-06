@@ -1,33 +1,10 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row heightfull">
-            
-<!--NAV - MAKE DIRECTIVE-->
-            <nav class="col-sm-3 col-md-3 nav--local">
-                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.code }} - {{course.name}}</h1>
-                <ul>
-                    <li><a href="courses/{{ course.url }}">Overview</a></li>
-                    <li class="active"><a ng-href="participants/{{ course.name }}">Participants</a></li>
-                    <li><a href="">Questions and Answers</a></li>
-                    <li ><a class="nav--local_notification" ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
-                        <ul ng-show="isChildOpen">
-                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 2</a></li>
-                        </ul>
-                    </li>
-                    <li><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
-                        <ul ng-show="isChild2Open">
-                            <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital book with great name</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital material by Other Author</a></li>
-                        </ul>
-                    </li>
-                </ul> 
+        <div class="row table-row heightfull">            
+
+             <nav class="col-sm-3 col-md-3 nav--local" >
+                <course-courseNav></course-courseNav>
             </nav>
-<!--NAV - MAKE DIRECTIVE-->
             
             <div class="col-sm-21 col-md-21">
                 <div class="box body--margin">

@@ -3,12 +3,14 @@ app.directive('assignmentCreateassignment', [
     "$location",
     "$window",
     "Course",
+    "Assignment",
     "SessionService",
   function(
     settings,
     $location,
     $window,
     Course,
+    Assignment,
     SessionService
   ) {
         
@@ -26,6 +28,7 @@ app.directive('assignmentCreateassignment', [
           // description : view
           // start, end : view
           //
+          
           
           
         // Note: How to make it work when directive loads?
@@ -52,17 +55,72 @@ app.directive('assignmentCreateassignment', [
 
         // Updates the GUI according to edit/add-state
         var isEditingCourse = false;
-        scope.btnAddOrUpdate = 'Create course';
+        scope.btnAddOrUpdate = 'Create assignment';
+        
+        var AvailableCourses = Course.get();
+        
+        scope.courseSelect = {
+		  repeatSelect: null,
+		  availableOptions: AvailableCourses  
+	   };
+        
+        scope.selectCourseChanged = function (){
+	        
+	        if(scope.assignment === undefined)
+	        {
+		        scope.assignment = "";
+	        }
+	        
+			selectedCourseName = scope.courseSelect.repeatSelect;
+				  
+			console.log(selectedCourseName);
+
+			
+
+		  // updateGUI();
+	   }
+	   
+	   
           
         //Gui function add course
         scope.addOrUpdateCourse = function(){
-          if(!isEditingCourse){
-              console.log("create course runs");
-            scope.createCourse();
+	        
+	        if (typeof selectedCourseName !== 'undefined') 
+	        {
+			        
+			        var result = AvailableCourses.filter(function( obj ) {
+						return obj.name == selectedCourseName;
+					});
+					
+					
+					scope.assignment.course = result[0]._id;
+					
+					scope.assignment.added_on = (new Date()).toJSON();
+		
+			       
+			       console.log(scope.assignment);
+			       
+		          if(!isEditingCourse){
+		              console.log("create assignment runs");
+		              
+		              
+		              Assignment.create(scope.assignment, function(res){
+			              
+			              console.log(res);
+			              scope.incrementStep();
+			              });
+		              
+		            
+		          }
+		          else{
+		            // scope.updateCourse();
+		              console.log("update assignment runs");
+		          }
+          
           }
-          else{
-            scope.updateCourse();
-              console.log("update course runs");
+          else
+          {
+	          alert("Please select a course before you add an assignment");
           }
         }
           
@@ -79,10 +137,16 @@ app.directive('assignmentCreateassignment', [
           },{
               name: "Details",
               icon: "fa-i-cursor",
-          },{
+          },
+          {
+              name: "Select course",
+              icon: "fa-leaf",
+          },
+          {
               name: "Preview",
               icon: "fa-eye",
-          }];
+          }
+          ];
           
         //start out on step
         scope.selection = scope.steps[0].name;
@@ -178,9 +242,9 @@ app.directive('assignmentCreateassignment', [
         scope.updateCourse = function(){
             //update existing course
             //var course = scope.course;
-            console.log(scope.course);
+            console.log(scope.course[0]._id);
             Course.update({
-                _id: scope.course._id
+                _id: scope.course[0]._id
               },{
                 status: true,
                 code: scope.code,
@@ -190,13 +254,14 @@ app.directive('assignmentCreateassignment', [
                 start: scope.start,
                 end: scope.end
             });
-            console.log(scope.course[0]);
+            //console.log(scope.course[0]);
             alert(scope.course[0].name);
             scope.incrementStep();
         };
           
         //roate location
         scope.pathLocation = function(newLocation) {
+            console.log("location körs");
             //add if statement for previous location - get prev path and back-forward
             console.log(newLocation);
             scope.$parent.hideModal();

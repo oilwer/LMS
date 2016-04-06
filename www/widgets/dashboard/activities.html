@@ -4,9 +4,8 @@
     </div>
     <div class="box__content">
         <!--<button ng-click="createCourse()">Add Course</button>-->
-        <createcourse-buttoncreatecourse></createcourse-buttoncreatecourse>
-        
-        <assignment-buttoncreateassignment></assignment-buttoncreateassignment>
+        <course-create-buttoncreatecourse ng-if="buttonDisplay"></course-create-buttoncreatecourse>
+        <assignment-buttoncreateassignment ng-if="buttonDisplay"></assignment-buttoncreateassignment>
         
     </div>
 </div>

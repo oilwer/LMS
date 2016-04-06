@@ -33,7 +33,7 @@
                 <div class="box body--margin col-sm-24">
                     <div class="box__header">
                         <h2>
-                            <i class="fa fa-file-text-o"></i>     Assignment 1
+                            <i class="fa fa-file-text-o"></i>    {{assignment.name}}
                         </h2>
                     </div><!--header- END- -->
                     
@@ -66,7 +66,7 @@
                                     
                                 </ul>
                             </div>
-                        
+
                         </div><!--.leftside-->
                         
                         <div class="col-md-12 rightside"><!--RIGHTSIDE-->
@@ -74,15 +74,15 @@
                                 
                                 <div class="col-md-24">
                                     <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Deadline: 27/3-2016</li><li class="box__info--list">Published: 28/2-2016</li>
-                                        <li class="box__info--list">Obligatory: yes</li>
+                                        <li class="box__info--list">Deadline: {{assignment.due_date}}</li><li class="box__info--list">Published: {{assignment.added_on}}</li>
+                                        <li class="box__info--list">Obligatory: {{assignment.obligatory}}</li>
                                         
                                     </ul>
                                     <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Teachers:<p class="crusive">Ann Svensson</p></li>
+                                        <li class="box__info--list">Teachers:<p class="crusive">yoloman</p></li>
                                     </ul>
                                     <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Assessment:<p class="done">DONE</p></li>
+                                        <li class="box__info--list">Assessment:<p class="done">{{assignment.assessment}}</p></li>
                                     </ul>
                                 </div>
                                 

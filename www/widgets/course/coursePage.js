@@ -5,13 +5,15 @@ app.directive('courseCoursepage', [
   "Course",
   "User",
   "$routeParams",
+  "Assignment",
   function(
     settings,
     $location,
     SessionService,
     Course,
     User,
-    $routeParams
+    $routeParams,
+    Assignment
   ) {
 
     return {
@@ -27,12 +29,28 @@ app.directive('courseCoursepage', [
             var url = $location.path().split(/[\s/]+/).pop();
             Course.get({url: url}, function(result){ 
               scope.course = result[0];
-              scope.messages = scope.course.messages;
+
+              scope.messages = scope.course.messages; //load messages
+
+               User.getById(scope.course.creator, function(result){
+                  scope.teacher = result.first_name + " " + result.last_name;
+                  scope.teacherUrl = result.public_url;
+              });
           });
         };  
 
+
+            var assRes = Assignment.get(function(res){
+              console.log("yolo", res);
+            });
+            Assignment.onQueueDone();
+            console.log("yolo", assRes);
+            scope.assignments = assRes;
+
         //Runs on page update
-        refresh();
+        refresh();       
+
+
 
        
 

@@ -4,36 +4,15 @@
 <div class="app_container course heightfull">
     <div class="container-fluid heightfull" >
         <div class="row table-row heightfull">
-            <nav class="col-sm-3 col-md-3 nav--local">
-                <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.code }} - {{course.name}}</h1>
-                <ul>
-                    <li class="active"><a href="">Overview</a></li>
-                    <li><a ng-href="participants/{{ course.name }}">Participants</a></li>
-                    <li><a href="">Questions and Answers</a></li>
-                    <li ><a class="nav--local_notification" ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
-                        <ul ng-show="isChildOpen">
-                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 2</a></li>
-                        </ul>
-                    </li>
-                    <li ><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
-                        <ul ng-show="isChild2Open">
-                            <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital book with great name</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 1</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
-                            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital material by Other Author</a></li>
-                        </ul>
-                    </li>
-                </ul>
-                
-            </nav>
             
+            <nav class="col-sm-3 col-md-3 nav--local" >
+                <course-courseNav></course-courseNav>
+            </nav>
+
             <div class="col-sm-21 col-md-21 body--paddingtop coursebody">
                 <nav class="nav--breadcrumbs">
                     <ul class="list-inline">
-                        <li><a href="/courses">Courses</a></li> / <!---->
+                        <li><a href="/courses">Courses</a></li>  <!---->
                         <li><a href="/courses/testcourse">Web development</a></li> /
                         <li>Overview</li>
                     </ul>
@@ -88,13 +67,14 @@
                                 </div>
                                 <div class="col-md-4">
                                     <h2 class="course_teacher">Teaching</h2>
-                                    <p ng-repeat="teacher in course.teaching">
-                                        <a href="{{teacher.profile}}">{{teacher.name}}</a>
-                                    </p>
+                                    
+                                    <a href="/profile/{{teacherUrl}}">{{teacher}}</a>
+                                    
                                 </div>
                             </div>                            
                         </div>
                         
+                        <!-- assignment list -->                    
                         <div class="col-sm-24 box--label box--label--courses box--label--assignments">
                             <h2 class="box--label_heading--courses">
                                 <i class="fa--heading fa fa-file-text-o"></i>
@@ -102,11 +82,16 @@
                             </h2>
                             <div class="">
                                 <ul class="courses_assignments">
-                                    <li class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></li>
-                                    <li class="courses_assignmentitem">Assignment 1</li>
-                                    <li class="courses_assignmentitem">Assignment 2</li>
-                                    <li class="courses_assignmentitem">Assignment 3</li>
+                                    <li class="course_heading">
+                                        <span>Name</span> <span>Deadline</span> <span>Status</span>
+                                    </li>
+                                    <assignment-item ng-repeat="assignment in assignments"></assignments-item> 
+                                    <!-- | filter:searchStudents -->
                                 </ul>
+                                <!-- <p class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></p>  
+                                <ul class="courses_assignments" ng-repeat="assignment in course.assignments">
+                                    <a href={{assignment.url}}><li class="courses_assignmentitem">{{assignment.name}}</li></a>
+                                </ul> -->
                             </div>
                         </div>
 
@@ -116,13 +101,12 @@
                                 Resources
                             </h2>
                             <div class="">
-                                <ul class="courses_assignments">
-                                    <li class="course_heading">
+                                <p class="course_heading">
                                         <span>Name</span><span>Time</span><span>Status</span>
-                                    </li>
-                                    <li class="courses_assignmentitem">New resource 1</li>
-                                    <li class="courses_assignmentitem">Changed resource 2</li>
-                                    <li class="courses_assignmentitem">New resource 3</li>
+                                </p>
+
+                                <ul class="courses_assignments" ng-repeat="resource in course.resources">
+                                    <a href={{resource.url}}><li class="courses_assignmentitem">{{resource.name}}</li></a>
                                 </ul>
                             </div>
                 

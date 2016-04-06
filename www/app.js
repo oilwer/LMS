@@ -75,3 +75,26 @@ app.service('SessionService', function($http) {
 // 		}
 // 	}
 // });
+
+app.service('ChatService', function($http){
+
+	return {
+        // Send message
+        sendMessage : function(username, text) {
+            var data = {"username": username, "text": text};
+            //" '?channel=' + " is used for non-object variables
+            return $http.post('/api/chat/', data).success(function(response, status){
+            	//console.log(response);
+            });
+        },
+
+        //get message history
+        getMessage : function(channel) {
+            //console.log(data);
+            //" '?channel=' + " is used for non-object variables
+            return $http.get('/api/chat?id=' + channel).success(function(response, status){
+            	//console.log(response);
+            });
+        }
+    }
+});

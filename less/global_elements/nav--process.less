@@ -1,86 +1,114 @@
-
 .nav--process_line {
-        content: "";
-        position: absolute;
-        top: 37%;
-        left: 20%;
-        width: 60%;
-        height: 2px;
-        background: @LMSlight;
+       content: "";
+       position: absolute;
+       top: 37%;
+       left: 20%;
+       width: 60%;
+       height: 2px;
+       background: @LMSlight;
 }
 
 .checked:before {
-    content: "";
-    position: absolute;
-    top: 30%;
-    left: 100px;
-    width: 100%;
-    height: 2px;
-    background: @RGBcourses;
+   content: "";
+   position: absolute;
+   top: 30%;
+   left: 100px;
+   width: 100%;
+   height: 2px;
+   background: @RGBcourses;
 }
 
 .nav--process {
-    position: relative;
-    padding-top: 20px;
-    font-family: 'Roboto';
-    z-index: 10;
-    padding-bottom: 20px;
-    
-    a {
-        text-decoration: none;
-    }
-    li {
-        position: relative;
-        vertical-align: text-top;
-        display: inline-block;
-        width: 33.333333333%;
-        height: 90px;
-        text-align: center;
-    }
-    
-    .active .step, .checked .step {
-        border: 2px solid @RGBcourses;
-        color: @RGBcourses;
-    }
-        
-    .active .stepLabel, .checked .stepLabel {
-        color: @RGBcourses;
-    }
-            
-    .step {
-        position: relative;
-        width: 55px;
-        height: 55px;
-        margin: auto;
-        z-index: 10;
-        margin-bottom: 7px;
-        display: block;
-        line-height: 2.5;
-        font-size: 1.5em;
-        border: 2px solid @LMSlight;
-        background-color: #fff;
-        border-radius: 50%;
-        text-align: center;
-    }
-    
-    .stepLabel {
-        position: relative;
-        display: block;
-        height: 20px;
-        font-size: 0.8em;
-        text-transform: uppercase;
-    }
-    a { 
-        color: @LMSlight;
-        display: inline-block;
-        &:hover {text-decoration: none;} 
-    }
+   position: relative;
+   padding-top: 20px;
+   font-family: 'Roboto';
+   z-index: 10;
+   padding-bottom: 20px;
+   
+   a {
+       text-decoration: none;
+   }
+   li {
+       position: relative;
+       vertical-align: text-top;
+       display: inline-block;
+       width: 33.333333333%;
+       height: 90px;
+       text-align: center;
+   }
+   
+   .active .step, .checked .step {
+       border: 2px solid @RGBcourses;
+       color: @RGBcourses;
+   }
+       
+   .active .stepLabel, .checked .stepLabel {
+       color: @RGBcourses;
+   }
+           
+   .step {
+       position: relative;
+       width: 55px;
+       height: 55px;
+       margin: auto;
+       z-index: 10;
+       margin-bottom: 7px;
+       display: block;
+       line-height: 2.5;
+       font-size: 1.5em;
+       border: 2px solid @LMSlight;
+       background-color: #fff;
+       border-radius: 50%;
+       text-align: center;
+   }
+   
+   .stepLabel {
+       position: relative;
+       display: block;
+       height: 20px;
+       font-size: 0.8em;
+       text-transform: uppercase;
+   }
+   a { 
+       color: @LMSlight;
+       display: inline-block;
+       &:hover {text-decoration: none;} 
+   }
 }
 
+.nav--process--assignments {
+   .active .stepLabel, .checked .stepLabel {
+       color: @RGBassignments;
+   }
+   
+   .active .step, .checked .step {
+       border: 2px solid @RGBassignments;
+       color: @RGBassignments;
+   }
+   
+   .checked:before {
+   content: "";
+   position: absolute;
+   top: 30%;
+   left: 100px;
+   width: 100%;
+   height: 2px;
+   background: @RGBassignments;
+}
+}
 
 .process_view {
-    .pager {
-        padding: 20px;
-    }
+   .pager {
+       padding: 20px;
+   }
 
-    }
+   }
+
+.nav--process--assignments li {
+       width: 25%;  
+   }
+
+.select_course_header {
+   margin-top: 8%;
+}
+
