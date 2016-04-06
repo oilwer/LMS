@@ -17,7 +17,7 @@ module.exports = function(mongoose){
 		    is_answerd: Boolean,
 		    answer_file: String,
 		    answer: String,
-			answer_date: Date
+			  answer_date: Date
 		}
     ],
     responsible_teacher:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },

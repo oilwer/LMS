@@ -5,13 +5,15 @@ app.directive('courseCoursepage', [
   "Course",
   "User",
   "$routeParams",
+  "Assignment",
   function(
     settings,
     $location,
     SessionService,
     Course,
     User,
-    $routeParams
+    $routeParams,
+    Assignment
   ) {
 
     return {
@@ -31,8 +33,18 @@ app.directive('courseCoursepage', [
           });
         };  
 
+
+            var assRes = Assignment.get(function(res){
+              console.log("yolo", res);
+            });
+            Assignment.onQueueDone();
+            console.log("yolo", assRes);
+            scope.assignments = assRes;
+
         //Runs on page update
         refresh();
+
+
 
        
 

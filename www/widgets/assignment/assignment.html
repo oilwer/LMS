@@ -33,21 +33,20 @@
                 <div class="box body--margin col-sm-24">
                     <div class="box__header">
                         <h2>
-                            <i class="fa fa-file-text-o"></i>     Assignment 1
+                            <i class="fa fa-file-text-o"></i>    {{assignment.name}}
                         </h2>
                     </div><!--header- END- -->
                     
                     <div class="box__content">
                         
                         <div class="col-md-24 box__info">
-                            <h2 class="box__info--h1">Assignment 1</h2>
-                            <p class="box__info--text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at elementum massa, congue tincidunt augue. Aliquam id consequat lectus, vel tincidunt lacus. Nulla dapibus vel massa sed pharetra. Donec placerat dapibus massa in interdum. Proin elementum, turpis eu dignissim iaculis, mauris tellus ultricies leo, sed cursus arcu ipsum at nisl. Suspendisse consequat leo ac dolor congue, a porttitor elit vulputate. Fusce leo nisi, dapibus ut aliquam nec, varius eu nisl. In bibendum consequat purus vitae dapibus...</p>
+                            <h2 class="box__info--h1"> {{assignment.name}}</h2>
+                            <p class="box__info--text"> {{assignment.description}}</p>
                         </div>
                         
                         <div class="col-md-24 box__info">
                             <ul class="box__info--list">
-                                <li>Deadline: 27/3-2016</li><li>published: 28/2-2016</li><li>Assessment: DONE/FAILED</li><li>Obligatory: YES</li>
-                            
+                                <li>Deadline: {{assignment.due_date}}</li><li>published: {{assignment.added_on}}</li><li>Assessment: {{assignment.assessment}}</li><li>Obligatory: {{assignment.obligatory}}</li>
                             </ul>
                         </div>
                         

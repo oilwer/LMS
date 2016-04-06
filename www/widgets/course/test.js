@@ -5,22 +5,25 @@ app.directive('courseTest', [
   "Course",
   "User",
   "$routeParams",
+  "Assignment",
   function(
     settings,
     $location,
     SessionService,
     Course,
     User,
-    $routeParams
+    $routeParams,
+    Assignment
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/test.html',
       link: function(scope, element, attrs) {
-
+ 
+              
         var session_user;
         SessionService.getSession().success(function(response){
-          session_user = response.user;
+            session_user = response.user;
         });
 
         var refresh = function(){
@@ -62,9 +65,7 @@ app.directive('courseTest', [
             refresh();              
         }
 
-
-            
-              
+           
         //     //TODO: 
         //     //display changes in view (notifications)
         //     //Progress
