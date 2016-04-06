@@ -13,11 +13,15 @@ app.directive('headerNav', [
       replace: true,
       link: function(scope, element, attrs) {
        
-       //logic
-          
-        
         scope.isActive = function(route) {
-            return route === $location.path();
+            var theLocation = $location.path().split("/")[1];
+            //fix if location.path() is root
+            if (theLocation === "") {
+                theLocation = "/";
+            } else {
+                theLocation = "/" + theLocation + "/";
+            };
+            return route === theLocation;
         }
 
         SessionService.getSession().success(function(response) {
@@ -29,7 +33,6 @@ app.directive('headerNav', [
 
               scope.first_name = fetchedUser.first_name;
               scope.last_name = fetchedUser.last_name;
-
             
           } else {
             return false
@@ -37,10 +40,7 @@ app.directive('headerNav', [
 
         });
 
-
-
-       
-      }
+      } //link
     };
   }
 ]);
