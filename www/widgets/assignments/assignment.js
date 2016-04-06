@@ -1,4 +1,4 @@
-app.directive('assignmentAnswer', [
+app.directive('assignmentsAnswer', [
   "settings",
   "User",
   "Course",
@@ -11,7 +11,7 @@ app.directive('assignmentAnswer', [
   ) {
 	  
     return {
-      templateUrl: settings.widgets + 'assignment/answer.html',
+      templateUrl: settings.widgets + 'assignments/answer.html',
       link: function(scope, element, attrs) {
 	  		
         var url = $routeParams.url;
