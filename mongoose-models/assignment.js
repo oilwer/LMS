@@ -9,16 +9,23 @@ module.exports = function(mongoose){
     description: String,
     added_on: Date,
     course:  { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
-    participants:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    participants:  [
+    	{ 
+			User: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+		    grade: Number,
+		    comment: String,
+		    is_answerd: Boolean,
+		    answer_file: String,
+		    answer: String,
+			answer_date: Date
+		}
+    ],
     responsible_teacher:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     teachers:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
-	grade: Number,
-	comment: String,
 	is_published: Boolean,
-	is_answerd: Boolean,
-	file: String,
-	answer: String,
-	answer_date: Date
+	teacher_instruction_file: String,
+	assessment: String,
+	obligatory: Boolean
 });
 
   // Return the model
