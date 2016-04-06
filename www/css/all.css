@@ -7496,7 +7496,7 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: #000000;
+  background-color: #000000 ;
   opacity: 0.8;
 }
 .ng-modal-dialog {
@@ -7696,7 +7696,7 @@ This is a LESS file; only style for the element class .box allowed!
   color: rgba(255, 255, 255, 0.5);
   transition: all 0.5s ease;
 }
-.nav--global_logotype {
+.nav--global li.nav--global_logotype {
   display: none;
 }
 /*Share li/a space with global_listitem*/
@@ -7807,11 +7807,16 @@ This is a LESS file; only style for the element class .box allowed!
   .nav--global a {
     font-size: 11px;
   }
-  .nav--global_logotype {
+  .nav--global li.nav--global_logotype {
+    height: 50px !important;
     display: block;
     position: absolute;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
+  }
+  .nav--global li.nav--global_logotype img {
+    width: 100% !important;
+    height: auto !important;
   }
 }
 .nav--process_line {
@@ -7888,8 +7893,32 @@ This is a LESS file; only style for the element class .box allowed!
 .nav--process a:hover {
   text-decoration: none;
 }
+.nav--process--assignments .active .stepLabel,
+.nav--process--assignments .checked .stepLabel {
+  color: #fcb941;
+}
+.nav--process--assignments .active .step,
+.nav--process--assignments .checked .step {
+  border: 2px solid #fcb941;
+  color: #fcb941;
+}
+.nav--process--assignments .checked:before {
+  content: "";
+  position: absolute;
+  top: 30%;
+  left: 100px;
+  width: 100%;
+  height: 2px;
+  background: #fcb941;
+}
 .process_view .pager {
   padding: 20px;
+}
+.nav--process--assignments li {
+  width: 25%;
+}
+.select_course_header {
+  margin-top: 8%;
 }
 label {
   color: rgba(62, 71, 79, 0.5);
@@ -7934,6 +7963,129 @@ form[name="courseType"] button:hover {
   background: #e74c3c;
   border-radius: 50%;
   text-align: center;
+}
+/* * * * * * * * * * * * * * * *   
+
+            LOGIN     
+
+* * * * * * * * * * * * * * * * */
+.maskot {
+  position: absolute;
+  margin-top: -95px;
+  right: 200px;
+}
+.maskot img {
+  height: 100px;
+}
+/*Button Other*/
+.button {
+  /*background: rgb(66,161,151);*/
+  background: #2CC990;
+  color: #fff;
+  border: none;
+  border-radius: 2px;
+  padding: 9.9px 18px;
+  display: inline-block;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2;
+  will-change: box-shadow;
+  transition: box-shadow 0.2s cubic-bezier(0.4, 0, 1, 1), background-color 0.2s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  line-height: 34px;
+  vertical-align: middle;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+}
+.button:active {
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.14);
+  outline: none;
+}
+.button:hover {
+  background: rgba(47, 155, 134, 0.9);
+  transition: all 1s ease;
+}
+.login {
+  background: url("/img/tree2blur.jpg") center center fixed;
+  width: 100%;
+  height: 100%;
+  height: 100vh;
+  /*background: rgba(235,235,235,1);*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow: hidden;
+}
+.login--error-hide {
+  opacity: 0;
+}
+.login--error-show {
+  color: #e74c3c;
+  transition: all 0.5s ease;
+}
+.form--login {
+  padding: 20px 15px 0px 15px;
+  background: #f9f9f9;
+  border-radius: 2px;
+}
+.form--login .form-control {
+  width: 85%;
+  margin: auto;
+  margin-bottom: 10px;
+}
+.form--login ::-webkit-input-placeholder {
+  color: #707070;
+  /*brun #87794e #707070*/
+}
+/*
+.form--login input[type="text"]:focus::-webkit-input-placeholder, .form--login input[type="password"]:focus::-webkit-input-placeholder  {
+    color: rgba(135,121,78,0.3);
+    transition: all 0.1s ease;
+}
+
+.form--login input[type="text"], .form--login input[type="password"]{
+    display: block;
+    margin: auto;
+    width: 85%;
+    background: rgba(255,255,255,1);
+    margin-top: 0px;
+    border: 0px solid rgba(155,155,155,0.4);
+    border-bottom: 2px solid rgba(155,155,155,0.4);
+    margin-bottom: 5px;
+    padding: 12px 20px;;
+    text-align: left;
+    outline: none;
+    box-shadow: 0 0px 1px 0px rgba(0,0,0,.14);
+}*/
+.form--login input[type="submit"] {
+  display: block;
+  margin: auto;
+  width: 85%;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  padding: 5px;
+}
+.form--login h1 img {
+  padding: 5px 70px 25px 70px;
+}
+.form--login a {
+  font-weight: 600;
+  color: #404040;
+  text-decoration: underline;
+  padding: 15px 0px 20px 0px;
+  display: inline-block;
+}
+.form--login a:hover {
+  text-decoration: none;
+  cursor: pointer;
 }
 dashboard-activities .activities-button {
   background: rgba(62, 71, 79, 0.5);
@@ -8034,6 +8186,31 @@ dashboard-courses .assignClass {
   margin-left: 20%;
   font-family: sans-serif;
   margin-top: 2%;
+}
+.box__file {
+  height: 150px;
+  width: 60%;
+  margin-left: 20%;
+  border-radius: 5px;
+  border-style: dashed;
+  border-color: grey;
+  background-color: rgba(0, 0, 0, 0.07);
+}
+.box__file:hover {
+  background-color: lightgreen;
+}
+.box__file--icon {
+  margin-top: 4%;
+  margin-left: 47%;
+  color: grey;
+}
+.box__file--text {
+  margin-left: 40%;
+  color: black;
+}
+.file__button {
+  margin-left: 33%;
+  font-size: 10px;
 }
 .submit__button {
   padding-bottom: 3%;

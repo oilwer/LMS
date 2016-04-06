@@ -1,0 +1,119 @@
+    <div class="row">
+        <div class="col-sm-16 col-sm-offset-4">
+            <ul class="col-sm-24 nav--process">
+                <div class="nav--process_line"></div>
+                <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
+                  <a href="javascript:void(0)" ng-click="goToStep($index)">
+                    <span class="step"><i class=" fa {{step.icon}}"></i></span>
+                      <span class="stepLabel">{{step.name}}</span>
+                    </a>
+                </li>
+              </ul>
+            <div class="process_view" ng-switch on="selection">
+            <div class="stepOne" ng-switch-when="Create or copy">
+                <div class="col-sm-14 col-sm-offset-5">
+                <form name="courseType">
+                    <button ng-click="goToStep(1)">Create new course</button>
+                    <button ng-click="isCoursesOpen = !isCoursesOpen">Copy Course</button>
+                    <div class="getCourses" ng-show="isCoursesOpen">
+                        <p>Placeholder: copy course</p>
+                    </div>
+                </form>
+                </div>
+                <ul class="col-xs-24 pager">
+                    <li class="">
+                        <button ng-click="$parent.$parent.hideModal()" class="btn btn-default">Close</button>
+                    </li>
+                </ul>
+            </div> <!--.StepOne-->
+                <div class="stepTwo" ng-switch-when="Details">
+                    <div class="col-sm-24">
+                    <form name="courseDetails">
+                        <div class="col-sm-12">
+                        <label for="courseName">Course name</label>
+                            <input type="text" name="courseName" class="form-control" ng-model="$parent.name" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseName.$touched && courseDetails.courseName.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                        <label for="courseCode">Course code</label>
+                            <input type="text" name="courseCode" class="form-control" ng-model="$parent.code" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseCode.$touched && courseDetails.courseCode.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                        <label for="courseUrl">Course url</label>
+                            <input type="text" name="courseUrl" class="form-control" ng-model="$parent.url" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseUrl.$touched && courseDetails.courseUrl.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                        </div>
+                        <div class="col-sm-12">
+                            <label for="courseStart">Start date</label>
+                            <input type="date" name="courseStart" class="form-control" ng-model="$parent.start" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseStart.$touched && courseDetails.courseStart.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                            <label for="courseEnd">End date</label>
+                            <input type="date" name="courseEnd" class="form-control" ng-model="$parent.end" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseEnd.$touched && courseDetails.courseEnd.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                        </div>
+                        <div class="col-sm-24">
+                            <label for="courseDescription">Description</label>
+                            <input type="text" name="courseDescription" class="form-control" ng-model="$parent.description" required="true">
+                            <span 
+                            class="error" 
+                            ng-show="courseDetails.courseDescription.$touched && courseDetails.courseDescription.$invalid"
+                            class="formError">
+                            <i class="fa fa-times"></i>
+                            </span>
+                        </div>
+                    </form>
+                    </div>
+                    <ul class="col-xs-24 pager">
+                        <li class="">
+                            <a href="" ng-click="decrementStep()">&larr; Previous</a>
+                        </li>
+                        <li class="">
+                            <a href="" ng-click="courseDetails.$valid && addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
+                        </li>
+                    </ul>
+            </div><!--.stepTwo-->
+            <div class="stepTree" ng-switch-when="Preview">
+                <div class="col-sm-24">
+                <p>Name: {{name}}</p>
+                <p>Course code: {{code}}</p>
+                <p>Description: {{description}}</p>
+                <p>Period: {{start}} - {{end}}</p>
+
+                <p>Kopia: {{copy}}</p>
+                <p>Url: {{url}}</p>
+                <p>User: {{session_user._id}}</p>
+                <p>ID: {{id}}</p>
+                <button class="btn btn-default" ng-click="pathLocation($parent.course.url)">Enter course page</button>
+                <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
+                </div>
+                <ul class="col-xs-24 pager">
+                    <li class="">
+                        <a href="" ng-click="decrementStep()">&larr; Edit details</a>
+                    </li>
+                </ul>
+            </div><!--.stepTree-->
+            </div>
+        </div><!--col-->
+    </div><!--.row-->
