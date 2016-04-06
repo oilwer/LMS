@@ -178,9 +178,9 @@ app.directive('createCourse', [
         scope.updateCourse = function(){
             //update existing course
             //var course = scope.course;
-            console.log(scope.course);
+            console.log(scope.course[0]._id);
             Course.update({
-                _id: scope.course._id
+                _id: scope.course[0]._id
               },{
                 status: true,
                 code: scope.code,
@@ -190,13 +190,14 @@ app.directive('createCourse', [
                 start: scope.start,
                 end: scope.end
             });
-            console.log(scope.course[0]);
+            //console.log(scope.course[0]);
             alert(scope.course[0].name);
             scope.incrementStep();
         };
           
         //roate location
         scope.pathLocation = function(newLocation) {
+            console.log("location körs");
             //add if statement for previous location - get prev path and back-forward
             console.log(newLocation);
             scope.$parent.hideModal();
