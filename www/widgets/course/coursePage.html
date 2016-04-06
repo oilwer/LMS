@@ -14,7 +14,6 @@
                         <ul ng-show="isChildOpen">
                             <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 1</a></li>
                             <li><a href=""><i class="fa--itemtype fa fa-file-text-o"></i>Assignment 2</a></li>
-                             
                         </ul>
                     </li>
                     <li ><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
@@ -47,15 +46,9 @@
                                 <i class="fa--heading fa fa-file-text-o"></i>
                                 Wall
                             </h2>
-                            <div class="box_content" ng-repeat="message in course.messages">
-                                <div class="wall_content_item">
-                                    <h3>{{message.title}}</h3>
-                                    <p>{{message.content}}</p>
-                                    <img class="wall_img" src="/img/person.png">
-                                    <p class="wall_author">{{ getName(message.creator) }}</p>
-                                    <p class="wall_time">{{message.date}}</p>
-                                </div>
-                            </div>
+                            <!--Messages in course-->
+                            <course-message ng-repeat="message in messages"></course-message>
+
                             <div class="wall_loadmore">
                             <i class="fa fa-plus-circle"></i> Load more
                             </div>
@@ -101,9 +94,22 @@
                                 </div>
                             </div>                            
                         </div>
-                      
-                        <assignments-list/>
- 
+                        
+                        <div class="col-sm-24 box--label box--label--courses box--label--assignments">
+                            <h2 class="box--label_heading--courses">
+                                <i class="fa--heading fa fa-file-text-o"></i>
+                                Assignments
+                            </h2>
+                            <div class="">
+                                <ul class="courses_assignments">
+                                    <li class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></li>
+                                    <li class="courses_assignmentitem">Assignment 1</li>
+                                    <li class="courses_assignmentitem">Assignment 2</li>
+                                    <li class="courses_assignmentitem">Assignment 3</li>
+                                </ul>
+                            </div>
+                        </div>
+
                         <div class="col-sm-24 box--label box--label--courses box--label--assignments">
                             <h2 class="box--label_heading--courses">
                                 <i class="fa--heading fa fa-book"></i>

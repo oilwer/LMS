@@ -1,4 +1,4 @@
-app.directive('assignmentAnswer', [
+app.directive('assignmentsList', [
   "settings",
   "User",
   "Course",
@@ -9,11 +9,11 @@ app.directive('assignmentAnswer', [
     Course,
     $routeParams
   ) {
-	  
+    
     return {
-      templateUrl: settings.widgets + 'assignment/answer.html',
+      templateUrl: settings.widgets + 'assignments/list.html',
       link: function(scope, element, attrs) {
-	  		
+        
         var url = $routeParams.url;
 
         //Get all courses by name from url, populate fills all the 

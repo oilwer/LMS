@@ -1,4 +1,4 @@
-app.directive('courseTest', [
+app.directive('courseCoursepage', [
   "settings",
   "$location",
   "SessionService",
@@ -15,7 +15,7 @@ app.directive('courseTest', [
   ) {
 
     return {
-      templateUrl: settings.widgets + 'course/test.html',
+      templateUrl: settings.widgets + 'course/coursePage.html',
       link: function(scope, element, attrs) {
 
         var session_user;
@@ -27,21 +27,14 @@ app.directive('courseTest', [
             var url = $location.path().split(/[\s/]+/).pop();
             Course.get({url: url}, function(result){ 
               scope.course = result[0];
+              scope.messages = scope.course.messages;
           });
         };  
 
-        scope.getName = function(messageid){ 
-            // User.getById(messageid, function(result){
-            //     console.log(result.first_name);
-            // });
-            // User.get({_id: messageid}, function(result){ 
-            //    console.log(result[0].first_name);
-            //     return result[0].first_name;
-            // });
-        }
-              
         //Runs on page update
         refresh();
+
+       
 
         scope.publishMsg = function(){
             var course = scope.course;
@@ -50,20 +43,19 @@ app.directive('courseTest', [
 
             Course.update({
                 _id: course._id
-            },{
-              messages:[{
+            },{ $push: {
+                  messages:{
                   title: scope.title,
                   content: scope.content,
                   creator: session_user,
                   date: today                  
-              }]
+                }
+              }
             });
             // Refresh GUI
+            // do not refresh, push message to messages
             refresh();              
-        }
-
-
-            
+        }    
               
         //     //TODO: 
         //     //display changes in view (notifications)

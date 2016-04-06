@@ -25,7 +25,10 @@ app.directive('dashboardCourses', [
             //console.log(obj.currentTarget.attributes.dataLocation.value);
                   // Redirects to cource url saved in the clicked elements dataLocation attr
             $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
-        };          
+        };
+        scope.$on('addedCourse', function() {
+          refresh();
+        });                 
       }
     };
   }
