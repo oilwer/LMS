@@ -60,7 +60,10 @@ app.directive('courseTest', [
             });
             // Refresh GUI
             refresh();              
-        }    
+        }
+
+
+            
               
         //     //TODO: 
         //     //display changes in view (notifications)
