@@ -7408,6 +7408,7 @@ button.close {
 /*blue*/
 /*grey*/
 /*red*/
+/*yellow*/
 /* font style variables and mixins */
 body,
 html,
@@ -7935,12 +7936,18 @@ form[name="courseType"] button:hover {
   text-align: center;
 }
 dashboard-activities .activities-button {
-  background: #2CC990;
+  background: rgba(62, 71, 79, 0.5);
   color: #ffffff;
   width: 70px;
   height: 70px;
   border-radius: 50%;
   border: 0px solid;
+}
+dashboard-activities .activities-button--courses {
+  background: #2CC990;
+}
+dashboard-activities .activities-button--assignments {
+  background: #fcb941;
 }
 dashboard-activities button:active,
 dashboard-activities button:focus {
