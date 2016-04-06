@@ -102,7 +102,7 @@
     transition: all 0.5s ease;
 }
 
-.nav--global_logotype {
+.nav--global li.nav--global_logotype {
     display: none;
 }
 
@@ -234,10 +234,15 @@
         font-size: 11px;
     }
 
-    .nav--global_logotype {
+    .nav--global li.nav--global_logotype {
+        height: 50px !important;
         display: block;
         position: absolute;
-        bottom: 0;
+        bottom: 10px;
         left: 0;
+        img {
+            width: 100% !important;
+            height: auto !important;
+        }
     }
 }
