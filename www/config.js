@@ -28,6 +28,9 @@ app.config([
        .when("/courses/", {
         templateUrl: "templates/courses.html",
       })
+       .when("/answer/", {
+        templateUrl: "templates/answer.html",
+      })
        // 
        .when("/courses/:id", {
         templateUrl: "templates/course.html",
