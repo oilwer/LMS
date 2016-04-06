@@ -7659,7 +7659,7 @@ This is a LESS file; only style for the element class .box allowed!
 .nav--global li {
   display: inline-block;
   height: 100%;
-  width: 17%;
+  width: 21%;
   padding: 0px;
   margin: 0px 0px;
   text-align: center;
@@ -8032,7 +8032,7 @@ form[name="courseType"] button:hover {
   transition: all 0.5s ease;
 }
 .form--login {
-  padding: 20px 15px 0px 15px;
+  padding: 20px 15px 10px 15px;
   background: #f9f9f9;
   border-radius: 2px;
 }
@@ -8080,7 +8080,7 @@ form[name="courseType"] button:hover {
   font-weight: 600;
   color: #404040;
   text-decoration: underline;
-  padding: 15px 0px 20px 0px;
+  padding: 15px 0px 5px 0px;
   display: inline-block;
 }
 .form--login a:hover {
@@ -8090,6 +8090,7 @@ form[name="courseType"] button:hover {
 dashboard-activities .activities-button {
   background: rgba(62, 71, 79, 0.5);
   color: #ffffff;
+  font-size: 0.8em;
   width: 70px;
   height: 70px;
   border-radius: 50%;
