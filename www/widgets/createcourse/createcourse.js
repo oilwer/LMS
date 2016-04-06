@@ -165,6 +165,7 @@ app.directive('createCourse', [
                 creator: scope.session_user._id
             }, function(course)
                 {
+                    scope.$emit('addedCourse');
                     //update GUI edit mode
                     scope.course = course;
                     isEditingCourse = true;
