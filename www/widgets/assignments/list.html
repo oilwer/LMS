@@ -7,13 +7,10 @@
     <div class="">
         <ul class="courses_assignments">
             <li class="course_heading">
-                <span>Name</span>
-                <span>Deadline</span>
-                <span>Status</span>
+                <span>Name</span> <span>Deadline</span> <span>Status</span>
             </li>
-            <li class="courses_assignmentitem">Assignment 1</li>
-            <li class="courses_assignmentitem">Assignment 2</li>
-            <li class="courses_assignmentitem">Assignment 3</li>
+            <assignments-item ng-repeat="assignment in assignments"></assignments-item> 
+            <!-- | filter:searchStudents -->
         </ul>
     </div>
 </div>
