@@ -16,10 +16,12 @@ app.directive('connectConnectstudents', [
 	  		
         var url = $routeParams.url;
 
+        scope.course = "";
+
         //Get all courses by name from url, populate fills all the 
         //connected studests so we can get their data. 
         //ng repeat with response of students
-        var course = Course.get({ url: url , _populate:"students"}, function(res){
+        Course.get({ url: url , _populate:"students"}, function(res){
           scope.users = res[0].students;
           scope.course = res[0];
         });

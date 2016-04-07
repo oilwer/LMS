@@ -2,19 +2,25 @@ app.directive('assignmentAssignment', [
   "settings",
   "Assignment",
   "$routeParams",
+  "Course",
   function(
     settings,
     Assignment,
-    $routeParams
+    $routeParams,
+    Course
   ) {
 	  
     return {
       templateUrl: settings.widgets + 'assignment/assignment.html',
       link: function(scope, element, attrs) {
-	  		
-          var assignmentId = $routeParams.id;
-          Assignment.getById(assignmentId, function(res){
-             scope.assignment = res;
+
+          Course.get({name: $routeParams.name}, function(course){
+            scope.course = course[0];
+
+          });          
+
+          Assignment.getById($routeParams.id, function(assignment){
+             scope.assignment = assignment;
           });
           
       }
