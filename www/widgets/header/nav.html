@@ -34,11 +34,48 @@
         </li>
     </ul>
 </nav>
-<a class="profileitem" href="/myprofile">
+
+<ul class="toolbar">
+    <li ng-if="buttonDisplay" class="btn-toolbar--create">
+        <div class="btn-toolbar">
+            <i class="fa fa-plus"></i>
+        </div>
+        <ul class="toolbar-options toolbar-options--create">
+            <div class="toolbar-option_content">
+                <li>
+                    Create
+                </li>
+                <li>
+                    <a href="" ng-click="toggleModal()"><i class="fa fa-leaf"></i> Create course</a>
+                </li>
+                <li>
+                    <a href=""ng-click="toggleAssignmentModal()"><i class="fa fa-file-text-o"></i> Create assignment</a>
+                </li>
+            </div>
+        </ul>
+    </li>
+    <li class="btn-toolbar--personal">
+        <img class="profileitem" src="/img/person.png" alt="profile image">
+        <ul class="toolbar-options toolbar-options--personal">
+            <div class="toolbar-option_content">
+                <li>{{ first_name }} {{ last_name }}</li>
+                <li><a href="/myprofile">My profile</a></li>
+                <li>Sign out</li>
+            </div>
+        </ul>
+    </li>
+</ul>
+
+
+
+<modal-dialog show='assignmentModalShown' width='80%'>
+      <div assignment-createassignment></div>
+</modal-dialog>
     
-    <span> {{ first_name }} {{ last_name }}</span>
-    <img src="/img/person.png">
-</a>
+<modal-dialog show='modalShown' width='80%'>
+    <div course-create-createcourse></div>
+</modal-dialog>
+    
 
 <div class="development_nav">
     <ul>

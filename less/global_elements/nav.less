@@ -140,7 +140,7 @@
 // NAV LOCAL
 //
 .nav--local {
-    background: rgba(255,255,255,1);
+    background: rgb(254,254,254);
     padding-right: 0px;
     padding-left: 0px;
     margin-right: -15px;
@@ -157,8 +157,13 @@
 .nav--local .fa--itemtype {
     padding: 0px 7px 0px 0px;
 }
+
+.nav--local li:first-child {
+    border-top: 1px solid fade(@LMSdark, 20%);
+}
 .nav--local li {
     width: 100%;
+    border-bottom: 1px solid fade(@LMSdark, 20%);
 }
 
 .nav--local li ul li a {

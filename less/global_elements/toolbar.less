@@ -1,0 +1,100 @@
+.toolbar {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    z-index: 40;
+}
+
+.toolbar li {
+    display: inline-block;
+    list-style: none;
+}
+
+.btn-toolbar--create {
+    overflow: hidden;
+    background: #364347;
+    color: #fff;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 5px;
+    border-radius: 50%;
+    display: inline-block;
+    transition: none;
+    cursor: pointer;
+}
+
+.btn-toolbar {
+    text-align: center;
+    margin-left: 0px;
+}
+
+.btn-toolbar--personal {
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.profileitem {
+    width: auto;
+    height: 30px;
+    border-radius: 50%;
+    padding: 0px 10px;
+}
+
+.toolbar-options {
+    position: absolute;
+    top: 30px;
+    width: 200px;
+    right: 10px;
+    height: auto;
+    display: none;
+}
+
+.toolbar-option_content {
+    .border-radius(2px);
+    margin-top: 10px;
+    background: #fff;
+    li {
+        width: 100%;
+        padding: 15px 0px;
+        text-align: center;
+        border-bottom: 1px solid rgba(100, 100, 100, .22);
+        transition: background 0.3 ease-in-out;
+    }
+    li:hover {
+        background: rgb(240,240,240);
+        transition: background 0.3 ease-in-out;
+    }
+    li:first-child {
+        padding: 10px 0px;
+        border-radius: 4px 4px 0px 0px;
+        background: @LMSdark;
+        color: #fff;
+        -webkit-font-smoothing: antialiased;
+	   -moz-osx-font-smoothing: grayscale;
+    }
+    li:firstchild:before {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: green;
+    }
+    a {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        text-decoration: none;
+        font-family: "Roboto", sans-serif;
+        color: fade(@LMSdark,90%);
+        
+    }
+}
+
+
+.btn-toolbar--create:hover .toolbar-options--create {
+    display: inline-block;
+}
+
+.btn-toolbar--personal:hover .toolbar-options--personal {
+    display: inline-block;
+}
