@@ -8,7 +8,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Course code</th>
+                    <th>Course</th>
                     <th>Wall</th>
                     <th>Assignm.</th>
                     <th>FAQ</th>
@@ -17,61 +17,64 @@
             </thead>
         
             <!--repeat all courses that the user belongs to -->
-            <tbody ng-repeat="course in courses">
-                <tr ng-if="course.status == true"> 
-                    <td>
+            <tbody>
+                <tr ng-repeat="course in courses" > 
+                    <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                            <p>{{course.name}}</p>
                             <p>{{course.code}}</p>
                         </a> 
                     </td>
-                    <td><i class="fa fa-thumb-tack">
-                            <span ng-if=""></span>
-                        </i>
-                    </td>
-                    <td>
-                        <i class="fa fa-file-text-o"></i>
-                            <span ng-class="class" ng-if="course.assignments > 0">+{{ course.assignments }}</span>
-                        </i>
-                    </td>
-                    <td>
-                        <i class="fa fa-question-circle"></i>
-                            <span  ng-if=""></span>
-                        </i>
-                    </td>
-                    <td>
-                        <i class="fa fa-book">
-                            <span ng-class="class" ng-if=""></span>
-                        </i>
-                    </td>
-                </tr>
-                <tr ng-if="course.status == false">
-                    <td>
-                        <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.code}}</p>
-                        </a>
-                    </td>
-                    <td>
+                    <td ng-if="course.status == true">
                         <i class="fa fa-thumb-tack">
                             <span ng-if=""></span>
                         </i>
                     </td>
-                    <td>
+                    <td ng-if="course.status == true">
                         <i class="fa fa-file-text-o"></i>
                             <span ng-class="class" ng-if="course.assignments > 0">+{{ course.assignments }}</span>
                         </i>
                     </td>
-                    <td>
+                    <td ng-if="course.status == true">
                         <i class="fa fa-question-circle"></i>
                             <span  ng-if=""></span>
                         </i>
                     </td>
-                    <td>
+                    <td ng-if="course.status == true">
                         <i class="fa fa-book">
                             <span ng-class="class" ng-if=""></span>
                         </i>
                     </td>
                 </tr>
+               <!-- <tr ng-repeat="course in courses">
+                    <td ng-if="course.status == false">
+                        <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                            <p>{{course.code}}</p>
+                            <p>{{course.name}}</p>
+                        </a>
+                    </td>
+                    <td ng-if="course.status == false">
+                        <i class="fa fa-thumb-tack">
+                            <span ng-if=""></span>
+                        </i>
+                    </td>
+                    <td ng-if="course.status == false">
+                        <i class="fa fa-file-text-o"></i>
+                            <span ng-class="class" ng-if="course.assignments > 0">+{{ course.assignments }}</span>
+                        </i>
+                    </td>
+                    <td ng-if="course.status == false">
+                        <i class="fa fa-question-circle"></i>
+                            <span  ng-if=""></span>
+                        </i>
+                    </td>
+                    <td ng-if="course.status == false">
+                        <i class="fa fa-book">
+                            <span ng-class="class" ng-if=""></span>
+                        </i>
+                    </td>
+                </tr>-->
             </tbody>
 
 
