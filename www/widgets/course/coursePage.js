@@ -19,7 +19,7 @@ app.directive('courseCoursepage', [
     return {
       templateUrl: settings.widgets + 'course/coursePage.html',
       link: function(scope, element, attrs) {
-
+    
         var session_user;
         SessionService.getSession().success(function(response){
           session_user = response.user;
@@ -29,7 +29,6 @@ app.directive('courseCoursepage', [
             var url = $location.path().split(/[\s/]+/).pop();
             Course.get({url: url}, function(result){ 
               scope.course = result[0];
-
               scope.messages = scope.course.messages; //load messages
 
                User.getById(scope.course.creator, function(result){

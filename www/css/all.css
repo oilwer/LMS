@@ -7574,7 +7574,10 @@ This is a LESS file; only style for the element class .box allowed!
 .box__header--courses {
   background: #2CC990;
 }
-.box__header--schedule {
+.box__header--assignments {
+  background: #fcb941;
+}
+.box__header--assignments {
   background: #00B5B5;
 }
 .box__header--questions {
@@ -7600,8 +7603,20 @@ This is a LESS file; only style for the element class .box allowed!
 .box--label--courses {
   border-left: 5px solid #2CC990;
 }
+.box--label--assignments {
+  border-left: 5px solid #fcb941;
+}
+.box--label--resources {
+  border-left: 5px solid #00B5B5;
+}
 .box--label_heading--courses {
   color: #2CC990;
+}
+.box--label_heading--assignments {
+  color: #fcb941;
+}
+.box--label_heading--resources {
+  color: #00B5B5;
 }
 .box--label_content {
   padding-top: 15px;
@@ -8108,29 +8123,40 @@ dashboard-activities button:focus {
 }
 dashboard-courses table {
   width: 100%;
-  border-collapse: separate;
+  border-collapse: collapse;
   border-spacing: 0 2px;
 }
 dashboard-courses thead th {
+  color: rgba(62, 71, 79, 0.75);
   font-size: .65em !important;
   text-transform: uppercase;
   font-weight: 400;
   text-align: center;
+  padding-bottom: 1%;
 }
 dashboard-courses thead th:first-child {
   width: 72%;
-  padding-left: 2%!important;
+  padding-left: 12px!important;
   text-align: left;
+}
+dashboard-courses tbody p {
+  color: rgba(62, 71, 79, 0.75);
 }
 dashboard-courses tbody td:first-child {
   padding: 2.2% 0 0% 2%;
   text-align: left;
 }
 dashboard-courses tbody td {
+  padding: 3% 0;
   position: relative;
-  background-color: #ddd;
   width: 30px;
   text-align: center;
+}
+dashboard-courses tbody tr {
+  border-bottom: 1px solid #eee;
+}
+dashboard-courses tbody tr:last-child {
+  border-bottom: 0px !important;
 }
 dashboard-courses tbody .fa-exclamation {
   border-right: none !important;
@@ -8141,14 +8167,25 @@ dashboard-courses tbody .fa-exclamation {
   padding: 1px 0px 0px 0px !important;
 }
 dashboard-courses tbody tr > td > .fa {
-  font-size: 1.2em;
+  font-size: 1.25em;
   position: relative;
   text-align: center;
-  border-right: 1px solid darkgrey;
   padding: 0px 18px 0px 18px;
+  color: rgba(62, 71, 79, 0.75);
 }
 dashboard-courses tbody tr > td > .fa-book {
   border: none;
+}
+dashboard-courses tbody tr td a p:last-child {
+  font-size: .9em;
+  font-style: italic;
+}
+dashboard-courses tbody tr td a p:first-child {
+  font-size: 1em;
+  font-weight: 600;
+}
+dashboard-courses tbody a:hover {
+  text-decoration: none;
 }
 dashboard-courses .assignClass {
   -webkit-font-smoothing: subpixel-antialiased;
@@ -8545,4 +8582,171 @@ dashboard-courses .assignClass {
 .box__header .fa-user {
   float: left;
   margin-right: 8px;
+}
+/* * * * * * * * * * * * * * * *   
+
+            Single COURSE
+
+* * * * * * * * * * * * * * * * */
+.course .box--label {
+  padding: 20px;
+}
+.course .box--label [class*="col-"] {
+  padding-bottom: 7px;
+}
+.coursedescription_titel {
+  display: inline;
+  text-transform: none;
+  font-size: 1em !important;
+  padding: 0px 5px 0px 0px;
+  font-weight: 600;
+}
+.course--details p {
+  display: inline;
+}
+/*yolo*/
+.course_teacher {
+  font-size: 1em!important;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.fa--heading {
+  padding: 0px 10px 0px 0px;
+}
+.box--label_heading--courses .fa--toggle {
+  float: right;
+}
+.course .box--label h1,
+.course .box--label h2 {
+  font-size: 1.2em;
+  letter-spacing: 0.02em;
+  padding-bottom: 0px;
+  font-family: "Open Sans";
+}
+.nav--course_heading {
+  padding: 20px;
+  font-size: 1.2em;
+  color: #2cc990;
+}
+.padding--none {
+  padding: 0px;
+}
+.wall_content {
+  width: 100%;
+}
+.wall_content_item:nth-child(odd) {
+  /*background: rgba(62,71,79,0.05);*/
+}
+.wall_content_item {
+  padding: 20px 20px 5px 20px;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+.wall_content_item p {
+  padding: 5px 0px 0px 0px;
+  font-size: 0.9em;
+}
+.wall_content_item h3 {
+  font-size: 1.2em;
+  font-weight: 500;
+}
+.wall_loadmore {
+  text-align: center;
+  padding: 20px;
+  text-transform: uppercase;
+  font-size: 0.8em;
+}
+.wall_author {
+  font-size: 0.8em;
+  font-weight: 600;
+  display: inline-block;
+  color: rgba(62, 71, 79, 0.9);
+}
+.wall_time {
+  padding-left: 8px !important;
+  font-size: 0.8em;
+  font-weight: 600;
+  display: inline-block;
+  font-size: 0.85em !important;
+  color: rgba(62, 71, 79, 0.9);
+}
+.wall_img {
+  width: 17px;
+  padding-right: 5px;
+  display: inline-block;
+}
+.form--wall {
+  width: 100%;
+  padding: 20px 10px;
+  background: rgba(62, 71, 79, 0.2);
+  position: relative;
+}
+.form--wall label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+.form--wall input,
+.form--wall textarea {
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 15px 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  color: #222;
+}
+.form--wall button {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+}
+/*Assignments*/
+.box--label--assignments {
+  padding: 0px 0px 20px 0px !important;
+  border-left: 5px solid #fcb941;
+}
+box--label--resources {
+  padding: 0px 0px 20px 0px !important;
+}
+.box--label--assignments h2,
+box--label--resources h2 {
+  padding: 20px;
+  padding-bottom: 20px !important;
+}
+.courses_assignments {
+  list-style: none;
+}
+.course_heading {
+  font-weight: 600;
+  padding: 7px 25px;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: rgba(62, 71, 79, 0.8);
+}
+.course_heading span {
+  width: 33%;
+  text-align: right;
+  display: inline-block;
+}
+.course_heading span:first-child {
+  text-align: left;
+}
+.courses_assignmentitem {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 7px 25px;
+  cursor: pointer;
+}
+.courses_assignmentitem:hover {
+  background: rgba(62, 71, 79, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+.nav--breadcrumbs a {
+  text-decoration: none !important;
+  text-transform: capitalize;
+}
+.nav--breadcrumbs li {
+  text-transform: capitalize;
+}
+.nav--breadcrumbs span {
+  padding: 0 2px;
 }

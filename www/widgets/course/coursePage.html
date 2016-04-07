@@ -10,19 +10,13 @@
             </nav>
 
             <div class="col-sm-21 col-md-21 body--paddingtop coursebody">
-                <nav class="nav--breadcrumbs">
-                    <ul class="list-inline">
-                        <li><a href="/courses">Courses</a></li>  <!---->
-                        <li><a href="/courses/testcourse">Web development</a></li> /
-                        <li>Overview</li>
-                    </ul>
-                </nav>
+                <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-14">
                         <div class="box box--wall wall">
                         <!--wall-->
-                            <h2 class="box__header">
-                                <i class="fa--heading fa fa-file-text-o"></i>
+                            <h2 class="box__header box__header--courses">
+                                <i class="fa--heading fa fa-thumb-tack"></i>
                                 Wall
                             </h2>
                             <!--Messages in course-->
@@ -42,7 +36,7 @@
                         </div>
                         
                     </div><!--.col-->
-                    <div class="col-md-12 padding--none">
+                    <div class="col-md-10 padding--none">
                         
                         <!--left content / details / assignment / resources-->
                         <div class="col-sm-24 box--label box--label--courses coursor--pointer">
@@ -55,20 +49,24 @@
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Name:</h2>
-                                    <p> {{ course.code }} - {{ course.name }}</p>
+                                    <p>{{ course.name }}</p>
+                                </div>
+                                <div class="col-sm-24">
+                                    <h2 class="coursedescription_titel">Coursecode:</h2>
+                                    <p> {{ course.code }}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Date:</h2>
-                                    <p> {{ course.start }} - {{ course.end}}</p>
+                                    <p> {{ course.startDate }} - {{ course.end}}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Description:</h2>
                                     <p> {{ course.description }}</p>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-24">
                                     <h2 class="course_teacher">Teaching</h2>
                                     
-                                    <a href="/profile/{{teacherUrl}}">{{teacher}}</a>
+                                    <a href="/profile/{{teacherUrl}}"><p>{{teacher}}</p></a>
                                     
                                 </div>
                             </div>                            
@@ -76,18 +74,22 @@
                         
                         <!-- assignment list -->                    
                         <div class="col-sm-24 box--label box--label--courses box--label--assignments">
-                            <h2 class="box--label_heading--courses">
+                            <h2 class="box--label_heading--assignments">
                                 <i class="fa--heading fa fa-file-text-o"></i>
                                 Assignments
                             </h2>
                             <div class="">
                                 <ul class="courses_assignments">
                                     <li class="course_heading">
-                                        <span>Name</span> <span>Deadline</span> <span>Status</span>
-                                    </li>
-                                    <assignment-item ng-repeat="assignment in assignments"></assignments-item> 
-                                    <!-- | filter:searchStudents -->
+
+                                        <span>Name</span> <span>Deadline</span> <span>Status</span></li>
+    
+                                     <assignment-item ng-repeat="assignment in assignments"></assignments-item> 
+                        
                                 </ul>
+                                   
+                                    <!-- | filter:searchStudents -->
+         
                                 <!-- <p class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></p>  
                                 <ul class="courses_assignments" ng-repeat="assignment in course.assignments">
                                     <a href={{assignment.url}}><li class="courses_assignmentitem">{{assignment.name}}</li></a>
@@ -95,8 +97,8 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-24 box--label box--label--courses box--label--assignments">
-                            <h2 class="box--label_heading--courses">
+                        <div class="col-sm-24 box--label box--label--resources">
+                            <h2 class="box--label_heading--resources">
                                 <i class="fa--heading fa fa-book"></i>
                                 Resources
                             </h2>
@@ -113,7 +115,7 @@
                         </div><!--.col-->
                         
                         <div class="col-md-24 box">
-                                <h2 class="box__header">
+                                <h2 class="box__header box__header--questions ">
                                     <i class="fa--heading fa fa-question-circle"></i>
                                     Questions and Answers
                                 </h2>
