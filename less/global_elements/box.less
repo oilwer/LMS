@@ -48,8 +48,12 @@ This is a LESS file; only style for the element class .box allowed!
     background: @RGBcourses;
 }
 
-.box__header--schedule {
-    background: @RGBschedule;
+.box__header--assignments {
+    background: @RGBassignments;
+}
+
+.box__header--assignments {
+    background: @RGBresources;
 }
 
 .box__header--questions {
@@ -66,6 +70,11 @@ This is a LESS file; only style for the element class .box allowed!
 .box__header--inactive {
     background: rgba(62,71,79,0.5);
 }
+
+.box__header--activities {
+    text-align: center;
+}
+
 
 //
 // BOX__CONTENT
@@ -89,9 +98,26 @@ This is a LESS file; only style for the element class .box allowed!
     border-left: 5px solid @RGBcourses;
 }
 
+.box--label--assignments{
+    border-left:5px solid @RGBassignments;
+}
+
+.box--label--resources{
+    border-left:5px solid @RGBresources;
+}
+
 .box--label_heading--courses {
     color: @RGBcourses;
 }
+
+.box--label_heading--assignments {
+    color: @RGBassignments;
+}
+
+.box--label_heading--resources {
+    color: @RGBresources;
+}
+
 
 .box--label_content {
     padding-top: 15px;

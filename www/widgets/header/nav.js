@@ -25,7 +25,12 @@ app.directive('headerNav', [
         }
 
         SessionService.getSession().success(function(response) {
-          
+            
+            //show hide create activites
+          if(response.user.role == "admin" || response.user.role == "teacher"){
+            scope.buttonDisplay = true;
+          }
+            
           //Todo, do a get by ID instead of using data from a session
           fetchedUser = response.user;
 
@@ -33,12 +38,25 @@ app.directive('headerNav', [
 
               scope.first_name = fetchedUser.first_name;
               scope.last_name = fetchedUser.last_name;
-            
           } else {
             return false
           }
-
         });
+          
+          
+        //show hide modal create course
+        scope.modalShown = false;
+          
+        scope.toggleModal = function() {
+            scope.modalShown = !scope.modalShown;
+          };
+          
+        //show hide modal create assignment
+        scope.assignmentModalShown = false;
+        scope.toggleAssignmentModal = function() { 
+            console.log("körs");
+            scope.assignmentModalShown = !scope.assignmentModalShown;
+          };
 
       } //link
     };
