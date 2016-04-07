@@ -15,18 +15,19 @@ app.directive('courseCreateCreatecourse', [
     return {
       templateUrl: settings.widgets + 'course/create/createcourse.html',
       link: function(scope, element, attrs) {
-        
-          // CURRENT COURSE VARIABLES
-          //
-          // session_user : ._id
-          // id : on createCourse()
-          // url : view
-          // finalurl : created by url + path
-          // name : view
-          // description : view
-          // start, end : view
-          //
           
+        
+        // CURRENT COURSE VARIABLES
+        //
+        // session_user : ._id
+        // id : on createCourse()
+        // url : view + create/update course
+        // name : view
+        // description : view
+        // start, end : view
+        //
+
+        scope.url;
           
         // Note: How to make it work when directive loads?
         // Gui function fetch selected course data for editing
@@ -35,6 +36,7 @@ app.directive('courseCreateCreatecourse', [
             scope.btnAddOrUpdateTextCourse = 'Update';
             //get info from db to put in the form boxes
             scope.course = Course.getById(id);
+            //scope.url = scope.course.url;
         };
         
         //Note: Update to dynamically load when revisits a ongoing creation
@@ -46,9 +48,6 @@ app.directive('courseCreateCreatecourse', [
         SessionService.getSession().success(function(response){
             scope.session_user = response.user;
         });
-          
-        //used to rouate in step 3 : updates by 'courses/'+scope.url path in createCourse().
-        //scope.finalUrl;
 
         // Updates the GUI according to edit/add-state
         var isEditingCourse = false;
@@ -57,22 +56,14 @@ app.directive('courseCreateCreatecourse', [
         //Gui function add course
         scope.addOrUpdateCourse = function(){
           if(!isEditingCourse){
-              console.log("create course runs");
             scope.createCourse();
           }
           else{
             scope.updateCourse();
-              console.log("update course runs");
           }
         }
           
         //All the steps in the create course process, ng-switch states
-       /* scope.steps = [
-            ['Create or copy','hej'],
-            'Course details',
-            'Preview'
-          ];*/
-          
         scope.steps = [{
               name: "Create or copy",
               icon: "fa-leaf",
@@ -99,7 +90,7 @@ app.directive('courseCreateCreatecourse', [
           
        // Move to a defined step index
         scope.goToStep = function(index) {
-          scope.selection = scope.steps[index].name;
+            scope.selection = scope.steps[index].name;
         };
            
         // Return true if step has next step, false if not
@@ -149,15 +140,9 @@ app.directive('courseCreateCreatecourse', [
           
         //create a new course and set GUI edit options
         scope.createCourse = function(){
-            
-            //scope.finalUrl = '/courses/' + scope.url;
-            //console.log(scope.finalUrl)
-            
-            //var course = scope.course;
-            //console.log(course); //gets undefined?
             Course.create(
             {
-                status: false,
+                status: true,
                 code: scope.code,
                 url: scope.url,
                 name: scope.name,
@@ -167,7 +152,8 @@ app.directive('courseCreateCreatecourse', [
                 {
                     scope.$emit('addedCourse');
                     //update GUI edit mode
-                    scope.course = course;
+                    scope.course = course[0];
+                    scope.url = "/courses/" + scope.course.url;
                     isEditingCourse = true;
                     scope.btnAddOrUpdate = 'Update details';
                     scope.incrementStep();
@@ -177,9 +163,7 @@ app.directive('courseCreateCreatecourse', [
 
         //update a course
         scope.updateCourse = function(){
-            //update existing course
-            //var course = scope.course;
-            console.log(scope.course);
+            //update current course in scope
             Course.update({
                 _id: scope.course._id
               },{
@@ -191,17 +175,30 @@ app.directive('courseCreateCreatecourse', [
                 start: scope.start,
                 end: scope.end
             });
-            console.log(scope.course[0]);
-            alert(scope.course[0].name);
+            scope.url = "/courses/" + scope.course.url;
             scope.incrementStep();
         };
           
-        //roate location
+        //route location
         scope.pathLocation = function(newLocation) {
             //add if statement for previous location - get prev path and back-forward
-            console.log(newLocation);
-            scope.$parent.hideModal();
             $location.path(newLocation);
+            scope.closeModalSession();
+        }
+        
+        scope.closeModalSession = function() {
+            scope.course = "";
+            //use course for update and scope storage(?) ex. course.code
+            scope.code ="";
+            scope.url = "";
+            scope.name = "";
+            scope.description = "",
+            scope.start = "",
+            scope.end = "";
+            scope.url = "";
+            console.log(scope.url);
+            scope.selection = scope.steps[0].name;
+            scope.$parent.hideModal();
         }
             
 

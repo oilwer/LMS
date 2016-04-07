@@ -22,7 +22,7 @@
                 </div>
                 <ul class="col-xs-24 pager">
                     <li class="">
-                        <button ng-click="$parent.$parent.hideModal()" class="btn btn-default">Close</button>
+                        <button ng-click="closeModalSession()" class="btn btn-default">Close</button>
                     </li>
                 </ul>
             </div> <!--.StepOne-->
@@ -89,6 +89,9 @@
                         <li class="">
                             <a href="" ng-click="decrementStep()">&larr; Previous</a>
                         </li>
+                        <li>
+                            <button ng-click="closeModalSession()" class="btn btn-default">Close</button>
+                        </li>
                         <li class="">
                             <a href="" ng-click="courseDetails.$valid && addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
                         </li>
@@ -105,8 +108,8 @@
                 <p>Url: {{url}}</p>
                 <p>User: {{session_user._id}}</p>
                 <p>ID: {{id}}</p>
-                <button class="btn btn-default" ng-click="pathLocation($parent.course.url)">Enter course page</button>
-                <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
+                <button class="btn btn-default" ng-click="pathLocation($parent.url)">Enter course page</button>
+                <button class="btn btn-default" ng-click="closeModalSession()">Back to dashboard</button>
                 </div>
                 <ul class="col-xs-24 pager">
                     <li class="">

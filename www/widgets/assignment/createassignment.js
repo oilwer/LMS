@@ -39,10 +39,6 @@ app.directive('assignmentCreateassignment', [
             //get info from db to put in the form boxes
             scope.course = Course.getById(id);
         };
-        
-        //Note: Update to dynamically load when revisits a ongoing creation
-        //stores maximum steps allowed
-        var stepsTaken = 0;
           
         //get session_user
         scope.session_user;
@@ -50,8 +46,6 @@ app.directive('assignmentCreateassignment', [
             scope.session_user = response.user;
         });
           
-        //used to rouate in step 3 : updates by 'courses/'+scope.url path in createCourse().
-        //scope.finalUrl;
 
         // Updates the GUI according to edit/add-state
         var isEditingCourse = false;
@@ -118,7 +112,6 @@ app.directive('assignmentCreateassignment', [
 		            
 		          }
 		          else{
-		            // scope.updateCourse();
 		              console.log("update assignment runs");
 		          }
           
@@ -128,13 +121,7 @@ app.directive('assignmentCreateassignment', [
 	          alert("Please select a course before you add an assignment");
           }
         }
-          
-        //All the steps in the create course process, ng-switch states
-       /* scope.steps = [
-            ['Create or copy','hej'],
-            'Course details',
-            'Preview'
-          ];*/
+        
           
         scope.steps = [{
               name: "Create or copy",
@@ -163,7 +150,6 @@ app.directive('assignmentCreateassignment', [
                     return i;
                 }
             }
-           //return scope.steps.indexOf(scope.selection);
         };
           
        // Move to a defined step index
@@ -215,62 +201,13 @@ app.directive('assignmentCreateassignment', [
               scope.selection = scope.steps[previousStep].name;
             }
         };
-          
-        //create a new course and set GUI edit options
-        scope.createCourse = function(){
-            
-            //scope.finalUrl = '/courses/' + scope.url;
-            //console.log(scope.finalUrl)
-            
-            //var course = scope.course;
-            //console.log(course); //gets undefined?
-            Course.create(
-            {
-                status: false,
-                code: scope.code,
-                url: scope.url,
-                name: scope.name,
-                description: scope.description,
-                creator: scope.session_user._id
-            }, function(course)
-                {
-                    //update GUI edit mode
-                    scope.course = course;
-                    isEditingCourse = true;
-                    scope.btnAddOrUpdate = 'Update details';
-                    scope.incrementStep();
-                }
-            ); 
-        }
 
-        //update a course
-        scope.updateCourse = function(){
-            //update existing course
-            //var course = scope.course;
-            console.log(scope.course[0]._id);
-            Course.update({
-                _id: scope.course[0]._id
-              },{
-                status: true,
-                code: scope.code,
-                url: scope.url,
-                name: scope.name,
-                description: scope.description,
-                start: scope.start,
-                end: scope.end
-            });
-            //console.log(scope.course[0]);
-            alert(scope.course[0].name);
-            scope.incrementStep();
-        };
-          
         //roate location
         scope.pathLocation = function(newLocation) {
-            console.log("location körs");
             //add if statement for previous location - get prev path and back-forward
             console.log(newLocation);
-            scope.$parent.hideModal();
             $location.path(newLocation);
+            scope.$parent.hideModal();
         }
             
 

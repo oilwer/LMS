@@ -37,10 +37,10 @@
 
 <ul class="toolbar">
     <li ng-if="buttonDisplay" class="btn-toolbar--create">
-        <div class="btn-toolbar">
+        <div class="btn-toolbar" ng-click="toggleCreateBar()">
             <i class="fa fa-plus"></i>
         </div>
-        <ul class="toolbar-options toolbar-options--create">
+        <ul class="toolbar-options toolbar-options--create" ng-show="isToolbarCreateOpen">
             <div class="toolbar-option_content">
                 <li>
                     Create
@@ -55,8 +55,8 @@
         </ul>
     </li>
     <li class="btn-toolbar--personal">
-        <img class="profileitem" src="/img/person.png" alt="profile image">
-        <ul class="toolbar-options toolbar-options--personal">
+        <img class="profileitem" src="/img/person.png" alt="profile image" ng-click="togglePersonalBar()">
+        <ul class="toolbar-options toolbar-options--personal" ng-show="isToolbarPersonalOpen">
             <div class="toolbar-option_content">
                 <li>{{ first_name }} {{ last_name }}</li>
                 <li><a href="/myprofile">My profile</a></li>
