@@ -29,7 +29,6 @@ app.directive('courseCoursepage', [
 
         var url = $location.path().split(/[\s/]+/).pop();
         Course.get({url: url}, function(course){ 
-
             scope.course = course[0];
             scope.messages = scope.course.messages; //load messages               
         });  
@@ -44,7 +43,10 @@ app.directive('courseCoursepage', [
         }); 
 
         var refresh = function(){
-            scope.messages = scope.course.messages; //load messages               
+            Course.get({url: url}, function(course){ 
+              scope.course = course[0];
+              scope.messages = scope.course.messages; //load messages               
+            });          
         };            
 
         //Runs on page update

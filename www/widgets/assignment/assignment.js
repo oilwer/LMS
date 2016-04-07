@@ -19,8 +19,8 @@ app.directive('assignmentAssignment', [
 
           });          
 
-          Assignment.getById($routeParams.id, function(assignment){
-             scope.assignment = assignment;
+          Assignment.get({_id: $routeParams.id}, function(assignment){
+             scope.assignment = assignment[0];
           });
           
       }
