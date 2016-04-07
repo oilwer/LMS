@@ -77,6 +77,25 @@
 }
 
 .nav--process--assignments {
+    
+    .nav--process_line {
+       content: "";
+       position: absolute;
+       top: 37%;
+       left:13%;
+       width: 70%;
+       height: 2px;
+       background: @LMSlight;
+}
+    
+    .checked:before {
+   content: "";
+   position: absolute;
+   width: 100%;
+   height: 2px;
+   background: @RGBassignments;
+}
+    
    .active .stepLabel, .checked .stepLabel {
        color: @RGBassignments;
    }
@@ -85,23 +104,12 @@
        border: 2px solid @RGBassignments;
        color: @RGBassignments;
    }
-   
-   .checked:before {
-   content: "";
-   position: absolute;
-   top: 30%;
-   left: 100px;
-   width: 100%;
-   height: 2px;
-   background: @RGBassignments;
-}
 }
 
 .process_view {
    .pager {
        padding: 20px;
    }
-
    }
 
 .nav--process--assignments li {
@@ -112,3 +120,18 @@
    margin-top: 8%;
 }
 
+.myCheckbox label {
+    
+    font-size: 1em;
+    margin-right: 5%;
+}
+
+input[type=checkbox] {
+    transform: scale(1.2);
+    margin-right: 5%;
+}
+
+.upload_instruction_file form {
+    
+    margin-top: 5%;
+}

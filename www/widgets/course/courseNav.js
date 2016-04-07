@@ -2,39 +2,40 @@ app.directive('courseCoursenav', [
   "settings",
   "Course",
   "$location",
+  "Assignment",
   function(
     settings,
     Course,
-    $location
+    $location,
+    Assignment
   ) {
     return {
       templateUrl: settings.widgets + 'course/courseNav.html',
       link: function(scope, element, attrs) {
 
-      	scope.hasAssignment = function(assignmentArray) 
+        scope.course = "";
+        Assignment.get({course:  scope.course._id}, function(res){
+            scope.assignmentlist = res;
+        }); 
+
+        scope.resourcelist =  scope.course.resources;
+
+      	scope.hasAssignment = function(assignments) 
       	{
-      		if(typeof assignmentArray !== 'undefined' && assignmentArray.length > 0)
-	      	{	      		
-	      		scope.assignmentlist = assignmentArray;
-	      		return true;
-	     	}
-	     	else
-	     	{
-	     		return false;
-	     	}
+      		  if(typeof assignments !== 'undefined' && assignments.length > 0)
+            {
+              return true;
+            }
+            else{ return false; }            
       	}
 
       	scope.hasResource = function(rescourceArray) 
       	{
       		if(typeof rescourceArray !== 'undefined' && rescourceArray.length > 0)
 	      	{	      		
-	      		scope.resourcelist = rescourceArray;
 	      		return true;
-	     	}
-	     	else
-	     	{
-	     		return false;
-	     	}
+  	     	}
+  	     	else { return false; }
       	}
 
       	scope.isActive = function(route){

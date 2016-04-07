@@ -25,7 +25,7 @@ app.config([
        .when("/courses/", {
         templateUrl: "templates/courses.html",
       })
-       .when("/assignment/:id", {
+       .when("/courses/:name/assignment/:id", {
         templateUrl: "templates/assignment.html",
       })
        // 

@@ -9,9 +9,8 @@ module.exports = function(mongoose){
         description: String,
         start: { type: Date, default: Date.now },
         end: { type: Date, default: Date.now },
-        assignments: [{
-            name: String,
-            url: String
+        assignments: [{ 
+            type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' 
         }],
         students: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'User'

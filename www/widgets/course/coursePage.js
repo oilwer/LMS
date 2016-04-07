@@ -25,40 +25,37 @@ app.directive('courseCoursepage', [
           session_user = response.user;
         });
 
+        scope.course = "";
+
+        var url = $location.path().split(/[\s/]+/).pop();
+        Course.get({url: url}, function(course){ 
+            scope.course = course[0];
+            scope.messages = scope.course.messages; //load messages               
+        });  
+
+        User.get({_id: scope.course.creator}, function(user){
+          scope.teacher = user[0].first_name + " " + user[0].last_name;
+          scope.teacherUrl = user[0].public_url;
+        });
+
+        Assignment.get({course: scope.course._id}, function(assignment){
+          scope.assignments = assignment;
+        }); 
+
         var refresh = function(){
-            var url = $location.path().split(/[\s/]+/).pop();
-            Course.get({url: url}, function(result){ 
-              scope.course = result[0];
-
-              scope.messages = scope.course.messages; //load messages
-
-               User.getById(scope.course.creator, function(result){
-                  scope.teacher = result.first_name + " " + result.last_name;
-                  scope.teacherUrl = result.public_url;
-              });
-          });
-        };  
-
-
-            var assRes = Assignment.get(function(res){
-              console.log("yolo", res);
-            });
-            Assignment.onQueueDone();
-            console.log("yolo", assRes);
-            scope.assignments = assRes;
+            Course.get({url: url}, function(course){ 
+              scope.course = course[0];
+              scope.messages = scope.course.messages; //load messages               
+            });          
+        };            
 
         //Runs on page update
-        refresh();       
-
-
-
-       
-
+        //refresh();  
+      
         scope.publishMsg = function(){
             var course = scope.course;
             var date = new Date();
             var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
-
             Course.update({
                 _id: course._id
             },{ $push: {
