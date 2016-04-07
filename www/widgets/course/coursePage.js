@@ -25,7 +25,7 @@ app.directive('courseCoursepage', [
           session_user = response.user;
         });
 
-<<<<<<< HEAD
+
         scope.course = "";
 
         var url = $location.path().split(/[\s/]+/).pop();
@@ -33,13 +33,6 @@ app.directive('courseCoursepage', [
             scope.course = course[0];
             scope.messages = scope.course.messages; //load messages               
         });  
-=======
-        var refresh = function(){
-            var url = $location.path().split(/[\s/]+/).pop();
-            Course.get({url: url}, function(result){ 
-              scope.course = result[0];
-              scope.messages = scope.course.messages; //load messages
->>>>>>> kurssida_styling
 
         User.get({_id: scope.course.creator}, function(user){
           scope.teacher = user[0].first_name + " " + user[0].last_name;
