@@ -12,9 +12,11 @@
             <div class="process_view" ng-switch on="selection">
             <div class="stepOne" ng-switch-when="Create or copy">
                 <div class="col-sm-14 col-sm-offset-5">
-                <form name="assignmentType">
+                
+                    <form name="assignmentType">
                     <button ng-click="goToStep(1)">Create new assignment</button>
                     <button ng-click="isAssignmentsOpen = !isAssignmentsOpen">Copy Recent Assignment</button>
+                
                     <div class="getAssignments" ng-show="isAssignmentsOpen">
                         <p>Placeholder: copy assignment</p>
                     </div>
@@ -41,8 +43,16 @@
                             <i class="fa fa-times"></i>
                             </span>
                             
-                        <label for="obligatory">Obligatory</label>
-                            <input type="text" name="obligatory" class="form-control" ng-model="$parent.assignment.obligatory" required="true">
+                        <label for="obligatory">Obligatory</label><br><br>
+                            <div class="myCheckbox">
+                            <form action="">
+                                
+                                    <input type="checkbox" name="obligatory" value="YES">
+                                        <label for="checkboxes">YES</label>
+                                    <input type="checkbox" name="obligatory" value="NO">   <label for="checkboxes">NO</label>
+                                   
+                            </form>
+                                 </div>
                             <span 
                             class="error" 
                             ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
@@ -50,8 +60,19 @@
                             <i class="fa fa-times"></i>
                             </span>
                             
-                        <label for="assessment">Assessment</label>
-                            <input type="text" name="courseUrl" class="form-control" ng-model="$parent.assignment.assessment" required="true">
+                            <div class="select_course_header"><label for="selectCourse">Choose assessment</label></div>
+                            
+                       <!-- URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
+                            <select id="selectCourse" 
+                                        ng-change="selectCourseChanged(id)" 
+                                        ng-model="courseSelect.repeatSelect" 
+                                        name="repeatSelect" 
+                                        class="form-control">
+                                    <option value=""> --- Assessment list ---</option>
+                                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
+                                    </option>
+                             </select>
+                        <!-- SLUT PÅ URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
                             <span 
                             class="error" 
                             ng-show="assignmentDetails.assessment.$touched && assignmentDetails.assessment.$invalid"
@@ -77,11 +98,11 @@
                             
                             <label>Upload instruction file</label>
                             <!--<input type="text" name="courseEnd" class="form-control" ng-model="$parent.end" required="true" >-->
-                            <form action="demo_form.asp">
+                            <div class="upload_instruction_file">
+                                <form action="demo_form.asp">
                             	<input type="file" name="pic" accept="image/*">
-								<input type="submit">
                             </form>
-            
+                        </div>
                         </div>
                         <div class="col-sm-24">
                             <label for="description">Description</label>
@@ -121,7 +142,7 @@
                                         ng-model="courseSelect.repeatSelect" 
                                         name="repeatSelect" 
                                         class="form-control">
-                                    <option value=""> --- Program list ---</option>
+                                    <option value=""> --- Course list ---</option>
                                     <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
                                     </option>
                              </select>

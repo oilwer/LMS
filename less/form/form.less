@@ -54,3 +54,27 @@ form[name="courseType"] button {
     text-align: center;
     
 }
+
+
+form[name="assignmentType"] button {
+    padding: 20px 0px;
+    margin: 20px 10px;
+    border: 2px solid fade(@LMSlight, 10%);
+    background: fade(@LMSlight, 5%);
+    border-radius: 2px;
+    width: 40%;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    font-weight: bold;
+    color: shade(@LMSlight, 20%);
+    transition: all 0.3s ease;
+    &:hover {
+        background: fade(@LMSlight, 10%);
+        transition: all 0.3s ease;
+    }
+}
+
+form[name="assignmentType"] {
+    text-align: center;
+}
+

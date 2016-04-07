@@ -7893,6 +7893,22 @@ This is a LESS file; only style for the element class .box allowed!
 .nav--process a:hover {
   text-decoration: none;
 }
+.nav--process--assignments .nav--process_line {
+  content: "";
+  position: absolute;
+  top: 37%;
+  left: 13%;
+  width: 70%;
+  height: 2px;
+  background: rgba(62, 71, 79, 0.5);
+}
+.nav--process--assignments .checked:before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #fcb941;
+}
 .nav--process--assignments .active .stepLabel,
 .nav--process--assignments .checked .stepLabel {
   color: #fcb941;
@@ -7902,15 +7918,6 @@ This is a LESS file; only style for the element class .box allowed!
   border: 2px solid #fcb941;
   color: #fcb941;
 }
-.nav--process--assignments .checked:before {
-  content: "";
-  position: absolute;
-  top: 30%;
-  left: 100px;
-  width: 100%;
-  height: 2px;
-  background: #fcb941;
-}
 .process_view .pager {
   padding: 20px;
 }
@@ -7919,6 +7926,17 @@ This is a LESS file; only style for the element class .box allowed!
 }
 .select_course_header {
   margin-top: 8%;
+}
+.myCheckbox label {
+  font-size: 1em;
+  margin-right: 5%;
+}
+input[type=checkbox] {
+  transform: scale(1.2);
+  margin-right: 5%;
+}
+.upload_instruction_file form {
+  margin-top: 5%;
 }
 label {
   color: rgba(62, 71, 79, 0.5);
@@ -7962,6 +7980,26 @@ form[name="courseType"] button:hover {
   color: #fff;
   background: #e74c3c;
   border-radius: 50%;
+  text-align: center;
+}
+form[name="assignmentType"] button {
+  padding: 20px 0px;
+  margin: 20px 10px;
+  border: 2px solid rgba(62, 71, 79, 0.1);
+  background: rgba(62, 71, 79, 0.05);
+  border-radius: 2px;
+  width: 40%;
+  text-transform: uppercase;
+  font-size: 0.8em;
+  font-weight: bold;
+  color: rgba(35, 41, 45, 0.6);
+  transition: all 0.3s ease;
+}
+form[name="assignmentType"] button:hover {
+  background: rgba(62, 71, 79, 0.1);
+  transition: all 0.3s ease;
+}
+form[name="assignmentType"] {
   text-align: center;
 }
 /* * * * * * * * * * * * * * * *   
