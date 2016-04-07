@@ -31,7 +31,7 @@
             
             <div class="col-sm-21 col-md-21">
                 <div class="box body--margin col-sm-24">
-                    <div class="box__header">
+                    <div class="box__header box__header--assignments">
                         <h2>
                             <i class="fa fa-file-text-o"></i>    {{assignment.name}}
                         </h2>
@@ -39,57 +39,56 @@
                     
                     <div class="box__content">
                         <div class="col-md-12 leftside"><!--LEFTSIDE-->
-                        
+                            <div class="col-md-24">
+                                    <ul class="box__info--mainlist">
+                                        <li class="box__info--list">  <p><em>Deadline: </em>{{assignment.due_date}}</p></li>
+                                        <li class="box__info--list">  <p> <em>Obligatory:</em> {{assignment.obligatory}}</p></li>
+                                        <li class="box__info--list"> <p> <em>Assessment:</em> {{assignment.assessment}}</p>
+                                        </li>
+                                        <li class="box__info--list">  <p><em>Published:</em> {{assignment.added_on}}</p>
+                                        </li>
+                                        
+                                        <li class="box__info--list">  
+                                            <p><em>Teachers:</em> Ann Krestina</p>
+                                        </li>
+                                    </ul>
+                            </div>
                             <div class="col-md-24 box__info">
-
-                                <p class="box__info--text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse at elementum massa, congue tincidunt augue. Aliquam id consequat lectus, vel tincidunt lacus. Nulla dapibus vel massa sed pharetra. Donec placerat dapibus massa in interdum. Proin elementum, turpis eu dignissim iaculis, mauris tellus ultricies leo, sed cursus arcu ipsum at nisl. Suspendisse consequat leo ac dolor congue, a porttitor elit vulputate. Fusce leo nisi, dapibus ut aliquam nec, varius eu nisl. In bibendum consequat purus vitae dapibus...</p>
+                                <label for="besinfo">information:</label>
+                                <p id="besinfo" class="box__info--text">{{assignment.description}}</p>
                             </div>
                         
-                            
-                            <div class="col-md-24 resource_list">
+                            <div class="col-md-12 resource_list">
                                 <label for="reslist">Resources:</label>
                                 <ul id="reslist">
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-pdf-o fa-1x"></i> Introduktion.pdf</p></li>
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-pdf-o fa-1x"></i> planering.pdf</p></li>
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-archive-o fa-1x"></i> Files.zip</p></li>
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-archive-o fa-1x"></i> Files.zip</p></li>
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-archive-o fa-1x"></i> Files.zip</p></li>
-                                    <li class="resource_list_items">
-                                    <p><i class="fa fa-file-archive-o fa-1x"></i> Files.zip</p></li>
+                                <li class="resource_list_items"><p><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</p></li></a>
+                                <li class="resource_list_items"><p><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</p></li></a>
+                                <li class="resource_list_items"><p><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</p></li></a>
+                                <li class="resource_list_items"><p><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</p></li></a>
+                                    
                                     
                                     
                                     
                                 </ul>
                             </div>
+                            
 
                         </div><!--.leftside-->
                         
                         <div class="col-md-12 rightside"><!--RIGHTSIDE-->
                             <div class="col-md-24">
                                 
-                                <div class="col-md-24">
-                                    <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Deadline: {{assignment.due_date}}</li><li class="box__info--list">Published: {{assignment.added_on}}</li>
-                                        <li class="box__info--list">Obligatory: {{assignment.obligatory}}</li>
-                                        
-                                    </ul>
-                                    <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Teachers:<p class="crusive">yoloman</p></li>
-                                    </ul>
-                                    <ul class="box__info--mainlist">
-                                        <li class="box__info--list">Assessment:<p class="done">{{assignment.assessment}}</p></li>
+                                <div class="col-md-24 inlamning_list">
+                                <label for="reslist">Uploaded Files:</label>
+                                    <ul id="reslist" >
+                                        <li class="inlamning_list_items"><p><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</p></li></a>
+
                                     </ul>
                                 </div>
-                                
                                 <div class="col-md-24 box__file">
                                     <p class="fa fa-cloud-upload fa-2x box__file--icon"></p>
                                     <p class="box__file--text">Drop a file here</p>
-                                    <button type="Button" class="btn btn-success file__button">Or choose a file from computer</button>
+                                    <a type="file" class="btn btn-success file__button">Or choose a file from computer</a>
                                 </div>
                             </div>
                             <div class="col-md-24">
@@ -100,7 +99,7 @@
                             </div>
                             <div class="col-md-24">
                                 <div class="box__comment">
-                                    <label for="comment">Comment:</label>
+                                    <label for="comment">Write comment:</label>
                                     <textarea class="form-control" rows="5" id="comment"></textarea>
                                 </div>
                             </div>

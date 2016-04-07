@@ -14,30 +14,33 @@
 }
 .box__info--text {
     text-align: justify;
-    font-family: sans-serif;
     margin-bottom: 1%;
-    margin-top: 1%;
+    margin-top: 2%;
 }
 .box__info--mainlist{
-    height: 10px;
-    margin-left: 4%;
+    margin-left: 0%;
 }
+
+.box__info--mainlist p {
+    margin: 0px;
+    padding: 0px;
+}
+
 .box__info--list {
-    
-    margin-left: 2%;
-    font-size: 10px;
-    display: inline-block;
-    font-weight: bold;
+    padding: 5px;
+    color:rgba(0,0,0, 0.7);
+    border-bottom: 1px solid lightgrey;
+    width: 100%;
+    font-size: 11px;
     list-style:none;
-    font-family: sans-serif;
     
 }
+
 .failed {
     margin-left: 3px;
     color:white;
     padding-right: 3px;
     padding-left: 3px;
-    font-family: sans-serif;
     float: right;
     text-align: center;
     background-color:red;
@@ -48,18 +51,16 @@
     color: white;
     padding-right: 3px;
     padding-left: 3px;
-    font-family: sans-serif;
     text-align: center;
     float: right;
     background-color:yellow;
     border-radius: 3px;
 }
 .done {
-    margin-left: 3px;
+    margin-right: 12%;
     color:white;
     padding-right: 3px;
     padding-left: 3px;
-    font-family: sans-serif;
     text-align: center;
     float: right;
     background-color:green;
@@ -121,17 +122,43 @@
 .resource_list {
     margin-top: 2%;
     margin-left: 3%;
-    width: 60%;
-    height: 300px;
+    width: 40%;
+    height: auto;
     border-radius: 2px;
-    background-color: rgba(0,0,0,0.1);
+    
     overflow:auto;
     margin-bottom: 3%;
     
 }
-.resource_list_items {
-    list-style: square;
+.inlamning_list {
+    margin-top: 2%;
+    margin-left: 8%;
+    width: 40%;
+    height: auto;
+    border-radius: 2px;
+    
+    overflow:auto;
+    margin-bottom: 3%;
+    
+}
+.inlamning_list_items {
+    list-style-type:cross;
     color: grey;
+    margin-bottom: 2%;
+    margin-top: 1%;
+    margin-left: 5%;
+    font-style: italic;
+    text-decoration: underline;
+    
+}
+.inlamning_list_items:hover {
+    cursor: pointer;
+    color: forestgreen;
+}
+.resource_list_items {
+    list-style-type: square;
+    color: grey;
+    margin-bottom: 2%;
     margin-top: 1%;
     margin-left: 10%;
     font-style: italic;
@@ -139,13 +166,18 @@
 }
 .resource_list_items:hover {
     cursor: pointer;
-    color: blue;
+    color: forestgreen;
 }
 .crusive {
     text-decoration: underline;
-    margin-left: 4px;
-    float: right;
-    font-family: serif;
+    float: left;
         
 }
-
+.crusive:hover {
+    text-decoration: underline;
+    color: blue;
+    cursor: pointer;
+    float: right;
+    margin-right: 70%;
+        
+}

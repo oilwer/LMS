@@ -15,6 +15,13 @@ app.directive('assignmentAssignment', [
           var assignmentId = $routeParams.id;
           Assignment.getById(assignmentId, function(res){
              scope.assignment = res;
+              if (scope.assignment.obligatory === true) {
+                  scope.assignment.obligatory = "Yes";
+              }
+                else{
+                      scope.assignment.obligatory = "No";
+                    
+              };
           });
           
       }
