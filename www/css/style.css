@@ -175,49 +175,6 @@
 }
 
 
-.profileitem {
-    position: absolute;
-    right: 0;
-    top: 0;
-    color: rgba(62,71,79,0.9);
-    font-family: "Roboto";
-    font-size: 1em;
-    font-weight: 600;
-    height: 40px;
-    padding: 5px 15px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    z-index: 40;
-}
-
-.profileitem img {
-    width: auto;
-    height: 70%;
-    border-radius: 50%;
-    padding: 0px 10px;
-}
-
-.profileitem span {
-    height: auto;
-}
-
-.profileitem:visited {
-    color: rgba(62,71,79,0.9);
-}
-
-.profileitem:focus {
-    color: rgba(62,71,79,0.9);
-}
-
-.profileitem:hover, .profileitem:active {
-    color: rgba(0,0,0,0.2);
-    text-decoration: none;
-}
-
-.profileitem:hover, img .profileitem:active img {
-    opacity: 0.8;
-}
 
 
 /* * * * * * * * * * * * * * * *   

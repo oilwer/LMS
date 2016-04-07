@@ -7730,7 +7730,7 @@ This is a LESS file; only style for the element class .box allowed!
   transition: all 0.5s ease;
 }
 .nav--local {
-  background: #ffffff;
+  background: #fefefe;
   padding-right: 0px;
   padding-left: 0px;
   margin-right: -15px;
@@ -7745,8 +7745,12 @@ This is a LESS file; only style for the element class .box allowed!
 .nav--local .fa--itemtype {
   padding: 0px 7px 0px 0px;
 }
+.nav--local li:first-child {
+  border-top: 1px solid rgba(62, 71, 79, 0.2);
+}
 .nav--local li {
   width: 100%;
+  border-bottom: 1px solid rgba(62, 71, 79, 0.2);
 }
 .nav--local li ul li a {
   padding-left: 40px;
