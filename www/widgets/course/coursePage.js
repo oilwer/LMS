@@ -26,21 +26,18 @@ app.directive('courseCoursepage', [
         });
 
         scope.course = "";
+        scope.assignments = "";
 
         var url = $location.path().split(/[\s/]+/).pop();
-        Course.get({url: url}, function(course){ 
-            scope.course = course[0];
-            scope.messages = scope.course.messages; //load messages               
-        });  
+        Course.get({url: url, _populate:"assignments"}, function(course){ 
+            scope.course = course[0];   
+            scope.assignments = scope.course.assignments;
+        });     
 
         User.get({_id: scope.course.creator}, function(user){
           scope.teacher = user[0].first_name + " " + user[0].last_name;
           scope.teacherUrl = user[0].public_url;
         });
-
-        Assignment.get({course: scope.course._id}, function(assignment){
-          scope.assignments = assignment;
-        }); 
 
         var refresh = function(){
             Course.get({url: url}, function(course){ 

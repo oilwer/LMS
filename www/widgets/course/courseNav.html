@@ -12,7 +12,7 @@
 
     <!--Assignments-->
     <li ng-if = "hasAssignment(course.assignments)"><a  ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
-        <ul ng-show="isChildOpen" ng-repeat="assignment in assignmentlist">
+        <ul ng-show="isChildOpen" ng-repeat="assignment in assignments">
             <li><a href="courses/{{course.name}}/assignment/{{ assignment._id }}"><i class="fa--itemtype fa fa-file-text-o"></i>{{assignment.name}}</a></li>
         </ul>
     </li>

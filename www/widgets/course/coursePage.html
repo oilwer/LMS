@@ -13,7 +13,6 @@
                 <nav class="nav--breadcrumbs">
                     <ul class="list-inline">
                         <li><a href="/courses">Courses</a></li>  <!---->
-                        <li><a href="/courses/testcourse">Web development</a></li> /
                         <li>Overview</li>
                     </ul>
                 </nav>
@@ -26,7 +25,7 @@
                                 Wall
                             </h2>
                             <!--Messages in course-->
-                            <course-message ng-repeat="message in messages"></course-message>
+                            <course-message ng-repeat="message in course.messages"></course-message>
 
                             <div class="wall_loadmore">
                             <i class="fa fa-plus-circle"></i> Load more

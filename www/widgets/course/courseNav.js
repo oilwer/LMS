@@ -14,28 +14,20 @@ app.directive('courseCoursenav', [
       link: function(scope, element, attrs) {
 
         scope.course = "";
-        Assignment.get({course:  scope.course._id}, function(res){
-            scope.assignmentlist = res;
-        }); 
+
+        var c = Course.get({_id:scope.course._id,_populate:"assignments"});
+        scope.assignments = c.assignments;
 
         scope.resourcelist =  scope.course.resources;
 
       	scope.hasAssignment = function(assignments) 
       	{
-      		  if(typeof assignments !== 'undefined' && assignments.length > 0)
-            {
-              return true;
-            }
-            else{ return false; }            
+      		  return (typeof assignments !== 'undefined' && assignments.length > 0);          
       	}
 
       	scope.hasResource = function(rescourceArray) 
       	{
-      		if(typeof rescourceArray !== 'undefined' && rescourceArray.length > 0)
-	      	{	      		
-	      		return true;
-  	     	}
-  	     	else { return false; }
+      		return (typeof rescourceArray !== 'undefined' && rescourceArray.length > 0);
       	}
 
       	scope.isActive = function(route){

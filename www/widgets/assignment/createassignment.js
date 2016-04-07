@@ -108,9 +108,12 @@ app.directive('assignmentCreateassignment', [
 			              
 			              Course.get({ _id: res[0].course}, function(x){
                       Course.update({_relate:{items:x[0],assignments:res[0] }});
+                      Assignment.update({_relate:{items:res[0],course:x[0]}});
                     });
 			              scope.incrementStep();
 			              });
+
+
 		              
 		            
 		          }
