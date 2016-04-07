@@ -34,3 +34,4 @@ module.exports = function(mongoose){
   // Return the model
   return mongoose.model("User", UserSchema);
 };
+
