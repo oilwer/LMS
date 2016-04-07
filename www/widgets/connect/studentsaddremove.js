@@ -61,6 +61,8 @@ app.directive('connectStudentsaddremove', [
 						  	//console.log(user[i]);
 						  	//console.log("yolo", courseUrl);
 		
+
+							//THERE IS A BUG HERE THAT CREATES DUPLICATE USERS IN THE TOBEADDED LIST
 						  	for (var x = 0; x < user[i].courses.length; x++)
 						  	{
 
