@@ -19,11 +19,12 @@ app.directive('courseCoursepage', [
     return {
       templateUrl: settings.widgets + 'course/coursePage.html',
       link: function(scope, element, attrs) {
-
+    
         var session_user;
         SessionService.getSession().success(function(response){
           session_user = response.user;
         });
+
 
         scope.course = "";
 

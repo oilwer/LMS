@@ -2,37 +2,54 @@ dashboard-courses {
 
     table{
         width:100%;
-        border-collapse: separate;
+        border-collapse: collapse;
         border-spacing: 0 2px;
+        
     }
     
     thead{
         th{
+            color:@LMSmid;
             font-size: .65em !important;
             text-transform: uppercase;
             font-weight: 400;
             text-align: center;
+            padding-bottom: 1%;
         }
 
         th:first-child{
             width:72%;
-            padding-left:2%!important;
+            padding-left:12px!important;
             text-align: left;
         }
     }
 
     tbody{
+        
+        p{
+            color:@LMSmid;
+        }
+        
         td:first-child{
             padding:2.2% 0 0% 2%;
             text-align: left;
         }
         
         td{
+            padding:3% 0;
             position:relative;
-            background-color: #ddd;
             width:30px;
             text-align: center;
         }   
+        
+        tr{
+            
+            border-bottom: 1px solid #eee;
+        }
+        
+        tr:last-child{
+            border-bottom:0px !important;
+        }
 
         .fa-exclamation{
             border-right:none !important;
@@ -44,15 +61,29 @@ dashboard-courses {
         }
         
         tr > td > .fa{
-            font-size: 1.2em;
+            font-size: 1.25em;
             position:relative;
             text-align: center;
-            border-right:1px solid darkgrey;
             padding:0px 18px 0px 18px;
+            color:@LMSmid;
         }
         
         tr > td > .fa-book{
             border:none;
+        }
+        
+        tr td a p:last-child{
+            font-size: .9em;
+            font-style:italic;
+        }
+        
+        tr td a p:first-child{
+            font-size: 1em;
+            font-weight:600;
+        }
+        
+        a:hover{
+            text-decoration: none;
         }
     }
     
