@@ -1,6 +1,6 @@
 <nav class="nav--breadcrumbs">
     <ul class="list-inline">
-        <li ng-repeat="loc in locations"><span>/</span><a href="{{loc}}">{{loc}}</a></li> 
+        <li  ng-repeat="(key,value) in locObj"><span>/</span><a href="{{value}}">{{key}}</a></li> 
     </ul>
     
 </nav>
