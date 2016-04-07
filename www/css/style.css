@@ -11,70 +11,8 @@
 
 
 
-.box__header--green {
-    background: rgba(0, 181, 181, 1);
-}
-
-.box__header--courses h2 {
-    display: inline-block;
-    color: rgba(255,255,255,1);
-}
 
 
-
-/*.box__content__left {
-    padding: 20px;
-    padding-right: 50px;
-    float:left;
-    border-right: 2px solid rgba(228,230,231,1);
-    height:9.3em;
-    width:50%;
-    position:relative;
-}
-
-.box__content__right {
-    padding: 20px;
-    float:auto;
-    padding-left: 300px;
-    position:relative;
-    height:9.3em;
-}
-
-.box__content__right .fa-eye{
-    float:right;
-    margin-right: 80px;
-    margin-top: 3px; 
-}
-
-.box__content__right .fa-exclamation{
-    float:right;
-    margin-right: 80px;
-    margin-top: 3px;
-    color:red;
-}
-
-
-.box__content__right .fa-users{
-    
-    background-position: center center;
-    height: 24px;
-    line-height: 24px;
-    width: 20px;
-    padding-left:5px;
-    padding-right:20px;
-    margin:auto;align-content: 
-}
-
-.box__content__left .fa-users{
-    
-    background-position: center center;
-    height: 24px;
-    line-height: 24px;
-    width: 20px;
-    padding-left:5px;
-    padding-right:20px;
-
-}*/
 
 /*Button Dashboard */
 
@@ -211,10 +149,6 @@
     height: 100vh;
 }
 
-.course .container-fluid { /* full col padding fix*/
-    margin-right: -15px;
-}
-
 .chck_course {
     float: right;
 
@@ -254,6 +188,8 @@
 
 * * * * * * * * * * * * * * * * */  
 /* FIX: remove container padding*/
+
+
 
 @media (min-width: 768px) {
   .row.table-row {

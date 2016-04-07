@@ -34,11 +34,15 @@
         </div>
         -->
         <div class="row">
-            <i class="fa fa-plus-square-o fa-3x testbtn" ng-click="toggleCustom()"></i>
-            <!--ng-repeat--><!-- IF ACTIVE START -->
+            <div class="col-sm-20 col-sm-offset-2">
+                <dashboard-courses></dashboard-courses>
+            </div>
+            
+       <!--     <i class="fa fa-plus-square-o fa-3x testbtn" ng-click="toggleCustom()"></i>
+            <!--ng-repeat--><!-- IF ACTIVE START 
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'active'">
-                <!--repeat all courses that the user belongs to -->
+                <!--repeat all courses that the user belongs to 
                 
                 <div class="col-md-20 col-md-offset-2 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
@@ -71,10 +75,10 @@
                 </div>
             </div>
 
-            </div><!--ng-repeat--><!-- IF INACTIVE START -->
+            </div><!--ng-repeat--><!-- IF INACTIVE START 
             <div ng-repeat="course in courses">
                 <div ng-if="course.status == 'inactive'">
-                <!--repeat all courses that the user belongs to-->
+                <!--repeat all courses that the user belongs to
                 <div class="col-md-20 col-md-offset-2 box--courses ">
                     <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <div class="box">

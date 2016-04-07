@@ -2,10 +2,12 @@ app.directive('headerNav', [
   "settings",
   "SessionService",
     "$location",
+    "$document",
   function(
     settings,
     SessionService,
-     $location
+     $location,
+     $document
   ) {
 
     return {
@@ -49,15 +51,39 @@ app.directive('headerNav', [
           
         scope.toggleModal = function() {
             scope.modalShown = !scope.modalShown;
+            //fix for toolbar toggle, element event don't fire on modalshow()
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = false;
           };
           
         //show hide modal create assignment
         scope.assignmentModalShown = false;
         scope.toggleAssignmentModal = function() { 
-            console.log("körs");
             scope.assignmentModalShown = !scope.assignmentModalShown;
           };
+        
+        
+        //toolbar show hide on element click event
+        scope.toggleCreateBar = function() {
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = scope.isToolbarCreateOpen === true ? false: true;
+        };
 
+        scope.togglePersonalBar = function() {
+            scope.isToolbarCreateOpen = false;
+            scope.isToolbarPersonalOpen = scope.isToolbarPersonalOpen === true ? false: true;
+        };
+
+        element.bind('click', function(event) {
+            event.stopPropagation();      
+        });
+
+        $document.bind('click', function(){
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = false;
+            scope.$apply();
+        });
+          
       } //link
     };
   }

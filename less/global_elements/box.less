@@ -24,6 +24,8 @@ This is a LESS file; only style for the element class .box allowed!
     background: @LMSdark;
     color: @LMSdark--text;
     padding: 12px 10px;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
     .border-radius-custom(5px, 5px, 0px, 0px); //uses mixin in mixins.less
     
     .fa-user {
@@ -52,7 +54,7 @@ This is a LESS file; only style for the element class .box allowed!
     background: @RGBassignments;
 }
 
-.box__header--assignments {
+.box__header--resourses {
     background: @RGBresources;
 }
 
@@ -104,6 +106,14 @@ This is a LESS file; only style for the element class .box allowed!
 
 .box--label--resources{
     border-left:5px solid @RGBresources;
+}
+
+.box--label--questions{
+    border-left:5px solid @RGBquestions;
+}
+
+.box--label_heading--questions{
+    color: @RGBquestions;
 }
 
 .box--label_heading--courses {

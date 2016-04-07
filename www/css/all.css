@@ -7461,8 +7461,6 @@ html {
 }
 .app_container {
   padding-left: 0px;
-  overflow: hidden;
-  margin-bottom: 80px;
 }
 .app_container--padding {
   padding-top: 50px;
@@ -7479,7 +7477,6 @@ html {
   .app_container {
     /*remove space hidden by nav*/
     padding-left: 80px;
-    margin-bottom: 0px;
   }
 }
 /*List of students with background*/
@@ -7487,50 +7484,6 @@ html {
   border-radius: 10px;
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
-}
-.ng-modal-overlay {
-  /* A dark translucent div that covers the whole screen */
-  position: fixed;
-  z-index: 999;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #000000 ;
-  opacity: 0.8;
-}
-.ng-modal-dialog {
-  /* A centered div above the overlay with a box shadow. */
-  z-index: 1000;
-  position: fixed;
-  width: 100%;
-  /* Default */
-  min-height: 80%;
-  overflow: scroll;
-  /* Center the dialog */
-  top: 10%;
-  margin: auto;
-  background-color: #fff;
-  box-shadow: 4px 4px 80px #000;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
-  border-radius: 6px;
-}
-.ng-modal-dialog-content {
-  padding: 10px;
-  text-align: left;
-}
-.ng-modal-close {
-  position: absolute;
-  z-index: 9999;
-  top: 3px;
-  right: 5px;
-  padding: 5px;
-  cursor: pointer;
-  font-size: 120%;
-  display: inline-block;
-  font-weight: bold;
-  font-family: 'arial', 'sans-serif';
 }
 /*Styles for global .box classes
     
@@ -7555,6 +7508,8 @@ This is a LESS file; only style for the element class .box allowed!
   background: #3e474f;
   color: #ffffff;
   padding: 12px 10px;
+  font-weight: 600;
+  -webkit-font-smoothing: antialiased;
   -webkit-border-radius: 5px 5px 0px 0px;
   -moz-border-radius: 5px 5px 0px 0px;
   border-radius: 5px 5px 0px 0px;
@@ -7577,11 +7532,11 @@ This is a LESS file; only style for the element class .box allowed!
 .box__header--assignments {
   background: #fcb941;
 }
-.box__header--assignments {
+.box__header--resourses {
   background: #00B5B5;
 }
 .box__header--questions {
-  background: #bababa;
+  background: #953163;
 }
 .box__header--circles {
   background: #F1654C;
@@ -7614,6 +7569,12 @@ This is a LESS file; only style for the element class .box allowed!
 }
 .box--label--resources {
   border-left: 5px solid #00B5B5;
+}
+.box--label--questions {
+  border-left: 5px solid #953163;
+}
+.box--label_heading--questions {
+  color: #953163;
 }
 .box--label_heading--courses {
   color: #2CC990;
@@ -7751,7 +7712,6 @@ This is a LESS file; only style for the element class .box allowed!
   background: #fefefe;
   padding-right: 0px;
   padding-left: 0px;
-  margin-right: -15px;
   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.19), 0 0px 2px rgba(0, 0, 0, 0.23);
 }
 .nav--local ul {
@@ -7966,7 +7926,7 @@ input[type=checkbox] {
 .toolbar {
   position: absolute;
   right: 5px;
-  top: 5px;
+  top: 10px;
   z-index: 40;
 }
 .toolbar li {
@@ -7975,7 +7935,7 @@ input[type=checkbox] {
 }
 .btn-toolbar--create {
   overflow: hidden;
-  background: #364347;
+  background: #3e474f;
   color: #fff;
   width: 30px;
   height: 30px;
@@ -7985,6 +7945,28 @@ input[type=checkbox] {
   display: inline-block;
   transition: none;
   cursor: pointer;
+}
+.toolbar-options--create:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 47px;
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 0 12px 12px;
+  border-color: #3e474f transparent;
+}
+.toolbar-options--personal:before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 2px;
+  width: 20px;
+  height: 20px;
+  border-style: solid;
+  border-width: 0 12px 12px;
+  border-color: #D8335B transparent;
 }
 .btn-toolbar {
   text-align: center;
@@ -8006,7 +7988,6 @@ input[type=checkbox] {
   width: 200px;
   right: 10px;
   height: auto;
-  display: none;
 }
 .toolbar-option_content {
   -webkit-border-radius: 2px;
@@ -8034,12 +8015,6 @@ input[type=checkbox] {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.toolbar-option_content li:firstchild:before {
-  content: "";
-  width: 20px;
-  height: 20px;
-  background: green;
-}
 .toolbar-option_content a {
   display: inline-block;
   width: 100%;
@@ -8048,11 +8023,58 @@ input[type=checkbox] {
   font-family: "Roboto", sans-serif;
   color: rgba(62, 71, 79, 0.9);
 }
-.btn-toolbar--create:hover .toolbar-options--create {
-  display: inline-block;
+.btn-toolbar--personal .toolbar-option_content li:first-child {
+  background: #D8335B;
 }
+/*.btn-toolbar--create:hover .toolbar-options--create {
+    display: inline-block;
+}
+
 .btn-toolbar--personal:hover .toolbar-options--personal {
+    display: inline-block;
+}*/
+.ng-modal-overlay {
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000 ;
+  opacity: 0.8;
+}
+.ng-modal-dialog {
+  z-index: 1000;
+  position: fixed;
+  width: 100%;
+  /* Default */
+  height: 80%;
+  overflow-y: scroll;
+  top: 10%;
+  left: 10%;
+  margin: auto;
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+.ng-modal-dialog-content {
+  padding: 10px;
+  text-align: left;
+  overflow: hidden;
+}
+.ng-modal-close {
+  position: absolute;
+  z-index: 9999;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
   display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
 }
 label {
   color: rgba(62, 71, 79, 0.5);
@@ -8240,6 +8262,21 @@ form[name="assignmentType"] {
 .form--login a:hover {
   text-decoration: none;
   cursor: pointer;
+}
+.form--wall {
+  width: 100%;
+  padding: 20px 10px;
+  background: rgba(62, 71, 79, 0.1);
+  position: relative;
+}
+.form--wall label {
+  font-size: 0.8em;
+  text-transform: uppercase;
+}
+.form--wall button {
+  position: absolute;
+  right: 20px;
+  bottom: 40px;
 }
 dashboard-activities .activities-button {
   background: rgba(62, 71, 79, 0.5);
@@ -8840,37 +8877,8 @@ dashboard-courses .assignClass {
   padding-right: 5px;
   display: inline-block;
 }
-.form--wall {
-  width: 100%;
-  padding: 20px 10px;
-  background: rgba(62, 71, 79, 0.2);
-  position: relative;
-}
-.form--wall label {
-  font-size: 0.8em;
-  text-transform: uppercase;
-}
-.form--wall input,
-.form--wall textarea {
-  display: block;
-  width: 100%;
-  border: none;
-  padding: 15px 10px;
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.5);
-  color: #222;
-}
-.form--wall button {
-  position: absolute;
-  right: 20px;
-  bottom: 20px;
-}
 /*Assignments*/
 .box--label--assignments {
-  padding: 0px 0px 20px 0px !important;
-  border-left: 5px solid #fcb941;
-}
-box--label--resources {
   padding: 0px 0px 20px 0px !important;
 }
 .box--label--assignments h2,
@@ -8901,9 +8909,28 @@ box--label--resources h2 {
   padding: 7px 25px;
   cursor: pointer;
 }
+.courses_assignmentitem a {
+  color: rgba(62, 71, 79, 0.75);
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+.courses_assignmentitem a:hover {
+  text-decoration: none;
+}
 .courses_assignmentitem:hover {
   background: rgba(62, 71, 79, 0.2);
   transition: all 0.2s ease-in-out;
+}
+.assignmentitem_name {
+  text-align: left;
+  width: 50%;
+  display: inline-block;
+}
+.assignmentitem_date {
+  width: 50%;
+  text-align: right;
+  display: inline-block;
 }
 .nav--breadcrumbs a {
   text-decoration: none !important;

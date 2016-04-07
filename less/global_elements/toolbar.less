@@ -1,7 +1,7 @@
 .toolbar {
     position: absolute;
     right: 5px;
-    top: 5px;
+    top: 10px;
     z-index: 40;
 }
 
@@ -12,7 +12,7 @@
 
 .btn-toolbar--create {
     overflow: hidden;
-    background: #364347;
+    background: @LMSdark;
     color: #fff;
     width: 30px;
     height: 30px;
@@ -22,6 +22,30 @@
     display: inline-block;
     transition: none;
     cursor: pointer;
+}
+
+.toolbar-options--create:before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 47px;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-width: 0 12px 12px;
+    border-color: @LMSdark transparent;
+}
+
+.toolbar-options--personal:before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    right: 2px;
+    width: 20px;
+    height: 20px;
+    border-style: solid;
+    border-width: 0 12px 12px;
+    border-color: @RGBskills transparent;
 }
 
 .btn-toolbar {
@@ -47,7 +71,6 @@
     width: 200px;
     right: 10px;
     height: auto;
-    display: none;
 }
 
 .toolbar-option_content {
@@ -73,12 +96,6 @@
         -webkit-font-smoothing: antialiased;
 	   -moz-osx-font-smoothing: grayscale;
     }
-    li:firstchild:before {
-        content: "";
-        width: 20px;
-        height: 20px;
-        background: green;
-    }
     a {
         display: inline-block;
         width: 100%;
@@ -90,11 +107,14 @@
     }
 }
 
+.btn-toolbar--personal .toolbar-option_content li:first-child {
+    background: @RGBskills;
+}
 
-.btn-toolbar--create:hover .toolbar-options--create {
+/*.btn-toolbar--create:hover .toolbar-options--create {
     display: inline-block;
 }
 
 .btn-toolbar--personal:hover .toolbar-options--personal {
     display: inline-block;
-}
+}*/

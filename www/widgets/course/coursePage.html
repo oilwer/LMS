@@ -3,7 +3,7 @@
 <!--  -->  
 <div class="app_container course heightfull">
     <div class="container-fluid heightfull" >
-        <div class="row table-row heightfull">
+        <div class="row table-row heightfull newtable-row">
             
             <nav class="col-sm-3 col-md-3 nav--local" >
                 <course-courseNav></course-courseNav>
@@ -22,28 +22,27 @@
                             <!--Messages in course-->
                             <course-message ng-repeat="message in messages"></course-message>
 
-                            <div class="wall_loadmore">
+                            <!--<div class="wall_loadmore">
                             <i class="fa fa-plus-circle"></i> Load more
-                            </div>
+                            </div>-->
                             <form class="form--wall">
                                 <label for="title">Titel</label>
-                                <input type="text" ng-model="title" name="title" id="title">
+                                <input class="form-control" type="text" ng-model="title" name="title" id="title">
                                 <label for="title">Message</label>
-                                <textarea name="message" ng-model="content" id="message" placeholder="write your message ...">
+                                <textarea class="form-control" name="message" ng-model="content" id="message" placeholder="write your message ...">
                                 </textarea>
-                                <button ng-click="publishMsg()">Publish</button>
+                                <button class="btn btn-default" ng-click="publishMsg()">Publish</button>
                             </form>
                         </div>
-                        
                     </div><!--.col-->
+                    
                     <div class="col-md-10 padding--none">
-                        
                         <!--left content / details / assignment / resources-->
                         <div class="col-sm-24 box--label box--label--courses coursor--pointer">
                             <h1 class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
                                 <i class="fa--heading fa fa-info-circle"></i>
                                 Course details
-                                <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i>
+                                <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-up"></i>
                             </h1>
 
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
@@ -57,7 +56,7 @@
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Date:</h2>
-                                    <p> {{ course.startDate }} - {{ course.end}}</p>
+                                    <p> {{ course.start | date }} - {{ course.end | date}}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Description:</h2>
@@ -80,9 +79,9 @@
                             </h2>
                             <div class="">
                                 <ul class="courses_assignments">
-                                    <li class="course_heading">
-
-                                        <span>Name</span> <span>Deadline</span> <span>Status</span></li>
+                                    <p class="course_heading">
+                                        <span>Name</span><span>Deadline</span><span>Status</span>
+                                    </p>
     
                                      <assignment-item ng-repeat="assignment in assignments"></assignments-item> 
                         
@@ -104,7 +103,7 @@
                             </h2>
                             <div class="">
                                 <p class="course_heading">
-                                        <span>Name</span><span>Time</span><span>Status</span>
+                                    <span>Name</span><span>Time</span><span>Status</span>
                                 </p>
 
                                 <ul class="courses_assignments" ng-repeat="resource in course.resources">
@@ -114,23 +113,22 @@
                 
                         </div><!--.col-->
                         
-                        <div class="col-md-24 box">
-                                <h2 class="box__header box__header--questions ">
-                                    <i class="fa--heading fa fa-question-circle"></i>
-                                    Questions and Answers
-                                </h2>
-                                <div class="box__content">
-                                    <p> Placeholder </p>
-                                </div>
-                        </div>
-                        
-                    </div><!--.col-->
+                        <div class="col-sm-24 box--label box--label--questions">
+                            <h2 class="box--label_heading--questions">
+                                <i class="fa--heading fa fa-question-circle"></i>
+                                Questions and Answers
+                            </h2>
+                            <div class="box__content">
+                                <p> Placeholder </p>
+                            </div>
+                        </div><!--.col-->
                     
+                    </div><!--.col-->
                 </div><!--.row-->
                         
-            </div><!--coursebody-->
-        </div>
-    </div><!--.dashboard-->
+            </div><!--col-->
+        </div><!--table row-->
+    </div><!--.container-->
 </div><!--.app_container-->
 
 
