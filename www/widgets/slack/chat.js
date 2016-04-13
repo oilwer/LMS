@@ -1,7 +1,6 @@
 app.directive('slackChat', [
   "settings",
   "ChatService",
-  "Slack",
   "User",
   "SessionService",
   "Course",
@@ -9,7 +8,6 @@ app.directive('slackChat', [
   function(
     settings,
     ChatService,
-    Slack,
     User,
     SessionService,
     Course,
@@ -25,26 +23,35 @@ app.directive('slackChat', [
           var token = "";
           var slackChannelId = ""; 
 
+          scope.createSlackChannel = function(){
+            createSlackChannel(scope.channelName,"12");
+          }
+
           var createSlackChannel = function(channelName, CourseId) {
 
             //Api call to ceate here, then update DB
-            ChatService.createChannel(channelName).success(function(response){
-
+            ChatService.createChannel(channelName, "test").success(function(response){
+              console.log(response);
             });
 
-            Course.get({_id: CourseId}, function(course){
-              Slack.update({
-                team_id: "LMS" //Hard coded, need to get from config or something
-              },{ $push: {
-                    channels:{
-                      name: channelName,
-                    }
-                  }
-              })
-            })
+            
           }
 
           var connectSlacktoCourse = function(courseId, channelName){
+            //DB stuff here
+            // Course.get({_id: CourseId}, function(course){
+            //   Slack.update({
+            //     team_id: "LMS" //Hard coded, need to get from config or something
+            //   },{ $push: {
+            //         channels:{
+            //           name: channelName,
+            //         }
+            //       }
+            //   })
+            // })
+          }
+
+          var joinChannel = function(courseId, userToken){
 
           }
 
@@ -60,7 +67,7 @@ app.directive('slackChat', [
           scope.sendMessage = function(){
               //console.log(scope.text);
 
-              ChatService.sendMessage( scope.text).success(function(response){
+              ChatService.sendMessage("C0RRZEDK4", scope.text).success(function(response){
                   //scope.getMessage(); //use this later as param response.channel
               });
           }
