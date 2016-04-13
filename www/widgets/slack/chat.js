@@ -27,13 +27,13 @@ app.directive('slackChat', [
             createSlackChannel(scope.channelName,"12");
           }
 
-          var createSlackChannel = function(channelName, CourseId) {
+          var createSlackChannel = function(channelName, CourseId, UserIdentifier) {
 
             //Api call to ceate here, then update DB
-            ChatService.createChannel(channelName, "test").success(function(response){
+            ChatService.createChannel(channelName, UserIdentifier).success(function(response){
               console.log(response);
             });
-
+            
             
           }
 
