@@ -16,7 +16,7 @@ app.directive('assignmentCreateassignment', [
         
     return {
       templateUrl: settings.widgets + 'assignment/createassignment.html',
-      link: function(scope, element, attrs) {
+      link: function(scope, element, attrs, $location) {
         
           // CURRENT COURSE VARIABLES
           //
@@ -29,16 +29,7 @@ app.directive('assignmentCreateassignment', [
           // start, end : view
           //
           
-          
-          
-        // Note: How to make it work when directive loads?
-        // Gui function fetch selected course data for editing
-        scope.prepareEditCourse = function (id){
-            isEditingCourse = true;
-            scope.btnAddOrUpdateTextCourse = 'Update';
-            //get info from db to put in the form boxes
-            scope.course = Course.getById(id);
-        };
+
           
         //get session_user
         scope.session_user;
@@ -48,8 +39,10 @@ app.directive('assignmentCreateassignment', [
           
 
         // Updates the GUI according to edit/add-state
-        var isEditingCourse = false;
+        var isEditing = false;
         scope.btnAddOrUpdate = 'Create assignment';
+        
+        var stepFinishedIndex = 0;
         
         var AvailableCourses = Course.get();
         
@@ -77,43 +70,68 @@ app.directive('assignmentCreateassignment', [
 	   
           
         //Gui function add course
-        scope.addOrUpdateCourse = function(){
+        scope.addOrUpdateCourse = function()
+        {
+	        
+
 	        
 	        if (typeof selectedCourseName !== 'undefined') 
 	        {
-			        
-			        var result = AvailableCourses.filter(function( obj ) {
-						return obj.name == selectedCourseName;
-					});
+		        
+		        if (typeof scope.assignment.obligatory !== 'undefined') 
+				{
 					
+				}
+				else
+				{
+					scope.assignment.obligatory = false;		
+				}
+				
+				if( typeof scope.assignment.name !== 'undefined')
+				{
 					
-					scope.assignment.course = result[0]._id;
-					
-					scope.assignment.added_on = (new Date()).toJSON();
-		
-			       
-			       console.log(scope.assignment);
-			       
-		          if(!isEditingCourse){
-		              console.log("create assignment runs");
-		              
-		              
-		              Assignment.create(scope.assignment, function(res){
-			              
-			              Course.get({ _id: res[0].course}, function(x){
-                      Course.update({_relate:{items:x[0],assignments:res[0] }});
-                      Assignment.update({_relate:{items:res[0],course:x[0]}});
-                    });
-			              scope.incrementStep();
-			              });
-
-
-		              
-		            
-		          }
-		          else{
-		              console.log("update assignment runs");
-		          }
+					if( typeof scope.assignment.due_date !== 'undefined')
+					{
+	
+					    var result = AvailableCourses.filter(function( obj ) {
+							return obj.name == selectedCourseName;
+						});
+							
+							
+						scope.assignment.course = result[0]._id;
+							
+						scope.assignment.added_on = (new Date()).toJSON();
+				
+					       
+					    
+					       
+				        if(!isEditing)
+				        {
+				              console.log("Creating assignment");
+				              
+				              Assignment.create(scope.assignment, function(res){
+					          		Course.get({ _id: res[0].course}, function(x){
+							  		Course.update({_relate:{items:x[0],assignments:res[0] }});
+							  		Assignment.update({_relate:{items:res[0],course:x[0]}});
+		                    		});
+					          scope.incrementStep();
+					          isEditing = true;
+					          });
+						}
+				        else
+				        {
+				        	console.log("Updating assignment");
+				        }
+			    	}
+			    	else
+			    	{
+				    	console.log("You need to specify a due date");
+			    	}
+			    }
+			    else
+			    {
+				    console.log("Assignment name undefined");
+			    }
           
           }
           else
@@ -126,13 +144,14 @@ app.directive('assignmentCreateassignment', [
         scope.steps = [{
               name: "Create or copy",
               icon: "fa-file-text-o",
-          },{
-              name: "Details",
-              icon: "fa-i-cursor",
           },
           {
               name: "Select course",
               icon: "fa-leaf",
+          },
+          {
+              name: "Details",
+              icon: "fa-i-cursor",
           },
           {
               name: "Preview",
@@ -154,7 +173,24 @@ app.directive('assignmentCreateassignment', [
           
        // Move to a defined step index
         scope.goToStep = function(index) {
-          scope.selection = scope.steps[index].name;
+	        
+	        // If you are going backwards in the flow: No worries
+	        if(scope.getCurrentStepIndex() > index)
+	        {
+	        	console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+				scope.selection = scope.steps[index].name;
+			}
+			// Going forwards in the flow
+			else
+			{
+				// If you are going to a step that are finished
+				if(stepFinishedIndex >= index)
+				{
+					console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+					scope.selection = scope.steps[index].name;
+				}
+				
+			}
         };
            
         // Return true if step has next step, false if not
@@ -189,6 +225,13 @@ app.directive('assignmentCreateassignment', [
               var stepIndex = scope.getCurrentStepIndex();
               var nextStep = stepIndex + 1;
               scope.selection = scope.steps[nextStep].name;
+              
+              if(stepIndex >= stepFinishedIndex)
+              {
+	              console.log("Step ", stepFinishedIndex, " done");
+              	stepFinishedIndex++;
+              }
+
             }
           };
           
@@ -203,11 +246,32 @@ app.directive('assignmentCreateassignment', [
         };
 
         //roate location
-        scope.pathLocation = function(newLocation) {
+        scope.pathLocation = function(assignment) {
+	        
             //add if statement for previous location - get prev path and back-forward
-            console.log(newLocation);
-            $location.path(newLocation);
-            scope.$parent.hideModal();
+            
+            Assignment.get({name: assignment.name, added_on: assignment.added_on, due_date: assignment.due_date,_populate:"course"}, function(fetchedAssignment){
+		  		 console.log(fetchedAssignment);
+		  		 
+		  		 scope.$parent.hideModal();
+		  		 $window.location.href = '/courses/' + fetchedAssignment[0].course.name + "/assignment/" + fetchedAssignment[0]._id;
+		  		//$location.path(fetchedAssignment._id);
+		  		
+	       });
+            
+            /* Assignment.create(scope.assignment, function(res){
+				          		Course.get({ _id: res[0].course}, function(x){
+						  		Course.update({_relate:{items:x[0],assignments:res[0] }});
+						  		Assignment.update({_relate:{items:res[0],course:x[0]}});
+	                    		});
+				          scope.incrementStep();
+				          });
+            
+            */
+            
+           // console.log(assignment);
+          //  $location.path(newLocation);
+          //  scope.$parent.hideModal();
         }
             
 

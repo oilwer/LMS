@@ -14,7 +14,7 @@
                 <div class="col-sm-14 col-sm-offset-5">
                 
                     <form name="assignmentType">
-                    <button ng-click="goToStep(1)">Create new assignment</button>
+                    <button ng-click="incrementStep()">Create new assignment</button>
                     <button ng-click="isAssignmentsOpen = !isAssignmentsOpen">Copy Recent Assignment</button>
                 
                     <div class="getAssignments" ng-show="isAssignmentsOpen">
@@ -30,7 +30,9 @@
                 
             </div> <!--.StepOne-->
                 <div class="stepTwo" ng-switch-when="Details">
-                    <div class="col-sm-24">
+                    
+                   	            
+	             <div class="col-sm-24">
                     <form name="assignmentDetails">
                         <div class="col-sm-12">
 	                        
@@ -43,16 +45,7 @@
                             <i class="fa fa-times"></i>
                             </span>
                             
-                        <label for="obligatory">Obligatory</label><br><br>
-                            <div class="myCheckbox">
-                            <form action="">
-                                
-                                    <input type="checkbox" name="obligatory" value="YES">
-                                        <label for="checkboxes">YES</label>
-                                    <input type="checkbox" name="obligatory" value="NO">   <label for="checkboxes">NO</label>
-                                   
-                            </form>
-                                 </div>
+                        <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="$parent.assignment.obligatory">
                             <span 
                             class="error" 
                             ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
@@ -91,7 +84,7 @@
                         <div class="col-sm-12">
                             
                             <label for="duedate">Due date</label>
-                            <input type="date" name="duedate" class="form-control" ng-model="$parent.assignment.due_date" required="true">
+                            <input type="datetime-local" name="duedate" class="form-control" ng-model="$parent.assignment.due_date" required="true">
                             <span 
                             class="error" 
                             ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
@@ -124,17 +117,24 @@
                             <a href="" ng-click="decrementStep()">&larr; Previous</a>
                         </li>
                         <li class="">
-                        	<a href="" ng-click="assignmentDetails.$valid && incrementStep()">Next step &rarr;</a> 
+                        	<a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
                             <!-- <a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a> -->
                         </li>
                     </ul>
+                    
             </div><!--.stepTwo-->
             
             <div class="stepThree" ng-switch-when="Select course">
+
+	            
                    <div class="col-sm-24">
-                       
+                       <form name="courseDetails">
+	                       <!--
                        <div class="select_program_header">
-                           <label for="selectProgram">Select program</label></div>
+                           <label for="selectProgram">Select program</label>
+                           </div>
+                           -->
+                       
                   
                        
                        
@@ -143,38 +143,53 @@
                             <select id="selectCourse" 
                                         ng-change="selectCourseChanged(id)" 
                                         ng-model="courseSelect.repeatSelect" 
+	                                    required="required"
                                         name="repeatSelect" 
                                         class="form-control">
                                     <option value=""> --- Course list ---</option>
                                     <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
                                     </option>
                              </select>
+                             
                        
                    </div>
+                   </form>
                    <ul class="col-xs-24 pager">
                        <li class="">
                            <a href="" ng-click="decrementStep()">&larr; Previous</a>
                        </li>
                    
                        <li class="">
-                           <a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
+                           
+                          <a href="" ng-click="courseDetails.$valid && incrementStep()">Next step &rarr;</a> 
+                           
+                           
                        </li>
                    </ul>
-               </div> <!--End of step three-->
+                   
+				   </div> <!--End of step three-->
             
             <div class="stepFour" ng-switch-when="Preview">
                 <div class="col-sm-24">
-                <p>Name: {{assignment.name}}</p>
-                <p>Due Date: {{assignment.due_date}}</p>
-                <p>Description: {{assignment.description}}</p>
-                <p>Added on: {{assignment.added_on}}</p>
-                <p>Course: {{assignment.course}}</p>
-                <p>Is published: {{assignment.is_published}}</p>
-                <p>teacher_instruction_file: {{assignment.teacher_instruction_file}}</p>
-                <p>assessment: {{assignment.assessment}}</p>
-                <p>obligatory: {{assignment.obligatory}}</p>
+	            <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
+                <p ng-if="assignment.due_date">Due Date: {{assignment.due_date}}</p>
+                              
+                <p ng-if="assignment.added_on"> Added on: {{assignment.added_on}}</p>
+                <p ng-if="assignment.course"> Course: {{assignment.course}}</p>
+                <p ng-if="assignment.is_published"> Is published: {{assignment.is_published}}</p>
+                <p ng-if="assignment.teacher_instruction_file"> teacher_instruction_file: {{assignment.teacher_instruction_file}}</p>
+                <p ng-if="assignment.assessment"> Assessment: {{assignment.assessment}}</p>
+                <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
+                <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
+                
+                <br/> 
+				<hr/>
+				<p ng-if="assignment.description"> {{assignment.description}}</p>  
+				<br/>
+                
+                	
 
-                <button class="btn btn-default" ng-click="pathLocation($parent.$parent.course.url)">Enter assignment page</button>
+                <button class="btn btn-default" ng-click="pathLocation(assignment)">Enter assignment page</button>
                 <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
                 </div>
                 <ul class="col-xs-24 pager">

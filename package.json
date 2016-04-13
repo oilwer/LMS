@@ -2,6 +2,7 @@
   "name": "mongr",
   "version": "0.0.1",
   "dependencies": {
+    "angular-sanitize": "^1.5.3",
     "body-parser": "*",
     "cookie-parser": "^1.4.1",
     "debug": "*",
