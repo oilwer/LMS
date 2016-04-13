@@ -45,6 +45,10 @@ app.directive('headerNav', [
           }
         });
           
+        scope.pathLocation = function(newLocation) {
+            $location.path(newLocation);
+        }
+          
           
         //show hide modal create course
         scope.modalShown = false;
