@@ -33,12 +33,13 @@ app.directive('courseCoursepage', [
         Course.get({url: url, _populate:"assignments"}, function(course){ 
             scope.course = course[0];   
             scope.assignments = scope.course.assignments;
+
+            User.get({_id: scope.course.creator}, function(user){
+              scope.teacher = user[0].first_name + " " + user[0].last_name;
+              scope.teacherUrl = user[0].public_url;
+            });
         });     
 
-        User.get({_id: scope.course.creator}, function(user){
-          scope.teacher = user[0].first_name + " " + user[0].last_name;
-          scope.teacherUrl = user[0].public_url;
-        });
 
         var refresh = function(){
             Course.get({url: url}, function(course){ 
