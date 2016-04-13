@@ -15,6 +15,8 @@ module.exports = function(mongoose){
         students: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'User'
         }],
+        slack_channels:[{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Channel']},
         resources: [{
             name: String,
             creator: String,
@@ -26,7 +28,9 @@ module.exports = function(mongoose){
             creator: String,
             date: { type: Date, default: Date.now }
         }],
-        creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+
+      }],
     });
 
       // Return the model

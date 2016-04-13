@@ -23,6 +23,7 @@ module.exports = function(mongoose){
        y: Number
    }],
    role: String //student/admin/teacher
+   slack_token: String //holds slack token
 });
 
   UserSchema.pre('save', function(next){

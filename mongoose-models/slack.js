@@ -5,12 +5,10 @@ module.exports = function(mongoose){
     client_id: String,
     secret: String,
     team_id: String,
-    channels:[{
-       name: String,
-       id: String,
-       connected_course_id: String
-   }],
-});
+      channels:[{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Channel'
+      }],
+  });
 
   // Return the model
   return mongoose.model("Slack", SlackSchema);
