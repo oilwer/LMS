@@ -47,6 +47,11 @@ var customRoutes = [
     path: 'session',
     method: 'get',
     controller: require('./mongresto-custom-routes/session.js')
+  },
+  {
+    path: 'chat',
+    method: 'all',
+    controller: require('./mongresto-custom-routes/chat.js')
   }
 ];
 

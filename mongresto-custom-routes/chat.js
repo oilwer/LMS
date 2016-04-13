@@ -23,13 +23,26 @@ module.exports = function(mongoose) {
     }
 
     if (req.method == 'POST') {
-         slack.api('chat.postMessage', {
+      if(req.body.channelName != undefined){
+        slack.api('channels.create', {
+          token: apiToken,
+          name: req.body.channelName,
+        }, function(err, response){
+          res.json(response);
+        });
+        console.log("We are creating a channel");
+
+      } else {
+        console.log("we are posting a message");
+        slack.api('chat.postMessage', {
+                  token: apiToken,
                   text: req.body.text,
                   as_user:true,
-                  channel:'#testchat'
+                  channel:req.body.channel,
               }, function(err, response){
                    res.json(response);   
               });        
+      }  
     }
   }];
 };

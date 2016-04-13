@@ -78,13 +78,21 @@ app.service('SessionService', function($http) {
 
 app.service('ChatService', function($http){
 
-	return {
+  return {
+        createChannel : function(channelName) {
+          var data = {"channelName" : channelName};
+
+          return $http.post('/api/chat', data).success(function(response, status){
+
+          });
+        },
+
         // Send message
-        sendMessage : function(username, text) {
-            var data = {"username": username, "text": text};
+        sendMessage : function(channel, text) {
+            var data = {"channel": channel, "text": text};
             //" '?channel=' + " is used for non-object variables
-            return $http.post('/api/chat/', data).success(function(response, status){
-            	//console.log(response);
+            return $http.post('/api/chat', data).success(function(response, status){
+              //console.log(response);
             });
         },
 
@@ -93,7 +101,7 @@ app.service('ChatService', function($http){
             //console.log(data);
             //" '?channel=' + " is used for non-object variables
             return $http.get('/api/chat?id=' + channel).success(function(response, status){
-            	//console.log(response);
+              //console.log(response);
             });
         }
     }
