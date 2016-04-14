@@ -1,25 +1,39 @@
     <div class="row">
-        <div class="col-sm-16 col-sm-offset-4">
+        <div class="col-sm-20 col-sm-offset-2">
             <ul class="col-sm-24 nav--process nav--process--assignments">
                 <div class="nav--process_line"></div>
-                <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
-                  <a href="javascript:void(0)" ng-click="goToStep($index)">
-                    <span class="step"><i class=" fa {{step.icon}}"></i></span>
-                      <span class="stepLabel">{{step.name}}</span>
-                    </a>
+                <li ng-if="isCreating == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
+                  	
+	                  	<a href="javascript:void(0)" ng-click="goToStep($index)">
+	                    	<span class="step"><i class=" fa {{step.icon}}"></i></span>
+								<span class="stepLabel">{{step.name}}</span>
+	                    </a>
+                  
                 </li>
+                
+                <li ng-if="isCreating == 0" ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
+                  	
+	                  	<a href="javascript:void(0)" ng-click="goToStep($index)">
+	                    	<span class="step"><i class=" fa {{step.icon}}"></i></span>
+								<span class="stepLabel">{{step.name}}</span>
+	                    </a>
+                  
+                </li>
+                
               </ul>
             <div class="process_view" ng-switch on="selection">
             <div class="stepOne" ng-switch-when="Create or copy">
                 <div class="col-sm-14 col-sm-offset-5">
                 
                     <form name="assignmentType">
-                    <button ng-click="incrementStep()">Create new assignment</button>
-                    <button ng-click="isAssignmentsOpen = !isAssignmentsOpen">Copy Recent Assignment</button>
+                    <button ng-click="setCreate()">Create new assignment</button>
+                    <button ng-click="setCopy()">Copy Recent Assignment</button>
                 
                     <div class="getAssignments" ng-show="isAssignmentsOpen">
                         <p>Placeholder: copy assignment</p>
                     </div>
+                    
+                    
                 </form>
                 </div>
                 <ul class="col-xs-24 pager">
@@ -29,7 +43,8 @@
                 </ul>
                 
             </div> <!--.StepOne-->
-                <div class="stepTwo" ng-switch-when="Details">
+            
+            <div class="stepTwo" ng-switch-when="Details">
                     
                    	            
 	             <div class="col-sm-24">
@@ -117,7 +132,9 @@
                             <a href="" ng-click="decrementStep()">&larr; Previous</a>
                         </li>
                         <li class="">
-                        	<a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
+                        
+                        	
+                        	<a href="" ng-click="addOrUpdateCourse()"> {{btnAddOrUpdate}} &rarr;</a>
                             <!-- <a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a> -->
                         </li>
                     </ul>
@@ -127,7 +144,7 @@
             <div class="stepThree" ng-switch-when="Select course">
 
 	            
-                   <div class="col-sm-24">
+            <div class="col-sm-24">
                        <form name="courseDetails">
 	                       <!--
                        <div class="select_program_header">
@@ -167,9 +184,47 @@
                        </li>
                    </ul>
                    
-				   </div> <!--End of step three-->
+				  
             
-            <div class="stepFour" ng-switch-when="Preview">
+             </div> <!--End of step three-->
+             
+             <div class="stepFour" ng-switch-when="Select assignment">
+	         	<div class="col-sm-24">
+                       <form name="assignmentDetails">
+                       
+                       
+                       <div class="select_course_header"><label for="selectAssignment">Select assignment to copy</label></div>
+                       
+                            <select id="selectAssignment" 
+                                        ng-change="selectAssignmentChanged(id)" 
+                                        ng-model="assignmentSelect.repeatSelect" 
+	                                    required="required"
+                                        name="repeatSelect" 
+                                        class="form-control">
+                                    <option value=""> --- Available assignments ---</option>
+                                    <option ng-repeat="option in assignmentSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
+                                    </option>
+                             </select>
+                             
+                       
+                   </div>
+                   </form>
+                   <ul class="col-xs-24 pager">
+                       <li class="">
+                           <a href="" ng-click="decrementStep()">&larr; Previous</a>
+                       </li>
+                   
+                       <li class="">
+                           
+                          <a href="" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</a> 
+                           
+                           
+                       </li>
+                   </ul>
+             
+             </div> 
+            
+            <div class="stepFive" ng-switch-when="Preview">
                 <div class="col-sm-24">
 	            <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
                 <p ng-if="assignment.due_date">Due Date: {{assignment.due_date}}</p>
@@ -201,3 +256,6 @@
             </div>
         </div><!--col-->
     </div><!--.row-->
+
+            
+            <div class="step"
