@@ -10,28 +10,44 @@ module.exports = function(mongoose) {
     //var myChannelID = "C0RRZEDK4"; //HARD CODED FOR NOW        
 
     if (req.method == 'GET') {
-      if(req.body.action == "leave"){
-        console.log(req.query);
 
-        slack.api('channels.leave', {
+      User.findOne({email: req.query.userIdentifier}, function(err, user) {
+          if (err || !user) {
+            // we failed to find or run query
+            res.json(false);
+            return;
+          }
+
+          var apiToken = user['slack_token'];
+          var slack = new Slack(apiToken);
+
+        if(req.query.action == "leave"){
+          console.log("leave triggered");
+          slack.api('channels.leave', {
+              token:apiToken,
+              channel:req.query.id, //this is actually the channel id
+          }, function(err, response){
+            res.json(response);
+          });        
+
+        } else{
+
+        console.log(req.query.id);
+        console.log("yaaaaaaas queen!");
+        slack.api('channels.history', {
             token:apiToken,
-            channel:req.body.channelName,
-        }, function(err, response){
-          res.json(response);
-        });        
+            count:20,
+            channel:req.query.id }, function(err, response){
+                res.json(response);
+        });          
+      }
 
-      } else{
 
-      console.log(req.query.id);
-      console.log("bruuug");
-     // res.json("?????");
-      slack.api('channels.history', {
-          token:apiToken,
-          count:20,
-          channel:req.query.id }, function(err, response){
-              res.json(response);
-      });          
-    }
+      }
+      );
+
+
+      
   }
 
     if (req.method == 'POST') {

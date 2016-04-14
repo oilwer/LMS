@@ -4,7 +4,7 @@ module.exports = function(mongoose){
   var SlackSchema = new mongoose.Schema({ 
      name: String,
      channel_id: String,
-     connected_course_id: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
+     connected_course: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }]
   });
 
   // Return the model
