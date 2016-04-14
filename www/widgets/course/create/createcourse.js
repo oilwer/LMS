@@ -147,6 +147,8 @@ app.directive('courseCreateCreatecourse', [
                 url: scope.url,
                 name: scope.name,
                 description: scope.description,
+                end: scope.end,
+                start: scope.start,
                 creator: scope.session_user._id
             }, function(course)
                 {
