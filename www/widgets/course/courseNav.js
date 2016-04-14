@@ -18,6 +18,8 @@ app.directive('courseCoursenav', [
         SessionService.getSession().success(function(response){
           if(response.user.role == "student"){
             scope.showParticipants = false;
+          } else {
+            scope.showParticipants = true;
           }
         });
 
