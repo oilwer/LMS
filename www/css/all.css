@@ -7601,8 +7601,8 @@ This is a LESS file; only style for the element class .box allowed!
   padding-left: 20px;
 }
 .nav--breadcrumbs {
-  margin-top: -40px;
-  padding: 5px 0px 10px 9px;
+  margin-top: 0px;
+  padding: 20px 0px 10px 9px;
   font-size: 0.9em;
 }
 .nav--breadcrumbs li {
@@ -7929,7 +7929,7 @@ input[type=checkbox] {
 .toolbar {
   position: absolute;
   right: 5px;
-  top: 10px;
+  top: 13px;
   z-index: 40;
 }
 .toolbar li {
@@ -8108,6 +8108,15 @@ input[type=checkbox] {
 .assignment-answer {
   padding: 40px;
 }
+.assignment-answer h2 {
+  font-size: 1.4em;
+}
+.assignment-answer .assignment-meta {
+  padding: 0px 0px;
+}
+.assignment-answer .assignment_description {
+  padding: 20px 0px;
+}
 .btn--assignments {
   background: #fcb941;
   transition: all 0.3s ease-in-out;
@@ -8120,12 +8129,16 @@ input[type=checkbox] {
 .btn--assignments:focus {
   outline: none;
 }
+.btn--back {
+  float: left;
+  margin: 10px 0px;
+}
 .btn-default--assignment {
   background-color: #fcb941 !important;
 }
 .send__button {
   float: right;
-  margin: 3% 0;
+  margin: 10px 0px 0px 10px;
 }
 .btn--fileupload {
   padding: 20px 0px;
@@ -8157,10 +8170,29 @@ table {
   width: 100%;
 }
 .table--assignment {
-  margin-top: 30px;
+  margin-top: 10px;
+}
+.table--assignment td {
+  padding: 8px 8px 8px 0px;
+  border-bottom: 1px solid rgba(62, 71, 79, 0.2);
+}
+.table--assignment td:first-child {
+  padding-left: 8px;
+}
+.table--assignment th {
+  font-weight: 600;
 }
 .table--assignment tr:first-child {
-  border-bottom: 1px solid #3e474f;
+  border-bottom: 2px solid rgba(62, 71, 79, 0.75);
+}
+.table--assignment tr:not(:first-child):hover {
+  cursor: pointer;
+  background: rgba(62, 71, 79, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.table--assignment tr:not(:first-child):active {
+  background: rgba(62, 71, 79, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 label {
   color: rgba(62, 71, 79, 0.5);

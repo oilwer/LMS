@@ -11,14 +11,14 @@
     <li><a href="">Questions and Answers</a></li>
 
     <!--Assignments-->
-    <li ng-if = "hasAssignment(course.assignments)"><a  ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-down"></i></a>
+    <li ng-if = "hasAssignment(course.assignments)"><a  ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-up"></i></a>
         <ul ng-show="isChildOpen" ng-repeat="assignment in assignments">
             <li><a href="courses/{{course.url}}/assignment/{{ assignment._id }}"><i class="fa--itemtype fa fa-file-text-o"></i>{{assignment.name}}</a></li>
         </ul>
     </li>
 
     <!--Resources-->
-    <li ng-if = "hasResource(course.resources)"><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-right"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-down"></i></a>
+    <li ng-if = "hasResource(course.resources)"><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-up"></i></a>
         <ul ng-show="isChild2Open" ng-repeat="resource in resourcelist">
             <li><a href={{resource.url}}><i class={{resourceType}}></i>{{resource.name}}</a></li>
 
