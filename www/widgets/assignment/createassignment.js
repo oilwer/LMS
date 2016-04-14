@@ -49,6 +49,8 @@ app.directive('assignmentCreateassignment', [
         
         var AvailableAssignments;
         
+        var oldassignment;
+        
         var selectedAssignmentName;
         
         var getAssignmentsFromCourse = function()
@@ -146,25 +148,94 @@ app.directive('assignmentCreateassignment', [
 					       
 					    
 					       
-				        if(!scope.isEditing)
+				        if(scope.isEditing == 0)
 				        {
+					        
+					        // Assignment due date is after the course has started
+					        if(new Date(scope.assignment.due_date) > new Date(result[0].start) )
+					        {
+						    
+						    // Assignment due date is before the course has ended
+					        if(new Date(scope.assignment.due_date) < new Date(result[0].end) )
+					        {
+						    
+					        
 				              console.log("Creating the actual assignment");
 				              scope.isEditing = 1;
 				              
 				              scope.btnAddOrUpdate = "Update assignment";
 				              
+				              scope.assignment.responsible_teacher = "";
+				              scope.assignment.responsible_teacher = scope.session_user._id;
+				              
+				              
+				              
 				              Assignment.create(scope.assignment, function(res){
 					          		Course.get({ _id: res[0].course}, function(x){
 							  		Course.update({_relate:{items:x[0],assignments:res[0] }});
-							  		Assignment.update({_relate:{items:res[0],course:x[0]}});
+							  		Assignment.update({_relate:{items:res[0],course:x[0]}}, function(newres)
+							  		{
+								  		Assignment.get({_id: res[0]._id}, function(newAssignment)
+								  		{
+									  		oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
+									  		scope.incrementStep();
+								  		});
+								  		
+							  		});
 		                    		});
-					          scope.incrementStep();
+					          
 					          
 					          });
+					       }
+					     }
 						}
-				        else
+				        else if (scope.isEditing == 1)
 				        {
+					        
+					        // Assignment due date is after the course has started
+					        if(new Date(scope.assignment.due_date) > new Date(result[0].start) )
+					        {
+						    
+						    // Assignment due date is before the course has ended
+					        if(new Date(scope.assignment.due_date) < new Date(result[0].end) )
+					        {
+						        
 				        	console.log("Updating assignment");
+
+				        	console.log(scope.assignment);
+				        	
+				        	console.log("old assignment: ", oldassignment);
+				        	oldassignment.due_date = new Date(oldassignment.due_date);
+				        	
+							
+							Assignment.get({responsible_teacher: oldassignment.responsible_teacher, added_on: oldassignment.added_on, course: oldassignment.course},function(resAssignment)
+							{
+								console.log("res ass: ", resAssignment);
+								
+								scope.assignment.added_on = undefined;
+								var ass = scope.assignment;
+								Assignment.update({_id: resAssignment[0]._id}, {
+									name: scope.assignment.name,
+									description: scope.assignment.description,
+									obligatory: scope.assignment.obligatory,
+									due_date: scope.assignment.due_date
+									}, function(res)
+								{
+									console.log("Update res: ", res);
+									oldassignment = "";
+									oldassignment = JSON.parse(JSON.stringify(scope.assignment));
+									scope.incrementStep();
+								});
+								
+									
+								
+								
+							});
+							
+				        //	var updateStatus = Assignment.update({_id: scope.assignment._id}, {updateData});
+				        //	Assignment.onQueueDone (console.log(updateStatus));
+				        }
+				        }
 				        }
 			    	}
 			    	else
@@ -398,34 +469,23 @@ app.directive('assignmentCreateassignment', [
         //roate location
         scope.pathLocation = function(assignment) {
 	        
-            //add if statement for previous location - get prev path and back-forward
+	        console.log("inc ass: ", assignment);
+
             
-            Assignment.get({name: assignment.name, added_on: assignment.added_on, due_date: assignment.due_date,_populate:"course"}, function(fetchedAssignment){
-		  		 console.log(fetchedAssignment);
+            Assignment.get({name: assignment.name, added_on: assignment.added_on, responsible_teacher: assignment.responsible_teacher}, function(fetchedAssignment){
+		  		 console.log("fetched assignmnet: ", fetchedAssignment);
 		  		 
 		  		 scope.$parent.hideModal();
 		  		 $window.location.href = '/courses/' + fetchedAssignment[0].course.name + "/assignment/" + fetchedAssignment[0]._id;
+		  		
 		  		//$location.path(fetchedAssignment._id);
 		  		
 	       });
             
-            /* Assignment.create(scope.assignment, function(res){
-				          		Course.get({ _id: res[0].course}, function(x){
-						  		Course.update({_relate:{items:x[0],assignments:res[0] }});
-						  		Assignment.update({_relate:{items:res[0],course:x[0]}});
-	                    		});
-				          scope.incrementStep();
-				          });
-            
-            */
-            
-           // console.log(assignment);
-          //  $location.path(newLocation);
-          //  scope.$parent.hideModal();
-        }
+                    }
             
 
-      }//end link
+      }
     };
   }
 ]);
