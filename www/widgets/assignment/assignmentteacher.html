@@ -1,0 +1,41 @@
+<section class="box assignment body--margin col-sm-24">
+    <!-- Assignment info - to be editable -->
+    <div class="assignment-meta">
+    <h2>{{assignment.name}}</h2>
+        <ul>
+            <li><em>Deadline: </em>{{assignment.due_date | date:"MMMM d, y  'at' HH:mm"}}</li>
+            <li><em>Obligatory:</em> {{assignment.obligatory}}</li>
+        </ul>
+        <ul>
+            <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
+            <li><em>by:</em>{{teacher}}</li>
+        </ul>
+        <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
+
+    </div>
+    <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
+        <p>
+        {{assignment.description}}
+        </p>  
+        <p>FILES?</p>
+    </div>
+
+</section>
+<section class="box assignment col-sm-24 assignment-answer">
+    <!-- Assignmentlist from students ng-repeate-->
+    <h2>Replays</h2>
+        <table class="table--assignment">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Submitted</th>
+            <th scope="col">Status</th>
+        </tr>
+        <!-- ng-repeate when BE is ready?-->
+        <tr>
+            <td>Jennie Hellqvist</td>
+            <td>16-03-12</td>
+            <td>Waiting</td>
+        </tr>
+        <!-- end ng-repeate-->
+        </table>
+</section>

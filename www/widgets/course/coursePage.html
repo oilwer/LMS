@@ -17,10 +17,11 @@
                     <div class="col-md-14">
                         <div class="box box--wall wall">
                         <!--wall-->
-                            <h2 class="box__header box__header--courses">
-                                <i class="fa--heading fa fa-thumb-tack"></i>
-                                Wall
-                            </h2>
+                            <div class="box__header box__header--courses">
+                                <h2>
+                                    <i class="fa--heading fa fa-thumb-tack"></i> Wall
+                                </h2>
+                            </div>
                             <!--Messages in course-->
                             <course-message ng-repeat="message in course.messages"></course-message>
 
@@ -65,10 +66,8 @@
                                     <p> {{ course.description }}</p>
                                 </div>
                                 <div class="col-md-24">
-                                    <h2 class="course_teacher">Teaching</h2>
-                                    
-                                    <a href="/profile/{{teacherUrl}}"><p>{{teacher}}</p></a>
-                                    
+                                    <h2 class="coursedescription_titel">Teaching:</h2> 
+                                    <a href="/profile/{{teacherUrl}}"><p> {{teacher}} </p></a>   
                                 </div>
                             </div>                            
                         </div>
