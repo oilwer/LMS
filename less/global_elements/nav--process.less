@@ -18,6 +18,10 @@
    background: @RGBcourses;
 }
 
+input[type="datetime-local"].form-control{
+    padding-right: 30px;
+}
+
 .nav--process {
    position: relative;
    padding-top: 20px;
@@ -87,12 +91,20 @@
        display: block;
        line-height: 3.5;
        font-size: 1.5em;
-       background-color: #fff;
+       background-color: #fcb941;
        border-radius: 50%;
        text-align: center;
        
-       border: 2px solid #fcb941;
-	   color: #fcb941;	
+       border: 2px solid white;
+	   color: white;	
+}
+
+.stepicon:hover
+{
+	background-color: white;
+	border: 2px solid #fcb941;
+	color:#fcb941;
+
 }
 
 .processselector
