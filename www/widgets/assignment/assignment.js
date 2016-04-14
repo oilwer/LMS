@@ -1,36 +1,52 @@
 app.directive('assignmentAssignment', [
-  "settings",
-  "Assignment",
-  "$routeParams",
-  "Course",
+    "settings",
+    "$location",
+    "$window",
+    "$routeParams",
+    "Course",
+    "SessionService",
+    "User",
   function(
     settings,
-    Assignment,
-    $routeParams,
-    Course
+    $location,
+    $window,
+     $routeParams,
+     Course,
+    SessionService,
+     User
   ) {
-	  
+        
     return {
-      templateUrl: settings.widgets + 'assignment/assignment.html',
+        templateUrl: settings.widgets + 'assignment/assignment.html',
       link: function(scope, element, attrs) {
-
-          Course.get({name: $routeParams.name}, function(course){
+          Course.get({url: $routeParams.url}, function(course){
             scope.course = course[0];
 
-          });          
-
-          Assignment.get({_id: $routeParams.id}, function(assignment){
-             scope.assignment = assignment[0];
-              if (scope.assignment.obligatory === true) {
-                  scope.assignment.obligatory = "Yes";
-              }
-                else{
-                      scope.assignment.obligatory = "No";
-                }
-   
-          });
+          });  
           
-      }
+          
+          scope.userView = false;
+          scope.teacherView = false;
+          
+        SessionService.getSession().success(function(response){
+            var user = response.user.role;
+            console.log(user);
+            
+            if ( user.toLowerCase() == 'user') {
+                console.log("student igen");
+                scope.userView = true;
+                console.log(scope.userView);
+            } else {
+                console.log('teacher igen');
+                console.log(scope.teacherView);
+                scope.teacherView = true;
+                console.log(scope.teacherView);
+            }
+        });
+
+
+
+      }//end link
     };
   }
 ]);

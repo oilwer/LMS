@@ -7424,7 +7424,8 @@ h5,
 h6 {
   margin-top: 0px;
   margin-bottom: 0px;
-  font-family: 'Open Sans', 'Helvetiva', 'Arial', sans-serif;
+  font-family: 'Roboto', 'arial', sans-serif;
+  font-weight: 400;
 }
 h2 {
   font-size: 1.2em;
@@ -7446,10 +7447,10 @@ html {
   background-color: rgba(235, 235, 236, 0.2);
 }
 .body--paddingtop {
-  padding-top: 50px;
+  padding-top: 55px;
 }
 .body--margin {
-  margin-top: 50px;
+  margin-top: 55px;
   margin-bottom: 50px;
 }
 .row--marginleft {
@@ -7500,9 +7501,13 @@ This is a LESS file; only style for the element class .box allowed!
   margin-bottom: 10px;
   height: auto;
   overflow: hidden;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  border-radius: 5px;
+  -webkit-border-radius: 0px;
+  -moz-border-radius: 0px;
+  border-radius: 0px;
+}
+.box h2 {
+  font-size: 1.7em;
+  padding: 0px 0px 5px 0px;
 }
 .box__header {
   background: #3e474f;
@@ -7517,14 +7522,11 @@ This is a LESS file; only style for the element class .box allowed!
 .box__header .fa-user {
   float: right;
 }
-.box__header .box__header i {
-  padding: 0px 10px;
+.box__header h2 {
+  font-size: 1.25em;
 }
-.box__header .box__header svg {
-  padding: 0px 5px;
-  width: 25px;
-  height: auto;
-  display: inline-block;
+.box__header i {
+  padding: 0px 10px 0px 0px;
 }
 .box__header--courses {
   background: #2CC990;
@@ -8077,6 +8079,89 @@ input[type=checkbox] {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+.assignment-meta {
+  padding: 30px 40px;
+}
+.assignment-meta ul {
+  list-style: none;
+  padding: 4px 0px;
+  margin: 0px;
+}
+.assignment-meta li {
+  display: inline;
+  padding-right: 10px;
+}
+.assignment-meta em {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-style: normal;
+}
+.assignment-meta .btn {
+  margin-top: 20px;
+  width: 200px;
+  text-align: center;
+}
+.assignment_description {
+  padding: 0px 40px;
+}
+.assignment-answer {
+  padding: 40px;
+}
+.btn--assignments {
+  background: #fcb941;
+  transition: all 0.3s ease-in-out;
+}
+.btn--assignments:hover {
+  background: rgba(252, 185, 65, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+.btn--assignments:active,
+.btn--assignments:focus {
+  outline: none;
+}
+.btn-default--assignment {
+  background-color: #fcb941 !important;
+}
+.send__button {
+  float: right;
+  margin: 3% 0;
+}
+.btn--fileupload {
+  padding: 20px 0px;
+}
+.btn--fileupload .btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn--fileupload .btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  outline: none;
+  background: white;
+  cursor: inherit;
+  display: block;
+}
+.btn--fileupload input[type=text] {
+  height: 34px;
+  width: 100%;
+}
+table {
+  width: 100%;
+}
+.table--assignment {
+  margin-top: 30px;
+}
+.table--assignment tr:first-child {
+  border-bottom: 1px solid #3e474f;
+}
 label {
   color: rgba(62, 71, 79, 0.5);
   text-transform: uppercase;
@@ -8378,176 +8463,6 @@ dashboard-courses .assignClass {
   color: white;
   font-size: .5em;
   padding: 3px 2px 2px 2px;
-}
-.box__info {
-  height: auto;
-}
-.box__info--h1 {
-  text-decoration: underline;
-  text-align: center;
-  color: grey;
-}
-.box__info--h2 {
-  margin-left: 10%;
-  text-decoration: underline;
-  text-align: center;
-  color: grey;
-}
-.box__info--text {
-  text-align: justify;
-  margin-bottom: 1%;
-  margin-top: 2%;
-}
-.box__info--mainlist {
-  margin-left: 0%;
-}
-.box__info--mainlist p {
-  margin: 0px;
-  padding: 0px;
-}
-.box__info--list {
-  padding: 5px;
-  color: rgba(0, 0, 0, 0.7);
-  border-bottom: 1px solid lightgrey;
-  width: 100%;
-  font-size: 11px;
-  list-style: none;
-}
-.failed {
-  margin-left: 3px;
-  color: white;
-  padding-right: 3px;
-  padding-left: 3px;
-  float: right;
-  text-align: center;
-  background-color: red;
-  border-radius: 3px;
-}
-.komp {
-  margin-left: 3px;
-  color: white;
-  padding-right: 3px;
-  padding-left: 3px;
-  text-align: center;
-  float: right;
-  background-color: yellow;
-  border-radius: 3px;
-}
-.done {
-  margin-right: 12%;
-  color: white;
-  padding-right: 3px;
-  padding-left: 3px;
-  text-align: center;
-  float: right;
-  background-color: green;
-  border-radius: 3px;
-}
-.box__file {
-  margin-top: 5%;
-  margin-left: 10%;
-  margin-bottom: 5%;
-  height: 150px;
-  width: 90%;
-  border-radius: 5px;
-  border-style: dashed;
-  border-color: grey;
-  background-color: rgba(0, 0, 0, 0.07);
-}
-.box__file:hover {
-  background-color: lightgreen;
-}
-.box__file--icon {
-  margin-top: 6%;
-  margin-left: 45%;
-  color: grey;
-}
-.box__file--text {
-  margin-left: 35%;
-  color: black;
-}
-.file__button {
-  margin-left: 25%;
-  font-size: 10px;
-}
-.box__rubrik {
-  height: 2%;
-  width: 90%;
-  margin-top: 2%;
-  margin-left: 10%;
-  margin-right: 5%;
-}
-.box__comment {
-  width: 90%;
-  margin-top: 2%;
-  margin-left: 10%;
-  margin-right: 5%;
-}
-.submit__button {
-  padding-bottom: 3%;
-  margin-top: 3%;
-  text-align: center;
-}
-.send__button {
-  padding-bottom: 3%;
-  margin-top: 3%;
-  margin-right: 5%;
-  text-align: right;
-}
-.resource_list {
-  margin-top: 2%;
-  margin-left: 3%;
-  width: 40%;
-  height: auto;
-  border-radius: 2px;
-  overflow: auto;
-  margin-bottom: 3%;
-}
-.inlamning_list {
-  margin-top: 2%;
-  margin-left: 8%;
-  width: 40%;
-  height: auto;
-  border-radius: 2px;
-  overflow: auto;
-  margin-bottom: 3%;
-}
-.inlamning_list_items {
-  list-style-type: cross;
-  color: grey;
-  margin-bottom: 2%;
-  margin-top: 1%;
-  margin-left: 5%;
-  font-style: italic;
-  text-decoration: underline;
-}
-.inlamning_list_items:hover {
-  cursor: pointer;
-  color: forestgreen;
-}
-.resource_list_items {
-  list-style-type: square;
-  color: grey;
-  margin-bottom: 2%;
-  margin-top: 1%;
-  margin-left: 10%;
-  font-style: italic;
-  text-decoration: underline;
-}
-.resource_list_items:hover {
-  cursor: pointer;
-  color: forestgreen;
-}
-.crusive {
-  text-decoration: underline;
-  float: left;
-}
-.crusive:hover {
-  text-decoration: underline;
-  color: blue;
-  cursor: pointer;
-  float: right;
-  margin-right: 70%;
 }
 .list--students {
   min-height: 600px;

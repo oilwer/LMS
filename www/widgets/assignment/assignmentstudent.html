@@ -1,0 +1,38 @@
+<section class="box assignment body--margin col-lg-24">
+    <div class="assignment-meta">
+        <h2>{{assignment.name}}</h2>
+        <ul>
+            <li><em>Deadline: </em>{{assignment.due_date | date:"MMMM d, y  'at' HH:mm"}}</li>
+            <li><em>Obligatory:</em> {{assignment.obligatory}}</li>
+        </ul>
+        <ul>
+            <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
+            <li><em>by:</em>{{teacher}}</li>
+        </ul>
+        <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
+    </div><!--.assignment_meta-->
+    <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
+        <p>
+        {{assignment.description}}
+        </p>  
+         <li class="resource_list_items"><a href=""><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</li></a>
+    </div>
+
+
+</section><!--.box .assignment-->
+<section class="box assignment assignment-answer col-lg-24">
+    <h2>Submit your answer</h2>
+    <div class="input-group btn--fileupload">
+        <span class="input-group-btn">
+            <span class="btn btn-default btn-file btn-default--assignment">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                Select file <input type="file" multiple>
+            </span>
+        </span>
+        <input type="text" readonly>
+    </div><!--.input-group-->
+    
+        <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
+        <button ng-click="sendAssignment()" type="Button" class="btn btn-success send__button">SEND</button>
+</section>
+
