@@ -6,6 +6,7 @@ app.directive('courseCoursepage', [
   "User",
   "$routeParams",
   "Assignment",
+  "$filter",
   function(
     settings,
     $location,
@@ -13,13 +14,15 @@ app.directive('courseCoursepage', [
     Course,
     User,
     $routeParams,
-    Assignment
+    Assignment,
+    $filter
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/coursePage.html',
       link: function(scope, element, attrs) {
     
+      
         var session_user;
         SessionService.getSession().success(function(response){
           session_user = response.user;
@@ -52,24 +55,42 @@ app.directive('courseCoursepage', [
         //refresh();  
       
         scope.publishMsg = function(){
+          if(scope.title&&scope.content){
             var course = scope.course;
             var date = new Date();
-            var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2);
+            var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);
+           
+
+
+            console.log(today);
             Course.update({
                 _id: course._id
             },{ $push: {
                   messages:{
-                  title: scope.title,
-                  content: scope.content,
-                  creator: session_user,
-                  date: today                  
-                }
+                    title: scope.title,
+                    content: scope.content,
+                    creator: session_user,
+                    date: date                  
+                  }
               }
             });
             // Refresh GUI
             // do not refresh, push message to messages
             refresh();              
-        }    
+        }
+        return false;
+      }
+
+      
+
+      scope.editInfo = function () {
+        console.log("yolod");
+          
+
+
+      };
+
+    
               
         //     //TODO: 
         //     //display changes in view (notifications)

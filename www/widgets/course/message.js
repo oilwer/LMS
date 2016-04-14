@@ -14,7 +14,6 @@ app.directive('courseMessage', [
 
         User.get({_id: scope.message.creator}, function(result){
           scope.creator = result[0].first_name + " " + result[0].last_name;
-
         });
                   
       }
