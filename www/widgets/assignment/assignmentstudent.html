@@ -32,7 +32,12 @@
         <input type="text" readonly>
     </div><!--.input-group-->
     
-        <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
+    <!--Texteditor-->
+    <form>
+         <input id="x" type="hidden" ng-model="userType" name="content">
+         <trix-editor input="x" ></trix-editor>
+    </form>
+
         <button ng-click="sendAssignment()" type="Button" class="btn btn-success send__button">SEND</button>
 </section>
 

@@ -17,7 +17,7 @@ app.directive('assignmentAssignmentstudent', [
     return {
       templateUrl: settings.widgets + 'assignment/assignmentstudent.html',
       link: function(scope, element, attrs) {
-          
+
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
 
@@ -43,33 +43,33 @@ app.directive('assignmentAssignmentstudent', [
             SessionService.getSession().success(function(response){
               session_user = response.user;
             });
-          
+
+
+
           scope.sendAssignment = function(){
               //get file
-              
+
+              //get comment
+              var comment = document.getElementsByName("content")[0].value;
+
               var participants = scope.assignment.participants;
               console.log(participants);
               isParticipant = false;
               var user = {
                   User: session_user
               }
-              console.log("user " + user);
-                                   
-
-                      Assignment.update({
-                          _id: $routeParams.id,
-                        },  {
-                          participants: {
-                                comment: scope.comment,
-                                comment_title: scope.title,
-                                
-                                is_answerd: true
-                          }
-                                    
-                                                
-                
+              console.log("user " + user);                                
+                  Assignment.update({
+                    _id: $routeParams.id,
+                  },{
+                    participants: {
+                      comment: comment,
+                      is_answerd: true
+                  }
               });
             }
+
+
           
           scope.uploadFile = function(event){
                 var files = event.target.files;
@@ -77,7 +77,9 @@ app.directive('assignmentAssignmentstudent', [
             };
           
         
-                    scope.showHideBtn = "Show description"
+          scope.showHideBtn = "Show description"
+
+
           scope.toggleDescription = function() {
               //close grading if open
               if(scope.isGradingOpen){
