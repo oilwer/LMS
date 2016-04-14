@@ -39,17 +39,53 @@ app.directive('assignmentCreateassignment', [
           
 
         // Updates the GUI according to edit/add-state
-        var isEditing = false;
+        scope.isEditing = false;
         scope.btnAddOrUpdate = 'Create assignment';
         
         var stepFinishedIndex = 0;
+        scope.isCreating = 1;
         
         var AvailableCourses = Course.get();
+        
+        var AvailableAssignments;
+        
+        var selectedAssignmentName;
+        
+        var getAssignmentsFromCourse = function()
+        {
+	        console.log("Searching for: ", selectedCourseName);
+	        
+	        var courseId; 
+	        
+	        Course.get({name: selectedCourseName}, function(course)
+	        {
+		      
+		      console.log(course[0]._id);
+		      courseId = course[0]._id;  
+		      
+				  Assignment.get({course: courseId}, function(res)
+				  	{
+			      	 	 console.log(res);
+				  	 	 AvailableAssignments = res;
+				  	 	 
+				  	 	 scope.assignmentSelect = {
+							  repeatSelect: null,
+							  availableOptions: AvailableAssignments
+						   };
+		        	});
+	        });
+	        
+	        
+        }
+        
+        var selectedCourseName = "";
         
         scope.courseSelect = {
 		  repeatSelect: null,
 		  availableOptions: AvailableCourses  
 	   };
+	   
+	   
         
         scope.selectCourseChanged = function (){
 	        
@@ -61,10 +97,15 @@ app.directive('assignmentCreateassignment', [
 			selectedCourseName = scope.courseSelect.repeatSelect;
 				  
 			console.log(selectedCourseName);
+			getAssignmentsFromCourse();
 
-			
-
-		  // updateGUI();
+	   }
+	   
+	   scope.selectAssignmentChanged = function (){
+	        	        
+			selectedAssignmentName = scope.assignmentSelect.repeatSelect;
+				  
+			console.log(selectedAssignmentName);
 	   }
 	   
 	   
@@ -105,9 +146,12 @@ app.directive('assignmentCreateassignment', [
 					       
 					    
 					       
-				        if(!isEditing)
+				        if(!scope.isEditing)
 				        {
-				              console.log("Creating assignment");
+				              console.log("Creating the actual assignment");
+				              scope.isEditing = 1;
+				              
+				              scope.btnAddOrUpdate = "Update assignment";
 				              
 				              Assignment.create(scope.assignment, function(res){
 					          		Course.get({ _id: res[0].course}, function(x){
@@ -115,7 +159,7 @@ app.directive('assignmentCreateassignment', [
 							  		Assignment.update({_relate:{items:res[0],course:x[0]}});
 		                    		});
 					          scope.incrementStep();
-					          isEditing = true;
+					          
 					          });
 						}
 				        else
@@ -140,8 +184,7 @@ app.directive('assignmentCreateassignment', [
           }
         }
         
-          
-        scope.steps = [{
+        scope.createsteps = [{
               name: "Create or copy",
               icon: "fa-file-text-o",
           },
@@ -158,17 +201,55 @@ app.directive('assignmentCreateassignment', [
               icon: "fa-eye",
           }
           ];
+        
+          
+        scope.steps = [{
+              name: "Create or copy",
+              icon: "fa-file-text-o",
+          },
+          {
+              name: "Select course",
+              icon: "fa-leaf",
+          },
+          {
+              name: "Select assignment",
+              icon: "fa-file-text-o",
+          },
+          {
+              name: "Details",
+              icon: "fa-i-cursor",
+          },
+          {
+              name: "Preview",
+              icon: "fa-eye",
+          }
+          ];
           
         //start out on step
         scope.selection = scope.steps[0].name;
 
         scope.getCurrentStepIndex = function(){
-        // Find index of the current step by object name
-            for(var i = 0; i < scope.steps.length; i += 1) {
-                if(scope.steps[i].name === scope.selection) {
-                    return i;
-                }
-            }
+	        
+	        if(scope.isCreating)
+              {
+			              	 // Find index of the current step by object name
+			            for(var i = 0; i < scope.createsteps.length; i += 1) {
+			                if(scope.createsteps[i].name === scope.selection) {
+			                    return i;
+			                }
+			            }
+              }
+              else
+              {
+				           	 // Find index of the current step by object name
+			            for(var i = 0; i < scope.steps.length; i += 1) {
+			                if(scope.steps[i].name === scope.selection) {
+			                    return i;
+			                }
+			            }  
+              }
+              
+       
         };
           
        // Move to a defined step index
@@ -178,7 +259,14 @@ app.directive('assignmentCreateassignment', [
 	        if(scope.getCurrentStepIndex() > index)
 	        {
 	        	console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
-				scope.selection = scope.steps[index].name;
+	        	if(scope.isCreating)
+				{
+					scope.selection = scope.createsteps[index].name;
+				}
+				else
+				{
+					scope.selection = scope.steps[index].name;
+				}
 			}
 			// Going forwards in the flow
 			else
@@ -187,7 +275,14 @@ app.directive('assignmentCreateassignment', [
 				if(stepFinishedIndex >= index)
 				{
 					console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
-					scope.selection = scope.steps[index].name;
+					if(scope.isCreating)
+					{
+						scope.selection = scope.createsteps[index].name;
+					}
+					else
+					{
+						scope.selection = scope.steps[index].name;
+					}
 				}
 				
 			}
@@ -217,6 +312,43 @@ app.directive('assignmentCreateassignment', [
                 return true
             };
         };
+        
+        scope.setCreate = function() {
+	        scope.assignment = undefined;
+	        scope.isEditing = 0;
+	        scope.isCreating = 1;
+	        scope.btnAddOrUpdate = "Create assignment";
+	        console.log("Creating assignment");
+	        scope.incrementStep();
+	        }
+	        
+	    scope.setCopy = function() {
+		    scope.assignment = undefined;
+		    scope.isEditing = 0;
+	        scope.isCreating = 0;
+	        console.log("Copying assignment");
+	        scope.btnAddOrUpdate = "Create assignment";
+	        scope.incrementStep();
+	        }
+	        
+	        scope.loadDetails = function()
+	        {
+		        console.log("loading details");
+		        scope.incrementStep();
+		        
+		        var obj = AvailableAssignments.filter(function ( obj ) {
+					return obj.name === selectedAssignmentName;
+				})[0];
+		        
+		        // var assignmentIndex = AvailableAssignments.indexOf(selectedAssignmentName);
+		        console.log(obj);
+		        
+		        obj.due_date = new Date(obj.due_date);
+		        obj._id = undefined;
+		        obj.added_on = undefined;
+		       
+		       scope.assignment = obj;
+	        }
           
         //move to next step
         scope.incrementStep = function() {
@@ -224,7 +356,14 @@ app.directive('assignmentCreateassignment', [
             {
               var stepIndex = scope.getCurrentStepIndex();
               var nextStep = stepIndex + 1;
-              scope.selection = scope.steps[nextStep].name;
+              if(scope.isCreating)
+              {
+              	scope.selection = scope.createsteps[nextStep].name;
+              }
+              else
+              {
+	           	scope.selection = scope.steps[nextStep].name;   
+              }
               
               if(stepIndex >= stepFinishedIndex)
               {
@@ -241,7 +380,18 @@ app.directive('assignmentCreateassignment', [
             {
               var stepIndex = scope.getCurrentStepIndex();
               var previousStep = stepIndex - 1;
-              scope.selection = scope.steps[previousStep].name;
+              
+              
+              if(scope.isCreating)
+              {
+              	scope.selection = scope.createsteps[previousStep].name;
+              }
+              else
+              {
+	           scope.selection = scope.steps[previousStep].name;  
+              }
+              
+              
             }
         };
 
