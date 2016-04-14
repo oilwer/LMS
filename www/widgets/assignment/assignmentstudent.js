@@ -19,6 +19,11 @@ app.directive('assignmentAssignmentstudent', [
       link: function(scope, element, attrs) {
           
           $ = angular.element;
+          var session_user;
+            SessionService.getSession().success(function(response){
+              session_user = response.user;
+            });
+          
           
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
@@ -38,17 +43,30 @@ app.directive('assignmentAssignmentstudent', [
                 else{
                       scope.assignment.obligatory = "No";
                 }
-   
+              
+              checkIfSubmitted();
           });
           
-          var session_user;
-            SessionService.getSession().success(function(response){
-              session_user = response.user;
-            });
-          
-          scope.sendAssignment = function(){
-              //get file
+          checkIfSubmitted = function(){
+              angular.forEach(scope.assignment.participants, function(value){
+                  user = value.User;
+                  if(user == session_user._id){
+                      scope.hasAnswered = true;
+                      scope.noAnswer = false;
+                  }
+                  else{
+                      scope.hasAnswered = false;
+                      scope.noAnswer = true;
+                  }
+                  
+                  console.log("check: " + scope.hasAnswered)
+              })
               
+              
+          }
+         
+          //Send data to database on button click
+          scope.sendAssignment = function(){
               var participants = scope.assignment.participants;
               console.log(participants);
               isParticipant = false;
@@ -62,15 +80,15 @@ app.directive('assignmentAssignmentstudent', [
                   _id: $routeParams.id,
                 },  {
                   participants: {
+                        User: session_user,
                         comment: scope.comment,
-                        comment_title: scope.title,
-
                         is_answerd: true
                 }
 
               });
             }
           
+          //Clear file-name in input
           $('.fa-times-circle').click(function(){
                 $('.output').val("");  
           });
@@ -90,7 +108,7 @@ app.directive('assignmentAssignmentstudent', [
                   scope.showHideBtn = "Hide description"
               }
           }
-          
+
           }//link
           
       }

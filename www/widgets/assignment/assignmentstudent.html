@@ -21,9 +21,26 @@
 
 
 </section><!--.box .assignment-->
-<section class="box assignment assignment-answer col-lg-24">
+<section ng-if="noAnswer" ng-show="noAnswer" class="box assignment assignment-answer col-lg-24">
     <h2>Submit your answer</h2>
     <div class="input-group btn--fileupload">
+        <span class="input-group-btn">
+            <span class="btn btn-default btn-file btn-default--assignment">
+                <i class="fa fa-folder-open" aria-hidden="true"></i>
+                Select file 
+                <input type="file" file-upload multiple>
+            </span>
+        </span>
+        <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" aria-hidden="true"></i></input>
+    </div><!--.input-group-->
+    
+        <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
+        <button ng-click="sendAssignment()" type="Button" class="btn btn-success send__button">SEND</button>
+</section>
+
+<section ng-if="hasAnswered" ng-show="hasAnswered" class="box assignment assignment-answer col-lg-24">
+    <h2>Update your answer</h2>
+    <!--<div class="input-group btn--fileupload">
         <span class="input-group-btn">
             <span class="btn btn-default btn-file btn-default--assignment">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
