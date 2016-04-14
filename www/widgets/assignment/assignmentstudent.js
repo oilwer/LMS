@@ -18,6 +18,8 @@ app.directive('assignmentAssignmentstudent', [
       templateUrl: settings.widgets + 'assignment/assignmentstudent.html',
       link: function(scope, element, attrs) {
           
+          $ = angular.element;
+          
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
 
@@ -56,28 +58,25 @@ app.directive('assignmentAssignmentstudent', [
               console.log("user " + user);
                                    
 
-                      Assignment.update({
-                          _id: $routeParams.id,
-                        },  {
-                          participants: {
-                                comment: scope.comment,
-                                comment_title: scope.title,
-                                
-                                is_answerd: true
-                          }
-                                    
-                                                
-                
+              Assignment.update({
+                  _id: $routeParams.id,
+                },  {
+                  participants: {
+                        comment: scope.comment,
+                        comment_title: scope.title,
+
+                        is_answerd: true
+                }
+
               });
             }
           
-          scope.uploadFile = function(event){
-                var files = event.target.files;
-              console.log(files);
-            };
+          $('.fa-times-circle').click(function(){
+                $('.output').val("");  
+          });
           
         
-                    scope.showHideBtn = "Show description"
+          scope.showHideBtn = "Show description"
           scope.toggleDescription = function() {
               //close grading if open
               if(scope.isGradingOpen){

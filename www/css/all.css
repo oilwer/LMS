@@ -8103,7 +8103,7 @@ input[type=checkbox] {
   text-align: center;
 }
 .assignment_description {
-  padding: 0px 40px;
+  padding: 0px 40px 15px 40px;
 }
 .assignment-answer {
   padding: 40px;
@@ -8150,8 +8150,15 @@ input[type=checkbox] {
   display: block;
 }
 .btn--fileupload input[type=text] {
+  padding: 0 0 0 1%;
   height: 34px;
   width: 100%;
+}
+.btn--fileupload i {
+  position: absolute;
+  right: 10px;
+  font-size: 1.2em;
+  bottom: 29px;
 }
 table {
   width: 100%;

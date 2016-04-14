@@ -7,7 +7,7 @@
         </ul>
         <ul>
             <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
-            <li><em>by:</em>{{teacher}}</li>
+            <li><em>by: </em>{{teacher}}</li>
         </ul>
         <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
     </div><!--.assignment_meta-->
@@ -15,7 +15,8 @@
         <p>
         {{assignment.description}}
         </p>  
-         <li class="resource_list_items"><a href=""><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</li></a>
+        <!-- Add possibility to get a file from database containing inlämning-->
+         <!--<li class="resource_list_items"><a href=""><i class="fa fa-file-pdf-o fa-1x"></i> Inlämning1.pdf</li></a>-->
     </div>
 
 
@@ -26,10 +27,11 @@
         <span class="input-group-btn">
             <span class="btn btn-default btn-file btn-default--assignment">
                 <i class="fa fa-folder-open" aria-hidden="true"></i>
-                Select file <input type="file" multiple>
+                Select file 
+                <input type="file" file-upload multiple>
             </span>
         </span>
-        <input type="text" readonly>
+        <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" aria-hidden="true"></i></input>
     </div><!--.input-group-->
     
         <textarea ng-model="comment" class="form-control" rows="5" id="comment"></textarea>
