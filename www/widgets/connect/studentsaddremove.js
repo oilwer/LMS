@@ -57,30 +57,30 @@ app.directive('connectStudentsaddremove', [
 			  	User.get({_populate:"courses"},function(user){
 				  	for(var i = 0; i < user.length; i++)
 				  	{
-						//console.log(user);			
+						console.log(user);			
 
 					  	if(user[i].courses.length > 0)
 					  	{
-						  	//console.log(user[i]);
+						  	console.log(user[i]);
 						  	//console.log("yolo", courseUrl);
 		
-
+						  	var added = false;
 							//THERE IS A BUG HERE THAT CREATES DUPLICATE USERS IN THE TOBEADDED LIST
 						  	for (var x = 0; x < user[i].courses.length; x++)
 						  	{
-
 								if(user[i].courses[x].url === courseUrl)
 								{
 							  		console.log("Dont add", user[i].email);
 							  		scope.studentsToBeAdded.push(user[i]);
+							  		added = true;
 							  		break;
 						  		}
-						  		else
-						  		{
-							  		console.log("Add", user[i].email);
-							  		scope.students.push(user[i]);
-							  		break;
-						  		}
+						  		
+						  	}
+
+						  	if(!added){
+						  		console.log("Add", user[i].email);
+							  	scope.students.push(user[i]);
 						  	}
 					  	}
 					  	
