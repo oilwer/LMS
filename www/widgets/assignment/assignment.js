@@ -19,10 +19,14 @@ app.directive('assignmentAssignment', [
     return {
         templateUrl: settings.widgets + 'assignment/assignment.html',
       link: function(scope, element, attrs) {
-          Course.get({url: $routeParams.url}, function(course){
-            scope.course = course[0];
-
-          });  
+          
+          var url = $location.path().split(/[\s/]+/)[2];
+          console.log(url);
+          Course.get({url: url, _populate:"assignments"}, function(course){ 
+              scope.course = course[0];
+              scope.assignments = scope.course.assignments;
+             // scope.messages = scope.course.messages; //load messages               
+            });  
           
           
           scope.userView = false;
