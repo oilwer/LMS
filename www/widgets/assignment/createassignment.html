@@ -26,21 +26,23 @@
                 <div class="col-sm-14 col-sm-offset-5">
                 
                     <form name="assignmentType">
-                    <button ng-click="setCreate()">Create new assignment</button>
-                    <button ng-click="setCopy()">Copy Recent Assignment</button>
-                
-                    <div class="getAssignments" ng-show="isAssignmentsOpen">
-                        <p>Placeholder: copy assignment</p>
+                    <div class="processselector" ng-click="setCreate()">
+	                    
+	                    <span class="step stepicon"><i class=" fa fa-file-text-o"></i></span>
+						<span class="stepLabel">Create assignment</span>
+	                    
                     </div>
+                    <div class="processselector" ng-click="setCopy()">
+	                    <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
+						<span class="stepLabel">Create assignment from older assignment</span>
+	                </div>
+                
+  
                     
                     
                 </form>
                 </div>
-                <ul class="col-xs-24 pager">
-                    <li class="">
-                        <button ng-click="$parent.$parent.hideModal()" class="btn btn-default">Close</button>
-                    </li>
-                </ul>
+                
                 
             </div> <!--.StepOne-->
             
