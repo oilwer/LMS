@@ -113,10 +113,9 @@ app.service('ChatService', function($http){
            });
        },
 
-       leaveChannel : function(channel){
-            var data = "leave";
-            return $http.get('/api/chat?id=' + channel, action).success(function(response, status){
-              //console.log(response);
+       leaveChannel : function(channelID, userIdentifier){
+            return $http.get('/api/chat?id=' + channelID+  "&action=leave" + "&userIdentifier="+userIdentifier).success(function(response, status){
+              console.log(response);
             });
           
         }
