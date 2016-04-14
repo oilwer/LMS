@@ -41,7 +41,6 @@ app.directive('courseCoursenav', [
       	}
 
       	scope.isActive = function(route){
-          console.log(route);
           if(route !== $location.path()){
               if( route.indexOf('participants') >= 0){
                 route = route.replace("participants", "studentsaddremove");
