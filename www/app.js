@@ -34,7 +34,7 @@ app.service('ChatService', function($http){
            return $http.get('/api/chat?id=' + channel).success(function(response, status){
              //console.log(response);
            });
-       }
+       },
 
         leaveChannel : function(channel){
             var data = "leave";
