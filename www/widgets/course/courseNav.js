@@ -3,21 +3,28 @@ app.directive('courseCoursenav', [
   "Course",
   "$location",
   "Assignment",
+  "SessionService",
   function(
     settings,
     Course,
     $location,
-    Assignment
+    Assignment,
+    SessionService
   ) {
     return {
       templateUrl: settings.widgets + 'course/courseNav.html',
       link: function(scope, element, attrs) {
 
+        SessionService.getSession().success(function(response){
+          if(response.user.role == "student"){
+            scope.showParticipants = false;
+          }
+        });
+
         scope.course = "";
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
         scope.assignments = c.assignments;
-          console.log(c);
 
         scope.resourcelist =  scope.course.resources;
 
