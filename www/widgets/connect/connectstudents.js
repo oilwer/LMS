@@ -24,9 +24,9 @@ app.directive('connectConnectstudents', [
         Course.get({ url: url , _populate:"students"}, function(res){
           scope.users = res[0].students;
           scope.course = res[0];
-	  Course.get({ url: url , _populate:"assignments"}, function(res){
-		scope.assignments = res[0].assignments;
-	  });
+      	  Course.get({ url: url , _populate:"assignments"}, function(res){
+      		  scope.assignments = res[0].assignments;
+      	  });
         });
       }
     };

@@ -34,6 +34,9 @@ app.directive('connectStudentsaddremove', [
 
 			Course.get({url: courseUrl}, function(course){ 
 			          scope.course = course[0];
+			          Course.get({ url: courseUrl , _populate:"assignments"}, function(res){
+			      		  scope.assignments = res[0].assignments;
+			      	  });
 			          updateGUI();
 			      });
 		  
