@@ -17,6 +17,7 @@ app.directive('courseCoursenav', [
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
         scope.assignments = c.assignments;
+          console.log(c);
 
         scope.resourcelist =  scope.course.resources;
 
