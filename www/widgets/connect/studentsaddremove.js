@@ -28,6 +28,7 @@ app.directive('connectStudentsaddremove', [
 		 // updateGUI();
 	   //}
 	    courseUrl = $routeParams.url;
+	    scope.courseUrl = courseUrl;
 	   var onLoad = function(){
 	   	  
 	   	  scope.course = "";
