@@ -3,16 +3,26 @@ app.directive('connectConnectstudents', [
   "User",
   "Course",
   "$routeParams",
+  "SessionService",
   function(
     settings,
     User,
     Course,
-    $routeParams
+    $routeParams,
+    SessionService
   ) {
 	  
     return {
       templateUrl: settings.widgets + 'connect/connectstudents.html',
       link: function(scope, element, attrs) {
+
+        SessionService.getSession().success(function(response){
+        if(response.user.role == "student"){
+          scope.showParticipants = false;
+        } else {
+          scope.showParticipants = true;
+        }
+      });
 	  		
         var url = $routeParams.url;
 
