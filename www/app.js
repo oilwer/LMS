@@ -42,6 +42,8 @@ app.service('LoginService', function($http) {
 	            // console.log(response);            
 	        });       
         }
+
+
     }
     
 });
@@ -79,16 +81,8 @@ app.service('SessionService', function($http) {
 app.service('ChatService', function($http){
 
   return {
-        createChannel : function(channelName, userIdentifier) {
-          var data = {"channelName" : channelName, "action" : "createChannel", "userIdentifier" : userIdentifier};
-
-          return $http.post('/api/chat', data).success(function(response, status){
-
-          });
-        },
-
-        joinChannel : function(channelName, userIdentifier) {
-          var data = {"channelName" : channelName, "action" : "joinChannel", "userIdentifier" : userIdentifier};
+        createChannel : function(channelName) {
+          var data = {"channelName" : channelName};
 
           return $http.post('/api/chat', data).success(function(response, status){
 
@@ -96,11 +90,11 @@ app.service('ChatService', function($http){
         },
 
         // Send message
-        sendMessage : function(channel, text, userIdentifier) {
-            var data = {"channel": channel, "text": text, "userIdentifier" : userIdentifier};
-
+        sendMessage : function(channel, text) {
+            var data = {"channel": channel, "text": text};
+            //" '?channel=' + " is used for non-object variables
             return $http.post('/api/chat', data).success(function(response, status){
-            
+              //console.log(response);
             });
         },
 
@@ -111,6 +105,14 @@ app.service('ChatService', function($http){
             return $http.get('/api/chat?id=' + channel).success(function(response, status){
               //console.log(response);
             });
+        },
+
+        leaveChannel : function(channel){
+            var data = "leave";
+            return $http.get('/api/chat?id=' + channel, action).success(function(response, status){
+              //console.log(response);
+            });
+          
         }
     }
 });

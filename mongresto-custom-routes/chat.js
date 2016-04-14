@@ -29,16 +29,29 @@ module.exports = function(mongoose) {
 
     if (req.method == 'GET') {
 
-        console.log(req.query.id);
-        console.log("bruuug");
-       // res.json("?????");
-        slack.api('channels.history', {
+      if(req.body.action == "leave"){
+        console.log(req.query);
+
+        slack.api('channels.leave', {
             token:apiToken,
-            count:20,
-            channel:req.query.id }, function(err, response){
-                res.json(response);
+            channel:req.body.channelName,
+        }, function(err, response){
+          res.json(response);
         });        
+
+      } else{
+
+      console.log(req.query.id);
+      console.log("bruuug");
+     // res.json("?????");
+      slack.api('channels.history', {
+          token:apiToken,
+          count:20,
+          channel:req.query.id }, function(err, response){
+              res.json(response);
+      });          
     }
+  }
 
     if (req.method == 'POST') {
       var apiToken = getUserToken(req.body.userIdentifier);
@@ -52,7 +65,7 @@ module.exports = function(mongoose) {
           res.json(response);
         });
       } else if(req.body.action == "joinChannel"){
-        lack.api('channels.join', {
+        slack.api('channels.join', {
           token: apiToken,
           name: req.body.channelName,
         }, function(err, response){
@@ -68,7 +81,7 @@ module.exports = function(mongoose) {
                   channel:req.body.channel,
               }, function(err, response){
                    res.json(response);   
-              });        
+                  });        
       }  
     }
   }];
