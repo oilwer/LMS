@@ -20,6 +20,11 @@ app.directive('assignmentAssignmentstudent', [
 
           
           $ = angular.element;
+          var session_user;
+            SessionService.getSession().success(function(response){
+              session_user = response.user;
+            });
+          
           
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
@@ -38,26 +43,38 @@ app.directive('assignmentAssignmentstudent', [
                 else{
                       scope.assignment.obligatory = "No";
                 }
-   
+              
+              checkIfSubmitted();
           });
-          
-          var session_user;
-            SessionService.getSession().success(function(response){
-              session_user = response.user;
-            });
 
+          checkIfSubmitted = function(){
+              angular.forEach(scope.assignment.participants, function(value){
+                  user = value.User;
+                  if(user == session_user._id){
+                      scope.hasAnswered = true;
+                      scope.noAnswer = false;
+                  }
+                  else{
+                      scope.hasAnswered = false;
+                      scope.noAnswer = true;
+                  }
+                  
+                  console.log("check: " + scope.hasAnswered)
+              })
+              
+              
+          }
+         
+          //Send data to database on button click
           scope.sendAssignment = function(){
-              //get file
-
-              //get comment
-              var comment = document.getElementsByName("content")[0].value;
-
+                var comment = document.getElementsByName("content")[0].value;
               var participants = scope.assignment.participants;
               console.log(participants);
               isParticipant = false;
               var user = {
                   User: session_user
               }
+
                              
                   Assignment.update({
                     _id: $routeParams.id,
@@ -72,6 +89,7 @@ app.directive('assignmentAssignmentstudent', [
 
 
           
+          //Clear file-name in input
           $('.fa-times-circle').click(function(){
                 $('.output').val("");  
           });
@@ -92,7 +110,7 @@ app.directive('assignmentAssignmentstudent', [
                   scope.showHideBtn = "Hide description"
               }
           }
-          
+
           }//link
           
       }
