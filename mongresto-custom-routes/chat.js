@@ -6,7 +6,6 @@ module.exports = function(mongoose) {
 
       var User = mongoose.model('User');
 
-    //var apiToken = "xoxp-19435876323-19928068646-25845104513-b17be7dd15";
     //var myChannelID = "C0RRZEDK4"; //HARD CODED FOR NOW        
 
     if (req.method == 'GET') {
