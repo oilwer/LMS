@@ -17,6 +17,15 @@
 
 .btn-default--assignment{
     background-color: @RGBassignments !important;
+    border:none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background-color: fade(@RGBassignments,85%) !important;
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
 }
 
 .send__button {
