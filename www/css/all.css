@@ -8119,6 +8119,9 @@ input[type=checkbox] {
   display: inline;
   padding-right: 10px;
 }
+.assignment-meta .assignment_description {
+  padding: 20px 0px 15px 0px;
+}
 .assignment-meta em {
   font-weight: 600;
   text-transform: uppercase;
@@ -8139,11 +8142,51 @@ input[type=checkbox] {
 .assignment-answer h2 {
   font-size: 1.4em;
 }
-.assignment-answer .assignment-meta {
-  padding: 0px 0px;
+.assignment-answer ul {
+  list-style: none;
+  padding: 4px 0px;
+  margin: 0px;
 }
-.assignment-answer .assignment_description {
-  padding: 20px 0px;
+.assignment-answer li {
+  display: inline;
+  padding-right: 10px;
+}
+.assignment-answer em {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-style: normal;
+}
+.assignment-answer .btn {
+  margin-top: 20px;
+  width: 200px;
+  text-align: center;
+}
+.assignment-answer .col-lg-12,
+.assignment-answer .col-lg-24 {
+  padding: 0 !important;
+}
+.assignment-answer ul.assignment-isAnswered {
+  text-align: right;
+}
+trix-toolbar {
+  margin: 10px 0 0 0 !important;
+}
+trix-editor {
+  margin: 5px 0 10px 0 !important;
+  min-height: 200px!important;
+  padding: 15px 20px !important;
+  font-size: .9em;
+  border: 1px solid #ccc!important;
+  border-radius: 0px!important;
+}
+trix-toolbar .button_group {
+  border-radius: 0px !important;
+  border-bottom: none!Important;
+}
+trix-toolbar .button_group button,
+trix-toolbar .button_group input[type=button] {
+  border-bottom: 1px solid #ccc!important;
 }
 .btn--assignments {
   background: #fcb941;
@@ -8163,6 +8206,16 @@ input[type=checkbox] {
 }
 .btn-default--assignment {
   background-color: #fcb941 !important;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.btn-default--assignment:hover {
+  background-color: rgba(252, 185, 65, 0.85) !important;
+  transition: all 0.3s ease-in-out;
+}
+.btn-default--assignment:active,
+.btn-default--assignment:focus {
+  outline: none;
 }
 .send__button {
   float: right;
@@ -8170,10 +8223,12 @@ input[type=checkbox] {
 }
 .btn--fileupload {
   padding: 20px 0px;
+  border-radius: 5px;
 }
 .btn--fileupload .btn-file {
   position: relative;
   overflow: hidden;
+  margin-top: 0px;
 }
 .btn--fileupload .btn-file input[type=file] {
   position: absolute;
@@ -8181,7 +8236,6 @@ input[type=checkbox] {
   right: 0;
   min-width: 100%;
   min-height: 100%;
-  font-size: 100px;
   text-align: right;
   filter: alpha(opacity=0);
   opacity: 0;
@@ -8192,14 +8246,16 @@ input[type=checkbox] {
 }
 .btn--fileupload input[type=text] {
   padding: 0 0 0 1%;
-  height: 34px;
+  height: 32px;
   width: 100%;
+  font-size: .87em!important;
 }
-.btn--fileupload i {
+.btn--fileupload .fa-times-circle {
   position: absolute;
   right: 10px;
   font-size: 1.2em;
-  bottom: 29px;
+  bottom: 27px;
+  cursor: pointer;
 }
 table {
   width: 100%;
