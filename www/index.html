@@ -36,7 +36,6 @@
     <script src="widgets/modelanything/dynamic.js"></script>
     <script src="widgets/modelanything/plugins/testplug.js"></script>
     
-    <script src="widgets/admin/user.js"></script>
     <script src="widgets/admin/usermananger.js"></script>
     <script src="widgets/admin/course.js"></script>
     
@@ -71,6 +70,7 @@
     <script src="widgets/connect/individual.js"></script>
     <script src="widgets/connect/connectstudents.js"></script>
     <script src="widgets/connect/studentsaddremove.js"></script>
+    
     <script src="widgets/breadcrumbs/breadcrumbs.js"></script>
 
     <script src="widgets/slack/chat.js"></script>
@@ -91,8 +91,9 @@
 	  <!-- redirects users depending on their logged-in-status -->
 	  <login-checklogin/>
    
-    <header-nav></header-nav>
+   
+    <header-nav ng-if="loggedin"></header-nav>
     <!-- app view area -->
-    <div ng-view></div>
+    <div ng-view ng-if="loggedin"></div>
   </body>
 </html>

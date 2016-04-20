@@ -45,11 +45,11 @@
                 <li>
                     Create
                 </li>
-                <li>
-                    <a href="" ng-click="toggleModal()"><i class="fa fa-leaf"></i> Create course</a>
+                <li ng-click="toggleModal()">
+                    <a href="" ><i class="fa fa-leaf"></i> Create course</a>
                 </li>
-                <li>
-                    <a href=""ng-click="toggleAssignmentModal()"><i class="fa fa-file-text-o"></i> Create assignment</a>
+                <li ng-click="toggleAssignmentModal()">
+                    <a href=""><i class="fa fa-file-text-o"></i> Create assignment</a>
                 </li>
             </div>
         </ul>
@@ -60,7 +60,7 @@
             <div class="toolbar-option_content">
                 <li>{{ first_name }} {{ last_name }}</li>
                 <li><a href="/myprofile">My profile</a></li>
-                <li>Sign out</li>
+                <li ng-click="logout()">Sign out</li>
             </div>
         </ul>
     </li>

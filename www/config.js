@@ -13,8 +13,8 @@ app.config([
       .when("/admin/", {
         templateUrl: "templates/admin.html",
       })
-      .when("/admin/usermananger", {
-        templateUrl: "templates/usermananger.html",
+      .when("/admin/usermanager", {
+        templateUrl: "templates/usermanager.html",
       })
       .when("/admin/userlist", {
         templateUrl: "templates/userlist.html",

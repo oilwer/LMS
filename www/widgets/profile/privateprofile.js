@@ -22,8 +22,11 @@ app.directive('profilePrivateprofile', [
 	    	var code = $location.search().code; //slack code returned in url if auth success
 	    	if(code != undefined){
 
+	    		//Name of the slackTeam changes for each company using LMS, for example
+	    		//the following means the user will be connected to lmsproject.slack.com
+	    		var slackTeam = "lmsproject"
 	    		//url contains a special temporary code needed for aquaring user token
-	    		var url = "https://slack.com/api/oauth.access?client_id=19435876323.23240924768&client_secret=e6a4a2f97a72b6a1e889830b6ba7612b&code=" + code + "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fmyprofile%2F&pretty=1";	
+	    		var url = "https://slack.com/api/oauth.access?client_id=19435876323.23240924768&client_secret=e6a4a2f97a72b6a1e889830b6ba7612b&code=" + code + "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fmyprofile%2F&pretty=1&team=" + slackTeam;	
 	    		
 	    		//uses temp code to get access token
 	    		$http.get(url).then(function(response) {
@@ -32,10 +35,7 @@ app.directive('profilePrivateprofile', [
 		    		//gets session 
 		    		SessionService.getSession().success(function(response) {	
 		    				//returns user from session
-							User.get({_id:response.user._id},function(current_User){
-								current_User.slack_token = token; //sets user token 								
-								console.log("token added to user: " +current_User.slack_token);
-						});		
+							User.update({_id:response.user._id},{ slack_token: token });		
 					});
 	    		});		
 	    	}

@@ -30,6 +30,12 @@ app.service('LoginService', function($http) {
             });       
        }, 
        
+       logout : function() {
+        return $http.delete("/api/login").success(function(status) {
+           
+        });
+      },
+       
        resetPassword : function(email) {
        
             var data = '{"email": ' + '"' + email + '"' + '}';
@@ -105,16 +111,16 @@ app.service('ChatService', function($http){
        },
 
        //get message history
-       getMessage : function(channel) {
+       getMessage : function(channel, userIdentifier) {
            //console.log(data);
            //" '?channel=' + " is used for non-object variables
-           return $http.get('/api/chat?id=' + channel).success(function(response, status){
+           return $http.get('/api/chat?id=' + channel + "&action=getHistory" + "&userIdentifier=" + userIdentifier).success(function(response, status){
              //console.log(response);
            });
        },
 
        leaveChannel : function(channelID, userIdentifier){
-            return $http.get('/api/chat?id=' + channelID+  "&action=leave" + "&userIdentifier="+userIdentifier).success(function(response, status){
+            return $http.delete('/api/chat?id=' + channelID +  "&action=leave" + "&userIdentifier=" + userIdentifier).success(function(response, status){
               console.log(response);
             });
           
