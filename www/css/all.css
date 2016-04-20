@@ -8553,6 +8553,9 @@ form[name="assignmentType"] {
 .radioitem {
   margin-right: 1em;
 }
+.send__button {
+  float: right;
+}
 dashboard-activities .activities-button {
   background: rgba(62, 71, 79, 0.5);
   color: #ffffff;
