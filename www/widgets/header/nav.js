@@ -2,12 +2,16 @@ app.directive('headerNav', [
   "settings",
   "SessionService",
     "$location",
+     "LoginService",
     "$document",
+    "$window",
   function(
     settings,
     SessionService,
      $location,
-     $document
+     LoginService,
+     $document,
+     $window
   ) {
 
     return {
@@ -47,6 +51,14 @@ app.directive('headerNav', [
           
         scope.pathLocation = function(newLocation) {
             $location.path(newLocation);
+        }
+        
+        // Logout function
+        scope.logout = function()
+        {
+	        LoginService.logout().success(function(response) {
+		        	$window.location.href = '/login';
+		        });
         }
           
           

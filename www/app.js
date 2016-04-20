@@ -30,6 +30,12 @@ app.service('LoginService', function($http) {
             });       
        }, 
        
+       logout : function() {
+        return $http.delete("/api/login").success(function(status) {
+           
+        });
+      },
+       
        resetPassword : function(email) {
        
             var data = '{"email": ' + '"' + email + '"' + '}';
