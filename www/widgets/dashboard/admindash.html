@@ -1,0 +1,19 @@
+<div class="box">
+    
+    <div class="box__header">
+        <h2><i class="fa--heading fa fa-leaf"></i>Admin dashboard</h2>
+    </div>
+    <div class="box__content">
+        <button href="" ng-click="pathLocation('/admin/usermanager/')" class="btn btn-primary"><i class="fa fa-users"></i> User manager</button>
+        <button href="" ng-click="toggleModal()" class="btn btn-success"><i class="fa fa-leaf"></i> Create course</button>
+        <button href="" ng-click="toggleAssignmentModal()" class="btn btn-warning"><i class="fa fa-file-text-o"></i> Create assignment</button>
+    </div>
+    <modal-dialog show='assignmentModalShown' width='80%'>
+        <div assignment-createassignment></div>
+    </modal-dialog>
+    
+    <modal-dialog show='modalShown' width='80%'>
+        <div course-create-createcourse></div>
+    </modal-dialog>
+    
+</div>
