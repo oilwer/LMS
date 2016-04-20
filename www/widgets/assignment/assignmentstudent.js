@@ -51,19 +51,19 @@ app.directive('assignmentAssignmentstudent', [
           
           checkIfSubmitted = function(){
               angular.forEach(scope.assignment.participants, function(value){
-                  user = value.User;
-                  graded = 5;
+                user = value.User;
+                graded = 5;
                   if(user == session_user._id){
                       scope.hasAnswered = true;
                       scope.noAnswer = false;
-                      scope.default = true;
+                      scope.default = false;
                       if (graded != undefined){
-                          scope.isgraded = true;
+                          scope.isgraded = false;
                       }
                   }
                   else{
-                      scope.hasAnswered = false;
-                      scope.default = false;
+                    scope.hasAnswered = false;
+                    scope.default = false;
                   }
               })
   
@@ -112,7 +112,7 @@ app.directive('assignmentAssignmentstudent', [
               }
           }
           
-          scope.showHideSubmit = "Submit assignment"
+          /*scope.showHideSubmit = "Submit assignment"
 
           scope.toggleSubmit = function() {
               //close grading if open
@@ -126,7 +126,7 @@ app.directive('assignmentAssignmentstudent', [
                   scope.noAnswer = true;
                   scope.showHideSubmit = "Close submit"
               }
-          }
+          }*/
           
           scope.showHideEdit = "Edit submission"
 
