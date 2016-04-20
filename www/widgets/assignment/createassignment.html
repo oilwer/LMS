@@ -1,263 +1,185 @@
     <div class="row">
-        <div class="col-sm-20 col-sm-offset-2">
-            <ul class="col-sm-24 nav--process nav--process--assignments">
-                <div class="nav--process_line"></div>
-                <li ng-if="isCreating == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
-                  	
-	                  	<a href="javascript:void(0)" ng-click="goToStep($index)">
-	                    	<span class="step"><i class=" fa {{step.icon}}"></i></span>
-								<span class="stepLabel">{{step.name}}</span>
-	                    </a>
-                  
-                </li>
-                
-                <li ng-if="isCreating == 0" ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
-                  	
-	                  	<a href="javascript:void(0)" ng-click="goToStep($index)">
-	                    	<span class="step"><i class=" fa {{step.icon}}"></i></span>
-								<span class="stepLabel">{{step.name}}</span>
-	                    </a>
-                  
-                </li>
-                
-              </ul>
-            <div class="process_view" ng-switch on="selection">
-            <div class="stepOne" ng-switch-when="Create or copy">
-                <div class="col-sm-14 col-sm-offset-5">
-                
-                    <form name="assignmentType">
-                    <div class="processselector" ng-click="setCreate()">
-	                    
-	                    <span class="step stepicon"><i class=" fa fa-file-text-o"></i></span>
-						<span class="stepLabel">Create assignment</span>
-	                    
-                    </div>
-                    <div class="processselector" ng-click="setCopy()">
-	                    <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
-						<span class="stepLabel">Create assignment from older assignment</span>
-	                </div>
-                
-  
-                    
-                    
-                </form>
+      <div class="col-sm-20 col-sm-offset-2">
+        <ul class="col-sm-24 nav--process nav--process--assignments">
+            <div class="nav--process_line"></div>
+            <li ng-if="isCreating == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
+              <a href="javascript:void(0)" ng-click="goToStep($index)">
+                <span class="step"><i class=" fa {{step.icon}}"></i></span>
+							  <span class="stepLabel">{{step.name}}</span>
+              </a>
+            </li>
+            
+            <li ng-if="isCreating == 0" ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
+            	<a href="javascript:void(0)" ng-click="goToStep($index)">
+              	<span class="step"><i class=" fa {{step.icon}}"></i></span>
+				        <span class="stepLabel">{{step.name}}</span>
+              </a>
+            </li>
+        </ul>
+
+        <div class="process_view" ng-switch on="selection">
+          <div class="stepOne" ng-switch-when="Create or copy">
+            <div class="col-sm-14 col-sm-offset-5">
+              <form name="assignmentType">
+                <div class="processselector" ng-click="setCreate()">  
+                  <span class="step stepicon"><i class=" fa fa-file-text-o"></i></span>
+				          <span class="stepLabel">Create assignment</span>
                 </div>
-                
-                
-            </div> <!--.StepOne-->
-            
-            <div class="stepTwo" ng-switch-when="Details">
-                    
-                   	            
-	             <div class="col-sm-24">
-                    <form name="assignmentDetails">
-                        <div class="col-sm-12">
-	                        
-                        <label for="name">Assignment Title</label>
-                            <input type="text" name="name" class="form-control" ng-model="$parent.assignment.name" required="true">
-                            <span 
-                            class="error" 
-                            ng-show="assignmentDetails.name.$touched && assignmentDetails.name.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-                            
-                        <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="$parent.assignment.obligatory">
-                            <span 
-                            class="error" 
-                            ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-                            
-                           
-                               <!--
-                            <div class="select_course_header"><label for="selectCourse">Choose assessment</label></div>
-                            
-                       
-                   
-                            <select id="selectCourse" 
-                                        ng-change="selectCourseChanged(id)" 
-                                        ng-model="courseSelect.repeatSelect" 
-                                        name="repeatSelect" 
-                                        class="form-control">
-                                    <option value=""> --- Assessment list ---</option>
-                                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
-                                    </option>
-                             </select>
-                        <!-- SLUT PÅ URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
-                            <span 
-                            class="error" 
-                            ng-show="assignmentDetails.assessment.$touched && assignmentDetails.assessment.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-                            
-                        
-
-                            
-                        </div>
-                        
-                        <div class="col-sm-12">
-                            
-                            <label for="duedate">Due date</label>
-                            <input type="datetime-local" name="duedate" class="form-control" ng-model="$parent.assignment.due_date" required="true">
-                            <span 
-                            class="error" 
-                            ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-                            
-                            <label>Upload instruction file</label>
-                            <!--<input type="text" name="courseEnd" class="form-control" ng-model="$parent.end" required="true" >-->
-                            <div class="upload_instruction_file">
-                                <form action="demo_form.asp">
-                            	<input type="file" name="pic" accept="image/*">
-                            </form>
-                        </div>
-                        </div>
-                        <div class="col-sm-24">
-                            <label for="description">Description</label>
-                            <input type="textarea" name="description" class="form-control" ng-model="$parent.assignment.description" required="true">
-                            <span 
-                            class="error" 
-                            ng-show="assignmentDetails.description.$touched && assignmentDetails.description.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-                        </div>
-                    </form>
-                    </div>
-                    <ul class="col-xs-24 pager">
-                        <li class="">
-                            <a href="" ng-click="decrementStep()">&larr; Previous</a>
-                        </li>
-                        <li class="">
-                        
-                        	
-                        	<a href="" ng-click="addOrUpdateCourse()"> {{btnAddOrUpdate}} &rarr;</a>
-                            <!-- <a href="" ng-click="addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a> -->
-                        </li>
-                    </ul>
-                    
-            </div><!--.stepTwo-->
-            
-            <div class="stepThree" ng-switch-when="Select course">
-
-	            
-            <div class="col-sm-24">
-                       <form name="courseDetails">
-	                       <!--
-                       <div class="select_program_header">
-                           <label for="selectProgram">Select program</label>
-                           </div>
-                           -->
-                       
-                  
-                       
-                       
-                       <div class="select_course_header"><label for="selectCourse">Select course</label></div>
-                       
-                            <select id="selectCourse" 
-                                        ng-change="selectCourseChanged(id)" 
-                                        ng-model="courseSelect.repeatSelect" 
-	                                    required="required"
-                                        name="repeatSelect" 
-                                        class="form-control">
-                                    <option value=""> --- Course list ---</option>
-                                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
-                                    </option>
-                             </select>
-                             
-                       
-                   </div>
-                   </form>
-                   <ul class="col-xs-24 pager">
-                       <li class="">
-                           <a href="" ng-click="decrementStep()">&larr; Previous</a>
-                       </li>
-                   
-                       <li class="">
-                           
-                          <a href="" ng-click="courseDetails.$valid && incrementStep()">Next step &rarr;</a> 
-                           
-                           
-                       </li>
-                   </ul>
-                   
-				  
-            
-             </div> <!--End of step three-->
-             
-             <div class="stepFour" ng-switch-when="Select assignment">
-	         	<div class="col-sm-24">
-                       <form name="assignmentDetails">
-                       
-                       
-                       <div class="select_course_header"><label for="selectAssignment">Select assignment to copy</label></div>
-                       
-                            <select id="selectAssignment" 
-                                        ng-change="selectAssignmentChanged(id)" 
-                                        ng-model="assignmentSelect.repeatSelect" 
-	                                    required="required"
-                                        name="repeatSelect" 
-                                        class="form-control">
-                                    <option value=""> --- Available assignments ---</option>
-                                    <option ng-repeat="option in assignmentSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
-                                    </option>
-                             </select>
-                             
-                       
-                   </div>
-                   </form>
-                   <ul class="col-xs-24 pager">
-                       <li class="">
-                           <a href="" ng-click="decrementStep()">&larr; Previous</a>
-                       </li>
-                   
-                       <li class="">
-                           
-                          <a href="" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</a> 
-                           
-                           
-                       </li>
-                   </ul>
-             
-             </div> 
-            
-            <div class="stepFive" ng-switch-when="Preview">
-                <div class="col-sm-24">
-	            <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
-                <p ng-if="assignment.due_date">Due Date: {{assignment.due_date}}</p>
-                              
-                <p ng-if="assignment.added_on"> Added on: {{assignment.added_on}}</p>
-                <p ng-if="assignment.course"> Course: {{assignment.course}}</p>
-                <p ng-if="assignment.is_published"> Is published: {{assignment.is_published}}</p>
-                <p ng-if="assignment.teacher_instruction_file"> teacher_instruction_file: {{assignment.teacher_instruction_file}}</p>
-                <p ng-if="assignment.assessment"> Assessment: {{assignment.assessment}}</p>
-                <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
-                <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
-                
-                <br/> 
-				<hr/>
-				<p ng-if="assignment.description"> {{assignment.description}}</p>  
-				<br/>
-                
-                	
-
-                <button class="btn btn-default" ng-click="pathLocation(assignment)">Enter assignment page</button>
-                <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
+                <div class="processselector" ng-click="setCopy()">
+                  <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
+				          <span class="stepLabel">Create assignment from older assignment</span>
                 </div>
-                <ul class="col-xs-24 pager">
-                    <li class="">
-                        <a href="" ng-click="decrementStep()">&larr; Edit details</a>
-                    </li>
-                </ul>
-            </div><!--.stepTree-->
+              </form>
             </div>
-        </div><!--col-->
-    </div><!--.row-->
+          </div> <!--.StepOne-->
+        
+          <div class="stepTwo" ng-switch-when="Details">
+            <div class="col-sm-24">
+              <form name="assignmentDetails">
+                <div class="col-sm-12">
+                  <label for="name">Assignment Title</label>
+                  <input type="text" name="name" class="form-control" ng-model="$parent.assignment.name" required="true">
+                  <span 
+                  class="error" 
+                  ng-show="assignmentDetails.name.$touched && assignmentDetails.name.$invalid"
+                  class="formError">
+                    <i class="fa fa-times"></i>
+                  </span>      
+                  <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="$parent.assignment.obligatory">
+                  <span 
+                  class="error" 
+                  ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
+                  class="formError">
+                    <i class="fa fa-times"></i>
+                  </span>
+                      
+                  <!-- SLUT PÅ URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
+                  <span 
+                  class="error" 
+                  ng-show="assignmentDetails.assessment.$touched && assignmentDetails.assessment.$invalid"
+                  class="formError">
+                    <i class="fa fa-times"></i>
+                  </span>    
+                </div>
+                    
+                <div class="col-sm-12">
+                  <label for="duedate">Due date</label>
+                  <input type="datetime-local" name="duedate" class="form-control" ng-model="$parent.assignment.due_date" required="true">
+                  <span 
+                  class="error" 
+                  ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
+                  class="formError">
+                    <i class="fa fa-times"></i>
+                  </span>
+                  <label>Upload instruction file</label>
+                  <!--<input type="text" name="courseEnd" class="form-control" ng-model="$parent.end" required="true" >-->
+                  <div class="upload_instruction_file">
+                    <form action="demo_form.asp">
+                      <input type="file" name="pic" accept="image/*">
+                    </form>
+                  </div>
+                </div>
 
-            
-            <div class="step"
+                <div class="col-sm-24">
+                  <label for="description">Description</label>
+                  <input type="textarea" name="description" class="form-control" ng-model="$parent.assignment.description" required="true">
+                  <span 
+                  class="error" 
+                  ng-show="assignmentDetails.description.$touched && assignmentDetails.description.$invalid"
+                  class="formError">
+                    <i class="fa fa-times"></i>
+                  </span>
+                </div>
+              </form>
+            </div>
+            <ul class="col-xs-24 pager">
+              <li class="">
+                <a href="" ng-click="decrementStep()">&larr; Previous</a>
+              </li>
+              <li class="">
+              	<a href="" ng-click="addOrUpdateCourse()"> {{btnAddOrUpdate}} &rarr;</a>
+              </li>
+            </ul>
+          </div><!--.stepTwo-->
+        
+          <div class="stepThree" ng-switch-when="Select course">
+            <div class="col-sm-24">
+              <form name="courseDetails">
+                <div class="select_course_header"><label for="selectCourse">Select course</label></div>
+                <select id="selectCourse" 
+                            ng-change="selectCourseChanged(id)" 
+                            ng-model="courseSelect.repeatSelect" 
+                          required="required"
+                            name="repeatSelect" 
+                            class="form-control">
+                  <option value=""> --- Course list ---</option>
+                  <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> 														{{ option.name }}
+                  </option>
+                </select>  
+              </form>
+            </div>
+            <ul class="col-xs-24 pager">
+              <li class="">
+                <a href="" ng-click="decrementStep()">&larr; Previous</a>
+              </li>
+              <li class="">
+                <a href="" ng-click="courseDetails.$valid && incrementStep()">Next step &rarr;</a> 
+              </li>
+            </ul>
+          </div> <!--End of step three-->
+         
+          <div class="stepFour" ng-switch-when="Select assignment">
+            <div class="col-sm-24">
+              <form name="assignmentDetails">
+                <div class="select_course_header"><label for="selectAssignment">Select assignment to copy</label></div>
+                <select id="selectAssignment" 
+                            ng-change="selectAssignmentChanged(id)" 
+                            ng-model="assignmentSelect.repeatSelect" 
+                          required="required"
+                            name="repeatSelect" 
+                            class="form-control">
+                  <option value=""> --- Available assignments ---</option>
+                  <option ng-repeat="option in assignmentSelect.availableOptions" value="{{ option.name }}">{{ option.name }}
+                  </option>
+                </select> 
+              </form>
+            </div>
+            <ul class="col-xs-24 pager">
+              <li class="">
+                  <a href="" ng-click="decrementStep()">&larr; Previous</a>
+              </li>
+              <li class="">
+                <a href="" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</a> 
+              </li>
+            </ul>
+          </div> <!--End of step four-->
+        
+          <div class="stepFive" ng-switch-when="Preview">
+            <div class="col-sm-24">
+              <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
+              <p ng-if="assignment.due_date">Due Date: {{assignment.due_date}}</p>
+                            
+              <p ng-if="assignment.added_on"> Added on: {{assignment.added_on}}</p>
+              <p ng-if="assignment.course"> Course: {{assignment.course}}</p>
+              <p ng-if="assignment.is_published"> Is published: {{assignment.is_published}}</p>
+              <p ng-if="assignment.teacher_instruction_file"> teacher_instruction_file: {{assignment.teacher_instruction_file}}</p>
+              <p ng-if="assignment.assessment"> Assessment: {{assignment.assessment}}</p>
+              <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
+              <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
+              <br/> 
+		          <hr/>
+		          <p ng-if="assignment.description"> {{assignment.description}}</p>  
+		          <br/>
+              <button class="btn btn-default" ng-click="pathLocation(assignment)">Enter assignment page</button>
+              <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
+            </div>
+            <ul class="col-xs-24 pager">
+              <li class="">
+                <a href="" ng-click="decrementStep()">&larr; Edit details</a>
+              </li>
+            </ul>
+          </div><!--.stepFive-->
+        </div>
+      </div><!--col-->
+    </div><!--.row-->          
+  <div class="step"
