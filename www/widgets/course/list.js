@@ -16,27 +16,7 @@ app.directive('courseList', [
       $scope.heading = "My courses";
           
           //placeholder for all the users courses, get from db
-          $scope.courses = [{
-              name: "Web development",
-              assignment: "Assignment 1",
-              status: "active",
-              url: "testcourse"
-          }, {
-              name: "National economics",
-              assignment: "Assignment 2",
-              status: "active",
-              url: "testcourse"
-          }, {
-              name: "Project management",
-              assignment: "Assignment 3",
-              status: "inactive",
-              url: "testcourse"
-          }, {
-              name: "Project course: IT",
-              assignment: "Assignment 12",
-              status: "active",
-              url: "testcourse"
-          }];
+          $scope.courses = "";
           
           
           $scope.openClose = function() {

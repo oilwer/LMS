@@ -1,34 +1,19 @@
-app.directive('dashboardCourses', [
+app.directive('dashboardAllcourses', [
   "settings",
   "$location",
   "Course",
-  "SessionService",
-  "User",
   function(
     settings,
     $location,
-    Course,
-    SessionService,
-    User
+    Course
   ) {
     return {
       templateUrl: settings.widgets + 'dashboard/mycourses.html',
       link: function(scope, element, attrs) {
-      scope.heading = "My courses";
+      scope.heading = "All courses";
      
-        var refresh = function(){
-	        
-	        SessionService.getSession().success(function(response) {
-		        
-		        
-		        	User.get({_id: response.user._id, _populate:"courses"}, function(user)
-		        	{
-			        	scope.courses = user[0].courses;
-		        	});
-		        	
-		        
-		        });
-           
+        var refresh = function(){		   
+	        	scope.courses = Course.get();
         };
               //Runs on page update
         refresh();
