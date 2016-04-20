@@ -20,12 +20,12 @@ app.directive('assignmentAssignmentstudent', [
 
           $ = angular.element;
           scope.default = true;
-          var session_user;
-            SessionService.getSession().success(function(response){
-              session_user = response.user;
-            });
+          var session_user = "";
+          SessionService.getSession().success(function(response){
+            session_user = response.user;
+          });
           
-          
+          scope.course = "";
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
           }); 
@@ -33,68 +33,88 @@ app.directive('assignmentAssignmentstudent', [
           User.get({_id: scope.responsible_teacher }, function(user){
               scope.teacher = user[0].first_name + " " + user[0].last_name;
               scope.teacherUrl = user[0].public_url;
-            });
+          });
 
+          scope.assignment = "";
           Assignment.get({_id: $routeParams.id}, function(assignment){
              scope.assignment = assignment[0];
               if (scope.assignment.obligatory === true) {
                   scope.assignment.obligatory = "Yes";
               }
-                else{
-                      scope.assignment.obligatory = "No";
-                }
+              else{
+                  scope.assignment.obligatory = "No";
+              }
               
               checkIfSubmitted();
           });
           
           
-          
           checkIfSubmitted = function(){
-              angular.forEach(scope.assignment.participants, function(value){
-                user = value.User;
-                graded = 5;
-                  if(user == session_user._id){
-                      scope.hasAnswered = true;
-                      scope.noAnswer = false;
-                      scope.default = false;
-                      if (graded != undefined){
-                          scope.isgraded = false;
-                      }
+            User.get({_id: session_user._id}, function(user){
+              session_user = user[0];
+              for (var a = 0, len = session_user.assignments.length; a < len; a += 1) {
+                if(session_user.assignments[a] == scope.assignment._id){
+                  scope.hasAnswered = true;
+                  scope.noAnswer = false;
+                  scope.default = false;
+                  if (graded != undefined){
+                      scope.isgraded = false;
                   }
-                  else{
-                    scope.hasAnswered = false;
-                    scope.default = false;
-                  }
-              })
-  
+                  break;
+                }
+              }
+            });                
           }
-         
+
           //Send data to database on button click
           scope.sendAssignment = function(){
-                var comment = document.getElementsByName("content")[0].value;
-              var participants = scope.assignment.participants;
-              console.log(participants);
-              isParticipant = false;
-              var user = {
-                  User: session_user
-              }     
-                  Assignment.update({
-                    _id: $routeParams.id,
-                  },{ $push: {
-                      participants: {
-                        comment: comment,
-                        is_answerd: true
-                      }
-                  }
-              });
-            }
+            var comment = "";
+            var found = false;
 
-          //Clear file-name in input
-          scope.emptyInput = function(){
-              $('.output').val(""); 
-          }
+            User.get({_id: session_user._id}, function(user){
+              session_user = user[0];
+       
+              for (var a = 0, len = session_user.assignments.length; a < len; a += 1) {
+                if(session_user.assignments[a].assignment === scope.assignment._id){
+                  found = true;
+                  comment = session_user.assignments[a].comment;
+                  break;
+                }
+              }
+
+              comment += document.getElementsByName("content")[0].value;
+
+              if(found){ //update text only
+                User.update(
+                {
+                  _id: session_user._id,
+                  assignments: {$elemMatch: {assignment: scope.assignment._id} }
+                },{
+                    "assignments.$.comment" : comment
+                  }
+                );                
+              }
+              else{ //add assignment to user with text'
+                User.update({
+                    _id: session_user._id
+                },{ $push: {
+                    assignments:{
+                    assignment: scope.assignment._id,
+                    comment: comment,               
+                    } 
+                  }
+                });
+              }
+
+            });
+                     
+
+            //Clear file-name in input
+            scope.emptyInput = function(){
+                $('.output').val(""); 
+            }
  
-          
+          }
         
           scope.showHideBtn = "Show description"
 
@@ -111,22 +131,6 @@ app.directive('assignmentAssignmentstudent', [
                   scope.showHideBtn = "Hide description"
               }
           }
-          
-          /*scope.showHideSubmit = "Submit assignment"
-
-          scope.toggleSubmit = function() {
-              //close grading if open
-              if(scope.isGradingOpen){
-                  scope.toggleGrading();
-              }
-              if (scope.noAnswer) {
-                  scope.noAnswer = false;
-                  scope.showHideSubmit = "Submit assignment"
-              } else {
-                  scope.noAnswer = true;
-                  scope.showHideSubmit = "Close submit"
-              }
-          }*/
           
           scope.showHideEdit = "Edit submission"
 
