@@ -102,10 +102,15 @@ app.directive('slackChat', [
           var getMessage = function(){
             var id =  "C0RRZEDK4"; 
              scope.messages = [];
-              ChatService.getMessage(id).success(function(response){
+
+            SessionService.getSession().success(function(response) {
+              ChatService.getMessage(id, response.user.email).success(function(response){
                   console.log(response);
                   scope.channel = response.messages;
               });
+            });
+
+              
           }
 
           scope.getLatestMessage = function (channelID){
