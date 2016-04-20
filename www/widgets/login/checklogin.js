@@ -28,7 +28,7 @@ app.directive('loginChecklogin', [
           {	          
 	          angular.element(document).ready(function()
 	          {
-		          scope.testing = true;
+		          scope.loggedin = true;
 	          });
           }
         });
