@@ -1,12 +1,14 @@
-app.directive('adminUser', [
+app.directive('adminUsermananger', [
   "settings",
   "User",
+    "$window",
   function(
     settings,
-    User  ) {
+    User,
+    $window) {
 
     return {
-      templateUrl: settings.widgets + 'admin/user.html',
+      templateUrl: settings.widgets + 'admin/usermananger.html',
       link: function($scope, element, attrs) {
 
         $scope.btnAddOrUpdateTextUser = 'Add user';
@@ -102,17 +104,22 @@ app.directive('adminUser', [
                 isEditing = false;
               }
           };
-
-          //Gui function remove user
-          $scope.remove = function(targetUser){
-            console.log("Removed: ", targetUser);
-            $scope.user = "";
-            $scope.btnAddOrUpdateTextUser = 'Add user';
+          
+          $scope.remove = function(targetUser) {
+                if ($window.confirm("Do you want to delete "+ targetUser.first_name)) {
+                    console.log("Removed: ", targetUser);
+                    $scope.user = "";
+                    $scope.btnAddOrUpdateTextUser = 'Add user';
           
             // removes user with a surtain id
-            User.remove({_id: targetUser._id});
-            refresh();
-          };
+                    User.remove({_id: targetUser._id});
+                    
+                    refresh();
+                } else {
+                    refresh();
+                }
+            }
+          
 
           //Gui function fetch selected user data for editing
           $scope.prepareEdit = function (id){
@@ -121,6 +128,9 @@ app.directive('adminUser', [
               //get info from db to put in the form boxes
               $scope.user = User.getById(id);
           };
+            
+          //Gui function remove user
+          
       
 
       }
