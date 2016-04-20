@@ -18,16 +18,6 @@ app.directive('assignmentCreateassignment', [
       templateUrl: settings.widgets + 'assignment/createassignment.html',
       link: function(scope, element, attrs, $location) {
 
-          // CURRENT COURSE VARIABLES
-          //
-          // session_user : ._id
-          // id : on createCourse()
-          // url : view
-          // finalurl : created by url + path
-          // name : view
-          // description : view
-          // start, end : view
-          //
 
 
 
@@ -327,13 +317,12 @@ app.directive('assignmentCreateassignment', [
         scope.goToStep = function(index) {
 
 	        // If you are going backwards in the flow: No worries
-	        if(scope.getCurrentStepIndex() > index)
-	        {
+	        if(scope.getCurrentStepIndex() > index) {
 	        	console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
-	        	if(scope.isCreating)
-				{
+
+            if(scope.isCreating) {
 					scope.selection = scope.createsteps[index].name;
-				}
+				    }
 				else
 				{
 					scope.selection = scope.steps[index].name;
