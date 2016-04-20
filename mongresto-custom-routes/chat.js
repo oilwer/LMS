@@ -80,7 +80,7 @@ module.exports = function(mongoose) {
             });
             
           } else {
-            User.get();
+            //User.get();
             //If posting a message
             slack.api('chat.postMessage', {
                       token: apiToken,

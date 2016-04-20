@@ -84,13 +84,22 @@ app.directive('slackChat', [
               //use courseName to get the course from database
               //use course id to get channel id from database
               //replace hardcoded channel_id in ChatService.sendMessage() call
+              
+              SessionService.getSession().success(function(response) {
+              	
+              	
+              	ChatService.sendMessage("C0RRZEDK4", scope.text, response.user.email).success(function(newresponse){
+	              	console.log("Sent msg", response.user.email, scope.text);
+	              	getMessage();
+              	});
+              	
+            });
 
-              ChatService.sendMessage("C0RRZEDK4", scope.text).success(function(response){
-              });
+              
           }
 
           //updates channel messages
-          scope.getMessage = function(){
+          var getMessage = function(){
             var id =  "C0RRZEDK4"; 
              scope.messages = [];
               ChatService.getMessage(id).success(function(response){
