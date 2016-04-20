@@ -2,7 +2,9 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-11 col-md-offset-1">
-            <dashboard-courses></dashboard-courses>
+            <dashboard-courses ng-if="!auth"></dashboard-courses>
+
+            <dashboard-allcourses ng-if="auth"></dashboard-allcourses>
         </div>
     </div>
 </div><!--.container-fluid-->
