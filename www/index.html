@@ -90,8 +90,9 @@
 	  <!-- redirects users depending on their logged-in-status -->
 	  <login-checklogin/>
    
-    <header-nav></header-nav>
+   
+    <header-nav ng-if="testing"></header-nav>
     <!-- app view area -->
-    <div ng-view></div>
+    <div ng-view ng-if="testing"></div>
   </body>
 </html>

@@ -20,7 +20,16 @@ app.directive('loginChecklogin', [
           var user = response.user;
           if(user == undefined)
           {
+	          
 	          $window.location.href = '/login';
+          }
+          
+          else
+          {	          
+	          angular.element(document).ready(function()
+	          {
+		          scope.testing = true;
+	          });
           }
         });
 		
