@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-sm-20 col-sm-offset-2">
+        <h2>Update assignment details</h2>
+        
+        <form class="assignmentDetails">
+            <label for="name">Assignment Title</label>
+                <input type="text" name="name" class="form-control" ng-model="assignment.name" required="true">
+                <span 
+                class="error" 
+                ng-show="assignmentDetails.name.$touched && assignmentDetails.name.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+
+            <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="assignment.obligatory">
+                <span 
+                class="error" 
+                ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+             <input id="x" type="hidden" ng-model="userType" name="content">
+             <trix-editor input="x" ></trix-editor>
+        </form>
+    </div>
+</div><!--.row-->

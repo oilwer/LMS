@@ -38,11 +38,13 @@ app.directive('assignmentAssignmentteacher', [
           //current assignment
           Assignment.get({_id: $routeParams.id}, function(assignment){
              scope.assignment = assignment[0];
+              console.log(scope.assignment);
+              console.log("obliga:" + scope.assignment.obligatory);
               if (scope.assignment.obligatory === true) {
-                  scope.assignment.obligatory = "Yes";
+                  scope.obligatoryText = "Yes";
               }
                 else{
-                      scope.assignment.obligatory = "No";
+                      scope.obligatoryText = "No";
               }
           });
           
@@ -70,8 +72,7 @@ app.directive('assignmentAssignmentteacher', [
                   user: session_user,
                   time: new Date(),
               };
-          };
-          
+          };       
           
           //the current assignmentscope
           scope.assignmentItem = "";
@@ -170,6 +171,12 @@ app.directive('assignmentAssignmentteacher', [
                   scope.isGradingOpen = true;
               }
           }*/
+          
+          //show hide modal update assignment
+            scope.updateAssignmentModalShown = false;
+            scope.toggleUpdateAssignmentModal = function() { 
+                scope.updateAssignmentModalShown = !scope.updateAssignmentModalShown;
+              };
           
       }
     };
