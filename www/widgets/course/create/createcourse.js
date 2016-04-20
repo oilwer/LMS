@@ -152,7 +152,7 @@ app.directive('courseCreateCreatecourse', [
                 creator: scope.session_user._id
             }, function(course)
                 {
-                    scope.$emit('addedCourse');
+                    scope.$root.$broadcast('addedCourse');
                     //update GUI edit mode
                     scope.course = course[0];
                     scope.url = "/courses/" + scope.course.url;
