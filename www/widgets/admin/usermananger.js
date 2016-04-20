@@ -68,6 +68,7 @@ app.directive('adminUsermananger', [
 
                 $scope.btnAddOrUpdateTextUser = 'Add user';
                 var user = $scope.user;
+                console.log(user._id);
                 //Asks UserService to update User
                 User.update({
                     //searchObject
@@ -83,9 +84,9 @@ app.directive('adminUsermananger', [
                       phone_number: user.phone_number,
                       password: user.password,
                       public_url: user.public_url,
-                      courses: {
-                          course_name: user.course_name
-                      },
+                      //courses: {
+                        //  course_name: user.course_name
+                      //},
                       dashboard_config:[{
                           plug:{
                               id: user.id,
