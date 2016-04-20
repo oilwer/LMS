@@ -23,12 +23,14 @@
                         <i class="fa fa-envelope-o"></i><p>{{ email }} </p>
                     </div>
                     <div class="profile__icon_first">
-                        <i class="fa fa-phone"></i><p ng-show="contactEnabled"> {{ phone_number }} </p>
+                        <i class="fa fa-phone"></i>
+                        <p ng-show="contactEnabled"> {{ phone_number }} </p>
                         <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
                     </div>
                     
                     <div class="profile__icon_first">
-                        <i class="fa fa-home"></i><p ng-show="contactEnabled"> {{homepage}}</p>
+                        <i class="fa fa-home"></i>
+                        <p ng-show="contactEnabled"> {{homepage}}</p>
                         <input type="text" ng-hide="contactEnabled" ng-model="homepage">
                     </div>
 
@@ -40,23 +42,23 @@
                     <h2 class="uppercase">Social links</h2>
                     <div class="profile__icon_first">
                         <i class="fa fa-linkedin"></i>
-                        <p ng-show="linksEnabled"></p>
-                        <input type="text" ng-hide="linksEnabled">
+                        <p ng-show="linksEnabled"> {{linkedin}} </p>
+                        <input type="text" ng-hide="linksEnabled" ng-model="linkedin">
                     </div>
                     <div class="profile__icon_first">
                         <i class="fa fa-github"></i>
-                        <p ng-show="linksEnabled"></p>
-                        <input type="text" ng-hide="linksEnabled">
+                        <p ng-show="linksEnabled"> {{github}} </p>
+                        <input type="text" ng-hide="linksEnabled" ng-model="github">
                     </div>
                     <div class="profile__icon_first">
                         <i class="fa fa-facebook"></i>
-                        <p ng-show="linksEnabled"></p>
-                        <input type="text" ng-hide="linksEnabled">
+                        <p ng-show="linksEnabled"> {{facebook}} </p>
+                        <input type="text" ng-hide="linksEnabled" ng-model="facebook">
                     </div>
                     <div class="profile__icon_first">
                         <i class="fa fa-twitter"></i> 
-                        <p ng-show="linksEnabled"></p>
-                        <input type="text" ng-hide="linksEnabled">
+                        <p ng-show="linksEnabled"> {{twitter}} </p>
+                        <input type="text" ng-hide="linksEnabled" ng-model="twitter">
                     </div>
                     <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
                 </div>

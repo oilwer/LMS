@@ -12,6 +12,11 @@ module.exports = function(mongoose){
     phone_number: String,
     password: String,
     public_url: String,
+    homepage: String,
+    facebook: String,
+    linkedin: String,
+    github: String,
+    twitter: String,
     courses: [{ 
         type: mongoose.Schema.Types.ObjectId, ref: 'Course' 
     }],

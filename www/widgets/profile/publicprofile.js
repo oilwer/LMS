@@ -18,6 +18,11 @@ app.directive('profilePublicprofile', [
             $scope.phone_number = data.phone_number;
             $scope.url = data.public_url;
             $scope.description = data.description;
+            $scope.homepage = data.homepage;
+            $scope.linkedin = data.linkedin;
+            $scope.facebook = data.facebook;
+            $scope.twitter = data.twitter;
+            $scope.github = data.github;
             $scope.user = data;
             obj = data;
             $scope.role = data.role;
