@@ -2,7 +2,6 @@ module.exports = function(mongoose){
 
   var sha1 = require('sha1');
 
-  // Defines the user Schema (How the DB is structured)
   var UserSchema = new mongoose.Schema({ 
     profilePic: String,
     email: String,
@@ -13,14 +12,23 @@ module.exports = function(mongoose){
     phone_number: String,
     password: String,
     public_url: String,
-    courses:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'Course' }],
+    courses:  [{
+      course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+    }],
+    assignments: [{
+      assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
+      grade: Number,
+      comment: String,
+      is_answerd: Boolean,
+      answer_file: String
+    }],
     plugs:[{
-       id: String,
-       name: String,
-       path: String,
-       isActive: Boolean,
-       x: Number,
-       y: Number
+            id: String,
+            name: String,
+            path: String,
+            isActive: Boolean,
+            x: Number,
+            y: Number
    }],
    role: String, //student/admin/teacher
    slack_token: String //holds slack token
