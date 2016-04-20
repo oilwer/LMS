@@ -8,19 +8,18 @@
             <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
+        
 
-            <div class="col-sm-21 col-md-21 body--paddingtop coursebody">
-
+            <div class="col-sm-22 col-md-22">
                 <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
 
                 <div class="row">
                     <div class="col-md-14">
                         <div class="box box--wall wall">
                         <!--wall-->
-                            <h2 class="box__header box__header--courses">
-                                <i class="fa--heading fa fa-thumb-tack"></i>
-                                Wall
-                            </h2>
+                            <div class="box__header box__header--courses">
+                                <h2><i class="fa--heading fa fa-thumb-tack"></i>Wall</h2>
+                            </div>
                             
                             <!--Messages in course-->
                             <course-message ng-repeat="message in course.messages | orderBy:'-date'"></course-message>

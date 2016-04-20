@@ -1,0 +1,155 @@
+<div class="app_container heightfull">
+    <div class="container-fluid heightfull ng-scope">
+        <div class="row table-row heightfull">
+            
+            
+            
+            <div class="col-sm-21 col-md-21">
+                <div class="box body--margin col-sm-24">
+                    <div class="box__header">
+                        <h2>
+                            <i class="fa fa-users"></i>  USER MANAGER
+                        </h2>
+                    </div><!--header- END- -->
+                    
+                    <div class="box__content">
+                        <h4><b>Add user</b></h4>
+                        <div class="col-md-12 col-xs-12">
+                            
+                                <label for="Fname">First Name</label>
+                                <input type="text" name="Fname" class="form-control" ng-model="user.first_name" required="true">
+                            
+                            
+                                <label for="Lname">Last Name</label>
+                                <input type="text" name="Lname" class="form-control" ng-model="user.last_name" required="true">
+                            
+                                <label for="email">Email</label>
+                                <input type="text" name="email" class="form-control" ng-model="user.email" required="true">
+                            
+                                <label for="pass">Password</label>
+                                <input type="text" name="pass" class="form-control" ng-model="user.password" required="true">
+                                <label for="radioform">Role:</label>
+                            
+                                <form class="radioitem" action="">
+                                
+                                         <input type="radio" name="obligatory" ng-model="user.role" value="student" required="true">
+                                        <label class="radioitem" for="radio">Student</label>
+                                         <input type="radio" name="obligatory" ng-model="user.role" value="teacher" required="true">
+                                        <label class="radioitem" for="radio">Teacher</label>
+                                         <input   type="radio" name="obligatory" ng-model="user.role" value="admin" required="true">
+                                        <label class="radioitem" for="radio">Admin</label>
+                                   
+                                </form>
+                            </div>
+                        
+                            <div class="col-md-12 col-xs-12">
+                            
+                               
+                                <label for="desc">Description</label>
+                                <input required="true" type="text" class="form-control" ng-model="user.description" rows="3">
+                            
+                                <label for="phone">Phone Number</label>
+                                <input type="text" name="phone" class="form-control" ng-model="user.phone_number" required="true">
+                            
+                                <label for="personality">Personality</label>
+                                <input type="text" name="personality" class="form-control" ng-model="user.personality" required="true">
+         
+                                <label for="public_url">Public Url</label>
+                                <input type="text" name="public_url" class="form-control" ng-model="user.public_url" required="true">
+                                
+                                    <div class="col-md-24">
+                                        <button type="Button" class="btn btn-success send__button" ng-click="addOrUpdateUser()">{{btnAddOrUpdateTextUser}}</button>
+                                    </div>
+                            
+                            </div>
+                        <!--
+                            <div class="col-md-12 col-xs-12">
+                                <h4><b>Plugs</b></h4>
+                                <label for="desc">Plug ID</label>
+                                <input class="form-control" ng-model="user.plugs[0].id" required="true">
+                                <label for="desc">Plug name</label>
+                                <input class="form-control" ng-model="user.plugs[0].name" required="true">
+                                <label for="desc">Path</label>
+                                <input class="form-control" ng-model="user.plugs[0].path" required="true">
+                                </div>
+                            <div class="col-md-12 col-xs-12">
+                                <label for="desc">isActive</label>
+                                <input class="form-control" ng-model="user.plugs[0].isActive" required="true">
+                                <label for="desc">x</label>
+                                <input class="form-control" ng-model="user.plugs[0].x" required="true">
+                                <label for="desc">y</label>
+                                <input class="form-control" ng-model="user.plugs[0].y" required="true">
+                                
+                            </div>
+                        -->
+                            <div class="col-md-24">
+                                <h4><b>User list</b></h4>
+                                    <form class="form-search" method="get">
+                                        <div class="input-group searchUser">
+                                            <input class="form-control" type="text" ng-model="searchUsers" placeholder="Search in list..">
+                                            <div class="input-group-btn">
+                                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    
+                                    <select ng-model="filterUsers" class="form-control filteruser">
+                                        <option value="" ng-selected=true>All</option>
+                                        <option value="student">Students</option>
+                                        <option value="teacher">Teachers</option>
+                                        <option value="admin">Admins</option>
+                                    </select>
+                            </div>
+                            <div class="col-md-24 userlisttabel">
+                                <table class="table table-condensed">
+                                    
+                                <thead>
+                                <tr>
+                                    <th class="headning">User_role</th>
+                                    <th class="headning">First_name</th>
+                                    <th class="headning">Last_name</th>
+                                    <th class="headning">Email</th>
+                                    <th class="headning">Phone_number</th>
+                                    <th class="headning">Password</th>
+                                    <th class="headning">Description</th>
+                                    <th class="headning">Personality</th>
+                                    <th class="headning">Public_url</th>
+                                    
+                                    
+                                </tr>
+                               </thead>
+                                <tbody>
+                                    <tr ng-repeat="user in userlist | filter:searchUsers | filter:(!!filterUsers || undefined) && {role:filterUsers}">
+                                        <td>{{user.role}}</td>
+                                        <td>{{user.first_name}}</td>
+                                        <td>{{user.last_name}}</td>
+                                        <td>{{user.email}}</td>
+                                        <td>{{user.phone_number}}</td>
+                                        <td class="pass">{{user.password}}</td>
+                                        <td class="desc">{{user.description}}</td>
+                                        <td>{{user.personality}}</td>
+                                        <td>{{user.public_url}}</td>
+                                
+                                        <td class="btn-danger remove" ng-click="remove(user)">Remove</td>
+                                        <td class="btn-warning remove" ng-click="prepareEdit(user._id)">Edit</td>
+                                    </tr>
+                                    
+                                </tbody>
+                                
+                            </table>
+                        </div>
+                        
+                        
+                        
+                        
+
+                    
+                    
+                    </div><!--.box-content-->
+                
+                </div><!--.box .col-->
+            </div><!--.col-->
+            
+       </div><!--.row-->
+    </div><!--.container-->
+</div><!--.app_container-->

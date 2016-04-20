@@ -1,16 +1,20 @@
 .btn--fileupload {
     padding: 20px 0px;
+    border-radius: 5px;
+    
     .btn-file {
     position: relative;
     overflow: hidden;
+    margin-top: 0px;
+        
     }
+    
     .btn-file input[type=file] {
         position: absolute;
         top: 0;
         right: 0;
         min-width: 100%;
         min-height: 100%;
-        font-size: 100px;
         text-align: right;
         filter: alpha(opacity=0);
         opacity: 0;
@@ -22,14 +26,16 @@
     
     input[type=text]{
         padding: 0 0 0 1%;
-        height:34px;
+        height:32px;
         width:100%;
+        font-size: .87em!important;
     }
     
-    i {
+    .fa-times-circle {
         position: absolute;
         right: 10px;
         font-size: 1.2em;
-        bottom: 29px;
+        bottom: 27px;
+        cursor:pointer;
     }
 }    

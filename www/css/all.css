@@ -7601,8 +7601,8 @@ This is a LESS file; only style for the element class .box allowed!
   padding-left: 20px;
 }
 .nav--breadcrumbs {
-  margin-top: -40px;
-  padding: 5px 0px 10px 9px;
+  margin-top: 0px;
+  padding: 20px 0px 10px 9px;
   font-size: 0.9em;
 }
 .nav--breadcrumbs li {
@@ -7825,6 +7825,9 @@ This is a LESS file; only style for the element class .box allowed!
   height: 2px;
   background: #2CC990;
 }
+input[type="datetime-local"].form-control {
+  padding-right: 30px;
+}
 .nav--process {
   position: relative;
   padding-top: 20px;
@@ -7891,9 +7894,14 @@ This is a LESS file; only style for the element class .box allowed!
   display: block;
   line-height: 3.5;
   font-size: 1.5em;
-  background-color: #fff;
+  background-color: #fcb941;
   border-radius: 50%;
   text-align: center;
+  border: 2px solid white;
+  color: white;
+}
+.stepicon:hover {
+  background-color: white;
   border: 2px solid #fcb941;
   color: #fcb941;
 }
@@ -7949,7 +7957,7 @@ input[type=checkbox] {
 .toolbar {
   position: absolute;
   right: 5px;
-  top: 10px;
+  top: 13px;
   z-index: 40;
 }
 .toolbar li {
@@ -8111,6 +8119,9 @@ input[type=checkbox] {
   display: inline;
   padding-right: 10px;
 }
+.assignment-meta .assignment_description {
+  padding: 20px 0px 15px 0px;
+}
 .assignment-meta em {
   font-weight: 600;
   text-transform: uppercase;
@@ -8128,6 +8139,55 @@ input[type=checkbox] {
 .assignment-answer {
   padding: 40px;
 }
+.assignment-answer h2 {
+  font-size: 1.4em;
+}
+.assignment-answer ul {
+  list-style: none;
+  padding: 4px 0px;
+  margin: 0px;
+}
+.assignment-answer li {
+  display: inline;
+  padding-right: 10px;
+}
+.assignment-answer em {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85em;
+  font-style: normal;
+}
+.assignment-answer .btn {
+  margin-top: 20px;
+  width: 200px;
+  text-align: center;
+}
+.assignment-answer .col-lg-12,
+.assignment-answer .col-lg-24 {
+  padding: 0 !important;
+}
+.assignment-answer ul.assignment-isAnswered {
+  text-align: right;
+}
+trix-toolbar {
+  margin: 10px 0 0 0 !important;
+}
+trix-editor {
+  margin: 5px 0 10px 0 !important;
+  min-height: 200px!important;
+  padding: 15px 20px !important;
+  font-size: .9em;
+  border: 1px solid #ccc!important;
+  border-radius: 0px!important;
+}
+trix-toolbar .button_group {
+  border-radius: 0px !important;
+  border-bottom: none!Important;
+}
+trix-toolbar .button_group button,
+trix-toolbar .button_group input[type=button] {
+  border-bottom: 1px solid #ccc!important;
+}
 .btn--assignments {
   background: #fcb941;
   transition: all 0.3s ease-in-out;
@@ -8140,19 +8200,35 @@ input[type=checkbox] {
 .btn--assignments:focus {
   outline: none;
 }
+.btn--back {
+  float: left;
+  margin: 10px 0px;
+}
 .btn-default--assignment {
   background-color: #fcb941 !important;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.btn-default--assignment:hover {
+  background-color: rgba(252, 185, 65, 0.85) !important;
+  transition: all 0.3s ease-in-out;
+}
+.btn-default--assignment:active,
+.btn-default--assignment:focus {
+  outline: none;
 }
 .send__button {
   float: right;
-  margin: 3% 0;
+  margin: 10px 0px 0px 10px;
 }
 .btn--fileupload {
   padding: 20px 0px;
+  border-radius: 5px;
 }
 .btn--fileupload .btn-file {
   position: relative;
   overflow: hidden;
+  margin-top: 0px;
 }
 .btn--fileupload .btn-file input[type=file] {
   position: absolute;
@@ -8160,7 +8236,6 @@ input[type=checkbox] {
   right: 0;
   min-width: 100%;
   min-height: 100%;
-  font-size: 100px;
   text-align: right;
   filter: alpha(opacity=0);
   opacity: 0;
@@ -8171,23 +8246,44 @@ input[type=checkbox] {
 }
 .btn--fileupload input[type=text] {
   padding: 0 0 0 1%;
-  height: 34px;
+  height: 32px;
   width: 100%;
+  font-size: .87em!important;
 }
-.btn--fileupload i {
+.btn--fileupload .fa-times-circle {
   position: absolute;
   right: 10px;
   font-size: 1.2em;
-  bottom: 29px;
+  bottom: 27px;
+  cursor: pointer;
 }
 table {
   width: 100%;
 }
 .table--assignment {
-  margin-top: 30px;
+  margin-top: 10px;
+}
+.table--assignment td {
+  padding: 8px 8px 8px 0px;
+  border-bottom: 1px solid rgba(62, 71, 79, 0.2);
+}
+.table--assignment td:first-child {
+  padding-left: 8px;
+}
+.table--assignment th {
+  font-weight: 600;
 }
 .table--assignment tr:first-child {
-  border-bottom: 1px solid #3e474f;
+  border-bottom: 2px solid rgba(62, 71, 79, 0.75);
+}
+.table--assignment tr:not(:first-child):hover {
+  cursor: pointer;
+  background: rgba(62, 71, 79, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+.table--assignment tr:not(:first-child):active {
+  background: rgba(62, 71, 79, 0.4);
+  transition: all 0.3s ease-in-out;
 }
 label {
   color: rgba(62, 71, 79, 0.5);
@@ -8302,7 +8398,7 @@ form[name="assignmentType"] {
   transition: all 1s ease;
 }
 .login {
-  background: url("/img/tree2blur.jpg") center center fixed;
+  background: url("/img/trree5.jpeg") center center fixed;
   width: 100%;
   height: 100%;
   height: 100vh;
@@ -8390,6 +8486,75 @@ form[name="assignmentType"] {
   position: absolute;
   right: 20px;
   bottom: 40px;
+}
+.listdiv {
+  list-style-type: none;
+}
+.headinglist {
+  font-family: sans-serif;
+  font-style: italic;
+  text-decoration: underline;
+  margin-top: 1em;
+  display: inline-block;
+  margin-left: 1em;
+  list-style-type: none;
+}
+.userlist {
+  margin-top: 1em;
+  margin-left: 1em;
+  display: inline-block;
+  list-style-type: none;
+}
+.headning {
+  font-size: 1em;
+}
+.pass {
+  max-width: 2em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1em;
+}
+.desc {
+  max-width: 2em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1em;
+}
+.searchUser .input-group-btn > .btn {
+  height: 2.82em;
+  border-left-width: 0;
+  left: -2px;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+}
+.searchUser {
+  float: left;
+  width: 15em;
+  margin-bottom: 1%;
+}
+.userlisttabel {
+  border: 1px solid lightgrey;
+  height: 20em;
+  margin-bottom: 1em;
+  overflow: scroll;
+}
+.filteruser {
+  float: right;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  max-width: 10em;
+}
+.remove {
+  cursor: pointer;
+}
+.radioitem {
+  margin-right: 1em;
+}
+.send__button {
+  float: right;
 }
 dashboard-activities .activities-button {
   background: rgba(62, 71, 79, 0.5);

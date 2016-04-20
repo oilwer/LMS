@@ -1,29 +1,30 @@
-<section class="box assignment body--margin col-sm-24">
+<section class="box assignment">
     <!-- Assignment info - to be editable -->
     <div class="assignment-meta">
     <h2>{{assignment.name}}</h2>
         <ul>
             <li><em>Deadline: </em>{{assignment.due_date | date:"MMMM d, y  'at' HH:mm"}}</li>
-            <li><em>Obligatory:</em> {{assignment.obligatory}}</li>
+            <li><em>Obligatory:</em> {{obligatoryText}}</li>
         </ul>
         <ul>
             <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
-            <li><em>by:</em>{{teacher}}</li>
+            <li><em>by: </em>{{teacher}}</li>
         </ul>
         <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
+        <button class="btn btn-default btn--assignments" ng-click="toggleUpdateAssignmentModal()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit assignment</button>
 
     </div>
     <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
         <p>
         {{assignment.description}}
         </p>  
-        <p>FILES?</p>
+        <!-- List files/resources uploaded by teacher -->
     </div>
 
 </section>
-<section class="box assignment col-sm-24 assignment-answer">
+<section class="box assignment col-sm-24 assignment-answer" ng-show="assignmentListView">
     <!-- Assignmentlist from students ng-repeate-->
-    <h2>Replays</h2>
+    <h2>Replies</h2>
         <table class="table--assignment">
         <tr>
             <th scope="col">Name</th>
@@ -31,11 +32,53 @@
             <th scope="col">Status</th>
         </tr>
         <!-- ng-repeate when BE is ready?-->
-        <tr>
+        <tr ng-click="showAssignmentItem()">
             <td>Jennie Hellqvist</td>
+            <td>16-03-12</td>
+            <td>Waiting</td>
+        </tr>
+        <tr ng-click="showAssignmentItem()">
+            <td>Other name</td>
             <td>16-03-12</td>
             <td>Waiting</td>
         </tr>
         <!-- end ng-repeate-->
         </table>
 </section>
+<section class="box assignment col-sm-24 assignment-answer" ng-show="assignmentItemView">
+    <!-- Assignmentlist from students update with ng-repeate-->
+    <h2>Submission by {{assignmentItem.name}}</h2>
+    <div class="assignment-meta">
+        <ul>
+            <li><em>Submited: </em>{{assignmentItem.submissionDate}}</li>
+            <li><em>Status: </em>{{assignmentItem.status}}</li>
+        </ul>
+    </div>
+    <div class="assignment_description">
+        <p>
+        {{assignmentItem.content}}
+        </p>  
+    </div>
+    <label for="selectAssignmentGrade">Select grade</label>
+    <form class="submitAssignmentFeedback">          
+        <select id="selectAssignmentGrade" 
+            required="required"
+            ng-model="assignmentFeedback.grade"
+            name="selectAssignmentGrade"
+            class="form-control">
+            <option value=""> --- Grade ---</option>
+            <option ng-repeat="option in assignmentItem.gradingOptions" value="{{ option }}">
+                {{ option }}
+            </option>
+         </select>
+        <label for="comment">Comment</label>
+        <textarea ng-model="assignmentFeedback.comment" class="form-control" rows="5" id="comment" name="comment"></textarea>
+    </form>
+    <button class="btn btn-default btn--back" ng-click="quitEdit()"><i class="fa fa-angle-left" aria-hidden="true"></i> Assignmentlist</button>
+    <button ng-click="publishFeedback()" type="Button" class="btn btn-success send__button">SEND</button>
+    <button ng-click="saveFeedback()" type="Button" class="btn btn-default send__button">Save and send later</button>
+</section>
+
+<modal-dialog show='updateAssignmentModalShown' width='80%'>
+    <div assignment-update-updateassignment></div>
+</modal-dialog>

@@ -15,14 +15,6 @@ app.directive('courseCoursenav', [
       templateUrl: settings.widgets + 'course/courseNav.html',
       link: function(scope, element, attrs) {
 
-        SessionService.getSession().success(function(response){
-          if(response.user.role == "student"){
-            scope.showParticipants = false;
-          } else {
-            scope.showParticipants = true;
-          }
-        });
-
         scope.course = "";
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
@@ -41,6 +33,12 @@ app.directive('courseCoursenav', [
       	}
 
       	scope.isActive = function(route){
+          if(route !== $location.path()){
+              if( route.indexOf('participants') >= 0){
+                route = route.replace("participants", "studentsaddremove");
+                return route === $location.path();
+              }
+          }
       		return route === $location.path();
       	}
       	

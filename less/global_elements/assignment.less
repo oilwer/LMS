@@ -15,7 +15,8 @@
         display: inline;
         padding-right: 10px;
     }
-    p {
+    .assignment_description {
+        padding: 20px 0px 15px 0px
     }
     em {
         font-weight: 600;
@@ -28,6 +29,7 @@
         width: 200px;
         text-align: center;
     }
+
 }
 
 .assignment_description {
@@ -36,4 +38,62 @@
 
 .assignment-answer {
     padding: 40px;
+    h2 {
+        font-size: 1.4em;
+    }
+    
+    ul {
+        list-style: none;
+        padding: 4px 0px;
+        margin: 0px;
+    }
+    li {
+        display: inline;
+        padding-right: 10px;
+    }
+    em {
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.85em;
+        font-style: normal;
+    }
+    .btn {
+        margin-top: 20px;
+        width: 200px;
+        text-align: center;
+    }
+
+    .col-lg-12, .col-lg-24{
+        padding:0 !important;
+    }
+    
+    ul.assignment-isAnswered{
+        text-align: right;
+    }
+    
+    
 }
+
+//Texteditorn
+trix-toolbar{
+    margin: 10px 0 0 0 !important;
+}
+
+trix-editor{
+    margin:5px 0 10px 0 !important;
+    min-height: 200px!important;
+    padding: 15px 20px !important;
+    font-size: .9em;
+    border:1px solid #ccc!important;
+    border-radius: 0px!important;
+}
+
+trix-toolbar .button_group{
+    border-radius:0px !important;
+    border-bottom:none!Important;
+}
+
+trix-toolbar .button_group button, trix-toolbar .button_group input[type=button]{
+    border-bottom:1px solid #ccc!important;
+}
+
