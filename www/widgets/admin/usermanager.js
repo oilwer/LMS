@@ -1,4 +1,4 @@
-app.directive('adminUsermananger', [
+app.directive('adminUsermanager', [
   "settings",
   "User",
     "$window",
@@ -8,7 +8,7 @@ app.directive('adminUsermananger', [
     $window) {
 
     return {
-      templateUrl: settings.widgets + 'admin/usermananger.html',
+      templateUrl: settings.widgets + 'admin/usermanager.html',
       link: function($scope, element, attrs) {
 
         $scope.btnAddOrUpdateTextUser = 'Add user';
