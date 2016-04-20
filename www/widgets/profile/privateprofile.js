@@ -32,10 +32,7 @@ app.directive('profilePrivateprofile', [
 		    		//gets session 
 		    		SessionService.getSession().success(function(response) {	
 		    				//returns user from session
-							User.get({_id:response.user._id},function(current_User){
-								current_User.slack_token = token; //sets user token 								
-								console.log("token added to user: " +current_User.slack_token);
-						});		
+							User.update({_id:response.user._id},{ slack_token: token });		
 					});
 	    		});		
 	    	}
