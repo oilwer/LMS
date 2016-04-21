@@ -55,7 +55,7 @@ app.directive('courseCoursepage', [
         //refresh();  
       
         scope.publishMsg = function(){
-          if(scope.title&&scope.content){
+          if(scope.title && scope.content){
             var course = scope.course;
             var date = new Date();
             var today = date.getFullYear() + '-' + ('0' + (date.getMonth() + 1)).slice(-2) + '-' + ('0' + date.getDate()).slice(-2) + ' ' + ('0' + date.getHours()).slice(-2) + ':' + ('0' + date.getMinutes()).slice(-2);

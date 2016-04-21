@@ -12,12 +12,9 @@
         </ul>
         <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
         <button class="btn btn-default btn--assignments" ng-click="toggleUpdateAssignmentModal()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit assignment</button>
-
     </div>
     <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
-        <p>
-        {{assignment.description}}
-        </p>  
+
         <!-- List files/resources uploaded by teacher -->
     </div>
 

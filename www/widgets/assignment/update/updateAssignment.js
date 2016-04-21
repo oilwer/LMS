@@ -2,12 +2,14 @@ app.directive('assignmentUpdateUpdateassignment', [
     "settings",
     "$location",
     "$window",
+    "$routeParams",
     "Assignment",
     "SessionService",
   function(
     settings,
     $location,
     $window,
+     $routeParams,
     Assignment,
     SessionService
   ) {
@@ -16,9 +18,62 @@ app.directive('assignmentUpdateUpdateassignment', [
       templateUrl: settings.widgets + 'assignment/update/updateAssignment.html',
       link: function(scope, element, attrs) {
           
+        
+        var update = function() {
+            //update view
+            var textEditor = document.querySelector("trix-editor");
+            textEditor.editor.insertHTML(scope.assignment.description);
+            scope.newAssignment = {
+                name: scope.assignment.name,
+                due_date: scope.assignment.due_date,
+                description: ""
+            };
 
+        };
+        
+        setTimeout(update,500);
+         
           
-          console.log("körs");
+      scope.updateAssignmentDetails = function() {
+          
+        //create function
+        scope.newAssignment.description = $("#x").attr("value");
+                              
+        Assignment.update({_id: scope.assignment._id}, {
+            name: scope.assignment.name,
+            description: scope.newAssignment.description,
+            obligatory: scope.newAssignment.obligatory,
+            due_date: scope.newAssignment.due_date
+        }, function(res)
+        {
+            $(".assignment_description").empty().append(scope.newAssignment.description);
+            scope.assignment.name = scope.newAssignment.name;
+            scope.assignment.due_date = scope.newAssignment.due_date;
+            scope.assignment.description = scope.newAssignment.description;
+            //todo: show user the success (GUI)
+            scope.$parent.hideModal();
+    
+        });
+          
+      };
+          
+        scope.closeUpdateAssignment = function() {
+            if (confirm('Do you want to close wothout saving?')) {
+                scope.$parent.hideModal();
+                scope.newAssignment = {
+                    name: scope.assignment.name,
+                    due_date: scope.assignment.due_date,
+                    description: ""
+                };
+                console.log(scope.assignment.description);
+                var textEditor = document.querySelector("trix-editor");
+                textEditor.editor.setSelectedRange([0,3]);
+                textEditor.editor.insertHTML(scope.assignment.description);
+            } else {
+                // Do nothing!
+            } 
+        }
+          
       }//end link
     };
   }

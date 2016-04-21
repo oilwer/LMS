@@ -28,7 +28,7 @@ app.directive('assignmentAssignmentteacher', [
               session_user = response.user;
               setupFeedbackDetails();
           });
-          
+
           //
           User.get({_id: scope.responsible_teacher }, function(user){
               scope.teacher = user[0].first_name + " " + user[0].last_name;
@@ -38,15 +38,18 @@ app.directive('assignmentAssignmentteacher', [
           //current assignment
           Assignment.get({_id: $routeParams.id}, function(assignment){
              scope.assignment = assignment[0];
-              console.log(scope.assignment);
-              console.log("obliga:" + scope.assignment.obligatory);
+              assignment = assignment[0];
+              scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
               if (scope.assignment.obligatory === true) {
                   scope.obligatoryText = "Yes";
               }
                 else{
                       scope.obligatoryText = "No";
               }
+              
+              $(".assignment_description").append(scope.assignment.description);
           });
+          
           
           //toggle description View
           scope.showHideBtn = "Show description"
