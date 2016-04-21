@@ -112,8 +112,7 @@ app.service('ChatService', function($http){
 
        //get message history
        getMessage : function(channel, userIdentifier) {
-           //console.log(data);
-           //" '?channel=' + " is used for non-object variables
+
            return $http.get('/api/chat?id=' + channel + "&action=getHistory" + "&userIdentifier=" + userIdentifier).success(function(response, status){
              //console.log(response);
            });
@@ -121,9 +120,8 @@ app.service('ChatService', function($http){
 
        leaveChannel : function(channelID, userIdentifier){
             return $http.delete('/api/chat?id=' + channelID +  "&action=leave" + "&userIdentifier=" + userIdentifier).success(function(response, status){
-              console.log(response);
+              //console.log(response);
             });
-          
         }
    }
 });
