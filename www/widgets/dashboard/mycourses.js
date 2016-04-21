@@ -15,24 +15,27 @@ app.directive('dashboardCourses', [
       templateUrl: settings.widgets + 'dashboard/mycourses.html',
       link: function(scope, element, attrs) {
       scope.heading = "My courses";
-     
+
         var refresh = function(){
-	        
+
 	        SessionService.getSession().success(function(response) {
-		        
-		        
+
+
 		        	User.get({_id: response.user._id, _populate:"courses"}, function(user)
 		        	{
+                console.log(user[0].courses[0]);
+                  user[0].courses[0].start = new Date(user[0].courses[0].start);
+                  user[0].courses[0].end = new Date(user[0].courses[0].end);
 			        	scope.courses = user[0].courses;
 		        	});
-		        	
-		        
+
+
 		        });
-           
+
         };
               //Runs on page update
         refresh();
-      
+
         scope.class = "assignClass"
 
         scope.courseLocation = function(obj) {
@@ -42,7 +45,7 @@ app.directive('dashboardCourses', [
         };
         scope.$on('addedCourse', function() {
           refresh();
-        });                 
+        });
       }
     };
   }

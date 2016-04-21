@@ -11,13 +11,14 @@ app.directive('dashboardAllcourses', [
       templateUrl: settings.widgets + 'dashboard/mycourses.html',
       link: function(scope, element, attrs) {
       scope.heading = "All courses";
-     
-        var refresh = function(){		   
-	        	scope.courses = Course.get();
-        };
-              //Runs on page update
-        refresh();
-      
+
+      var refresh = function(){
+        scope.courses = Course.get();
+      };
+            //Runs on page update
+      refresh();
+
+
         scope.class = "assignClass"
 
         scope.courseLocation = function(obj) {
@@ -27,7 +28,7 @@ app.directive('dashboardAllcourses', [
         };
         scope.$root.$on('addedCourse', function() {
           refresh();
-        });                 
+        });
       }
     };
   }

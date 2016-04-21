@@ -1,16 +1,16 @@
-module.exports = function(mongoose){  
+module.exports = function(mongoose){
      // Defines the Course Schema (How the DB is structured)
-    var CourseSchema = new mongoose.Schema({    
+    var CourseSchema = new mongoose.Schema({
         code: String,
-        status: Boolean,
+        status: {type: Boolean, default: true },
         url: String,
         teacher: String,
         name: String,
         description: String,
         start: { type: Date, default: Date.now },
         end: { type: Date, default: Date.now },
-        assignments: [{ 
-            type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' 
+        assignments: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Assignment'
         }],
         students: [{
             type: mongoose.Schema.Types.ObjectId, ref: 'User'

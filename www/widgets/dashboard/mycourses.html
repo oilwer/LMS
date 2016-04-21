@@ -1,10 +1,10 @@
 <div class="box">
-    
+
     <div class="box__header box__header--courses">
-        <h2><i class="fa--heading fa fa-leaf"></i>My courses</h2>
+        <h2><i class="fa--heading fa fa-leaf"></i>{{heading}}</h2>
     </div>
-    
-    <div class="box__content"> 
+
+    <div class="box__content">
         <table>
             <thead>
                 <tr>
@@ -13,18 +13,18 @@
                     <th>Assignm.</th>
                     <th>FAQ</th>
                     <th>Resources</th>
-                </tr> 
+                </tr>
             </thead>
-        
+
             <!--repeat all courses that the user belongs to -->
             <tbody>
-                <tr ng-repeat="course in courses" > 
+                <tr ng-repeat="course in courses">
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                             <p>{{course.name}}</p>
                             <p>{{course.code}}</p>
-                        </a> 
+                        </a>
                     </td>
                     <td ng-if="course.status == true">
                         <i class="fa fa-thumb-tack">
@@ -48,6 +48,6 @@
                     </td>
                 </tr>
             </tbody>
-        </table> 
+        </table>
     </div>
 </div>
