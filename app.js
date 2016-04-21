@@ -21,7 +21,7 @@ app.use(m.bodyparser.json());
 app.use(m.bodyparser.urlencoded({ extended: false }));
 app.use(m.cookieparser());
 app.use(m.express.static(m.path.join(__dirname, 'www')));
-    var multer = require('multer');
+var multer = require('multer');
 
 
 //https://github.com/expressjs/session
