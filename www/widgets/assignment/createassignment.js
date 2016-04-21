@@ -59,7 +59,7 @@ app.directive('assignmentCreateassignment', [
 		        scope.courseSelect = {
 					repeatSelect: null,
 					availableOptions: AvailableCourses
-			   	};
+			   	}
 
 		        scope.selectCourseChanged = function (){
 			        if(scope.assignment === undefined){
@@ -77,7 +77,7 @@ app.directive('assignmentCreateassignment', [
 			   	}
 
 		        //Gui function add course
-		        scope.addOrUpdateCourse = function(){
+		        scope.addOrUpdateAssignment = function(){
 			        if (typeof selectedCourseName !== 'undefined'){
 				        if (typeof scope.assignment.obligatory !== 'undefined'){
 				        	//Do nothing
@@ -221,7 +221,7 @@ app.directive('assignmentCreateassignment', [
 		                	}
 		            	}
 		            }
-		        };
+		        }
 
 		       	// Move to a defined step index
 		        scope.goToStep = function(index) {
@@ -247,7 +247,7 @@ app.directive('assignmentCreateassignment', [
 							}
 						}
 					}
-		        };
+		      }
 
 		        // Return true if step has next step, false if not
 		        scope.hasNextStep = function() {
