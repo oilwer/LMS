@@ -21,6 +21,8 @@ app.use(m.bodyparser.json());
 app.use(m.bodyparser.urlencoded({ extended: false }));
 app.use(m.cookieparser());
 app.use(m.express.static(m.path.join(__dirname, 'www')));
+    var multer = require('multer');
+
 
 //https://github.com/expressjs/session
 app.use(m.expresssession({
@@ -30,6 +32,12 @@ app.use(m.expresssession({
   cookie: { secure: false }
 }));
 
+//FILE UPLOAD REQUIREMENTS
+app.use(function(req, res, next) {
+        res.header("Access-Control-Allow-Origin", "http://localhost");
+        res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
 
 // Initialize our own REST api - mongresto
 var customRoutes = [
@@ -82,6 +90,40 @@ app.get('/login/', function (req, res) {
 app.get('/forgotPassword/', function (req, res) {
   res.sendFile('templates/forgotPassword.html', {root: './www'});
 });
+
+/** Serving from the same express Server
+    No cors required */
+    
+
+    var storage = multer.diskStorage({ //multers disk storage settings
+        destination: function (req, file, cb) {
+            cb(null, './uploads/')
+        },
+        filename: function (req, file, cb) {
+            var datetimestamp = Date.now();
+            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+        }
+    });
+
+    var upload = multer({ //multer settings
+                      storage: storage
+                }).single('file');
+
+    /** API path that will upload the files */
+    app.post('/upload', function(req, res) {
+    
+        upload(req,res,function(err){
+            if(err){
+                 res.json({error_code:1,err_desc:err});
+                 return;
+            }
+             res.json({error_code:0,err_desc:null});
+        })
+       
+    });
+
+
+
 
 // Route everything "else" (not "/api/**/*") to angular (in html5mode)
 app.get('*', function (req, res) {
