@@ -19,17 +19,17 @@
                     
                     <p><i class="fa fa-phone"></i> {{ phone_number }}</p>
                     
-                    <p><i class="fa fa-home"></i> {{ homepage }} </p>
+                    <a href={{homepage}} target="_blank" ng-hide="homepage == '' || homepage == null"><i class="fa fa-home"></i> {{ homepage }} </a>
                 </div><!---.profile__contact-->
             
             
 
                 <div class="text-center pbl-profile__links">
                     <h2 class="uppercase">Follow me</h2>
-                    <a href={{linkedin}} target="_blank"><i class="fa fa-linkedin"></i></a>
-                    <a href={{twitter}} target="_blank"><i class="fa fa-twitter"></i></a>
-                    <a href={{facebook}} target="_blank"><i class="fa fa-facebook"></i></a>
-                    <a href={{github}} target="_blank"><i class="fa fa-github"></i></a>
+                    <a href={{linkedin}} target="_blank" ng-hide="linkedin == '' || linkedin == null"><i class="fa fa-linkedin"></i></a>
+                    <a href={{twitter}} target="_blank" ng-hide="twitter == '' || twitter == null"><i class="fa fa-twitter"></i></a>
+                    <a href={{facebook}} target="_blank" ng-hide="facebook == '' || facebook == null"><i class="fa fa-facebook"></i></a>
+                    <a href={{github}} target="_blank" ng-hide="github == '' || github == null"><i class="fa fa-github"></i></a>
                 </div><!---.profile__links-->
 
                     <!--Hidden for now
