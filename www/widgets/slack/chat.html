@@ -31,6 +31,13 @@
             <button ng-click="getChannels()">Get Channels!</button>
         </form>
 
+        <form>
+            Start listening to messages!
+            <button ng-click="getMessages()">Get Messages!</button>
+        </form>
+
+        <div ng-model="label">{{ label }}</div>
+
         <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channels">
             <tr>
                 <th>User</th>

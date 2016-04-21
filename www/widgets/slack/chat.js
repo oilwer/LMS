@@ -6,7 +6,7 @@ app.directive('slackChat', [
   "Course",
   "Channel",
   "$location",
-  "$q",
+  "$interval",
   function(
     settings,
     ChatService,
@@ -15,12 +15,23 @@ app.directive('slackChat', [
     Course,
     Channel,
     $location,
-    $q
+    $interval
   ) {
 
     return {
       templateUrl: settings.widgets + 'slack/chat.html',
       link: function(scope, element, attrs) {
+
+        scope.getMessages = function(){
+          $interval(listenMessages, 1000);
+        }
+
+        var listenMessages = function () {
+          getMessages("everything", scope.userEmail, function(callback){
+            scope.channels = callback;
+          });
+        }
+        
 
       //Create Channel Functions from scope, these call the proper methods
         scope.createSlackChannel = function(){
