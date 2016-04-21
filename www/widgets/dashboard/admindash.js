@@ -7,6 +7,7 @@ app.directive('dashboardAdmindash', [
     $location,
     Course
   ) {
+
     return {
       templateUrl: settings.widgets + 'dashboard/admindash.html',
       link: function(scope, element, attrs) {
@@ -33,6 +34,7 @@ app.directive('dashboardAdmindash', [
         
       
       }
+
     };
   }
 ]);

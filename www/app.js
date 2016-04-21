@@ -2,8 +2,10 @@
 var app = angular.module("mongr", [
  "ngRoute",
  "ngResource",
- "ui.bootstrap"
+ "ui.bootstrap",
+ "ngFileUpload"
 ]);
+
 
 app.service('LoginService', function($http) {
      
