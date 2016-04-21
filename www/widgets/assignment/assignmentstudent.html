@@ -24,16 +24,18 @@
 <!--<section ng-show="noAnswer" class="box assignment assignment-answer col-lg-24 animate-show">-->
 <section class="box assignment assignment-answer col-lg-24 animate-show">
     <h2>Submit your answer</h2>
-    <div class="input-group btn--fileupload">
+    <!--.input-group<div class="input-group btn--fileupload">
         <span class="input-group-btn">
             <span class="btn btn-default btn-file btn-default--assignment"><i class="fa fa-folder-open" aria-hidden="true"></i>
                 
-                Select file 
-                <input type="file" file-upload multiple>
+              
             </span>
         </span>
         <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" ng-click="emptyInput()" aria-hidden="true"></i>
-    </div><!--.input-group-->
+    </div>-->
+
+     <!-- FILE UPLOAD MODULE -->
+                <fileupload-fileupload></fileupload-fileupload>
     
     <!--Texteditor-->
     <form>
