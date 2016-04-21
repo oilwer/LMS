@@ -45,6 +45,14 @@ module.exports = function(mongoose){
     next();
   });
 
+  UserSchema.pre('update', function(next){
+    console.log(this._update.$set.password);
+    if (!this._update.$set.password) { console.log ("not hashing", this._update.$set.password);return; }
+      this._update.$set.password = sha1(this._update.$set.password);
+      next();
+  });
+
+
   // Return the model
   return mongoose.model("User", UserSchema);
 };

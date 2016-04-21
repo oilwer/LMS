@@ -26,7 +26,12 @@
             <button ng-click="sendMessage()">Send!</button>
         </form>
 
-        <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channel">
+        <form>
+            Get all channels 
+            <button ng-click="getChannels()">Get Channels!</button>
+        </form>
+
+        <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channels">
             <tr>
                 <th>User</th>
                 <th>Message</th>

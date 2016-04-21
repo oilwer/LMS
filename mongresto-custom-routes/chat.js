@@ -50,6 +50,14 @@ module.exports = function(mongoose) {
                   res.json(response);
           });          
         }
+
+        if(req.query.action == "getChannels"){
+          slack.api('channels.list', {
+            token:apiToken,
+            exclude_archived:1 }, function(err, response){
+              res.json(response);
+          });
+        }
       });      
     }
 

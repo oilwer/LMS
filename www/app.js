@@ -101,6 +101,12 @@ app.service('ChatService', function($http){
          });
        },
 
+       getChannels : function(userIdentifier) {
+
+         return $http.get('/api/chat?action=getChannels&userIdentifier=' + userIdentifier);
+       
+       },
+
        // Send message
        sendMessage : function(channel, text, userIdentifier) {
            var data = {"channel": channel, "text": text, "userIdentifier" : userIdentifier};
@@ -111,7 +117,7 @@ app.service('ChatService', function($http){
        },
 
        //get message history
-       getMessage : function(channel, userIdentifier) {
+       getMessages : function(channel, userIdentifier) {
 
            return $http.get('/api/chat?id=' + channel + "&action=getHistory" + "&userIdentifier=" + userIdentifier).success(function(response, status){
              //console.log(response);

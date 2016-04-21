@@ -6,6 +6,7 @@ app.directive('slackChat', [
   "Course",
   "Channel",
   "$location",
+  "$q",
   function(
     settings,
     ChatService,
@@ -13,7 +14,8 @@ app.directive('slackChat', [
     SessionService,
     Course,
     Channel,
-    $location
+    $location,
+    $q
   ) {
 
     return {
@@ -25,7 +27,7 @@ app.directive('slackChat', [
           createSlackChannelwithCourse("57177dc987bd6c6c0b797285", scope.channelName, scope.userEmail);
         }
 
-        scope.joinChannel = function() {
+        scope.joinChannel = function(){
           joinChannel(scope.channelName2, scope.userEmail);
         }
 
@@ -34,28 +36,35 @@ app.directive('slackChat', [
         }
         
         scope.sendMessage = function(){
-          sendMessage(scope.channelName3, scope.text, scope.userEmail);
-          var t = getMessages(scope.channelName3, scope.userEmail);
-          console.log(t);
+          sendMessage(scope.channelName3, scope.text, scope.userEmail, function(callback){
+            scope.channels = callback;
+          });
+        }
+
+        scope.getChannels = function(){
+          getChannels(scope.userEmail);
         }
 
       //Channel functions as vars, use these to do slack API and DB stuff,
       //Try to avoid as much as possible to put scope stuff in them to maintain
       //ReUsability
 
-        //This method creates a  slack channel via API and then creates a DB object 
-        //of the channel anc connects it with a course
+        //This method creates a  slack channel via API and then updates the course
+        //it needs to be connected to
         var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
           ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
             console.log(slackChannel);
             if(slackChannel.error != null){
               return;
             }
-            Channel.create({ name: channelName, channel_id: slackChannel.channel.id }, function(dbChannel){ 
-              Course.get({ _id: courseId }, function(returnedCourse){ 
-                Channel.update({_relate:{items:dbChannel, connected_course:returnedCourse }});
-                Course.update({ _relate: {items: returnedCourse, slack_channels: dbChannel }});
-              });
+            
+            ChatService.getChannels(UserIdentifier).success(function(channels){
+              for(x = 0; x < channels.channels.length; x++){
+                if(channels.channels[x].name == channelName){
+                  Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: test} } });
+                  break;
+                }
+              }
             });
           });
         }
@@ -64,7 +73,7 @@ app.directive('slackChat', [
         //some generic channel for the school, note it still creates a db object
         var createSlackChannelwithoutCourse = function(channelName, UserIdentifier) {
           ChatService.createChannel(channelName, UserIdentifier).success(function(response){
-            Channel.create({name: response.channel.name,channel_id: response.channel.id});
+            console.log("Response", response)
           });
         }
 
@@ -82,33 +91,51 @@ app.directive('slackChat', [
           });
         }
 
-      //Functions with messages
-        var sendMessage = function(channelName, text, UserIdentifier){
-          Channel.get({name: channelName}, function(returnedChannel){
-            if(returnedChannel[0] == null){
-              console.log(returnedChannel);
-              return;
-            }
-            ChatService.sendMessage(returnedChannel[0].channel_id, text, UserIdentifier).success(function(response){
-              console.log("Response", response);
-            });
+        var getChannels = function(UserIdentifier){
+          ChatService.getChannels(UserIdentifier).success(function(response){
+            console.log(response);
           });
         }
 
-        //This one is weird because you need to put the scope in the callBack
-        var getMessages = function(channelName, UserIdentifier){
-          scope.messages = [];
-          Channel.get({name: channelName}, function(returnedChannel){
-            if(returnedChannel[0] == null){
-              console.log(returnedChannel);
+      //Functions with messages
+        //Send message, has call back if you want to get messages directly after sending
+        var sendMessage = function(channelName, text, UserIdentifier, callback){
+          ChatService.getChannels(UserIdentifier).success(function(channels){
+            if(channels.channels == null){
               return;
             }
-            console.log(UserIdentifier, returnedChannel[0].channel_id);
-            ChatService.getMessage(returnedChannel[0].channel_id, UserIdentifier).success(function(response){
-              console.log("Response", response);
-              //scope.channel = response.messages;
-              return response.messagess;
-            }); 
+            for(x = 0; x < channels.channels.length; x++){
+              if(channels.channels[x].name == channelName){  
+                ChatService.sendMessage(channels.channels[x].id, text, UserIdentifier).success(function(response){
+                  console.log("Response", response);
+                  ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
+                    console.log("Response", response);
+                    callback(response.messages);
+                    });
+                });
+                break;
+              }
+            }
+          });
+        }
+
+        //Get messages with callback
+        var getMessages = function(channelName, UserIdentifier, callback){
+          scope.messages = [];
+
+          ChatService.getChannels(UserIdentifier).success(function(channels){
+            if(channels.channels == null){
+              return;
+            }
+            for(x = 0; x < channels.channels.length; x++){
+              if(channels.channels[x].name == channelName){  
+                ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
+                  console.log("Response", response);
+                  callback(response.messages);
+                });
+                break;
+              }
+            }
           });
         }     
       }
