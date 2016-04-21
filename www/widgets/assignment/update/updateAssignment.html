@@ -1,26 +1,43 @@
-<div class="row">
-    <div class="col-sm-20 col-sm-offset-2">
+<div class="row row--modal modal--updateassignments">
+    <div class="col-sm-20 col-sm-offset-2 vcenter">
         <h2>Update assignment details</h2>
         
         <form class="assignmentDetails">
-            <label for="name">Assignment Title</label>
-                <input type="text" name="name" class="form-control" ng-model="assignment.name" required="true">
+            <div class="col-sm-12">
+                <label for="name">Assignment Title</label>
+                <input type="text" name="name" class="form-control" ng-model="newAssignment.name" required="true">
                 <span 
                 class="error" 
                 ng-show="assignmentDetails.name.$touched && assignmentDetails.name.$invalid"
                 class="formError">
                 <i class="fa fa-times"></i>
                 </span>
-
-            <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="assignment.obligatory">
+            </div>
+            <div class="col-sm-12">
+                <label for="duedate">Due date</label>
+                <input type="datetime-local" name="duedate" class="form-control" ng-model="newAssignment.due_date" required="true">
+                <span 
+                class="error" 
+                ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+            </div>
+            <div class="col-sm-24">
+                <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="newAssignment.obligatory">
                 <span 
                 class="error" 
                 ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
                 class="formError">
                 <i class="fa fa-times"></i>
                 </span>
-             <input id="x" type="hidden" ng-model="userType" name="content">
-             <trix-editor input="x" ></trix-editor>
+                <input id="x" type="hidden" name="content">
+                <trix-editor input="x" id="descriptionEditor"></trix-editor>
+            </div>
+            <div class="col-sm-24">
+            <button class="btn btn--assigments" ng-click="closeUpdateAssignment()">Close</button>
+            <button class="btn btn--assigments" ng-click="updateAssignmentDetails()">Update assignment details</button>
+            </div>
         </form>
     </div>
 </div><!--.row-->

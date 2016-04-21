@@ -8107,6 +8107,27 @@ input[type=checkbox] {
   font-weight: bold;
   font-family: 'arial', 'sans-serif';
 }
+.ng-modal-dialog-content,
+.ng-modal-dialog-content .ng-scope {
+  min-height: 100%;
+}
+.row--modal {
+  min-height: 100%;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+.vcenter {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal--updateassignments h2 {
+  font-size: 1.5em;
+  font-family: 'Roboto', 'arial', sans-serif;
+  padding: 20px 0px;
+}
 .assignment-meta {
   padding: 30px 40px;
 }
@@ -8575,12 +8596,14 @@ dashboard-activities button:active,
 dashboard-activities button:focus {
   outline: none;
 }
-dashboard-courses table {
+dashboard-courses table,
+dashboard-allcourses table {
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0 2px;
 }
-dashboard-courses thead th {
+dashboard-courses thead th,
+dashboard-allcourses thead th {
   color: rgba(62, 71, 79, 0.75);
   font-size: .65em !important;
   text-transform: uppercase;
@@ -8588,31 +8611,38 @@ dashboard-courses thead th {
   text-align: center;
   padding-bottom: 1%;
 }
-dashboard-courses thead th:first-child {
+dashboard-courses thead th:first-child,
+dashboard-allcourses thead th:first-child {
   width: 72%;
   padding-left: 12px!important;
   text-align: left;
 }
-dashboard-courses tbody p {
+dashboard-courses tbody p,
+dashboard-allcourses tbody p {
   color: rgba(62, 71, 79, 0.75);
 }
-dashboard-courses tbody td:first-child {
+dashboard-courses tbody td:first-child,
+dashboard-allcourses tbody td:first-child {
   padding: 2.2% 0 0% 2%;
   text-align: left;
 }
-dashboard-courses tbody td {
+dashboard-courses tbody td,
+dashboard-allcourses tbody td {
   padding: 3% 0;
   position: relative;
   width: 30px;
   text-align: center;
 }
-dashboard-courses tbody tr {
+dashboard-courses tbody tr,
+dashboard-allcourses tbody tr {
   border-bottom: 1px solid #eee;
 }
-dashboard-courses tbody tr:last-child {
+dashboard-courses tbody tr:last-child,
+dashboard-allcourses tbody tr:last-child {
   border-bottom: 0px !important;
 }
-dashboard-courses tbody .fa-exclamation {
+dashboard-courses tbody .fa-exclamation,
+dashboard-allcourses tbody .fa-exclamation {
   border-right: none !important;
   color: red;
   margin-right: 2.5% !important;
@@ -8620,28 +8650,34 @@ dashboard-courses tbody .fa-exclamation {
   float: left;
   padding: 1px 0px 0px 0px !important;
 }
-dashboard-courses tbody tr > td > .fa {
+dashboard-courses tbody tr > td > .fa,
+dashboard-allcourses tbody tr > td > .fa {
   font-size: 1.25em;
   position: relative;
   text-align: center;
   padding: 0px 18px 0px 18px;
   color: rgba(62, 71, 79, 0.75);
 }
-dashboard-courses tbody tr > td > .fa-book {
+dashboard-courses tbody tr > td > .fa-book,
+dashboard-allcourses tbody tr > td > .fa-book {
   border: none;
 }
-dashboard-courses tbody tr td a p:last-child {
+dashboard-courses tbody tr td a p:last-child,
+dashboard-allcourses tbody tr td a p:last-child {
   font-size: .9em;
   font-style: italic;
 }
-dashboard-courses tbody tr td a p:first-child {
+dashboard-courses tbody tr td a p:first-child,
+dashboard-allcourses tbody tr td a p:first-child {
   font-size: 1em;
   font-weight: 600;
 }
-dashboard-courses tbody a:hover {
+dashboard-courses tbody a:hover,
+dashboard-allcourses tbody a:hover {
   text-decoration: none;
 }
-dashboard-courses .assignClass {
+dashboard-courses .assignClass,
+dashboard-allcourses .assignClass {
   -webkit-font-smoothing: subpixel-antialiased;
   text-align: center;
   display: block;
