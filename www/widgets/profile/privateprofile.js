@@ -51,7 +51,6 @@ app.directive('profilePrivateprofile', [
 	    $scope.contact_class = "fa fa-pencil";
 	    $scope.links_class = "fa fa-pencil";
 	    $scope.isStudent = false;
-	    $scope.homepage = "http://www.myhomepage.com";
 	    var obj = null;
 
 
@@ -63,17 +62,27 @@ app.directive('profilePrivateprofile', [
 	            $scope.first_name = data.first_name;
 	            $scope.last_name = data.last_name;
 	            $scope.email = data.email;
+
 	            $scope.phone_number = data.phone_number;
 	            $scope.url = data.public_url;
+	            $scope.homepage = data.homepage;
+
 	            $scope.description = data.description;
+
+	            $scope.linkedin = data.linkedin;
+	            $scope.facebook = data.facebook;
+	            $scope.twitter = data.twitter;
+	            $scope.github = data.github;
+
 	            $scope.user = data;
-	            obj = data;
 	            $scope.role = data.role;
+
+	            obj = data;
 	            
 	            if(data.role == "Student")
-	                {
-	                    $scope.isStudent = true;
-	                }
+                {
+                    $scope.isStudent = true;
+                }
 	            $scope.personality = data.personality;
 
 	        } else {
@@ -102,6 +111,7 @@ app.directive('profilePrivateprofile', [
 	        } else {
 	            obj.phone_number = $scope.phone_number;
 	            obj.public_url = $scope.url;
+	            obj.homepage = $scope.homepage;
 	            $scope.updateProfile(obj);
 	            $scope.contactEnabled = true;
 	            $scope.contact_class = "fa fa-pencil"
@@ -113,6 +123,10 @@ app.directive('profilePrivateprofile', [
 	            $scope.links_class = "fa fa-check"
 	            $scope.linksEnabled = false;
 	        } else {
+	        	obj.linkedin = $scope.linkedin;
+	            obj.facebook = $scope.facebook;
+	            obj.twitter = $scope.twitter;
+	            obj.github = $scope.github;
 	            $scope.updateProfile(obj);
 	            $scope.linksEnabled = true;
 	            $scope.links_class = "fa fa-pencil"
@@ -151,7 +165,12 @@ app.directive('profilePrivateprofile', [
                   personality: user.personality,
                   phone_number: user.phone_number,
                   password: user.password,
-                  public_url: user.public_url
+                  homepage : user.homepage,
+                  public_url: user.public_url,
+                  linkedin : user.linkedin,
+		          facebook : user.facebook,
+		          twitter : user.twitter,
+		          github : user.github
               });
 
 	        if(user != null){	        	
