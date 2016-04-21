@@ -16,7 +16,7 @@ module.exports = function(mongoose){
             type: mongoose.Schema.Types.ObjectId, ref: 'User'
         }],
         slack_channels: [{
-            type: mongoose.Schema.Types.ObjectId, ref: 'Channel'
+            channelId: String
         }],
 
         resources: [{

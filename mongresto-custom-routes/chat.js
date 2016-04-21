@@ -50,6 +50,14 @@ module.exports = function(mongoose) {
                   res.json(response);
           });          
         }
+
+        if(req.query.action == "getChannels"){
+          slack.api('channels.list', {
+            token:apiToken,
+            exclude_archived:1 }, function(err, response){
+              res.json(response);
+          });
+        }
       });      
     }
 
@@ -64,7 +72,6 @@ module.exports = function(mongoose) {
 
           var apiToken = user['slack_token'];
           var slack = new Slack(apiToken);
-          console.log(apiToken + " the token");
 
           if(req.body.action == "createChannel"){
             //If creating a channel

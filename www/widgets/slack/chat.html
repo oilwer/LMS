@@ -1,19 +1,37 @@
 <!-- public/views/chat.html -->
 <app-nav></app-nav>
 <div class="jumbotron text-center">
-    <h1>Chat</h1>
+    <h1>Chat Examples</h1>
+    Always put email here to be identifier
+    <input ng-style="style(color)" type="text" ng-model="userEmail" placeholder="email">
+    <br/><br/><hr/>
+
         <form>
+            Create a channel
+            <input ng-style="style(color)" type="text" ng-model="channelName" placeholder="channel Name">
+            <button ng-click="createSlackChannel()">Create Channel</button>
+        </form>
+
+        <form>
+            Join or Leave a channel
+            <input ng-style="style(color)" type="text" ng-model="channelName2" placeholder="channel Name">
+            <button ng-click="joinChannel()">Join Channel</button>
+            <button ng-click="leaveChannel()">Leave Channel</button>
+        </form>
+
+        <form>
+            Text to send to a channel
+            <input ng-style="style(color)" type="text" ng-model="channelName3" placeholder="channelName">
             <input ng-style="style(color)" type="text" ng-model="text" placeholder="text">
             <button ng-click="sendMessage()">Send!</button>
         </form>
 
         <form>
-            <input ng-style="style(color)" type="text" ng-model="channelName" placeholder="channel Name">
-            <button ng-click="createSlackChannel()">Create Channel</button>
-            <button ng-click="leaveChannel()">Leave Channel</button>
+            Get all channels 
+            <button ng-click="getChannels()">Get Channels!</button>
         </form>
 
-        <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channel">
+        <table style="display:block; margin-left: auto; margin-right: auto; width:700px;" ng-repeat="msg in channels">
             <tr>
                 <th>User</th>
                 <th>Message</th>

@@ -6,6 +6,7 @@ app.directive('slackChat', [
   "Course",
   "Channel",
   "$location",
+  "$q",
   function(
     settings,
     ChatService,
@@ -13,126 +14,131 @@ app.directive('slackChat', [
     SessionService,
     Course,
     Channel,
-    $location
+    $location,
+    $q
   ) {
 
     return {
       templateUrl: settings.widgets + 'slack/chat.html',
       link: function(scope, element, attrs) {
-           scope.htmlContent = '<h2>Try me!</h2><p>textAngular is a super cool WYSIWYG Text Editor directive for AngularJS</p><p><b>Features:</b></p><ol><li>Automatic Seamless Two-Way-Binding</li><li style="color: blue;">Super Easy <b>Theming</b> Options</li><li>Simple Editor Instance Creation</li><li>Safely Parses Html for Custom Toolbar Icons</li><li>Doesn&apos;t Use an iFrame</li><li>Works with Firefox, Chrome, and IE9+</li></ol><p><b>Code at GitHub:</b> <a href="https://github.com/fraywing/textAngular">Here</a> </p>';
-           var t = $location.search();
 
-          scope.createSlackChannel = function(){
-            createSlackChannel(scope.channelName,"12", "mails");
-          }
+      //Create Channel Functions from scope, these call the proper methods
+        scope.createSlackChannel = function(){
+          createSlackChannelwithCourse("57177dc987bd6c6c0b797285", scope.channelName, scope.userEmail);
+        }
 
-          scope.leaveChannel = function(){
+        scope.joinChannel = function(){
+          joinChannel(scope.channelName2, scope.userEmail);
+        }
+
+        scope.leaveChannel = function(){
+          leaveChannel(scope.channelName2, scope.userEmail);
+        }
+        
+        scope.sendMessage = function(){
+          sendMessage(scope.channelName3, scope.text, scope.userEmail, function(callback){
+            scope.channels = callback;
+          });
+        }
+
+        scope.getChannels = function(){
+          getChannels(scope.userEmail);
+        }
+
+      //Channel functions as vars, use these to do slack API and DB stuff,
+      //Try to avoid as much as possible to put scope stuff in them to maintain
+      //ReUsability
+
+        //This method creates a  slack channel via API and then updates the course
+        //it needs to be connected to
+        var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
+          ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
+            console.log(slackChannel);
+            if(slackChannel.error != null){
+              return;
+            }
             
-            //get channel
-            Channel.get({name: scope.channelName}, function(returnedChannel){
-              //using returned channel's id, leave course
-              ChatService.leaveChannel(returnedChannel[0].channel_id,"mails").success(function(response){  
-                console.log("Response: " + response);
-              });  
-            })
-          }
-
-          var createSlackChannel = function(channelName, CourseId, UserIdentifier) {
-            //Api call to ceate here, then update DB
-            ChatService.createChannel(channelName, UserIdentifier).success(function(response){
-              createChannelDB(response.channel.name, response.channel.id);
-            });
-          }
-
-          var createChannelDBWithCourseID = function(courseId, channelName, channelID){
-            //DB stuff here
-            Channel.create(
-              {
-                name: channelName,
-                channel_id: channelID,
-                  //return value from Channel.Create
-              }, function(createdChannel){ 
-
-                Course.get({_id:courseId}, function(returnedCourse){ //return value from Course.get
-                  //finds channel and creates relation to course via CourseId
-                  Channel.update({_relate:{items:createdChannel,connected_course:returnedCourse}})
-                });
+            ChatService.getChannels(UserIdentifier).success(function(channels){
+              for(x = 0; x < channels.channels.length; x++){
+                if(channels.channels[x].name == channelName){
+                  Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: test} } });
+                  break;
+                }
               }
-            );
-          }
-
-          var createChannelDB = function(channelName, channelID){
-            Channel.create({name: channelName,channel_id: channelID});
-          }
-
-          var joinChannel = function(courseId, userToken){
-
-          }
-
-          var initializeSlack = function(){
-            SessionService.getSession().success(function(response) {
-              User.get({_id:response.user._id},function(user){
-              token = user[0].slack_token;
-              });
             });
-          }
-          initializeSlack();
+          });
+        }
 
-           //sends message
-          scope.sendMessage = function(courseName){
-              //TODO:
-              //use courseName to get the course from database
-              //use course id to get channel id from database
-              //replace hardcoded channel_id in ChatService.sendMessage() call
-              
-              SessionService.getSession().success(function(response) {
-              	
-              	
-              	ChatService.sendMessage("C0RRZEDK4", scope.text, response.user.email).success(function(newresponse){
-	              	console.log("Sent msg", response.user.email, scope.text);
-	              	getMessage();
-              	});
-              	
-            });
+        //Function to create channel in DB without a connection to a course, for example
+        //some generic channel for the school, note it still creates a db object
+        var createSlackChannelwithoutCourse = function(channelName, UserIdentifier) {
+          ChatService.createChannel(channelName, UserIdentifier).success(function(response){
+            console.log("Response", response)
+          });
+        }
 
-              
-          }
+        var joinChannel = function(channelName, UserIdentifier){
+          ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
+            console.log("Response", response);
+          });
+        }
 
-          //updates channel messages
-          var getMessage = function(){
-            var id =  "C0RRZEDK4"; 
-             scope.messages = [];
+        var leaveChannel = function(channelName, UserIdentifier){
+          Channel.get({name: scope.channelName}, function(returnedChannel){
+            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){  
+              console.log("Response", response);
+            });  
+          });
+        }
 
-            SessionService.getSession().success(function(response) {
-              ChatService.getMessage(id, response.user.email).success(function(response){
-                  console.log(response);
-                  scope.channel = response.messages;
-              });
-            });
+        var getChannels = function(UserIdentifier){
+          ChatService.getChannels(UserIdentifier).success(function(response){
+            console.log(response);
+          });
+        }
 
-              
-          }
+      //Functions with messages
+        //Send message, has call back if you want to get messages directly after sending
+        var sendMessage = function(channelName, text, UserIdentifier, callback){
+          ChatService.getChannels(UserIdentifier).success(function(channels){
+            if(channels.channels == null){
+              return;
+            }
+            for(x = 0; x < channels.channels.length; x++){
+              if(channels.channels[x].name == channelName){  
+                ChatService.sendMessage(channels.channels[x].id, text, UserIdentifier).success(function(response){
+                  console.log("Response", response);
+                  ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
+                    console.log("Response", response);
+                    callback(response.messages);
+                    });
+                });
+                break;
+              }
+            }
+          });
+        }
 
-          scope.getLatestMessage = function (channelID){
-            var time = Date.now();
-            slack.api('channels.history', {
-              token:apiToken,
-              channel:channelID,
-              latest: time
-              }, function(err, response){
-                  callback(null, response);
-              });
-          }
+        //Get messages with callback
+        var getMessages = function(channelName, UserIdentifier, callback){
+          scope.messages = [];
 
-          scope.getChannelList = function (callback){
-
-            slack.api('channels.list', {
-                token:apiToken
-            }, function(err, response){
-                callback(null, response);
-            });
-          }
+          ChatService.getChannels(UserIdentifier).success(function(channels){
+            if(channels.channels == null){
+              return;
+            }
+            for(x = 0; x < channels.channels.length; x++){
+              if(channels.channels[x].name == channelName){  
+                ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
+                  console.log("Response", response);
+                  callback(response.messages);
+                });
+                break;
+              }
+            }
+          });
+        }     
       }
-    };
+    }
   }
 ]);
