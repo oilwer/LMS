@@ -1,6 +1,6 @@
-    <div class="row">
+    <div class="row--modal">
         <div class="col-sm-16 col-sm-offset-4">
-            <ul class="col-sm-24 nav--process">
+            <ul class="col-sm-24 nav--process" ng-class="{stepsthree: isCopying == 0, stepsfour: isCopying == 1}">
                 <div class="nav--process_line"></div>
 
                 <li ng-if="isCopying == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
@@ -24,11 +24,11 @@
                 <div class="col-sm-14 col-sm-offset-5">
                   <form name="assignmentType">
                     <div class="processselector" ng-click="setCreate()">
-                      <span class="step stepicon"><i class=" fa fa-file-text-o"></i></span>
+                      <span class="step stepicon stepicon--courses"><i class=" fa fa-file-text-o"></i></span>
                               <span class="stepLabel">Create course</span>
                     </div>
                     <div class="processselector" ng-click="setCopy()">
-                      <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
+                      <span class="step stepicon stepicon--courses"><i class=" fa glyphicon glyphicon-pencil"></i></span>
                               <span class="stepLabel">Create course from older course</span>
                     </div>
                   </form>
@@ -51,14 +51,10 @@
                     </select>
                   </form>
                 </div>
-                <ul class="col-xs-24 pager">
-                  <li class="">
-                      <a href="" ng-click="decrementStep()">&larr; Previous</a>
-                  </li>
-                  <li class="">
-                    <a href="" ng-click="courseDetails.$valid && loadDetails()">Next step &rarr;</a>
-                  </li>
-                </ul>
+                <div class="col-xs-24 pager">
+                    <button class="btn btn--courses" ng-click="decrementStep()">&larr; Previous</button>
+                    <button class="btn btn--courses" ng-class="{btndisabled: courseDetails.$invalid}" ng-click="courseDetails.$valid && loadDetails()">Next step &rarr;</button>
+                </div>
               </div> <!--End of step four-->
 
 
@@ -153,37 +149,29 @@
                         </div>
                     </form>
                     </div>
-                    <ul class="col-xs-24 pager">
-                        <li class="">
-                            <a href="" ng-click="decrementStep()">&larr; Previous</a>
-                        </li>
-                        <li>
-                            <button ng-click="closeModalSession()" class="btn btn-default">Close</button>
-                        </li>
-                        <li class="">
-                            <a href="" ng-click="courseDetails.$valid && addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</a>
-                        </li>
-                    </ul>
+                    <div class="col-xs-24 pager">
+                        <button class="btn btn--courses" ng-click="decrementStep()">&larr; Previous</button>
+                        <button class="btn btn--courses" ng-click="closeModalSession()" class="btn btn-default">Close</button>
+                        <button class="btn btn--courses" ng-class="{btndisabled: courseDetails.$invalid}" ng-click="courseDetails.$valid && addOrUpdateCourse()">{{ $parent.btnAddOrUpdate }} &rarr;</button>
+                    </div>
             </div><!--.stepTwo-->
             <div class="stepTree" ng-switch-when="Preview">
                 <div class="col-sm-24">
                 <p>Name: {{course.name}}</p>
                 <p>Course code: {{course.code}}</p>
                 <p>Description: {{course.description}}</p>
-                <p>Period: {{course.start}} - {{course.end}}</p>
+                <p>Period: {{course.start | date }} - {{course.end | date }}</p>
 
-                <p>Kopia: {{course.copy}}</p>
                 <p>Url: {{course.url}}</p>
-                <p>User: {{session_user._id}}</p>
                 <p>ID: {{course._id}}</p>
-                <button class="btn btn-default" ng-click="pathLocation()">Enter course page</button>
-                <button class="btn btn-default" ng-click="closeModalSession()">Back to dashboard</button>
+                
+                
                 </div>
-                <ul class="col-xs-24 pager">
-                    <li class="">
-                        <a href="" ng-click="decrementStep()">&larr; Edit details</a>
-                    </li>
-                </ul>
+                <div class="col-xs-24 pager">
+                    <button class="btn btn--courses" ng-click="decrementStep()">&larr; Edit details</a>
+                    <button class="btn btn--courses" ng-click="closeModalSession()">Close</button>
+                    <button class="btn btn--courses" ng-click="pathLocation()">Enter course page</button>
+                </div>
             </div><!--.stepTree-->
             </div>
         </div><!--col-->
