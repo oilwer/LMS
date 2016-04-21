@@ -34,7 +34,7 @@ app.directive('slackChat', [
         scope.leaveChannel = function(){
           leaveChannel(scope.channelName2, scope.userEmail);
         }
-        
+
         scope.sendMessage = function(){
           sendMessage(scope.channelName3, scope.text, scope.userEmail, function(callback){
             scope.channels = callback;
@@ -57,7 +57,7 @@ app.directive('slackChat', [
             if(slackChannel.error != null){
               return;
             }
-            
+
             ChatService.getChannels(UserIdentifier).success(function(channels){
               for(x = 0; x < channels.channels.length; x++){
                 if(channels.channels[x].name == channelName){
@@ -85,9 +85,9 @@ app.directive('slackChat', [
 
         var leaveChannel = function(channelName, UserIdentifier){
           Channel.get({name: scope.channelName}, function(returnedChannel){
-            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){  
+            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){
               console.log("Response", response);
-            });  
+            });
           });
         }
 
@@ -105,7 +105,7 @@ app.directive('slackChat', [
               return;
             }
             for(x = 0; x < channels.channels.length; x++){
-              if(channels.channels[x].name == channelName){  
+              if(channels.channels[x].name == channelName){
                 ChatService.sendMessage(channels.channels[x].id, text, UserIdentifier).success(function(response){
                   console.log("Response", response);
                   ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
@@ -128,7 +128,7 @@ app.directive('slackChat', [
               return;
             }
             for(x = 0; x < channels.channels.length; x++){
-              if(channels.channels[x].name == channelName){  
+              if(channels.channels[x].name == channelName){
                 ChatService.getMessages(channels.channels[x].id, UserIdentifier).success(function(response){
                   console.log("Response", response);
                   callback(response.messages);
@@ -137,7 +137,7 @@ app.directive('slackChat', [
               }
             }
           });
-        }     
+        }
       }
     }
   }
