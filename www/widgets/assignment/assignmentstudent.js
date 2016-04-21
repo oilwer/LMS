@@ -29,11 +29,7 @@ app.directive('assignmentAssignmentstudent', [
           Course.get({name: $routeParams.name}, function(course){
             scope.course = course[0];
           }); 
-          
-          User.get({_id: scope.responsible_teacher }, function(user){
-              scope.teacher = user[0].first_name + " " + user[0].last_name;
-              scope.teacherUrl = user[0].public_url;
-          });
+        
 
           scope.assignment = "";
           Assignment.get({_id: $routeParams.id}, function(assignment){
@@ -44,6 +40,11 @@ app.directive('assignmentAssignmentstudent', [
               else{
                   scope.assignment.obligatory = "No";
               }
+
+              User.get({_id: scope.assignment.responsible_teacher }, function(user){
+                scope.teacher = user[0].first_name + " " + user[0].last_name;
+                scope.teacherUrl = user[0].public_url;
+              });
               
               checkIfSubmitted();
           });

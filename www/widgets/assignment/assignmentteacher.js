@@ -28,16 +28,11 @@ app.directive('assignmentAssignmentteacher', [
               session_user = response.user;
               setupFeedbackDetails();
           });
-
-          //
-          User.get({_id: scope.responsible_teacher }, function(user){
-              scope.teacher = user[0].first_name + " " + user[0].last_name;
-              scope.teacherUrl = user[0].public_url;
-            });
+         
           
           //current assignment
           Assignment.get({_id: $routeParams.id}, function(assignment){
-             scope.assignment = assignment[0];
+              scope.assignment = assignment[0];
               assignment = assignment[0];
               scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
               if (scope.assignment.obligatory === true) {
@@ -48,6 +43,11 @@ app.directive('assignmentAssignmentteacher', [
               }
               
               $(".assignment_description").append(scope.assignment.description);
+
+              User.get({_id: scope.assignment.responsible_teacher }, function(user){
+                scope.teacher = user[0].first_name + " " + user[0].last_name;
+                scope.teacherUrl = user[0].public_url;
+              });
           });
           
           
