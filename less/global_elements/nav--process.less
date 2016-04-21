@@ -1,33 +1,72 @@
-.nav--process_line {
-       content: "";
-       position: absolute;
-       top: 37%;
-       left: 20%;
-       width: 60%;
-       height: 2px;
-       background: @LMSlight;
-}
-
-.checked:before {
-   content: "";
-   position: absolute;
-   top: 30%;
-   left: 100px;
-   width: 100%;
-   height: 2px;
-   background: @RGBcourses;
-}
-
 input[type="datetime-local"].form-control{
     padding-right: 30px;
 }
 
+.stepsthree {
+    li {
+        width: 33.333333333%;
+    }
+    .nav--process_line {
+        left: 16.666666667%;
+        width: 66.666666666%;
+    }
+}
+
+.stepsfour {
+    li {
+        width: 25%;
+    }
+    .nav--process_line {
+        left: 12.5%;
+        width: 75%;
+    }
+}
+.stepsfive {
+    li {
+        width: 20%;
+    }
+    .nav--process_line {
+        left: 10%;
+        width: 80%;
+    }
+}
+
+.checked:before {
+    content: "";
+    position: absolute;
+    top: 25px;
+    left: 50%;
+    width: 100%;
+    height: 2px;
+    background: @RGBcourses;
+    -webkit-animation: transformChecked 0.5s; /* Chrome, Safari, Opera */ 
+    animation: transformChecked 0.5s;
+}
+
+@-webkit-keyframes transformChecked {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+@keyframes transformChecked {
+    from {width: 0%;}
+    to {width: 100%;}
+}
+
+.nav--process_line {
+   content: "";
+   position: absolute;
+   top: 47px;
+   height: 2px;
+   background: @LMSlight;
+}
+
 .nav--process {
-   position: relative;
-   padding-top: 20px;
-   font-family: 'Roboto';
-   z-index: 10;
-   padding-bottom: 20px;
+    position: relative;
+    padding: 20px 0px;
+    height: 90px;
+    font-family: 'Roboto';
+    z-index: 10;
+    margin-bottom: 40px;
    
    a {
        text-decoration: none;
@@ -36,7 +75,6 @@ input[type="datetime-local"].form-control{
        position: relative;
        vertical-align: text-top;
        display: inline-block;
-       width: 33.333333333%;
        height: 90px;
        text-align: center;
    }
@@ -109,22 +147,15 @@ input[type="datetime-local"].form-control{
 
 .processselector
 {
+    margin-top: 40px;
 	width:50%;
 	float:left;
+    &:hover {
+        cursor: pointer;
+    }
 }
 
 .nav--process--assignments {
-    
-    .nav--process_line {
-       content: "";
-       position: absolute;
-       top: 37%;
-       left:13%;
-       width: 70%;
-       height: 2px;
-       background: @LMSlight;
-}
-    
     .checked:before {
    content: "";
    position: absolute;
@@ -145,13 +176,17 @@ input[type="datetime-local"].form-control{
 
 .process_view {
    .pager {
-       padding: 20px;
+       padding: 40px 0px;
+       .btn {
+           margin: 0px 10px;
+       }
    }
-   }
+}
 
-.nav--process--assignments li {
-       width: 20%;  
-   }
+.processview_preview {
+    
+}
+
 
 .select_course_header {
    margin-top: 8%;

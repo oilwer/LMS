@@ -7807,33 +7807,72 @@ This is a LESS file; only style for the element class .box allowed!
     height: auto !important;
   }
 }
-.nav--process_line {
-  content: "";
-  position: absolute;
-  top: 37%;
-  left: 20%;
-  width: 60%;
-  height: 2px;
-  background: rgba(62, 71, 79, 0.5);
+input[type="datetime-local"].form-control {
+  padding-right: 30px;
+}
+.stepsthree li {
+  width: 33.333333333%;
+}
+.stepsthree .nav--process_line {
+  left: 16.666666667%;
+  width: 66.666666666%;
+}
+.stepsfour li {
+  width: 25%;
+}
+.stepsfour .nav--process_line {
+  left: 12.5%;
+  width: 75%;
+}
+.stepsfive li {
+  width: 20%;
+}
+.stepsfive .nav--process_line {
+  left: 10%;
+  width: 80%;
 }
 .checked:before {
   content: "";
   position: absolute;
-  top: 30%;
-  left: 100px;
+  top: 25px;
+  left: 50%;
   width: 100%;
   height: 2px;
   background: #2CC990;
+  -webkit-animation: transformChecked 0.5s;
+  /* Chrome, Safari, Opera */
+  animation: transformChecked 0.5s;
 }
-input[type="datetime-local"].form-control {
-  padding-right: 30px;
+@-webkit-keyframes transformChecked {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+@keyframes transformChecked {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+.nav--process_line {
+  content: "";
+  position: absolute;
+  top: 47px;
+  height: 2px;
+  background: rgba(62, 71, 79, 0.5);
 }
 .nav--process {
   position: relative;
-  padding-top: 20px;
+  padding: 20px 0px;
+  height: 90px;
   font-family: 'Roboto';
   z-index: 10;
-  padding-bottom: 20px;
+  margin-bottom: 40px;
 }
 .nav--process a {
   text-decoration: none;
@@ -7842,7 +7881,6 @@ input[type="datetime-local"].form-control {
   position: relative;
   vertical-align: text-top;
   display: inline-block;
-  width: 33.333333333%;
   height: 90px;
   text-align: center;
 }
@@ -7906,17 +7944,12 @@ input[type="datetime-local"].form-control {
   color: #fcb941;
 }
 .processselector {
+  margin-top: 40px;
   width: 50%;
   float: left;
 }
-.nav--process--assignments .nav--process_line {
-  content: "";
-  position: absolute;
-  top: 37%;
-  left: 13%;
-  width: 70%;
-  height: 2px;
-  background: rgba(62, 71, 79, 0.5);
+.processselector:hover {
+  cursor: pointer;
 }
 .nav--process--assignments .checked:before {
   content: "";
@@ -7935,10 +7968,10 @@ input[type="datetime-local"].form-control {
   color: #fcb941;
 }
 .process_view .pager {
-  padding: 20px;
+  padding: 40px 0px;
 }
-.nav--process--assignments li {
-  width: 20%;
+.process_view .pager .btn {
+  margin: 0px 10px;
 }
 .select_course_header {
   margin-top: 8%;
@@ -8224,6 +8257,13 @@ trix-toolbar .button_group input[type=button] {
 .btn--back {
   float: left;
   margin: 10px 0px;
+}
+.btndisabled {
+  background: rgba(62, 71, 79, 0.3) !important;
+  color: rgba(62, 71, 79, 0.5) !important;
+}
+.btndisabled:hover {
+  cursor: not-allowed !important;
 }
 .btn-default--assignment {
   background-color: #fcb941 !important;
