@@ -27,22 +27,27 @@
     <!-- mongresto $resources -->
     <script src="/api/ngResources/app"></script>
     <!-- controllers are not that nice -->
-    
+
     <!-- Services -->
    <!-- <script src="services/LoginService.js"></script>
 
-    <!-- directives (widgets) -->
+    <!-- WIDGETS ->
+    <!-- Other system widgets -->
     <script src="widgets/modelanything/modelanythingstart.js"></script>
     <script src="widgets/modelanything/dynamic.js"></script>
+
+    <!-- PLUGINS -->
     <script src="widgets/modelanything/plugins/testplug.js"></script>
-    
+    <script src="widgets/modelanything/plugins/chat.js"></script>
+
+
     <script src="widgets/admin/usermanager.js"></script>
     <script src="widgets/admin/course.js"></script>
-    
+
     <script src="widgets/header/nav.js"></script>
-    
+
     <script src="widgets/forgotpassword/forgotpassword.js"></script>
-    
+
     <script src="widgets/profile/privateprofile.js"></script>
     <script src="widgets/profile/publicprofile.js"></script>
 
@@ -52,7 +57,7 @@
 
     <script src="widgets/dashboard/allcourses.js"></script>
 
-    
+
     <script src="widgets/course/create/createcourse.js"></script>
     <script src="widgets/course/message.js"></script>
     <script src="widgets/course/coursePage.js"></script>
@@ -60,7 +65,7 @@
     <script src="widgets/course/courseNav.js"></script>
 
     <script src="widgets/modal/dialog.js"></script>
-    
+
     <script src="widgets/assignment/createassignment.js"></script>
     <script src="widgets/assignment/assignment.js"></script>
     <script src="widgets/assignment/assignmentStudent.js"></script>
@@ -71,11 +76,11 @@
 
     <script src="widgets/login/checklogin.js"></script>
     <script src="widgets/login/loginstart.js"></script>
-    
+
     <script src="widgets/connect/individual.js"></script>
     <script src="widgets/connect/connectstudents.js"></script>
     <script src="widgets/connect/studentsaddremove.js"></script>
-    
+
     <script src="widgets/breadcrumbs/breadcrumbs.js"></script>
 
     <script src="widgets/slack/chat.js"></script>
@@ -86,8 +91,8 @@
     <link rel="stylesheet" href="css/all.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-    
-    <!-- Texteditor -->   
+
+    <!-- Texteditor -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/trix/0.9.2/trix.js"></script>
 
@@ -98,14 +103,14 @@
 
    <!--  <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload.min.js"></script>
     <script type="text/javascript" src="node_modules/ng-file-upload/dist/ng-file-upload-shim.min.js"></script> -->
-    
+
   </head>
   <body ng-app="mongr">
-	  
+
 	  <!-- redirects users depending on their logged-in-status -->
 	  <login-checklogin/>
-   
-   
+
+
     <header-nav ng-if="loggedin"></header-nav>
     <!-- app view area -->
     <div ng-view ng-if="loggedin"></div>
