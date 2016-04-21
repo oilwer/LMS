@@ -7938,6 +7938,13 @@ input[type="datetime-local"].form-control {
   border: 2px solid white;
   color: white;
 }
+.stepicon--courses {
+  background-color: #2CC990;
+}
+.stepicon--courses:hover {
+  border: 2px solid #2CC990 !important;
+  color: #2CC990 !important;
+}
 .stepicon:hover {
   background-color: white;
   border: 2px solid #fcb941;
@@ -8252,6 +8259,18 @@ trix-toolbar .button_group input[type=button] {
 }
 .btn--assignments:active,
 .btn--assignments:focus {
+  outline: none;
+}
+.btn--courses {
+  background: #2CC990;
+  transition: all 0.3s ease-in-out;
+}
+.btn--courses:hover {
+  background: rgba(44, 201, 144, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+.btn--courses:active,
+.btn--courses:focus {
   outline: none;
 }
 .btn--back {

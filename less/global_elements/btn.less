@@ -10,6 +10,18 @@
     }
 }
 
+.btn--courses {
+    background: @RGBcourses;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBcourses,85%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
 .btn--back {
     float: left;
     margin: 10px 0px;
