@@ -27,7 +27,22 @@ app.directive('courseCreateCreatecourse', [
         // start, end : view
         //
 
-        scope.url;
+        //get session_user
+        scope.session_user;
+        SessionService.getSession().success(function(response){
+            scope.session_user = response.user;
+        });
+
+        // Updates the GUI according to edit/add-state
+        scope.isEditing = false;
+        scope.btnAddOrUpdate = 'Create course';
+
+        var stepFinishedIndex = 0;
+        scope.isCopying = 0;
+
+        var AvailableCourses, oldcourse, selectedCourseName;
+
+        AvailableCourses = Course.get();
 
         // Note: How to make it work when directive loads?
         // Gui function fetch selected course data for editing
@@ -55,13 +70,53 @@ app.directive('courseCreateCreatecourse', [
 
         //Gui function add course
         scope.addOrUpdateCourse = function(){
-          if(!isEditingCourse){
-            scope.createCourse();
+        if(typeof scope.course.name !== 'undefined'){
+
+              var result = AvailableCourses.filter(function( obj ) {
+              return obj.name == selectedCourseName;
+            });
+
+
+            //scope.assignment.added_on = (new Date()).toJSON();
+
+                if(scope.isEditing == 0)
+                {
+
+                  console.log("Creating the actual course");
+                  scope.isEditing = 1;
+
+                  console.log(scope.course);
+                  scope.course._id = undefined;
+
+                  scope.btnAddOrUpdate = "Update course";
+
+                  Course.create(scope.course, function(course)
+                      {
+                          console.log("Added course:", course[0]);
+                          oldcourse = JSON.parse(JSON.stringify(course[0]));
+                          scope.incrementStep();
+                      }
+                  );
+
+            } else if (scope.isEditing == 1){
+
+              console.log("Updating course");
+              console.log(scope.course);
+              console.log("old course: ", oldcourse);
+
+                Course.update({_id: oldcourse._id},scope.course, function(res)
+                {
+                    console.log("Update res: ", res);
+                    oldcourse = "";
+                    oldcourse = JSON.parse(JSON.stringify(scope.course));
+                    scope.incrementStep();
+              });
+
+              }
+
+            }
           }
-          else{
-            scope.updateCourse();
-          }
-        }
+
 
         //All the steps in the create course process, ng-switch states
         scope.steps = [{
@@ -75,35 +130,116 @@ app.directive('courseCreateCreatecourse', [
               icon: "fa-eye",
           }];
 
+          //All the steps in the create course process, ng-switch states
+          scope.createsteps = [{
+                name: "Create or copy",
+                icon: "fa-leaf",
+            },
+            {
+  						name: "Select course",
+  						icon: "fa-file-text-o",
+  					},
+            {
+                name: "Details",
+                icon: "fa-i-cursor",
+            },{
+                name: "Preview",
+                icon: "fa-eye",
+            }];
+
+            scope.courseSelect = {
+              repeatSelect: null,
+              availableOptions: AvailableCourses
+          }
+
+
         //start out on step
         scope.selection = scope.steps[0].name;
 
         scope.getCurrentStepIndex = function(){
-        // Find index of the current step by object name
-            for(var i = 0; i < scope.steps.length; i += 1) {
-                if(scope.steps[i].name === scope.selection) {
-                    return i;
-                }
+          if(scope.isCopying){
+              // Find index of the current step by object name
+              for(var i = 0; i < scope.createsteps.length; i += 1) {
+                  if(scope.createsteps[i].name === scope.selection) {
+                      return i;
+                  }
+              }
+            } else {
+              // Find index of the current step by object name
+              for(var i = 0; i < scope.steps.length; i += 1) {
+                  if(scope.steps[i].name === scope.selection) {
+                      return i;
+                  }
+              }
             }
-           //return scope.steps.indexOf(scope.selection);
-        };
+        }
 
-       // Move to a defined step index
-        scope.goToStep = function(index) {
-            scope.selection = scope.steps[index].name;
-        };
+        scope.setCreate = function() {
+          scope.course = undefined;
+          scope.isEditing = 0;
+          scope.isCopying = 0;
+          scope.btnAddOrUpdate = "Create course";
+          console.log("Creating course");
+          scope.incrementStep();
+      }
+
+      scope.setCopy = function() {
+        scope.course = undefined;
+        scope.isEditing = 0;
+          scope.isCopying = 1;
+          console.log("Copying course");
+          scope.btnAddOrUpdate = "Create course";
+          scope.incrementStep();
+      }
+
+
+      		       	// Move to a defined step index
+      		        scope.goToStep = function(index) {
+      			        // If you are going backwards in the flow: No worries
+      			        if(scope.getCurrentStepIndex() > index){
+      			        	console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+      			        	if(scope.isCopying){
+      							           scope.selection = scope.createsteps[index].name;
+      						    } else {
+      							           scope.selection = scope.steps[index].name;
+      						    }
+      					}
+      					// Going forwards in the flow
+      					else {
+      						// If you are going to a step that are finished
+      						if(stepFinishedIndex >= index)
+      						{
+      							console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+      							if(scope.isCopying){
+      								scope.selection = scope.createsteps[index].name;
+      							} else {
+      								scope.selection = scope.steps[index].name;
+      							}
+      						}
+      					}
+      		      }
 
         // Return true if step has next step, false if not
         scope.hasNextStep = function(){
             var stepIndex = scope.getCurrentStepIndex();
             var nextStep = stepIndex + 1;
 
-            if(scope.steps[nextStep] == undefined) {
-                return false;
+            if(scope.isCopying){
+              if(scope.createsteps[nextStep] == undefined) {
+                  return false;
+              }
+              else {
+                  return true;
+              }
+            } else {
+              if(scope.steps[nextStep] == undefined) {
+                  return false;
+              }
+              else {
+                  return true;
+              }
             }
-            else {
-                return true;
-            };
+
         };
 
         // Return true if step has previous step, false if not
@@ -120,23 +256,60 @@ app.directive('courseCreateCreatecourse', [
 
         //move to next step
         scope.incrementStep = function() {
-            if ( scope.hasNextStep() )
-            {
-              var stepIndex = scope.getCurrentStepIndex();
-              var nextStep = stepIndex + 1;
-              scope.selection = scope.steps[nextStep].name;
+            if (scope.hasNextStep()){
+        var stepIndex = scope.getCurrentStepIndex();
+        var nextStep = stepIndex + 1;
+
+        if(scope.isCopying){
+          scope.selection = scope.createsteps[nextStep].name;
+        } else {
+          scope.selection = scope.steps[nextStep].name;
+        }
+
+        if(stepIndex >= stepFinishedIndex) {
+            console.log("Step ", stepFinishedIndex, " done");
+          stepFinishedIndex++;
+        }
             }
-          };
+        }
 
         //move to previous step
         scope.decrementStep = function() {
-            if ( scope.hasPreviousStep() )
-            {
+            if(scope.hasPreviousStep()){
               var stepIndex = scope.getCurrentStepIndex();
               var previousStep = stepIndex - 1;
-              scope.selection = scope.steps[previousStep].name;
-            }
-        };
+
+              if(scope.isCopying){
+                scope.selection = scope.createsteps[previousStep].name;
+              } else {
+                scope.selection = scope.steps[previousStep].name;
+              }
+              }
+        }
+
+        scope.loadDetails = function(){
+          console.log("loading details");
+
+
+          var obj = AvailableCourses.filter(function(obj){
+            return obj.name === selectedCourseName;
+          })[0];
+
+          // var assignmentIndex = AvailableAssignments.indexOf(selectedAssignmentName);
+
+
+          obj.end = new Date(obj.end);
+          obj.start = new Date(obj.start);
+
+          scope.course = obj;
+          scope.incrementStep();
+
+        }
+
+        scope.selectCourseChanged = function (){
+        selectedCourseName = scope.courseSelect.repeatSelect;
+        console.log(selectedCourseName);
+        }
 
         //create a new course and set GUI edit options
         scope.createCourse = function(){
@@ -181,11 +354,13 @@ app.directive('courseCreateCreatecourse', [
             scope.incrementStep();
         };
 
-        //route location
-        scope.pathLocation = function(newLocation) {
-            //add if statement for previous location - get prev path and back-forward
-            $location.path(newLocation);
-            scope.closeModalSession();
+        //roate location
+        scope.pathLocation = function() {
+            Course.get({name: scope.course.name, description: scope.course.description, end: scope.course.end}, function(fetchedCourse){
+        console.log("fetched course: ", fetchedCourse);
+        scope.$parent.hideModal();
+        $window.location.href = '/courses/' + fetchedCourse[0].url;
+         });
         }
 
         scope.closeModalSession = function() {
