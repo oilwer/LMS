@@ -76,6 +76,9 @@ app.directive('headerNav', [
         scope.assignmentModalShown = false;
         scope.toggleAssignmentModal = function() { 
             scope.assignmentModalShown = !scope.assignmentModalShown;
+            //fix for toolbar toggle, element event don't fire on modalshow()
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = false;
           };
         
         
@@ -90,6 +93,7 @@ app.directive('headerNav', [
             scope.isToolbarPersonalOpen = scope.isToolbarPersonalOpen === true ? false: true;
         };
 
+          //close if click outside content
         element.bind('click', function(event) {
             event.stopPropagation();      
         });

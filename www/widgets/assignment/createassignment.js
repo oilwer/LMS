@@ -16,7 +16,7 @@ app.directive('assignmentCreateassignment', [
     return {
       templateUrl: settings.widgets + 'assignment/createassignment.html',
       link: function(scope, element, attrs, $location) {
-
+          
 		        //get session_user
 		        scope.session_user;
 		        SessionService.getSession().success(function(response){
@@ -76,6 +76,34 @@ app.directive('assignmentCreateassignment', [
 					console.log(selectedAssignmentName);
 			   	}
 
+                    
+                //check dateRange for GUI feedback
+                scope.invalidDateRange = true;
+                scope.isDateRangeValid = function() {
+                    
+                    var result = AvailableCourses.filter(function( obj ) {
+                        return obj.name == selectedCourseName;
+                    });
+
+                    scope.assignment.course = result[0]._id;
+                    scope.assignment.added_on = (new Date()).toJSON();
+                    
+                    if(new Date(scope.assignment.due_date) > new Date(result[0].start)){
+				        // Assignment due date is before the course has ended
+				        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
+                            // Assignment due date is after the course has ended
+                            scope.invalidDateRange = false;
+                        }
+                        else {
+                            console.log("invalid date range"); 
+                        }
+                    }
+                    else {
+                        console.log("invalid date range"); 
+                    }
+                };
+          
+          
 		        //Gui function add course
 		        scope.addOrUpdateAssignment = function(){
 			        if (typeof selectedCourseName !== 'undefined'){
@@ -349,7 +377,17 @@ app.directive('assignmentCreateassignment', [
 						$window.location.href = '/courses/' + fetchedAssignment[0].course.url + "/assignment/" + fetchedAssignment[0]._id;
 			       });
 		        }
-    		}
+                
+                
+                scope.closeModalAssignmentSession = function() {
+                    scope.isEditing = false;
+                    scope.btnAddOrUpdate = 'Create assignment';
+                    scope.assignment = undefined;
+                    var stepFinishedIndex = 0;
+                    scope.selection = scope.steps[0].name;
+                    scope.$parent.hideModal();
+                }
+    		} //link
     	}
   	}
 ]);

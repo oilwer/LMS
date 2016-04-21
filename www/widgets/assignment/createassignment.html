@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row--modal">
      <div class="col-sm-20 col-sm-offset-2">
-       <ul class="col-sm-24 nav--process nav--process--assignments">
+       <ul class="col-sm-24 nav--process nav--process--assignments" ng-class="{stepsfour: isCreating == 1, stepsfive: isCreating == 0}">
            <div class="nav--process_line"></div>
            <li ng-if="isCreating == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
              <a href="javascript:void(0)" ng-click="goToStep($index)">
@@ -26,7 +26,7 @@
                </div>
                <div class="processselector" ng-click="setCopy()">
                  <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
-                         <span class="stepLabel">Create assignment from older assignment</span>
+                 <span class="stepLabel">Create assignment from older assignment</span>
                </div>
              </form>
            </div>
@@ -63,7 +63,7 @@
 
                <div class="col-sm-12">
                  <label for="duedate">Due date</label>
-                 <input type="datetime-local" name="duedate" class="form-control" ng-model="$parent.assignment.due_date" required="true">
+                 <input type="datetime-local" name="duedate" class="form-control" ng-change="isDateRangeValid()" ng-model="$parent.assignment.due_date" required="true">
                  <span
                  class="error"
                  ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
@@ -71,7 +71,6 @@
                    <i class="fa fa-times"></i>
                  </span>
                  <label>Upload instruction file</label>
-                 <!--<input type="text" name="courseEnd" class="form-control" ng-model="$parent.end" required="true" >-->
                  <div class="upload_instruction_file">
                    <form action="demo_form.asp">
                      <input type="file" name="pic" accept="image/*">
@@ -90,14 +89,10 @@
                </div>
              </form>
            </div>
-           <ul class="col-xs-24 pager">
-             <li class="">
-               <a href="" ng-click="decrementStep()">&larr; Previous</a>
-             </li>
-             <li class="">
-               <a href="" ng-click="addOrUpdateAssignment()"> {{btnAddOrUpdate}} &rarr;</a>
-             </li>
-           </ul>
+           <div class="col-xs-24 pager">
+               <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
+               <button class="btn btn--assignments" ng-click="addOrUpdateCourse()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange}"> {{btnAddOrUpdate}} &rarr;</button>
+           </div>
          </div><!--.stepTwo-->
 
          <div class="stepThree" ng-switch-when="Select course">
@@ -116,14 +111,10 @@
                </select>
              </form>
            </div>
-           <ul class="col-xs-24 pager">
-             <li class="">
-               <a href="" ng-click="decrementStep()">&larr; Previous</a>
-             </li>
-             <li class="">
-               <a href="" ng-click="courseDetails.$valid && incrementStep()">Next step &rarr;</a>
-             </li>
-           </ul>
+           <div class="col-xs-24 pager">
+               <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
+               <button href="" class="btn btn--assignments" ng-click="courseDetails.$valid && incrementStep()" ng-class="{btndisabled: courseDetails.$invalid}">Next step &rarr;</button>
+           </div>
          </div> <!--End of step three-->
 
          <div class="stepFour" ng-switch-when="Select assignment">
@@ -142,20 +133,16 @@
                </select>
              </form>
            </div>
-           <ul class="col-xs-24 pager">
-             <li class="">
-                 <a href="" ng-click="decrementStep()">&larr; Previous</a>
-             </li>
-             <li class="">
-               <a href="" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</a>
-             </li>
-           </ul>
+           <div class="col-xs-24 pager">
+              <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
+              <button class="btn btn--assignments" ng-class="{btndisabled: assignmentDetails.$invalid}" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</button>
+          </div>
          </div> <!--End of step four-->
 
          <div class="stepFive" ng-switch-when="Preview">
-           <div class="col-sm-24">
+           <div class="col-sm-24 processview_preview">
              <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
-             <p ng-if="assignment.due_date">Due Date: {{assignment.due_date}}</p>
+             <p ng-if="assignment.due_date">Due Date: {{assignment.due_date | date}}</p>
 
              <p ng-if="assignment.added_on"> Added on: {{assignment.added_on}}</p>
              <p ng-if="assignment.course"> Course: {{assignment.course}}</p>
@@ -164,20 +151,15 @@
              <p ng-if="assignment.assessment"> Assessment: {{assignment.assessment}}</p>
              <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
              <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
-             <br/>
                  <hr/>
                  <p ng-if="assignment.description"> {{assignment.description}}</p>
-                 <br/>
-             <button class="btn btn-default" ng-click="pathLocation(assignment)">Enter assignment page</button>
-             <button class="btn btn-default" ng-click="$parent.$parent.hideModal()">Back to dashboard</button>
            </div>
-           <ul class="col-xs-24 pager">
-             <li class="">
-               <a href="" ng-click="decrementStep()">&larr; Edit details</a>
-             </li>
-           </ul>
+           <div class="col-xs-24 pager">
+                <button button class="btn btn--assignments" ng-click="decrementStep()">&larr; Edit details</button>
+                <button class="btn btn--assignments" ng-click="closeModalAssignmentSession()">Close</button>
+                <button class="btn btn--assignments" ng-click="pathLocation(assignment)">Enter assignment page</button>
+           </div>
          </div><!--.stepFive-->
-       </div>
-     </div><!--col-->
-   </div><!--.row-->
- <div class="step"
+       </div><!--.selection (show hide)-->
+    </div><!--col-->
+</div><!--.row-->
