@@ -40,6 +40,7 @@
     padding: 40px;
     h2 {
         font-size: 1.4em;
+        padding: 0 0 10px 0;
     }
     
     ul {
@@ -63,15 +64,26 @@
         text-align: center;
     }
 
-    .col-lg-12, .col-lg-24{
+    .col-lg-12, .col-lg-24, .col-lg-9{
         padding:0 !important;
     }
     
     ul.assignment-isAnswered{
-        text-align: right;
+        padding:0 0 10px 0;
     }
     
+    div {
+        padding-bottom:20px;
+    }
     
+}
+
+
+
+@media (min-width: 1200px) {
+  ul.assignment-isAnswered {
+    padding:0 !important;
+  }
 }
 
 //Texteditorn

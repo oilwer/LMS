@@ -22,7 +22,7 @@
 
 <!--SUBMIT ANSWER-->
 <!--<section ng-show="noAnswer" class="box assignment assignment-answer col-lg-24 animate-show">-->
-<section class="box assignment assignment-answer col-lg-24 animate-show">
+<section class="box assignment assignment-answer col-lg-24 animate-show" ng-hide="hasAnswered">
     <h2>Submit your answer</h2>
     <!--.input-group<div class="input-group btn--fileupload">
         <span class="input-group-btn">
@@ -39,8 +39,8 @@
     
     <!--Texteditor-->
     <form>
-         <input id="x" type="hidden" ng-model="userType" name="content">
-         <trix-editor input="x" ></trix-editor>
+         <input id="assignmentStudEditor" type="hidden" ng-model="userType" name="content">
+         <trix-editor input="assignmentStudEditor" ></trix-editor>
     </form>
 
         <button ng-click="sendAssignment()" type="Button" class="btn btn-success send__button">SUBMIT ASSIGNMENT</button>
@@ -48,42 +48,28 @@
 
 <!--If assignment has been answered-->
 <section ng-show="hasAnswered" class="box assignment assignment-answer col-lg-24 animate-show">
-    <h2>Your answer</h2>
-    <div class="col-lg-12">
-        <div class="assignment-isAnswered">
-            <p><em>Comment: </em>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-            <p><em>Submitted file: </em>submission.pdf</p>
-            <!--<button class="btn btn--assignments toggleClass" ng-hide="isgraded" ng-click="toggleEdit()">{{showHideEdit}} <i ng-show="isEditOpen" class="fa fa fa-angle-up"></i><i ng-hide="isEditOpen" class="fa fa fa-angle-down"></i></button>-->
-        </div>  <!--.assignment-isAnswered-->
-        
-    </div><!--.col-lg-12-->
-    <div class="col-lg-11 col-lg-offset-1" ng-if="hasAnswered" ng-show="hasAnswered"> 
-        <ul class="assignment-isAnswered">
+    <h2 class="col-lg-15">Your answer</h2>
+  
+        <ul class="assignment-isAnswered" ng-if="hasAnswered" ng-show="hasAnswered">
             <li><em>Status: </em>Not viewed</li>
             <li><em>Grade: </em> - </li>
             <li><em>Graded by: </em> - </li>
         </ul>   
-    </div><!--.col-lg-12-->
-</section>
 
-<!--Edit submitted assignment-->
-<section class="box assignment assignment-answer col-lg-24 animate-show" ng-show="isEditOpen">
-        <h2>Edit your answer</h2>
-        <div class="input-group btn--fileupload">
-            <span class="input-group-btn">
-                <span class="btn btn-default btn-file btn-default--assignment"><i class="fa fa-folder-open" aria-hidden="true"></i>
 
-                Select file 
-                <input type="file" file-upload multiple>
-                </span>
-            </span>
-        <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" ng-click="emptyInput()" aria-hidden="true"></i>
-        </div><!--.input-group-->
-        <form>
-             <input id="x" type="hidden" ng-model="userType" name="content">
-             <trix-editor input="x" ></trix-editor>
-        </form>
-        <button ng-click="sendAssignment()" type="Button" class="btn btn-success send__button">SUBMIT ASSIGNMENT</button>
+    <div class="col-lg-24">
+        <div class="assignment-isAnswered">
+            <p></p>
+            <p><em>Submitted file: </em>submission.pdf</p>
+            <button class="btn btn--assignments toggleClass" ng-hide="isgraded" ng-click="toggleUpdateAssignmentModal()">Edit submission <i ng-show="isEditOpen" class="fa fa fa-angle-up"></i><i ng-hide="isEditOpen" class="fa fa fa-angle-down"></i></button>
+        </div>  <!--.assignment-isAnswered-->
         
+    </div><!--.col-lg-12-->
+    
 </section>
+
+
+<modal-dialog show='updateAssignmentModalShown' width='80%'>
+    <div assignment-update-editassignment></div>
+</modal-dialog>
 

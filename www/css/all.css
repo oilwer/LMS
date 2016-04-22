@@ -8170,6 +8170,10 @@ input[type=checkbox] {
   font-family: 'Roboto', 'arial', sans-serif;
   padding: 20px 0px;
 }
+.modal--updateassignments .input-group {
+  width: 96%;
+  margin: 0 auto;
+}
 .assignment-meta {
   padding: 30px 40px;
 }
@@ -8204,6 +8208,7 @@ input[type=checkbox] {
 }
 .assignment-answer h2 {
   font-size: 1.4em;
+  padding: 0 0 10px 0;
 }
 .assignment-answer ul {
   list-style: none;
@@ -8226,11 +8231,20 @@ input[type=checkbox] {
   text-align: center;
 }
 .assignment-answer .col-lg-12,
-.assignment-answer .col-lg-24 {
+.assignment-answer .col-lg-24,
+.assignment-answer .col-lg-9 {
   padding: 0 !important;
 }
 .assignment-answer ul.assignment-isAnswered {
-  text-align: right;
+  padding: 0 0 10px 0;
+}
+.assignment-answer div {
+  padding-bottom: 20px;
+}
+@media (min-width: 1200px) {
+  ul.assignment-isAnswered {
+    padding: 0 !important;
+  }
 }
 trix-toolbar {
   margin: 10px 0 0 0 !important;
