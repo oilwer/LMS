@@ -1,0 +1,32 @@
+<div class="row row--modal modal--updateassignments">
+    <div class="col-sm-20 col-sm-offset-2 vcenter">
+        <h2>Edit answer: "{{assignment.name}}"</h2>
+        
+        <form class="assignmentDetails">
+            <div class="input-group btn--fileupload">
+                <span class="input-group-btn">
+                    <span class="btn btn-default btn-file btn-default--assignment"><i class="fa fa-folder-open" aria-hidden="true"></i>
+
+                    Select file 
+                    <input type="file" file-upload multiple>
+                    </span>
+                </span>
+            <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" ng-click="emptyInput()" aria-hidden="true"></i>
+            </div><!--.input-group-->
+            <div class="col-sm-24">
+                <!--<span 
+                class="error" 
+                ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>-->
+                <input id="studentEditAssignment" type="hidden" name="content">
+                <trix-editor input="studentEditAssignment" id="descriptionEditor"></trix-editor>
+            </div>
+            <div class="col-sm-24">
+            <button class="btn btn--assigments" ng-click="closeEdit()">Close</button>
+            <button class="btn btn--assigments" ng-click="editSubmittedAnswer()">Save</button>
+            </div>
+        </form>
+    </div>
+</div><!--.row-->
