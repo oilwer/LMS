@@ -42,7 +42,20 @@
 </nav>
 
 <ul class="toolbar">
+  <!-- <div >Notifications: {{ notf_number }}</div> -->
+  <li class="btn-toolbar--personal">
+      <div class="profileitem" ng-click="toggleNotificationBar()">
+        Notifications: {{notifsNumber}}
+      <ul class="toolbar-options toolbar-options--personal" ng-show="isToolbarNotificationOpen">
+          <div class="toolbar-option_content"
+                ng-repeat="notf in notifs | limitTo: 3">
+              <a ng-href="{{ notf.url }}"><h4>{{notf.title}}</h4><br/></a>
+              <div>{{ notf.text }}</div>
+          </div>
+      </ul>
+  </li>
     <li ng-if="buttonDisplay" class="btn-toolbar--create">
+
         <div class="btn-toolbar" ng-click="toggleCreateBar()">
             <i class="fa fa-plus"></i>
         </div>
@@ -77,11 +90,11 @@
 <modal-dialog show='assignmentModalShown' width='80%'>
       <div assignment-createassignment></div>
 </modal-dialog>
-    
+
 <modal-dialog show='modalShown' width='80%'>
     <div course-create-createcourse></div>
 </modal-dialog>
-    
+
 
 <div class="development_nav">
     <ul>
