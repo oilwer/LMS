@@ -24,7 +24,6 @@ module.exports = function(mongoose){
       assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
       grade: Number,
       comment: String,
-      is_answerd: Boolean,
       answer_file: String
     }],
     plugs:[{

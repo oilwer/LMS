@@ -66,19 +66,58 @@ app.directive('assignmentAssignmentstudent', [
 
           //Send data to database on button click
           scope.sendAssignment = function(){
+
+            scope.submit();
+
+            var comment = "";
             var found = false;
 
-            scope.comment = document.getElementsByName("content")[0].value;
-
-            if(found){ //update text only
-              User.update(
-              {
-                _id: scope.session_user._id,
-                assignments: {$elemMatch: {assignment: scope.assignment._id} }
-              },{
-                  "assignments.$.comment" : scope.comment
+            User.get({_id: session_user._id}, function(user){
+              session_user = user[0];
+       
+              for (var a = 0, len = session_user.assignments.length; a < len; a += 1) {
+                if(session_user.assignments[a].assignment === scope.assignment._id){
+                  found = true;
+                  comment = session_user.assignments[a].comment;
+                  break;
                 }
-              );
+              }
+
+              comment += document.getElementsByName("content")[0].value ;    
+              console.log(comment);         
+
+              if(found){ //update text only
+                User.update(
+                {
+                  _id: session_user._id,
+                  assignments: {$elemMatch: {assignment: scope.assignment._id} }
+                },{
+                    "assignments.$.comment" : comment,
+                    "assignments.$.answer_file" : scope.file[0] 
+                  }
+                );                
+              }
+              else{ //add assignment to user with text'
+                User.update({
+                    _id: session_user._id
+                },{ $push: {
+                    assignments:{
+                    assignment: scope.assignment._id,
+                    comment: comment,
+                    answer_file: scope.file[0]             
+                    } 
+                  }
+                });
+              }
+
+              document.getElementsByName("content")[0].value = ""; 
+
+            });
+                     
+
+            //Clear file-name in input
+            scope.emptyInput = function(){
+                $('.output').val(""); 
             }
             else{ //add assignment to user with text'
               User.update({
