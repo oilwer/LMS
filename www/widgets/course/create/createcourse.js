@@ -363,6 +363,8 @@ app.directive('courseCreateCreatecourse', [
             }, function(course)
                 {
                     scope.$root.$broadcast('addedCourse');
+                              console.log("You hear me?");
+
                     //update GUI edit mode
                     scope.course = course[0];
                     scope.url = "/courses/" + scope.course.url;

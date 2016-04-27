@@ -44,6 +44,7 @@ app.directive('dashboardCourses', [
             $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
         };
         scope.$on('addedCourse', function() {
+          console.log("I hear you");
           refresh();
         });
       }
