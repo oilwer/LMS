@@ -3,11 +3,13 @@ app.directive('connectStudentsaddremove', [
   "User", 
   "Course",
   "$routeParams",
+  "ChatService",
   function(
     settings,
     User,
     Course,
-    $routeParams
+    $routeParams,
+    ChatService
   ) {
       return {
       templateUrl: settings.widgets + 'connect/studentsaddremove.html',
@@ -17,6 +19,20 @@ app.directive('connectStudentsaddremove', [
 	   
 	   var AvailableCourses = Course.get();
 	   var courseUrl = "";
+
+	   var joinChannel = function(channelName, UserIdentifier){
+          ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
+            console.log("Response", response);
+          });
+        }
+
+        var leaveChannel = function(channelName, UserIdentifier){
+          Channel.get({name: scope.channelName}, function(returnedChannel){
+            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){
+              console.log("Response", response);
+            });
+          });
+        }
 	   
 	   scope.courseSelect = {
 		  repeatSelect: null,
@@ -118,6 +134,9 @@ app.directive('connectStudentsaddremove', [
 			 		
 			 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
+				 		//Add User to slack channel:
+				 		joinChannel(course.code, scope.students[index].email);
+
 				 		scope.students.splice(index, 1);
 				 	});
 			 	});
@@ -145,6 +164,8 @@ app.directive('connectStudentsaddremove', [
 	        	User.update(
 					{_id: scope.studentsToBeAdded[index]._id},
 					{ $pull: { 'courses': course[0]._id}}, function(rnes){
+						
+						leaveChannel(course.code, scope.studentsToBeAdded[index].email);
 						
 						scope.students.push(scope.studentsToBeAdded[index]);
 						scope.studentsToBeAdded.splice(index, 1);
