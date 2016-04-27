@@ -3,12 +3,14 @@ app.directive('courseCreateCreatecourse', [
     "$location",
     "$window",
     "Course",
+    "ChatService",
     "SessionService",
   function(
     settings,
     $location,
     $window,
     Course,
+    ChatService,
     SessionService
   ) {
 
@@ -43,6 +45,27 @@ app.directive('courseCreateCreatecourse', [
         var AvailableCourses, oldcourse, selectedCourseName;
 
         AvailableCourses = Course.get();
+
+        //This method creates a  slack channel via API and then updates the course
+        //it needs to be connected to
+        var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
+          ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
+            console.log(slackChannel);
+            if(slackChannel.error != null){
+              return;
+            }
+
+            ChatService.getChannels(UserIdentifier).success(function(channels){
+              for(x = 0; x < channels.channels.length; x++){
+                if(channels.channels[x].name == channelName){
+                //  console.log(channels.channels[x]);
+                  Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: channels.channels[x].id} } });
+                  break;
+                }
+              }
+            });
+          });
+        }
 
         // Note: How to make it work when directive loads?
         // Gui function fetch selected course data for editing
@@ -82,21 +105,35 @@ app.directive('courseCreateCreatecourse', [
                 if(scope.isEditing == 0)
                 {
 
-                  console.log("Creating the actual course");
-                  scope.isEditing = 1;
+                  if(scope.session_user.slack_token != undefined)
+                  {
 
-                  console.log(scope.course);
-                  scope.course._id = undefined;
+                    console.log("Creating the actual course");
+                    scope.isEditing = 1;
 
-                  scope.btnAddOrUpdate = "Update course";
+                    console.log(scope.course);
+                    scope.course._id = undefined;
 
-                  Course.create(scope.course, function(course)
-                      {
-                          console.log("Added course:", course[0]);
-                          oldcourse = JSON.parse(JSON.stringify(course[0]));
-                          scope.incrementStep();
-                      }
-                  );
+                    scope.btnAddOrUpdate = "Update course";
+
+                    Course.create(scope.course, function(course)
+                        {
+                            console.log("Added course:", course[0]);
+                            oldcourse = JSON.parse(JSON.stringify(course[0]));
+                            scope.incrementStep();
+
+                            createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
+                            console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
+                        }
+
+                    );
+
+
+
+                  }
+                  else {
+                    console.log("You need to add your slack token");
+                  }
 
             } else if (scope.isEditing == 1){
 
