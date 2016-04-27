@@ -24,7 +24,12 @@ module.exports = function(mongoose){
       assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
       grade: Number,
       comment: String,
-      answer_file: String
+      answer_file: String,
+      answerComment: String, //feedback from teacher
+      answerDate: Date,
+      answeredBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      status: String, // New|Wating|Resubmit|Done  
+      //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
     }],
     plugs:[{
             id: String,

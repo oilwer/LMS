@@ -21,9 +21,11 @@ app.directive('assignmentAssignment', [
       link: function(scope, element, attrs) {
           
           var url = $location.path().split(/[\s/]+/)[2];
+          scope.course = "";
           Course.get({url: url, _populate:"assignments"}, function(course){ 
               scope.course = course[0];
               scope.assignments = scope.course.assignments;
+              //console.log("i assignment.js", course[0])
              // scope.messages = scope.course.messages; //load messages               
             });  
           
@@ -35,10 +37,10 @@ app.directive('assignmentAssignment', [
             
             if ( user.toLowerCase() == 'student') {
                 scope.userView = true;
-                console.log(scope.userView);
+                //console.log(scope.userView);
             } else {
                 scope.teacherView = true;
-                console.log(scope.teacherView);
+                //console.log(scope.teacherView);
             }
         });
 
