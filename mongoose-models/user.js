@@ -55,8 +55,7 @@ module.exports = function(mongoose){
       }
       else {
         this._update.$set.password = sha1(this._update.$set.password);
-      }
-    }
+      }    }
 
     next();
   });
