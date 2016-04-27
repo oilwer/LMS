@@ -44,7 +44,7 @@
 <ul class="toolbar">
     <li ng-if="buttonDisplay" class="btn-toolbar--create">
         <div class="btn-toolbar" ng-click="toggleCreateBar()">
-            <i class="fa fa-plus"></i>
+            <i class="fa fa-plus" aria-hidden="true"></i>
         </div>
         <ul class="toolbar-options toolbar-options--create" ng-show="isToolbarCreateOpen">
             <div class="toolbar-option_content">
@@ -71,6 +71,36 @@
         </ul>
     </li>
 </ul>
+    
+<ul class="slackbox">
+    <li ng-if="buttonDisplay" class="btn-slackbox--list">
+        <div class="btn-slackbox" ng-click="toggleCreateSlackBar()">
+            <i class="fa fa-commenting-o fa-2x"></i>
+        </div>
+        <ul class="slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
+            <div class="slackbox-option_content">
+                <li>
+                    Channels
+                </li>
+                <li ng-repeat="course in courselist">
+                    <a ng-click="showChatBox(course)" ># {{course}}</a>
+                </li>
+            </div>
+        </ul>
+    </li>
+</ul>
+
+
+    <div class="col-md-6 wind-slackbox" ng-show="courseSelected">
+        <div class="col-md-24 box__header">{{course}}</div>
+        
+        <div class="col-md-24 windowcont-slackbox">
+                
+        </div>
+    
+        <input type="text" name="Fname" class="form-control" placeholder="Write message..." rows="3">
+        
+    </div>
 
 
 
