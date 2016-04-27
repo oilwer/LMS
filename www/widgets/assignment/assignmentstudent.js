@@ -69,6 +69,9 @@ app.directive('assignmentAssignmentstudent', [
 
           //Send data to database on button click
           scope.sendAssignment = function(){
+
+            scope.submit();
+
             var comment = "";
             var found = false;
 
@@ -83,7 +86,8 @@ app.directive('assignmentAssignmentstudent', [
                 }
               }
 
-              comment += document.getElementsByName("content")[0].value;
+              comment += document.getElementsByName("content")[0].value ;    
+              console.log(comment);         
 
               if(found){ //update text only
                 User.update(
@@ -91,7 +95,8 @@ app.directive('assignmentAssignmentstudent', [
                   _id: session_user._id,
                   assignments: {$elemMatch: {assignment: scope.assignment._id} }
                 },{
-                    "assignments.$.comment" : comment
+                    "assignments.$.comment" : comment,
+                    "assignments.$.answer_file" : scope.file[0] 
                   }
                 );                
               }
@@ -101,11 +106,14 @@ app.directive('assignmentAssignmentstudent', [
                 },{ $push: {
                     assignments:{
                     assignment: scope.assignment._id,
-                    comment: comment,               
+                    comment: comment,
+                    answer_file: scope.file[0]             
                     } 
                   }
                 });
               }
+
+              document.getElementsByName("content")[0].value = ""; 
 
             });
                      
