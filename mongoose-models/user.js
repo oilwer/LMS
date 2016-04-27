@@ -2,7 +2,7 @@ module.exports = function(mongoose){
 
   var sha1 = require('sha1');
 
-  var UserSchema = new mongoose.Schema({ 
+  var UserSchema = new mongoose.Schema({
     profilePic: String,
     email: String,
     first_name: String,
@@ -17,8 +17,8 @@ module.exports = function(mongoose){
     linkedin: String,
     github: String,
     twitter: String,
-    courses: [{ 
-        type: mongoose.Schema.Types.ObjectId, ref: 'Course' 
+    courses: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Course'
     }],
     assignments: [{
       assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
@@ -47,13 +47,17 @@ module.exports = function(mongoose){
 
   UserSchema.pre('update', function(next){
     console.log(this._update.$set.password);
-    if (!this._update.$set.password) { console.log ("not hashing", this._update.$set.password);return; }
+    if (!this._update.$set.password) {
+      console.log ("Not hashing ", this._update.$set.password);
+    }
+    else {
       this._update.$set.password = sha1(this._update.$set.password);
-      next();
+    }
+
+    next();
   });
 
 
   // Return the model
   return mongoose.model("User", UserSchema);
 };
-
