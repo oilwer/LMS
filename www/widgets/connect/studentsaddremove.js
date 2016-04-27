@@ -21,17 +21,17 @@ app.directive('connectStudentsaddremove', [
 	   var courseUrl = "";
 
 	   var joinChannel = function(channelName, UserIdentifier){
+	   	console.log(channelName, UserIdentifier);
           ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
             console.log("Response", response);
           });
         }
 
-        var leaveChannel = function(channelName, UserIdentifier){
-          Channel.get({name: scope.channelName}, function(returnedChannel){
-            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){
+        var leaveChannel = function(channelId, UserIdentifier){
+     	 console.log(channelId, UserIdentifier);
+            ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
               console.log("Response", response);
             });
-          });
         }
 	   
 	   scope.courseSelect = {
@@ -135,7 +135,7 @@ app.directive('connectStudentsaddremove', [
 			 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
 				 		//Add User to slack channel:
-				 		joinChannel(course.code, scope.students[index].email);
+				 		joinChannel(course[0].code, scope.students[index].email);
 
 				 		scope.students.splice(index, 1);
 				 	});
@@ -152,8 +152,8 @@ app.directive('connectStudentsaddremove', [
 	   
 		// Remove user from course
     	
-    	Course.get({url: courseUrl}, function(course){
-	    
+    	Course.get({url: courseUrl, _populate: "slack_channels"}, function(course){
+	    	console.log(course);
 	    	Course.update(
         	{url: courseUrl},
         	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
@@ -165,7 +165,10 @@ app.directive('connectStudentsaddremove', [
 					{_id: scope.studentsToBeAdded[index]._id},
 					{ $pull: { 'courses': course[0]._id}}, function(rnes){
 						
-						leaveChannel(course.code, scope.studentsToBeAdded[index].email);
+						//TODO: For now each course has one channel, when we
+						//have more channels on course, find the course code for
+						//current course
+						leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
 						
 						scope.students.push(scope.studentsToBeAdded[index]);
 						scope.studentsToBeAdded.splice(index, 1);

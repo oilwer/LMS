@@ -94,11 +94,9 @@ app.directive('slackChat', [
           });
         }
 
-        var leaveChannel = function(channelName, UserIdentifier){
-          Channel.get({name: scope.channelName}, function(returnedChannel){
-            ChatService.leaveChannel(returnedChannel[0].channel_id, UserIdentifier).success(function(response){
-              console.log("Response", response);
-            });
+        var leaveChannel = function(channelId, UserIdentifier){
+          ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
+            console.log("Response", response);
           });
         }
 
