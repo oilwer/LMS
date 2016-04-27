@@ -37,12 +37,15 @@ app.directive('assignmentUpdateEditassignment', [
             //create function
             scope.newAssignment.comment = $("#studentEditAssignment").attr("value");
 
+                   
+              
             User.update({
                 _id: scope.session_user._id,
                 assignments: {$elemMatch: {assignment: scope.assignment._id} 
                 }
                 },{
                     "assignments.$.comment" :  scope.newAssignment.comment
+           
                   }
                 );                
               
