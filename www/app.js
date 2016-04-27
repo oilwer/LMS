@@ -21,7 +21,7 @@ app.service('LoginService', function($http) {
                 // console.log(response);
             });
        },
-       
+
        checkIfUserExists : function(email) {
 
             var data = '{email: ' + '"' + email + '"' + '}';

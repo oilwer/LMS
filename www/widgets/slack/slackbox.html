@@ -1,0 +1,33 @@
+<ul class="slackbox">
+    <li class="btn-slackbox--list">
+        <div class="btn-slackbox" ng-click="toggleCreateSlackBar()">
+            <i class="fa fa-commenting-o fa-2x"></i>
+        </div>
+        <ul class="slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
+            <div class="slackbox-option_content">
+                <li>
+                    Channels
+                </li>
+                <li ng-repeat="course in courselist">
+                    <a ng-click="showChatBox(course)" >#{{course.name}}</a>
+                </li>
+            </div>
+        </ul>
+    </li>
+</ul>
+
+<div class="col-md-6 wind-slackbox" ng-show="courseSelected">
+    <div class="col-md-24 box__header">{{course.name}}</div>
+
+    <div class="col-md-24 windowcont-slackbox">
+
+      <div class="msg" ng-repeat="msg in course.messages">
+        <p>{{msg.user}}</p>
+        <p>{{msg.text}}</p>
+      </div>
+
+    </div>
+
+    <input type="text" name="Fname" class="form-control" placeholder="Write message..." rows="3">
+
+</div>
