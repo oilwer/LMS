@@ -79,6 +79,7 @@ app.directive('assignmentCreateassignment', [
                     
                 //check dateRange for GUI feedback
                 scope.invalidDateRange = true;
+                scope.invalidDateRangeGUI = false;
                 scope.isDateRangeValid = function() {
                     
                     var result = AvailableCourses.filter(function( obj ) {
@@ -93,16 +94,23 @@ app.directive('assignmentCreateassignment', [
 				        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
                             // Assignment due date is after the course has ended
                             scope.invalidDateRange = false;
+                            scope.invalidDateRangeGUI = false;
                         }
                         else {
                             console.log("invalid date range"); 
+                            scope.invalidDateRange = true;
+                            scope.invalidDateRangeGUI = true;
                         }
                     }
                     else {
                         console.log("invalid date range"); 
+                        scope.invalidDateRange = true;
+                        scope.invalidDateRangeGUI = true;
                     }
                 };
+                
           
+                var newAssignmentDescription = "";
           
 		        //Gui function add course
 		        scope.addOrUpdateAssignment = function(){
@@ -136,6 +144,8 @@ app.directive('assignmentCreateassignment', [
 
 											scope.assignment.responsible_teacher = "";
 											scope.assignment.responsible_teacher = scope.session_user._id;
+                                            scope.assignment.description = $("#createAssignment").attr("value");
+                                            newAssignmentDescription = scope.assignment.description;
 
 							              	Assignment.create(scope.assignment, function(res){
 								          		Course.get({ _id: res[0].course}, function(x){
@@ -197,11 +207,11 @@ app.directive('assignmentCreateassignment', [
 						icon: "fa-file-text-o",
 					},
 					{
-						name: "Select course",
+						name: "Details",
 						icon: "fa-leaf",
 					},
 					{
-						name: "Details",
+						name: "Assignment",
 						icon: "fa-i-cursor",
 		          	},
 					{
@@ -214,7 +224,7 @@ app.directive('assignmentCreateassignment', [
 						icon: "fa-file-text-o",
 					},
 					{
-						name: "Select course",
+						name: "Details",
 						icon: "fa-leaf",
 					},
 					{
@@ -222,7 +232,7 @@ app.directive('assignmentCreateassignment', [
 						icon: "fa-file-text-o",
 					},
 					{
-						name: "Details",
+						name: "Assignment",
 						icon: "fa-i-cursor",
 					},
 					{
@@ -344,6 +354,17 @@ app.directive('assignmentCreateassignment', [
 
 						if(scope.isCreating){
 							scope.selection = scope.createsteps[nextStep].name;
+                            //console.log("namnet", scope.createsteps[stepIndex].name);
+                            if(scope.createsteps[nextStep].name == "Preview") {
+                                console.log("kör stepp");
+                                console.log($(".process_view").children());
+                                console.log("SCOPE", scope.assignment.description);
+                                //$(".assignmentDescription").text("????");   
+                               // $(".process_view").children(".assignmentDescription").append(scope.assignment.description);
+                                //$(".process_view").children().text("hej");
+                                //$(".process_view").append(scope.assignment.description);
+                            }
+                            
 						} else {
 							scope.selection = scope.steps[nextStep].name;
 						}
