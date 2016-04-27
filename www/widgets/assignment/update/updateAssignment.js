@@ -58,7 +58,7 @@ app.directive('assignmentUpdateUpdateassignment', [
       };
           
         scope.closeUpdateAssignment = function() {
-            if (confirm('Do you want to close wothout saving?')) {
+            if (confirm('Do you want to close without saving?')) {
                 scope.$parent.hideModal();
                 scope.newAssignment = {
                     name: scope.assignment.name,
@@ -67,7 +67,7 @@ app.directive('assignmentUpdateUpdateassignment', [
                 };
                 console.log(scope.assignment.description);
                 var textEditor = document.querySelector("trix-editor");
-                textEditor.editor.setSelectedRange([0,3]);
+                // empty all
                 textEditor.editor.insertHTML(scope.assignment.description);
             } else {
                 // Do nothing!

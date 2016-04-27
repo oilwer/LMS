@@ -32,7 +32,7 @@
            </div>
          </div> <!--.StepOne-->
 
-         <div class="stepTwo" ng-switch-when="Details">
+         <div class="stepTwo" ng-switch-when="Assignment">
            <div class="col-sm-24">
              <form name="assignmentDetails">
                <div class="col-sm-12">
@@ -44,32 +44,8 @@
                  class="formError">
                    <i class="fa fa-times"></i>
                  </span>
-                 <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="$parent.assignment.obligatory">
-                 <span
-                 class="error"
-                 ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
-                 class="formError">
-                   <i class="fa fa-times"></i>
-                 </span>
-
-                 <!-- SLUT PÅ URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
-                 <span
-                 class="error"
-                 ng-show="assignmentDetails.assessment.$touched && assignmentDetails.assessment.$invalid"
-                 class="formError">
-                   <i class="fa fa-times"></i>
-                 </span>
-               </div>
-
-               <div class="col-sm-12">
-                 <label for="duedate">Due date</label>
-                 <input type="datetime-local" name="duedate" class="form-control" ng-change="isDateRangeValid()" ng-model="$parent.assignment.due_date" required="true">
-                 <span
-                 class="error"
-                 ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
-                 class="formError">
-                   <i class="fa fa-times"></i>
-                 </span>
+                </div>
+                <div class="col-sm-12">
                  <label>Upload instruction file</label>
                  <div class="upload_instruction_file">
                    <form action="demo_form.asp">
@@ -78,14 +54,19 @@
                  </div>
                </div>
                <div class="col-sm-24">
-                 <label for="description">Description</label>
+                 <!--<label for="description">Description</label>
                  <input type="textarea" name="description" class="form-control" ng-model="$parent.assignment.description" required="true">
                  <span
                  class="error"
                  ng-show="assignmentDetails.description.$touched && assignmentDetails.description.$invalid"
                  class="formError">
                    <i class="fa fa-times"></i>
-                 </span>
+                 </span>-->
+                
+                <label for="content">Description</label>
+                <input id="createAssignment" type="hidden" name="content">
+                <trix-editor input="createAssignment" id="assignmentEditor"></trix-editor>
+                                      
                </div>
              </form>
            </div>
@@ -95,25 +76,54 @@
            </div>
          </div><!--.stepTwo-->
 
-         <div class="stepThree" ng-switch-when="Select course">
+         <div class="stepThree" ng-switch-when="Details">
            <div class="col-sm-24">
-             <form name="courseDetails">
-               <div class="select_course_header"><label for="selectCourse">Select course</label></div>
-               <select id="selectCourse"
-                           ng-change="selectCourseChanged(id)"
-                           ng-model="courseSelect.repeatSelect"
-                         required="required"
-                           name="repeatSelect"
-                           class="form-control">
-                 <option value=""> --- Course list ---</option>
-                 <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}">                                                      {{ option.name }}
-                 </option>
-               </select>
-             </form>
+            <form name="assignmentDetails">
+            <div class="col-sm-12 col-sm-offset-6">
+                <div class="select_course_header"><label for="selectCourse">Select course</label></div>
+                <select id="selectCourse"
+                       ng-change="selectCourseChanged(id)"
+                       ng-model="courseSelect.repeatSelect"
+                     required="required"
+                       name="repeatSelect"
+                       class="form-control">
+                <option value=""> --- Course list ---</option>
+                <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}">                                                      {{ option.name }}
+                </option>
+                </select>
+            </div>
+            <div class="col-sm-12 col-sm-offset-6">
+                <label for="duedate">Due date</label>
+                <input type="datetime-local" name="duedate" class="form-control" ng-change="isDateRangeValid()" ng-model="$parent.assignment.due_date" required="true">
+                <span
+                class="error"
+                ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid || invalidDateRangeGUI"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+            </div>
+            <div class="col-sm-12 col-sm-offset-6">
+                <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="$parent.assignment.obligatory">
+                <span
+                class="error"
+                ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+
+                <!-- SLUT PÅ URSPRUNGLIG KOD FÖR ATT VÄLJA KURS -->
+                <span
+                class="error"
+                ng-show="assignmentDetails.assessment.$touched && assignmentDetails.assessment.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+            </div>
+            </form>
            </div>
            <div class="col-xs-24 pager">
                <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
-               <button href="" class="btn btn--assignments" ng-click="courseDetails.$valid && incrementStep()" ng-class="{btndisabled: courseDetails.$invalid}">Next step &rarr;</button>
+               <button href="" class="btn btn--assignments" ng-click="assignmentDetails.$valid && !invalidDateRange && incrementStep()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange }">Next step &rarr;</button>
            </div>
          </div> <!--End of step three-->
 
@@ -140,7 +150,7 @@
          </div> <!--End of step four-->
 
          <div class="stepFive" ng-switch-when="Preview">
-           <div class="col-sm-24 processview_preview">
+           <div class="col-sm-12 col-sm-offset-6 processview_preview">
              <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
              <p ng-if="assignment.due_date">Due Date: {{assignment.due_date | date}}</p>
 
@@ -152,7 +162,9 @@
              <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
              <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
                  <hr/>
+             <div class="col-sm-24 assignmentDescription">
                  <p ng-if="assignment.description"> {{assignment.description}}</p>
+             </div>
            </div>
            <div class="col-xs-24 pager">
                 <button button class="btn btn--assignments" ng-click="decrementStep()">&larr; Edit details</button>

@@ -7868,7 +7868,7 @@ input[type="datetime-local"].form-control {
 }
 .nav--process {
   position: relative;
-  padding: 20px 0px;
+  padding: 20px 0px 90px 0px;
   height: 90px;
   font-family: 'Roboto';
   z-index: 10;
@@ -7979,9 +7979,6 @@ input[type="datetime-local"].form-control {
 }
 .process_view .pager .btn {
   margin: 0px 10px;
-}
-.select_course_header {
-  margin-top: 8%;
 }
 .myCheckbox label {
   font-size: 1em;
