@@ -135,8 +135,10 @@ app.directive('connectStudentsaddremove', [
 			 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
 				 		//Add User to slack channel:
-				 		joinChannel(course[0].code, scope.students[index].email);
-
+			 		console.log(scope.students[index]);
+				 		if(scope.students[index].slack_token != undefined){
+				 			joinChannel(course[0].code, scope.students[index].email);
+				 		}
 				 		scope.students.splice(index, 1);
 				 	});
 			 	});
@@ -168,7 +170,9 @@ app.directive('connectStudentsaddremove', [
 						//TODO: For now each course has one channel, when we
 						//have more channels on course, find the course code for
 						//current course
-						leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
+						if(scope.studentsToBeAdded[index].slack_token != undefined){
+							leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
+						}
 						
 						scope.students.push(scope.studentsToBeAdded[index]);
 						scope.studentsToBeAdded.splice(index, 1);
