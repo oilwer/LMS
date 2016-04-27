@@ -19,6 +19,8 @@ app.directive('headerNav', [
       replace: true,
       link: function(scope, element, attrs) {
 
+          scope.courselist = ["magic course", "beef course", "cheese course"]
+
         scope.isActive = function(route) {
             var theLocation = $location.path().split("/")[1];
             //fix if location.path() is root
@@ -94,6 +96,7 @@ app.directive('headerNav', [
         scope.toggleCreateBar = function() {
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = scope.isToolbarCreateOpen === true ? false: true;
+            
         };
 
         scope.togglePersonalBar = function() {
@@ -111,6 +114,7 @@ app.directive('headerNav', [
             scope.isToolbarCreateOpen = false;
             scope.$apply();
         });
+
         //TODO: There should be a function that does all this hiding of drop
         //downs and stuff instead of doing it in each one
         scope.toggleNotificationBar = function() {
@@ -118,6 +122,22 @@ app.directive('headerNav', [
           scope.isToolbarNotificationOpen = scope.isToolbarNotificationOpen === true ? false: true;
         }
 
+
+          
+          scope.toggleCreateSlackBar = function() {
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
+              scope.courseSelected = false;
+        };
+          
+          scope.showChatBox = function(course) {
+              
+              //slack connection depending on course
+              scope.course = course;
+              scope.courseSelected = true;
+            
+          }
+          
       } //link
 
     };

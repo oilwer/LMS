@@ -7,7 +7,11 @@
         <button href="" ng-click="pathLocation('/admin/usermanager/')" class="btn btn-primary"><i class="fa fa-users"></i> User manager</button>
         <button href="" ng-click="toggleModal()" class="btn btn-success"><i class="fa fa-leaf"></i> Create course</button>
         <button href="" ng-click="toggleAssignmentModal()" class="btn btn-warning"><i class="fa fa-file-text-o"></i> Create assignment</button>
+        <button href="" ng-click="toggleChatModal()" class="btn btn-primary"><i class="fa fa-comments"></i> Chat</button>
     </div>
+    <modal-dialog show='chatModalShown' width='80%'>
+        <div assignment-createassignment></div>
+    </modal-dialog>
     <modal-dialog show='assignmentModalShown' width='80%'>
         <div assignment-createassignment></div>
     </modal-dialog>
