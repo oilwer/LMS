@@ -46,7 +46,7 @@ module.exports = function(mongoose){
   });
 
   UserSchema.pre('update', function(next){
-    console.log(this._update.$set.password);
+    
     if (!this._update.$set.password) {
       console.log ("Not hashing ", this._update.$set.password);
     }
