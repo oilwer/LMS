@@ -88,7 +88,8 @@ app.directive('assignmentAssignmentstudent', [
                     assignments:{
                     assignment: scope.assignment._id,
                     comment: comment,
-                    answer_file: scope.file[0].name            
+                    answer_file: scope.file[0].name         
+                        //add submissionDate : new Date(), ?
                     } 
                   }
                 });

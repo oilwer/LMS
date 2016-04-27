@@ -47,6 +47,7 @@ app.directive('assignmentAssignmentteacher', [
           
           scope.assignmentAnswers = []; //ng-repeate
           scope.setUp = function() {
+              
               User.get({courses: scope.course._id}, function(users){
     
                   //look for assignments in all the users bind to a course
@@ -66,7 +67,7 @@ app.directive('assignmentAssignmentteacher', [
                                   assignmentId: scope.assignment._id,
                                   name: users[a].first_name + " " + users[a].last_name,
                                   userId: users[a]._id,
-                                  submissionDate: "16-03-22", //lägg till i skicka in
+                                  submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
                                   status: users[a].assignments[b].status, //lägg till klar, bedömd men inte klar
                                 };
                                 scope.assignmentAnswers.push(Item);
@@ -133,13 +134,12 @@ app.directive('assignmentAssignmentteacher', [
                   user = user[0];
                   for (var a = 0, len = user.assignments.length; a < len; a += 1) {
                     if(user.assignments[a].assignment == assignId){
-                        
                         scope.assignmentItem = {
                             name: user.first_name + " " + user.last_name,
                             answeredBy: session_user._id,
                             assignmentId: assignId,
                             studentId: studId,
-                            submissionDate: "16-03-22", //lägg till i skicka in
+                            submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
                             status: user.assignments[a].status,
                             answerComment: user.assignments[a].answerComment, //feedback from teacher
                             answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
