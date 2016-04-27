@@ -28,7 +28,7 @@
                 <th scope="col">Submission date</th>
                 <th scope="col">Status</th>
             </tr>
-            <tr ng-repeat="answer in assignmentAnswers track by answer.userId | orderBy: 'answer.submissionDate'" 
+            <tr ng-repeat="answer in assignmentAnswers | orderBy: 'submissionDate'" 
                 ng-click="showAssignmentItem(answer.assignmentId, answer.userId)">
                 <td scope="col">{{answer.name}}</td>
                 <td scope="col">{{answer.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</td>
