@@ -60,10 +60,10 @@ module.exports = function(mongoose){
   UserSchema.pre('update', function(next){
 
     if (this._update.$set != null){
-    console.log("Set undefined");
+    //console.log("Set undefined");
 
       if (!this._update.$set.password) {
-        console.log ("Not hashing ", this._update.$set.password);
+        //console.log ("Not hashing ", this._update.$set.password);
       }
       else {
         this._update.$set.password = sha1(this._update.$set.password);

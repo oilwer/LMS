@@ -70,46 +70,29 @@ app.directive('assignmentAssignmentstudent', [
             scope.submit();
 
             var comment = "";
-            var found = false;
+           
 
-            User.get({_id: session_user._id}, function(user){
+            User.get({_id: scope.session_user._id}, function(user){
               session_user = user[0];
        
-              for (var a = 0, len = session_user.assignments.length; a < len; a += 1) {
-                if(session_user.assignments[a].assignment === scope.assignment._id){
-                  found = true;
-                  comment = session_user.assignments[a].comment;
-                  break;
-                }
-              }
+     
 
               comment += document.getElementsByName("content")[0].value ;    
-              console.log(comment);         
+                       
 
-              if(found){ //update text only
-                User.update(
-                {
-                  _id: session_user._id,
-                  assignments: {$elemMatch: {assignment: scope.assignment._id} }
-                },{
-                    "assignments.$.comment" : comment,
-                    "assignments.$.answer_file" : scope.file[0] 
-                  }
-                );                
-              }
-              else{ //add assignment to user with text'
+        
+             
                 User.update({
-                    _id: session_user._id
+                    _id: scope.session_user._id
                 },{ $push: {
                     assignments:{
                     assignment: scope.assignment._id,
                     comment: comment,
-                    answer_file: scope.file[0]             
+                    answer_file: scope.file[0].name            
                     } 
                   }
                 });
-              }
-
+              
               document.getElementsByName("content")[0].value = ""; 
 
             });
