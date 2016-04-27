@@ -20,6 +20,14 @@ module.exports = function(mongoose){
     courses: [{
         type: mongoose.Schema.Types.ObjectId, ref: 'Course'
     }],
+    notifications: [{
+      url: String,
+      is_viewed: Boolean,
+      created_on: {type: Date, default: Date.now},
+      title: String,
+      text: String
+
+    }],
     assignments: [{
       assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
       grade: Number,
