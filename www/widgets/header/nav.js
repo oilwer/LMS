@@ -19,7 +19,7 @@ app.directive('headerNav', [
       replace: true,
       link: function(scope, element, attrs) {
 
-          scope.courselist = ["magic course", "beef course", "cheese course"]
+
 
         scope.isActive = function(route) {
             var theLocation = $location.path().split("/")[1];
@@ -96,7 +96,7 @@ app.directive('headerNav', [
         scope.toggleCreateBar = function() {
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = scope.isToolbarCreateOpen === true ? false: true;
-            
+
         };
 
         scope.togglePersonalBar = function() {
@@ -123,21 +123,15 @@ app.directive('headerNav', [
         }
 
 
-          
+
           scope.toggleCreateSlackBar = function() {
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
               scope.courseSelected = false;
         };
-          
-          scope.showChatBox = function(course) {
-              
-              //slack connection depending on course
-              scope.course = course;
-              scope.courseSelected = true;
-            
-          }
-          
+
+
+
       } //link
 
     };
