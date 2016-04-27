@@ -119,17 +119,7 @@ app.directive('assignmentAssignmentstudent', [
             scope.emptyInput = function(){
                 $('.output').val(""); 
             }
-            else{ //add assignment to user with text'
-              User.update({
-                  _id: scope.session_user._id
-              },{ $push: {
-                  assignments:{
-                  assignment: scope.assignment._id,
-                  comment: scope.comment              
-                  } 
-                }
-              });
-            }
+
             
             scope.hasAnswered = true;
             $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment);

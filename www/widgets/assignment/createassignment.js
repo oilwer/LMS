@@ -357,7 +357,7 @@ app.directive('assignmentCreateassignment', [
                             //console.log("namnet", scope.createsteps[stepIndex].name);
                             if(scope.createsteps[nextStep].name == "Preview") {
                                 console.log("kör stepp");
-                                console.log($(".process_view").children());
+                                setTimeout(previewDescription,50);
                                 console.log("SCOPE", scope.assignment.description);
                                 //$(".assignmentDescription").text("????");   
                                // $(".process_view").children(".assignmentDescription").append(scope.assignment.description);
@@ -375,7 +375,12 @@ app.directive('assignmentCreateassignment', [
 						}
 		            }
 		        };
-
+                
+                var previewDescription = function() {
+                    console.log($(".process_view").children());
+                    $(".assignmentDescription").append(scope.assignment.description);
+                };
+          
 		        //move to previous step
 		        scope.decrementStep = function() {
 		            if(scope.hasPreviousStep()){

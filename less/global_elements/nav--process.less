@@ -34,12 +34,12 @@ input[type="datetime-local"].form-control{
 .checked:before {
     content: "";
     position: absolute;
-    top: 26px;
+    top: 23px;
     left: 50%;
-    border-top: 1px solid white;
-    border-bottom: 1px solid white;
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
     width: 100%;
-    height: 4px;
+    height: 6px;
     background: @RGBcourses;
     -webkit-animation: transformChecked 0.5s; /* Chrome, Safari, Opera */
     animation: transformChecked 0.5s;
@@ -167,10 +167,6 @@ input[type="datetime-local"].form-control{
 
 .nav--process--assignments {
     .checked:before {
-   content: "";
-   position: absolute;
-   width: 100%;
-   height: 2px;
    background: @RGBassignments;
 }
 
