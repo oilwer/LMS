@@ -8,50 +8,50 @@ var app = angular.module("mongr", [
 
 
 app.service('LoginService', function($http) {
-     
+
    return {
        // call to login
        login : function(email, password) {
-       
+
             var data = {"email": email, "password": password};
 
            // Makes API call w/ email and password
           //  return $http.get('/api/login/{"email": email, "password": password};
             return $http.post("/api/login/", data).success(function(response, status) {
-                // console.log(response);            
+                // console.log(response);
             });
        },
        
        checkIfUserExists : function(email) {
-       
+
             var data = '{email: ' + '"' + email + '"' + '}';
-           // Makes API call w/ email 
+           // Makes API call w/ email
           //  return $http.get('/api/user/{"email": email};
             return $http.get("/api/user/" + data).success(function(status) {
-                // console.log(response);            
-            });       
-       }, 
-       
+                // console.log(response);
+            });
+       },
+
        logout : function() {
         return $http.delete("/api/login").success(function(status) {
-           
+
         });
       },
-       
+
        resetPassword : function(email) {
-       
+
             var data = '{"email": ' + '"' + email + '"' + '}';
-           // Makes API call w/ email 
+           // Makes API call w/ email
           //  return $http.get('/api/user/{"email": email};
-          
+
           console.log("data", data);
-          
+
             return $http.put("/api/resetpassword/", data).success(function(status) {
-                // console.log(response);            
-            });       
+                // console.log(response);
+            });
        }
    }
-   
+
 });
 
 app.service('SessionService', function($http) {
@@ -73,9 +73,9 @@ app.service('SessionService', function($http) {
 //         getActive : function() {
 //             Boolean b = true;
 //             var data = '{status: ' + '"' + b + '"' + '}';
-//            // Makes API call w/ email 
+//            // Makes API call w/ email
 //            //  return $http.get('/api/user/{"email": email};
-          
+
 //            console.log("data", data);
 //             return $http.get("/api/course/", data).success(function(response) {
 //                 // console.log(response);
@@ -106,7 +106,7 @@ app.service('ChatService', function($http){
        getChannels : function(userIdentifier) {
 
          return $http.get('/api/chat?action=getChannels&userIdentifier=' + userIdentifier);
-       
+
        },
 
        // Send message
@@ -114,7 +114,7 @@ app.service('ChatService', function($http){
            var data = {"channel": channel, "text": text, "userIdentifier" : userIdentifier};
 
            return $http.post('/api/chat', data).success(function(response, status){
-           
+
            });
        },
 
