@@ -31,7 +31,7 @@ app.directive('assignmentAssignmentstudent', [
           }); 
         
 
-          User.get({_id: scope.responsible_teacher }, function(user){
+          User.get({_id: scope.course.responsible_teacher }, function(user){
               scope.teacher = user[0].first_name + " " + user[0].last_name;
               scope.teacherUrl = user[0].public_url;
           });
@@ -45,6 +45,7 @@ app.directive('assignmentAssignmentstudent', [
               else{
                   scope.assignment.obligatory = "No";
               }
+              $(".assignment_description").append(scope.assignment.description);
               checkIfSubmitted();
           });
           
@@ -57,58 +58,50 @@ app.directive('assignmentAssignmentstudent', [
                 if(scope.session_user.assignments[a].assignment == scope.assignment._id){
                   scope.comment = scope.session_user.assignments[a].comment;
                   scope.hasAnswered = true;
-                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment);
-                  break;
+                  $('.assignment-isAnswered p:first-child').append("<hr>" + scope.comment);
+                  //break;
                 }
               }
             });                
-          }
+          };
 
           //Send data to database on button click
           scope.sendAssignment = function(){
+              console.log("körs");
 
             scope.submit();
-
+            scope.comment = "";
             var comment = "";
-           
 
             User.get({_id: scope.session_user._id}, function(user){
               session_user = user[0];
-       
-     
 
-              comment += document.getElementsByName("content")[0].value ;    
-                       
+              comment += document.getElementsByName("content")[0].value;    
 
-        
-             
                 User.update({
                     _id: scope.session_user._id
                 },{ $push: {
                     assignments:{
                     assignment: scope.assignment._id,
                     comment: comment,
+                    submissionDate: new Date(),
+                    status: "Submitted",
                     answer_file: scope.file[0].name         
-                        //add submissionDate : new Date(), ?
-                    } 
+                    }  
                   }
+                }, function(res) {
+                      console.log("response", res);
                 });
-              
+
               document.getElementsByName("content")[0].value = ""; 
+              $('.assignment-isAnswered p:first-child').prepend("<hr>" + comment);
 
             });
-                     
 
-            //Clear file-name in input
-            scope.emptyInput = function(){
-                $('.output').val(""); 
-            }
-
-            
             scope.hasAnswered = true;
-            $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment);
-            document.querySelector("trix-editor[input='studentEditAssignment']").editor.insertHTML(scope.comment);
-          }
+            //console.log("comment att prepend:", scope.comment, comment);
+            //document.querySelector("trix-editor[input='studentEditAssignment']").editor.insertHTML(scope.comment);
+        };
         
           scope.showHideBtn = "Show description"
 
