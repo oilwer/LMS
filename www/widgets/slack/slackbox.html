@@ -8,8 +8,8 @@
                 <li>
                     Channels
                 </li>
-                <li ng-repeat="course in courselist">
-                    <a ng-click="showChatBox(course)" >#{{course.name}}</a>
+                <li ng-click="showChatBox(course)" ng-repeat="course in courselist">
+                    <a>#{{course.name}}</a>
                 </li>
             </div>
         </ul>

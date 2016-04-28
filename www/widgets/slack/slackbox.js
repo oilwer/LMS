@@ -64,23 +64,28 @@ app.directive('slackSlackbox', [
         var gmPromise;
         scope.showChatBox = function(course) {
 
-          courseGlobal = course;
-          if(scope.course != undefined) {
+            if (scope.course != course)
+            {
 
-            if (scope.course.messages != undefined)
-              {
-                scope.course.messages = undefined;
-                }
-                scope.course = undefined;
+              courseGlobal = course;
+              if(scope.course != undefined) {
+
+                if (scope.course.messages != undefined)
+                  {
+                    scope.course.messages = undefined;
+                    }
+                    scope.course = undefined;
+              }
+
+
+                //slack connection depending on course
+                scope.course = "";
+                scope.course = course;
+                scope.courseSelected = true;
+                $interval.cancel(gmPromise);
+                gmPromise = $interval(gm, 1000);
+
           }
-
-            //slack connection depending on course
-            scope.course = "";
-            scope.course = course;
-            scope.courseSelected = true;
-            $interval.cancel(gmPromise);
-            gmPromise = $interval(gm, 1000);
-
         }
 
         var gm = function(){
