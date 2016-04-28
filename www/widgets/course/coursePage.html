@@ -113,22 +113,14 @@
                                 <i class="fa--heading fa fa-file-text-o"></i>
                                 Assignments
                             </h2>
-                            <div class="">
+                            <div class="assignmentList">
                                 <ul class="courses_assignments">
                                     <p class="course_heading">
                                         <span>Name</span><span>Deadline</span><span>Status</span>
                                     </p>
-    
-                                     <assignment-item ng-repeat="assignment in assignments"></assignments-item> 
-                        
+                                     <assignment-item ng-repeat="assignment in assignments | orderBy: 'due_date'"></assignments-item>
                                 </ul>
-                                   
-                                    <!-- | filter:searchStudents -->
-         
-                                <!-- <p class="course_heading"><span>Name</span><span>Deadline</span><span>Status</span></p>  
-                                <ul class="courses_assignments" ng-repeat="assignment in course.assignments">
-                                    <a href={{assignment.url}}><li class="courses_assignmentitem">{{assignment.name}}</li></a>
-                                </ul> -->
+                                <button class="btn btn--default btn--assignments" ng-if="auth" ng-click=""><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
                             </div>
                         </div>
 
@@ -139,7 +131,7 @@
                             </h2>
                             <div class="">
                                 <p class="course_heading">
-                                    <span>Name</span><span>Time</span><span>Status</span>
+                                    <span>Name</span><span>Added</span>
                                 </p>
 
                                 <ul class="courses_assignments" ng-repeat="resource in course.resources">
@@ -155,7 +147,7 @@
                                 Questions and Answers
                             </h2>
                             <div class="box__content">
-                                <p> Placeholder </p>
+                                <p> </p>
                             </div>
                         </div><!--.col-->
                     

@@ -8386,6 +8386,9 @@ trix-toolbar .button_group input[type=button] {
 .btn--courses:focus {
   outline: none;
 }
+.assignmentList .btn {
+  margin-left: 20px;
+}
 .btn--back {
   float: left;
   margin: 10px 0px;

@@ -132,8 +132,10 @@ app.directive('assignmentAssignmentteacher', [
                   
               User.get({_id: studId}, function(user){
                   user = user[0];
+                  var submissionNotFound = true;
                   for (var a = 0, len = user.assignments.length; a < len; a += 1) {
                     if(user.assignments[a].assignment == assignId){
+                        submissionNotFound = false;
                         scope.assignmentItem = {
                             name: user.first_name + " " + user.last_name,
                             answeredBy: session_user._id,
@@ -149,9 +151,27 @@ app.directive('assignmentAssignmentteacher', [
                             ], 
                             content: user.assignments[a].comment,
                         };
+                        console.log("assign", scope.assignmentItem);
                         //console.log("new:", scope.assignmentItem);
                         $(".assignment_content").append(scope.assignmentItem.content);
                       break; //assignment found - stop looking
+                    };
+                      if(submissionNotFound) {
+                        scope.assignmentItem = {
+                            name: user.first_name + " " + user.last_name,
+                            answeredBy: session_user._id,
+                            assignmentId: assignId,
+                            studentId: studId,
+                            submissionDate: "",//users.assignments[a].submissionDate, //lägg till i skicka in
+                            status: user.assignments[a].status,
+                            answerComment: user.assignments[a].answerComment, //feedback from teacher
+                            answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
+                            gradingOptions: [
+                            "Resubmit",
+                            "Done"
+                            ], 
+                            content: user.assignments[a].comment,
+                        };
                     };
                   };
               });
