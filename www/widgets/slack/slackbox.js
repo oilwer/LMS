@@ -32,7 +32,7 @@ app.directive('slackSlackbox', [
           })[0];
 
           ChatService.sendMessage(obj.slack_channels[0].channelId, text, UserIdentifier).success(function(response){
-            console.log("Response", response);
+            //console.log("Response", response);
             ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
               console.log("Response", response);
               callback(response.messages.reverse());
@@ -50,7 +50,7 @@ app.directive('slackSlackbox', [
           })[0];
 
            ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
-              console.log("Response", response);
+              //console.log("Response", response);
 
               if(response.error == "not_authed"){
                 callback(response.error);
@@ -92,6 +92,7 @@ app.directive('slackSlackbox', [
                 gmPromise = $interval(gm, 1000);
 
           }
+
         }
 
         var gm = function(){
@@ -125,7 +126,7 @@ app.directive('slackSlackbox', [
               {
                 coursesWithToken.push(user[0].courses[i]);
 
-                console.log(user[0].courses[i]);
+                //console.log(user[0].courses[i]);
               }
             }
 
@@ -136,6 +137,7 @@ app.directive('slackSlackbox', [
 
         scope.toggleCreateSlackBar = function() {
           $interval.cancel(gmPromise);
+          scope.course = undefined;
           scope.isToolbarPersonalOpen = false;
           scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
           scope.courseSelected = false;
