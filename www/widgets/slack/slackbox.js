@@ -51,7 +51,11 @@ app.directive('slackSlackbox', [
 
            ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
               console.log("Response", response);
-              callback(response.messages);
+              if(response.error == "not_authed"){
+                callback(response.error);
+              } else {
+                callback(response.messages);
+              }
             });
         }
 
@@ -86,7 +90,13 @@ app.directive('slackSlackbox', [
         var gm = function(){
           getMessages(courseGlobal.code, savedUser.email, function(messages){
             scope.course.messages = "";
-            scope.course.messages = messages;
+            if(messages == "not_authed"){
+              scope.course.messages = [{ text:
+                "Please Authenticate your profile with slack in your profile!"}];
+              $interval.cancel(gmPromise);
+            } else{
+              scope.course.messages = messages;
+            }
           });
         }
 
