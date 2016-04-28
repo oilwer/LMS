@@ -22,7 +22,7 @@ app.use(m.bodyparser.urlencoded({ extended: false }));
 app.use(m.cookieparser());
 app.use(m.express.static(m.path.join(__dirname, 'www')));
 var multer = require('multer');
-
+var url = require('url');
 
 //https://github.com/expressjs/session
 app.use(m.expresssession({
@@ -74,7 +74,7 @@ var options = {
   // (and question) and can deny Mongresto permission to return it
   // permissionToAnswer:
     // require('./permissions/toAnswer'),
-    
+
   customRoutes: customRoutes
 };
 
@@ -93,15 +93,19 @@ app.get('/forgotPassword/', function (req, res) {
 
 /** Serving from the same express Server
     No cors required */
-    
+
 
     var storage = multer.diskStorage({ //multers disk storage settings
         destination: function (req, file, cb) {
             cb(null, './uploads/')
         },
         filename: function (req, file, cb) {
-            var datetimestamp = Date.now();
-            cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+            var datetimestamp = Date.now
+            console.log("req", req.session.user._id);
+            var strippedFileName = file.originalname.replace(/[\n\t\r\x20]/g, "_");
+            //console.log("Uploaded successfully", strippedFileName);
+            // cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])
+            cb(null, strippedFileName);
         }
     });
 
@@ -111,7 +115,6 @@ app.get('/forgotPassword/', function (req, res) {
 
     /** API path that will upload the files */
     app.post('/upload', function(req, res) {
-    
         upload(req,res,function(err){
             if(err){
                  res.json({error_code:1,err_desc:err});
@@ -119,7 +122,13 @@ app.get('/forgotPassword/', function (req, res) {
             }
              res.json({error_code:0,err_desc:null});
         })
-       
+    });
+    // Handles download file request
+    app.get('/uploads/:filename(*)', function( req, res){
+      // Get URL path
+        var url_parts = url.parse(req.url, true);
+        // send back file from server matching inputed name
+        res.sendFile(url_parts.path, {root: './'});
     });
 
 
