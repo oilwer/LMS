@@ -164,6 +164,9 @@
     margin-top: 5px;
     margin-left: 0px;
 }
+.btn-slackbox:hover {
+    color:rgb(160,160,160);
+}
 
 
 
@@ -187,8 +190,8 @@
 }
 
 .windowcont-slackbox {
-    border-right: 1px solid grey;
-    border-left: 1px solid grey;
+    border-right: 2px solid @LMSdark;
+    border-left: 2px solid @LMSdark;
     border-radius: 1px;
     overflow: scroll;
     height: 13em;
@@ -206,14 +209,16 @@
     background: #fff;
     margin-bottom: 1em;
     li {
+        border-right:1px solid @LMSdark;
+        border-left:1px solid @LMSdark;
         width: 100%;
         padding: 15px 0px;
         text-align: center;
-        border-bottom: 1px solid rgba(100, 100, 100, .22);
-        transition: background 0.3 ease-in-out;
+        border-bottom: 1px solid grey;
+        transition: background 0.2 ease-in-out;
     }
     li:hover {
-        background: rgb(240,240,240);
+        background: rgb(220,220,220);
         transition: background 0.3 ease-in-out;
     }
     li:first-child {
@@ -244,4 +249,30 @@
   cursor: pointer;
   font-size: 1.3em;
   float: right;
+}
+.box__header .exit:hover{
+  color:grey;
+}
+.exit2:hover {
+  color:grey;
+}
+.form--chat .form-control {
+  border-top:1px dotted @LMSdark;
+  border-bottom: 2px solid @LMSdark;
+  border-right: 2px solid @LMSdark;
+  border-left: 2px solid @LMSdark;
+
+}
+.form--chat .form-control:focus {
+  border-top:1px dotted @LMSdark;
+  border-bottom: 2px solid @LMSdark;
+  border-right: 2px solid @LMSdark;
+  border-left: 2px solid @LMSdark;
+
+}
+.searchForm .searchChannel {
+  border-top:1px solid rgba(255,255,255, 0.1);
+  border-bottom: 1px solid @LMSdark;
+  border-right: 1px solid @LMSdark;
+  border-left: 1px solid @LMSdark;
 }
