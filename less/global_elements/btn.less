@@ -12,6 +12,7 @@
 
 .btn--courses {
     background: @RGBcourses;
+    color: #fff;
     transition: all 0.3s ease-in-out;
     &:hover {
         background: fade(@RGBcourses,85%);
@@ -22,8 +23,27 @@
     }
 }
 
+.btn--users {
+    background: @RGBskills;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBskills,85%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
 .assignmentList .btn {
     margin-left: 20px;
+}
+
+.btn {
+    margin: 5px;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 .btn--back {

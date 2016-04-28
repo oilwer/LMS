@@ -8405,6 +8405,7 @@ trix-toolbar .button_group input[type=button] {
 }
 .btn--courses {
   background: #2CC990;
+  color: #fff;
   transition: all 0.3s ease-in-out;
 }
 .btn--courses:hover {
@@ -8415,8 +8416,26 @@ trix-toolbar .button_group input[type=button] {
 .btn--courses:focus {
   outline: none;
 }
+.btn--users {
+  background: #D8335B;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn--users:hover {
+  background: rgba(216, 51, 91, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+.btn--users:active,
+.btn--users:focus {
+  outline: none;
+}
 .assignmentList .btn {
   margin-left: 20px;
+}
+.btn {
+  margin: 5px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 .btn--back {
   float: left;

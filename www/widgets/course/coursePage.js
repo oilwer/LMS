@@ -85,10 +85,12 @@ app.directive('courseCoursepage', [
 
       scope.editInfo = function () {
         console.log("yolod");
-          
-
-
       };
+          
+        scope.castTheAssignmentModal = function() {
+            scope.$root.$broadcast('showTheAssignmentModal');
+        };
+        
 
     
               

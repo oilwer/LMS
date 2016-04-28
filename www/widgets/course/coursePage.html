@@ -120,7 +120,7 @@
                                     </p>
                                      <assignment-item ng-repeat="assignment in assignments | orderBy: 'due_date'"></assignments-item>
                                 </ul>
-                                <button class="btn btn--default btn--assignments" ng-if="auth" ng-click=""><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+                                <button class="btn btn--default btn--assignments" ng-show="auth" ng-click="castTheAssignmentModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
                             </div>
                         </div>
 

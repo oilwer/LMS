@@ -2,6 +2,9 @@
 <div class="app_container app_container--padding">
     <div class="container courses">
         <div class="row">
+            <div class="col-sm-12">
+                <button class="btn btn--default btn--courses" ng-show="auth" ng-click="castTheCourseModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+            </div>
             <div class="col-sm-20 col-sm-offset-2">
                 <dashboard-courses ng-if="!auth"></dashboard-courses>
 

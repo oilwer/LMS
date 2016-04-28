@@ -45,57 +45,60 @@ app.directive('assignmentAssignmentteacher', [
           });
           
           
-          scope.assignmentAnswers = []; //ng-repeate
           scope.setUp = function() {
+              scope.assignmentAnswers = [];
               
               User.get({courses: scope.course._id}, function(users){
     
                   //look for assignments in all the users bind to a course
                   for (var a = 0, userlength = users.length; a < userlength; a += 1) {
                       
-                      //assignmentlist exists
-                      if(users[a].assignments.length > 0) {
-                          
-                          //loop assignmentlist
-                          var notFound = true;
-                          for(var b = 0; users[a].assignments.length > b; b++) {
-                              
-                              //check for match
-                              if(users[a].assignments[b].assignment === scope.assignment._id) { 
-                                  notFound = false; //found
-                                  var Item = {
+                        //only add students
+                        if(users[a].role === "student") {
+                            //assignmentlist exists
+                          if(users[a].assignments.length > 0) {
+
+                              //loop assignmentlist
+                              var notFound = true;
+                              for(var b = 0; users[a].assignments.length > b; b++) {
+
+                                  //check for match
+                                  if(users[a].assignments[b].assignment === scope.assignment._id) { 
+                                      notFound = false; //found
+                                      var Item = {
+                                      assignmentId: scope.assignment._id,
+                                      name: users[a].first_name + " " + users[a].last_name,
+                                      userId: users[a]._id,
+                                      submissionDate: new Date(users[a].assignments[b].submissionDate), //lägg till i skicka in
+                                      status: users[a].assignments[b].status, //lägg till klar, bedömd men inte klar
+                                    };
+                                    scope.assignmentAnswers.push(Item);
+                                      break; //assignment found, break loop - no need to continue
+                                  }
+                              };
+                          //no match
+                          if (notFound) { 
+                              var Item = {
                                   assignmentId: scope.assignment._id,
                                   name: users[a].first_name + " " + users[a].last_name,
                                   userId: users[a]._id,
-                                  submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
-                                  status: users[a].assignments[b].status, //lägg till klar, bedömd men inte klar
-                                };
-                                scope.assignmentAnswers.push(Item);
-                                  break; //assignment found, break loop - no need to continue
-                              }
+                                  submissionDate: "-", //lägg till i skicka in
+                                  status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
+                              };
+                              scope.assignmentAnswers.push(Item);
                           };
-                      //no match
-                      if (notFound) { 
-                          var Item = {
+
+                          //assignment list do not exist
+                          } else {
+                              var Item = {
                               assignmentId: scope.assignment._id,
                               name: users[a].first_name + " " + users[a].last_name,
                               userId: users[a]._id,
                               submissionDate: "-", //lägg till i skicka in
                               status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
+                            };
+                            scope.assignmentAnswers.push(Item);
                           };
-                          scope.assignmentAnswers.push(Item);
-                      };
-
-                      //assignment list do not exist
-                      } else {
-                          var Item = {
-                          assignmentId: scope.assignment._id,
-                          name: users[a].first_name + " " + users[a].last_name,
-                          userId: users[a]._id,
-                          submissionDate: "-", //lägg till i skicka in
-                          status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
-                        };
-                        scope.assignmentAnswers.push(Item);
                       };
                   };
               });
@@ -157,10 +160,7 @@ app.directive('assignmentAssignmentteacher', [
                         } else {
                             scope.assignmentItem.feedbackStatus = "default";
                         }
-                        //scope.assignmentItem.feedbackStatus = user.assignments[a].status;
-                        console.log(scope.assignmentItem.feedbackStatus, user.assignments[a].status)
-                        //console.log("assign", scope.assignmentItem);
-                        //console.log("new:", scope.assignmentItem);
+
                         $(".assignment_content").append(scope.assignmentItem.content);
                       break; //assignment found - stop looking
                     };
@@ -227,7 +227,8 @@ app.directive('assignmentAssignmentteacher', [
                     "assignments.$.status" : scope.assignmentItem.feedbackStatus
                   }
                 ); 
-
+              
+              scope.setUp();
               scope.showAssignmentList();
               resetAssignmentScope(); //reset scope
           };

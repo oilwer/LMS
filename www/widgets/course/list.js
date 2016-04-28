@@ -46,6 +46,10 @@ app.directive('courseList', [
              // $scope.changeClass = function(){
                $scope.custom = $scope.custom === false ? true: false;
           };
+          
+          $scope.castTheCourseModal = function() {
+            $scope.$root.$broadcast('showTheCourseModal');
+        };
       }
     };
   }

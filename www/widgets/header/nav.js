@@ -90,6 +90,14 @@ app.directive('headerNav', [
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = false;
           };
+          
+        scope.$root.$on('showTheAssignmentModal', function() {
+            scope.toggleAssignmentModal();
+        });
+          
+        scope.$root.$on('showTheCourseModal', function() {
+            scope.toggleModal();
+        });
 
 
         //toolbar show hide on element click event
