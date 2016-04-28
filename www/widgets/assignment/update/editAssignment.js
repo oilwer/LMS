@@ -15,42 +15,47 @@ app.directive('assignmentUpdateEditassignment', [
     User,
     SessionService
   ) {
-        
+
     return {
       templateUrl: settings.widgets + 'assignment/update/editAssignment.html',
       link: function(scope, element, attrs) {
         scope.newAssignment = {};
-        var comment = "";            
-        
+        var comment = "";
 
-        var update = function() { 
+
+        var update = function() {
             var textEditor = document.querySelector("trix-editor[input='studentEditAssignment']");
             textEditor.editor.insertHTML(scope.comment);
             scope.newAssignment = {
                 comment: ""
             };
         };
-        
+
         setTimeout(update, 500);
-          
-        scope.editSubmittedAnswer = function() {  
+
+        scope.editSubmittedAnswer = function() {
+
+            scope.submit();
             //create function
             scope.newAssignment.comment = $("#studentEditAssignment").attr("value");
+            var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+
 
             User.update({
                 _id: scope.session_user._id,
-                assignments: {$elemMatch: {assignment: scope.assignment._id} 
+                assignments: {$elemMatch: {assignment: scope.assignment._id}
                 }
                 },{
-                    "assignments.$.comment" :  scope.newAssignment.comment
-           
+                    "assignments.$.comment" :  scope.newAssignment.comment,
+                    "assignments.$.answer_file" : strippedFileName
                   }
-                );                
-              
-            $('.assignment-isAnswered p:first-child').empty().append(scope.newAssignment.comment);
+                );
+
+            $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment +"\n" + strippedFileName);
+
             scope.$parent.hideModal();
         };
-          
+
         scope.closeEdit = function() {
             //if (confirm('Do you want to close wothout saving?')) {
                 scope.$parent.hideModal();
@@ -66,7 +71,7 @@ app.directive('assignmentUpdateEditassignment', [
             } else {
                 // Do nothing!
             } */
-        }    
+        }
       }//end link
     };
   }

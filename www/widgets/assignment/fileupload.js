@@ -1,4 +1,8 @@
-app.directive('fileUpload', ['$timeout', function ($timeout) {
+app.directive('fileUpload', [
+  '$timeout',
+function (
+  $timeout
+){
     return {
         link: function (scope, element, attrs) {
             element.on('change', function  (evt) {
@@ -7,12 +11,12 @@ app.directive('fileUpload', ['$timeout', function ($timeout) {
                 for (i = 0; i < files.length; i++){
                     fileString += files[i].name + ", "
                 }
-                
+
                 console.log(fileString);
                 element.parent().parent().next().val(fileString.substring(0, fileString.length - 2));
             });
-                
-        
+
+
         }
     }
 }]);
