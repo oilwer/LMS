@@ -8297,6 +8297,20 @@ input[type=checkbox] {
   width: 200px;
   text-align: center;
 }
+.assignment--feedback {
+  background: rgba(62, 71, 79, 0.05);
+  border-top: 1px solid rgba(62, 71, 79, 0.15);
+  border-bottom: 1px solid rgba(62, 71, 79, 0.15);
+  margin: 20px 0px;
+}
+.assignment--feedback h3 {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+.assignment--feedback div {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
 .assignment_description {
   padding: 0px 40px 15px 40px;
 }
@@ -8305,7 +8319,11 @@ input[type=checkbox] {
 }
 .assignment-answer h2 {
   font-size: 1.4em;
-  padding: 0 0 10px 0;
+  padding: 0 0 20px 0;
+}
+.assignment-answer h3 {
+  padding-bottom: 5px;
+  font-size: 1.2em;
 }
 .assignment-answer ul {
   list-style: none;

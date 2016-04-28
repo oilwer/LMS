@@ -149,9 +149,17 @@ app.directive('assignmentAssignmentteacher', [
                             "Resubmit",
                             "Done"
                             ], 
-                            content: user.assignments[a].comment,
+                            content: user.assignments[a].comment
                         };
-                        console.log("assign", scope.assignmentItem);
+                        
+                        if(user.assignments[a].status === "Done" || user.assignments[a].status === "Resubmit") {
+                            scope.assignmentItem.feedbackStatus = user.assignments[a].status;
+                        } else {
+                            scope.assignmentItem.feedbackStatus = "default";
+                        }
+                        //scope.assignmentItem.feedbackStatus = user.assignments[a].status;
+                        console.log(scope.assignmentItem.feedbackStatus, user.assignments[a].status)
+                        //console.log("assign", scope.assignmentItem);
                         //console.log("new:", scope.assignmentItem);
                         $(".assignment_content").append(scope.assignmentItem.content);
                       break; //assignment found - stop looking
@@ -163,15 +171,16 @@ app.directive('assignmentAssignmentteacher', [
                             assignmentId: assignId,
                             studentId: studId,
                             submissionDate: "",//users.assignments[a].submissionDate, //lägg till i skicka in
-                            status: user.assignments[a].status,
-                            answerComment: user.assignments[a].answerComment, //feedback from teacher
-                            answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
+                            status: "Not submitted",
+                            answerComment: "", //feedback from teacher
+                            answerDate: "",//lägg till klar, bedömnd men inte klar, 
                             gradingOptions: [
                             "Resubmit",
                             "Done"
                             ], 
                             content: user.assignments[a].comment,
                         };
+                          scope.assignmentItem.feedbackStatus = "default";
                     };
                   };
               });
@@ -215,7 +224,7 @@ app.directive('assignmentAssignmentteacher', [
                     "assignments.$.answeredBy" : scope.assignmentItem.answeredBy,
                     "assignments.$.answerComment" : scope.assignmentItem.answerComment,
                     "assignments.$.answerDate" : scope.assignmentItem.answerDate,
-                    "assignments.$.status" : scope.assignmentItem.status
+                    "assignments.$.status" : scope.assignmentItem.feedbackStatus
                   }
                 ); 
 

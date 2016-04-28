@@ -37,8 +37,6 @@ app.directive('assignmentUpdateEditassignment', [
             //create function
             scope.newAssignment.comment = $("#studentEditAssignment").attr("value");
 
-                   
-              
             User.update({
                 _id: scope.session_user._id,
                 assignments: {$elemMatch: {assignment: scope.assignment._id} 
@@ -49,7 +47,7 @@ app.directive('assignmentUpdateEditassignment', [
                   }
                 );                
               
-            $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment);
+            $('.assignment-isAnswered p:first-child').empty().append(scope.newAssignment.comment);
             scope.$parent.hideModal();
         };
           
