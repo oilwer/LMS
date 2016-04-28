@@ -50,10 +50,10 @@
     <form class="submitAssignmentFeedback">          
         <select id="selectAssignmentGrade" 
             required="required"
-            ng-model="assignmentItem.status"
+            ng-model="assignmentItem.feedbackStatus"
             name="selectAssignmentGrade"
             class="form-control">
-            <option value=""> --- Grade ---</option>
+            <option value="default"> --- Grade ---</option>
             <option ng-repeat="option in assignmentItem.gradingOptions" value="{{ option }}">
                 {{ option }}
             </option>

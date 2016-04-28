@@ -46,24 +46,26 @@
 
 <!--If assignment has been answered-->
 <section ng-show="hasAnswered" class="box assignment assignment-answer col-lg-24 animate-show">
-    <h2 class="col-lg-15">Your answer</h2>
+
+    <h2>Submission</h2>
 
         <ul class="assignment-isAnswered" ng-if="hasAnswered" ng-show="hasAnswered">
-            <li><em>Status: </em>Not viewed</li>
-            <li><em>Grade: </em> - </li>
-            <li><em>Graded by: </em> - </li>
+            <li><em>Status: </em>{{assignmentFeedback.status}}</li>
+            <li><em>Graded by: </em> {{assignmentFeedback.answeredByName}} </li>
         </ul>
 
-
+        <div class="assignment--feedback col-lg-24" ng-show="hasFeedback">
+        <h3>Feedback</h3>
+        <div class="assignment-hasFeedback">
+        </div>  <!--.assignment-isAnswered-->
+    </div><!--.col-lg-12-->
     <div class="col-lg-24">
+        <h3>Your submission</h3>
         <div class="assignment-isAnswered">
             <p></p>
-            <p></p>
-            <button class="btn btn--assignments toggleClass" ng-hide="isgraded" ng-click="toggleUpdateAssignmentModal()">Edit submission <i ng-show="isEditOpen" class="fa fa fa-angle-up"></i><i ng-hide="isEditOpen" class="fa fa fa-angle-down"></i></button>
+            <button class="btn btn--assignments toggleClass" ng-click="toggleUpdateAssignmentModal()" ng-hide="isDone">Edit submission <i ng-show="isEditOpen" class="fa fa fa-angle-up"></i><i ng-hide="isEditOpen" class="fa fa fa-angle-down"></i></button>
         </div>  <!--.assignment-isAnswered-->
-
     </div><!--.col-lg-12-->
-
 </section>
 
 

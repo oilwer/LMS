@@ -3,21 +3,23 @@
         <div class="btn-slackbox" ng-click="toggleCreateSlackBar()">
             <i class="fa fa-commenting-o fa-2x"></i>
         </div>
-        <ul class="slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
+        <ul class=" slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
             <div class="slackbox-option_content">
-                <li>
-                    Channels
+                <li>Channels<i ng-click="toggleCreateSlackBar()" class="fa fa-times exit2" aria-hidden="true"></i>
                 </li>
-                <li ng-click="showChatBox(course)" ng-repeat="course in courselist">
+                <li ng-click="showChatBox(course)" ng-repeat="course in courselist | filter:searchChannel">
                     <a>#{{course.name}}</a>
                 </li>
+                <form class="searchForm" method="get">
+                        <input class="form-control searchChannel" type="text" ng-model="searchChannel" placeholder="Search channel...">
+                </form>
             </div>
         </ul>
     </li>
 </ul>
 
-<div class="col-md-6 wind-slackbox" ng-show="courseSelected">
-    <div class="col-md-24 box__header">{{course.name}}</div>
+<div class="col-md-6 wind-slackbox" ng-show="courseSelected && !isExited">
+    <div class="col-md-24 box__header">#{{course.name}} <i ng-click="toggleCloseChatBox()" class="fa fa-times exit" aria-hidden="true"></i></div>
 
     <div class="col-md-24 windowcont-slackbox">
 
@@ -25,10 +27,11 @@
         <div style="font-weight: bold;">{{msg.user}}</div>
         <div>{{msg.text}}</div>
         <hr>
+
       </div>
 
     </div>
-    <form ng:submit="sendM()">
+    <form class="form--chat" ng:submit="sendM()">
       <input ng-model="input" type="text" name="Fname" autocomplete="off"
       class="form-control" placeholder="Write message..." rows="3">
   </form>

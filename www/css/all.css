@@ -8139,6 +8139,9 @@ input[type=checkbox] {
   margin-top: 5px;
   margin-left: 0px;
 }
+.btn-slackbox:hover {
+  color: #a0a0a0;
+}
 .slackbox-options {
   position: absolute;
   bottom: 100%;
@@ -8156,8 +8159,8 @@ input[type=checkbox] {
   z-index: 40;
 }
 .windowcont-slackbox {
-  border-right: 1px solid grey;
-  border-left: 1px solid grey;
+  border-right: 2px solid #3e474f;
+  border-left: 2px solid #3e474f;
   border-radius: 1px;
   overflow: scroll;
   height: 13em;
@@ -8177,14 +8180,16 @@ input[type=checkbox] {
   margin-bottom: 1em;
 }
 .slackbox-option_content li {
+  border-right: 1px solid #3e474f;
+  border-left: 1px solid #3e474f;
   width: 100%;
   padding: 15px 0px;
   text-align: center;
-  border-bottom: 1px solid rgba(100, 100, 100, 0.22);
-  transition: background 0.3 ease-in-out;
+  border-bottom: 1px solid grey;
+  transition: background 0.2 ease-in-out;
 }
 .slackbox-option_content li:hover {
-  background: #f0f0f0;
+  background: #dcdcdc;
   transition: background 0.3 ease-in-out;
 }
 .slackbox-option_content li:first-child {
@@ -8202,6 +8207,41 @@ input[type=checkbox] {
   text-decoration: none;
   font-family: "Roboto", sans-serif;
   color: rgba(62, 71, 79, 0.9);
+}
+.exit2 {
+  margin-top: 2px;
+  margin-right: 1em;
+  cursor: pointer;
+  float: right;
+}
+.box__header .exit {
+  cursor: pointer;
+  font-size: 1.3em;
+  float: right;
+}
+.box__header .exit:hover {
+  color: grey;
+}
+.exit2:hover {
+  color: grey;
+}
+.form--chat .form-control {
+  border-top: 1px dotted #3e474f;
+  border-bottom: 2px solid #3e474f;
+  border-right: 2px solid #3e474f;
+  border-left: 2px solid #3e474f;
+}
+.form--chat .form-control:focus {
+  border-top: 1px dotted #3e474f;
+  border-bottom: 2px solid #3e474f;
+  border-right: 2px solid #3e474f;
+  border-left: 2px solid #3e474f;
+}
+.searchForm .searchChannel {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid #3e474f;
+  border-right: 1px solid #3e474f;
+  border-left: 1px solid #3e474f;
 }
 .ng-modal-overlay {
   position: fixed;
@@ -8297,6 +8337,20 @@ input[type=checkbox] {
   width: 200px;
   text-align: center;
 }
+.assignment--feedback {
+  background: rgba(62, 71, 79, 0.05);
+  border-top: 1px solid rgba(62, 71, 79, 0.15);
+  border-bottom: 1px solid rgba(62, 71, 79, 0.15);
+  margin: 20px 0px;
+}
+.assignment--feedback h3 {
+  padding-top: 15px;
+  padding-left: 10px;
+}
+.assignment--feedback div {
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
 .assignment_description {
   padding: 0px 40px 15px 40px;
 }
@@ -8305,7 +8359,11 @@ input[type=checkbox] {
 }
 .assignment-answer h2 {
   font-size: 1.4em;
-  padding: 0 0 10px 0;
+  padding: 0 0 20px 0;
+}
+.assignment-answer h3 {
+  padding-bottom: 5px;
+  font-size: 1.2em;
 }
 .assignment-answer ul {
   list-style: none;

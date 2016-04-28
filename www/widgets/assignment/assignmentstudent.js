@@ -31,11 +31,6 @@ app.directive('assignmentAssignmentstudent', [
           });
 
 
-          User.get({_id: scope.course.responsible_teacher }, function(user){
-              scope.teacher = user[0].first_name + " " + user[0].last_name;
-              scope.teacherUrl = user[0].public_url;
-          });
-
           scope.assignment = "";
           Assignment.get({_id: $routeParams.id}, function(assignment){
              scope.assignment = assignment[0];
@@ -45,25 +40,53 @@ app.directive('assignmentAssignmentstudent', [
               else{
                   scope.assignment.obligatory = "No";
               }
+              console.log("ass:", scope.assignment);
               $(".assignment_description").append(scope.assignment.description);
               checkIfSubmitted();
+
+              User.get({_id: scope.assignment.responsible_teacher}, function(user){
+              scope.teacher = user[0].first_name + " " + user[0].last_name;
+              scope.teacherUrl = user[0].public_url;
+            });
           });
 
+          scope.hasFeedback = true; //show/hide feedback div
+          scope.isDone = false;
           checkIfSubmitted = function(){
+            scope.isDone = false;
             User.get({_id: scope.session_user._id}, function(user){
               scope.session_user = user[0];
               scope.answer = "";
               scope.comment = "";
               for (var a = 0, len = scope.session_user.assignments.length; a < len; a += 1) {
                 if(scope.session_user.assignments[a].assignment == scope.assignment._id){
+                    scope.assignmentFeedback = scope.session_user.assignments[a];
+                    //get the answeredBy name
+                    User.get({_id: scope.assignmentFeedback.answeredBy}, function(user){
+                      scope.assignmentFeedback.answeredByName = user[0].first_name + " " + user[0].last_name;
+                      scope.assignmentFeedback.answeredByUrl = user[0].public_url;
+                    });
+                    console.log("CheckifSubmitted");
+                    if(scope.session_user.assignments[a].answerComment === undefined) {
+                        scope.hasFeedback = false;
+                    };
+                    if (scope.session_user.assignments[a].status === "Done") {
+                        console.log("else if körs")
+                        scope.isDone = true;
+                    };
+
                   scope.comment = scope.session_user.assignments[a].comment;
                   scope.answer_file = scope.session_user.assignments[a].answer_file.replace(/[\n\t\r\x20]/g, "_");
                   scope.hasAnswered = true;
-                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment +"\n"+ scope.answer_file);
+
+                  $('.assignment-hasFeedback').append(scope.assignmentFeedback.answerComment);
+                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment +"\n"+ scope.answer_file
                 }
               }
             });
           };
+
+
 
           //Send data to database on button click
           scope.sendAssignment = function(){
@@ -94,11 +117,17 @@ app.directive('assignmentAssignmentstudent', [
                     }
                   }
                 }, function(res) {
+                    scope.assignmentFeedback.answer_file = scope.file[0].name;
                       console.log("response", res);
                 });
 
+<<<<<<< HEAD
               document.getElementsByName("content")[0].value = "";
               $('.assignment-isAnswered p:first-child').prepend("<hr>" + comment +"\n"+ strippedFileName);
+=======
+              document.getElementsByName("content")[0].value = "";
+              $('.assignment-isAnswered p:first-child').prepend(comment);
+>>>>>>> 8324128a704d181169d80c1fdc3f35fb02d9280f
 
             });
 

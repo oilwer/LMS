@@ -69,9 +69,9 @@ app.directive('slackSlackbox', [
         var courseGlobal;
         var gmPromise;
         scope.showChatBox = function(course) {
-
             if (scope.course != course)
             {
+          scope.isExited = false;
 
               courseGlobal = course;
               if(scope.course != undefined) {
@@ -108,6 +108,8 @@ app.directive('slackSlackbox', [
           });
         }
 
+
+
         scope.sendM = function(){
           sendMessage(scope.course.code, scope.input, savedUser.email,function(messages){
             scope.course.messages = "";
@@ -125,7 +127,6 @@ app.directive('slackSlackbox', [
               if(user[0].courses[i].slack_channels != 0)
               {
                 coursesWithToken.push(user[0].courses[i]);
-
                 //console.log(user[0].courses[i]);
               }
             }
@@ -134,6 +135,19 @@ app.directive('slackSlackbox', [
             savedUser = user[0];
           });
         });
+        scope.toggleCreateSlackBar = function() {
+          scope.isToolbarPersonalOpen = false;
+          scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
+            scope.courseSelected = false;
+            scope.isExited = false;
+            console.log(scope.isExited);
+
+      };
+
+      scope.toggleCloseChatBox = function() {
+        scope.isExited = true;
+        console.log("cross: ", scope.isExited);
+      };
 
         scope.toggleCreateSlackBar = function() {
           $interval.cancel(gmPromise);

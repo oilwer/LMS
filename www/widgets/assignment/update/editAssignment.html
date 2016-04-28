@@ -1,16 +1,11 @@
 <div class="row row--modal modal--updateassignments">
     <div class="col-sm-20 col-sm-offset-2 vcenter">
         <h2>Edit answer: "{{assignment.name}}"</h2>
-
-
-
-
-
         <form class="assignmentDetails">
 
           <!-- FILE UPLOAD MODULE -->
            <fileupload-fileupload></fileupload-fileupload>
-        
+
             <div class="col-sm-24">
                 <!--<span
                 class="error"
@@ -21,13 +16,11 @@
                 <input id="studentEditAssignment" type="hidden" name="content">
                 <trix-editor input="studentEditAssignment" id="descriptionEditor"></trix-editor>
             </div>
-
         </form>
 
         <div class="col-sm-24">
             <button class="btn btn--assignments" ng-click="closeEdit()">Close</button>
             <button ng-click="editSubmittedAnswer()" type="submit" class="btn btn--assignments">Save</button>
         </div>
-
     </div>
 </div><!--.row-->
