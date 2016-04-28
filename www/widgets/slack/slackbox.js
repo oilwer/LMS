@@ -100,7 +100,19 @@ app.directive('slackSlackbox', [
 
         SessionService.getSession().success(function(response) {
           User.get({_id: response.user._id, _populate: "courses"}, function(user){
-            scope.courselist = user[0].courses;
+
+            var coursesWithToken = [];
+
+            for (var i = 0; i < user[0].courses.length; i++) {
+              if(user[0].courses[i].slack_channels != 0)
+              {
+                coursesWithToken.push(user[0].courses[i]);
+
+                console.log(user[0].courses[i]);
+              }
+            }
+
+            scope.courselist = coursesWithToken;
             savedUser = user[0];
           });
         });
