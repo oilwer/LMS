@@ -65,14 +65,21 @@ app.directive('assignmentUpdateUpdateassignment', [
                     due_date: scope.assignment.due_date,
                     description: ""
                 };
-                console.log(scope.assignment.description);
+                //console.log(scope.assignment.description);
                 var textEditor = document.querySelector("trix-editor");
                 // empty all
                 textEditor.editor.insertHTML(scope.assignment.description);
             } else {
                 // Do nothing!
             } 
-        }
+        };
+        
+          scope.deleteAssignment = function() {
+              Assignment.remove({_id: scope.assignment._id});
+              scope.$parent.hideModal();
+              var theLocation = $location.path().split("/")[2];
+              $window.location.href = '/courses/' + theLocation
+          };
           
       }//end link
     };
