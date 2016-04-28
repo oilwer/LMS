@@ -7,6 +7,7 @@ app.directive('slackSlackbox', [
   "Channel",
   "$location",
   "$interval",
+  "$timeout",
   function(
     settings,
     ChatService,
@@ -15,7 +16,8 @@ app.directive('slackSlackbox', [
     Course,
     Channel,
     $location,
-    $interval
+    $interval,
+    $timeout
   ) {
 
     return {
@@ -37,6 +39,7 @@ app.directive('slackSlackbox', [
               console.log("Response", response);
               callback(response.messages.reverse());
               });
+
           });
         }
 
@@ -59,6 +62,7 @@ app.directive('slackSlackbox', [
               }
 
             });
+
         }
 
 
@@ -68,7 +72,9 @@ app.directive('slackSlackbox', [
 
         var courseGlobal;
         var gmPromise;
+        var testme = false;
         scope.showChatBox = function(course) {
+          testme = false;
             if (scope.course != course)
             {
           scope.isExited = false;
@@ -91,9 +97,21 @@ app.directive('slackSlackbox', [
                 $interval.cancel(gmPromise);
                 gmPromise = $interval(gm, 1000);
 
+
           }
 
         }
+
+        scope.$root.$on('finishedGetMessages', function(){
+          if(testme == false){
+            $timeout(function () {
+              $(".windowcont-slackbox").animate({ scrollTop: $('.windowcont-slackbox')[0].scrollHeight}, 800);
+            }, 10);
+
+          }
+          testme = true;
+        });
+
 
         var gm = function(){
           getMessages(courseGlobal.code, savedUser.email, function(messages){
@@ -104,7 +122,13 @@ app.directive('slackSlackbox', [
               $interval.cancel(gmPromise);
             } else{
               scope.course.messages = messages;
+            if(testme == false)
+            {
+              scope.$root.$broadcast('finishedGetMessages');
             }
+
+            }
+
           });
         }
 
@@ -114,6 +138,7 @@ app.directive('slackSlackbox', [
           sendMessage(scope.course.code, scope.input, savedUser.email,function(messages){
             scope.course.messages = "";
             scope.course.messages = messages;
+            $(".windowcont-slackbox").animate({ scrollTop: $('.windowcont-slackbox')[0].scrollHeight}, 800);
           });
           scope.input = "";
         }
