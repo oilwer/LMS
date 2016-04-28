@@ -80,7 +80,7 @@ app.directive('assignmentAssignmentstudent', [
                   scope.hasAnswered = true;
 
                   $('.assignment-hasFeedback').append(scope.assignmentFeedback.answerComment);
-                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment +"\n"+ scope.answer_file
+                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment +"\n"+ scope.answer_file);
                 }
               }
             });
@@ -121,13 +121,8 @@ app.directive('assignmentAssignmentstudent', [
                       console.log("response", res);
                 });
 
-<<<<<<< HEAD
               document.getElementsByName("content")[0].value = "";
-              $('.assignment-isAnswered p:first-child').prepend("<hr>" + comment +"\n"+ strippedFileName);
-=======
-              document.getElementsByName("content")[0].value = "";
-              $('.assignment-isAnswered p:first-child').prepend(comment);
->>>>>>> 8324128a704d181169d80c1fdc3f35fb02d9280f
+              $('.assignment-isAnswered p:first-child').prepend(comment +"\n"+ strippedFileName);
 
             });
 
