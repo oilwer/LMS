@@ -8203,6 +8203,17 @@ input[type=checkbox] {
   font-family: "Roboto", sans-serif;
   color: rgba(62, 71, 79, 0.9);
 }
+.exit2 {
+  margin-top: 2px;
+  margin-right: 1em;
+  cursor: pointer;
+  float: right;
+}
+.box__header .exit {
+  cursor: pointer;
+  font-size: 1.3em;
+  float: right;
+}
 .ng-modal-overlay {
   position: fixed;
   z-index: 999;

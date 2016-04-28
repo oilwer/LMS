@@ -118,6 +118,7 @@ app.directive('courseCreateCreatecourse', [
 
                     Course.create(scope.course, function(course)
                         {
+                            scope.$root.$broadcast('addedCourse');
                             console.log("Added course:", course[0]);
                             oldcourse = JSON.parse(JSON.stringify(course[0]));
                             scope.incrementStep();

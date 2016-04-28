@@ -123,15 +123,6 @@ app.directive('headerNav', [
         }
 
 
-
-          scope.toggleCreateSlackBar = function() {
-            scope.isToolbarPersonalOpen = false;
-            scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
-              scope.courseSelected = false;
-        };
-
-
-
       } //link
 
     };

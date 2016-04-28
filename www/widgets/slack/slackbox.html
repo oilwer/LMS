@@ -7,27 +7,31 @@
             <div class="slackbox-option_content">
                 <li>
                     Channels
+                    <i ng-click="toggleCreateSlackBar()" class="fa fa-times exit2" aria-hidden="true"></i>
                 </li>
-                <li ng-repeat="course in courselist">
-                    <a ng-click="showChatBox(course)" >#{{course.name}}</a>
+                <li ng-click="showChatBox(course)" ng-repeat="course in courselist">
+                    <a>#{{course.name}}</a>
                 </li>
             </div>
         </ul>
     </li>
 </ul>
 
-<div class="col-md-6 wind-slackbox" ng-show="courseSelected">
-    <div class="col-md-24 box__header">{{course.name}}</div>
+<div class="col-md-6 wind-slackbox" ng-show="courseSelected && !isExited">
+    <div class="col-md-24 box__header">{{course.name}} <i ng-click="toggleCloseChatBox()" class="fa fa-times exit" aria-hidden="true"></i></div>
 
     <div class="col-md-24 windowcont-slackbox">
 
       <div class="msg" ng-repeat="msg in course.messages">
-        <p>{{msg.user}}</p>
-        <p>{{msg.text}}</p>
+        <div style="font-weight: bold;">{{msg.user}}</div>
+        <div>{{msg.text}}</div>
+        <hr>
+
       </div>
 
     </div>
-
-    <input type="text" name="Fname" class="form-control" placeholder="Write message..." rows="3">
-
+    <form ng:submit="sendM()">
+      <input ng-model="input" type="text" name="Fname" autocomplete="off"
+      class="form-control" placeholder="Write message..." rows="3">
+  </form>
 </div>

@@ -149,12 +149,12 @@ app.directive('connectStudentsaddremove', [
 			 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
 				 		//Add User to slack channel:
-			 		console.log(scope.students[index]);
-				 		if(scope.students[index].slack_token != undefined){
-				 			joinChannel(course[0].code, scope.students[index].email);
-				 		}
-            createNotification(scope.students[index]._id);
-				 		scope.students.splice(index, 1);
+  			 		console.log(scope.students[index]);
+  				 		if(scope.students[index].slack_token != undefined){
+  				 			joinChannel(course[0].code, scope.students[index].email);
+  				 		}
+              createNotification(scope.students[index]._id);
+  				 		scope.students.splice(index, 1);
 				 	});
 			 	});
             });
