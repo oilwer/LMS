@@ -32,6 +32,7 @@ module.exports = function(mongoose){
       assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
       grade: Number,
       comment: String,
+      submissionDate: Date,
       answer_file: String,
       answerComment: String, //feedback from teacher
       answerDate: Date,
@@ -60,10 +61,10 @@ module.exports = function(mongoose){
   UserSchema.pre('update', function(next){
 
     if (this._update.$set != null){
-    console.log("Set undefined");
+    //console.log("Set undefined");
 
       if (!this._update.$set.password) {
-        console.log ("Not hashing ", this._update.$set.password);
+        //console.log ("Not hashing ", this._update.$set.password);
       }
       else {
         this._update.$set.password = sha1(this._update.$set.password);

@@ -23,20 +23,18 @@ app.directive('assignmentAssignmentteacher', [
           SessionService.getSession().success(function(response){
               session_user = response.user;
           });
-         
           
           //current assignment
           Assignment.get({_id: $routeParams.id}, function(assignment){
               scope.assignment = assignment[0];
-              console.log("assignmenten", scope.assignment);
               assignment = assignment[0];
               scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
               if (scope.assignment.obligatory === true) {
                   scope.obligatoryText = "Yes";
               }
                 else{
-                      scope.obligatoryText = "No";
-              }
+                    scope.obligatoryText = "No";
+              };
               
               $(".assignment_description").append(scope.assignment.description);
 
@@ -47,37 +45,50 @@ app.directive('assignmentAssignmentteacher', [
           });
           
           
-          scope.assignmentAnswers = [];
+          scope.assignmentAnswers = []; //ng-repeate
           scope.setUp = function() {
-              console.log(scope.course._id);
+              
               User.get({courses: scope.course._id}, function(users){
     
-                  //console.log("the users", users.length);  
-                  
-                  //
-                  for(var a = 0; a < users.length; a++ ){
-                      //console.log("i get user", scope.course._id);
+                  //look for assignments in all the users bind to a course
+                  for (var a = 0, userlength = users.length; a < userlength; a += 1) {
+                      
+                      //assignmentlist exists
                       if(users[a].assignments.length > 0) {
-                          console.log("loopar assignments");
-                          console.log(users[a].assignments.length);
-                        for (var b = 0, len = users[a].assignments.length; a < len; a += 1) {
-                            if(users[a].assignments[b].assignment === scope.assignment._id) {
-                                var Item = {
+                          
+                          //loop assignmentlist
+                          var notFound = true;
+                          for(var b = 0; users[a].assignments.length > b; b++) {
+                              
+                              //check for match
+                              if(users[a].assignments[b].assignment === scope.assignment._id) { 
+                                  notFound = false; //found
+                                  var Item = {
                                   assignmentId: scope.assignment._id,
                                   name: users[a].first_name + " " + users[a].last_name,
                                   userId: users[a]._id,
-                                  submissionDate: "16-03-22", //lägg till i skicka in
+                                  submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
                                   status: users[a].assignments[b].status, //lägg till klar, bedömd men inte klar
                                 };
                                 scope.assignmentAnswers.push(Item);
-                                console.log("status", scope.assignment.status);
-                                break;
-                                //console.log("list, finns", scope.assignmentAnswers);
-                            };
-                        };
-                      }else {
-                        console.log("loopar inte assignments");
-                        var Item = {
+                                  break; //assignment found, break loop - no need to continue
+                              }
+                          };
+                      //no match
+                      if (notFound) { 
+                          var Item = {
+                              assignmentId: scope.assignment._id,
+                              name: users[a].first_name + " " + users[a].last_name,
+                              userId: users[a]._id,
+                              submissionDate: "-", //lägg till i skicka in
+                              status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
+                          };
+                          scope.assignmentAnswers.push(Item);
+                      };
+
+                      //assignment list do not exist
+                      } else {
+                          var Item = {
                           assignmentId: scope.assignment._id,
                           name: users[a].first_name + " " + users[a].last_name,
                           userId: users[a]._id,
@@ -85,86 +96,71 @@ app.directive('assignmentAssignmentteacher', [
                           status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
                         };
                         scope.assignmentAnswers.push(Item);
-                        //scope.assignmentAnswers.push(users[a].assignments[b].assignment);
                       };
-                      
                   };
               });
-              console.log("list", scope.assignmentAnswers);
-          };
+          }; //setUp
           
-          setTimeout(scope.setUp, 500);
-          
+          setTimeout(scope.setUp, 500); //fix - wait for scope to load
           
           //toggle description View
           scope.showHideBtn = "Show description"
           scope.toggleDescription = function() {
-              //close grading if open
-              if(scope.isGradingOpen){
-                  scope.toggleGrading();
-              }
+            //  close grading if open
+            //  if(scope.isGradingOpen){
+            //      scope.toggleGrading();
+            //  };
               if (scope.isDescriptionOpen) {
                   scope.isDescriptionOpen = false;
                   scope.showHideBtn = "Show description"
               } else {
                   scope.isDescriptionOpen = true;
                   scope.showHideBtn = "Hide description"
-              }
-          }
+              };
+          };
                
-          
-          //the current assignmentscope
+          //the current assignmentscope - show assignmentitems in the modal
           scope.assignmentItem = "";
               
           scope.assignmentItemView = false; //hide view for individual assignment
           scope.assignmentListView = true; //show list of all assignemnt
           
-          //open and update assignment scope
+          //open, get and update assignment scope
           scope.showAssignmentItem = function(assignId, studId) {
               scope.assignmentListView = false;
               scope.assignmentItemView = true;
-
-              scope.assignmentItem = "";
                   
               User.get({_id: studId}, function(user){
                   user = user[0];
-                  scope.answer = "";
-                  scope.comment = "";
                   for (var a = 0, len = user.assignments.length; a < len; a += 1) {
                     if(user.assignments[a].assignment == assignId){
-                        scope.hasAnswered = true;
-
                         scope.assignmentItem = {
-                              name: user.first_name + " " + user.last_name,
-                              answeredBy: session_user._id,
-                              assignmentId: assignId,
-                              studentId: studId,
-                              submissionDate: "16-03-22", //lägg till i skicka in
-                              status: user.assignments[a].status,
-                              answerComment: user.assignments[a].answerComment, //feedback from teacher
-                              answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
-                              gradingOptions: [
-                              "Resubmit",
-                              "Done"
-                              ], 
-                              content: user.assignments[a].comment,
-                          };
-                        console.log("new:", scope.assignmentItem);
+                            name: user.first_name + " " + user.last_name,
+                            answeredBy: session_user._id,
+                            assignmentId: assignId,
+                            studentId: studId,
+                            submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
+                            status: user.assignments[a].status,
+                            answerComment: user.assignments[a].answerComment, //feedback from teacher
+                            answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
+                            gradingOptions: [
+                            "Resubmit",
+                            "Done"
+                            ], 
+                            content: user.assignments[a].comment,
+                        };
+                        //console.log("new:", scope.assignmentItem);
                         $(".assignment_content").append(scope.assignmentItem.content);
-                      //$('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment);
-                      break;
-                    }
-                  }
-            });
-              
-              
-          }
+                      break; //assignment found - stop looking
+                    };
+                  };
+              });
+          };
           
           //open assignmentList & reset assignmentscope
           scope.showAssignmentList = function() {
               scope.assignmentItemView = false;
               resetAssignmentScope(); //reset scope
-              
               scope.assignmentListView = true;
           };
           
@@ -172,29 +168,25 @@ app.directive('assignmentAssignmentteacher', [
           var resetAssignmentScope = function() {
               scope.assignmentItem = "";
               $(".assignment_content").empty();
-          }
+          };
           
           scope.nextAssignmentItem = function() {
-              // load next assignment in list
-              // nice to have ?
+              // load next assignment in list -- nice to have
               //find current dataattr in listView
               //get dataattr from next item in listView
               //reset assignment scope
               //load new assignment scope
-          }
+          };
           scope.prevoiusAssignmentItem = function() {
-              // load previous assignment in list
-              // nice to have ?
+              // load previous assignment in list -- nice to have
+              //find current dataattr in listView
+              //get dataattr from previous item in listView
+              //reset assignment scope
+              //load new assignment scope
           }
           
+          //publich feedback to be shown for the student
           scope.publishFeedback = function() {
-              //publich feedback to be shown for the student
-              console.log("add function to save and publish");
-              //status
-              console.log(scope.assignmentItem.assignmentId)
-              console.log(scope.assignmentItem.studentId)
-
-              
               User.update(
                 {
                   _id: scope.assignmentItem.studentId,
@@ -207,28 +199,22 @@ app.directive('assignmentAssignmentteacher', [
                   }
                 ); 
 
-              
-              
               scope.showAssignmentList();
               resetAssignmentScope(); //reset scope
-          }
+          };
           
           scope.saveFeedback = function() {
-              //saves feedback ONLY to be shown for teacher
-              console.log("add function to save feedback for later");
-              console.log("write:", scope.assignmentFeedback);
-              scope.showAssignmentList();
-              resetAssignmentScope(); //reset scope
-          }
+              //saves feedback ONLY to be shown for teacher --- nice to have?
+          };
           
-           scope.quitEdit = function() {               
-                if (confirm('Are you sure you want to close without saving?')) {
-                    scope.showAssignmentList();
-                    resetAssignmentScope(); //reset scope
-                } else {
-                    // Do nothing!
-                }
-           };
+          scope.quitEdit = function() {               
+            if (confirm('Are you sure you want to close without saving?')) {
+                scope.showAssignmentList();
+                resetAssignmentScope(); //reset scope
+            } else {
+                // Do nothing!
+            };
+          };
           
           
           //grading detail view
@@ -244,13 +230,13 @@ app.directive('assignmentAssignmentteacher', [
               }
           }*/
           
-          //show hide modal update assignment
+            //show hide modal update assignment
             scope.updateAssignmentModalShown = false;
             scope.toggleUpdateAssignmentModal = function() { 
                 scope.updateAssignmentModalShown = !scope.updateAssignmentModalShown;
-              };
+            };
           
-      }
+      }//link
     };
   }
 ]);

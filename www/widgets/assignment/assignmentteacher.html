@@ -28,9 +28,10 @@
                 <th scope="col">Submission date</th>
                 <th scope="col">Status</th>
             </tr>
-            <tr ng-repeat="answer in assignmentAnswers" ng-click="showAssignmentItem(answer.assignmentId, answer.userId)">
+            <tr ng-repeat="answer in assignmentAnswers | orderBy: 'submissionDate'" 
+                ng-click="showAssignmentItem(answer.assignmentId, answer.userId)">
                 <td scope="col">{{answer.name}}</td>
-                <td scope="col">{{answer.submissionDate}}</td>
+                <td scope="col">{{answer.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</td>
                 <td scope="col">{{answer.status}}</td>
             </tr>
         </table>
@@ -39,7 +40,7 @@
     <!-- Assignmentlist from students update with ng-repeate-->
     <h2>Submission by {{assignmentItem.name}}</h2>
         <ul>
-            <li><em>Submitted: </em>{{assignmentItem.submissionDate}}</li>
+            <li><em>Submitted: </em>{{assignmentItem.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</li>
             <li><em>Status: </em>{{assignmentItem.status}}</li>
         </ul>
     <div class="assignment_content">
