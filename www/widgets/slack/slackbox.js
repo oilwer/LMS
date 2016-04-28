@@ -35,7 +35,7 @@ app.directive('slackSlackbox', [
             console.log("Response", response);
             ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
               console.log("Response", response);
-              callback(response.messages);
+              callback(response.messages.reverse());
               });
           });
         }
@@ -51,7 +51,7 @@ app.directive('slackSlackbox', [
 
            ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
               console.log("Response", response);
-              callback(response.messages);
+              callback(response.messages.reverse());
             });
         }
 
