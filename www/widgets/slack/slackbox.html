@@ -7,6 +7,7 @@
             <div class="slackbox-option_content">
                 <li>
                     Channels
+                    <i ng-click="toggleCreateSlackBar()" class="fa fa-times exit2" aria-hidden="true"></i>
                 </li>
                 <li ng-click="showChatBox(course)" ng-repeat="course in courselist">
                     <a>#{{course.name}}</a>
@@ -16,8 +17,8 @@
     </li>
 </ul>
 
-<div class="col-md-6 wind-slackbox" ng-show="courseSelected">
-    <div class="col-md-24 box__header">{{course.name}}</div>
+<div class="col-md-6 wind-slackbox" ng-show="courseSelected && !isExited">
+    <div class="col-md-24 box__header">{{course.name}} <i ng-click="toggleCloseChatBox()" class="fa fa-times exit" aria-hidden="true"></i></div>
 
     <div class="col-md-24 windowcont-slackbox">
 
@@ -25,6 +26,7 @@
         <div style="font-weight: bold;">{{msg.user}}</div>
         <div>{{msg.text}}</div>
         <hr>
+
       </div>
 
     </div>

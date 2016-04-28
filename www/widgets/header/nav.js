@@ -123,11 +123,6 @@ app.directive('headerNav', [
         }
 
 
-
-
-
-
-
       } //link
 
     };
