@@ -43,7 +43,7 @@ app.directive('dashboardCourses', [
                   // Redirects to cource url saved in the clicked elements dataLocation attr
             $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
         };
-        scope.$on('addedCourse', function() {
+        scope.$root.$on('addedCourse', function() {
           console.log("I hear you");
           refresh();
         });
