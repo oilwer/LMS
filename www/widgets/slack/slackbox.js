@@ -96,6 +96,7 @@ app.directive('slackSlackbox', [
         }
 
         var gm = function(){
+          console.log("getting messages");
           getMessages(courseGlobal.code, savedUser.email, function(messages){
             scope.course.messages = "";
             if(messages == "not_authed"){
@@ -146,12 +147,14 @@ app.directive('slackSlackbox', [
 
       scope.toggleCloseChatBox = function() {
         scope.isExited = true;
-        console.log("cross: ", scope.isExited);
+        $interval.cancel(gmPromise);
+        scope.course = "";
+        console.log("cloesed clicked");
       };
 
         scope.toggleCreateSlackBar = function() {
           $interval.cancel(gmPromise);
-          scope.course = undefined;
+          scope.course = "";
           scope.isToolbarPersonalOpen = false;
           scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
           scope.courseSelected = false;
