@@ -69,8 +69,8 @@ app.directive('assignmentAssignmentteacher', [
                                       assignmentId: scope.assignment._id,
                                       name: users[a].first_name + " " + users[a].last_name,
                                       userId: users[a]._id,
-                                      submissionDate: new Date(users[a].assignments[b].submissionDate), //lägg till i skicka in
-                                      status: users[a].assignments[b].status, //lägg till klar, bedömd men inte klar
+                                      submissionDate: new Date(users[a].assignments[b].submissionDate),
+                                      status: users[a].assignments[b].status,
                                     };
                                     scope.assignmentAnswers.push(Item);
                                       break; //assignment found, break loop - no need to continue
@@ -82,8 +82,8 @@ app.directive('assignmentAssignmentteacher', [
                                   assignmentId: scope.assignment._id,
                                   name: users[a].first_name + " " + users[a].last_name,
                                   userId: users[a]._id,
-                                  submissionDate: "-", //lägg till i skicka in
-                                  status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
+                                  submissionDate: "-", 
+                                  status: "Not Submitted", 
                               };
                               scope.assignmentAnswers.push(Item);
                           };
@@ -94,8 +94,8 @@ app.directive('assignmentAssignmentteacher', [
                               assignmentId: scope.assignment._id,
                               name: users[a].first_name + " " + users[a].last_name,
                               userId: users[a]._id,
-                              submissionDate: "-", //lägg till i skicka in
-                              status: "Not Submitted", //lägg till klar, bedömnd men inte klar, 
+                              submissionDate: "-", 
+                              status: "Not Submitted",
                             };
                             scope.assignmentAnswers.push(Item);
                           };
@@ -144,7 +144,7 @@ app.directive('assignmentAssignmentteacher', [
                             answeredBy: session_user._id,
                             assignmentId: assignId,
                             studentId: studId,
-                            submissionDate: new Date("2016-04-27T17:38:10.623Z"),//users.assignments[a].submissionDate, //lägg till i skicka in
+                            submissionDate: new Date(users.assignments[a].submissionDate),
                             status: user.assignments[a].status,
                             answerComment: user.assignments[a].answerComment, //feedback from teacher
                             answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
