@@ -58,14 +58,23 @@ app.directive('assignmentAssignmentstudent', [
               scope.session_user = user[0];
               scope.answer = "";
               scope.comment = "";
+                scope.status = "Submitted";
               for (var a = 0, len = scope.session_user.assignments.length; a < len; a += 1) {
                 if(scope.session_user.assignments[a].assignment == scope.assignment._id){
                     scope.assignmentFeedback = scope.session_user.assignments[a];
+                    scope.status = scope.session_user.assignments[a].status;
                     //get the answeredBy name
-                    User.get({_id: scope.assignmentFeedback.answeredBy}, function(user){
-                      scope.assignmentFeedback.answeredByName = user[0].first_name + " " + user[0].last_name;
-                      scope.assignmentFeedback.answeredByUrl = user[0].public_url;
-                    });
+                    console.log("lärare, id:", scope.assignmentFeedback.answeredBy);
+                    
+
+                    if(scope.assignmentFeedback.answeredBy != undefined) {
+                        console.log("körs");
+                        User.get({_id: scope.assignmentFeedback.answeredBy}, function(user){
+                          scope.assignmentFeedback.answeredByName = user[0].first_name + " " + user[0].last_name;
+                          scope.assignmentFeedback.answeredByUrl = user[0].public_url;
+                        });
+                    };
+                    
                     console.log("CheckifSubmitted");
                     if(scope.session_user.assignments[a].answerComment === undefined) {
                         scope.hasFeedback = false;
@@ -80,7 +89,8 @@ app.directive('assignmentAssignmentstudent', [
                   scope.hasAnswered = true;
 
                   $('.assignment-hasFeedback').append(scope.assignmentFeedback.answerComment);
-                  $('.assignment-isAnswered p:first-child').prepend("<hr>" + scope.comment +"\n"+ scope.answer_file);
+                  $('.assignment-isAnswered p:first-child').prepend(scope.comment);
+                  $('.submittedFile').empty().append('<a target="_self" href="uploads/' + scope.answer_file + '" download>' + scope.answer_file + '</a>');
                 }
               }
             });
@@ -90,11 +100,14 @@ app.directive('assignmentAssignmentstudent', [
 
           //Send data to database on button click
           scope.sendAssignment = function(){
+              //scope.assignmentFeedback.status = "Submitted";
               console.log("körs");
 
             scope.submit();
             scope.comment = "";
             var comment = "";
+            //scope.assignmentFeedback.status = "Submitted";
+
 
             User.get({_id: scope.session_user._id}, function(user){
               session_user = user[0];
@@ -116,13 +129,13 @@ app.directive('assignmentAssignmentstudent', [
                       answer_file: strippedFileName
                     }
                   }
-                }, function(res) {
-                    scope.assignmentFeedback.answer_file = scope.file[0].name;
-                      console.log("response", res);
                 });
 
               document.getElementsByName("content")[0].value = "";
-              $('.assignment-isAnswered p:first-child').prepend(comment +"\n"+ strippedFileName);
+              //scope.assignmentFeedback.status = "Submitted";
+              $('.assignment-isAnswered p:first-child').prepend(comment);
+              $('.submittedFile').empty().append('<a target="_self" href="uploads/' + strippedFileName + '" download>' + strippedFileName + '</a>');
+
 
             });
 

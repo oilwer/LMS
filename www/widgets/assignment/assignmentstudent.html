@@ -50,8 +50,8 @@
     <h2>Submission</h2>
 
         <ul class="assignment-isAnswered" ng-if="hasAnswered" ng-show="hasAnswered">
-            <li><em>Status: </em>{{assignmentFeedback.status}}</li>
-            <li><em>Graded by: </em> {{assignmentFeedback.answeredByName}} </li>
+            <li><em>Status: </em>{{status}}</li>
+            <li ng-show="assignmentFeedback.answeredByName != undefined"><em>Graded by: </em> {{assignmentFeedback.answeredByName}} </li>
         </ul>   
         <hr>
 
@@ -64,6 +64,7 @@
         <h3>Your submission</h3>
         <div class="assignment-isAnswered">
             <p></p>
+            <div class="submittedFile"></div>
             <button class="btn btn--assignments toggleClass" ng-click="toggleUpdateAssignmentModal()" ng-hide="isDone">Edit submission <i ng-show="isEditOpen" class="fa fa fa-angle-up"></i><i ng-hide="isEditOpen" class="fa fa fa-angle-down"></i></button>
         </div>  <!--.assignment-isAnswered-->
     </div><!--.col-lg-12-->

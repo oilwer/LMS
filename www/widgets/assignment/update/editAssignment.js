@@ -51,7 +51,7 @@ app.directive('assignmentUpdateEditassignment', [
                   }
                 );
 
-            $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment +"\n" + strippedFileName);
+            $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment);
 
             scope.$parent.hideModal();
         };

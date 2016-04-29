@@ -144,7 +144,8 @@ app.directive('assignmentAssignmentteacher', [
                             answeredBy: session_user._id,
                             assignmentId: assignId,
                             studentId: studId,
-                            submissionDate: new Date(users.assignments[a].submissionDate),
+                            answer_file: user.assignments[a].answer_file,
+                            submissionDate: new Date(user.assignments[a].submissionDate),
                             status: user.assignments[a].status,
                             answerComment: user.assignments[a].answerComment, //feedback from teacher
                             answerDate: user.assignments[a].answerDate,//lägg till klar, bedömnd men inte klar, 
@@ -162,6 +163,8 @@ app.directive('assignmentAssignmentteacher', [
                         }
 
                         $(".assignment_content").append(scope.assignmentItem.content);
+                        $('.submittedFile').empty().append('<a target="_self" href="uploads/' + scope.assignmentItem.answer_file + '" download>' + scope.assignmentItem.answer_file + '</a>');
+
                       break; //assignment found - stop looking
                     };
                       if(submissionNotFound) {
@@ -197,6 +200,7 @@ app.directive('assignmentAssignmentteacher', [
           var resetAssignmentScope = function() {
               scope.assignmentItem = "";
               $(".assignment_content").empty();
+              $('.submittedFile').empty();
           };
           
           scope.nextAssignmentItem = function() {

@@ -40,12 +40,12 @@
     <!-- Assignmentlist from students update with ng-repeate-->
     <h2>Submission by {{assignmentItem.name}}</h2>
         <ul>
-            <li><em>Submitted: </em>{{assignmentItem.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</li>
+            <li ng-show="assignmentItem.submissionDate != undefined"><em>Submitted: </em>{{assignmentItem.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</li>
             <li><em>Status: </em>{{assignmentItem.status}}</li>
         </ul>
-    <div class="assignment_content">
+    <div class="assignment_content"></div>
+    <div class="submittedFile"></div>
 
-    </div>
     <label for="selectAssignmentGrade">Select status</label>
     <form class="submitAssignmentFeedback">          
         <select id="selectAssignmentGrade" 
