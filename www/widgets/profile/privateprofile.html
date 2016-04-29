@@ -8,7 +8,7 @@
                     <h2> {{ role }} </h2>
                     <div class="profile__about__img"></div>
                 </div><!---.profile__about-->
-                    
+
                 <div class="profile__description">
                     <i ng-class="class" ng-click="editDescription()"></i>
                     <h2 class="uppercase">Description</h2>
@@ -27,7 +27,7 @@
                         <p ng-show="contactEnabled"> {{ phone_number }} </p>
                         <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
                     </div>
-                    
+
                     <div class="profile__icon_first">
                         <i class="fa fa-home"></i>
                         <p ng-show="contactEnabled"> {{homepage}}</p>
@@ -56,14 +56,14 @@
                         <input type="text" ng-hide="linksEnabled" ng-model="facebook">
                     </div>
                     <div class="profile__icon_first">
-                        <i class="fa fa-twitter"></i> 
+                        <i class="fa fa-twitter"></i>
                         <p ng-show="linksEnabled"> {{twitter}} </p>
                         <input type="text" ng-hide="linksEnabled" ng-model="twitter">
                     </div>
                     <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
                 </div>
                 <div id="slack_auth">
-                    <a href="https://slack.com/oauth/authorize?client_id=19435876323.23240924768&scope=team%3Aread+users%3Aread+channels%3Awrite+channels%3Ahistory+channels%3Aread+groups%3Awrite+chat%3Awrite%3Auser&redirect_uri=http://localhost:3000/myprofile/"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/Add_to_slack@2x.png 2x" /></a>
+                    <a href="https://slack.com/oauth/authorize?client_id=19435876323.23240924768&scope=team%3Aread+users%3Aread+channels%3Awrite+channels%3Ahistory+channels%3Aread+groups%3Awrite+chat%3Awrite%3Auser&redirect_uri=http://localhost:3000/myprofile/&team=T0KCTRS9H"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/Add_to_slack@2x.png 2x" /></a>
                 </div>
 
             </div>
@@ -82,7 +82,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
                     </div>
                 </div> <!--- .row-->
-                    
+
                 <div class="row">
                     <div class="col-sm-24 col-md-12 col-lg-12 profile__stuff__skills">
                         <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
@@ -95,7 +95,7 @@
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
                     </div>
                 </div>
-                            
+
                 <div class="row">
                     <div ng-if="isStudent" ng-show="isStudent"class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
                         <h1><i class="fa fa-2x fa-file-text"></i>Tutorials</h1>
@@ -117,7 +117,7 @@
 
 
 <!-- <div ng-controller="ProfileController">
-            
+
             	<p> First name </p>
                 <input class="form-control" ng-model="user.first_name" required="true">
                 <p> Last name </p>
@@ -148,5 +148,5 @@
                <p> {{user.phone_number}} </p>
                <p> {{user.password}} </p>
            </div>
-           
+
            -->

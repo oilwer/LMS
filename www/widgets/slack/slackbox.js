@@ -27,7 +27,6 @@ app.directive('slackSlackbox', [
         var savedUser;
 
         var sendMessage = function(channelName, text, UserIdentifier, callback){
-
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
             return obj.code === name;
@@ -39,82 +38,61 @@ app.directive('slackSlackbox', [
               console.log("Response", response);
               callback(response.messages.reverse());
               });
-
           });
         }
 
         //Get messages with callback
         var getMessages = function(channelName, UserIdentifier, callback){
           scope.messages = [];
-
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
             return obj.code === name;
           })[0];
 
            ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
-              //console.log("Response", response);
-
               if(response.error == "not_authed"){
                 callback(response.error);
               } else {
                 callback(response.messages.reverse());
               }
-
             });
-
         }
-
-
-        /* scope.toggleCreateSlackBar = function(){
-          $interval.cancel(gmPromise);
-        } */
 
         var courseGlobal;
         var gmPromise;
-        var testme = false;
+        var checkIfOpen = false;
+
         scope.showChatBox = function(course) {
-          testme = false;
-            if (scope.course != course)
-            {
-          scope.isExited = false;
-
-              courseGlobal = course;
-              if(scope.course != undefined) {
-
-                if (scope.course.messages != undefined)
-                  {
-                    scope.course.messages = undefined;
-                    }
-                    scope.course = undefined;
+          checkIfOpen = false;
+          if (scope.course != course) {
+            scope.isExited = false;
+            courseGlobal = course;
+            if(scope.course != undefined) {
+              if (scope.course.messages != undefined) {
+                  scope.course.messages = undefined;
               }
+              scope.course = undefined;
+            }
 
-
-                //slack connection depending on course
-                scope.course = "";
-                scope.course = course;
-                scope.courseSelected = true;
-                $interval.cancel(gmPromise);
-                gmPromise = $interval(gm, 1000);
-
-
+            //slack connection depending on course
+            scope.course = "";
+            scope.course = course;
+            scope.courseSelected = true;
+            $interval.cancel(gmPromise);
+            gmPromise = $interval(gm, 1000);
           }
-
         }
 
         scope.$root.$on('finishedGetMessages', function(){
-          if(testme == false){
+          if(checkIfOpen == false){
             $timeout(function () {
               $(".windowcont-slackbox").animate({ scrollTop: $('.windowcont-slackbox')[0].scrollHeight}, 800);
             }, 10);
-
           }
-          testme = true;
+          checkIfOpen = true;
         });
 
-
         var gm = function(){
-          console.log("getting messages");
           getMessages(courseGlobal.code, savedUser.email, function(messages){
             scope.course.messages = "";
             if(messages == "not_authed"){
@@ -123,17 +101,12 @@ app.directive('slackSlackbox', [
               $interval.cancel(gmPromise);
             } else{
               scope.course.messages = messages;
-            if(testme == false)
-            {
-              scope.$root.$broadcast('finishedGetMessages');
+              if(checkIfOpen == false){
+                scope.$root.$broadcast('finishedGetMessages');
+              }
             }
-
-            }
-
           });
         }
-
-
 
         scope.sendM = function(){
           sendMessage(scope.course.code, scope.input, savedUser.email,function(messages){
@@ -146,21 +119,18 @@ app.directive('slackSlackbox', [
 
         SessionService.getSession().success(function(response) {
           User.get({_id: response.user._id, _populate: "courses"}, function(user){
-
             var coursesWithToken = [];
 
             for (var i = 0; i < user[0].courses.length; i++) {
-              if(user[0].courses[i].slack_channels != 0)
-              {
+              if(user[0].courses[i].slack_channels != 0){
                 coursesWithToken.push(user[0].courses[i]);
-                //console.log(user[0].courses[i]);
               }
             }
-
             scope.courselist = coursesWithToken;
             savedUser = user[0];
           });
         });
+
         scope.toggleCreateSlackBar = function() {
           scope.isToolbarPersonalOpen = false;
           scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
@@ -174,7 +144,6 @@ app.directive('slackSlackbox', [
         scope.isExited = true;
         $interval.cancel(gmPromise);
         scope.course = "";
-        console.log("cloesed clicked");
       };
 
         scope.toggleCreateSlackBar = function() {

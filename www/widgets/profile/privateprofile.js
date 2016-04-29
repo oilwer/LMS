@@ -26,23 +26,23 @@ app.directive('profilePrivateprofile', [
 	    		//the following means the user will be connected to lmsproject.slack.com
 	    		var slackTeam = "lmsproject"
 	    		//url contains a special temporary code needed for aquaring user token
-	    		var url = "https://slack.com/api/oauth.access?client_id=19435876323.23240924768&client_secret=e6a4a2f97a72b6a1e889830b6ba7612b&code=" + code + "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fmyprofile%2F&pretty=1&team=" + slackTeam;	
-	    		
+	    		var url = "https://slack.com/api/oauth.access?client_id=19435876323.23240924768&client_secret=e6a4a2f97a72b6a1e889830b6ba7612b&code=" + code + "&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2Fmyprofile%2F&pretty=1&team=" + slackTeam;
+
 	    		//uses temp code to get access token
 	    		$http.get(url).then(function(response) {
 		    		var token = response.data.access_token;
 
-		    		//gets session 
-		    		SessionService.getSession().success(function(response) {	
+		    		//gets session
+		    		SessionService.getSession().success(function(response) {
 		    				//returns user from session
-							User.update({_id:response.user._id},{ slack_token: token });		
+							User.update({_id:response.user._id},{ slack_token: token });
 					});
-	    		});		
+	    		});
 	    	}
 	    }
 
-		redirectSuccess(); 
-  		
+		redirectSuccess();
+
   		//Controlls that switches input
 	    $scope.descriptionEnabled = true;
 	    $scope.contactEnabled = true;
@@ -78,7 +78,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.role = data.role;
 
 	            obj = data;
-	            
+
 	            if(data.role == "Student")
                 {
                     $scope.isStudent = true;
@@ -89,7 +89,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.first_name = "No profile found";
 	        }
 	    };
-	
+
 
 	    $scope.editDescription = function () {
 	        if ($scope.class == "fa fa-pencil") {
@@ -103,7 +103,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.class = "fa fa-pencil"
 	        }
 	    };
-	    
+
 	    $scope.editContact = function () {
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
@@ -117,7 +117,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.contact_class = "fa fa-pencil"
 	        }
 	    };
-	    
+
 	    $scope.editLinks = function () {
 	        if ($scope.links_class == "fa fa-pencil") {
 	            $scope.links_class = "fa fa-check"
@@ -134,18 +134,17 @@ app.directive('profilePrivateprofile', [
 	    };
 
 		var loadUser = function(newuser) {
-  			 		console.log(newuser);
 					initializeProfile(newuser);
       	}
-      
+
 	    var getUser = function () {
 
-				SessionService.getSession().success(function(response) {	
- 				
+				SessionService.getSession().success(function(response) {
+
 					User.get({_id:response.user._id},function(newUser){
  					loadUser(newUser[0]);
-				});		
-			}); 
+				});
+			});
 	    }
 	    //Gui function update profile
 	    $scope.updateProfile = function (obj) {
@@ -173,7 +172,7 @@ app.directive('profilePrivateprofile', [
 		          github : user.github
               });
 
-	        if(user != null){	        	
+	        if(user != null){
 	            $scope.user = user;
 	        }
 	    };

@@ -1,9 +1,9 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
         <div class="row table-row heightfull">
-            
-            
-            
+
+
+
             <div class="col-sm-21 col-md-21">
                 <div class="box body--margin col-sm-24">
                     <div class="box__header">
@@ -11,56 +11,56 @@
                             <i class="fa fa-users"></i>  USER MANAGER
                         </h2>
                     </div><!--header- END- -->
-                    
+
                     <div class="box__content">
                         <h4><b>Add user</b></h4>
                         <div class="col-md-12 col-xs-24">
-                            
+
                                 <label for="Fname">First Name</label>
                                 <input type="text" name="Fname" class="form-control" ng-model="user.first_name" required="true">
-                            
-                            
+
+
                                 <label for="Lname">Last Name</label>
                                 <input type="text" name="Lname" class="form-control" ng-model="user.last_name" required="true">
-                            
+
                                 <label for="email">Email</label>
                                 <input type="text" name="email" class="form-control" ng-model="user.email" required="true">
-                            
+
                                 <label for="pass">Password</label>
-                                <input type="text" name="pass" class="form-control" ng-model="user.password" required="true">
+                                <input type="password" name="pass" class="form-control" ng-model="user.password" required="true">
                                 <label for="radioform">Role:</label>
-                            
+
                                 <form class="radioitem" action="">
-                                
+
                                          <input type="radio" name="obligatory" ng-model="user.role" value="student" required="true">
                                         <label class="radioitem" for="radio">Student</label>
                                          <input type="radio" name="obligatory" ng-model="user.role" value="teacher" required="true">
                                         <label class="radioitem" for="radio">Teacher</label>
                                          <input   type="radio" name="obligatory" ng-model="user.role" value="admin" required="true">
                                         <label class="radioitem" for="radio">Admin</label>
-                                   
+
                                 </form>
                             </div>
-                        
+
                             <div class="col-md-12 col-xs-24">
-                            
-                               
+
+
                                 <label for="desc">Description</label>
                                 <input required="true" type="text" class="form-control" ng-model="user.description" rows="3">
-                            
+
                                 <label for="phone">Phone Number</label>
                                 <input type="text" name="phone" class="form-control" ng-model="user.phone_number" required="true">
-                            
+
                                 <label for="personality">Personality</label>
                                 <input type="text" name="personality" class="form-control" ng-model="user.personality" required="true">
-         
+
                                 <label for="public_url">Public Url</label>
                                 <input type="text" name="public_url" class="form-control" ng-model="user.public_url" required="true">
-                                
+
                                     <div class="col-md-24">
                                         <button type="Button" class="btn btn-success send__button" ng-click="addOrUpdateUser()">{{btnAddOrUpdateTextUser}}</button>
                                     </div>
-                            
+
                             </div>
                         <!--
                             <div class="col-md-12 col-xs-12">
@@ -79,7 +79,7 @@
                                 <input class="form-control" ng-model="user.plugs[0].x" required="true">
                                 <label for="desc">y</label>
                                 <input class="form-control" ng-model="user.plugs[0].y" required="true">
-                                
+
                             </div>
                         -->
                             <div class="col-xs-24 col-md-24">
@@ -92,7 +92,7 @@
                                             </div>
                                         </div>
                                     </form>
-                                    
+
                                     <select ng-model="filterUsers" class="form-control filteruser">
                                         <option value="" ng-selected=true>All</option>
                                         <option value="student">Students</option>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="col-md-24 col-xs-24 userlisttabel">
                                 <table class="table table-condensed">
-                                    
+
                                 <thead>
                                 <tr>
                                     <th class="headning">User_role</th>
@@ -114,8 +114,8 @@
                                     <th class="headning">Description</th>
                                     <th class="headning">Personality</th>
                                     <th class="headning">Public_url</th>
-                                    
-                                    
+
+
                                 </tr>
                                </thead>
                                 <tbody>
@@ -129,27 +129,27 @@
                                         <td class="desc">{{user.description}}</td>
                                         <td>{{user.personality}}</td>
                                         <td>{{user.public_url}}</td>
-                                
+
                                         <td class="btn-danger remove" ng-click="remove(user)">Remove</td>
                                         <td class="btn-warning remove" ng-click="prepareEdit(user._id)">Edit</td>
                                     </tr>
-                                    
+
                                 </tbody>
-                                
+
                             </table>
                         </div>
-                        
-                        
-                        
-                        
 
-                    
-                    
+
+
+
+
+
+
                     </div><!--.box-content-->
-                
+
                 </div><!--.box .col-->
             </div><!--.col-->
-            
+
        </div><!--.row-->
     </div><!--.container-->
 </div><!--.app_container-->
