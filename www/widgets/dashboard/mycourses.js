@@ -23,15 +23,14 @@ app.directive('dashboardCourses', [
 
 		        	User.get({_id: response.user._id, _populate:"courses"}, function(user)
 		        	{
-                console.log(user[0].courses[0]);
+                if(user[0].courses[0] != undefined){
+                  console.log(user[0].courses[0]);
                   user[0].courses[0].start = new Date(user[0].courses[0].start);
                   user[0].courses[0].end = new Date(user[0].courses[0].end);
-			        	scope.courses = user[0].courses;
+  			        	scope.courses = user[0].courses;
+                }
 		        	});
-
-
 		        });
-
         };
               //Runs on page update
         refresh();
