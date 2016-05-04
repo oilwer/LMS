@@ -7427,6 +7427,7 @@ h6 {
   margin-bottom: 0px;
   font-family: 'Roboto', 'arial', sans-serif;
   font-weight: 400;
+  font-size: 1.6em;
 }
 h2 {
   font-size: 1.2em;
@@ -7489,6 +7490,10 @@ html {
 }
 .resources {
   padding: 20px !important;
+}
+.resources h1 {
+  padding-bottom: 20px;
+  padding-top: 20px;
 }
 /*Styles for global .box classes
     
