@@ -3,7 +3,7 @@ module.exports = function(mongoose){
   var sha1 = require('sha1');
 
   var UserSchema = new mongoose.Schema({
-    profilePic: String,
+    profile_pic: String,
     email: String,
     first_name: String,
     last_name: String,

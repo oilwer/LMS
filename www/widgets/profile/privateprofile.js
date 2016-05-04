@@ -153,7 +153,7 @@ app.directive('profilePrivateprofile', [
                 _id: user._id
             },{
               //properties
-                  profilePic: user.profilePic,
+                  profile_pic: user.profile_pic,
                   email: user.email,
                   first_name: user.first_name,
                   last_name: user.last_name,
@@ -173,6 +173,38 @@ app.directive('profilePrivateprofile', [
 	            $scope.user = user;
 	        }
 	    };
+
+	    uploadPicture = function () {
+	    	if (scope.upload_form.file.$valid && scope.file) { //check if from is valid
+	    		var strippedFileName = $scope.file.name.replace(/[\n\t\r\x20]/g, "_");
+	            Upload.upload({
+	                url: 'http://localhost:3000/profilepictures', //webAPI exposed to upload the file
+	                data:{
+	                	file: $scope.file,
+	                	filename: strippedFileName,
+	                } //pass file as data, should be user ng-model
+	            }).then(function (resp) { //upload function returns a promise
+	                if(resp.data.error_code === 0){ //validate success
+	                  //  console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
+	                  	obj.profile_pic = strippedFileName;
+	                  	$scope.updateProfile(obj);
+	                } else {
+	                    console.log('an error occured');
+	                }
+	            }, function (resp) { //catch error
+	                console.log('Error status: ' + resp.status);
+	                // $window.alert('Error status: ' + resp.status);
+	                $window.alert('File was not uploaded');
+	            }, function (evt) {
+	              //  console.log(evt);
+	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+	                scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+	            });
+            }
+      	}
+
+
 		getUser();
       }
     };
