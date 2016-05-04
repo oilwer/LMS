@@ -9,8 +9,27 @@ app.directive('profilePublicprofile', [
     return {
       templateUrl: settings.widgets + 'profile/publicprofile.html',
       link: function($scope, element, attrs) {
+
+        showPicture = function(){
+            var pic = ""
+            if($scope.profile_pic === undefined || $scope.profile_pic === ""){
+              pic = "/img/profile_default.png";
+            }else{
+              pic = './uploads/' + $scope.profile_pic;
+            }
+
+            $('.profile__about__img').css({
+              'background' : 'url('+ pic + ')',
+              '-webkit-background-size': 'contain',
+              '-moz-background-size': 'contain',
+              '-o-background-size': 'contain',
+              'background-size': 'contain'      
+            })
+        }
+
         User.get({ public_url: $routeParams.url, _populate:"courses"}, function(res){
           var data = res[0];
+
           if(data != false) {
             $scope.first_name = data.first_name;
             $scope.profile_pic = data.profile_pic;
@@ -31,29 +50,9 @@ app.directive('profilePublicprofile', [
           }else {
               $scope.first_name = "No profile found";
           }
+            showPicture();
+
         }); 
-
-        showPicture = function(){
-            var pic = ""
-            if($scope.profile_pic === undefined || $scope.profile_pic === ""){
-              pic = "/img/profile_default.png";
-            }else{
-              pic = './uploads/' + $scope.profile_pic;
-            }
-
-            $('.profile__about__img').css({
-              'background' : 'url('+ pic + ')',
-              '-webkit-background-size': 'contain',
-              '-moz-background-size': 'contain',
-              '-o-background-size': 'contain',
-              'background-size': 'contain'      
-            })
-        }
-
-      
-      showPicture();
-
-
       } 
     };
   }
