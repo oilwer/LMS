@@ -18,7 +18,11 @@ module.exports = function(mongoose){
         slack_channels: [{
             channelId: String
         }],
-
+        uploads: [{
+          filename: String,
+          uploaded_on: {type: Date, default:Date.now},
+          uploaded_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+        }],
         resources: [{
             name: String,
             creator: String,
