@@ -7486,6 +7486,9 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
+.resources {
+  padding: 20px !important;
+}
 /*Styles for global .box classes
     
 This is a LESS file; only style for the element class .box allowed!
@@ -9181,7 +9184,7 @@ dashboard-allcourses .assignClass {
   float: left;
   margin-right: 8px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
             Single COURSE
 
@@ -9202,7 +9205,6 @@ dashboard-allcourses .assignClass {
 .course--details p {
   display: inline;
 }
-/*yolo*/
 .course_teacher {
   font-size: 1em!important;
   margin-bottom: 10px;
