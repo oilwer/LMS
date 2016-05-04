@@ -1,7 +1,17 @@
-<div class="app_container heightfull">
-    <div class="container-fluid heightfull ng-scope">
+<div class="app_container">
+    <div class="container-fluid body--margin ng-scope">
+        <div class="box resources">
+            <h1> Resources </h1>
 
-      <h1> Resources </h1>
+            <h2>The list</h2>
 
+            <fileupload-fileupload> </fileupload-fileupload>
+
+            <button ng-click="uploadFile();"> Submit </button>
+
+            <div ng-repeat="resource in resourceList">
+            <p> {{resource.filename}}</p>
+            </div>
+        </div>
     </div>
   </div>
