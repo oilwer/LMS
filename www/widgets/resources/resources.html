@@ -10,6 +10,7 @@
             <button ng-click="uploadFile();"> Submit </button>
 
             <div ng-repeat="resource in resourceList">
+              <a target="_blank" href="uploads/{{resource.filename}}">
             <p> {{resource.filename}}</p>
             </div>
         </div>
