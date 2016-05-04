@@ -45,7 +45,9 @@
                         
                         <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
                         <!--<input class="form-control" ng-model="user.courses.course_name" required="true">-->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                        <ul ng-repeat = 'course in courses'>
+                            <li> {{course.name}}</li>
+                        </ul>
 
                     </div>
                     <div class="col-sm-12 col-md-12 col-sm-12 profile__stuff__projects">
