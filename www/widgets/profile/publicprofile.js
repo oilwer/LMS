@@ -9,7 +9,7 @@ app.directive('profilePublicprofile', [
     return {
       templateUrl: settings.widgets + 'profile/publicprofile.html',
       link: function($scope, element, attrs) {
-        User.get({ public_url: $routeParams.url }, function(res){
+        User.get({ public_url: $routeParams.url, _populate:"courses"}, function(res){
           var data = res[0];
           if(data != false) {
             $scope.first_name = data.first_name;
@@ -24,13 +24,16 @@ app.directive('profilePublicprofile', [
             $scope.twitter = data.twitter;
             $scope.github = data.github;
             $scope.user = data;
-            obj = data;
             $scope.role = data.role;
             $scope.personality = data.personality;
+            $scope.courses = data.courses;
           }else {
               $scope.first_name = "No profile found";
           }
-        });           
+        }); 
+
+
+
       } 
     };
   }
