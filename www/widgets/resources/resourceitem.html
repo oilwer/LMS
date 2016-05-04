@@ -1,6 +1,6 @@
-<li class="courses_assignmentitem">
+<li class="courses_assignmentitem" ng-repeat="resources in resourceList | orderBy:'resources.uploaded_on' | ">
     <a target="_blank" ng-href="uploads/{{filename}}">
-         <span class="assignmentitem_name">{{filename}}</span>
-         <span> {{added}}</span>
+         <span class="assignmentitem_name">{{resources.filename}}</span>
+         <span> {{resources.uploaded_on}}</span>
     </a>
 </li>
