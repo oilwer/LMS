@@ -23,45 +23,49 @@ app.directive('assignmentAssignmentteacher', [
           SessionService.getSession().success(function(response){
              session_user = response.user;
 
+             console.log(response.user._id);
+
               User.get({_id: response.user._id}, function(user)
               {
                 console.log(user[0]);
                 session_user = user[0];
 
+                //current assignment
+                Assignment.get({_id: $routeParams.id}, function(assignment){
+                    scope.assignment = assignment[0];
+                    assignment = assignment[0];
+                    scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
+                    if (scope.assignment.obligatory === true) {
+                        scope.obligatoryText = "Yes";
+                    }
+                      else{
+                          scope.obligatoryText = "No";
+                    };
+
+                    var obj = session_user.assignments.filter(function ( obj ) {
+                      return obj.assignment === scope.assignment._id;
+                    })[0];
+
+                    console.log(obj);
+
+                    scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
+
+                    $(".assignment_description").append("Assignment description:\n ", scope.assignment.description);
+                    if (scope.answer_file) {
+                        $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
+                    }
+
+                    User.get({_id: scope.assignment.responsible_teacher }, function(user){
+                      scope.teacher = user[0].first_name + " " + user[0].last_name;
+                      scope.teacherUrl = user[0].public_url;
+                    });
+                });
+
 
               });
           });
 
-          //current assignment
-          Assignment.get({_id: $routeParams.id}, function(assignment){
-              scope.assignment = assignment[0];
-              assignment = assignment[0];
-              scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
-              if (scope.assignment.obligatory === true) {
-                  scope.obligatoryText = "Yes";
-              }
-                else{
-                    scope.obligatoryText = "No";
-              };
 
-              var obj = session_user.assignments.filter(function ( obj ) {
-                return obj.assignment === scope.assignment._id;
-              })[0];
-
-              console.log(obj);
-
-              scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
-
-              $(".assignment_description").append("Assignment description:\n ", scope.assignment.description);
-              if (scope.answer_file) {
-                  $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
-              }
-
-              User.get({_id: scope.assignment.responsible_teacher }, function(user){
-                scope.teacher = user[0].first_name + " " + user[0].last_name;
-                scope.teacherUrl = user[0].public_url;
-              });
-          });
 
 
           scope.setUp = function() {
