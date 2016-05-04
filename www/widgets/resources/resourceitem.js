@@ -15,10 +15,12 @@ app.directive('resourcesResourceitem', [
 
 
         scope.resourceList = [];
-        Course.get({ name: "hej" }, function(course){
+        Course.get({ url: url}, function(course){
+          if(course[0].resources !== undefined){
             for (var i = 0; i < course[0].resources.length; i++) {
                 scope.resourceList.push(course[0].resources[i]);
             }
+          }
 
         });
 
