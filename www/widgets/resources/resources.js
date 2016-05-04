@@ -17,11 +17,38 @@ app.directive('resourcesResources', [
 
           var isDone = false;
 
+          	SessionService.getSession().success(function(response) {
+              scope.session_user = response.user;
+            });
+
           scope.uploadFile = function()
           {
             if (scope.submit())
             {
               console.log("File uploaded");
+
+            //  comment += document.getElementsByName("content")[0].value;
+
+              //console.log(scope.file);
+              var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+
+              console.log(strippedFileName);
+
+              Course.update({
+                _id: "5729c5b6b97cfa5e04ba025e"
+              },{ $push: {
+                  resources:{
+                    filename: strippedFileName,
+                    uploaded_by: scope.session_user._id
+                  }
+                }
+              }, function(res)
+            {
+              console.log(res);
+              getResources();
+            });
+
+
             }
           }
 

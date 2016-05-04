@@ -52,7 +52,7 @@ app.directive('assignmentAssignmentstudent', [
 
           scope.hasFeedback = true; //show/hide feedback div
           scope.isDone = false;
-          
+
           checkIfSubmitted = function(){
             scope.isDone = false;
             User.get({_id: scope.session_user._id}, function(user){
@@ -89,7 +89,7 @@ app.directive('assignmentAssignmentstudent', [
 
                   $('.assignment-hasFeedback').append(scope.assignmentFeedback.answerComment);
                   $('.assignment-isAnswered p:first-child').prepend(scope.comment);
-                  $('.submittedFile').empty().append('<a target="_self" href="uploads/' + scope.answer_file + '" download>' + scope.answer_file + '</a>');
+                  $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
                 }
               }
             });
