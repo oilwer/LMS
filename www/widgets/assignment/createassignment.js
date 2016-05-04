@@ -117,7 +117,8 @@ app.directive('assignmentCreateassignment', [
 		        //Gui function add course
 		        scope.addOrUpdateAssignment = function(){
                     //submit file upload
-                    scope.submit();
+
+                    scope.$$childTail.submit();
 
 			        if (typeof selectedCourseName !== 'undefined'){
 				        if (typeof scope.assignment.obligatory !== 'undefined'){
@@ -159,22 +160,27 @@ app.directive('assignmentCreateassignment', [
 									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
-                                                            console.log("ass, id", newAssignment._id);
-                                                            console.log("file:",scope.file);
+                                                            console.log("ass, id", newAssignment[0]._id);
+                                                            console.log("file:",scope.$$childTail.file[0].name);
                                                             //console.log(scope.file);
-                                                            // var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-                                                            // User.update({
-                                                            //     _id: scope.session_user._id
-                                                            // },{ $push: {
-                                                            //     assignments:{
-                                                            //       assignment: scope.assignment._id,
-                                                            //       comment: comment,
-                                                            //       submissionDate: new Date(),
-                                                            //       status: "Submitted",
-                                                            //       answer_file: strippedFileName
-                                                            //     }
-                                                            //   }
-                                                            // });
+
+                                                            var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+
+                                                            User.update({
+                                                                _id: scope.session_user._id
+                                                            },{ $push: {
+                                                                assignments:{
+                                                                  assignment: newAssignment[0]._id,
+                                                                  comment: newAssignmentDescription,
+                                                                  submissionDate: new Date(),
+                                                                  status: "Submitted",
+                                                                  answer_file: strippedFileName
+                                                                }
+                                                              }
+                                                            }, function(res)
+                                                          {
+                                                            console.log(res);
+                                                          });
 											  				scope.incrementStep();
 
 										  				});

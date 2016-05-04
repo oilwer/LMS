@@ -21,7 +21,15 @@ app.directive('assignmentAssignmentteacher', [
           //get session_user
           var session_user;
           SessionService.getSession().success(function(response){
-              session_user = response.user;
+             session_user = response.user;
+
+              User.get({_id: response.user._id}, function(user)
+              {
+                console.log(user[0]);
+                session_user = user[0];
+
+
+              });
           });
 
           //current assignment
@@ -35,11 +43,18 @@ app.directive('assignmentAssignmentteacher', [
                 else{
                     scope.obligatoryText = "No";
               };
-              scope.answer_file = scope.session_user.assignments[a].answer_file.replace(/[\n\t\r\x20]/g, "_");
+
+              var obj = session_user.assignments.filter(function ( obj ) {
+                return obj.assignment === scope.assignment._id;
+              })[0];
+
+              console.log(obj);
+
+              scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
 
               $(".assignment_description").append("Assignment description:\n ", scope.assignment.description);
               if (scope.answer_file) {
-                  $('.submittedFile').empty().append('<a target="_self" href="uploads/' + scope.answer_file + '" download>' + scope.answer_file + '</a>');
+                  $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
               }
 
               User.get({_id: scope.assignment.responsible_teacher }, function(user){
