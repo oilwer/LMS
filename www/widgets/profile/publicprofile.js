@@ -13,6 +13,7 @@ app.directive('profilePublicprofile', [
           var data = res[0];
           if(data != false) {
             $scope.first_name = data.first_name;
+            $scope.profile_pic = data.profile_pic;
             $scope.last_name = data.last_name;
             $scope.email = data.email;
             $scope.phone_number = data.phone_number;
@@ -32,6 +33,25 @@ app.directive('profilePublicprofile', [
           }
         }); 
 
+        showPicture = function(){
+            var pic = ""
+            if($scope.profile_pic === undefined || $scope.profile_pic === ""){
+              pic = "/img/profile_default.png";
+            }else{
+              pic = './uploads/' + $scope.profile_pic;
+            }
+
+            $('.profile__about__img').css({
+              'background' : 'url('+ pic + ')',
+              '-webkit-background-size': 'contain',
+              '-moz-background-size': 'contain',
+              '-o-background-size': 'contain',
+              'background-size': 'contain'      
+            })
+        }
+
+      
+      showPicture();
 
 
       } 

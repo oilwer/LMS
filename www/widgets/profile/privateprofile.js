@@ -5,13 +5,17 @@ app.directive('profilePrivateprofile', [
   "$routeParams",
   "$location",
   "$http",
+  "$window",
+  "Upload",
   function(
     settings,
     User,
     SessionService,
     $routeParams,
     $location,
-    $http
+    $http,
+    $window,
+    Upload
      ) {
 
     return {
@@ -60,6 +64,10 @@ app.directive('profilePrivateprofile', [
 	            $scope.last_name = data.last_name;
 	            $scope.email = data.email;
 
+	            $scope.profile_pic = data.profile_pic;
+
+	            console.log(data.profile_pic);
+
 	            $scope.phone_number = data.phone_number;
 	            $scope.url = data.public_url;
 	            $scope.homepage = data.homepage;
@@ -83,6 +91,8 @@ app.directive('profilePrivateprofile', [
                     $scope.isStudent = true;
                 }
 	            $scope.personality = data.personality;
+
+	            showPicture();
 
 	        } else {
 	            $scope.first_name = "No profile found";
@@ -171,38 +181,44 @@ app.directive('profilePrivateprofile', [
 
 	        if(user != null){
 	            $scope.user = user;
+	            showPicture();
 	        }
 	    };
 
-	    uploadPicture = function () {
-	    	if (scope.upload_form.file.$valid && scope.file) { //check if from is valid
-	    		var strippedFileName = $scope.file.name.replace(/[\n\t\r\x20]/g, "_");
-	            Upload.upload({
-	                url: 'http://localhost:3000/profilepictures', //webAPI exposed to upload the file
-	                data:{
-	                	file: $scope.file,
-	                	filename: strippedFileName,
-	                } //pass file as data, should be user ng-model
-	            }).then(function (resp) { //upload function returns a promise
-	                if(resp.data.error_code === 0){ //validate success
-	                  //  console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ');
-	                  	obj.profile_pic = strippedFileName;
-	                  	$scope.updateProfile(obj);
-	                } else {
-	                    console.log('an error occured');
-	                }
-	            }, function (resp) { //catch error
-	                console.log('Error status: ' + resp.status);
-	                // $window.alert('Error status: ' + resp.status);
-	                $window.alert('File was not uploaded');
-	            }, function (evt) {
-	              //  console.log(evt);
-	                var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
-	                //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-	                scope.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
-	            });
-            }
-      	}
+	   showPicture = function(){
+	   		var pic = ""
+	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
+	   			pic = "/img/profile_default.png";
+	   		}else{
+	   			pic = './uploads/' + obj.profile_pic;
+	   		}
+	    	$('.profile__about__img').css({
+	    		'background' : 'url('+ pic + ')',
+	    		'-webkit-background-size': 'contain',
+			    '-moz-background-size': 'contain',
+			    '-o-background-size': 'contain',
+			    'background-size': 'contain'    	
+			})
+	    }
+
+      	$scope.uploadPicture = function (file) {
+      		var strippedFileName = file.name.replace(/[\n\t\r\x20]/g, "_");
+	        Upload.upload({
+	            url: 'http://localhost:3000/upload', //webAPI exposed to upload the file
+	            data:{
+	               	file: file
+	            } //pass file as data, should be user ng-model
+	        }).then(function (resp) {
+	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
+	            obj.profile_pic = strippedFileName;
+	            $scope.updateProfile(obj);
+	        }, function (resp) {
+	            console.log('Error status: ' + resp.status);
+	        }, function (evt) {
+	            var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
+	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
+	        });
+    	};
 
 
 		getUser();

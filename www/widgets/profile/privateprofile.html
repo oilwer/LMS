@@ -6,14 +6,15 @@
                 <div class="profile__about">
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
-                    <div class="profile__about__img" ng-click = "uploadPicture()">
-                         <input
-                           type="file"
-                           ngf-select
-                           ng-model="file"
-                           name="file"
-                           ngf-max-size="20MB"
-                        />
+
+                    <div class="profile__about__img" ngf-select="uploadPicture($file)">
+                             <input
+                               type="file"
+                               ngf-select
+                               ng-model="file"
+                               name="file"
+                               ngf-max-size="20MB"
+                            />
                     </div>
                 </div><!---.profile__about-->
 
