@@ -2,7 +2,7 @@
 <form  name="upload_form">
   <div class="input-group btn--fileupload">
     <span class="input-group-btn">
-        <span class="btn btn-default btn-file btn-default--assignment"><i class="fa fa-folder-open" aria-hidden="true"></i>
+        <span class="btn btn-default btn-file"><i class="fa fa-folder-open" aria-hidden="true"></i>
             Select file
             <input
                type="file"
@@ -12,8 +12,8 @@
                ngf-max-size="20MB"
                multiple
             />
-            <p>{{progress}}</p>
         </span>
+        <p>{{progress}}</p>
 
         <!--Image thumbnail: <img style="width:100px;" ngf-thumbnail="file || '/thumb.jpg'"/>-->
         <i ng-show="upload_form.file.$error.required">*required</i><br>

@@ -23,11 +23,8 @@ app.directive('assignmentAssignmentteacher', [
           SessionService.getSession().success(function(response){
              session_user = response.user;
 
-             console.log(response.user._id);
-
               User.get({_id: response.user._id}, function(user)
               {
-                console.log(user[0]);
                 session_user = user[0];
 
                 //current assignment
@@ -46,11 +43,12 @@ app.directive('assignmentAssignmentteacher', [
                       return obj.assignment === scope.assignment._id;
                     })[0];
 
-                    console.log(obj);
+                    
+                    if(scope.answer_file !== undefined) {
+                        scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
+                    }
 
-                    scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
-
-                    $(".assignment_description").append("Assignment description:\n ", scope.assignment.description);
+                    $(".assignment_description").append(scope.assignment.description);
                     if (scope.answer_file) {
                         $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
                     }

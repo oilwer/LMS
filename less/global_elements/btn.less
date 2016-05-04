@@ -23,6 +23,19 @@
     }
 }
 
+.btn--resources {
+    background: @RGBresources;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBresources,85%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
 .btn--users {
     background: @RGBskills;
     color: #fff;
@@ -64,6 +77,33 @@
     transition: all 0.3s ease-in-out;
     &:hover {
         background-color: fade(@RGBassignments,85%) !important;
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.fileupload--assignment .btn-file {
+    background-color: @RGBassignments !important;
+    border:none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background-color: fade(@RGBassignments,85%) !important;
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.resources .btn-file, .resourcesDetails .btn-file {
+    background: @RGBresources;
+    border: none;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBresources,85%);
         transition: all 0.3s ease-in-out;
     }
     &:active, &:focus {

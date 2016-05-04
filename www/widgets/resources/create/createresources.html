@@ -1,0 +1,39 @@
+<div class="row--modal modal--createResources">
+    <div class="col-sm-20 col-sm-offset-2 resourcesDetails">
+        <h2>Create Resource</h2>
+        
+        <form class="form--createresource">
+
+          <!-- FILE UPLOAD MODULE -->
+           <fileupload-fileupload></fileupload-fileupload>
+            <label for="resourceName">Resource title</label>
+            <input id="resourceName" class="form-control" type="text" ng-model="resourceTitle">
+            <label for="selectCourse">Add resource to:</label>
+            <select id="selectCourse"
+                        ng-change="selectCourseChanged(id)"
+                        ng-model="courseSelect.repeatSelect"
+                        required="required"
+                        name="repeatSelect"
+                        class="form-control">
+              <option value=""> --- Available courses ---</option>
+              <option ng-repeat="option in courseSelect.availableOptions" value="{{ option._id }}">{{ option.name }}
+              </option>
+            </select>
+            
+            
+            
+            
+            <div class="col-sm-24">
+                <input id="createNewResource" type="hidden" name="content">
+                <trix-editor input="createNewResource" id="descriptionEditor"></trix-editor>
+            </div>
+        </form>
+
+        <div class="col-sm-24">
+            <button class="btn btn--resources" ng-click="closeModalSession()">Close</button>
+            <button ng-click="createResource()" type="submit" class="btn btn--resources">Create</button>
+        </div>
+        
+        
+    </div>
+</div>
