@@ -53,9 +53,6 @@ app.directive('profilePrivateprofile', [
 	    $scope.isStudent = false;
 	    var obj = null;
 
-
-
-
 	    // Get profile data from DB
 	    var initializeProfile = function (data) {
 	        if (data != false) {
@@ -77,6 +74,8 @@ app.directive('profilePrivateprofile', [
 	            $scope.user = data;
 	            $scope.role = data.role;
 
+	            $scope.courses = data.courses;
+
 	            obj = data;
 
 	            if(data.role == "Student")
@@ -89,7 +88,6 @@ app.directive('profilePrivateprofile', [
 	            $scope.first_name = "No profile found";
 	        }
 	    };
-
 
 	    $scope.editDescription = function () {
 	        if ($scope.class == "fa fa-pencil") {
@@ -134,14 +132,13 @@ app.directive('profilePrivateprofile', [
 	    };
 
 		var loadUser = function(newuser) {
-					initializeProfile(newuser);
+			initializeProfile(newuser);
       	}
 
 	    var getUser = function () {
 
-				SessionService.getSession().success(function(response) {
-
-					User.get({_id:response.user._id},function(newUser){
+			SessionService.getSession().success(function(response) {
+				User.get({_id:response.user._id, _populate:"courses"},function(newUser){
  					loadUser(newUser[0]);
 				});
 			});

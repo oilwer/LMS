@@ -49,7 +49,10 @@ module.exports = function(mongoose){
             y: Number
    }],
    role: String, //student/admin/teacher
-   slack_token: String //holds slack token
+   slack_token: String, //holds slack token
+   skills: [{
+        type: mongoose.Schema.Types.ObjectId, ref: 'Tags'
+    }]
 });
 
   UserSchema.pre('save', function(next){
