@@ -132,8 +132,6 @@ app.get('/forgotPassword/', function (req, res) {
     });
 
 
-
-
 // Route everything "else" (not "/api/**/*") to angular (in html5mode)
 app.get('*', function (req, res) {
   res.sendFile('index.html', {root: './www'});
