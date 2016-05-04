@@ -19,12 +19,9 @@ app.directive('fileuploadFileupload', [
                 upload(scope.file[i]); //call upload function
               }
             }
+            return true;
         }
 
-        scope.test = function()
-        {
-          alert("???");
-        }
 
         upload = function (file) {
     //      console.log("file", file);
