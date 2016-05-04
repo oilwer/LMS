@@ -37,7 +37,7 @@ app.config([
        .when("/courses/:name/assignment/:id", {
         templateUrl: "templates/assignment.html",
       })
-       // 
+       //
        .when("/courses/:id", {
         templateUrl: "templates/course.html",
       })
@@ -59,6 +59,9 @@ app.config([
       })
       .when("/chat/", {
         templateUrl: "templates/chat_template.html",
+      })
+      .when("/resources/", {
+        templateUrl: "templates/resources.html",
       })
       .otherwise({
         redirectTo: "/"
