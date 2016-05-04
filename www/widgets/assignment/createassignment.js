@@ -3,6 +3,7 @@ app.directive('assignmentCreateassignment', [
     "$location",
     "$window",
     "Course",
+    "User",
     "Assignment",
     "SessionService",
   function(
@@ -10,13 +11,14 @@ app.directive('assignmentCreateassignment', [
     $location,
     $window,
     Course,
+    User,
     Assignment,
     SessionService
   ) {
     return {
       templateUrl: settings.widgets + 'assignment/createassignment.html',
       link: function(scope, element, attrs, $location) {
-          
+
 		        //get session_user
 		        scope.session_user;
 		        SessionService.getSession().success(function(response){
@@ -76,19 +78,19 @@ app.directive('assignmentCreateassignment', [
 					console.log(selectedAssignmentName);
 			   	}
 
-                    
+
                 //check dateRange for GUI feedback
                 scope.invalidDateRange = true;
                 scope.invalidDateRangeGUI = false;
                 scope.isDateRangeValid = function() {
-                    
+
                     var result = AvailableCourses.filter(function( obj ) {
                         return obj.name == selectedCourseName;
                     });
 
                     scope.assignment.course = result[0]._id;
                     scope.assignment.added_on = (new Date()).toJSON();
-                    
+
                     if(new Date(scope.assignment.due_date) > new Date(result[0].start)){
 				        // Assignment due date is before the course has ended
 				        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
@@ -97,23 +99,27 @@ app.directive('assignmentCreateassignment', [
                             scope.invalidDateRangeGUI = false;
                         }
                         else {
-                            console.log("invalid date range"); 
+                            console.log("invalid date range");
                             scope.invalidDateRange = true;
                             scope.invalidDateRangeGUI = true;
                         }
                     }
                     else {
-                        console.log("invalid date range"); 
+                        console.log("invalid date range");
                         scope.invalidDateRange = true;
                         scope.invalidDateRangeGUI = true;
                     }
                 };
-                
-          
+
+
                 var newAssignmentDescription = "";
-          
+
 		        //Gui function add course
 		        scope.addOrUpdateAssignment = function(){
+                    //submit file upload
+
+                    scope.$$childTail.submit();
+
 			        if (typeof selectedCourseName !== 'undefined'){
 				        if (typeof scope.assignment.obligatory !== 'undefined'){
 				        	//Do nothing
@@ -137,7 +143,7 @@ app.directive('assignmentCreateassignment', [
 							        if(new Date(scope.assignment.due_date) > new Date(result[0].start)){
 									    // Assignment due date is before the course has ended
 								        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
-											console.log("Creating the actual assignment");
+											//console.log("Creating the actual assignment");
 											scope.isEditing = 1;
 
 											scope.btnAddOrUpdate = "Update assignment";
@@ -147,14 +153,36 @@ app.directive('assignmentCreateassignment', [
                                             scope.assignment.description = $("#createAssignment").attr("value");
                                             newAssignmentDescription = scope.assignment.description;
 
-							              	Assignment.create(scope.assignment, function(res){
-								          		Course.get({ _id: res[0].course}, function(x){
+							              	Assignment.create(scope.assignment, function(res) {
+								          		Course.get({ _id: res[0].course}, function(x) {
 								          			//Update Course and Continue
 										  			Course.update({_relate:{items:x[0],assignments:res[0] }});
-									  				Assignment.update({_relate:{items:res[0],course:x[0]}}, function(newres){
+									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
+                                                            console.log("ass, id", newAssignment[0]._id);
+                                                            console.log("file:",scope.$$childTail.file[0].name);
+                                                            //console.log(scope.file);
+
+                                                            var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+
+                                                            User.update({
+                                                                _id: scope.session_user._id
+                                                            },{ $push: {
+                                                                assignments:{
+                                                                  assignment: newAssignment[0]._id,
+                                                                  comment: newAssignmentDescription,
+                                                                  submissionDate: new Date(),
+                                                                  status: "Submitted",
+                                                                  answer_file: strippedFileName
+                                                                }
+                                                              }
+                                                            }, function(res)
+                                                          {
+                                                            console.log(res);
+                                                          });
 											  				scope.incrementStep();
+
 										  				});
 									  				});
 					                    		});
@@ -182,7 +210,7 @@ app.directive('assignmentCreateassignment', [
 													due_date: scope.assignment.due_date
 													}, function(res)
 												{
-													console.log("Update res: ", res);
+													//console.log("Update res: ", res);
 													oldassignment = "";
 													oldassignment = JSON.parse(JSON.stringify(scope.assignment));
 													scope.incrementStep();
@@ -359,12 +387,12 @@ app.directive('assignmentCreateassignment', [
                                 console.log("kör stepp");
                                 setTimeout(previewDescription,50);
                                 console.log("SCOPE", scope.assignment.description);
-                                //$(".assignmentDescription").text("????");   
+                                //$(".assignmentDescription").text("????");
                                // $(".process_view").children(".assignmentDescription").append(scope.assignment.description);
                                 //$(".process_view").children().text("hej");
                                 //$(".process_view").append(scope.assignment.description);
                             }
-                            
+
 						} else {
 							scope.selection = scope.steps[nextStep].name;
 						}
@@ -375,12 +403,12 @@ app.directive('assignmentCreateassignment', [
 						}
 		            }
 		        };
-                
+
                 var previewDescription = function() {
                     console.log($(".process_view").children());
                     $(".assignmentDescription").append(scope.assignment.description);
                 };
-          
+
 		        //move to previous step
 		        scope.decrementStep = function() {
 		            if(scope.hasPreviousStep()){
@@ -403,8 +431,8 @@ app.directive('assignmentCreateassignment', [
 						$window.location.href = '/courses/' + fetchedAssignment[0].course.url + "/assignment/" + fetchedAssignment[0]._id;
 			       });
 		        }
-                
-                
+
+
                 scope.closeModalAssignmentSession = function() {
                     scope.isEditing = false;
                     scope.btnAddOrUpdate = 'Create assignment';
