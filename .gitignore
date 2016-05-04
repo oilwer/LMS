@@ -1,4 +1,5 @@
 .idea/
 node_modules/
+uploads/
 .DS_Store
 www/css/all.css
