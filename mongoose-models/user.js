@@ -34,10 +34,10 @@ module.exports = function(mongoose){
       comment: String,
       submissionDate: Date,
       answer_file: String,
-      answerComment: String, //feedback from teacher
-      answerDate: Date,
+      answerDate: { type: Date, default:Date.now },
       answeredBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: String, // New|Wating|Resubmit|Done  
+      answerComment: String, //feedback from teacher
+      status: String, // New|Wating|Resubmit|Done
       //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
     }],
     plugs:[{

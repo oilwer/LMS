@@ -52,20 +52,21 @@ app.directive('assignmentAssignmentstudent', [
 
           scope.hasFeedback = true; //show/hide feedback div
           scope.isDone = false;
+          
           checkIfSubmitted = function(){
             scope.isDone = false;
             User.get({_id: scope.session_user._id}, function(user){
               scope.session_user = user[0];
               scope.answer = "";
               scope.comment = "";
-                scope.status = "Submitted";
+              scope.status = "Submitted";
               for (var a = 0, len = scope.session_user.assignments.length; a < len; a += 1) {
                 if(scope.session_user.assignments[a].assignment == scope.assignment._id){
                     scope.assignmentFeedback = scope.session_user.assignments[a];
                     scope.status = scope.session_user.assignments[a].status;
                     //get the answeredBy name
-                    console.log("lärare, id:", scope.assignmentFeedback.answeredBy);
-                    
+                    //console.log("lärare, id:", scope.assignmentFeedback.answeredBy);
+
 
                     if(scope.assignmentFeedback.answeredBy != undefined) {
                         console.log("körs");
@@ -74,13 +75,11 @@ app.directive('assignmentAssignmentstudent', [
                           scope.assignmentFeedback.answeredByUrl = user[0].public_url;
                         });
                     };
-                    
-                    console.log("CheckifSubmitted");
+
                     if(scope.session_user.assignments[a].answerComment === undefined) {
                         scope.hasFeedback = false;
                     };
                     if (scope.session_user.assignments[a].status === "Done") {
-                        console.log("else if körs")
                         scope.isDone = true;
                     };
 
@@ -101,7 +100,7 @@ app.directive('assignmentAssignmentstudent', [
           //Send data to database on button click
           scope.sendAssignment = function(){
               //scope.assignmentFeedback.status = "Submitted";
-              console.log("körs");
+
 
             scope.submit();
             scope.comment = "";

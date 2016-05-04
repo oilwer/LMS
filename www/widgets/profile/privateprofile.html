@@ -78,85 +78,51 @@
 
             <div class="col-sm-18 col-md-18 col-lg-18 profile__stuff">
                 <div class="row">
-                    <div class="col-sm-24 col-md-12 col-lg-12 profile__stuff__courses">
-                        <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
-                        <i class="fa fa-pencil"></i>
-                        <!--<input class="form-control" ng-model="user.courses.course_name" required="true">-->
-                        <ul ng-repeat = 'course in courses'>
-                            <li> {{course.name}}</li>
-                        </ul>
+                    <div class="col-sm-24 col-md-12 col-lg-12">
+                        <div class="profile__stuff__courses">
+                            <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
+                            <ul ng-repeat = 'course in courses'>
+                                <a href="courses/{{course.url}}"><li> {{course.name}}</li></a>
+                            </ul>
+                        </div><!--Empty div to get spacing-->
                     </div> <!--- .col -->
-                    <div class="col-sm-24 col-md-12 col-lg-12 profile__stuff__projects">
-                        <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
-                    </div>
+                    <div class="col-sm-24 col-md-12 col-lg-12">
+                        <div class="profile__stuff__projects">
+                            <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
+                            <i class="fa fa-pencil"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
+                        </div><!--Empty div to get spacing-->
+                    </div> <!-- .col -->
                 </div> <!--- .row-->
 
                 <div class="row">
-                    <div class="col-sm-24 col-md-12 col-lg-12 profile__stuff__skills">
-                        <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
-                    </div>
-                    <div class="col-sm-24 col-md-12 col-lg-12 profile__stuff__ex">
-                        <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div ng-if="isStudent" ng-show="isStudent"class="col-sm-12 col-md-12 col-sm-12 profile__stuff__tutorials">
-                        <h1><i class="fa fa-2x fa-file-text"></i>Tutorials</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
-                    </div>
-                </div>
+                    <div class="col-sm-24 col-md-12 col-lg-12">
+                        <div class="profile__stuff__skills">
+                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
+                            <i class="fa fa-pencil"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                        </div><!--Empty div to get spacing-->
+                    </div><!-- .col -->
+                    
+                    <div class="col-sm-24 col-md-12 col-lg-12">
+                        <div class="profile__stuff__ex">
+                            <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
+                            <i class="fa fa-pencil"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                        </div><!--Empty div to get spacing-->
+                    </div> <!-- .col -->
+                </div><!-- .row -->
                 <div class="row">
                     <div ng-if="isStudent" ng-show="isStudent" class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
-                        <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
-                        <i class="fa fa-pencil"></i>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
-                    </div>
-                </div>
+                        <div class="profile__stuff__other">
+                            <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
+                            <i class="fa fa-pencil"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
+                        </div><!--Empty div to get spacing-->
+                    </div><!---.col-->
+                </div><!---.row-->
             </div><!---.col-->
         </div><!---.row-->
     </div><!---container-->
 </div>
 
-
-<!-- <div ng-controller="ProfileController">
-
-            	<p> First name </p>
-                <input class="form-control" ng-model="user.first_name" required="true">
-                <p> Last name </p>
-                <input class="form-control" ng-model="user.last_name" required="true">
-                <p> Description </p>
-                <input class="form-control" ng-model="user.description" required="true">
-                <p> Personality </p>
-                <input class="form-control" ng-model="user.personality" required="true">
-                <p> Courses </p>
-                <input class="form-control" ng-model="user.courses.course_name" required="true">
-                <p> Email </p>
-                <input class="form-control" disabled="disabled" ng-model="user.email" required="true">
-                <p> Phone number </p>
-                <input class="form-control" ng-model="user.phone_number" required="true">
-                <p> Password </p>
-                <input class="form-control" ng-model="user.password" required="true">
-                <p> Role </p>
-                <input class="form-control" ng-model="user.role" required="true">
-                <p> Public URL </p>
-                <input class="form-control" ng-model="user.public_url" required="true">
-
-                 <button class="btn btn-primary" ng-click="updateProfile()">Update</button>
-
-<!--
-           <div ng-repeat="user in userlist">
-                <p> {{user.first_name}} </p>
-                <p> {{user.email}} </p>
-               <p> {{user.phone_number}} </p>
-               <p> {{user.password}} </p>
-           </div>
-
-           -->
