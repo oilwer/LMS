@@ -9181,7 +9181,7 @@ dashboard-allcourses .assignClass {
   float: left;
   margin-right: 8px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
             Single COURSE
 
@@ -9202,7 +9202,6 @@ dashboard-allcourses .assignClass {
 .course--details p {
   display: inline;
 }
-/*yolo*/
 .course_teacher {
   font-size: 1em!important;
   margin-bottom: 10px;
