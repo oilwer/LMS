@@ -1,43 +1,40 @@
 <div class="app_container">
     <div class="container-fluid body--margin ng-scope">
-        <div class="box resources">
-
+        <div class="col-md-22 col-md-offset-1 box resources">
             <div class="col-md-24">
-
-            <fileupload-fileupload> </fileupload-fileupload>
-
-            <button ng-click="uploadFile();"> Submit </button>
-
-            <!--<div ng-repeat="resource in resourceList">
-              <a target="_blank" href="uploads/{{resource.filename}}">
-            <p> {{resource.filename}}</p>
-                </a>
-            </div> -->
-                  
-            <div class="col-md-12">
-                <h1> Resources </h1>
-                <input type="search" class="form-control" ng-model="search" placeholder="Search resources ...">
-                <select ng-model="selectedCourse" class="form-control">
-                    <option value="" ng-selected=true>All</option>
-
-                    <option ng-repeat="aCourse in courseFilter">
-                        {{aCourse}}
-                    </option>
-                </select>
+                <div class="col-md-24">
+                    <h1> Resources </h1>
+                    <button class="btn btn--add btn--resources" ng-show="auth" ng-click="castTheResourceModal()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add 
+                    </button>
+                </div>
+                <div class="col-md-12">
+                    <label for="searchResource">Search</label>
+                    <input type="search" id="searchResource" class="form-control" ng-model="search" placeholder="">
+                </div>
+                <div class="col-md-12">
+                    <label for="filterCourse">Filter by course</label>
+                    <select ng-model="selectedCourse" class="form-control" name="filterCourse">
+                        <option value="" ng-selected=true>All</option>
+                        <option ng-repeat="aCourse in courseFilter">
+                            {{aCourse}}
+                        </option>
+                    </select>
+                </div>
             </div>
             <div class="col-md-24">
-                <table class="table--assignment">
+                <table class="table--resources">
                     <tr>
                         <th scope="col">Name</th>
                         <th scope="col">Course</th>
                         <th scope="col">Published</th>
                         <th scope="col">Author</th>
                     </tr>
-                    <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} ">
-                        <td> {{resource.filename}}</td>
+                    <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: uploaded_on">
+                        <td>{{resource.filename}}</td>
                         <td>{{resource.course}}</td>
-                        <td>Published (update in db)</td>
-                        <td>Author (update in db)</td>
+                        <td>{{resource.uploaded_on | date}}</td>
+                        <td>{{resource.uploaded_by_name}}</td>
                     </tr>
                 </table>
             </div>
