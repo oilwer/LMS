@@ -23,7 +23,7 @@ app.directive('resourcesResources', [
               var session_user;
               SessionService.getSession().success(function(response){
                   session_user = response.user;
-                  console.log(getResources());
+                  getResources();
               });
           
           
@@ -38,12 +38,15 @@ app.directive('resourcesResources', [
 
                       //loop the courses for resources
                       for(var i = 0; i < courses.length; i++) {
-                          var course_id = courses[i];
-                          
+                    
                     
                           
-                          Course.get({_id: course_id, _populate: "resources"}, function(course) {
+                          Course.get({_id: courses[i], _populate: "resources"}, function(course) {
                               
+                             
+                              if(typeof course[0] !== "undefined"){
+                                  
+                                  if(typeof course[0].resources !== "undefined"){
                               
                               if (course[0].resources.length > 0) {
                                   console.log(course[0].resources);
@@ -54,6 +57,9 @@ app.directive('resourcesResources', [
                                   
                               } else {
                                   console.log("no resources found");
+                              }
+                              
+                          }
                               }
                           });                     
                       }
