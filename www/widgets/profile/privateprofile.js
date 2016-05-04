@@ -170,7 +170,6 @@ app.directive('profilePrivateprofile', [
                   description: user.description,
                   personality: user.personality,
                   phone_number: user.phone_number,
-                  password: user.password,
                   homepage : user.homepage,
                   public_url: user.public_url,
                   linkedin : user.linkedin,
