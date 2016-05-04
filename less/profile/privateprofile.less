@@ -1,0 +1,337 @@
+
+/* * * * * * * * * * * * * * * *   
+
+            PRIVATE PROFILE    
+
+* * * * * * * * * * * * * * * * */   
+
+.profile{
+    width:100%;
+    font-smoothing: antialiased;
+    -webkit-font-smoothing: antialiased;
+    
+    hr{
+    margin-top:10px !important;
+    }
+
+}
+
+.profile__stuff{
+    padding:2% 0 0 0;
+    
+    ul{
+        list-style: none;
+    }
+    
+    li {
+        margin:10px 20px;
+        padding: 10px;
+        background: #fcfcfc;
+        box-shadow: 2px 1px 4px 0px rgba(150, 150, 150, 0.45);
+    }
+    
+    a{
+        text-decoration: none;
+        color:@RGBFontFaimly;
+    }
+    
+    a:hover, a:active{
+        transition: padding 2s ease;
+        color:@RGBFontFaimly;
+    }
+    
+    .row{
+    margin:0 !important;
+    }
+    
+    .profile__stuff__courses, .profile__stuff__projects {
+        background-color: #fff;
+        margin: 4% 0% 0 0;
+        padding: 0;
+        padding-bottom: 1%;
+        border-radius: 0 5px 5px 0;
+    
+    }
+
+    .profile__stuff__ex, .profile__stuff__skills {
+        background-color: #fff;  
+        margin: 3.5% 0% 0 0;
+        padding:0;
+        padding-bottom: 1%;
+        border-radius: 0 5px 5px 0
+
+    }
+
+    .profile__stuff__other {
+        background-color: #fff;  
+        margin: 3.5% 0% 0 0%;
+        padding:0;
+        padding-bottom: 1%;
+        border-radius: 0 5px 5px 0;
+    }
+
+}
+
+
+
+.profile__container .fa-arrow-right{
+    padding-left: 5%;
+}
+
+.pbl-profile-link{
+    position: absolute;
+    bottom:10px;
+    right:0px;
+    display: inline-block;
+    width:50%;
+    color:#404040;
+    padding-top:5%;
+    transition: all 1.2s ease;
+}
+
+.pbl-profile-link:hover{
+    transform: translate(5px,0);
+    color:#404040;
+    text-decoration: none;
+}
+
+.profile__container {
+    padding:0;
+    background: #fff; 
+}
+
+.uppercase{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: .9em!important;
+}
+
+.profile__container h1, .profile__container p, .profile__container i{
+    color: #404040 !important;
+}
+
+.profile__contact, .profile__description, .profile__social{
+    padding:0 4%;
+    text-align: left;
+}
+
+.profile__contact h2, .profile__description h2, .profile__social h2{
+    color: rgba(216, 51, 91, 1);
+    margin-bottom: 10px;
+    font-size: 1em;
+}
+
+.profile__social, .profile__contact, .profile__links{
+    margin-top: 10%;
+}
+
+.profile__description i, .profile__contact .fa-first, .profile__social .fa-first {
+    font-size: .9em;
+    float: right;
+    color: rgba(216, 51, 91, 1) !important;
+}
+
+.profile__about__img {
+    background: url("/img/profile_default.png");
+    -webkit-background-size: contain;
+    -moz-background-size: contain;
+    -o-background-size: contain;
+    background-size: contain;
+    margin:0 auto;
+    width:125px;
+    height:125px;
+    border-radius: 50%;
+    
+}
+
+.profile__about {
+    background: #fff;
+    color: rgba(216, 51, 91, 1);
+    height:210px;
+}
+
+.profile__about h1{
+    color: rgba(216, 51, 91, 1) !important;
+    padding-top: 50px;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: 600;
+    font-family: 'Open Sans';
+}
+
+.profile__about h2{
+    color: rgba(216, 51, 91, 1) !important;
+    padding: 3% 0 10% 0;
+    text-align: center;
+    font-size: 1.05em;
+    font-family: 'Open Sans';
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.profile__description{
+    margin-top: 80px;
+    padding: 0px 20px;
+}
+
+.profile p, .pbl-profile p{
+    font-size: .95em;
+}
+
+.profile__contact > p .fa {
+    padding:0px 10px 5px 0;
+}
+
+.profile__contact i:last-child:hover, .profile__description i:hover{
+    font-size: 1em;    
+}
+
+.profile__stuff__courses .fa-pencil, .profile__stuff__skills .fa-pencil, .profile__stuff__ex .fa-pencil, .profile__stuff__projects .fa-pencil, .profile__stuff__other .fa-pencil{
+    position: absolute;
+    top:20px;
+    right:15px;
+}
+
+
+.profile__stuff__courses{
+    border-left:5px solid #2CC990;
+}
+
+.profile__stuff__skills{
+    border-left:5px solid #D8335B;
+}
+
+.profile__stuff__projects{
+    border-left:5px solid #00B5B5;
+}
+
+.profile__stuff__ex{
+    border-left:5px solid #FD5B03;
+}
+
+.profile__stuff__other{
+    border-left:5px solid #2C82C9;
+}
+
+.profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1, .profile__stuff__projects h1{
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding:4% 0 0 14%;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 5%;
+}
+
+.profile__stuff__other h1{
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding: 2% 0 0 8%;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+    margin-bottom: 2.5%;
+}
+
+.profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p, .profile__stuff__projects p{
+    padding:0 4%;
+}
+
+.profile__stuff__other p{
+    padding:0px 30px 5px 30px;
+}
+
+.profile .fa-book, .profile .fa-cogs, .profile .fa-folder-open, .profile .fa-certificate, .profile .fa-file-text, .profile .fa-archive, .pbl-profile .fa-book, .pbl-profile .fa-cogs, .pbl-profile .fa-folder-open, .pbl-profile .fa-certificate, .pbl-profile .fa-file-text, .pbl-profile .fa-archive {
+    position: absolute !important;
+    left: 40px;
+    top: 30px !important;
+}
+
+
+
+/*
+courses
+#00B5B5
+
+schedule
+ #F1654C
+    
+Questions
+ #FCB941
+
+
+skills: #D8335B
+
+projects: #2CC990
+
+tut: #953163
+
+other: #2C82C9
+
+ex: #FD5B03
+
+*/   
+
+.profile__stuff__courses h1, .profile__stuff__courses i{
+    color: @RGBcourses;
+}
+
+.profile__stuff__skills h1, .profile__stuff__skills i{
+    color: @RGBskills;
+}
+
+.profile__stuff__ex h1, .profile__stuff__ex i{
+    color: @RGBexperience;
+}
+
+.profile__stuff__projects h1, .profile__stuff__projects i{
+    color: @RGBresources;
+}
+
+.profile__stuff__other h1, .profile__stuff__other i{
+    color: #2C82C9;
+}
+
+.profile__stuff__other {
+    margin-bottom: 20px !important;
+}
+
+.profile__description textarea{
+    width:102%;
+    height:100px;
+    margin-left: -2px;
+    margin-top: -2px;
+    margin-bottom: -13px;
+    border:none;
+    padding:2px;
+    font-size: .95em;
+    resize: none;
+    overflow: auto;
+    background: #eaeaea;
+    font-family: 'Open Sans';
+    color:#404040;
+}
+
+.profile__description textarea:focus{
+    outline: none;
+}
+
+.profile__container input{
+    width:90%;
+    background: #eaeaea;
+    border:none;
+    color:rgba(62,71,79,1);
+    font-size: .95em;
+}
+
+.profile__contact input{
+    margin-bottom:2%;
+}
+
+.profile__icon_first{
+    position: relative;
+    margin-bottom: 2%;
+}
+
+.profile__icon_first p, .profile__icon_first input{
+    position: absolute; top: 1px; left: 25px;
+}
+
