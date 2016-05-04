@@ -1,7 +1,13 @@
-<div class="app_container heightfull">
-    <div class="container-fluid heightfull ng-scope">
-
-      <h1> Resources </h1>
-
+<div class="app_container">
+    <div class="container-fluid body--margin ng-scope">
+        <div class="box resources">
+            <h1> Resources </h1>
+            
+            <h2>The list</h2>
+            
+            <div ng-repeat="resource in resourceList">
+            <p> {{resource.filename}}</p>
+            </div>
+        </div>
     </div>
   </div>
