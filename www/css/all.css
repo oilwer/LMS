@@ -9459,7 +9459,6 @@ box--label--resources h2 {
   color: #d8335b !important;
 }
 .profile__about__img {
-  background: url("/img/profile_default.png");
   -webkit-background-size: contain;
   -moz-background-size: contain;
   -o-background-size: contain;
@@ -9468,6 +9467,11 @@ box--label--resources h2 {
   width: 125px;
   height: 125px;
   border-radius: 50%;
+}
+.profile__about__img input {
+  width: 125px;
+  height: 125px;
+  opacity: 0;
 }
 .profile__about {
   background: #fff;
