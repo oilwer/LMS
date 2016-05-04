@@ -16,19 +16,20 @@
     <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
 
         <!-- List files/resources uploaded by teacher -->
+        <div class="submittedFile"></div>
     </div>
 
 </section>
 <section class="box assignment col-sm-24 assignment-answer" ng-show="assignmentListView">
     <!-- Assignmentlist from students ng-repeate-->
     <h2>Replies</h2>
-        <table class="table--assignment"> 
+        <table class="table--assignment">
             <tr>
                 <th scope="col">Name</th>
                 <th scope="col">Submission date</th>
                 <th scope="col">Status</th>
             </tr>
-            <tr ng-repeat="answer in assignmentAnswers | orderBy: 'submissionDate'" 
+            <tr ng-repeat="answer in assignmentAnswers | orderBy: 'submissionDate'"
                 ng-click="showAssignmentItem(answer.assignmentId, answer.userId)">
                 <td scope="col">{{answer.name}}</td>
                 <td scope="col">{{answer.submissionDate | date:"MMMM d, y  'at' HH:mm"}}</td>
@@ -47,8 +48,8 @@
     <div class="submittedFile"></div>
 
     <label for="selectAssignmentGrade">Select status</label>
-    <form class="submitAssignmentFeedback">          
-        <select id="selectAssignmentGrade" 
+    <form class="submitAssignmentFeedback">
+        <select id="selectAssignmentGrade"
             required="required"
             ng-model="assignmentItem.feedbackStatus"
             name="selectAssignmentGrade"

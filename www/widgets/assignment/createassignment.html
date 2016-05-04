@@ -34,6 +34,9 @@
 
          <div class="stepTwo" ng-switch-when="Assignment">
            <div class="col-sm-24">
+               <!-- FILE UPLOAD MODULE -->
+               <fileupload-fileupload></fileupload-fileupload>
+
              <form name="assignmentDetails">
                <div class="col-sm-12">
                  <label for="name">Assignment Title</label>
@@ -48,9 +51,11 @@
                 <div class="col-sm-12">
                  <label>Upload instruction file</label>
                  <div class="upload_instruction_file">
-                   <form action="demo_form.asp">
+                   <!-- <form action="demo_form.asp">
                      <input type="file" name="pic" accept="image/*">
-                   </form>
+                   </form> -->
+
+
                  </div>
                </div>
                <div class="col-sm-24">
@@ -62,19 +67,20 @@
                  class="formError">
                    <i class="fa fa-times"></i>
                  </span>-->
-                
+
                 <label for="content">Description</label>
                 <input id="createAssignment" type="hidden" name="content">
                 <trix-editor input="createAssignment" id="assignmentEditor"></trix-editor>
-                                      
+
                </div>
              </form>
            </div>
            <div class="col-xs-24 pager">
                <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
-               <button class="btn btn--assignments" ng-click="addOrUpdateAssignment()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange}"> {{btnAddOrUpdate}} &rarr;</button>
+               <button class="btn btn--assignments send__button" type="submit" ng-click="addOrUpdateAssignment()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange}"> {{btnAddOrUpdate}} &rarr;</button>
            </div>
          </div><!--.stepTwo-->
+
 
          <div class="stepThree" ng-switch-when="Details">
            <div class="col-sm-24">
@@ -134,7 +140,7 @@
                <select id="selectAssignment"
                            ng-change="selectAssignmentChanged(id)"
                            ng-model="assignmentSelect.repeatSelect"
-                         required="required"
+                           required="required"
                            name="repeatSelect"
                            class="form-control">
                  <option value=""> --- Available assignments ---</option>
@@ -148,6 +154,9 @@
               <button class="btn btn--assignments" ng-class="{btndisabled: assignmentDetails.$invalid}" ng-click="assignmentDetails.$valid && loadDetails()">Next step &rarr;</button>
           </div>
          </div> <!--End of step four-->
+
+
+
 
          <div class="stepFive" ng-switch-when="Preview">
            <div class="col-sm-12 col-sm-offset-6 processview_preview">
