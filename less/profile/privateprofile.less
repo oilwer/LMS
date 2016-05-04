@@ -21,13 +21,17 @@
     
     ul{
         list-style: none;
+        margin: -10px 10px 10px 10px;
     }
     
     li {
-        margin:10px 20px;
+        display: inline;
+        float: left;
+        margin: 5px 4px;
         padding: 10px;
         background: #fcfcfc;
         box-shadow: 2px 1px 4px 0px rgba(150, 150, 150, 0.45);
+        font-size: .9em;
     }
     
     a{
@@ -46,16 +50,17 @@
     
     .profile__stuff__courses, .profile__stuff__projects {
         background-color: #fff;
-        margin: 4% 0% 0 0;
+        margin: 4% -3% 0 0;
         padding: 0;
         padding-bottom: 1%;
         border-radius: 0 5px 5px 0;
+        overflow: hidden;
     
     }
 
     .profile__stuff__ex, .profile__stuff__skills {
         background-color: #fff;  
-        margin: 3.5% 0% 0 0;
+        margin: 3.5% -3% 0 0;
         padding:0;
         padding-bottom: 1%;
         border-radius: 0 5px 5px 0
@@ -107,7 +112,7 @@
 }
 
 .profile__container h1, .profile__container p, .profile__container i{
-    color: #404040 !important;
+    
 }
 
 .profile__contact, .profile__description, .profile__social{
@@ -140,11 +145,27 @@
     width:125px;
     height:125px;
     border-radius: 50%;
+    position:relative;
+    overflow: hidden;
+    
+    .upload_img{
+        width:125px;
+        height:30px;
+        background: rgba(0,0,0,.5);
+        position:absolute;
+        bottom:10px;
+        color: #fff !important;
+        font-size: .9em !important;
+        text-align: center;
+        line-height: 30px;
+        opacity: 0;
+        cursor: pointer;
+    }
 }
 
 .profile__about__img input{
     width:125px;
-    height:125px;
+    height:30px;
     opacity:0;
 
 }
@@ -177,7 +198,6 @@
 
 .profile__description{
     margin-top: 80px;
-    padding: 0px 20px;
 }
 
 .profile p, .pbl-profile p{

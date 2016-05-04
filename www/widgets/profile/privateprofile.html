@@ -7,7 +7,10 @@
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
 
-                    <div class="profile__about__img" ngf-select="uploadPicture($file)">
+                    <div class="profile__about__img">
+                        <div class="upload_img" ngf-select="uploadPicture($file)">
+                            <i class="fa fa-camera-retro" aria-hidden="true"></i>
+                             Upload
                              <input
                                type="file"
                                ngf-select
@@ -15,6 +18,7 @@
                                name="file"
                                ngf-max-size="20MB"
                             />
+                        </div>
                     </div>
                 </div><!---.profile__about-->
 

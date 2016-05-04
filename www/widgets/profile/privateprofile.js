@@ -183,12 +183,44 @@ app.directive('profilePrivateprofile', [
 	            showPicture();
 	        }
 	    };
-
+        
+        showUploadDivOnHover = function(){
+            $('.profile__about__img').mouseenter(function(event){
+                event.stopPropagation();
+                $(this).find('.upload_img').animate({
+                    opacity: 1
+                }, 200, function() {
+                    // Animation co
+                })
+            });
+            
+            $('.profile__about__img').mouseleave(function(event){
+                $(this).find('.upload_img').animate({
+                    opacity: 0
+                }, 2000, function() {
+                    // Animation co
+                })
+            });
+            
+             $('.profile__about__img').click(function(event){
+                $(this).find('.upload_img').animate({
+                    opacity: 0
+                }, 2000, function() {
+                    // Animation co
+                })
+            });
+        }
+    
 	   showPicture = function(){
 	   		var pic = ""
 	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
 	   			pic = "/img/profile_default.png";
+                $('.upload_img').css({
+                    'opacity': '1',
+                    'cursor': 'pointer'
+                })
 	   		}else{
+                showUploadDivOnHover();
 	   			pic = './uploads/' + obj.profile_pic;
 	   		}
 	    	$('.profile__about__img').css({
@@ -201,6 +233,7 @@ app.directive('profilePrivateprofile', [
 	    }
 
       	$scope.uploadPicture = function (file) {
+            showUploadDivOnHover()
       		var strippedFileName = file.name.replace(/[\n\t\r\x20]/g, "_");
 	        Upload.upload({
 	            url: 'http://localhost:3000/upload', //webAPI exposed to upload the file
@@ -211,6 +244,7 @@ app.directive('profilePrivateprofile', [
 	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
 	            obj.profile_pic = strippedFileName;
 	            $scope.updateProfile(obj);
+                hideDivWhenUploaded()
 	        }, function (resp) {
 	            console.log('Error status: ' + resp.status);
 	        }, function (evt) {
