@@ -1,12 +1,32 @@
 <div class="app_container">
     <div class="container-fluid body--margin ng-scope">
-        <div class="box resources">
-            <h1> Resources </h1>
-            
-            <h2>The list</h2>
-            
-            <div ng-repeat="resource in resourceList">
-            <p> {{resource.filename}}</p>
+        <div class="box resources">            
+            <div class="col-md-12">
+                <h1> Resources </h1>
+                <input type="search" class="form-control" ng-model="search" placeholder="Search resources ...">
+                <select ng-model="selectedCourse" class="form-control">
+                    <option value="" ng-selected=true>All</option>
+
+                    <option ng-repeat="aCourse in courseFilter">
+                        {{aCourse}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-24">
+                <table class="table--assignment">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Author</th>
+                    </tr>
+                    <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} ">
+                        <td> {{resource.filename}}</td>
+                        <td>{{resource.course}}</td>
+                        <td>Published (update in db)</td>
+                        <td>Author (update in db)</td>
+                    </tr>
+                </table>
             </div>
         </div>
     </div>
