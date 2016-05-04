@@ -1,14 +1,14 @@
 <!-- public/views/testcourse.html -->
 
-<!--  -->  
+<!--  -->
 <div class="app_container course heightfull">
     <div class="container-fluid heightfull" >
         <div class="row table-row heightfull newtable-row">
-            
+
             <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
-        
+
 
             <div class="col-sm-22 col-md-22">
                 <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
@@ -20,7 +20,7 @@
                             <div class="box__header box__header--courses">
                                 <h2><i class="fa--heading fa fa-thumb-tack"></i>Wall</h2>
                             </div>
-                            
+
                             <!--Messages in course-->
                             <course-message ng-repeat="message in course.messages | orderBy:'-date'"></course-message>
 
@@ -33,12 +33,12 @@
                                 <label for="title">Message</label>
                                 <textarea class="form-control" name="message" required ng-model="content" id="message" maxlength="255" placeholder="Write your message ...">
                                 </textarea>
-                               
+
                                 <button class="bt nbtn-default" ng-click="publishMsg()">Publish</button>
                             </form>
                         </div>
                     </div><!--.col-->
-                    
+
                     <div class="col-md-10 padding--none">
                         <!--left content / details / assignment / resources-->
                         <div class="col-sm-24 box--label box--label--courses coursor--pointer">
@@ -47,7 +47,7 @@
                                 Course details
                                 <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-up"></i>
                             </h1>
-  
+
           <!--  <div class="profile__contact">
                     <i ng-class="contact_class" class="fa-first" ng-click="editContact()"></i>
                     <h2 class="uppercase">Contact details</h2>
@@ -58,16 +58,16 @@
                         <i class="fa fa-phone"></i><p ng-show="contactEnabled"> {{ phone_number }} </p>
                         <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
                     </div>
-                    
+
 
                     <div class="profile__icon_first">
                         <i class="fa fa-home"></i>
 
 
                          <p ng-show="contactEnabled"> {{homepage}}</p>
-                        
+
                         <input type="text" ng-hide="contactEnabled" ng-model="homepage">
-                    
+
 
                     </div>
                 </div> -->
@@ -75,12 +75,12 @@
 
 <!-- COURSE INFO -->
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
-                              
+
                                 <i ng-class="info_class" class="fa fa-pencil" ng-click="editInfo()"></i>
-                                
+
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Name:</h2>
-                                    
+
                                     <p  ng-show="infoEnabled">{{ course.name }}</p>
                                     <input type="text" ng-hide="infoEnabled" ng-model="course.name">
 
@@ -101,13 +101,13 @@
                                     <p> {{ course.description }}</p>
                                 </div>
                                 <div class="col-md-24">
-                                    <h2 class="coursedescription_titel">Teaching:</h2> 
-                                    <a href="/profile/{{teacherUrl}}"><p> {{teacher}} </p></a>   
+                                    <h2 class="coursedescription_titel">Teaching:</h2>
+                                    <a href="/profile/{{teacherUrl}}"><p> {{teacher}} </p></a>
                                 </div>
-                            </div>                            
+                            </div>
                         </div>
-                        
-                        <!-- assignment list -->                    
+
+                        <!-- assignment list -->
                         <div class="col-sm-24 box--label box--label--courses box--label--assignments">
                             <h2 class="box--label_heading--assignments">
                                 <i class="fa--heading fa fa-file-text-o"></i>
@@ -130,17 +130,12 @@
                                 Resources
                             </h2>
                             <div class="">
-                                <p class="course_heading">
-                                    <span>Name</span><span>Added</span>
-                                </p>
-
-                                <ul class="courses_assignments" ng-repeat="resource in course.resources">
-                                    <a href={{resource.url}}><li class="courses_assignmentitem">{{resource.name}}</li></a>
-                                </ul>
+                                <p class="course_heading"><span>Name</span><span>Added</span></p>
+                                <resources-resourceitem ng-repeat="resources in course.resources | orderBy: added"></resources-resourceitem>
                             </div>
-                
+
                         </div><!--.col-->
-                        
+
                         <div class="col-sm-24 box--label box--label--questions">
                             <h2 class="box--label_heading--questions">
                                 <i class="fa--heading fa fa-question-circle"></i>
@@ -150,16 +145,11 @@
                                 <p> </p>
                             </div>
                         </div><!--.col-->
-                    
+
                     </div><!--.col-->
                 </div><!--.row-->
-                        
+
             </div><!--col-->
         </div><!--table row-->
     </div><!--.container-->
 </div><!--.app_container-->
-
-
-
-
-            
