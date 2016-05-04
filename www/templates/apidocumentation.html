@@ -1,128 +1,137 @@
 <div class="container">
-<h1> API documentation </h1>
-<br/>
-
-<h2> API LOGIN </h2>
-<h3> URI: http://localhost:3000/api/login </h3>
-
-<p> HTTP REQUEST: POST </p>
-<b> DESC: Try to login </b>
-<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} </p>
-<p> RETURNS: bool </p>
-<br/>
-
-<p> HTTP REQUEST: GET </p>
-<b> DESC: Check if logged in </b>
-<p> PAYLOAD: none </p>
-<p> RETURNS: bool </p>
-<br/>
-
-<p> HTTP REQUEST: DELETE </p>
-<b> DESC: Logout </b>
-<p> PAYLOAD: none</p>
-<p> RETURNS: bool </p>
-<br/>
-
-<hr/> 
-
-<h2> API USER </h2>
-<h3> URI: http://localhost:3000/api/user </h3>
-
-<p> HTTP REQUEST: POST </p>
-<b> DESC: Adds user </b>
-<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields) </p>
-<p> RETURNS: json </p>
-<br/>
-
-<p> HTTP REQUEST: GET </p>
-<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-<b> DESC: Gets all the users </b>
-<p> PAYLOAD: none </p>
-<p> RETURNS: json </p>
-<br/>
+    <h1> API documentation </h1>
+    <br/>
 
 
 
-<h2> API COURSE </h2>
-<h3> URI: http://localhost:3000/api/course </h3>
+    <h2> API LOGIN </h2>
+    <h3> URI: http://localhost:3000/api/login </h3>
 
-<p> HTTP REQUEST: POST </p>
-<b> DESC: Adds course </b>
-<p> PAYLOAD: {"name":"course2", "code":"yolo", "status":"true", "url":"course2", "teacher":"mamma", "description":"very nice course"} </p>
-<p> RETURNS: json </p>
-<br/>
+    <p> HTTP REQUEST: POST </p>
+    <b> DESC: Try to login </b>
+    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} </p>
+    <p> RETURNS: bool </p>
+    <br/>
 
-<p> HTTP REQUEST: GET </p>
-<br/>
+    <p> HTTP REQUEST: GET </p>
+    <b> DESC: Check if logged in </b>
+    <p> PAYLOAD: none </p>
+    <p> RETURNS: bool </p>
+    <br/>
 
-<p> HTTP REQUEST: UPDATE </p>
-<br/>
+    <p> HTTP REQUEST: DELETE </p>
+    <b> DESC: Logout </b>
+    <p> PAYLOAD: none</p>
+    <p> RETURNS: bool </p>
+    <br/>
 
-<p> HTTP REQUEST: DELETE </p>
-<br/>
-
-<hr/> 
+    <hr/>
 
 
 
 
+    <h2> API USER </h2>
+    <h3> URI: http://localhost:3000/api/user </h3>
+
+    <p> HTTP REQUEST: POST </p>
+    <b> DESC: Adds user </b>
+    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields) </p>
+    <p> RETURNS: json </p>
+    <br/>
+
+    <p> HTTP REQUEST: GET </p>
+    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+    <b> DESC: Gets all the users </b>
+    <p> PAYLOAD: none </p>
+    <p> RETURNS: json </p>
+    <br/>
 
 
-<p> HTTP REQUEST: UPDATE </p>
-<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-<b> DESC: Update user </b>
-<p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields that you want to update) </p>
-<p> RETURNS: json </p>
-<br/>
+    <h2> API COURSE </h2>
+    <h3> URI: http://localhost:3000/api/course </h3>
 
-<p> HTTP REQUEST: DELETE </p>
-<p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-<b> DESC: Delete user </b>
-<p> PAYLOAD: none</p>
-<p> RETURNS: json </p>
-<br/>
+    <p> HTTP REQUEST: POST </p>
+    <b> DESC: Adds course </b>
+    <p> PAYLOAD: {"name":"course2", "code":"course2", "status":"true", "url":"course2", "teacher":"Berit", "description":"very nice course for you"} </p>
+    <p> RETURNS: json </p>
+    <br/>
 
-<hr/> 
+    <p> HTTP REQUEST: GET </p>
+    <p> URL: /api/course/ (DB ID) </p>
+    <b> DESC: Gets all the courses </b>
+    <p> PAYLOAD: none </p>
+    <p> RETURNS: json </p>
+    <br/>
 
-<h2> API ASSIGNMENT </h2>
-<h3> URI: http://localhost:3000/api/assignment </h3>
+    <p> HTTP REQUEST: UPDATE </p>
+    <br/>
 
-<p> HTTP REQUEST: POST </p>
-<b> DESC: Adds assignment </b>
-<p> PAYLOAD: {"name": "Test assignment", 
- "due_date": "2014-01-01", 
- "description": "Test description", 
- "added_on": "2013-01-01",
- "course": "56fd26a05fffee50039ba05a",
- "participants": {
-   "User": "5704b1971db5b07514785765",
- 	"grade": 1,
-   "comment": "Epic good job bruh!",
-   "is_answerd": 1,
-   "answer_file": "Nice_file.zip",
-   "answer": "Here is my answer!",
-   "answer_date": "2014-01-01"
+    <p> HTTP REQUEST: DELETE </p>
+    <br/>
+
+    <hr/>
+
+    <p> HTTP REQUEST: UPDATE </p>
+    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+    <b> DESC: Update user </b>
+    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields that you want to update) </p>
+    <p> RETURNS: json </p>
+    <br/>
+
+    <p> HTTP REQUEST: DELETE </p>
+    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
+    <b> DESC: Delete user </b>
+    <p> PAYLOAD: none</p>
+    <p> RETURNS: json </p>
+    <br/>
+
+    <hr/>
+
+
+
+    <h2> API ASSIGNMENT </h2>
+    <h3> URI: http://localhost:3000/api/assignment </h3>
+
+    <p> HTTP REQUEST: POST </p>
+    <b> DESC: Adds assignment </b>
+    <p> PAYLOAD: {"name": "Test assignment",
+    "due_date": "2014-01-01",
+    "description": "Test description",
+    "added_on": "2013-01-01",
+    "course": "56fd26a05fffee50039ba05a",
+    "participants": {
+    "User": "5704b1971db5b07514785765",
+    	"grade": 1,
+    "comment": "Epic good job bruh!",
+    "is_answerd": 1,
+    "answer_file": "Nice_file.zip",
+    "answer": "Here is my answer!",
+    "answer_date": "2014-01-01"
                  },
- "responsible_teacher": "5704b1971db5b07514785765",
- "teachers": "5704b1971db5b07514785765",
- "is_published": 1,
- "teacher_instruction_file": "Nice_file.zip",
- "assessment": "G, VG",
- "obligatory": 1,
- "answer_date": "2014-01-01"} </p>
-<p> RETURNS: json </p>
-<br/>
+    "responsible_teacher": "5704b1971db5b07514785765",
+    "teachers": "5704b1971db5b07514785765",
+    "is_published": 1,
+    "teacher_instruction_file": "Nice_file.zip",
+    "assessment": "G, VG",
+    "obligatory": 1,
+    "answer_date": "2014-01-01"} </p>
+    <p> RETURNS: json </p>
+    <br/>
 
-<p> HTTP REQUEST: GET </p>
-<br/>
+    <p> HTTP REQUEST: GET </p>
+    <p> URL: /api/assignment/ (DB ID) </p>
+    <b> DESC: Gets all the assignments </b>
+    <p> PAYLOAD: none </p>
+    <p> RETURNS: json </p>
+    <br/>
 
-<p> HTTP REQUEST: UPDATE </p>
-<br/>
+    <p> HTTP REQUEST: UPDATE </p>
+    <br/>
 
-<p> HTTP REQUEST: DELETE </p>
-<br/>
+    <p> HTTP REQUEST: DELETE </p>
+    <br/>
 
-<hr/> 
+    <hr/>
 
 
 
