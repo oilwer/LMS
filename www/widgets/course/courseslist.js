@@ -25,7 +25,7 @@ app.directive('courseCourseslist', [
       //pins course in database
       scope.pinCourse = function(course){
 
-        console.log(course);
+        console.log(course._id);
 
           scope.pinnedCourses = [];
 
@@ -39,28 +39,50 @@ app.directive('courseCourseslist', [
 
               console.log(user[0].courses);
 
-              User.update({
-                  _id: user[0]._id
-              },{ $push: {
-                    courses:{
-                      Course: course._id,
-                      pinned: true
+
+              var courseid = course._id;
+              var obj = user[0].courses_pinned.filter(function ( obj ) {
+                return obj.course === courseid;
+              })[0];
+
+              if(obj == undefined)
+              {
+
+                console.log("First time to pin course");
+
+                  User.update({
+                      _id: user[0]._id
+                  },{ $push: {
+                        courses_pinned:{
+                          course: course._id,
+                          pinned: true
+                        }
                     }
-                }
-              }, function(res)
-            {
-              console.log(res);
-            /*for (var i = 0; i < tempCourses.length; i++) {
-                if(tempCourses[i] == courseName){
-                  scope.pinnedCourses.push(tempCourses[i]);
-                  console.log(scope.pinnedCourses);
-                }
-              }
-            */
-            });
+                  }, function(res)
+                {
+                  console.log(res);
+                });
 
+            }
 
+            else {
 
+              console.log("Course has been pinned before, now update from ", obj.pinned, " to ", !obj.pinned);
+
+              // Set pinned to false
+              User.update(
+                {
+                  _id: user[0]._id,
+                  courses_pinned: {$elemMatch: {course: course._id} }
+                },{
+                    "courses_pinned.$.pinned" : !obj.pinned
+                  }
+                , function(res)
+              {
+                console.log(res);
+              });
+
+            }
 
             });
           });

@@ -18,7 +18,10 @@ module.exports = function(mongoose){
     github: String,
     twitter: String,
     courses: [{
-        course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+        type: mongoose.Schema.Types.ObjectId, ref: 'Course'
+    }],
+    courses_pinned: [{
+        course: String,
         pinned: Boolean
     }],
     notifications: [{
