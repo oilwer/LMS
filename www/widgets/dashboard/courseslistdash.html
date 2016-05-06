@@ -7,7 +7,7 @@
 
 
     <div class="box__content">
-        <table>
+        <table class="table--courses">
             <thead>
                 <tr>
 
@@ -32,7 +32,7 @@
                         </a>
                     </td>
                     <td ng-if="course.status == true">
-                      <p>{{course.end}}</p>
+                      <p>{{course.end | date:'shortDate'}}</p>
                     </td>
                     <td ng-if="course.status == true">
                         <i class="fa fa-thumb-tack">
@@ -54,7 +54,7 @@
                             <span ng-class="class" ng-if=""></span>
                         </i>
                     </td>
-                  
+
 
 
                 </tr>

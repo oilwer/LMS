@@ -118,14 +118,14 @@
                                 <tbody>
                                     <tr ng-repeat="user in userlist | filter:searchUsers | filter:(!!filterUsers || undefined) && {role:filterUsers}">
                                         <td>{{user.role}}</td>
-                                        <td>{{user.first_name}}</td>
-                                        <td>{{user.last_name}}</td>
+                                        <td class="desc">{{user.first_name}}</td>
+                                        <td class="desc">{{user.last_name}}</td>
                                         <td>{{user.email}}</td>
-                                        <td>{{user.phone_number}}</td>
+                                        <td class="desc">{{user.phone_number}}</td>
                                         <td class="pass">{{user.password}}</td>
                                         <td class="desc">{{user.description}}</td>
-                                        <td>{{user.personality}}</td>
-                                        <td>{{user.public_url}}</td>
+                                        <td class="desc">{{user.personality}}</td>
+                                        <td class="desc">{{user.public_url}}</td>
 
                                         <td class="btn-danger remove" ng-click="remove(user)">Remove</td>
                                         <td class="btn-warning remove" ng-click="prepareEdit(user._id)">Edit</td>

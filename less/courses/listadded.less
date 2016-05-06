@@ -1,0 +1,46 @@
+.btn--pin--active {
+    float:right;
+    margin-top: -0.5em;
+    background:@RGBcourses;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBcourses,80%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+.btn--pin--inactive {
+    float:right;
+    margin-top: -0.5em;
+    background:@RGBcourses;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBcourses,80%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+.btn--pin--active i {
+    padding-right: 0px;
+    text-align: center;
+}
+.btn--pin--inactive i {
+    padding-right: 0px;
+    text-align: center;
+}
+.box--label--courses {
+  border-left: 5px solid @RGBcourses;
+  border-top:1px solid lightgrey;
+  border-right:1px solid lightgrey;
+  border-bottom:1px solid lightgrey;
+}
+h2 {
+
+  margin-bottom: 1em;
+}

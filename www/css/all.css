@@ -7506,7 +7506,7 @@ html {
   margin-left: 10px;
 }
 /*Styles for global .box classes
-    
+
 This is a LESS file; only style for the element class .box allowed!
 
     Naming example for .box elements and modifiers:
@@ -7615,6 +7615,9 @@ This is a LESS file; only style for the element class .box allowed!
 .box--courses:hover .box {
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   transition: all 0.2s ease-in-out;
+}
+.courses--pinned .box--label {
+  padding: 20px;
 }
 .nav--breadcrumbs {
   padding-left: 20px;
@@ -8651,40 +8654,47 @@ table {
 }
 .table--assignment,
 .table--resources,
-.table--manager {
+.table--manager,
+.table--courses {
   margin-top: 20px;
 }
 .table--assignment td,
 .table--resources td,
-.table--manager td {
+.table--manager td,
+.table--courses td {
   padding: 8px 8px 8px 0px;
   border-bottom: 1px solid rgba(62, 71, 79, 0.2);
 }
 .table--assignment td:first-child,
 .table--resources td:first-child,
-.table--manager td:first-child {
+.table--manager td:first-child,
+.table--courses td:first-child {
   padding-left: 8px;
 }
 .table--assignment th,
 .table--resources th,
-.table--manager th {
+.table--manager th,
+.table--courses th {
   font-weight: 600;
 }
 .table--assignment thead,
 .table--resources thead,
-.table--manager thead {
+.table--manager thead,
+.table--courses thead {
   border-bottom: 2px solid rgba(62, 71, 79, 0.75);
 }
 .table--assignment tr:hover,
 .table--resources tr:hover,
-.table--manager tr:hover {
+.table--manager tr:hover,
+.table--courses tr:hover {
   cursor: pointer;
   background: rgba(62, 71, 79, 0.1);
   transition: all 0.3s ease-in-out;
 }
 .table--assignment tr:active,
 .table--resources tr:active,
-.table--manager tr:active {
+.table--manager tr:active,
+.table--courses tr:active {
   background: rgba(62, 71, 79, 0.4);
   transition: all 0.3s ease-in-out;
 }
@@ -9319,6 +9329,53 @@ dashboard-courseslistdash .assignClass {
 .box__header .fa-user {
   float: left;
   margin-right: 8px;
+}
+.btn--pin--active {
+  float: right;
+  margin-top: -0.5em;
+  background: #2CC990;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn--pin--active:hover {
+  background: rgba(44, 201, 144, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+.btn--pin--active:active,
+.btn--pin--active:focus {
+  outline: none;
+}
+.btn--pin--inactive {
+  float: right;
+  margin-top: -0.5em;
+  background: #2CC990;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn--pin--inactive:hover {
+  background: rgba(44, 201, 144, 0.8);
+  transition: all 0.3s ease-in-out;
+}
+.btn--pin--inactive:active,
+.btn--pin--inactive:focus {
+  outline: none;
+}
+.btn--pin--active i {
+  padding-right: 0px;
+  text-align: center;
+}
+.btn--pin--inactive i {
+  padding-right: 0px;
+  text-align: center;
+}
+.box--label--courses {
+  border-left: 5px solid #2CC990;
+  border-top: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+}
+h2 {
+  margin-bottom: 1em;
 }
 /* * * * * * * * * * * * * * * *
 
