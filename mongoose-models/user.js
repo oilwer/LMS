@@ -18,7 +18,8 @@ module.exports = function(mongoose){
     github: String,
     twitter: String,
     courses: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Course'
+        course: { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+        pinned: Boolean
     }],
     notifications: [{
       url: String,
@@ -37,7 +38,7 @@ module.exports = function(mongoose){
       answerDate: { type: Date, default:Date.now },
       answeredBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
       answerComment: String, //feedback from teacher
-      status: String, // New|Wating|Resubmit|Done
+      status: String // New|Wating|Resubmit|Done
       //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
     }],
     plugs:[{

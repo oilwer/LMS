@@ -1,14 +1,14 @@
 <h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.code }} - {{course.name}}</h1>
 <ul>
-   
+
 
     <li ng-class="{'active': isActive('/courses/' + course.url) }"><a ng-href="courses/{{course.url}}">Overview</a>
     </li>
 
     <li ng-class="{'active': isActive('/participants/' + course.url) }"><a ng-href="participants/{{course.url}}">Participants</a></li>
 
-   
-    <li><a href="">Questions and Answers</a></li>
+
+    <!--<li><a href="">Questions and Answers</a></li>
 
     <!--Assignments-->
     <li ng-if = "hasAssignment(course.assignments)"><a  ng-click="isChildOpen = !isChildOpen">Assignments <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-up"></i></a>
@@ -29,4 +29,4 @@
             -->
         </ul>
     </li>
-</ul>        
+</ul>
