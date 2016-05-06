@@ -51,9 +51,11 @@ app.directive('profilePrivateprofile', [
 	    $scope.descriptionEnabled = true;
 	    $scope.contactEnabled = true;
 	    $scope.linksEnabled = true;
+	    $scope.expEnabled = true;
 	    $scope.class = "fa fa-pencil";
 	    $scope.contact_class = "fa fa-pencil";
 	    $scope.links_class = "fa fa-pencil";
+	    $scope.exp_class = "fa fa-pencil";
 	    $scope.isStudent = false;
 	    var obj = null;
 
@@ -84,6 +86,8 @@ app.directive('profilePrivateprofile', [
 
 	            $scope.courses = data.courses;
 
+	            $scope.experiences = data.experiences;
+
 	            obj = data;
 
 	            if(data.role == "Student")
@@ -105,8 +109,16 @@ app.directive('profilePrivateprofile', [
 	            $scope.descriptionEnabled = false;
 	        } else {
 	            obj.description = $scope.description;
-	            console.log(obj);
-	            $scope.updateProfile(obj);
+
+	            User.update({
+	                _id: obj._id
+	            },{
+		            description: obj.description
+	              });
+
+	        	if(obj != null){
+	            	$scope.user = obj;
+	           	}
 	            $scope.descriptionEnabled = true;
 	            $scope.class = "fa fa-pencil"
 	        }
@@ -118,9 +130,19 @@ app.directive('profilePrivateprofile', [
 	            $scope.contactEnabled = false;
 	        } else {
 	            obj.phone_number = $scope.phone_number;
-	            obj.public_url = $scope.url;
 	            obj.homepage = $scope.homepage;
-	            $scope.updateProfile(obj);
+
+	            User.update({
+	                _id: obj._id
+	            },{
+		            phone_number: obj.phone_number,
+		            homepage : obj.homepage
+	            });
+
+		        if(obj != null){
+		            $scope.user = obj;
+		        }
+
 	            $scope.contactEnabled = true;
 	            $scope.contact_class = "fa fa-pencil"
 	        }
@@ -135,54 +157,70 @@ app.directive('profilePrivateprofile', [
 	            obj.facebook = $scope.facebook;
 	            obj.twitter = $scope.twitter;
 	            obj.github = $scope.github;
-	            $scope.updateProfile(obj);
+
+	            User.update({
+                //searchObject
+                _id: obj._id
+            	},{
+		            linkedin : obj.linkedin,
+			        facebook : obj.facebook,
+			        twitter : obj.twitter,
+			        github : obj.github
+              	});
+
+	            if(obj != null){
+		            $scope.user = obj;
+		   		}
+
 	            $scope.linksEnabled = true;
 	            $scope.links_class = "fa fa-pencil"
 	        }
 	    };
 
-		var loadUser = function(newuser) {
-			initializeProfile(newuser);
-      	}
+	    $scope.addExp = function () {
+	        if ($scope.class == "fa fa-pencil") {
+	            $scope.class = "fa fa-check"
+	            $scope.expEnabled = false;
+	        } else {
+	        	if(obj.experiences === undefined){
+	        		obj.experiences = [];
+	        	}
+
+	            obj.experiences.push({
+	            	company_school : $scope.company_school,
+	        		title_education: $scope.title_education,
+				    location: $scope.location,
+				    info: $scope.info
+				});
+
+	        	User.update({
+	                _id: obj._id
+	            },{ $push: {
+	                  experiences:{
+	                    company_school : $scope.company_school,
+		        		title_education: $scope.title_education,
+					    location: $scope.location,
+					    info: $scope.info
+	                  }
+	              }
+	            });
+
+	            if(obj != null){
+		            $scope.user = obj;
+		   		}
+
+	            $scope.expEnabled = true;
+	            $scope.class = "fa fa-pencil"
+	        }
+	    };
 
 	    var getUser = function () {
-
 			SessionService.getSession().success(function(response) {
 				User.get({_id:response.user._id, _populate:"courses"},function(newUser){
- 					loadUser(newUser[0]);
+ 					initializeProfile(newUser[0]);
 				});
 			});
 	    }
-	    //Gui function update profile
-	    $scope.updateProfile = function (obj) {
-	        //Asks UserService to update User
-	        var user = obj;
-
-	        User.update({
-                //searchObject
-                _id: user._id
-            },{
-              //properties
-                  profile_pic: user.profile_pic,
-                  email: user.email,
-                  first_name: user.first_name,
-                  last_name: user.last_name,
-                  description: user.description,
-                  personality: user.personality,
-                  phone_number: user.phone_number,
-                  homepage : user.homepage,
-                  public_url: user.public_url,
-                  linkedin : user.linkedin,
-		          facebook : user.facebook,
-		          twitter : user.twitter,
-		          github : user.github
-              });
-
-	        if(user != null){
-	            $scope.user = user;
-	            showPicture();
-	        }
-	    };
         
         showUploadDivOnHover = function(){
             $('.profile__about__img').mouseenter(function(event){
@@ -243,8 +281,19 @@ app.directive('profilePrivateprofile', [
 	        }).then(function (resp) {
 	            console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data);
 	            obj.profile_pic = strippedFileName;
-	            $scope.updateProfile(obj);
-                hideDivWhenUploaded()
+
+	            User.update({
+	                _id: obj._id
+	            },{
+		            profile_pic: obj.profile_pic,
+	              });
+
+		        if(obj != null){
+		            $scope.user = obj;
+		            showPicture();
+		        }
+
+                // hideDivWhenUploaded() //NO DEFINITION?!?!?!?
 	        }, function (resp) {
 	            console.log('Error status: ' + resp.status);
 	        }, function (evt) {

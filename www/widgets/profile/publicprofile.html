@@ -67,7 +67,9 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
                             <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                             <ul ng-repeat = 'experience in experiences'>
+                                <li>{{experience.company_school}} - {{experience.title_education}}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
