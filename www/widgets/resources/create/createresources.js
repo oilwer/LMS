@@ -42,6 +42,7 @@ app.directive('resourcesCreateCreateresources', [
             console.log(strippedFileName);
             
             var description = $("#createNewResource").attr("value");
+            var resourceUrl = scope.resourceTitle.replace(/[\n\t\r\x20]/g, "_");
             
               Course.update({
                 _id: scope.courseSelect.repeatSelect
@@ -49,6 +50,7 @@ app.directive('resourcesCreateCreateresources', [
                   resources:{
                     title: scope.resourceTitle,
                     filename: strippedFileName,
+                    url: resourceUrl,
                     content: description,
                     uploaded_by: scope.session_user._id
                   }
@@ -57,10 +59,15 @@ app.directive('resourcesCreateCreateresources', [
             {
               console.log(res);
               scope.closeModalSession();
+              scope.castTheResourceList();
+                  
             });
         }
 
-
+        
+        scope.castTheResourceList = function() {
+           scope.$root.$broadcast('refreshResourceList');
+        };
         scope.closeModalSession = function() {
             scope.resourceTitle = "";
             scope.courseSelect.repeatSelect = "";

@@ -8112,7 +8112,6 @@ input[type=checkbox] {
 }
 .toolbar-option_content li {
   width: 100%;
-  padding: 15px 0px;
   text-align: center;
   border-bottom: 1px solid rgba(100, 100, 100, 0.22);
   transition: background 0.3 ease-in-out;
@@ -8131,6 +8130,7 @@ input[type=checkbox] {
 }
 .toolbar-option_content a {
   display: inline-block;
+  padding: 15px 0px;
   width: 100%;
   height: 100%;
   text-decoration: none;
@@ -8231,7 +8231,6 @@ input[type=checkbox] {
   border-right: 1px solid #3e474f;
   border-left: 1px solid #3e474f;
   width: 100%;
-  padding: 15px 0px;
   text-align: center;
   border-bottom: 1px solid grey;
   transition: background 0.2 ease-in-out;
@@ -8249,6 +8248,7 @@ input[type=checkbox] {
   -moz-osx-font-smoothing: grayscale;
 }
 .slackbox-option_content a {
+  padding: 15px 0px;
   display: inline-block;
   width: 100%;
   height: 100%;
