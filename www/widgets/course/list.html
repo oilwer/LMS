@@ -2,12 +2,17 @@
 <div class="app_container app_container--padding">
     <div class="container courses">
         <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn--default btn--courses" ng-show="auth" ng-click="castTheCourseModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add Course </button>
-            </div>
-            <div class="col-sm-20 col-sm-offset-2">
-              <course-courseslist></course-courseslist>
-                <course-listadded></course-listadded>
+
+            <div class="col-sm-24">
+              <course-listadded></course-listadded>
+              </div>
+              <div class="col-sm-12">
+                  <button class="btn btn--default btn--courses" ng-show="auth" ng-click="castTheCourseModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add Course </button>
+              </div>
+              <div class="col-sm-21 col-sm-offset-1">
+                <course-courseslist></course-courseslist>
+
+
 
 
             </div>

@@ -9330,8 +9330,10 @@ dashboard-courseslistdash .assignClass {
   float: left;
   margin-right: 8px;
 }
-.wrapper {
-  background-color: green;
+.courses--pinned {
+  height: 21em;
+  border-bottom: 2px solid lightgrey;
+  overflow: scroll;
 }
 .btn--pin--active {
   float: right;
