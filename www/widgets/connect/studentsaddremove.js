@@ -136,10 +136,13 @@ app.directive('connectStudentsaddremove', [
 			    }    
 			    return student.courses.filter(function(course) {
 			    	//if course name entered
-			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 
+			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
 			      	//if course code entered
-			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1;
-			    }).length > 0;
+			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
+			      	//if student name entered
+			      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
+			      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool 
+			    }).length > 0; //returns a bool 
 		  	}
 
           // Add Item to Checked List and delete from Unchecked List
