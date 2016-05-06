@@ -14,13 +14,43 @@ app.directive('dashboardCourseslistdash', [
     return {
       templateUrl: settings.widgets + 'dashboard/courseslistdash.html',
       link: function(scope, element, attrs) {
-      scope.heading = "My courses";
+      scope.heading = "";
 
+
+      //updates GUI
       var refresh = function(){
-        scope.courses = Course.get();
+        console.log(scope.user);
+
+        if(scope.user.role === "admin"){
+          console.log("is admin");
+          scope.heading = "All Courses";
+          scope.courses = Course.get();  //returns all courses in database
+          console.log(scope.courses);
+        }
+
+        else {
+          SessionService.getSession().success(function(response){
+            User.get({_id: response.user._id, _populate:"courses"}, function(user){
+              console.log(user[0].courses);
+              scope.courses = user[0].courses;  
+              console.log("is NOT admin");
+              scope.heading = "My Courses";
+            })
+          })
+        } //returns student's courses
       };
-            //Runs on page update
-      refresh();
+      
+
+      scope.user = "";
+      SessionService.getSession().success(function(response){
+        User.get({_id: response.user._id}, function(user){
+          scope.user = user[0];
+          refresh();
+        })
+      })
+
+      //Runs on page update
+    
 
       //pins course in database
       scope.pinCourse = function(course){
@@ -57,16 +87,10 @@ app.directive('dashboardCourseslistdash', [
                 }
               }
               */
-            });
-
-
-
-
-            });
           });
+        });
+      });
     }
-
-
 
         scope.class = "assignClass"
 
