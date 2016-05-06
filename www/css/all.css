@@ -7407,8 +7407,9 @@ button.close {
 /*green*/
 /*blue*/
 /*grey*/
+/*pink*/
 /*red*/
-/*red*/
+/*orange*/
 /*yellow*/
 /*orange*/
 /* font style variables and mixins */
@@ -7635,10 +7636,10 @@ This is a LESS file; only style for the element class .box allowed!
   color: rgba(0, 0, 0, 0.4);
 }
 .nav--global .nav--dashboard.active .nav--global_svg {
-  fill: #D8335B !important;
+  fill: #F1654C !important;
 }
 .nav--global .nav--dashboard.active a {
-  color: #D8335B !important;
+  color: #F1654C !important;
 }
 .nav--global .nav--manager.active .nav--global_svg {
   fill: #D8335B !important;
@@ -7659,10 +7660,10 @@ This is a LESS file; only style for the element class .box allowed!
   color: #00B5B5 !important;
 }
 .nav--global .nav--manager.active .nav--global_svg {
-  fill: #F1654C !important;
+  fill: #D8335B !important;
 }
 .nav--global .nav--manager.active a {
-  color: #F1654C !important;
+  color: #D8335B !important;
 }
 .nav--global .active a {
   color: #2CC990 !important;
