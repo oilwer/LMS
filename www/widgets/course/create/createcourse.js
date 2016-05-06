@@ -51,6 +51,7 @@ app.directive('courseCreateCreatecourse', [
         var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
           ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
             console.log(slackChannel);
+            alert(slackChannel);
             if(slackChannel.error != null){
               return;
             }
@@ -58,8 +59,12 @@ app.directive('courseCreateCreatecourse', [
             ChatService.getChannels(UserIdentifier).success(function(channels){
               for(x = 0; x < channels.channels.length; x++){
                 if(channels.channels[x].name == channelName){
-                //  console.log(channels.channels[x]);
-                  Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: channels.channels[x].id} } });
+                  console.log(channels.channels[x]);
+                  Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: channels.channels[x].id} } },
+                  function (res)
+                  {
+                    console.log(res);
+                  });
                   break;
                 }
               }
@@ -389,7 +394,7 @@ app.directive('courseCreateCreatecourse', [
                 description: scope.description,
                 start: scope.start,
                 end: scope.end
-                
+
             });
             scope.url = "/courses/" + scope.course.url;
             scope.incrementStep();
