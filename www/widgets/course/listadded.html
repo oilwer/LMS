@@ -1,9 +1,9 @@
 <div class="courses--pinned">
-  <div class="col-md-12" ng-repeat="course in courses">
+  <div class="col-md-12" ng-repeat="course in pinnedCourses">
       <div class="box--label box--label--courses" >
 
               <h2 class="box--label_heading--courses"><i class="fa--heading fa fa-leaf"></i>{{course.name}}
-                <button class="btn btn--pin--active" ng-click="unPinCourse(course)">
+                <button class="btn btn--pin--active" ng-click="pinCourse(course)">
                 <i class="fa fa-thumb-tack" ><strong> Unpin</strong>
                 </i>
               </button>
