@@ -141,12 +141,15 @@ app.directive('connectStudentsaddremove', [
 		    Course.get({url: courseUrl},function(course){
 
 			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
-			 		//console.log(res);
+			 		console.log(res);
 			 		//console.log("updated");
 
 			 		// console.log(scope.studentsToBeAdded);
 
-			 		User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
+          console.log(scope.students[index]);
+          console.log(course[0]);
+
+          User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
 				 		//Add User to slack channel:
   			 		console.log(scope.students[index]);
@@ -156,6 +159,7 @@ app.directive('connectStudentsaddremove', [
               createNotification(scope.students[index]._id);
   				 		scope.students.splice(index, 1);
 				 	});
+
 			 	});
             });
 	    };
