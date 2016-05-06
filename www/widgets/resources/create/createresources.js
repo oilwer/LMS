@@ -3,12 +3,14 @@ app.directive('resourcesCreateCreateresources', [
     "$location",
     "$window",
     "Course",
+    "Resource",
     "SessionService",
   function(
     settings,
     $location,
     $window,
     Course,
+     Resource,
     SessionService
   ) {
 
@@ -43,7 +45,16 @@ app.directive('resourcesCreateCreateresources', [
             
             var description = $("#createNewResource").attr("value");
             var resourceUrl = scope.resourceTitle.replace(/[\n\t\r\x20]/g, "_");
-            
+            var resource = {
+                title: scope.resourceTitle,
+                filename: strippedFileName,
+                url: resourceUrl,
+                course: scope.courseSelect.repeatSelect,
+                content: description,
+                uploaded_by: scope.session_user._id,
+                uploaded_on: new Date()
+              };
+              /*
               Course.update({
                 _id: scope.courseSelect.repeatSelect
               },{ $push: {
@@ -61,6 +72,24 @@ app.directive('resourcesCreateCreateresources', [
               scope.closeModalSession();
               scope.castTheResourceList();
                   
+            });
+            */
+            Resource.create(resource, function(res) {
+                Course.get({ _id: res[0].course}, function(x) {
+                    //Update Course and Continue
+                    Course.update({_relate:{items:x[0],resources:res[0] }});
+                    Resource.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
+                        /*Assignment.get({_id: res[0]._id}, function(newAssignment){
+                            //oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
+                            //console.log("ass, id", newAssignment[0]._id);
+                            //console.log("file:",scope.$$childTail.file[0].name);
+                            //console.log(scope.file);
+
+                        });*/
+                        scope.closeModalSession();
+                        scope.castTheResourceList();
+                    });
+                });
             });
         }
 

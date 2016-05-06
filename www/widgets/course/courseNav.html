@@ -18,15 +18,13 @@
     </li>
 
     <!--Resources-->
-    <li ng-if = "hasResource(course.resources)"><a ng-click="isChild2Open = !isChild2Open">Resources <i ng-hide="isChild2Open" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isChild2Open" class="fa--toggle fa fa-chevron-up"></i></a>
-        <ul ng-show="isChild2Open" ng-repeat="resource in resourcelist">
+    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/')}" ng-if = "hasResource(course.resources)"><a ng-href="courses/{{course.url}}/resources">Resources </a>
+        <!--<ul ng-show="isChild2Open" ng-repeat="resource in resourceList">
             <li><a href={{resource.url}}><i class={{resourceType}}></i>{{resource.name}}</a></li>
 
-            <!--
             <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
             <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
             <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
-            -->
-        </ul>
+        </ul>-->
     </li>
 </ul>
