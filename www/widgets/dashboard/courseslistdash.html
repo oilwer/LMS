@@ -23,7 +23,6 @@
             <!--repeat all courses that the user belongs to -->
             <tbody>
                 <tr ng-repeat="course in courses">
-
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
@@ -54,9 +53,6 @@
                             <span ng-class="class" ng-if=""></span>
                         </i>
                     </td>
-
-
-
                 </tr>
             </tbody>
         </table>
