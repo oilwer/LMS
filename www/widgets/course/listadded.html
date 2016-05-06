@@ -1,0 +1,18 @@
+<div class="col-md-24">
+    <div class="col-md-6" ng-repeat="course in courses" >
+      <div class="box">
+        <div class="box__header">
+            <h5><i class="fa--heading fa fa-leaf"></i>{{course.name}}</h5>
+            <input type="checkbox" ng-click="unPinCourse(course)"></input>
+        </div>
+
+        <div class="box__content">
+          <p>{{course.code}}</p>
+          <p>{{course.description}}<p>
+
+        </div>
+      </div>
+    </div>
+
+
+</div><!--col end-->

@@ -6,14 +6,10 @@
                 <button class="btn btn--default btn--courses" ng-show="auth" ng-click="castTheCourseModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
             </div>
             <div class="col-sm-20 col-sm-offset-2">
-                <dashboard-courses ng-if="!auth"></dashboard-courses>
+                <course-listadded></course-listadded>
+                <course-courseslist></course-courseslist>
 
-                <dashboard-allcourses ng-if="auth"></dashboard-allcourses>
             </div>
         </div><!--.row-->
     </div><!--.dashboard-->
 </div><!--.app_container-->
-
-
-
-            

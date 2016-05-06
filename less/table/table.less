@@ -2,7 +2,7 @@ table {
     width: 100%;
 }
 
-.table--assignment, .table--resources {
+.table--assignment, .table--resources, .table--manager {
     margin-top: 20px;
     td {
         padding: 8px 8px 8px 0px;
@@ -15,10 +15,10 @@ table {
         font-weight: 600;
     }
 
-    tr:first-child {
+    thead {
         border-bottom: 2px solid @LMSmid;
     }
-    tr:not(:first-child) {
+    tr {
         &:hover {
             cursor: pointer;
             background: fade(@LMSdark, 10%);
@@ -39,6 +39,6 @@ table {
         td:first-child {
             width: 40%;
         }
-        
+
     }
 }
