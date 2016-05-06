@@ -389,6 +389,7 @@ app.directive('courseCreateCreatecourse', [
                 description: scope.description,
                 start: scope.start,
                 end: scope.end
+                
             });
             scope.url = "/courses/" + scope.course.url;
             scope.incrementStep();

@@ -1,30 +1,40 @@
-<div class="box">
 
+<div class="col-md-24">
+  <div class="box">
     <div class="box__header box__header--courses">
         <h2><i class="fa--heading fa fa-leaf"></i>{{heading}}</h2>
     </div>
 
+
     <div class="box__content">
-        <table>
+        <table class="table table-resouces">
             <thead>
                 <tr>
+
                     <th>Course</th>
+                    <th>End Date</th>
                     <th>Wall</th>
                     <th>Assignm.</th>
                     <th>FAQ</th>
                     <th>Resources</th>
+                    <th>Active</th>
+                    <th>Pin</th>
                 </tr>
             </thead>
 
             <!--repeat all courses that the user belongs to -->
             <tbody>
                 <tr ng-repeat="course in courses">
+
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                             <p>{{course.name}}</p>
                             <p>{{course.code}}</p>
                         </a>
+                    </td>
+                    <td ng-if="course.status == true">
+                      <p>{{course.end | date:'shortDate' }}<p>
                     </td>
                     <td ng-if="course.status == true">
                         <i class="fa fa-thumb-tack">
@@ -46,8 +56,20 @@
                             <span ng-class="class" ng-if=""></span>
                         </i>
                     </td>
+                    <td>
+                        <i ng-if ="course.status == true"class="fa fa-dot-circle-o">
+                            <span ng-class="class" ng-if=""></span>
+                        </i>
+                        <i ng-if ="course.status == false"class="fa fa-circle-o">
+                            <span ng-class="class" ng-if=""></span>
+                    </td>
+                    <td>
+                      <input type="checkbox" ng-click="pinCourse(course)"></input>
+                    </td>
+
                 </tr>
             </tbody>
         </table>
     </div>
+  </div>
 </div>
