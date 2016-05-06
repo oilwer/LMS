@@ -1,3 +1,44 @@
 table {
     width: 100%;
 }
+
+.table--assignment, .table--resources {
+    margin-top: 20px;
+    td {
+        padding: 8px 8px 8px 0px;
+        border-bottom: 1px solid fade(@LMSlight,20%);
+        &:first-child {
+            padding-left: 8px;
+        }
+    }
+    th {
+        font-weight: 600;
+    }
+
+    tr:first-child {
+        border-bottom: 2px solid @LMSmid;
+    }
+    tr:not(:first-child) {
+        &:hover {
+            cursor: pointer;
+            background: fade(@LMSdark, 10%);
+            transition: all 0.3s ease-in-out;
+        }
+        &:active {
+            background: fade(@LMSdark, 40%);
+            transition: all 0.3s ease-in-out;
+        }
+    }
+}
+
+.table--resources {
+    td, th {
+        width: 20%;
+    }
+    tr {
+        td:first-child {
+            width: 40%;
+        }
+        
+    }
+}

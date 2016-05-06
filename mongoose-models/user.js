@@ -3,7 +3,7 @@ module.exports = function(mongoose){
   var sha1 = require('sha1');
 
   var UserSchema = new mongoose.Schema({
-    profilePic: String,
+    profile_pic: String,
     email: String,
     first_name: String,
     last_name: String,
@@ -34,10 +34,10 @@ module.exports = function(mongoose){
       comment: String,
       submissionDate: Date,
       answer_file: String,
-      answerComment: String, //feedback from teacher
-      answerDate: Date,
+      answerDate: { type: Date, default:Date.now },
       answeredBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      status: String, // New|Wating|Resubmit|Done  
+      answerComment: String, //feedback from teacher
+      status: String, // New|Wating|Resubmit|Done
       //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
     }],
     plugs:[{

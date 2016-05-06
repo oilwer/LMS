@@ -12,13 +12,16 @@ app.directive('fileuploadFileupload', [
       link: function(scope, element, attrs) {
 
 
+
         scope.submit = function(){ //function to call on form submit
             if (scope.upload_form.file.$valid && scope.file[0]) { //check if from is valid
               for(var i  = 0, len = scope.file.length; i < len; i++){
                 upload(scope.file[i]); //call upload function
               }
             }
+            return true;
         }
+
 
         upload = function (file) {
     //      console.log("file", file);

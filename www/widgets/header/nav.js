@@ -74,7 +74,6 @@ app.directive('headerNav', [
 
         //show hide modal create course
         scope.modalShown = false;
-
         scope.toggleModal = function() {
             scope.modalShown = !scope.modalShown;
             //fix for toolbar toggle, element event don't fire on modalshow()
@@ -90,6 +89,15 @@ app.directive('headerNav', [
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = false;
           };
+        
+        //show hide modal create resource
+        scope.resourceModalShown = false;
+        scope.toggleResourceModal = function() {
+            scope.resourceModalShown = !scope.resourceModalShown;
+            //fix for toolbar toggle, element event don't fire on modalshow()
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = false;
+          };
           
         scope.$root.$on('showTheAssignmentModal', function() {
             scope.toggleAssignmentModal();
@@ -97,6 +105,10 @@ app.directive('headerNav', [
           
         scope.$root.$on('showTheCourseModal', function() {
             scope.toggleModal();
+        });
+          
+        scope.$root.$on('showTheResourceModal', function() {
+            scope.toggleResourceModal();
         });
 
 

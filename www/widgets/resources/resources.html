@@ -1,7 +1,43 @@
-<div class="app_container heightfull">
-    <div class="container-fluid heightfull ng-scope">
-
-      <h1> Resources </h1>
-
+<div class="app_container">
+    <div class="container-fluid body--margin ng-scope">
+        <div class="col-md-22 col-md-offset-1 box resources">
+            <div class="col-md-24">
+                <div class="col-md-24">
+                    <h1> Resources </h1>
+                    <button class="btn btn--add btn--resources" ng-show="auth" ng-click="castTheResourceModal()">
+                        <i class="fa fa-plus" aria-hidden="true"></i> Add 
+                    </button>
+                </div>
+                <div class="col-md-12">
+                    <label for="searchResource">Search</label>
+                    <input type="search" id="searchResource" class="form-control" ng-model="search" placeholder="">
+                </div>
+                <div class="col-md-12">
+                    <label for="filterCourse">Filter by course</label>
+                    <select ng-model="selectedCourse" class="form-control" name="filterCourse">
+                        <option value="" ng-selected=true>All</option>
+                        <option ng-repeat="aCourse in courseFilter">
+                            {{aCourse}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-24">
+                <table class="table--resources">
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Course</th>
+                        <th scope="col">Published</th>
+                        <th scope="col">Author</th>
+                    </tr>
+                    <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: uploaded_on">
+                        <td>{{resource.filename}}</td>
+                        <td>{{resource.course}}</td>
+                        <td>{{resource.uploaded_on | date}}</td>
+                        <td>{{resource.uploaded_by_name}}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
     </div>
   </div>
