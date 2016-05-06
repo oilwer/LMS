@@ -5,13 +5,15 @@ app.directive('resourcesSingleresource', [
     "$location",
     "SessionService",
     "Course",
+    "Resource",
   function(
     settings,
     User,
     $routeParams,
      $location,
     SessionService,
-     Course
+     Course,
+     Resource
     ) {
     return {
       templateUrl: settings.widgets + 'resources/singleResource.html',
@@ -31,6 +33,7 @@ app.directive('resourcesSingleresource', [
               theLocationPath = $location.path();
               theLocation = theLocationPath.split("/");
               
+              //check if resource view is global or assigned a course
               if(theLocation[1] === "resources") {
                   scope.showAll = true;
                   url = theLocation[1];
@@ -44,29 +47,13 @@ app.directive('resourcesSingleresource', [
                   }
               }
 
-                SessionService.getSession().success(function(response) {
-                  scope.session_user = response.user;
-                });
-
-                //scope.resourceList = [];
-                //scope.courseFilter = [];
               scope.theResource;
-              console.log(url);
-
-              //get session_user
-              SessionService.getSession().success(function(response){
-                  session_user = response.user;
-                  
-                 /* Course.get({url: url, _populate: "resources"}, function(course){
-                    scope.course = course[0];
-                      scope.resourceList= scope.course.resources;
-                      for (var i = 0; i < scope.course.resources.length; i++) {
-                          scope.course.resources[i].course = scope.course.name;
-                      }
-                  });*/
+              console.log(theLocation);
+              Resource.get({url: theLocation.pop()}, function(resource) {
+                  scope.theResource = resource[0];
+                  console.log(scope.theResource);
               });
           }
-          
           
         setupTheResource();
           

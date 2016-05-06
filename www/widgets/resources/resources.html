@@ -40,7 +40,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: '-uploaded_on'" ng-click="updateLocation(resource.title)">
+                                <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: '-uploaded_on'" ng-click="updateLocation(resource.url)">
                                     <td>{{resource.title}}</td>
                                     <td>{{resource.course}}</td>
                                     <td>{{resource.uploaded_on | date}}</td>

@@ -17,25 +17,24 @@ app.directive('courseCoursenav', [
 
        var url = $location.path().split(/[\s/]+/)[2];
         scope.course = "";
-        Course.get({url: url}, function(course){ 
+        Course.get({url: url,_populate:"resources"}, function(course){ 
             scope.course = course[0];
-            console.log(url, scope.course);
             //scope.assignments = scope.course.assignments;
         });
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
         scope.assignments = c.assignments;
-
-        scope.resourcelist =  scope.course.resources;
+          console.log(scope.assignments);
+        
 
       	scope.hasAssignment = function(assignments) 
       	{
       		  return (typeof assignments !== 'undefined' && assignments.length > 0);          
       	}
 
-      	scope.hasResource = function(rescourceArray) 
+      	scope.hasResource = function(rescourcelist) 
       	{
-      		return (typeof rescourceArray !== 'undefined' && rescourceArray.length > 0);
+      		return (typeof rescourcelist !== 'undefined' && rescourcelist.length > 0);
       	}
 
       	scope.isActive = function(route){

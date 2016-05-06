@@ -19,12 +19,7 @@ module.exports = function(mongoose){
             channelId: String
         }],
         resources: [{
-          title: String,
-          filename: String,
-          url: String,
-          content: String,
-          uploaded_on: {type: Date, default:Date.now},
-          uploaded_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+          type: mongoose.Schema.Types.ObjectId, ref: 'Resource'
         }],
         messages: [{
             title: String,
