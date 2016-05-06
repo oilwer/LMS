@@ -8663,7 +8663,7 @@ table {
 .table--manager td,
 .table--courses td {
   padding: 8px 8px 8px 0px;
-  border-bottom: 1px solid rgba(62, 71, 79, 0.2);
+  border-bottom: 1px solid rgba(62, 71, 79, 0.09);
 }
 .table--assignment td:first-child,
 .table--resources td:first-child,
