@@ -30,13 +30,15 @@
                             </div>
                             <div class="list--students">
                                 <h3>Add people</h3>
-                                <ul>
+                                <input class="form-control" type="text" ng-model="byCourse" placeholder="Search by course id or course name..">
+                                <ul ng-repeat="student in students | filter: filterByCourse">
+                                    
                                     <li ng-init="index=0; 
                                         classes=['list--students_item', 'list--students_item--active']" 
                                          ng-click="stageMeToCourse($index)" 
                                          ng-class="classes[index % classes.length]" 
-                                         ng-repeat="student in students"  
-                                         class="col-xs-24">
+                                         class="col-xs-24"
+                                         >
 
                                         <img src="/img/profile_default.png">
                                         <h4>

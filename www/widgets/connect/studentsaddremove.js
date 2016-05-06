@@ -77,7 +77,6 @@ app.directive('connectStudentsaddremove', [
 
 		var updateGUI = function(){
 
-			 scope.students= [];
 			 scope.studentsToBeAdded= [];
 
 		  	if(courseUrl===""){
@@ -106,6 +105,7 @@ app.directive('connectStudentsaddremove', [
 
 						  	if(!added){
 							  	scope.students.push(user[i]);
+							  	console.log(scope.students);
 						  	}
 					  	}
 
@@ -123,15 +123,24 @@ app.directive('connectStudentsaddremove', [
 					//var students = User.get({role:Student});
 					//console.log(students);
 				  	scope.studentsToBeAdded = course[0].students;
-				  	console.log(course[0]);
 				});
 	    	}
 	    }
 	       //calls updateGUI on page load
            onLoad();
 
-          // scope.studentsToBeAdded = [];
-
+            //filters studentlist according to registered courses 
+          	scope.filterByCourse = function(student) {
+			    if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
+			      	return true;
+			    }    
+			    return student.courses.filter(function(course) {
+			    	//if course name entered
+			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 
+			      	//if course code entered
+			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1;
+			    }).length > 0;
+		  	}
 
           // Add Item to Checked List and delete from Unchecked List
 	    scope.stageMeToCourse = function (index) {
