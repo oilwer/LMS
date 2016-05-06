@@ -31,8 +31,18 @@ app.directive('courseCoursepage', [
 
         scope.course = "";
         scope.assignments = "";
+          
+        var theLocation = $location.path().split(/[\s/]+/);
+        var url;
+          //always get the course url
+          for (var i = 0; i < theLocation.length; i++ ) {
+              if(theLocation[i] === "courses") {
+                  url = theLocation[i+1];
+                  console.log("hittar");
+                  break;
+              }
+          }
 
-        var url = $location.path().split(/[\s/]+/).pop();
         Course.get({url: url, _populate:"assignments"}, function(course){
             scope.course = course[0];
             scope.assignments = scope.course.assignments;

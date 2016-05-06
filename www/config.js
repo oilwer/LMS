@@ -41,12 +41,14 @@ app.config([
        .when("/courses/:id", {
         templateUrl: "templates/course.html",
       })
+      .when("/courses/:id/resources/", {
+        templateUrl: "templates/resources.html",
+      })
+      .when("/courses/:id/resources/:titel", {
+        templateUrl: "templates/singleResource.html",
+      })
         .when("/courses/:type/:id", {
         templateUrl: "templates/course.html",
-      })
-       // static course, to be updated with dynamic course url
-      .when('/courses/testcourse', {
-          templateUrl: 'templates/course.html',
       })
       .when("/dash", {
         templateUrl: "templates/dash.html"
@@ -62,6 +64,9 @@ app.config([
       })
       .when("/resources/", {
         templateUrl: "templates/resources.html",
+      })
+      .when("/resources/:titel", {
+        templateUrl: "templates/singleResource.html",
       })
       .otherwise({
         redirectTo: "/"

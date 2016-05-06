@@ -21,6 +21,7 @@ module.exports = function(mongoose){
         resources: [{
           title: String,
           filename: String,
+          url: String,
           content: String,
           uploaded_on: {type: Date, default:Date.now},
           uploaded_by: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }

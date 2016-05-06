@@ -15,7 +15,13 @@ app.directive('courseCoursenav', [
       templateUrl: settings.widgets + 'course/courseNav.html',
       link: function(scope, element, attrs) {
 
+       var url = $location.path().split(/[\s/]+/)[2];
         scope.course = "";
+        Course.get({url: url}, function(course){ 
+            scope.course = course[0];
+            console.log(url, scope.course);
+            //scope.assignments = scope.course.assignments;
+        });
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
         scope.assignments = c.assignments;
