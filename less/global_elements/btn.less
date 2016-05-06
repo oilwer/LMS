@@ -35,6 +35,20 @@
         outline: none;
     }
 }
+.btn--manager {
+    float:right;
+    margin-top: 12em;
+    background: @RGBresources;
+    color: #fff;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background: fade(@RGBresources,85%);
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
 
 .btn--users {
     background: @RGBskills;
@@ -109,9 +123,4 @@
     &:active, &:focus {
         outline: none;
     }
-}
-
-.send__button {
-    float:right;
-    margin: 10px 0px 0px 10px;
 }

@@ -7489,15 +7489,18 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.resources {
+.resources,
+.manager {
   padding: 20px !important;
 }
-.resources h1 {
+.resources h1,
+.manager h1 {
   display: inline-block;
   padding-bottom: 30px;
   padding-top: 20px;
 }
-.resources .btn--add {
+.resources .btn--add,
+.manager .btn--add {
   margin-top: -4px;
   margin-left: 10px;
 }
@@ -8513,6 +8516,21 @@ trix-toolbar .button_group input[type=button] {
 .btn--resources:focus {
   outline: none;
 }
+.btn--manager {
+  float: right;
+  margin-top: 12em;
+  background: #00B5B5;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn--manager:hover {
+  background: rgba(0, 181, 181, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+.btn--manager:active,
+.btn--manager:focus {
+  outline: none;
+}
 .btn--users {
   background: #D8335B;
   color: #fff;
@@ -8589,10 +8607,6 @@ trix-toolbar .button_group input[type=button] {
 .resourcesDetails .btn-file:focus {
   outline: none;
 }
-.send__button {
-  float: right;
-  margin: 10px 0px 0px 10px;
-}
 .btn--fileupload {
   padding: 0px 0px;
   border-radius: 5px;
@@ -8635,34 +8649,41 @@ table {
   width: 100%;
 }
 .table--assignment,
-.table--resources {
+.table--resources,
+.table--manager {
   margin-top: 20px;
 }
 .table--assignment td,
-.table--resources td {
+.table--resources td,
+.table--manager td {
   padding: 8px 8px 8px 0px;
   border-bottom: 1px solid rgba(62, 71, 79, 0.2);
 }
 .table--assignment td:first-child,
-.table--resources td:first-child {
+.table--resources td:first-child,
+.table--manager td:first-child {
   padding-left: 8px;
 }
 .table--assignment th,
-.table--resources th {
+.table--resources th,
+.table--manager th {
   font-weight: 600;
 }
-.table--assignment tr:first-child,
-.table--resources tr:first-child {
+.table--assignment thead,
+.table--resources thead,
+.table--manager thead {
   border-bottom: 2px solid rgba(62, 71, 79, 0.75);
 }
-.table--assignment tr:not(:first-child):hover,
-.table--resources tr:not(:first-child):hover {
+.table--assignment tr:hover,
+.table--resources tr:hover,
+.table--manager tr:hover {
   cursor: pointer;
   background: rgba(62, 71, 79, 0.1);
   transition: all 0.3s ease-in-out;
 }
-.table--assignment tr:not(:first-child):active,
-.table--resources tr:not(:first-child):active {
+.table--assignment tr:active,
+.table--resources tr:active,
+.table--manager tr:active {
   background: rgba(62, 71, 79, 0.4);
   transition: all 0.3s ease-in-out;
 }
@@ -8911,6 +8932,7 @@ form[name="assignmentType"] {
   font-size: 1em;
 }
 .searchUser .input-group-btn > .btn {
+  margin-top: -0.01em;
   height: 2.82em;
   border-left-width: 0;
   left: -2px;
@@ -8936,6 +8958,7 @@ form[name="assignmentType"] {
   max-width: 10em;
 }
 .remove {
+  text-align: center;
   cursor: pointer;
 }
 .radioitem {
