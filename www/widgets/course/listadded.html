@@ -6,8 +6,8 @@
                 <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">{{course.name}}</a>
 
                 <button class="btn btn--pin--active" ng-click="unPinCourse(course)">
-                <i class="fa fa-thumb-tack" ><strong> Unpin</strong>
-                </i>
+                <i class="fa fa-thumb-tack" ></i>
+                Unpin
               </button>
             </h2>
 
@@ -33,7 +33,7 @@
 
                   <!--repeat all courses that the user belongs to -->
                   <tbody>
-                      <tr>
+                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
 
                         <td ng-if="course.status == true">
                           <p>{{course.start | date:'shortDate' }}<p>
