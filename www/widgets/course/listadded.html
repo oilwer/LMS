@@ -1,18 +1,20 @@
-<div class="col-md-24">
-    <div class="col-md-6" ng-repeat="course in courses" >
-      <div class="box">
-        <div class="box__header">
-            <h5><i class="fa--heading fa fa-leaf"></i>{{course.name}}</h5>
-            <input type="checkbox" ng-click="unPinCourse(course)"></input>
+<div class="courses--pinned">
+  <div class="col-md-12" ng-repeat="course in courses">
+      <div class="box--label box--label--courses" >
+
+              <h2 class="box--label_heading--courses"><i class="fa--heading fa fa-leaf"></i>{{course.name}}
+                <button class="btn btn--pin--active" ng-click="unPinCourse(course)">
+                <i class="fa fa-thumb-tack" ><strong> Unpin</strong>
+                </i>
+              </button>
+            </h2>
+
+          <div class="box__content">
+            <p>{{course.code}}</p>
+            <p><small>{{course.description}}<small><p>
+            <p><em>{{course.status}}<em></p>
+
+          </div>
         </div>
-
-        <div class="box__content">
-          <p>{{course.code}}</p>
-          <p>{{course.description}}<p>
-
-        </div>
-      </div>
-    </div>
-
-
+    </div><!--col end-->
 </div><!--col end-->

@@ -1,5 +1,5 @@
 /*Styles for global .box classes
-    
+
 This is a LESS file; only style for the element class .box allowed!
 
     Naming example for .box elements and modifiers:
@@ -31,20 +31,20 @@ This is a LESS file; only style for the element class .box allowed!
     font-weight: 600;
     -webkit-font-smoothing: antialiased;
     .border-radius-custom(5px, 5px, 0px, 0px); //uses mixin in mixins.less
-    
+
     .fa-user {
-    
+
     float:right;
-    
+
     }
     h2 {
         font-size: 1.25em;
     }
-    
+
     i {
         padding: 0px 10px 0px 0px;
     }
-    
+
 }
 
 .box__header--courses {
@@ -141,4 +141,7 @@ This is a LESS file; only style for the element class .box allowed!
 .box--courses:hover .box {
     box-shadow: 0 2px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     transition: all 0.2s ease-in-out;
+}
+.courses--pinned .box--label{
+  padding: 20px;
 }

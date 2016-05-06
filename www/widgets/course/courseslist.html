@@ -1,13 +1,8 @@
 
-<div class="col-md-24">
-  <div class="box">
-    <div class="box__header box__header--courses">
-        <h2><i class="fa--heading fa fa-leaf"></i>{{heading}}</h2>
-    </div>
-
+<div class="col-md-24 box">
 
     <div class="box__content">
-        <table class="table table-resouces">
+        <table class="table--courses">
             <thead>
                 <tr>
 
@@ -64,12 +59,14 @@
                             <span ng-class="class" ng-if=""></span>
                     </td>
                     <td>
-                      <input type="checkbox" ng-click="pinCourse(course)"></input>
+                      <button class="btn btn--pin--inactive" ng-click="unPinCourse(course)">
+                      <i class="fa fa-thumb-tack" ><strong> Pin</strong>
+                      </i>
+                    </button>
                     </td>
 
                 </tr>
             </tbody>
         </table>
     </div>
-  </div>
 </div>
