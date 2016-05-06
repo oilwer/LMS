@@ -9330,6 +9330,9 @@ dashboard-courseslistdash .assignClass {
   float: left;
   margin-right: 8px;
 }
+.wrapper {
+  background-color: green;
+}
 .btn--pin--active {
   float: right;
   margin-top: -0.5em;
@@ -9347,7 +9350,8 @@ dashboard-courseslistdash .assignClass {
 }
 .btn--pin--inactive {
   float: right;
-  margin-top: -0.5em;
+  margin-right: 0;
+  margin-top: 0em;
   background: #2CC990;
   color: #fff;
   transition: all 0.3s ease-in-out;
