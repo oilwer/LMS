@@ -19,21 +19,15 @@ app.directive('dashboardCourseslistdash', [
 
       //updates GUI
       var refresh = function(){
-        console.log(scope.user);
-
         if(scope.user.role === "admin"){
-          console.log("is admin");
           scope.heading = "All Courses";
           scope.courses = Course.get();  //returns all courses in database
-          console.log(scope.courses);
         }
 
         else {
           SessionService.getSession().success(function(response){
             User.get({_id: response.user._id, _populate:"courses"}, function(user){
-              console.log(user[0].courses);
               scope.courses = user[0].courses;  
-              console.log("is NOT admin");
               scope.heading = "My Courses";
             })
           })

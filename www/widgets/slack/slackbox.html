@@ -5,7 +5,7 @@
         </div>
         <ul class=" slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
             <div class="slackbox-option_content">
-                <li>Channels<i ng-click="toggleCreateSlackBar()" class="fa fa-times exit2" aria-hidden="true"></i>
+                <li>Channels<i class="fa fa-times exit2" aria-hidden="true"></i>
                 </li>
                 <li ng-click="showChatBox(course)" ng-repeat="course in courselist | filter:searchChannel">
                     <a>#{{course.name}}</a>

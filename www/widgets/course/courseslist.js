@@ -17,7 +17,28 @@ app.directive('courseCourseslist', [
       scope.heading = "All courses";
 
       var refresh = function(){
-        scope.courses = Course.get();
+        SessionService.getSession().success(function(response) {
+            User.get({_id: response.user._id, _populate:"courses"}, function(user){
+
+              console.log(user[0]);
+
+              scope.myCourses = [];
+
+              if(user[0].role === "admin"){
+                scope.title = "All Courses";
+                scope.myCourses = Course.get();
+                console.log(scope.myCourses);
+              }
+
+              else{
+                scope.title = "My Courses";
+               scope.myCourses = user[0].courses; 
+               console.log(user[0].courses);
+              }
+
+              
+          });
+        });
       };
             //Runs on page update
       refresh();
