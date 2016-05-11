@@ -2,10 +2,12 @@ app.directive('resourcesResourceitem', [
   "settings",
   "$routeParams",
   "Course",
+  "Resource",
   function(
     settings,
     $routeParams,
-    Course
+    Course,
+    Resource
   ) {
 
     return {
@@ -18,12 +20,14 @@ app.directive('resourcesResourceitem', [
         Course.get({ url: url}, function(course){
           if(course[0].resources !== undefined){
             for (var i = 0; i < course[0].resources.length; i++) {
-                scope.resourceList.push(course[0].resources[i]);
+                //scope.resourceList.push(course[0].resources[i]);
+                Resource.get({_id: course[0].resources[i]}, function(resource){
+                    scope.resourceList.push(resource[0]);
+                    console.log(resource);
+                });
             }
           }
-
         });
-
       }
     };
   }

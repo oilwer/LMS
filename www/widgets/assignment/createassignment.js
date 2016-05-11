@@ -36,16 +36,16 @@ app.directive('assignmentCreateassignment', [
 		        var AvailableAssignments, oldassignment, selectedAssignmentName;
 
 		        var getAssignmentsFromCourse = function(){
-			        console.log("Searching for: ", selectedCourseName);
+			        // console.log("Searching for: ", selectedCourseName);
 			        var courseId;
 
 			        Course.get({name: selectedCourseName}, function(course)
 			        {
-						console.log(course[0]._id);
+						// console.log(course[0]._id);
 						courseId = course[0]._id;
 
 						Assignment.get({course: courseId}, function(res){
-							console.log(res);
+							// console.log(res);
 							AvailableAssignments = res;
 
 							scope.assignmentSelect = {
@@ -69,13 +69,13 @@ app.directive('assignmentCreateassignment', [
 			        }
 
 					selectedCourseName = scope.courseSelect.repeatSelect;
-					console.log(selectedCourseName);
+					// console.log(selectedCourseName);
 					getAssignmentsFromCourse();
 			    }
 
 			   	scope.selectAssignmentChanged = function (){
 					selectedAssignmentName = scope.assignmentSelect.repeatSelect;
-					console.log(selectedAssignmentName);
+					// console.log(selectedAssignmentName);
 			   	}
 
 
@@ -117,7 +117,6 @@ app.directive('assignmentCreateassignment', [
 		        //Gui function add course
 		        scope.addOrUpdateAssignment = function(){
                     //submit file upload
-
                     scope.$$childTail.submit();
 
 			        if (typeof selectedCourseName !== 'undefined'){

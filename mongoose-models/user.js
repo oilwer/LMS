@@ -54,6 +54,7 @@ module.exports = function(mongoose){
    }],
    role: String, //student/admin/teacher
    slack_token: String, //holds slack token
+   slack_username: String,
    skills: [{
       tag: String
     }],

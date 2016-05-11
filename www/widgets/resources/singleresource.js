@@ -53,6 +53,28 @@ app.directive('resourcesSingleresource', [
                   scope.theResource = resource[0];
                   console.log(scope.theResource);
                   $(".resourceContent").append(scope.theResource.content);
+                  var file = scope.theResource.filename.split(".").pop();
+                  var fileUrl = "uploads/" + scope.theResource.filename;
+                  
+                  //check file type; stored as String in DB - update to check for filetype
+                  if (file === "jpg" || file === "png" || file === "gif") {
+                      var theFile = '<a target="_self" class="download--picture" href="' + fileUrl + '" download><img src="uploads/' + scope.theResource.filename+ '"></a>';
+                       $('.resourceFile').empty().append(theFile + '<div class="resourceFileName">' + scope.theResource.filename + '</div>');
+                  }
+                  else if (file === "pdf") {
+                      $('.resourceFile').empty().append('<iframe src="'+ fileUrl + '" frameborder="0"></iframe>');
+                      $('.resourceFile').removeClass("col-md-12 col-md-offset-6").addClass("col-md-24");
+                  }
+                  else if (file === "mp4" || file === "ogg" || file === "m4v") {
+                      console.log("video");
+                      $('.resourceFile').empty().append('<video controls><source src="' + fileUrl + '" type="video/mp4"><source src="' + scope.theResource.filename + '" type="video/ogg"></video>');
+                    
+                  } 
+                  else {
+                      console.log(file);
+                    $('.resourceFile').empty().append('<a target="_self" href="uploads/' + scope.theResource.filename + '" download>' + scope.theResource.filename + '</a>');
+                  }
+                  
               });
           }
           

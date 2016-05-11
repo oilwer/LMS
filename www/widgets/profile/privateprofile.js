@@ -35,11 +35,14 @@ app.directive('profilePrivateprofile', [
 	    		//uses temp code to get access token
 	    		$http.get(url).then(function(response) {
 		    		var token = response.data.access_token;
+            var slack_username = response.data.user_id;
+
+            console.log(response);
 
 		    		//gets session
 		    		SessionService.getSession().success(function(response) {
 		    				//returns user from session
-							User.update({_id:response.user._id},{ slack_token: token });
+							User.update({_id:response.user._id},{ slack_token: token , slack_username: slack_username});
 					});
 	    		});
 	    	}
@@ -69,7 +72,7 @@ app.directive('profilePrivateprofile', [
 
 	            $scope.profile_pic = data.profile_pic;
 
-	            console.log(data.profile_pic);
+	            //console.log(data.profile_pic);
 
 	            $scope.phone_number = data.phone_number;
 	            $scope.url = data.public_url;
@@ -107,12 +110,12 @@ app.directive('profilePrivateprofile', [
 	    $scope.editDescription = function () {
 	            $scope.descriptionEnabled = false;
         };
-          
+
         $scope.cancelDescription = function () {
 	            $scope.descriptionEnabled = true;
                 $scope.description = obj.description;
         };
-          
+
         $scope.saveDescription = function (){
             $scope.descriptionEnabled = true;
             obj.description = $scope.description;
@@ -129,9 +132,9 @@ app.directive('profilePrivateprofile', [
             $scope.descriptionEnabled = true;
             $scope.class = "fa fa-pencil";
 	    };
-          
+
 	    $scope.editContact = function () {
-            
+
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
 	            $scope.contactEnabled = false;
@@ -356,7 +359,7 @@ app.directive('profilePrivateprofile', [
 				});
 			});
 	    }
-        
+
         showUploadDivOnHover = function(){
             $('.profile__about__img').mouseenter(function(event){
                 event.stopPropagation();
@@ -366,7 +369,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
             $('.profile__about__img').mouseleave(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -374,7 +377,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
              $('.profile__about__img').click(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -383,9 +386,10 @@ app.directive('profilePrivateprofile', [
                 })
             });
         }
-    
+
 	   showPicture = function(){
 	   		var pic = ""
+        if(obj == null){ return }
 	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
 	   			pic = "/img/profile_default.png";
                 $('.upload_img').css({
@@ -401,7 +405,7 @@ app.directive('profilePrivateprofile', [
 	    		'-webkit-background-size': 'contain',
 			    '-moz-background-size': 'contain',
 			    '-o-background-size': 'contain',
-			    'background-size': 'contain'    	
+			    'background-size': 'contain'
 			})
 	    }
 

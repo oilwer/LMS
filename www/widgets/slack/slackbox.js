@@ -53,6 +53,8 @@ app.directive('slackSlackbox', [
               if(response.error == "not_authed"){
                 callback(response.error);
               } else {
+                
+                console.log(response.messages);
                 callback(response.messages.reverse());
               }
             });
@@ -62,7 +64,8 @@ app.directive('slackSlackbox', [
         var gmPromise;
         var checkIfOpen = false;
 
-        scope.showChatBox = function(course) {
+        scope.showChatBox = function() {
+          alert("showChatBox");
           checkIfOpen = false;
           if (scope.course != course) {
             scope.isExited = false;
@@ -135,6 +138,8 @@ app.directive('slackSlackbox', [
         });
 
         scope.toggleCreateSlackBar = function() {
+          console.log("toggleCreateSlackBar");
+          alert("toggleCreateSlackBar");
           scope.isToolbarPersonalOpen = false;
           scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
             scope.courseSelected = false;
