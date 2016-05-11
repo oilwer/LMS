@@ -14,7 +14,7 @@ app.directive('courseCourseslist', [
     return {
       templateUrl: settings.widgets + 'course/courseslist.html',
       link: function(scope, element, attrs) {
-      scope.heading = "All courses";
+
 
       var session_user;
 
@@ -33,9 +33,20 @@ app.directive('courseCourseslist', [
 
 
         SessionService.getSession().success(function(response) {
-          User.get({_id: response.user._id}, function(user)
+          User.get({_id: response.user._id, _populate:"courses"}, function(user)
           {
               session_user = user;
+
+              if(session_user[0].role == "admin")
+              {
+                scope.heading = "All courses";
+              }
+              else if(session_user[0].role == "student") {
+                scope.heading = "My courses";
+              }
+
+              console.log(session_user[0]);
+
               scope.pinnedCourses = [];
 
 
@@ -49,9 +60,8 @@ app.directive('courseCourseslist', [
                       currentObj = session_user[0].courses_pinned[i];
 
                       if(currentObj.pinned) {
-                        console.log(currentObj);
+                        console.log(currentObj.course);
 
-                        counter++;
                         Course.get({_id: currentObj.course}, function(course)
                         {
                           console.log(course[0]);
@@ -64,7 +74,14 @@ app.directive('courseCourseslist', [
                     }
              }
              else {
-               scope.courses = Course.get();
+               if(session_user[0].role === "admin")
+               {
+                 scope.courses = Course.get();
+               }
+               else if(session_user[0].role === "student") {
+                 scope.courses = session_user[0].courses;
+                 console.log(session_user[0].courses);
+               }
              }
 
           });
@@ -73,6 +90,14 @@ app.directive('courseCourseslist', [
 
       //Runs on page update
       refresh();
+
+      function findWithAttr(array, attr, value) {
+          for(var i = 0; i < array.length; i += 1) {
+              if(array[i][attr] === value) {
+                  return i;
+              }
+          }
+      }
 
       //pins course in database
       scope.pinCourse = function(course){
@@ -121,10 +146,12 @@ app.directive('courseCourseslist', [
 
                   scope.pinnedCourses.push(course);
 
+                  /*
                   var courseToRemove = scope.courses.indexOf(course);
                   if(courseToRemove != -1) {
           	         scope.courses.splice(courseToRemove, 1);
                    }
+                   */
 
                 });
 
@@ -147,20 +174,25 @@ app.directive('courseCourseslist', [
                 console.log(res);
 
                 if(obj.pinned) {
-                    scope.courses.push(course);
 
+                  console.log("Remove from pinned coures");
+
+                  scope.pinnedCourses.splice(findWithAttr(scope.pinnedCourses, "_id", course._id), 1);
+                  /*
                     var courseToRemove = scope.pinnedCourses.indexOf(course);
-                    if(courseToRemove != -1) {
-                       scope.pinnedCourses.splice(courseToRemove, 1);
-                     }
+
+                    if (courseToRemove > -1)
+                    {
+                      scope.pinnedCourses.splice(courseToRemove, 1);
+                    }
+                    */
+
                }
                else {
+                 console.log("Add to pinned coures");
                  scope.pinnedCourses.push(course);
 
-                 var courseToRemove = scope.pinnedCourses.indexOf(course);
-                 if(courseToRemove != -1) {
-                    scope.courses.splice(courseToRemove, 1);
-                  }
+
                }
 
               });
