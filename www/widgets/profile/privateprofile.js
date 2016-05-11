@@ -100,23 +100,29 @@ app.directive('profilePrivateprofile', [
 	    };
 
 	    $scope.editDescription = function () {
-	        if ($scope.class == "fa fa-pencil") {
-	            $scope.class = "fa fa-check"
 	            $scope.descriptionEnabled = false;
-	        } else {
+        };
+          
+        $scope.cancelDescription = function () {
+	            $scope.descriptionEnabled = true;
+                $scope.description = obj.description;
+        };
+          
+        $scope.saveDescription = function (){
+                $scope.descriptionEnabled = true;
 	            obj.description = $scope.description;
 	            console.log(obj);
 	            $scope.updateProfile(obj);
-	            $scope.descriptionEnabled = true;
-	            $scope.class = "fa fa-pencil"
-	        }
+	            
 	    };
-
+          
 	    $scope.editContact = function () {
+            
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
 	            $scope.contactEnabled = false;
 	        } else {
+                obj.email = $scope.email;
 	            obj.phone_number = $scope.phone_number;
 	            obj.public_url = $scope.url;
 	            obj.homepage = $scope.homepage;
