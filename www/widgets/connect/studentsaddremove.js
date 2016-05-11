@@ -85,7 +85,6 @@ app.directive('connectStudentsaddremove', [
 			 scope.studentsToBeAdded= [];
 
 		  	if(courseUrl===""){
-			  	console.log("select a course");
 
 		  	}else{
 
@@ -110,7 +109,6 @@ app.directive('connectStudentsaddremove', [
 
 						  	if(!added){
 							  	scope.students.push(user[i]);
-							  	console.log(scope.students);
 						  	}
 					  	}
 
@@ -139,8 +137,6 @@ app.directive('connectStudentsaddremove', [
            		//list of courses for dropdown menu
            		scope.dropDownCourseList = [];
 
-              console.log("url: ", courseUrl);
-
         				//loop through list of all courses
         				for (var i = 0; i < scope.AvailableCourses.length; i++) {
 
@@ -157,12 +153,10 @@ app.directive('connectStudentsaddremove', [
              updateDropdownCourseList();
 
              if (scope.searchStudents === '' || scope.searchStudents === null || scope.searchStudents === undefined){
-               console.log("error");
                  return true;
              }
 
              return RegStudent.filter(function(RegStudent) {
-               console.log("filtering");
                //if course name entered
                  return RegStudent.name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1 //returns a bool
                  //if course code entered
@@ -172,24 +166,20 @@ app.directive('connectStudentsaddremove', [
            }
 
             //filters studentlist according to registered courses
-          	scope.filterByCourse = function(student) {
+          scope.filterByCourse = function(student) {
 
-              console.log("current student ", student);
- +
- +          		console.log("byCourse: ", scope.byCourse);
+              if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
+    			      	return true;
+    			    }
 
-          if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
-			      	return true;
-			    }
-
-			    return student.courses.filter(function(course) {
-			    	//if course name entered
-			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-			      	//if course code entered
-			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-			      	//if student name entered
-			      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-			      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool
+    			    return student.courses.filter(function(course) {
+    			    	  //if course name entered
+    			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
+    			      	//if course code entered
+    			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
+    			      	//if student name entered
+    			      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
+    			      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool
 			    }).length > 0; //returns a bool
 		  	}
 

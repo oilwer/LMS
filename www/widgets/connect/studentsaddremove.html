@@ -16,6 +16,7 @@
                         </a>
                     </div>
                     <div class="box__content">
+                        <input class="form-control" type="text" ng-model="searchStudents" placeholder="Search name...">
                         <div class="col-sm-12">
                             <div class="list--students_options">
                                 <!--<select id="selectCourse"
@@ -30,9 +31,8 @@
                             </div>
                             <div class="list--students">
                                 <h3>Add people</h3>
-                                <input class="form-control" type="text" ng-model="byCourse" placeholder="Search by course id or course name..">
                                 <select ng-model="byCourse" class="form-control">
-                                    <option value="" ng-selected=true>All</option>
+                                    <option value="" ng-selected=true>-- All Courses --</option>
                                     <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
                                 </select>
                                 <ul ng-repeat="student in students | filter: filterByCourse">
@@ -58,8 +58,7 @@
 
                         <div class="col-sm-12">
                             <div class="list--students list--students--added">
-                                <h3>Participants in The course name {{ course.name }}</h3>
-                                <input class="form-control" type="text" ng-model="searchStudents" placeholder="Search participants">
+                                <h3>Participants in {{ course.name }}</h3>
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
                                                                     'list--students_item--active']"
