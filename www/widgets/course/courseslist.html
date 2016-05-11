@@ -19,7 +19,7 @@
 
             <!--repeat all courses that the user belongs to -->
             <tbody>
-                <tr ng-repeat="course in courses">
+                <tr ng-repeat="course in courses track by $index">
 
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>

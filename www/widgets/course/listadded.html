@@ -1,5 +1,5 @@
 <div class="courses--pinned">
-  <div class="col-md-12" ng-repeat="course in pinnedCourses">
+  <div class="col-md-12" ng-repeat="course in pinnedCourses track by $index">
       <div class="box--label box--label--courses" >
 
               <h2 class="box--label_heading--courses"><i class="fa--heading fa fa-leaf"></i>{{course.name}}
@@ -10,7 +10,7 @@
             </h2>
 
           <div class="box__content">
-            <p>{{course.code}}</p>
+            <p>{{course._id}}</p>
             <p><small>{{course.description}}<small><p>
             <p><em>{{course.status}}<em></p>
 
