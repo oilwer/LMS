@@ -1,6 +1,6 @@
 module.exports = function(mongoose){
 
-    var ResourceSchema = new mongoose.Schema({ 
+    var ResourceSchema = new mongoose.Schema({
     title: String,
     filename: String,
     url: String,
@@ -13,7 +13,3 @@ module.exports = function(mongoose){
   // Return the model
   return mongoose.model("Resource", ResourceSchema);
 };
-
-
-
-
