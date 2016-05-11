@@ -43,8 +43,6 @@ app.directive('courseCourseslist', [
               {
 
                     var allPinnedCourses = [];
-                    var counter = 0;
-                    var counter2 = 0;
 
                     for (i = 0; i < user[0].courses_pinned.length; i++) {
 
@@ -58,8 +56,6 @@ app.directive('courseCourseslist', [
                         {
                           console.log(course[0]);
                           scope.pinnedCourses.push(course[0]);
-
-                          counter2++;
                         });
 
 
