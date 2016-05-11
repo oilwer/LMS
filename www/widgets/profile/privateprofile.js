@@ -68,7 +68,7 @@ app.directive('profilePrivateprofile', [
 
 	            $scope.profile_pic = data.profile_pic;
 
-	            console.log(data.profile_pic);
+	            //console.log(data.profile_pic);
 
 	            $scope.phone_number = data.phone_number;
 	            $scope.url = data.public_url;
@@ -104,31 +104,38 @@ app.directive('profilePrivateprofile', [
 	    };
 
 	    $scope.editDescription = function () {
-	        if ($scope.class == "fa fa-pencil") {
-	            $scope.class = "fa fa-check"
 	            $scope.descriptionEnabled = false;
-	        } else {
-	            obj.description = $scope.description;
-
-	            User.update({
-	                _id: obj._id
-	            },{
-		            description: obj.description
-	              });
-
-	        	if(obj != null){
-	            	$scope.user = obj;
-	           	}
+        };
+          
+        $scope.cancelDescription = function () {
 	            $scope.descriptionEnabled = true;
-	            $scope.class = "fa fa-pencil"
-	        }
-	    };
+                $scope.description = obj.description;
+        };
+          
+        $scope.saveDescription = function (){
+            $scope.descriptionEnabled = true;
+            obj.description = $scope.description;
 
+            User.update({
+                _id: obj._id
+            },{
+                description: obj.description
+              });
+
+            if(obj != null){
+                $scope.user = obj;
+            }
+            $scope.descriptionEnabled = true;
+            $scope.class = "fa fa-pencil";
+	    };
+          
 	    $scope.editContact = function () {
+            
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
 	            $scope.contactEnabled = false;
 	        } else {
+                obj.email = $scope.email;
 	            obj.phone_number = $scope.phone_number;
 	            obj.homepage = $scope.homepage;
 
@@ -210,7 +217,7 @@ app.directive('profilePrivateprofile', [
 		   		}
 
 	            $scope.expEnabled = true;
-	            $scope.class = "fa fa-pencil"
+	            $scope.class = "fa fa-pencil";
 	        }
 	    };
 
@@ -221,7 +228,7 @@ app.directive('profilePrivateprofile', [
 				});
 			});
 	    }
-        
+
         showUploadDivOnHover = function(){
             $('.profile__about__img').mouseenter(function(event){
                 event.stopPropagation();
@@ -231,7 +238,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
             $('.profile__about__img').mouseleave(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -239,7 +246,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
              $('.profile__about__img').click(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -248,9 +255,10 @@ app.directive('profilePrivateprofile', [
                 })
             });
         }
-    
+
 	   showPicture = function(){
 	   		var pic = ""
+        if(obj == null){ return }
 	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
 	   			pic = "/img/profile_default.png";
                 $('.upload_img').css({
@@ -266,7 +274,7 @@ app.directive('profilePrivateprofile', [
 	    		'-webkit-background-size': 'contain',
 			    '-moz-background-size': 'contain',
 			    '-o-background-size': 'contain',
-			    'background-size': 'contain'    	
+			    'background-size': 'contain'
 			})
 	    }
 
