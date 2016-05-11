@@ -15,8 +15,7 @@ app.directive('connectIndividual', [
 
 
 
-        var url = $location.path().split(/[\s/]+/).pop();
-        console.log(scope.user.first_name);
+        var url = $location.path().split(/[\s/]+/)[2];
 
         Course.get({ url: url , _populate:"students"}, function(res){
           for (var i = 0; i < res[0].students.length; i++) {
