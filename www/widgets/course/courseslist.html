@@ -25,16 +25,16 @@
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.name}}</p>
+                            {{course.name}}
                         </a>
                     </td>
                     <td ng-if="course.status == true">
 
-                            <p>{{course.code}}</p>
+                            {{course.code}}
 
                     </td>
                     <td ng-if="course.status == true">
-                      <p>{{course.end | date:'shortDate' }}<p>
+                      {{course.end | date:'shortDate' }}
                     </td>
                     <td>
                         <i ng-if ="course.status == true"class="fa fa-dot-circle-o">
