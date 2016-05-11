@@ -40,6 +40,8 @@ app.directive('resourcesCreateCreateresources', [
         //create a new course and set GUI edit options
         scope.createResource = function(){
             
+            scope.$$childTail.submit();
+            
             var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
             console.log(strippedFileName);
             
