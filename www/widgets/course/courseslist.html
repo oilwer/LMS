@@ -20,7 +20,7 @@
 
             <!--repeat all courses that the user belongs to -->
             <tbody>
-                <tr ng-repeat="course in courses">
+                <tr ng-repeat="course in courses track by $index">
 
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
@@ -44,7 +44,7 @@
                             <span ng-class="class" ng-if=""></span>
                     </td>
                     <td>
-                      <button class="btn btn--pin--inactive" ng-click="unPinCourse(course)">
+                      <button class="btn btn--pin--inactive" ng-click="pinCourse(course)">
                       <i class="fa fa-thumb-tack" ></i>
                         Pin
                     </button>
