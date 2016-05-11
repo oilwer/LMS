@@ -28,14 +28,33 @@ app.directive('slackSlackbox', [
 
         var allUsers = User.get();
 
+        scope.slackcourses = [];
+
+        function findWithAttr(array, attr, value) {
+            for(var i = 0; i < array.length; i += 1) {
+              if(array[i] != undefined) {
+                if(array[i][attr] === value) {
+                    return i;
+                }
+              }
+            }
+        }
+
+
         var sendMessage = function(channelName, text, UserIdentifier, callback){
+
+          console.log(channelName, savedUser);
+
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
             return obj.code === name;
           })[0];
 
+          console.log(obj);
+
           ChatService.sendMessage(obj.slack_channels[0].channelId, text, UserIdentifier).success(function(response){
             //console.log("Response", response);
+/*
             ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
 
 
@@ -60,16 +79,30 @@ app.directive('slackSlackbox', [
 
                               callback(response.messages.reverse());
               });
+              */
+              console.log(response);
+              callback();
           });
         }
 
+
         //Get messages with callback
-        var getMessages = function(channelName, UserIdentifier, callback){
-          scope.messages = [];
+        var getMessages = function(course, channelName, UserIdentifier, callback){
+
+
+          var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
+
+          console.log(indexOfCurrentCourse);
+
+
+          //alert(indexOfCurrentCourse);
+
+          if(scope.slackcourses[indexOfCurrentCourse].messages == undefined) scope.slackcourses[indexOfCurrentCourse].messages = [];
+
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
-            return obj.code === name;
-          })[0];
+           return obj.code === name;
+         })[0];
 
            ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
               if(response.error == "not_authed"){
@@ -105,34 +138,45 @@ app.directive('slackSlackbox', [
                 callback(response.messages.reverse());
               }
             });
+
+
+
+            //  callback(scope.slackcourses[indexOfCurrentCourse].messages);
+
         }
 
         var courseGlobal;
-        var gmPromise;
-        var checkIfOpen = false;
+        var gmPromises = [];
+
+          var counter = 0;
 
         scope.showChatBox = function(course) {
 
-          checkIfOpen = false;
-          if (scope.course != course) {
-            scope.isExited = false;
-            courseGlobal = course;
-            if(scope.course != undefined) {
-              if (scope.course.messages != undefined) {
-                  scope.course.messages = undefined;
-              }
-              scope.course = undefined;
-            }
+          if (findWithAttr(scope.slackcourses, "_id", course._id) == undefined)
+          {
 
-            //slack connection depending on course
-            scope.course = "";
-            scope.course = course;
-            scope.courseSelected = true;
-            $interval.cancel(gmPromise);
-            gmPromise = $interval(gm, 1000);
+
+                course.isOpen = true;
+                console.log(course);
+
+                  scope.slackcourses.push(course);
+
+                //  $interval.cancel(gmPromise);
+                  // courseGlobal = course;
+
+
+
+
+                  var gmPromise = $interval(function(){
+                    gm(course);
+                  }, 1000);
+
+                  gmPromises[findWithAttr(scope.slackcourses, "_id", course._id)] = gmPromise;
           }
+
         }
 
+/*
         scope.$root.$on('finishedGetMessages', function(){
           if(checkIfOpen == false){
             $timeout(function () {
@@ -142,29 +186,54 @@ app.directive('slackSlackbox', [
           checkIfOpen = true;
         });
 
-        var gm = function(){
-          getMessages(courseGlobal.code, savedUser.email, function(messages){
-            scope.course.messages = "";
-            if(messages == "not_authed"){
-              scope.course.messages = [{ text:
-                "Please Authenticate your profile with slack in your profile!"}];
-              $interval.cancel(gmPromise);
-            } else{
-              scope.course.messages = messages;
-              if(checkIfOpen == false){
-                scope.$root.$broadcast('finishedGetMessages');
-              }
-            }
-          });
-        }
+*/
 
-        scope.sendM = function(){
-          sendMessage(scope.course.code, scope.input, savedUser.email,function(messages){
-            scope.course.messages = "";
-            scope.course.messages = messages;
+        var gm = function(course){
+
+          console.log(course);
+
+          getMessages(course, course.code, savedUser.email, function(messages){
+
+            console.log(messages);
+
+            var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
+
+            scope.slackcourses[indexOfCurrentCourse].messages = "";
+            if(messages == "not_authed"){
+              scope.slackcourses[indexOfCurrentCourse].messages = [{ text:
+                "Please Authenticate your profile with slack in your profile!"}];
+
+              $interval.cancel(gmPromises[indexOfCurrentCourse]);
+            } else{
+
+              scope.slackcourses[indexOfCurrentCourse].messages = messages;
+
+
+              // TODO: Fix the bottom scroll when messaages have loaded (look at old code?)
+             //  $(".windowcont-slackbox").animate({ scrollTop: $('.windowcont-slackbox')[0].scrollHeight}, 800);
+
+
+
+            }
+
+          });
+
+
+      }
+
+
+        scope.sendM = function(course){
+          sendMessage(course.code, course.input, savedUser.email,function(messages){
+
+              course.input = "";
+
+            var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
+
+
+
             $(".windowcont-slackbox").animate({ scrollTop: $('.windowcont-slackbox')[0].scrollHeight}, 800);
           });
-          scope.input = "";
+
         }
 
         SessionService.getSession().success(function(response) {
@@ -181,6 +250,8 @@ app.directive('slackSlackbox', [
 
             scope.courselist = coursesWithToken;
             savedUser = user[0];
+
+            console.log(scope.slackcourses);
           });
         });
 
@@ -195,14 +266,17 @@ app.directive('slackSlackbox', [
 
       };
 
-      scope.toggleCloseChatBox = function() {
-        scope.isExited = true;
-        $interval.cancel(gmPromise);
-        scope.course = "";
+      scope.toggleCloseChatBox = function(course) {
+        var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
+        console.log(indexOfCurrentCourse);
+        $interval.cancel(gmPromises[indexOfCurrentCourse]);
+        course.isOpen = false;
+
+        scope.slackcourses[indexOfCurrentCourse] = undefined;
       };
 
         scope.toggleCreateSlackBar = function() {
-          $interval.cancel(gmPromise);
+        //  $interval.cancel(gmPromise);
           scope.course = "";
           scope.isToolbarPersonalOpen = false;
           scope.isToolbarCreateSlackOpen = scope.isToolbarCreateSlackOpen === true ? false: true;
