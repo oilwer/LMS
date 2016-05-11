@@ -61,6 +61,7 @@ app.directive('profilePrivateprofile', [
 	    $scope.exp_class = "fa fa-pencil";
 	    $scope.isStudent = false;
 	    var obj = null;
+        var isEditing = false;
 
 	    // Get profile data from DB
 	    var initializeProfile = function (data) {
@@ -186,12 +187,38 @@ app.directive('profilePrivateprofile', [
 	            $scope.links_class = "fa fa-pencil"
 	        }
 	    };
+          
+        $scope.showAddDiv = function () {
+            $('.fa-plus').css({
+                'display': 'none'
+            })
+            
+            $('.show_add_div').css({
+                'display': 'block'
+            })
+            
+            $('.profile__stuff__ex ul').css({
+                'display': 'none'
+            })
+        }
+        
+        $scope.closeAddDiv = function () {
+            $('.show_add_div').css({
+                'display': 'none'
+            })
+            
+            $('.profile__stuff__ex ul').css({
+                'display': 'block'
+            })
+            
+            $('.fa-plus').css({
+                'display': 'block'
+            })
+        }
 
-	    $scope.addExp = function () {
-	        if ($scope.class == "fa fa-pencil") {
-	            $scope.class = "fa fa-check"
-	            $scope.expEnabled = false;
-	        } else {
+	    addExp = function () {
+            console.log('körs');
+	
 	        	if(obj.experiences === undefined){
 	        		obj.experiences = [];
 	        	}
@@ -219,10 +246,111 @@ app.directive('profilePrivateprofile', [
 		            $scope.user = obj;
 		   		}
 
-	            $scope.expEnabled = true;
+	            //$scope.expEnabled = true;
+                $('.show_add_div').css({
+                'display': 'none'
+                })
+                
+                $('.profile__stuff__ex ul').css({
+                'display': 'block'
+                })
+                
+                $('.fa-plus').css({
+                'display': 'block'
+                })
+                console.log('should be hided')
 	            $scope.class = "fa fa-pencil";
-	        }
+	        
 	    };
+          
+        $scope.showMoreExpInfo = function() {
+            if (this.showOnClickMoreInfo == true){
+                this.showOnClickMoreInfo = false;
+            } else{
+                this.showOnClickMoreInfo = true;
+            }
+            
+        };
+        
+          
+
+	    editExp = function(){  
+            
+            $.each(obj.experiences, function(){
+                if(this._id == $scope.exp._id){
+                    this.company_school = $scope.company_school,
+	        		this.title_education = $scope.title_education,
+				    this.location = $scope.location,
+				    this.info = $scope.info
+                }
+            });
+            
+            User.update({
+               	_id: obj._id,
+                experiences: {$elemMatch: {_id: $scope.exp._id}}
+            },{
+                "experiences.$.company_school" :  $scope.company_school,
+                "experiences.$.title_education" : $scope.title_education,
+                "experiences.$.location": $scope.location,
+				"experiences.$.info": $scope.info
+            }, function(res){
+                console.log(res);
+            });
+            
+            
+            
+            $('.show_add_div').css({
+                'display': 'none'
+                })
+                
+                $('.profile__stuff__ex ul').css({
+                'display': 'block'
+                })
+                
+                $('.fa-plus').css({
+                'display': 'block'
+                })
+	    };
+
+	    $scope.prepareEditExp = function(exp){
+            $scope.showAddDiv();
+	    	 isEditing = true;
+	    	 $scope.exp = exp;
+            
+            $scope.company_school = exp.company_school;
+            $scope.title_education = exp.title_education;
+            $scope.location = exp.location;
+			$scope.info = exp.info;
+	    }
+
+	    $scope.addOrUpdateExp = function(){
+	    	if(isEditing === false){
+                console.log('add');
+	    		addExp();
+                $('input, textarea').val('');
+	    	}else{
+                console.log('edit');
+	    		editExp();
+                $('input, textarea').val('');
+	    	}
+	    }
+        
+        $scope.removeExp = function(exp){ 
+            var i = obj.experiences.indexOf(exp)
+            
+            if(i != -1){
+                obj.experiences.splice(i,1);
+            }
+            
+           User.update({
+                  _id: obj._id,
+           },{
+               $pull: { 
+                   experiences : exp
+               }
+           });
+            
+        };
 
 	    var getUser = function () {
 			SessionService.getSession().success(function(response) {
