@@ -65,7 +65,7 @@ app.directive('resourcesSingleresource', [
                       $('.resourceFile').empty().append('<iframe src="'+ fileUrl + '" frameborder="0"></iframe>');
                       $('.resourceFile').removeClass("col-md-12 col-md-offset-6").addClass("col-md-24");
                   }
-                  else if (file === "mp4" || file === "ogg" || file === "m4v" || || file === "") {
+                  else if (file === "mp4" || file === "ogg" || file === "m4v") {
                       console.log("video");
                       $('.resourceFile').empty().append('<video controls><source src="' + fileUrl + '" type="video/mp4"><source src="' + scope.theResource.filename + '" type="video/ogg"></video>');
                     
