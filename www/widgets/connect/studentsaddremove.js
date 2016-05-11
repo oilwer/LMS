@@ -4,7 +4,7 @@ app.directive('connectStudentsaddremove', [
   "Course",
   "$routeParams",
   "ChatService",
-    "$location",
+  "$location",
   function(
     settings,
     User,
@@ -19,7 +19,7 @@ app.directive('connectStudentsaddremove', [
 
 	   scope.students = [];
 
-	   var AvailableCourses = Course.get();
+	   scope.AvailableCourses = Course.get();
 	   var courseUrl = "";
 
      var createNotification = function(UserIdentifier){
@@ -37,27 +37,33 @@ app.directive('connectStudentsaddremove', [
      }
 
 	   var joinChannel = function(channelName, UserIdentifier){
-	   	//console.log(channelName, UserIdentifier);
+	   	console.log(channelName, UserIdentifier);
           ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
-            //console.log("Response", response);
+            console.log("Response", response);
           });
         }
 
         var leaveChannel = function(channelId, UserIdentifier){
-     	 //console.log(channelId, UserIdentifier);
+     	 console.log(channelId, UserIdentifier);
             ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
-              //console.log("Response", response);
+              console.log("Response", response);
             });
         }
 
 	   scope.courseSelect = {
 		  repeatSelect: null,
-		  availableOptions: AvailableCourses
+		  availableOptions: scope.AvailableCourses
 	   };
 
-          courseUrl = $location.path().split(/[\s/]+/)[2];
-	      scope.courseUrl = courseUrl;
-          
+	  // scope.selectCourseChanged = function (){
+		 // courseUrl = $routeParams.url;
+		 // updateGUI();
+	   //}
+	    courseUrl = $location.path().split(/[\s/]+/)[2];
+
+
+
+	    scope.courseUrl = courseUrl;
 	   var onLoad = function(){
 
 	   	  scope.course = "";
@@ -79,7 +85,7 @@ app.directive('connectStudentsaddremove', [
 			 scope.studentsToBeAdded= [];
 
 		  	if(courseUrl===""){
-			  	console.log("select a course dumb guy");
+			  	console.log("select a course");
 
 		  	}else{
 
@@ -104,6 +110,7 @@ app.directive('connectStudentsaddremove', [
 
 						  	if(!added){
 							  	scope.students.push(user[i]);
+							  	console.log(scope.students);
 						  	}
 					  	}
 
@@ -127,20 +134,63 @@ app.directive('connectStudentsaddremove', [
 	       //calls updateGUI on page load
            onLoad();
 
-            //filters studentlist according to registered courses 
+           var updateDropdownCourseList = function(){
+             alert("updateDropdownCourselist");
+           		//list of courses for dropdown menu
+           		scope.dropDownCourseList = [];
+
+              console.log("url: ", courseUrl);
+
+        				//loop through list of all courses
+        				for (var i = 0; i < scope.AvailableCourses.length; i++) {
+
+          					//if we are not in that course's page, add the course to the dropdown menu
+          					if(scope.AvailableCourses[i].url != scope.courseUrl){
+          						scope.dropDownCourseList.push(scope.AvailableCourses[i]);
+          					}
+        				      };
+           };
+
+           scope.filterByRegisteredStudents = function(){
+
+             //check if course code is included in url and updates dropDownCourseList so the current course is not included
+             updateDropdownCourseList();
+
+             if (scope.searchStudents === '' || scope.searchStudents === null || scope.searchStudents === undefined){
+               console.log("error");
+                 return true;
+             }
+
+             return RegStudent.filter(function(RegStudent) {
+               console.log("filtering");
+               //if course name entered
+                 return RegStudent.name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1 //returns a bool
+                 //if course code entered
+                   || RegStudent.last_name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1 //returns a bool
+                   || RegStudent.first_name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1; //returns a bool
+             }).length > 0; //returns a bool
+           }
+
+            //filters studentlist according to registered courses
           	scope.filterByCourse = function(student) {
-			    if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
+
+              console.log("current student ", student);
+ +
+ +          		console.log("byCourse: ", scope.byCourse);
+
+          if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
 			      	return true;
-			    }    
+			    }
+
 			    return student.courses.filter(function(course) {
 			    	//if course name entered
-			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
+			      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
 			      	//if course code entered
-			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
+			      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
 			      	//if student name entered
-			      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool 
-			      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool 
-			    }).length > 0; //returns a bool 
+			      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
+			      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool
+			    }).length > 0; //returns a bool
 		  	}
 
           // Add Item to Checked List and delete from Unchecked List
@@ -151,12 +201,18 @@ app.directive('connectStudentsaddremove', [
 		    Course.get({url: courseUrl},function(course){
 
 			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
+			 		console.log(res);
+			 		//console.log("updated");
 
+			 		// console.log(scope.studentsToBeAdded);
+
+          console.log(scope.students[index]);
+          console.log(course[0]);
 
           User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
 				 		//console.log(newres);
 				 		//Add User to slack channel:
-  			 		//console.log(scope.students[index]);
+  			 		console.log(scope.students[index]);
   				 		if(scope.students[index].slack_token != undefined){
   				 			joinChannel(course[0].code, scope.students[index].email);
   				 		}
@@ -178,6 +234,7 @@ app.directive('connectStudentsaddremove', [
 		// Remove user from course
 
     	Course.get({url: courseUrl, _populate: "slack_channels"}, function(course){
+	    	console.log(course);
 	    	Course.update(
         	{url: courseUrl},
         	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
