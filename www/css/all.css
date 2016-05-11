@@ -7490,10 +7490,6 @@ html {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.resources,
-.manager {
-  padding: 20px !important;
-}
 .resources h1,
 .manager h1 {
   display: inline-block;
@@ -7525,8 +7521,7 @@ This is a LESS file; only style for the element class .box allowed!
   border-radius: 0px;
 }
 .box h2 {
-  font-size: 1.7em;
-  padding: 0px 0px 5px 0px;
+  padding: 5px 0px;
 }
 .box__header {
   background: #3e474f;
@@ -8663,7 +8658,7 @@ table {
 .table--manager td,
 .table--courses td {
   padding: 8px 8px 8px 0px;
-  border-bottom: 1px solid rgba(62, 71, 79, 0.2);
+  border-bottom: 1px solid rgba(62, 71, 79, 0.09);
 }
 .table--assignment td:first-child,
 .table--resources td:first-child,
@@ -9330,12 +9325,41 @@ dashboard-courseslistdash .assignClass {
   float: left;
   margin-right: 8px;
 }
+course-courseslist .box {
+  margin-top: 30px;
+  padding: 10px;
+}
+course-courseslist h2 {
+  display: inline-block;
+  padding-bottom: 30px;
+  padding-top: 20px;
+  font-size: 1.6em;
+}
+course-courseslist .btn--add {
+  margin-top: -4px;
+  margin-left: 10px;
+}
+course-listadded .box--label--courses {
+  border-left: 8px solid #2CC990;
+  box-shadow: 2px 2px 0px 1px rgba(62, 71, 79, 0.2);
+}
+course-listadded .box--label_heading--courses a {
+  color: #2CC990;
+}
+.courses--pinned {
+  height: 21em;
+  border-bottom: 2px solid lightgrey;
+  overflow: scroll;
+}
 .btn--pin--active {
   float: right;
   margin-top: -0.5em;
   background: #2CC990;
   color: #fff;
   transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
 }
 .btn--pin--active:hover {
   background: rgba(44, 201, 144, 0.8);
@@ -9347,10 +9371,14 @@ dashboard-courseslistdash .assignClass {
 }
 .btn--pin--inactive {
   float: right;
-  margin-top: -0.5em;
+  margin-right: 0;
+  margin-top: 0em;
   background: #2CC990;
   color: #fff;
   transition: all 0.3s ease-in-out;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 600;
 }
 .btn--pin--inactive:hover {
   background: rgba(44, 201, 144, 0.8);
@@ -9367,12 +9395,6 @@ dashboard-courseslistdash .assignClass {
 .btn--pin--inactive i {
   padding-right: 0px;
   text-align: center;
-}
-.box--label--courses {
-  border-left: 5px solid #2CC990;
-  border-top: 1px solid lightgrey;
-  border-right: 1px solid lightgrey;
-  border-bottom: 1px solid lightgrey;
 }
 h2 {
   margin-bottom: 1em;

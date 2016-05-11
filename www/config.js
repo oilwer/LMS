@@ -19,8 +19,8 @@ app.config([
       .when("/admin/userlist", {
         templateUrl: "templates/userlist.html",
       })
-      .when("/groups/", {
-        templateUrl: "templates/groups.html",
+      .when("/manager/", {
+        templateUrl: "templates/usermanager.html",
       })
         .when("/connectstudents/", {
         templateUrl: "templates/connectstudents.html",

@@ -1,9 +1,45 @@
+course-courseslist {
+    .box {
+        margin-top: 30px;
+        padding: 10px;
+    }
+    h2 {
+        display: inline-block;
+        padding-bottom: 30px;
+        padding-top: 20px;
+        font-size: 1.6em;
+    }
+    .btn--add {
+        margin-top: -4px;
+        margin-left: 10px;
+    }
+}
+
+course-listadded {
+    .box--label--courses {
+      border-left: 8px solid @RGBcourses;
+      box-shadow: 2px 2px 0px 1px fade(@LMSlight, 20%);
+    }
+    .box--label_heading--courses a {
+        color: @RGBcourses;
+    }
+}
+
+.courses--pinned {
+  height: 21em;
+  border-bottom: 2px solid lightgrey;
+  overflow: scroll;
+}
+
 .btn--pin--active {
     float:right;
     margin-top: -0.5em;
     background:@RGBcourses;
     color: #fff;
     transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
     &:hover {
         background: fade(@RGBcourses,80%);
         transition: all 0.3s ease-in-out;
@@ -14,10 +50,14 @@
 }
 .btn--pin--inactive {
     float:right;
-    margin-top: -0.5em;
+    margin-right:0;
+    margin-top: 0em;
     background:@RGBcourses;
     color: #fff;
     transition: all 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
     &:hover {
         background: fade(@RGBcourses,80%);
         transition: all 0.3s ease-in-out;
@@ -34,12 +74,7 @@
     padding-right: 0px;
     text-align: center;
 }
-.box--label--courses {
-  border-left: 5px solid @RGBcourses;
-  border-top:1px solid lightgrey;
-  border-right:1px solid lightgrey;
-  border-bottom:1px solid lightgrey;
-}
+
 h2 {
 
   margin-bottom: 1em;

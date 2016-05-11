@@ -1,14 +1,10 @@
-
-<div class="app_container app_container--padding">
-    <div class="container courses">
+<div class="app_container">
+    <div class="container-fluid courses">
         <div class="row">
-            <div class="col-sm-12">
-                <button class="btn btn--default btn--courses" ng-show="auth" ng-click="castTheCourseModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
-            </div>
-            <div class="col-sm-20 col-sm-offset-2">
-                <course-listadded></course-listadded>
-                <course-courseslist></course-courseslist>
-
+            <div class="col-sm-22 col-sm-offset-1">
+              <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+              <course-listadded></course-listadded>
+              <course-courseslist></course-courseslist>
             </div>
         </div><!--.row-->
     </div><!--.dashboard-->
