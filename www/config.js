@@ -25,12 +25,6 @@ app.config([
         .when("/connectstudents/", {
         templateUrl: "templates/connectstudents.html",
       })
-      .when("/participants/:url", {
-        templateUrl: "templates/connectstudents.html",
-    })
-    .when("/studentsaddremove/:url", {
-        templateUrl: "templates/studentsaddremove.html",
-      })
        .when("/courses/", {
         templateUrl: "templates/courses.html",
       })
@@ -41,6 +35,12 @@ app.config([
        .when("/courses/:id", {
         templateUrl: "templates/course.html",
       })
+        .when("/courses/:id/participants/", {
+            templateUrl: "templates/connectstudents.html",
+        })
+        .when("/courses/:id/participants/edit", {
+            templateUrl: "templates/studentsaddremove.html",
+        })
       .when("/courses/:id/resources/", {
         templateUrl: "templates/resources.html",
       })

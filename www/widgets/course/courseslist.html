@@ -1,11 +1,11 @@
 <div class="col-md-24 box">
     <div class="box__content">
-        <h2>{{title}}</h2>
-        <button class="btn btn--add btn--courses" 
-                ng-show="auth" 
+        <h2>{{ heading }}</h2>
+        <button class="btn btn--add btn--courses"
+                ng-show="auth"
                 ng-click="castTheCourseModal()">
-            <i class="fa fa-plus" aria-hidden="true"></i> 
-            Add Course 
+            <i class="fa fa-plus" aria-hidden="true"></i>
+            Add Course
         </button>
         <table class="table--courses">
             <thead>
@@ -20,21 +20,25 @@
 
             <!--repeat all courses that the user belongs to -->
             <tbody>
+<<<<<<< HEAD
                 <tr ng-repeat="course in myCourses">
+=======
+                <tr ng-repeat="course in courses track by $index">
+>>>>>>> 27c5cd5c938069a96754bfb36a109930a98ca132
 
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.name}}</p>
+                            {{course.name}}
                         </a>
                     </td>
                     <td ng-if="course.status == true">
 
-                            <p>{{course.code}}</p>
+                            {{course.code}}
 
                     </td>
                     <td ng-if="course.status == true">
-                      <p>{{course.end | date:'shortDate' }}<p>
+                      {{course.end | date:'shortDate' }}
                     </td>
                     <td>
                         <i ng-if ="course.status == true"class="fa fa-dot-circle-o">
@@ -44,7 +48,7 @@
                             <span ng-class="class" ng-if=""></span>
                     </td>
                     <td>
-                      <button class="btn btn--pin--inactive" ng-click="unPinCourse(course)">
+                      <button class="btn btn--pin--inactive" ng-click="pinCourse(course)">
                       <i class="fa fa-thumb-tack" ></i>
                         Pin
                     </button>

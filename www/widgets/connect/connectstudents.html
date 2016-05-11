@@ -1,35 +1,35 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row heightfull">            
+        <div class="row table-row heightfull">
 
              <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
-            
+
             <div class="col-sm-21 col-md-21">
-                <div class="box body--margin">
+              <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+-                <div class="box">
                     <!-- HEADER -->
                     <div class="box__header">
                        <h2>
                            <i class="fa fa-user"></i>
                            Participants
                        </h2>
-                        <a ng-if="showParticipants" ng-href="/studentsaddremove/{{course.url}}" class="edit">Add<i class="fa fa-cog cog"></i>
-                        </a>
+<a ng-if="showParticipants" ng-href="/courses/{{course.url}}/participants/edit" class="edit">Add<i class="fa fa-cog cog"></i>                        </a>
                     </div>
                     <!-- SEARCH -->
-                    <div class="box__content list--publicstudents"> 
+                    <div class="box__content list--publicstudents">
                         <form id="newsearch" method="get">
                            <input type="text" id="hej" ng-model="searchStudents" placeholder="Search participants">
                         </form>
                         <!-- LIST -->
                         <div class="row">
-                            <ul>
-                                <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual> 
+                            <ul style="list-style-type: none;">
+                                <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>
                             </ul>
-                        </div>  <!-- END LIST -->  
+                        </div>  <!-- END LIST -->
                     </div><!--.box__content-->
-                </div>  
+                </div>
             </div><!--.col-->
         </div><!--.row-->
     </div><!--.container-->
