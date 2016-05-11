@@ -29,7 +29,7 @@
         float: left;
         margin: 5px 4px;
         padding: 10px;
-        background: #fcfcfc;
+        background-color: rgba(150,150,150,.1);
         box-shadow: 2px 1px 4px 0px rgba(150, 150, 150, 0.45);
         font-size: .9em;
     }
@@ -77,8 +77,38 @@
 
 }
 
+.profile__description, .profile__contact {
+    .fa-pencil {
+        opacity: 0;
+        padding:8px 5px;
+        transition:all 1s ease;
+        display: inline;
+        float:right;
+    }
+    
+    p {
+        display: inline-block;
+        width:91%;
+        padding:5px 6px;
+        transition: all 1s ease;
+    }
+    
+    .btn {
+        float:right;
+        padding: 2px 4px;
+        margin:10px 0 10px 5px;
+        font-size:.85em;
+        background-color:#eaeaea;;
+    }
+}
 
-
+.profile__description:hover, .profile__contact:hover {
+    .fa-pencil, p {
+        opacity: 1;
+        background-color: rgba(150,150,150,.1);
+        
+    }
+}
 .profile__container .fa-arrow-right{
     padding-left: 5%;
 }
@@ -101,7 +131,6 @@
 }
 
 .profile__container {
-    padding:0;
     background: #fff; 
 }
 
@@ -111,9 +140,6 @@
     font-size: .9em!important;
 }
 
-.profile__container h1, .profile__container p, .profile__container i{
-    
-}
 
 .profile__contact, .profile__description, .profile__social{
     padding:0 4%;
@@ -206,10 +232,6 @@
 
 .profile__contact > p .fa {
     padding:0px 10px 5px 0;
-}
-
-.profile__contact i:last-child:hover, .profile__description i:hover{
-    font-size: 1em;    
 }
 
 .profile__stuff__courses .fa-pencil, .profile__stuff__skills .fa-pencil, .profile__stuff__ex .fa-pencil, .profile__stuff__projects .fa-pencil, .profile__stuff__other .fa-pencil{
@@ -349,7 +371,11 @@ ex: #FD5B03
 }
 
 .profile__contact input{
-    margin-bottom:2%;
+    margin-bottom:10px;
+    width:91%;
+    height:31px;
+    padding: 6px 2px;
+    background-color: rgba(150, 150, 150, 0.1) !important;
 }
 
 .profile__icon_first{

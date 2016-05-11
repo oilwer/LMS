@@ -16,18 +16,77 @@ app.directive('courseCourseslist', [
       link: function(scope, element, attrs) {
       scope.heading = "All courses";
 
+      var session_user;
+
+      var getCourse = function(course)
+      {
+        Course.get({_id: course._id}, function(course)
+        {
+
+          return course[0];
+
+
+        });
+      }
+
       var refresh = function(){
-        scope.courses = Course.get();
+
+
+        SessionService.getSession().success(function(response) {
+          User.get({_id: response.user._id}, function(user)
+          {
+              session_user = user;
+              scope.pinnedCourses = [];
+
+
+              if(user[0].courses_pinned.length > 0)
+              {
+
+                    var allPinnedCourses = [];
+                    var counter = 0;
+                    var counter2 = 0;
+
+                    for (i = 0; i < user[0].courses_pinned.length; i++) {
+
+                      currentObj = session_user[0].courses_pinned[i];
+
+                      if(currentObj.pinned) {
+                        console.log(currentObj);
+
+                        counter++;
+                        Course.get({_id: currentObj.course}, function(course)
+                        {
+                          console.log(course[0]);
+                          scope.pinnedCourses.push(course[0]);
+
+                          counter2++;
+                        });
+
+
+                      }
+
+                    }
+             }
+             else {
+               scope.courses = Course.get();
+             }
+
+          });
+        });
       };
-            //Runs on page update
+
+      //Runs on page update
       refresh();
 
       //pins course in database
       scope.pinCourse = function(course){
 
+
+        // scope.courses.pop(course);
+
         console.log(course._id);
 
-          scope.pinnedCourses = [];
+
 
           SessionService.getSession().success(function(response) {
             User.get({_id: response.user._id, _populate:"courses"}, function(user){
@@ -45,6 +104,7 @@ app.directive('courseCourseslist', [
                 return obj.course === courseid;
               })[0];
 
+
               if(obj == undefined)
               {
 
@@ -60,7 +120,16 @@ app.directive('courseCourseslist', [
                     }
                   }, function(res)
                 {
+
                   console.log(res);
+
+                  scope.pinnedCourses.push(course);
+
+                  var courseToRemove = scope.courses.indexOf(course);
+                  if(courseToRemove != -1) {
+          	         scope.courses.splice(courseToRemove, 1);
+                   }
+
                 });
 
             }
@@ -80,6 +149,24 @@ app.directive('courseCourseslist', [
                 , function(res)
               {
                 console.log(res);
+
+                if(obj.pinned) {
+                    scope.courses.push(course);
+
+                    var courseToRemove = scope.pinnedCourses.indexOf(course);
+                    if(courseToRemove != -1) {
+                       scope.pinnedCourses.splice(courseToRemove, 1);
+                     }
+               }
+               else {
+                 scope.pinnedCourses.push(course);
+
+                 var courseToRemove = scope.pinnedCourses.indexOf(course);
+                 if(courseToRemove != -1) {
+                    scope.courses.splice(courseToRemove, 1);
+                  }
+               }
+
               });
 
             }
