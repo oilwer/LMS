@@ -104,31 +104,38 @@ app.directive('profilePrivateprofile', [
 	    };
 
 	    $scope.editDescription = function () {
-	        if ($scope.class == "fa fa-pencil") {
-	            $scope.class = "fa fa-check"
 	            $scope.descriptionEnabled = false;
-	        } else {
-	            obj.description = $scope.description;
-
-	            User.update({
-	                _id: obj._id
-	            },{
-		            description: obj.description
-	              });
-
-	        	if(obj != null){
-	            	$scope.user = obj;
-	           	}
+        };
+          
+        $scope.cancelDescription = function () {
 	            $scope.descriptionEnabled = true;
-	            $scope.class = "fa fa-pencil"
-	        }
-	    };
+                $scope.description = obj.description;
+        };
+          
+        $scope.saveDescription = function (){
+            $scope.descriptionEnabled = true;
+            obj.description = $scope.description;
 
+            User.update({
+                _id: obj._id
+            },{
+                description: obj.description
+              });
+
+            if(obj != null){
+                $scope.user = obj;
+            }
+            $scope.descriptionEnabled = true;
+            $scope.class = "fa fa-pencil";
+	    };
+          
 	    $scope.editContact = function () {
+            
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
 	            $scope.contactEnabled = false;
 	        } else {
+                obj.email = $scope.email;
 	            obj.phone_number = $scope.phone_number;
 	            obj.homepage = $scope.homepage;
 
@@ -210,7 +217,7 @@ app.directive('profilePrivateprofile', [
 		   		}
 
 	            $scope.expEnabled = true;
-	            $scope.class = "fa fa-pencil"
+	            $scope.class = "fa fa-pencil";
 	        }
 	    };
 
