@@ -17,7 +17,9 @@ app.directive('dashboardCourseslistdash', [
       scope.heading = "";
 
 
-      //updates GUI
+/*
+
+
       var refresh = function(){
         console.log(scope.user);
 
@@ -31,15 +33,19 @@ app.directive('dashboardCourseslistdash', [
         else {
           SessionService.getSession().success(function(response){
             User.get({_id: response.user._id, _populate:"courses"}, function(user){
-              console.log(user[0].courses);
-              scope.courses = user[0].courses;  
-              console.log("is NOT admin");
-              scope.heading = "My Courses";
+
+                console.log(user[0].courses);
+                scope.courses = user[0].courses;
+                console.log("is NOT admin");
+                scope.heading = "My Courses";
+
             })
           })
         } //returns student's courses
       };
-      
+
+
+
 
       scope.user = "";
       SessionService.getSession().success(function(response){
@@ -50,7 +56,7 @@ app.directive('dashboardCourseslistdash', [
       })
 
       //Runs on page update
-    
+
 
       //pins course in database
       scope.pinCourse = function(course){
@@ -86,11 +92,12 @@ app.directive('dashboardCourseslistdash', [
                   console.log(scope.pinnedCourses);
                 }
               }
-              */
+
           });
         });
       });
     }
+    */
 
         scope.class = "assignClass"
 
