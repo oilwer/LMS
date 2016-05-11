@@ -7,15 +7,14 @@
             </nav>
 
             <div class="col-sm-21 col-md-21">
-                <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
-                <div class="box">
+                <div class="box body--margin">
                     <!-- HEADER -->
                     <div class="box__header">
                        <h2>
                            <i class="fa fa-user"></i>
                            Participants
                        </h2>
-                        <a ng-if="showParticipants" ng-href="/courses/{{course.url}}/participants/edit" class="edit">Add<i class="fa fa-cog cog"></i>
+                        <a ng-if="showParticipants" ng-href="/studentsaddremove/{{course.url}}" class="edit">Add<i class="fa fa-cog cog"></i>
                         </a>
                     </div>
                     <!-- SEARCH -->
@@ -25,7 +24,7 @@
                         </form>
                         <!-- LIST -->
                         <div class="row">
-                            <ul>
+                            <ul style="list-style-type: none;">
                                 <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>
                             </ul>
                         </div>  <!-- END LIST -->
