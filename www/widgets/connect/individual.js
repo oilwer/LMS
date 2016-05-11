@@ -14,11 +14,15 @@ app.directive('connectIndividual', [
       link: function(scope, element, attrs) {
 
 
-        var url = $location.path().split(/[\s/]+/)[2];
+
+        var url = $location.path().split(/[\s/]+/).pop();
+        console.log(scope.user.first_name);
 
         Course.get({ url: url , _populate:"students"}, function(res){
           for (var i = 0; i < res[0].students.length; i++) {
-            showPicture(res[0].students[i]);
+            if(res[0].students[i].first_name == scope.user.first_name){
+              showPicture(res[0].students[i]);
+            }
           }
         });
 
@@ -30,7 +34,7 @@ app.directive('connectIndividual', [
               pic = './uploads/' + user.profile_pic;
             }
 
-            $('.profile__about__img').css({
+            $(('.' + user._id)).css({
               'background' : 'url('+ pic + ')',
               '-webkit-background-size': 'contain',
               '-moz-background-size': 'contain',

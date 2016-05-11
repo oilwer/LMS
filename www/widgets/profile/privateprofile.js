@@ -68,7 +68,7 @@ app.directive('profilePrivateprofile', [
 
 	            $scope.profile_pic = data.profile_pic;
 
-	            console.log(data.profile_pic);
+	            //console.log(data.profile_pic);
 
 	            $scope.phone_number = data.phone_number;
 	            $scope.url = data.public_url;
@@ -228,7 +228,7 @@ app.directive('profilePrivateprofile', [
 				});
 			});
 	    }
-        
+
         showUploadDivOnHover = function(){
             $('.profile__about__img').mouseenter(function(event){
                 event.stopPropagation();
@@ -238,7 +238,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
             $('.profile__about__img').mouseleave(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -246,7 +246,7 @@ app.directive('profilePrivateprofile', [
                     // Animation co
                 })
             });
-            
+
              $('.profile__about__img').click(function(event){
                 $(this).find('.upload_img').animate({
                     opacity: 0
@@ -255,9 +255,10 @@ app.directive('profilePrivateprofile', [
                 })
             });
         }
-    
+
 	   showPicture = function(){
 	   		var pic = ""
+        if(obj == null){ return }
 	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
 	   			pic = "/img/profile_default.png";
                 $('.upload_img').css({
@@ -273,7 +274,7 @@ app.directive('profilePrivateprofile', [
 	    		'-webkit-background-size': 'contain',
 			    '-moz-background-size': 'contain',
 			    '-o-background-size': 'contain',
-			    'background-size': 'contain'    	
+			    'background-size': 'contain'
 			})
 	    }
 

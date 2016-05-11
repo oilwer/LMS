@@ -8092,10 +8092,11 @@ input[type=checkbox] {
   cursor: pointer;
 }
 .profileitem {
-  width: auto;
+  margin: 0px 15px 0px 5px;
+  width: 30px;
   height: 30px;
   border-radius: 50%;
-  padding: 0px 10px;
+  float: left;
 }
 .toolbar-options {
   position: absolute;
@@ -8899,9 +8900,9 @@ form[name="assignmentType"] button:hover {
 form[name="assignmentType"] {
   text-align: center;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            LOGIN     
+            LOGIN
 
 * * * * * * * * * * * * * * * * */
 .maskot {
@@ -9592,9 +9593,9 @@ box--label--resources h2 {
 .nav--breadcrumbs span {
   padding: 0 2px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            PRIVATE PROFILE    
+            PRIVATE PROFILE
 
 * * * * * * * * * * * * * * * * */
 .profile {
@@ -9874,7 +9875,7 @@ courses
 
 schedule
  #F1654C
-    
+
 Questions
  #FCB941
 
@@ -9955,9 +9956,9 @@ ex: #FD5B03
   top: 1px;
   left: 25px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            PUBLIC PROFILE    
+            PUBLIC PROFILE
 
 * * * * * * * * * * * * * * * * */
 .text-center {

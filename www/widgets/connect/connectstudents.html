@@ -1,10 +1,11 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row heightfull">            
+        <div class="row table-row heightfull">
 
              <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
+
             <div class="col-sm-21 col-md-21">
                 <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
                 <div class="box">
@@ -18,18 +19,18 @@
                         </a>
                     </div>
                     <!-- SEARCH -->
-                    <div class="box__content list--publicstudents"> 
+                    <div class="box__content list--publicstudents">
                         <form id="newsearch" method="get">
                            <input type="text" id="hej" ng-model="searchStudents" placeholder="Search participants">
                         </form>
                         <!-- LIST -->
                         <div class="row">
                             <ul>
-                                <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual> 
+                                <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>
                             </ul>
-                        </div>  <!-- END LIST -->  
+                        </div>  <!-- END LIST -->
                     </div><!--.box__content-->
-                </div>  
+                </div>
             </div><!--.col-->
         </div><!--.row-->
     </div><!--.container-->
