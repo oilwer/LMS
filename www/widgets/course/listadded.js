@@ -24,15 +24,17 @@ app.directive('courseListadded', [
 
               console.log(user[0]);
 
-              scope.myCourses = [];
+              scope.myPinnedCourses = [];
+              scope.myCourses = user[0].courses;
 
               for (var i = 0; i < scope.myCourses.length; i++) {
-                if(user[0].courses[i].courses_pinned.pinned){
+                if(user[0].courses[i].status == true){
                   scope.myPinnedCourses = user[0].courses;
                 }
+                console.log("pinned", scope.myPinnedCourses);
               }; 
               
-              console.log(user[0].courses[i]);
+              
             });
         });
       };

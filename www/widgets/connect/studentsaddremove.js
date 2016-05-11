@@ -17,7 +17,7 @@ app.directive('connectStudentsaddremove', [
 
 	   scope.students = [];
 
-	   var AvailableCourses = Course.get();
+	   scope.AvailableCourses = Course.get();
 	   var courseUrl = "";
 
      var createNotification = function(UserIdentifier){
@@ -50,7 +50,7 @@ app.directive('connectStudentsaddremove', [
 
 	   scope.courseSelect = {
 		  repeatSelect: null,
-		  availableOptions: AvailableCourses
+		  availableOptions: scope.AvailableCourses
 	   };
 
 	  // scope.selectCourseChanged = function (){
@@ -129,9 +129,31 @@ app.directive('connectStudentsaddremove', [
 	       //calls updateGUI on page load
            onLoad();
 
+           var updateDropdownCourseList = function(){
+           		//list of courses for dropdown menu
+           		scope.dropDownCourseList = [];
+				
+				//loop through list of all courses
+				for (var i = 0; i < scope.AvailableCourses.length; i++) {
+
+					//if we are not in that course's page, add the course to the dropdown menu
+					if(scope.AvailableCourses[i].url != scope.courseUrl){
+						scope.dropDownCourseList.push(scope.AvailableCourses[i]);
+					}
+				};
+           }
+
             //filters studentlist according to registered courses 
           	scope.filterByCourse = function(student) {
+
+          		updateDropdownCourseList();
+
+          		console.log("current student ", student);
+
+          		console.log("byCourse: ", scope.byCourse);
+
 			    if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
+			      	console.log("error");
 			      	return true;
 			    }    
 			    return student.courses.filter(function(course) {

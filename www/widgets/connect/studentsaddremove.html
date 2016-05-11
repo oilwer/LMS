@@ -30,7 +30,10 @@
                             </div>
                             <div class="list--students">
                                 <h3>Add people</h3>
-                                <input class="form-control" type="text" ng-model="byCourse" placeholder="Search by course id or course name..">
+                                <select ng-model="byCourse" class="form-control">
+                                    <option value="" ng-selected=true>All</option>
+                                   <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                               </select>
                                 <ul ng-repeat="student in students | filter: filterByCourse">
                                     
                                     <li ng-init="index=0; 
