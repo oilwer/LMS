@@ -189,6 +189,7 @@ app.directive('profilePrivateprofile', [
 	    };
           
         $scope.showAddDiv = function () {
+           
             $('.fa-plus').css({
                 'display': 'none'
             })
@@ -203,6 +204,7 @@ app.directive('profilePrivateprofile', [
         }
         
         $scope.closeAddDiv = function () {
+            $('input, textarea').val('');
             $('.show_add_div').css({
                 'display': 'none'
             })
@@ -214,12 +216,11 @@ app.directive('profilePrivateprofile', [
             $('.fa-plus').css({
                 'display': 'block'
             })
+            isEditing = false;
         }
 
 	    addExp = function () {
-            console.log('körs');
-	
-	        	if(obj.experiences === undefined){
+            if(obj.experiences === undefined){
 	        		obj.experiences = [];
 	        	}
 
@@ -244,6 +245,7 @@ app.directive('profilePrivateprofile', [
 
 	            if(obj != null){
 		            $scope.user = obj;
+                    
 		   		}
 
 	            //$scope.expEnabled = true;
@@ -313,14 +315,18 @@ app.directive('profilePrivateprofile', [
 	    };
 
 	    $scope.prepareEditExp = function(exp){
-            $scope.showAddDiv();
+            
+            $scope.exp = exp;
+           
 	    	 isEditing = true;
-	    	 $scope.exp = exp;
+
             
             $scope.company_school = exp.company_school;
             $scope.title_education = exp.title_education;
             $scope.location = exp.location;
 			$scope.info = exp.info;
+             
+            $scope.showAddDiv();
 	    }
 
 	    $scope.addOrUpdateExp = function(){
