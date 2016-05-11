@@ -65,6 +65,7 @@ app.directive('courseCourseslist', [
                         {
                           console.log(course[0]);
                           scope.pinnedCourses.push(course[0]);
+                          scope.courses = session_user[0].courses;
                         });
 
 
@@ -76,6 +77,7 @@ app.directive('courseCourseslist', [
                if(session_user[0].role === "admin")
                {
                  scope.courses = Course.get();
+                 console.log("derp");
                }
                else if(session_user[0].role === "student") {
                  scope.courses = session_user[0].courses;
