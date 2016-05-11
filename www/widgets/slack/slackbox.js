@@ -53,6 +53,8 @@ app.directive('slackSlackbox', [
               if(response.error == "not_authed"){
                 callback(response.error);
               } else {
+                
+                console.log(response.messages);
                 callback(response.messages.reverse());
               }
             });
