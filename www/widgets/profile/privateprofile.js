@@ -35,11 +35,14 @@ app.directive('profilePrivateprofile', [
 	    		//uses temp code to get access token
 	    		$http.get(url).then(function(response) {
 		    		var token = response.data.access_token;
+            var slack_username = response.data.user_id;
+
+            console.log(response);
 
 		    		//gets session
 		    		SessionService.getSession().success(function(response) {
 		    				//returns user from session
-							User.update({_id:response.user._id},{ slack_token: token });
+							User.update({_id:response.user._id},{ slack_token: token , slack_username: slack_username});
 					});
 	    		});
 	    	}
@@ -106,12 +109,12 @@ app.directive('profilePrivateprofile', [
 	    $scope.editDescription = function () {
 	            $scope.descriptionEnabled = false;
         };
-          
+
         $scope.cancelDescription = function () {
 	            $scope.descriptionEnabled = true;
                 $scope.description = obj.description;
         };
-          
+
         $scope.saveDescription = function (){
             $scope.descriptionEnabled = true;
             obj.description = $scope.description;
@@ -128,9 +131,9 @@ app.directive('profilePrivateprofile', [
             $scope.descriptionEnabled = true;
             $scope.class = "fa fa-pencil";
 	    };
-          
+
 	    $scope.editContact = function () {
-            
+
 	        if ($scope.contact_class == "fa fa-pencil") {
 	            $scope.contact_class = "fa fa-check"
 	            $scope.contactEnabled = false;

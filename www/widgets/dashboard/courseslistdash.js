@@ -14,96 +14,95 @@ app.directive('dashboardCourseslistdash', [
     return {
       templateUrl: settings.widgets + 'dashboard/courseslistdash.html',
       link: function(scope, element, attrs) {
-      scope.heading = "";
 
 
-/*
+              var session_user;
+
+              var getCourse = function(course)
+              {
+                Course.get({_id: course._id}, function(course)
+                {
+
+                  return course[0];
 
 
-      var refresh = function(){
-        if(scope.user.role === "admin"){
-          scope.heading = "All Courses";
-          scope.courses = Course.get();  //returns all courses in database
-        }
-
-        else {
-          SessionService.getSession().success(function(response){
-            User.get({_id: response.user._id, _populate:"courses"}, function(user){
-
-                console.log(user[0].courses);
-                scope.courses = user[0].courses;
-                console.log("is NOT admin");
-                scope.heading = "My Courses";
-            })
-          })
-        } //returns student's courses
-      };
-
-
-
-
-      scope.user = "";
-      SessionService.getSession().success(function(response){
-        User.get({_id: response.user._id}, function(user){
-          scope.user = user[0];
-          refresh();
-        })
-      })
-
-      //Runs on page update
-
-
-      //pins course in database
-      scope.pinCourse = function(course){
-
-        console.log(course);
-
-          scope.pinnedCourses = [];
-
-          SessionService.getSession().success(function(response) {
-            User.get({_id: response.user._id, _populate:"courses"}, function(user){
-
-              console.log(user[0]);
-
-              var tempCourses = [];
-              var tempCourses = user[0].courses;
-
-              console.log(user[0].courses);
-
-              User.update({
-                  _id: user[0]._id
-              },{ $push: {
-                    courses:{
-                      Course: course,
-                      pinned: true
-                    }
-                }
-              }, function(res)
-            {
-              console.log(res);
-            /*  for (var i = 0; i < tempCourses.length; i++) {
-                if(tempCourses[i] == courseName){
-                  scope.pinnedCourses.push(tempCourses[i]);
-                  console.log(scope.pinnedCourses);
-                }
+                });
               }
 
-          });
-        });
-      });
-    }
-    */
+              var refresh = function(){
 
-        scope.class = "assignClass"
 
-        scope.courseLocation = function(obj) {
-            //console.log(obj.currentTarget.attributes.dataLocation.value);
-                  // Redirects to cource url saved in the clicked elements dataLocation attr
-            $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
-        };
-        scope.$root.$on('addedCourse', function() {
-          refresh();
-        });
+                SessionService.getSession().success(function(response) {
+                  User.get({_id: response.user._id, _populate:"courses"}, function(user)
+                  {
+                      session_user = user;
+
+                      if(session_user[0].role == "admin")
+                      {
+                        scope.heading = "All courses";
+                      }
+                      else if(session_user[0].role == "student") {
+                        scope.heading = "My courses";
+                      }
+
+                      console.log(session_user[0]);
+
+
+                      scope.pinnedCourses = [];
+
+
+                      if(user[0].courses_pinned.length > 0)
+                      {
+
+                            var allPinnedCourses = [];
+
+                            for (i = 0; i < user[0].courses_pinned.length; i++) {
+
+                              currentObj = session_user[0].courses_pinned[i];
+
+                              if(currentObj.pinned) {
+                                console.log(currentObj.course);
+
+                                Course.get({_id: currentObj.course}, function(course)
+                                {
+                                  console.log(course[0]);
+                                  scope.pinnedCourses.push(course[0]);
+                                });
+
+
+                              }
+
+                            }
+                     }
+
+                  });
+                });
+              };
+
+              //Runs on page update
+              refresh();
+
+              function findWithAttr(array, attr, value) {
+                  for(var i = 0; i < array.length; i += 1) {
+                      if(array[i][attr] === value) {
+                          return i;
+                      }
+                  }
+              }
+
+
+
+                scope.class = "assignClass"
+
+                scope.courseLocation = function(obj) {
+                    //console.log(obj.currentTarget.attributes.dataLocation.value);
+                          // Redirects to cource url saved in the clicked elements dataLocation attr
+                    $location.path("courses/" + obj.currentTarget.attributes.dataLocation.value);
+                };
+                scope.$root.$on('addedCourse', function() {
+                  refresh();
+                });
+
       }
     };
   }
