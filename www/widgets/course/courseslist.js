@@ -49,7 +49,7 @@ app.directive('courseCourseslist', [
               scope.pinnedCourses = [];
 
 
-              if(user[0].courses_pinned.length > 0)
+              if(user[0].courses_pinned.length != 0)
               {
 
                     var allPinnedCourses = [];
@@ -65,15 +65,33 @@ app.directive('courseCourseslist', [
                         {
                           console.log(course[0]);
                           scope.pinnedCourses.push(course[0]);
-                          scope.courses = session_user[0].courses;
+
+                          if(session_user[0].role == "admin")
+                          {
+                            scope.courses = Course.get();
+                          }
+                          else if(session_user[0].role == "student") {
+                            scope.courses = session_user[0].courses;
+                          }
+
+
                         });
 
 
                       }
+                      else {
+                        if(session_user[0].role == "admin")
+                        {
+                          scope.courses = Course.get();
+                        }
+                        else if(session_user[0].role == "student") {
+                          scope.courses = session_user[0].courses;
+                        }
+                      }
 
                     }
              }
-             else {
+             if(user[0].courses_pinned.length == 0) {
                if(session_user[0].role === "admin")
                {
                  scope.courses = Course.get();
