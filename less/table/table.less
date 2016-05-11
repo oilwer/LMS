@@ -17,6 +17,15 @@ table {
 
     thead {
         border-bottom: 2px solid @LMSmid;
+        tr {
+            &:hover {
+            cursor: default;
+            background: none;
+        }
+        &:active {
+            background: none;
+        }
+        }
     }
     tr {
         &:hover {
@@ -42,3 +51,128 @@ table {
 
     }
 }
+
+course-courseslist, dashboard-courseslistdash {
+
+    table{
+        width:100%;
+        border-collapse: collapse;
+        border-spacing: 0 2px;
+
+    }
+
+    thead{
+        th{
+            color:@LMSmid;
+            font-size: .75em;
+            text-transform: uppercase;
+            font-weight: 400;
+            text-align: center;
+            padding-bottom: 5px;
+        }
+
+        th:first-child{
+            width:72%;
+            padding-left:12px!important;
+            text-align: left;
+        }
+    }
+
+    tbody{
+
+        p {
+            color:@LMSmid;
+            &:first-child {
+                padding-top: 7px;
+            }
+        }
+        a {
+            color:@LMSdark;
+            &:active {
+            color:@LMSdark;
+            }
+             &:visited {
+            color:@LMSdark;
+            }
+             &:focus {
+            color:@LMSdark;
+            }
+             &:active {
+            color:@LMSdark;
+            }
+        }
+
+        td:first-child{
+            padding: 2px;
+            text-align: left;
+        }
+
+        td{
+            padding:3% 0;
+            position:relative;
+            width:30px;
+            text-align: center;
+        }
+
+        tr{
+
+            border-bottom: 1px solid #eee;
+        }
+
+        tr:last-child{
+            border-bottom:0px !important;
+        }
+
+        .fa-exclamation{
+            border-right:none !important;
+            color:red;
+            margin-right: 2.5% !important;
+            font-size: 1.35em !important;
+            float:left;
+            padding:1px 0px 0px 0px !important;
+        }
+
+        tr > td > .fa{
+            font-size: 1.25em;
+            position:relative;
+            text-align: center;
+            padding:0px 18px 0px 18px;
+            color:@LMSmid;
+        }
+
+        tr > td > .fa-book{
+            border:none;
+        }
+
+        tr td a p:last-child{
+            font-size: .9em;
+            font-style:italic;
+        }
+
+        tr td a p:first-child{
+            font-size: 1em;
+            font-weight:600;
+        }
+
+        a:hover{
+            text-decoration: none;
+        }
+    }
+
+    .assignClass{
+        -webkit-font-smoothing: subpixel-antialiased;
+        text-align: center;
+        display: block;
+        position: absolute;
+        top:7px;
+        left:25px;
+        width:auto;
+        height:auto;
+        background-color: rgba(255,0,0,.8);
+        border-radius: 50%!important;
+        color:white;
+        font-size: .5em;
+        padding: 3px 2px 2px 2px;
+    }
+}
+

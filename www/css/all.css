@@ -7448,6 +7448,8 @@ html {
   height: 100%;
   margin: 0px;
   padding: 0px;
+}
+body {
   background-color: rgba(235, 235, 236, 0.2);
 }
 .body--paddingtop {
@@ -8090,10 +8092,11 @@ input[type=checkbox] {
   cursor: pointer;
 }
 .profileitem {
-  width: auto;
+  margin: 0px 15px 0px 5px;
+  width: 30px;
   height: 30px;
   border-radius: 50%;
-  padding: 0px 10px;
+  float: left;
 }
 .toolbar-options {
   position: absolute;
@@ -8678,6 +8681,19 @@ table {
 .table--courses thead {
   border-bottom: 2px solid rgba(62, 71, 79, 0.75);
 }
+.table--assignment thead tr:hover,
+.table--resources thead tr:hover,
+.table--manager thead tr:hover,
+.table--courses thead tr:hover {
+  cursor: default;
+  background: none;
+}
+.table--assignment thead tr:active,
+.table--resources thead tr:active,
+.table--manager thead tr:active,
+.table--courses thead tr:active {
+  background: none;
+}
 .table--assignment tr:hover,
 .table--resources tr:hover,
 .table--manager tr:hover,
@@ -8699,6 +8715,126 @@ table {
 }
 .table--resources tr td:first-child {
   width: 40%;
+}
+course-courseslist table,
+dashboard-courseslistdash table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0 2px;
+}
+course-courseslist thead th,
+dashboard-courseslistdash thead th {
+  color: rgba(62, 71, 79, 0.75);
+  font-size: .75em;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-align: center;
+  padding-bottom: 5px;
+}
+course-courseslist thead th:first-child,
+dashboard-courseslistdash thead th:first-child {
+  width: 72%;
+  padding-left: 12px!important;
+  text-align: left;
+}
+course-courseslist tbody p,
+dashboard-courseslistdash tbody p {
+  color: rgba(62, 71, 79, 0.75);
+}
+course-courseslist tbody p:first-child,
+dashboard-courseslistdash tbody p:first-child {
+  padding-top: 7px;
+}
+course-courseslist tbody a,
+dashboard-courseslistdash tbody a {
+  color: #3e474f;
+}
+course-courseslist tbody a:active,
+dashboard-courseslistdash tbody a:active {
+  color: #3e474f;
+}
+course-courseslist tbody a:visited,
+dashboard-courseslistdash tbody a:visited {
+  color: #3e474f;
+}
+course-courseslist tbody a:focus,
+dashboard-courseslistdash tbody a:focus {
+  color: #3e474f;
+}
+course-courseslist tbody a:active,
+dashboard-courseslistdash tbody a:active {
+  color: #3e474f;
+}
+course-courseslist tbody td:first-child,
+dashboard-courseslistdash tbody td:first-child {
+  padding: 2px;
+  text-align: left;
+}
+course-courseslist tbody td,
+dashboard-courseslistdash tbody td {
+  padding: 3% 0;
+  position: relative;
+  width: 30px;
+  text-align: center;
+}
+course-courseslist tbody tr,
+dashboard-courseslistdash tbody tr {
+  border-bottom: 1px solid #eee;
+}
+course-courseslist tbody tr:last-child,
+dashboard-courseslistdash tbody tr:last-child {
+  border-bottom: 0px !important;
+}
+course-courseslist tbody .fa-exclamation,
+dashboard-courseslistdash tbody .fa-exclamation {
+  border-right: none !important;
+  color: red;
+  margin-right: 2.5% !important;
+  font-size: 1.35em !important;
+  float: left;
+  padding: 1px 0px 0px 0px !important;
+}
+course-courseslist tbody tr > td > .fa,
+dashboard-courseslistdash tbody tr > td > .fa {
+  font-size: 1.25em;
+  position: relative;
+  text-align: center;
+  padding: 0px 18px 0px 18px;
+  color: rgba(62, 71, 79, 0.75);
+}
+course-courseslist tbody tr > td > .fa-book,
+dashboard-courseslistdash tbody tr > td > .fa-book {
+  border: none;
+}
+course-courseslist tbody tr td a p:last-child,
+dashboard-courseslistdash tbody tr td a p:last-child {
+  font-size: .9em;
+  font-style: italic;
+}
+course-courseslist tbody tr td a p:first-child,
+dashboard-courseslistdash tbody tr td a p:first-child {
+  font-size: 1em;
+  font-weight: 600;
+}
+course-courseslist tbody a:hover,
+dashboard-courseslistdash tbody a:hover {
+  text-decoration: none;
+}
+course-courseslist .assignClass,
+dashboard-courseslistdash .assignClass {
+  -webkit-font-smoothing: subpixel-antialiased;
+  text-align: center;
+  display: block;
+  position: absolute;
+  top: 7px;
+  left: 25px;
+  width: auto;
+  height: auto;
+  background-color: rgba(255, 0, 0, 0.8);
+  border-radius: 50%!important;
+  color: white;
+  font-size: .5em;
+  padding: 3px 2px 2px 2px;
 }
 label {
   color: rgba(62, 71, 79, 0.5);
@@ -8764,9 +8900,9 @@ form[name="assignmentType"] button:hover {
 form[name="assignmentType"] {
   text-align: center;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            LOGIN     
+            LOGIN
 
 * * * * * * * * * * * * * * * * */
 .maskot {
@@ -8991,102 +9127,6 @@ dashboard-activities .activities-button--assignments {
 dashboard-activities button:active,
 dashboard-activities button:focus {
   outline: none;
-}
-course-courseslist table,
-dashboard-courseslistdash table {
-  width: 100%;
-  border-collapse: collapse;
-  border-spacing: 0 2px;
-}
-course-courseslist thead th,
-dashboard-courseslistdash thead th {
-  color: rgba(62, 71, 79, 0.75);
-  font-size: .65em !important;
-  text-transform: uppercase;
-  font-weight: 400;
-  text-align: center;
-  padding-bottom: 1%;
-}
-course-courseslist thead th:first-child,
-dashboard-courseslistdash thead th:first-child {
-  width: 72%;
-  padding-left: 12px!important;
-  text-align: left;
-}
-course-courseslist tbody p,
-dashboard-courseslistdash tbody p {
-  color: rgba(62, 71, 79, 0.75);
-}
-course-courseslist tbody td:first-child,
-dashboard-courseslistdash tbody td:first-child {
-  padding: 2.2% 0 0% 2%;
-  text-align: left;
-}
-course-courseslist tbody td,
-dashboard-courseslistdash tbody td {
-  padding: 3% 0;
-  position: relative;
-  width: 30px;
-  text-align: center;
-}
-course-courseslist tbody tr,
-dashboard-courseslistdash tbody tr {
-  border-bottom: 1px solid #eee;
-}
-course-courseslist tbody tr:last-child,
-dashboard-courseslistdash tbody tr:last-child {
-  border-bottom: 0px !important;
-}
-course-courseslist tbody .fa-exclamation,
-dashboard-courseslistdash tbody .fa-exclamation {
-  border-right: none !important;
-  color: red;
-  margin-right: 2.5% !important;
-  font-size: 1.35em !important;
-  float: left;
-  padding: 1px 0px 0px 0px !important;
-}
-course-courseslist tbody tr > td > .fa,
-dashboard-courseslistdash tbody tr > td > .fa {
-  font-size: 1.25em;
-  position: relative;
-  text-align: center;
-  padding: 0px 18px 0px 18px;
-  color: rgba(62, 71, 79, 0.75);
-}
-course-courseslist tbody tr > td > .fa-book,
-dashboard-courseslistdash tbody tr > td > .fa-book {
-  border: none;
-}
-course-courseslist tbody tr td a p:last-child,
-dashboard-courseslistdash tbody tr td a p:last-child {
-  font-size: .9em;
-  font-style: italic;
-}
-course-courseslist tbody tr td a p:first-child,
-dashboard-courseslistdash tbody tr td a p:first-child {
-  font-size: 1em;
-  font-weight: 600;
-}
-course-courseslist tbody a:hover,
-dashboard-courseslistdash tbody a:hover {
-  text-decoration: none;
-}
-course-courseslist .assignClass,
-dashboard-courseslistdash .assignClass {
-  -webkit-font-smoothing: subpixel-antialiased;
-  text-align: center;
-  display: block;
-  position: absolute;
-  top: 7px;
-  left: 25px;
-  width: auto;
-  height: auto;
-  background-color: rgba(255, 0, 0, 0.8);
-  border-radius: 50%!important;
-  color: white;
-  font-size: .5em;
-  padding: 3px 2px 2px 2px;
 }
 .list--students {
   min-height: 600px;
@@ -9347,9 +9387,7 @@ course-listadded .box--label_heading--courses a {
   color: #2CC990;
 }
 .courses--pinned {
-  height: 21em;
-  border-bottom: 2px solid lightgrey;
-  overflow: scroll;
+  overflow: hidden;
 }
 .btn--pin--active {
   float: right;
@@ -9555,9 +9593,9 @@ box--label--resources h2 {
 .nav--breadcrumbs span {
   padding: 0 2px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            PRIVATE PROFILE    
+            PRIVATE PROFILE
 
 * * * * * * * * * * * * * * * * */
 .profile {
@@ -9837,7 +9875,7 @@ courses
 
 schedule
  #F1654C
-    
+
 Questions
  #FCB941
 
@@ -9918,9 +9956,9 @@ ex: #FD5B03
   top: 1px;
   left: 25px;
 }
-/* * * * * * * * * * * * * * * *   
+/* * * * * * * * * * * * * * * *
 
-            PUBLIC PROFILE    
+            PUBLIC PROFILE
 
 * * * * * * * * * * * * * * * * */
 .text-center {

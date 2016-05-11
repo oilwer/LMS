@@ -4,12 +4,14 @@ app.directive('connectConnectstudents', [
   "Course",
   "$routeParams",
   "SessionService",
+    "$location",
   function(
     settings,
     User,
     Course,
     $routeParams,
-    SessionService
+    SessionService,
+     $location
   ) {
 	  
     return {
@@ -24,7 +26,7 @@ app.directive('connectConnectstudents', [
         }
       });
 	  		
-        var url = $routeParams.url;
+        var url = $location.path().split(/[\s/]+/)[2];
 
         scope.course = "";
 

@@ -42,10 +42,10 @@
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
 
                         <td ng-if="course.status == true">
-                          <p>{{course.start | date:'shortDate' }}<p>
+                          {{course.start | date:'shortDate' }}
                         </td>
                           <td ng-if="course.status == true">
-                            <p>{{course.end | date:'shortDate' }}<p>
+                            {{course.end | date:'shortDate' }}
                           </td>
                           <td ng-if="course.status == true">
                               <i class="fa fa-thumb-tack">

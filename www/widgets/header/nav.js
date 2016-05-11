@@ -45,8 +45,8 @@ app.directive('headerNav', [
 
           //Todo, do a get by ID instead of using data from a session
           fetchedUser = response.user;
-
           if( (fetchedUser._id !== "") && (fetchedUser._id !== null)) {
+            showPictureNav(fetchedUser);
               if(response.user.role != "admin"){
                 scope.notifs = fetchedUser.notifications;
               }
@@ -58,6 +58,24 @@ app.directive('headerNav', [
             return false
           }
         });
+
+        showPictureNav = function(user){
+            var pic = ""
+            if(user.profile_pic === undefined || user.profile_pic === ""){
+              pic = "/img/profile_default.png";
+            }else{
+              pic = './uploads/' + user.profile_pic;
+            }
+
+            $(('.profileitem')).css({
+              'background' : 'url('+ pic + ')',
+              '-webkit-background-size': 'contain',
+              '-moz-background-size': 'contain',
+              '-o-background-size': 'contain',
+              'background-size': 'contain'
+            })
+        }
+
 
         scope.pathLocation = function(newLocation) {
             $location.path(newLocation);
@@ -89,7 +107,7 @@ app.directive('headerNav', [
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = false;
           };
-        
+
         //show hide modal create resource
         scope.resourceModalShown = false;
         scope.toggleResourceModal = function() {
@@ -98,15 +116,15 @@ app.directive('headerNav', [
             scope.isToolbarPersonalOpen = false;
             scope.isToolbarCreateOpen = false;
           };
-          
+
         scope.$root.$on('showTheAssignmentModal', function() {
             scope.toggleAssignmentModal();
         });
-          
+
         scope.$root.$on('showTheCourseModal', function() {
             scope.toggleModal();
         });
-          
+
         scope.$root.$on('showTheResourceModal', function() {
             scope.toggleResourceModal();
         });

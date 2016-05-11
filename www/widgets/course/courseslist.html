@@ -1,6 +1,6 @@
 <div class="col-md-24 box">
     <div class="box__content">
-        <h2>My courses</h2>
+        <h2>{{ heading }}</h2>
         <button class="btn btn--add btn--courses"
                 ng-show="auth"
                 ng-click="castTheCourseModal()">
@@ -25,16 +25,16 @@
                     <td ng-if="course.status == true">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                         <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
-                            <p>{{course.name}}</p>
+                            {{course.name}}
                         </a>
                     </td>
                     <td ng-if="course.status == true">
 
-                            <p>{{course.code}}</p>
+                            {{course.code}}
 
                     </td>
                     <td ng-if="course.status == true">
-                      <p>{{course.end | date:'shortDate' }}<p>
+                      {{course.end | date:'shortDate' }}
                     </td>
                     <td>
                         <i ng-if ="course.status == true"class="fa fa-dot-circle-o">

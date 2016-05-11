@@ -48,10 +48,11 @@ app.directive('resourcesSingleresource', [
               }
 
               scope.theResource;
-              console.log(theLocation);
+              //console.log(theLocation);
               Resource.get({url: theLocation.pop()}, function(resource) {
                   scope.theResource = resource[0];
                   console.log(scope.theResource);
+                  $(".resourceContent").append(scope.theResource.content);
               });
           }
           
