@@ -11,11 +11,9 @@ app.directive('fileuploadFileupload', [
       templateUrl: settings.widgets + 'fileupload/fileupload.html',
       link: function(scope, element, attrs) {
 
+        scope.submit = function(){ //function to call on form submit
 
-          //function to call on form submit
-        scope.submit = function(){
-            
-            if (scope.file[0]) {
+            if (scope.file) { //check if file is valid
               for(var i  = 0, len = scope.file.length; i < len; i++){
                 upload(scope.file[i]); //call upload function
               }

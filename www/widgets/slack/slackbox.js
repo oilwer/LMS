@@ -26,6 +26,8 @@ app.directive('slackSlackbox', [
 
         var savedUser;
 
+        var allUsers = User.get();
+
         var sendMessage = function(channelName, text, UserIdentifier, callback){
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
@@ -35,8 +37,28 @@ app.directive('slackSlackbox', [
           ChatService.sendMessage(obj.slack_channels[0].channelId, text, UserIdentifier).success(function(response){
             //console.log("Response", response);
             ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
-              console.log("Response", response);
-              callback(response.messages.reverse());
+
+
+
+                              for (var i = 0; i < response.messages.length; i++) {
+
+
+                                var slack_username = response.messages[i].user;
+                                var obj = allUsers.filter(function ( obj ) {
+                                  return obj.slack_username === slack_username;
+                                })[0];
+
+                                if(obj != undefined)
+                                {
+                                    if(typeof obj.subtype === 'undefined')
+                                    {
+                                      var slack_name = obj.first_name + " " + obj.last_name;
+                                      response.messages[i].user=slack_name;
+                                    }
+                                }
+                              }
+
+                              callback(response.messages.reverse());
               });
           });
         }
@@ -53,8 +75,33 @@ app.directive('slackSlackbox', [
               if(response.error == "not_authed"){
                 callback(response.error);
               } else {
-                
-                console.log(response.messages);
+
+                for (var i = 0; i < response.messages.length; i++) {
+
+                  var slack_username = response.messages[i].user;
+                  var obj = allUsers.filter(function ( obj ) {
+                    return obj.slack_username === slack_username;
+                  })[0];
+
+                  if(obj != undefined)
+                  {
+                      if(typeof obj.subtype === 'undefined')
+                      {
+                        var slack_name = obj.first_name + " " + obj.last_name;
+                        response.messages[i].user=slack_name;
+                      }
+                  }
+                  else {
+                    console.log(response.messages[i]);
+                    if(response.messages[i].subtype !== 'undefined')
+                    {
+                      response.messages.splice(i, 1);
+                    }
+                  }
+
+                }
+
+
                 callback(response.messages.reverse());
               }
             });
@@ -64,8 +111,8 @@ app.directive('slackSlackbox', [
         var gmPromise;
         var checkIfOpen = false;
 
-        scope.showChatBox = function() {
-          alert("showChatBox");
+        scope.showChatBox = function(course) {
+
           checkIfOpen = false;
           if (scope.course != course) {
             scope.isExited = false;
