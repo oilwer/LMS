@@ -2,21 +2,21 @@ app.directive('resourcesResources', [
   "settings",
   "User",
   "$routeParams",
-    "$location",
-    "SessionService",
-    "Course",
+  "$location",
+  "SessionService",
+  "Course",
   function(
     settings,
     User,
     $routeParams,
-     $location,
+    $location,
     SessionService,
-     Course
+    Course
     ) {
     return {
       templateUrl: settings.widgets + 'resources/resources.html',
       link: function(scope, element, attrs) {
-          
+
           var session_user;
           var theLocation;
           var theLocationPath;
@@ -24,12 +24,12 @@ app.directive('resourcesResources', [
           var url;
           scope.showAll = false;
           scope.title = "My resources";
-          
+
           var setupResources = function() {
               scope.showAll = false;
               theLocationPath = $location.path();
               theLocation = theLocationPath.split("/");
-              
+
               if(theLocation[1] === "resources") {
                   scope.showAll = true;
               } else {
@@ -69,14 +69,12 @@ app.directive('resourcesResources', [
                   }
               });
           }
-          
+
             var getAllResources = function()
             {
               //request user details, fallback if user changed
               User.get({_id: session_user._id}, function(user){
-                  console.log(user);
                   var courses = user[0].courses;
-                  console.log(user[0]);
 
                   //loop the courses for resources
                   for(var i = 0; i < courses.length; i++) {
@@ -93,8 +91,8 @@ app.directive('resourcesResources', [
                                   for (var x = 0; x < course[0].resources.length; x++)
                                       {
                                           course[0].resources[x].course = course[0].name;
-                                          scope.resourceList.push(course[0].resources[x]); 
-                                      }          
+                                          scope.resourceList.push(course[0].resources[x]);
+                                      }
 
                               } else {
                                   console.log("no resources found");
@@ -107,20 +105,29 @@ app.directive('resourcesResources', [
                   }
               });
             }
-                
+
+
+
         scope.castTheResourceModal = function() {
           scope.$root.$broadcast('showTheResourceModal');
         };
-          
+
         setupResources();
         scope.$root.$on('refreshResourceList', function() {
             setupResources();
         });
-          
+
         scope.updateLocation = function(resourceUrl) {
-            $location.path(theLocationPath + resourceUrl);
+            try {
+                $location.path(theLocationPath + resourceUrl);
+            } catch (e) {
+                console.log(e);
+            } finally {
+
+            }
+
         }
-        
+
         scope.test = function() {
             console.log(scope.filterSelectedCourse);
         }

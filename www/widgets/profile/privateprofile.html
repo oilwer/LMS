@@ -133,7 +133,8 @@
                                 <button class="btn" ng-click="closeAddDiv()">Cancel</button>
                             </div><!---.profile__description-->
                             <ul class="experienceList" ng-repeat = 'experience in experiences'>
-                                <li ng-click="showMoreExpInfo(experience)">{{experience.company_school}} - {{experience.title_education}}<i class="fa fa-trash" ng-click="removeExp(experience)" aria-hidden="true"></i><i class="fa fa-pencil" ng-click="prepareEditExp(experience)"></i>
+                                <li>     
+                                    <p ng-click="showMoreExpInfo(experience)">{{experience.company_school}} - {{experience.title_education}}</p><i class="fa fa-trash" ng-click="removeExp(experience)" aria-hidden="true"></i><i class="fa fa-pencil" ng-click="prepareEditExp(experience)"></i>
                                 <p ng-show="showOnClickMoreInfo"><span class="bold">Location: </span>{{experience.location}}</p>
                                     <p ng-show="showOnClickMoreInfo"><span class="bold">Description: </span>{{experience.info}}</p></li>
                             </ul>

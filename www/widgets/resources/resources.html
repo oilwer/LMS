@@ -1,7 +1,7 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
         <div class="row table-row newtable-row heightfull">
-            
+
             <nav class="col-sm-2 col-md-2 nav--local" ng-if="!showAll">
                 <course-courseNav></course-courseNav>
             </nav>
@@ -12,7 +12,7 @@
                         <div class="col-md-24">
                             <h1> {{title}} </h1>
                             <button class="btn btn--add btn--resources" ng-show="auth" ng-click="castTheResourceModal()">
-                                <i class="fa fa-plus" aria-hidden="true"></i> Add 
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add
                             </button>
                         </div>
                         <div class="col-md-12">
@@ -40,8 +40,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: '-uploaded_on'" ng-click="updateLocation(resource.url)">
-                                    <td>{{resource.title}}</td>
+                                <tr ng-repeat="resource in resourceList | filter: search | filter: {course: selectedCourse} | orderBy: '-uploaded_on'" ng-click="updateLocation(resource.url)" >
+                                    <td>{{resource.title}} </td>
                                     <td>{{resource.course}}</td>
                                     <td>{{resource.uploaded_on | date}}</td>
                                     <td>{{resource.uploaded_by_name}}</td>

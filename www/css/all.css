@@ -7616,6 +7616,18 @@ This is a LESS file; only style for the element class .box allowed!
 .courses--pinned .box--label {
   padding: 20px;
 }
+.box__header--singleLine h1 {
+  display: inline-block;
+  padding-bottom: 10px;
+}
+.box__header--singleLine p {
+  display: block;
+  padding: 0px;
+}
+.box__header--singleLine button {
+  float: right;
+  margin-top: 20px;
+}
 .nav--breadcrumbs {
   padding-left: 20px;
 }
@@ -8092,7 +8104,7 @@ input[type=checkbox] {
   cursor: pointer;
 }
 .profileitem {
-  width: auto;
+  width: 30px;
   height: 30px;
   border-radius: 50%;
   padding: 0px 10px;
@@ -8520,12 +8532,12 @@ trix-toolbar .button_group input[type=button] {
 .btn--manager {
   float: right;
   margin-top: 12em;
-  background: #00B5B5;
+  background: #D8335B;
   color: #fff;
   transition: all 0.3s ease-in-out;
 }
 .btn--manager:hover {
-  background: rgba(0, 181, 181, 0.85);
+  background: rgba(216, 51, 91, 0.85);
   transition: all 0.3s ease-in-out;
 }
 .btn--manager:active,
@@ -8588,6 +8600,19 @@ trix-toolbar .button_group input[type=button] {
 }
 .fileupload--assignment .btn-file:active,
 .fileupload--assignment .btn-file:focus {
+  outline: none;
+}
+.fileupload--resource .btn-file {
+  background-color: #00B5B5 !important;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.fileupload--resource .btn-file:hover {
+  background-color: rgba(0, 181, 181, 0.85) !important;
+  transition: all 0.3s ease-in-out;
+}
+.fileupload--resource .btn-file:active,
+.fileupload--resource .btn-file:focus {
   outline: none;
 }
 .resources .btn-file,
@@ -9907,7 +9932,7 @@ box--label--resources h2 {
 .profile__stuff__skills .fa-pencil,
 .profile__stuff__projects .fa-pencil,
 .profile__stuff__other .fa-pencil,
-.fa-plus {
+.profile__stuff__ex .fa-plus {
   position: absolute;
   top: 35px;
   right: 20px;
@@ -9918,9 +9943,17 @@ ul > li > .fa-trash {
   float: right;
   margin-left: 10px;
   color: rgba(62, 71, 79, 0.75);
+  margin-top: 2px;
+}
+.experienceList p:first-child {
+  margin: 0 -3%;
+  cursor: pointer;
+  display: inline-block;
+  width: 80%;
 }
 .experienceList p {
   margin: 3% -1%;
+  cursor: pointer;
 }
 .experienceList p .bold {
   font-weight: 600;
