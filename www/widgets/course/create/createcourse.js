@@ -429,6 +429,7 @@ app.directive('courseCreateCreatecourse', [
 
 
       }//end link
-    };
+    }
   }
+}
 ]);
