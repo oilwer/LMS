@@ -31,7 +31,7 @@ app.directive('courseCoursepage', [
 
         scope.course = "";
         scope.assignments = "";
-          
+
         var theLocation = $location.path().split(/[\s/]+/);
         var url;
           //always get the course url
@@ -58,6 +58,8 @@ app.directive('courseCoursepage', [
             Course.get({url: url}, function(course){
               scope.course = course[0];
               scope.messages = scope.course.messages; //load messages
+              scope.content = "";
+              scope.title = "";
             });
         };
 
@@ -72,7 +74,6 @@ app.directive('courseCoursepage', [
 
 
 
-            console.log(today);
             Course.update({
                 _id: course._id
             },{ $push: {
@@ -84,11 +85,11 @@ app.directive('courseCoursepage', [
                   }
               }
             });
+
             // Refresh GUI
             // do not refresh, push message to messages
             refresh();
         }
-        return false;
       }
 
 
