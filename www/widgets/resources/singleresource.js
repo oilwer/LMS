@@ -47,15 +47,25 @@ app.directive('resourcesSingleresource', [
               }
 
               scope.theResource;
-              //console.log(theLocation);
               Resource.get({url: theLocation.pop()}, function(resource) {
                   scope.theResource = resource[0];
                   
                   User.get({_id: scope.theResource.uploaded_by}, function(user) {
-                      scope.theResource.uploaded_by = user[0].first_name + " " + user[0].last_name;
+                      if (user[0]) {
+                          scope.theResource.uploaded_by = user[0].first_name + " " + user[0].last_name;
+                      }
+                      else {
+                          scope.theResource.uploaded_by = "unknown";
+                      }
                   });
                   
-                  $(".resourceContent").append(scope.theResource.content);
+                  if(scope.theResource.conent) {
+                      $(".resourceContent").empty().append(scope.theResource.content);
+                  }
+                  else {
+                      $(".resourceContent").empty();
+                  }
+                  
 
                   if (scope.theResource.filename) {
                     var file = scope.theResource.filename.split(".").pop();
@@ -76,7 +86,6 @@ app.directive('resourcesSingleresource', [
                       $('.resourceFile').removeClass("col-md-12 col-md-offset-6").addClass("col-md-24");
                   }
                   else if (file === "mp4" || file === "ogg" || file === "m4v") {
-                      console.log("video");
                       $('.resourceFile').empty().append('<video controls><source src="' + fileUrl + '" type="video/mp4"><source src="' + scope.theResource.filename + '" type="video/ogg"></video>');                    
                   } 
                   else if ( file === undefined) {
@@ -95,11 +104,18 @@ app.directive('resourcesSingleresource', [
             $location.path(theLocationPath + resourceUrl);
         }
         
+
+        scope.$root.$on('reloadTheResource', function() {
+            setupTheResource();
+        });
+        
         //show hide modal update resources
         scope.updateResourceModalShown = false;
         scope.toggleUpdateResourceModal = function() {
             scope.updateResourceModalShown = !scope.updateResourceModalShown;
         };
+          
+          
 
       } //link
     };
