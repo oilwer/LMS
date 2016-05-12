@@ -59,7 +59,7 @@ app.directive('resourcesSingleresource', [
                       }
                   });
                   
-                  if(scope.theResource.conent) {
+                  if(scope.theResource.content) {
                       $(".resourceContent").empty().append(scope.theResource.content);
                   }
                   else {
@@ -94,7 +94,9 @@ app.directive('resourcesSingleresource', [
                   else {
                     $('.resourceFile').empty().append('<a target="_self" href="uploads/' + scope.theResource.filename + '" download>' + scope.theResource.filename + '</a>');
                   }
-
+                  
+                  
+                  scope.$root.$broadcast('setupUpdateScope');
               });
           }
 
