@@ -51,6 +51,8 @@ app.directive('slackSlackbox', [
           });
         }
 
+        scope.loadedSlackChannels = [];
+
         //Get messages with callback
         var getMessages = function(course, channelName, UserIdentifier, callback){
           var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
@@ -85,6 +87,28 @@ app.directive('slackSlackbox', [
                   }
                 }
               }
+              console.log("Messages loaded");
+
+              // Save the loaded-status in an array
+
+              var obj = {};
+              obj.course = course._id;
+              obj.status = 1;
+
+              if( findWithAttr(scope.loadedSlackChannels, "course", course._id) == undefined)
+              {
+                scope.loadedSlackChannels.push(obj);
+            //    alert("First load!!");
+              console.log("#" + course._id);
+              //  $("#" + course._id).hide();
+
+              var jqueryId = "#" + course._id;
+
+              $(jqueryId).animate({ scrollTop: 10000}, 1);
+
+            //  $("#" + course._id).animate({ scrollTop: 10000}, 0.0001);
+              }
+
               callback(response.messages.reverse());
             }
           });
@@ -158,6 +182,7 @@ app.directive('slackSlackbox', [
         };
 
         scope.toggleCloseChatBox = function(course) {
+          scope.loadedSlackChannels.splice(findWithAttr(scope.loadedSlackChannels, "course", course._id), 1);
           var indexOfCurrentCourse = findWithAttr(scope.slackcourses, "_id", course._id);
           $interval.cancel(gmPromises[indexOfCurrentCourse]);
           course.isOpen = false;

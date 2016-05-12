@@ -18,10 +18,10 @@
     </li>
 </ul>
 
-<div id="slackbar" style="position:fixed; width:100%; bottom:220px; height:100px;">
-  <div ng-repeat="course in slackcourses track by $index"  class="col-md-6 wind-slackbox" ng-show="course.isOpen" style="position: static; display:block;">
+<div id="slackbar">
+  <div ng-repeat="course in slackcourses track by $index"  class="col-md-6 wind-slackbox slackwindow" ng-show="course.isOpen">
       <div class="col-md-24 box__header">#{{course.name}} <i ng-click="toggleCloseChatBox(course)" class="fa fa-times exit" aria-hidden="true"></i></div>
-      <div class="col-md-24 windowcont-slackbox">
+      <div class="col-md-24 windowcont-slackbox" id="{{course._id}}">
         <div class="msg" ng-repeat="msg in course.messages">
           <div style="font-weight: bold;">{{msg.user}}</div>
           <div>{{msg.text}}</div>
