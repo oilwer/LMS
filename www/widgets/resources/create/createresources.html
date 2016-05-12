@@ -2,37 +2,65 @@
     <div class="col-sm-20 col-sm-offset-2 resourcesDetails">
         <h2>Create Resource</h2>
 
-        <form class="form--createresource">
+        <form name="resourceDetails" class="form--createresource">
 
-          <!-- FILE UPLOAD MODULE -->
-           <fileupload-fileupload></fileupload-fileupload>
-
-            <label for="resourceName">Resource title</label>
-            <input id="resourceName" class="form-control" type="text" ng-model="resourceTitle">
-            <label for="selectCourse">Add resource to:</label>
-            <select id="selectCourse"
+            <label for="resourceName">Title</label>
+            <input 
+                   name="resourceName" 
+                   id="resourceName" 
+                   class="form-control" 
+                   type="text" 
+                   ng-model="resourceTitle" 
+                   required="true">
+            <span
+                class="error formError"
+                ng-show="resourceDetails.resourceName.$touched && resourceDetails.resourceName.$invalid">
+                <i class="fa fa-times"></i>
+            </span>
+            
+            <label for="selectCourse">Connect to course:</label>
+                <select id="selectCourse"
                         ng-change="selectCourseChanged(id)"
                         ng-model="courseSelect.repeatSelect"
-                        required="required"
                         name="repeatSelect"
-                        class="form-control">
-              <option value=""> --- Available courses ---</option>
-              <option ng-repeat="option in courseSelect.availableOptions" value="{{ option._id }}">{{ option.name }}
-              </option>
+                        class="form-control"
+                        required="true">
+                    <option value=""> --- Available courses ---</option>
+                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option._id }}">{{ option.name }}
+                </option>
             </select>
+            <span
+                class="error formError formError--select"
+                ng-show="resourceDetails.repeatSelect.$touched && resourceDetails.repeatSelect.$invalid">
+                <i class="fa fa-times"></i>
+            </span>
 
+            <!-- FILE UPLOAD MODULE -->
+            <label for="file">Choose a file</label>
+            <fileupload-fileupload></fileupload-fileupload>
+            <input 
+                   id="createNewResource" 
+                   type="hidden" 
+                   name="content">
 
-
-
-            <div class="col-sm-24">
-                <input id="createNewResource" type="hidden" name="content">
-                <trix-editor input="createNewResource" id="descriptionEditor"></trix-editor>
-            </div>
+            <label for="descriptionEditor">Add a description or create your own content</label>
+            <trix-editor 
+                         input="createNewResource" 
+                         id="descriptionEditor">
+            </trix-editor>
         </form>
 
         <div class="col-sm-24">
-            <button class="btn btn--resources" ng-click="closeModalSession()">Close</button>
-            <button ng-click="createResource()" type="submit" class="btn btn--resources">Create</button>
+            <button 
+                    class="btn btn--resources" 
+                    ng-click="closeModalSession()">Close
+            </button>
+            <button 
+                    ng-click="resourceDetails.$valid && createResource()" 
+                    ng-class="{btndisabled: resourceDetails.$invalid}" 
+                    type="submit" 
+                    class="btn btn--resources">Create resource
+            </button>
         </div>
 
 

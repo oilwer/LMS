@@ -4,6 +4,7 @@ var app = angular.module("mongr", [
  "ngResource",
  "ui.bootstrap",
  "ngFileUpload"
+
 ]);
 
 
