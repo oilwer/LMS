@@ -96,67 +96,65 @@ app.directive('courseCreateCreatecourse', [
         var isEditingCourse = false;
         scope.btnAddOrUpdate = 'Create course';
 
+        var dateIsValid = function(start, end){
+            return Date.parse(start) < Date.parse(end);
+        }
+
         //Gui function add course
         scope.addOrUpdateCourse = function(){
+
+          console.log("c name", scope.course.name);
+
         if(typeof scope.course.name !== 'undefined'){
 
+            if(dateIsValid(scope.course.start, scope.course.end)){
+              console.log("date valid");
               var result = AvailableCourses.filter(function( obj ) {
-              return obj.name == selectedCourseName;
-            });
-
-
-            //scope.assignment.added_on = (new Date()).toJSON();
-
-                if(scope.isEditing == 0)
-                {
-
-                  if(scope.session_user.slack_token != undefined)
-                  {
-
-                    console.log("Creating the actual course");
-                    scope.isEditing = 1;
-
-                    console.log(scope.course);
-                    scope.course._id = undefined;
-
-                    scope.btnAddOrUpdate = "Update course";
-
-                    Course.create(scope.course, function(course)
-                        {
-                            scope.$root.$broadcast('addedCourse');
-                            console.log("Added course:", course[0]);
-                            oldcourse = JSON.parse(JSON.stringify(course[0]));
-                            scope.incrementStep();
-
-                            createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
-                            console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
-                        }
-
-                    );
-
-
-
-                  }
-                  else {
-                    console.log("You need to add your slack token");
-                  }
-
-            } else if (scope.isEditing == 1){
-
-              console.log("Updating course");
-              console.log(scope.course);
-              console.log("old course: ", oldcourse);
-
-                Course.update({_id: oldcourse._id},scope.course, function(res)
-                {
-                    console.log("Update res: ", res);
-                    oldcourse = "";
-                    oldcourse = JSON.parse(JSON.stringify(scope.course));
-                    scope.incrementStep();
+                return obj.name == selectedCourseName;
               });
 
-              }
+              //scope.assignment.added_on = (new Date()).toJSON();
 
+              if(scope.isEditing == 0){
+
+                  if(scope.session_user.slack_token != undefined){
+
+                      scope.isEditing = 1;
+
+                      scope.course._id = undefined;
+
+                      scope.btnAddOrUpdate = "Update course";
+
+                      Course.create(scope.course, function(course){
+                          scope.$root.$broadcast('addedCourse');
+                          console.log("Added course:", course[0]);
+                          oldcourse = JSON.parse(JSON.stringify(course[0]));
+                          scope.incrementStep();
+
+                          createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
+                          console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
+                      });
+                  } 
+                  else{
+                    console.log("You need to add your slack token");
+                  }
+              } else if (scope.isEditing == 1){
+
+                  console.log("Updating course");
+                  console.log(scope.course);
+                  console.log("old course: ", oldcourse);
+
+                    Course.update({_id: oldcourse._id},scope.course, function(res){
+                        console.log("Update res: ", res);
+                        oldcourse = "";
+                        oldcourse = JSON.parse(JSON.stringify(scope.course));
+                        scope.incrementStep();
+                    });
+                }
+              }
+              else{
+                console.log("please check start/end date");
+              }
             }
           }
 
@@ -282,7 +280,6 @@ app.directive('courseCreateCreatecourse', [
                   return true;
               }
             }
-
         };
 
         // Return true if step has previous step, false if not
@@ -345,9 +342,11 @@ app.directive('courseCreateCreatecourse', [
           obj.start = new Date(obj.start);
 
           scope.course = obj;
-          scope.incrementStep();
-
+            scope.incrementStep();  
+        
         }
+
+
 
         scope.selectCourseChanged = function (){
         selectedCourseName = scope.courseSelect.repeatSelect;
