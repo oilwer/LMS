@@ -9,16 +9,16 @@ app.directive('assignmentUpdateUpdateassignment', [
     settings,
     $location,
     $window,
-     $routeParams,
+    $routeParams,
     Assignment,
     SessionService
   ) {
-        
+
     return {
       templateUrl: settings.widgets + 'assignment/update/updateAssignment.html',
       link: function(scope, element, attrs) {
-          
-        
+
+
         var update = function() {
             //update view
             var textEditor = document.querySelector("trix-editor");
@@ -30,15 +30,15 @@ app.directive('assignmentUpdateUpdateassignment', [
             };
 
         };
-        
+
         setTimeout(update,500);
-         
-          
+
+
       scope.updateAssignmentDetails = function() {
-          
+
         //create function
         scope.newAssignment.description = $("#x").attr("value");
-                              
+
         Assignment.update({_id: scope.assignment._id}, {
             name: scope.assignment.name,
             description: scope.newAssignment.description,
@@ -52,11 +52,11 @@ app.directive('assignmentUpdateUpdateassignment', [
             scope.assignment.description = scope.newAssignment.description;
             //todo: show user the success (GUI)
             scope.$parent.hideModal();
-    
+
         });
-          
+
       };
-          
+
         scope.closeUpdateAssignment = function() {
             if (confirm('Do you want to close without saving?')) {
                 scope.$parent.hideModal();
@@ -71,16 +71,16 @@ app.directive('assignmentUpdateUpdateassignment', [
                 textEditor.editor.insertHTML(scope.assignment.description);
             } else {
                 // Do nothing!
-            } 
+            }
         };
-        
+
           scope.deleteAssignment = function() {
               Assignment.remove({_id: scope.assignment._id});
               scope.$parent.hideModal();
               var theLocation = $location.path().split("/")[2];
               $window.location.href = '/courses/' + theLocation
           };
-          
+
       }//end link
     };
   }

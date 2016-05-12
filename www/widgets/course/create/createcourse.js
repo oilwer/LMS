@@ -98,7 +98,7 @@ app.directive('courseCreateCreatecourse', [
 
         //Gui function add course
         scope.addOrUpdateCourse = function(){
-        if(typeof scope.course.name !== 'undefined'){
+            if(typeof scope.course.name !== 'undefined'){
 
               var result = AvailableCourses.filter(function( obj ) {
               return obj.name == selectedCourseName;

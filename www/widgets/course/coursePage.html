@@ -27,6 +27,7 @@
                             <!--<div class="wall_loadmore">
                             <i class="fa fa-plus-circle"></i> Load more
                             </div>-->
+
                             <form class="form--wall">
                                 <label for="title">Titel</label>
                                 <input class="form-control" type="text" required ng-model="title" name="title" id="title">
@@ -45,6 +46,11 @@
                             <h1 class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
                                 <i class="fa--heading fa fa-info-circle"></i>
                                 Course details
+                                <button ng-if="auth" href="" ng-click="toggleModal()" class="btn btn--courses"><i class="fa fa-leaf"></i> Edit</button>
+
+                                <modal-dialog show='modalShown' width='80%'>
+                                    <div course-create-editcourse></div>
+                                </modal-dialog>
                                 <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-up"></i>
                             </h1>
 
@@ -76,13 +82,13 @@
 <!-- COURSE INFO -->
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
 
-                                <i ng-class="info_class" class="fa fa-pencil" ng-click="editInfo()"></i>
+                                <i ng-class="info_class" ng-click="editInfo()"></i>
 
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Name:</h2>
 
-                                    <p  ng-show="infoEnabled">{{ course.name }}</p>
-                                    <input type="text" ng-hide="infoEnabled" ng-model="course.name">
+                                    <p  >{{ course.name }}</p>
+
 
                                 </div>
 
@@ -94,7 +100,7 @@
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Date:</h2>
-                                    <p> {{ course.start | date }} - {{ course.end | date}}</p>
+                                    <p> {{ course.start }} - {{ course.end }}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Description:</h2>
@@ -103,7 +109,9 @@
                                 <div class="col-md-24">
                                     <h2 class="coursedescription_titel">Teaching:</h2>
                                     <a href="/profile/{{teacherUrl}}"><p> {{teacher}} </p></a>
+
                                 </div>
+
                             </div>
                         </div>
 
@@ -162,6 +170,7 @@
                       QA comment end-->
 
                     </div><!--.col-->
+
                 </div><!--.row-->
 
             </div><!--col-->
