@@ -53,7 +53,7 @@ var customRoutes = [
   },
   {
     path: 'session',
-    method: 'get',
+    method: 'all',
     controller: require('./mongresto-custom-routes/session.js')
   },
   {

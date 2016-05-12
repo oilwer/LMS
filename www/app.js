@@ -62,6 +62,16 @@ app.service('SessionService', function($http) {
             return $http.get("/api/session").success(function(response) {
                 // console.log(response);
             });
+        },
+
+        updateSession : function(email, password)
+        {
+
+          var data = {"email": email, "password": password};
+
+          return $http.put("/api/session", data).success(function(response) {
+              // console.log(response);
+          });
         }
     }
 });

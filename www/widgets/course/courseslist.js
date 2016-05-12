@@ -120,6 +120,13 @@ app.directive('courseCourseslist', [
       //pins course in database
       scope.pinCourse = function(course){
 
+        // Updates session
+        SessionService.updateSession(session_user[0].email).success(function(session) {
+          console.log("Updated session: ", session);
+          session_user[0] = session;
+        });
+
+
 
         // scope.courses.pop(course);
 
