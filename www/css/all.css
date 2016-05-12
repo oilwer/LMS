@@ -7492,17 +7492,6 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
-.resources h1,
-.manager h1 {
-  display: inline-block;
-  padding-bottom: 30px;
-  padding-top: 20px;
-}
-.resources .btn--add,
-.manager .btn--add {
-  margin-top: -4px;
-  margin-left: 10px;
-}
 /*Styles for global .box classes
 
 This is a LESS file; only style for the element class .box allowed!
@@ -7871,6 +7860,13 @@ This is a LESS file; only style for the element class .box allowed!
 input[type="datetime-local"].form-control {
   padding-right: 30px;
 }
+.stepstwo li {
+  width: 33.333333333%;
+}
+.stepstwo .nav--process_line {
+  left: 16.666666667%;
+  width: 33.666666666%;
+}
 .stepsthree li {
   width: 33.333333333%;
 }
@@ -8160,6 +8156,20 @@ input[type=checkbox] {
 .btn-toolbar--personal:hover .toolbar-options--personal {
     display: inline-block;
 }*/
+#slackbar {
+  position: fixed;
+  width: 70%;
+  bottom: 220px;
+  z-index: 9999;
+  height: 50px;
+}
+#slackbar .slackwindow {
+  position: static;
+  float: right;
+  z-index: 9999;
+  width: 50%!important;
+  display: block;
+}
 .slackbox {
   position: fixed;
   right: 7px;
@@ -8209,15 +8219,6 @@ input[type=checkbox] {
   width: 200px;
   right: 10px;
   height: auto;
-}
-.wind-slackbox {
-  margin-right: 15em;
-  bottom: 100%;
-  position: fixed;
-  right: 13em;
-  bottom: 0em;
-  margin-right: 4em;
-  z-index: 40;
 }
 .windowcont-slackbox {
   border-right: 2px solid #3e474f;
@@ -8733,6 +8734,9 @@ table {
   background: rgba(62, 71, 79, 0.4);
   transition: all 0.3s ease-in-out;
 }
+.table--resources {
+  margin-bottom: 40px;
+}
 .table--resources td,
 .table--resources th {
   width: 20%;
@@ -8742,6 +8746,7 @@ table {
 }
 course-courseslist table,
 dashboard-courseslistdash table {
+  margin-bottom: 40px;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0 2px;
@@ -8913,6 +8918,17 @@ dashboard-courseslistdash .assignClass {
   position: absolute;
   top: 12px;
   left: 15px;
+}
+.resources h1,
+.manager h1 {
+  display: inline-block;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+.resources .btn--add,
+.manager .btn--add {
+  margin-top: -4px;
+  margin-left: 10px;
 }
 label {
   color: rgba(62, 71, 79, 0.5);

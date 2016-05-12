@@ -48,8 +48,7 @@ app.directive('assignmentUpdateEditassignment', [
                 },{
                     "assignments.$.comment" :  scope.newAssignment.comment,
                     "assignments.$.answer_file" : strippedFileName
-                  }
-                );
+                  });
 
             $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment);
 

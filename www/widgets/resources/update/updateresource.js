@@ -21,41 +21,58 @@ app.directive('resourcesUpdateUpdateresource', [
       link: function(scope, element, attrs) {
           
         
-        var update = function() {
-            //update view
-            $("#resourceContent").attr("value", scope.theResource.content);
-
+        var setupUpdate = function() {
+            console.log("the resource", scope.theResource);
             scope.newResource = {
-                name: scope.theResource.title,
-                file: scope.theResource.filename,
-                content: ""
-            };
-
+            name: scope.theResource.title,
+            file: scope.theResource.filename,
+            content: scope.theResource.content
         };
+          
+            //update view
+            if(scope.theResource.content !== undefined) {
+                $("#resourceContent").attr("value", scope.theResource.content);
+            }
+        }
         
-        setTimeout(update,200);
-         
+          
+        scope.$root.$on('setupUpdateScope', function() {
+            setupUpdate();
+        });
           
       scope.updateResourceDetails = function() {
+        if (scope.file) {
+            if (scope.file[0]) {
+                var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+            }
+        }
+        else {
+            var strippedFileName = undefined;
+        }
           
+        scope.newResource.file = strippedFileName;
         //create function
-        /*scope.newResource.description = $("#resourceContent").attr("value");
-                              
-        Resource.update({_id: scope.assignment._id}, {
-            name: scope.assignment.name,
-            description: scope.newAssignment.description,
-            obligatory: scope.newAssignment.obligatory,
-            due_date: scope.newAssignment.due_date
+        scope.newResource.content = $("#resourceContent").attr("value");
+                          
+        Resource.update({_id: scope.theResource._id}, {
+            title: scope.newResource.name,
+            filename: scope.newResource.file,
+            content: scope.newResource.content
         }, function(res)
-        {
-            $(".assignment_description").empty().append(scope.newAssignment.description);
-            scope.assignment.name = scope.newAssignment.name;
-            scope.assignment.due_date = scope.newAssignment.due_date;
-            scope.assignment.description = scope.newAssignment.description;
+        {            
+            scope.$root.$broadcast('reloadTheResource');
             //todo: show user the success (GUI)
+            //update view
+        $("#resourceContent").attr("value", scope.theResource.content);
+
+        scope.theResource = {
+            name: scope.newResource.title,
+            file: scope.newResource.filename,
+            content: scope.newResource.content
+        };
             scope.$parent.hideModal();
     
-        });*/
+        });
           
       };
           
@@ -65,7 +82,7 @@ app.directive('resourcesUpdateUpdateresource', [
                 scope.newResource = {
                     name: scope.theResource.title,
                     fileName: scope.theResource.filename,
-                    content: ""
+                    content: scope.theResource.content
                 };
                 //console.log(scope.assignment.description);
                 var textEditor = document.querySelector("trix-editor");
@@ -78,21 +95,18 @@ app.directive('resourcesUpdateUpdateresource', [
         
           scope.deleteResource = function() {
               Resource.remove({_id: scope.theResource._id});
-                Course.get({_id: scope.theResource.course}, function(course) {
-                    var resources = course[0].resources;
-                    for( var i = 0; i < resources.length; i++ ) {
-                        if (resources[i] === scope.theResource._id) {
-                            console.log("remove the resource from the course in some way?")
-                        }
-                    }
-                });
-
-              scope.$parent.hideModal();
-              //get path without last segment
-              var theLocation = $location.path().split("/")
-              theLocation.pop();
-              theLocation = theLocation.join("/");
-              $location.path(theLocation); 
+              
+              Course.update(
+                  {_id: scope.theResource.course}, 
+                  {$pull: {"resources": scope.theResource._id}}, function() {
+                      scope.$parent.hideModal();
+                      //get path without last segment
+                      var theLocation = $location.path().split("/")
+                      theLocation.pop();
+                      theLocation = theLocation.join("/");
+                      $location.path(theLocation); 
+              });
+              
           };
           
       }//end link

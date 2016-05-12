@@ -60,7 +60,6 @@ app.directive('resourcesResources', [
                       scope.title = "Resources";
                       Course.get({url: url, _populate: "resources"}, function(course){
                         var theCourse = course[0];
-                          console.log(url, theCourse);
                           scope.resourceList= theCourse.resources;
                           for (var i = 0; i < theCourse.resources.length; i++) {
                               theCourse.resources[i].course = theCourse.name;
@@ -70,43 +69,55 @@ app.directive('resourcesResources', [
               });
           }
 
+          function findWithAttr(array, attr, value) {
+              for(var i = 0; i < array.length; i += 1) {
+                  if(array[i][attr] === value) {
+                      return i;
+                  }
+              }
+          }
+
             var getAllResources = function()
             {
-              //request user details, fallback if user changed
-              User.get({_id: session_user._id}, function(user){
-                  var courses = user[0].courses;
 
-                  //loop the courses for resources
-                  for(var i = 0; i < courses.length; i++) {
+              scope.resourceList = [];
 
-                      Course.get({_id: courses[i], _populate: "resources"}, function(course) {
+              SessionService.getSession().success(function(session) {
 
+                SessionService.updateSession(session.user.email).success(function(session) {
+                  session_user[0] = session;
 
-                          if(typeof course[0] !== "undefined"){
+                    Course.get({students: session._id, _populate:"resources"}, function(mycourses)
+                    {
+                        if (typeof mycourses !== "undefined") 
+                        {
+                          for (var i = 0; i < mycourses.length; i++) 
+                          {
+                              if(typeof mycourses[i].resources !== "undefined")
+                              {
+                                scope.courseFilter.push(mycourses[i].name);
 
-                            if(typeof course[0].resources !== "undefined"){
+                                for (var x = 0; x < mycourses[i].resources.length; x++) 
+                                {      
+                                  mycourses[i].resources[x].course = mycourses[i].name;
+                                  scope.resourceList.push(mycourses[i].resources[x]);
 
-                              if (course[0].resources.length > 0) {
-                                  scope.courseFilter.push(course[0].name);
-                                  for (var x = 0; x < course[0].resources.length; x++)
-                                      {
-                                          course[0].resources[x].course = course[0].name;
-                                          scope.resourceList.push(course[0].resources[x]);
-                                      }
+                                  var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
 
-                              } else {
-                                  console.log("no resources found");
-                              }
+                                  //get author name
+                                  User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+                                   {
+                                     scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
+                                   });
+                                } //lopp resources
+                            } //if
+                          } //lopp courses
+                        } //if
 
-                            }
-
-                          }
-                      });
-                  }
+                    });
+                 });
               });
             }
-
-
 
         scope.castTheResourceModal = function() {
           scope.$root.$broadcast('showTheResourceModal');
@@ -125,11 +136,6 @@ app.directive('resourcesResources', [
             } finally {
 
             }
-
-        }
-
-        scope.test = function() {
-            console.log(scope.filterSelectedCourse);
         }
       } //link
     };

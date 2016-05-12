@@ -1,13 +1,13 @@
 <div class="row row--modal modal--updateassignments">
     <div class="col-sm-20 col-sm-offset-2 vcenter">
         <h2>Update assignment details</h2>
-        
+
         <form class="assignmentDetails">
             <div class="col-sm-12">
                 <label for="name">Assignment Title</label>
                 <input type="text" name="name" class="form-control" ng-model="newAssignment.name" required="true">
-                <span 
-                class="error" 
+                <span
+                class="error"
                 ng-show="assignmentDetails.name.$touched && assignmentDetails.name.$invalid"
                 class="formError">
                 <i class="fa fa-times"></i>
@@ -16,8 +16,8 @@
             <div class="col-sm-12">
                 <label for="duedate">Due date</label>
                 <input type="datetime-local" name="duedate" class="form-control" ng-model="newAssignment.due_date" required="true">
-                <span 
-                class="error" 
+                <span
+                class="error"
                 ng-show="assignmentDetails.duedate.$touched && assignmentDetails.duedate.$invalid"
                 class="formError">
                 <i class="fa fa-times"></i>
@@ -25,8 +25,8 @@
             </div>
             <div class="col-sm-24">
                 <label for="obligatory">Obligatory</label> <input type="checkbox" ng-model="newAssignment.obligatory">
-                <span 
-                class="error" 
+                <span
+                class="error"
                 ng-show="assignmentDetails.obligatory.$touched && assignmentDetails.obligatory.$invalid"
                 class="formError">
                 <i class="fa fa-times"></i>
