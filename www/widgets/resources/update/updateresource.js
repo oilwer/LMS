@@ -21,17 +21,24 @@ app.directive('resourcesUpdateUpdateresource', [
       link: function(scope, element, attrs) {
           
         
-        //update view
-        $("#resourceContent").attr("value", scope.theResource.content);
-
-        scope.newResource = {
+        var setupUpdate = function() {
+            console.log("the resource", scope.theResource);
+            scope.newResource = {
             name: scope.theResource.title,
             file: scope.theResource.filename,
             content: scope.theResource.content
         };
-
+          
+            //update view
+            if(scope.theResource.content !== undefined) {
+                $("#resourceContent").attr("value", scope.theResource.content);
+            }
+        }
         
-         
+          
+        scope.$root.$on('setupUpdateScope', function() {
+            setupUpdate();
+        });
           
       scope.updateResourceDetails = function() {
         if (scope.file) {

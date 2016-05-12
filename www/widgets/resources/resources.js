@@ -60,7 +60,6 @@ app.directive('resourcesResources', [
                       scope.title = "Resources";
                       Course.get({url: url, _populate: "resources"}, function(course){
                         var theCourse = course[0];
-                          console.log(url, theCourse);
                           scope.resourceList= theCourse.resources;
                           for (var i = 0; i < theCourse.resources.length; i++) {
                               theCourse.resources[i].course = theCourse.name;
@@ -85,109 +84,40 @@ app.directive('resourcesResources', [
 
               SessionService.getSession().success(function(session) {
 
-            //    console.log(session.user);
-                // Updates session
                 SessionService.updateSession(session.user.email).success(function(session) {
-              //    console.log("Updated session: ", session);
                   session_user[0] = session;
 
                     Course.get({students: session._id, _populate:"resources"}, function(mycourses)
                     {
-                      console.log(mycourses);
-
-                      for (var i = 0; i < mycourses.length; i++) {
-                        for (var x = 0; x < mycourses[i].resources.length; x++) {
-
-                          console.log(mycourses[i].resources[x]);
-
-                          scope.resourceList.push(mycourses[i].resources[x]);
-
-                          var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
-
-                        //  console.log(User.get({_id: mycourses[i].resources[x].uploaded_by}));
-
-                          //  scope.resourceList[indexOfResource].author;
-                             User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
-                           {
-                             scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
-                           });
-
-                          /*
-                          User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+                        if (typeof mycourses !== "undefined") 
+                        {
+                          for (var i = 0; i < mycourses.length; i++) 
                           {
-                            // returnAllResources(user);
-                            console.log(i, x);
+                              if(typeof mycourses[i].resources !== "undefined")
+                              {
+                                scope.courseFilter.push(mycourses[i].name);
 
-                            console.log(user[0]);
+                                for (var x = 0; x < mycourses[i].resources.length; x++) 
+                                {      
+                                  mycourses[i].resources[x].course = mycourses[i].name;
+                                  scope.resourceList.push(mycourses[i].resources[x]);
 
-                            console.log(mycourses[i].resources[x]);
+                                  var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
 
-                            scope.resourceList.push(mycourses[i].resources[x]);
-
-                          });
-                          */
-
-
-                        }
-                      }
+                                  //get author name
+                                  User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+                                   {
+                                     scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
+                                   });
+                                } //lopp resources
+                            } //if
+                          } //lopp courses
+                        } //if
 
                     });
-
-
-              //    console.log(session.courses);
-
-
-                  // Get an array of all courses i can access
-                      // Loop thorugh my courses
-                          // Loop through theses course's resoucres
-                              // Add to resourceslist
-
-
-                // GUI stuff
-
-                });
-
+                 });
               });
-
-
-              //request user details, fallback if user changed
-              /*
-              User.get({_id: session_user._id}, function(user){
-                  var courses = user[0].courses;
-
-                  //loop the courses for resources
-                  for(var i = 0; i < courses.length; i++) {
-
-                      Course.get({_id: courses[i], _populate: "resources"}, function(course) {
-
-
-                          if(typeof course[0] !== "undefined"){
-
-                            if(typeof course[0].resources !== "undefined"){
-
-                              if (course[0].resources.length > 0) {
-                                  scope.courseFilter.push(course[0].name);
-                                  for (var x = 0; x < course[0].resources.length; x++)
-                                      {
-                                          course[0].resources[x].course = course[0].name;
-                                          scope.resourceList.push(course[0].resources[x]);
-                                      }
-
-                              } else {
-                                  console.log("no resources found");
-                              }
-
-                            }
-
-                          }
-                      });
-                  }
-              });
-
-              */
             }
-
-
 
         scope.castTheResourceModal = function() {
           scope.$root.$broadcast('showTheResourceModal');
@@ -206,11 +136,6 @@ app.directive('resourcesResources', [
             } finally {
 
             }
-
-        }
-
-        scope.test = function() {
-            console.log(scope.filterSelectedCourse);
         }
       } //link
     };
