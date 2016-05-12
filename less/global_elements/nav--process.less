@@ -44,7 +44,7 @@ input[type="datetime-local"].form-control{
 .checked:before {
     content: "";
     position: absolute;
-    top: 23px;
+    top: 29px;
     left: 50%;
     border-top: 2px solid white;
     border-bottom: 2px solid white;
@@ -67,9 +67,9 @@ input[type="datetime-local"].form-control{
 .nav--process_line {
    content: "";
    position: absolute;
-   top: 47px;
+   top: 53px;
    height: 2px;
-   background: @LMSlight;
+   background: @LMSmid;
 }
 
 .nav--process {
@@ -102,15 +102,15 @@ input[type="datetime-local"].form-control{
 
    .step {
        position: relative;
-       width: 55px;
-       height: 55px;
+       width: 65px;
+       height: 65px;
        margin: auto;
        z-index: 10;
        margin-bottom: 7px;
        display: block;
-       line-height: 2.5;
+       line-height: 2.8;
        font-size: 1.5em;
-       border: 2px solid @LMSlight;
+       border: 2px solid @LMSmid;
        background-color: #fff;
        border-radius: 50%;
        text-align: center;
@@ -120,11 +120,11 @@ input[type="datetime-local"].form-control{
        position: relative;
        display: block;
        height: 20px;
-       font-size: 0.8em;
-       text-transform: uppercase;
+       font-size: 1em;
+       font-family: @LinkFamily;
    }
    a {
-       color: @LMSlight;
+       color: @LMSmid;
        display: inline-block;
        &:hover {text-decoration: none;}
    }
@@ -133,20 +133,29 @@ input[type="datetime-local"].form-control{
 .stepicon
 {
        position: relative;
-       width: 75px;
-       height: 75px;
+       width: 100%;
        margin: auto;
        z-index: 10;
-       margin-bottom: 7px;
+       padding: 28px 10px 28px 28px;
        display: block;
-       line-height: 3.5;
-       font-size: 1.5em;
+        font-weight: 600;
+       font-size: 0.95em;
+        text-transform: uppercase;
+        -webkit-font-smoothing: antialiased;
+	   -moz-osx-font-smoothing: grayscale;
        background-color: @RGBassignments;
-       border-radius: 50%;
-       text-align: center;
+       //border-radius: 50%;
+       text-align: left;
 
        border: 2px solid white;
 	   color: white;
+    i {
+        float: right;
+        -webkit-font-smoothing: antialiased;
+	   -moz-osx-font-smoothing: grayscale;
+        font-size: 1.8em;
+        padding-right: 20px;
+    }
 }
 
 .stepicon--courses {
@@ -167,12 +176,15 @@ input[type="datetime-local"].form-control{
 
 .processselector
 {
-    margin-top: 40px;
-	width:50%;
-	float:left;
+    margin-top: 20px;
+    width: 100%;
     &:hover {
         cursor: pointer;
     }
+}
+
+.processselector:first-child {
+    margin-top: 50px;
 }
 
 .nav--process--assignments {

@@ -1,28 +1,37 @@
-<div class="row row--modal modal--resources">
-    <div class="col-sm-20 col-sm-offset-2 vcenter">
+<div class="row--modal modal--createResources">
+    <div class="col-sm-20 col-sm-offset-2 resourceDetails">
         <h2>Update resource details</h2>
         
-        <form class="resourceDetails">
-            <div class="col-sm-12">
-                <label for="name">Resource Title</label>
-                <input type="text" name="name" class="form-control" ng-model="newResource.name" required="true">
+        <form name="updateResourceDetials">
+                <label for="name">Title</label>
+                <input 
+                       type="text" 
+                       name="resourceTitle" 
+                       id="resourceTitle" 
+                       class="form-control" 
+                       ng-model="newResource.name" 
+                       required="true">
                 <span 
-                class="error" 
-                ng-show="resourceDetails.name.$touched && resourceDetails.name.$invalid"
-                class="formError">
-                <i class="fa fa-times"></i>
+                    class="error formError"
+                    ng-show="updateResourceDetials.resourceTitle.$touched && updateResourceDetials.resourceTitle.$invalid">
+                    <i class="fa fa-times"></i>
                 </span>
-            </div>
 
-            <div class="col-sm-24">
+                <label for="file">Choose a new file</label>
                 <fileupload-fileupload class="fileupload--resource"></fileupload-fileupload>
+                
+                <label for="resourceContent">Update description/content</label>
                 <input id="resourceContent" type="hidden" name="content">
                 <trix-editor input="resourceContent" id="resourceEditor"></trix-editor>
-            </div>
+
             <div class="col-sm-24">
                 <button class="btn btn--resources" ng-click="closeUpdateResource()">Close</button>
                 <button class="btn btn--resources" ng-click="deleteResource()">Delete resource</button>
-                <button class="btn btn--resources" ng-click="updateResourceDetails()">Update resource details</button>
+                <button 
+                        class="btn btn--resources" 
+                        ng-class="{btndisabled: updateResourceDetials.$invalid}"
+                        ng-click="updateResourceDetails() && updateResourceDetials.$valid">Update resource details
+                </button>
             </div>
         </form>
     </div><!--.col-->

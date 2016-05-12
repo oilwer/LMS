@@ -1,5 +1,6 @@
-<div class="row--modal">
+<div class="row--modal modal--createAssignment">
      <div class="col-sm-20 col-sm-offset-2">
+         <h2><i class="fa fa-file-text-o" aria-hidden="true"></i> Create Assignment</h2>
        <ul class="col-sm-24 nav--process nav--process--assignments" ng-class="{stepsfour: isCreating == 1, stepsfive: isCreating == 0}">
            <div class="nav--process_line"></div>
            <li ng-if="isCreating == 1" ng-repeat="step in createsteps" ng-class="{active: $index==getCurrentStepIndex(), checked: $index < getCurrentStepIndex()}">
@@ -18,15 +19,21 @@
        </ul>
        <div class="process_view" ng-switch on="selection">
          <div class="stepOne" ng-switch-when="Create or copy">
-           <div class="col-sm-14 col-sm-offset-5">
+           <div class="col-sm-14 col-sm-offset-5 col-md-10 col-md-offset-7">
              <form name="assignmentType">
                <div class="processselector" ng-click="setCreate()">
-                 <span class="step stepicon"><i class=" fa fa-file-text-o"></i></span>
-                         <span class="stepLabel">Create assignment</span>
+                 <span class="step stepicon">
+                     <span class="stepLabel">Create assignment</span>
+                     <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                   </span>
+                 
                </div>
                <div class="processselector" ng-click="setCopy()">
-                 <span class="step stepicon"><i class=" fa glyphicon glyphicon-pencil"></i></span>
-                 <span class="stepLabel">Create assignment from older assignment</span>
+                 <span class="step stepicon">
+                     <span class="stepLabel">Copy an older assignment</span>
+                     <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                   </span>
+                 
                </div>
              </form>
            </div>
@@ -72,7 +79,7 @@
            </div>
            <div class="col-xs-24 pager">
                <button class="btn btn--assignments" ng-click="decrementStep()">&larr; Previous</button>
-               <button class="btn btn--assignments send__button" type="submit" ng-click="addOrUpdateAssignment()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange}"> {{btnAddOrUpdate}} &rarr;</button>
+               <button class="btn btn--assignments" type="submit" ng-click="addOrUpdateAssignment()" ng-class="{btndisabled: assignmentDetails.$invalid || invalidDateRange}"> {{btnAddOrUpdate}} &rarr;</button>
            </div>
        </div><!--.end of stepTwo-->
 

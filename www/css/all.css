@@ -7901,7 +7901,7 @@ input[type="datetime-local"].form-control {
 .checked:before {
   content: "";
   position: absolute;
-  top: 23px;
+  top: 29px;
   left: 50%;
   border-top: 2px solid white;
   border-bottom: 2px solid white;
@@ -7931,9 +7931,9 @@ input[type="datetime-local"].form-control {
 .nav--process_line {
   content: "";
   position: absolute;
-  top: 47px;
+  top: 53px;
   height: 2px;
-  background: rgba(62, 71, 79, 0.5);
+  background: rgba(62, 71, 79, 0.75);
 }
 .nav--process {
   position: relative;
@@ -7964,15 +7964,15 @@ input[type="datetime-local"].form-control {
 }
 .nav--process .step {
   position: relative;
-  width: 55px;
-  height: 55px;
+  width: 65px;
+  height: 65px;
   margin: auto;
   z-index: 10;
   margin-bottom: 7px;
   display: block;
-  line-height: 2.5;
+  line-height: 2.8;
   font-size: 1.5em;
-  border: 2px solid rgba(62, 71, 79, 0.5);
+  border: 2px solid rgba(62, 71, 79, 0.75);
   background-color: #fff;
   border-radius: 50%;
   text-align: center;
@@ -7981,11 +7981,11 @@ input[type="datetime-local"].form-control {
   position: relative;
   display: block;
   height: 20px;
-  font-size: 0.8em;
-  text-transform: uppercase;
+  font-size: 1em;
+  font-family: 'Roboto', 'arial', sans-serif;
 }
 .nav--process a {
-  color: rgba(62, 71, 79, 0.5);
+  color: rgba(62, 71, 79, 0.75);
   display: inline-block;
 }
 .nav--process a:hover {
@@ -7993,19 +7993,27 @@ input[type="datetime-local"].form-control {
 }
 .stepicon {
   position: relative;
-  width: 75px;
-  height: 75px;
+  width: 100%;
   margin: auto;
   z-index: 10;
-  margin-bottom: 7px;
+  padding: 28px 10px 28px 28px;
   display: block;
-  line-height: 3.5;
-  font-size: 1.5em;
+  font-weight: 600;
+  font-size: 0.95em;
+  text-transform: uppercase;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: #fcb941;
-  border-radius: 50%;
-  text-align: center;
+  text-align: left;
   border: 2px solid white;
   color: white;
+}
+.stepicon i {
+  float: right;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.8em;
+  padding-right: 20px;
 }
 .stepicon--courses {
   background-color: #2CC990;
@@ -8020,12 +8028,14 @@ input[type="datetime-local"].form-control {
   color: #fcb941;
 }
 .processselector {
-  margin-top: 40px;
-  width: 50%;
-  float: left;
+  margin-top: 20px;
+  width: 100%;
 }
 .processselector:hover {
   cursor: pointer;
+}
+.processselector:first-child {
+  margin-top: 50px;
 }
 .nav--process--assignments .checked:before {
   background: #fcb941;
@@ -8058,7 +8068,7 @@ input[type=checkbox] {
 }
 .toolbar {
   position: absolute;
-  right: 5px;
+  right: 15px;
   top: 13px;
   z-index: 40;
 }
@@ -8083,7 +8093,7 @@ input[type=checkbox] {
   content: "";
   position: absolute;
   top: -6px;
-  right: 47px;
+  right: 37px;
   width: 20px;
   height: 20px;
   border-style: solid;
@@ -8119,7 +8129,7 @@ input[type=checkbox] {
   position: absolute;
   top: 30px;
   width: 200px;
-  right: 10px;
+  right: 1px;
   height: auto;
 }
 .toolbar-option_content {
@@ -8383,6 +8393,14 @@ input[type=checkbox] {
   width: 96%;
   margin: 0 auto;
 }
+.modal--createCourse h2,
+.modal--createAssignment h2 {
+  text-align: center;
+  padding-top: 10px;
+  font-size: 1.3em;
+  font-family: 'Roboto', 'arial', sans-serif;
+  color: rgba(62, 71, 79, 0.75);
+}
 .modal--createResources {
   padding-bottom: 40px;
   overflow: hidden;
@@ -8395,7 +8413,8 @@ input[type=checkbox] {
 .modal--createResources label[for="file"] {
   margin-top: 20px;
 }
-.modal--createResources label[for="descriptionEditor"] {
+.modal--createResources label[for="descriptionEditor"],
+.modal--createResources label[for="resourceContent"] {
   margin-top: 20px;
 }
 .assignment-meta {
@@ -9485,7 +9504,6 @@ dashboard-activities button:focus {
   margin-right: 8px;
 }
 course-courseslist .box {
-  margin-top: 30px;
   padding: 10px;
 }
 course-courseslist h2 {
@@ -9507,6 +9525,7 @@ course-listadded .box--label_heading--courses a {
 }
 .courses--pinned {
   overflow: hidden;
+  padding-bottom: 30px;
 }
 .btn--pin--active {
   float: right;

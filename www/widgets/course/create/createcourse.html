@@ -1,5 +1,6 @@
-    <div class="row--modal">
+    <div class="row--modal modal--createCourse">
         <div class="col-sm-16 col-sm-offset-4">
+            <h2><i class="fa fa-leaf" aria-hidden="true"></i> Create Course</h2>
             <ul class="col-sm-24 nav--process" ng-class="{stepsthree: isCopying == 0, stepsfour: isCopying == 1}">
                 <div class="nav--process_line"></div>
 
@@ -24,12 +25,17 @@
                 <div class="col-sm-14 col-sm-offset-5">
                   <form name="assignmentType">
                     <div class="processselector" ng-click="setCreate()">
-                      <span class="step stepicon stepicon--courses"><i class=" fa fa-file-text-o"></i></span>
-                              <span class="stepLabel">Create course</span>
+                      <span class="step stepicon stepicon--courses">
+                          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                          <span class="stepLabel">Create course</span>
+                        </span>
                     </div>
                     <div class="processselector" ng-click="setCopy()">
-                      <span class="step stepicon stepicon--courses"><i class=" fa glyphicon glyphicon-pencil"></i></span>
-                              <span class="stepLabel">Create course from older course</span>
+                      <span class="step stepicon stepicon--courses">
+                          <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
+                          <span class="stepLabel">Copy an older course</span>
+                      </span>
+                              
                     </div>
                   </form>
                 </div>
