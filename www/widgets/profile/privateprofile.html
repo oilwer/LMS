@@ -1,6 +1,7 @@
 <div class="app_container heightfull">
     <div class="container-fluid profile heightfull">
 
+
         <div class="row heightfull table-row newtable-row">
             <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container">
                 <div class="profile__about">
@@ -105,11 +106,16 @@
                 <div class="row">
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__skills">
-                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
-                            <input ng-model="tag"></input><i ng-click="addSkill()" class="fa fa-plus"></i>
+                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
+
+                            <input id="skills" ng-model="searchTags">
+
+                            <i ng-click="addSkill()" class="fa fa-plus"></i>
+
                             <ul ng-repeat = 'skill in skills'>  
-                                <li> {{skill.tag}} </li>
-                            </ul>
+                                <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
+                            </ul>                          
+                    
                         </div><!--Empty div to get spacing-->
                     </div><!-- .col -->
                     
