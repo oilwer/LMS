@@ -7,6 +7,7 @@ app.directive('profilePrivateprofile', [
   "$http",
   "$window",
   "Upload",
+  "Tags",
   function(
     settings,
     User,
@@ -15,7 +16,8 @@ app.directive('profilePrivateprofile', [
     $location,
     $http,
     $window,
-    Upload
+    Upload,
+    Tags
      ) {
 
     return {
@@ -91,6 +93,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.courses = data.courses;
 
 	            $scope.experiences = data.experiences;
+	            $scope.skills = data.skills;
 
 	            obj = data;
 
@@ -244,8 +247,7 @@ app.directive('profilePrivateprofile', [
 	            });
 
 	            if(obj != null){
-		            $scope.user = obj;
-                    
+		            $scope.user = obj;                    
 		   		}
 
 	            //$scope.expEnabled = true;
@@ -273,8 +275,6 @@ app.directive('profilePrivateprofile', [
             }
             
         };
-        
-          
 
 	    editExp = function(){  
             
@@ -297,9 +297,7 @@ app.directive('profilePrivateprofile', [
 				"experiences.$.info": $scope.info
             }, function(res){
                 console.log(res);
-            });
-            
-            
+            });                     
             
             $('.show_add_div').css({
                 'display': 'none'
@@ -311,7 +309,7 @@ app.directive('profilePrivateprofile', [
                 
                 $('.fa-plus').css({
                 'display': 'block'
-                })
+            })
 	    };
 
 	    $scope.prepareEditExp = function(exp){
@@ -354,9 +352,52 @@ app.directive('profilePrivateprofile', [
                $pull: { 
                    experiences : exp
                }
-           });
-            
+           });            
         };
+
+
+        $scope.addSkill = function () {
+	        if(obj.skills === undefined){
+        		obj.skills = [];
+        	}
+
+        	Tags.get({tag: $scope.tag},function(tags){
+				if(tags.length === 0){
+					Tags.create({
+              			tag: $scope.tag 
+          			});
+				}
+			});
+
+			var exist = false;
+
+			for (var i = obj.skills.length - 1; i >= 0; i--) {
+				if(obj.skills[i].tag === $scope.tag)
+				{
+					exist = true;
+				}
+			}
+
+			if(exist === false){
+				obj.skills.push({
+            		tag : $scope.tag
+				});
+
+	        	User.update({
+	                _id: obj._id
+	            },{ $push: {
+	                  skills:{
+	                    tag : $scope.tag
+	                  }
+	              }
+	            });
+
+	            if(obj != null){
+		            $scope.user = obj;
+		            console.log($scope.skills);
+		   		}
+			}        
+	    };
 
 	    var getUser = function () {
 			SessionService.getSession().success(function(response) {
