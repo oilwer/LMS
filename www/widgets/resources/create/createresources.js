@@ -17,7 +17,8 @@ app.directive('resourcesCreateCreateresources', [
     return {
       templateUrl: settings.widgets + 'resources/create/createresources.html',
       link: function(scope, element, attrs) {
-
+          
+          
         //get session_user
         scope.session_user;
         SessionService.getSession().success(function(response){
@@ -105,6 +106,7 @@ app.directive('resourcesCreateCreateresources', [
            scope.$root.$broadcast('refreshResourceList');
         };
         scope.closeModalSession = function() {
+            $(".uploads").empty();
             scope.resourceTitle = "";
             scope.courseSelect.repeatSelect = "";
             scope.$parent.hideModal();

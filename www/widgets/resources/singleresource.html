@@ -13,7 +13,7 @@
                     <div class="col-md-24 box__header--singleLine">
                         <h1> {{theResource.title}} </h1>  
                         <button class="btn btn--resources" ng-click="toggleUpdateResourceModal()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit resource</button>
-                        <p>by: {{theResource.uploaded_by}} </p>
+                        <p>Created: {{theResource.uploaded_on | date}} by: {{theResource.uploaded_by}} </p>
                     </div>
                         <div class="col-md-24 resourceContent"></div>
                         <div class="col-md-12 col-md-offset-6 resourceFile"></div>

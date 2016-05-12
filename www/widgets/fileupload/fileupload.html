@@ -8,19 +8,22 @@
                type="file"
                ngf-select
                ng-model="file"
+               ng-change="fileChanged()"
                name="file"
+               id=file
                ngf-max-size="20MB"
                multiple
             />
         </span>
+        
         <p>{{progress}}</p>
-
         <!--Image thumbnail: <img style="width:100px;" ngf-thumbnail="file || '/thumb.jpg'"/>-->
-        <i ng-show="upload_form.file.$error.required">*required</i><br>
-        <i ng-show="upload_form.file.$error.maxSize">File too large
-        {{up.file.size / 1000000|number:1}} MB: max 20M </i>
+        <p ng-show="upload_form.file.$error.maxSize">File too large
+        {{up.file.size / 1000000|number:1}} MB: max 20M </p>
         <!--     <button type="submit" ng-click="upload()">Upload</button> -->
     </span>
+      <div class="uploads"></div>
   <input type="text" ng-model="output" class="output" readonly> <i class="fa fa-times-circle" ng-click="emptyInput()" aria-hidden="true"></i>
   </div>  <!--.input-group-->
+    
 </form>

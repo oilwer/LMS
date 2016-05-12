@@ -7492,6 +7492,15 @@ body {
   background-color: rgba(0, 0, 0, 0.2);
   overflow: hidden;
 }
+.manager h1 {
+  display: inline-block;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+.manager .btn--add {
+  margin-top: -4px;
+  margin-left: 10px;
+}
 /*Styles for global .box classes
 
 This is a LESS file; only style for the element class .box allowed!
@@ -7610,6 +7619,7 @@ This is a LESS file; only style for the element class .box allowed!
   padding-bottom: 10px;
 }
 .box__header--singleLine p {
+  font-size: 1em;
   display: block;
   padding: 0px;
 }
@@ -8368,8 +8378,13 @@ input[type=checkbox] {
 .modal--createResources h2 {
   font-size: 1.5em;
   font-family: 'Roboto', 'arial', sans-serif;
-  padding: 20px 0px;
-  text-align: center;
+  padding: 20px 0px 5px 0px;
+}
+.modal--createResources label[for="file"] {
+  margin-top: 20px;
+}
+.modal--createResources label[for="descriptionEditor"] {
+  margin-top: 20px;
 }
 .assignment-meta {
   padding: 30px 40px;
@@ -8660,6 +8675,11 @@ trix-toolbar .button_group input[type=button] {
   bottom: 25px;
   cursor: pointer;
 }
+fileupload-fileupload .uploads {
+  position: absolute;
+  right: 36px;
+  top: 8px;
+}
 table {
   width: 100%;
 }
@@ -8854,6 +8874,7 @@ dashboard-courseslistdash .assignClass {
   padding: 3px 2px 2px 2px;
 }
 .resourceContent {
+  padding-top: 30px;
   padding-bottom: 30px;
   margin-bottom: 30px;
 }
@@ -8907,14 +8928,12 @@ dashboard-courseslistdash .assignClass {
   top: 12px;
   left: 15px;
 }
-.resources h1,
-.manager h1 {
+.resources h1 {
   display: inline-block;
-  padding-bottom: 30px;
+  padding-bottom: 8px;
   padding-top: 20px;
 }
-.resources .btn--add,
-.manager .btn--add {
+.resources .btn--add {
   margin-top: -4px;
   margin-left: 10px;
 }
@@ -8961,6 +8980,9 @@ form[name="courseType"] button:hover {
   background: #e74c3c;
   border-radius: 50%;
   text-align: center;
+}
+.formError--select {
+  margin-right: 18px !important;
 }
 form[name="assignmentType"] button {
   padding: 20px 0px;
