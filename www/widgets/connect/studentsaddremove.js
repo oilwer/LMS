@@ -64,7 +64,7 @@ app.directive('connectStudentsaddremove', [
 
 
 	    scope.courseUrl = courseUrl;
-	   var onLoad = function(){
+	    var onLoad = function(){
 
 	   	  scope.course = "";
 
@@ -133,44 +133,44 @@ app.directive('connectStudentsaddremove', [
            onLoad();
 
            var updateDropdownCourseList = function(){
-             alert("updateDropdownCourselist");
            		//list of courses for dropdown menu
            		scope.dropDownCourseList = [];
 
-        				//loop through list of all courses
-        				for (var i = 0; i < scope.AvailableCourses.length; i++) {
+				//loop through list of all courses
+				for (var i = 0; i < scope.AvailableCourses.length; i++) {
 
-          					//if we are not in that course's page, add the course to the dropdown menu
-          					if(scope.AvailableCourses[i].url != scope.courseUrl){
-          						scope.dropDownCourseList.push(scope.AvailableCourses[i]);
-          					}
-        				      };
+  					//if we are not in that course's page, add the course to the dropdown menu
+  					if(scope.AvailableCourses[i].url != scope.courseUrl){
+  						scope.dropDownCourseList.push(scope.AvailableCourses[i]);
+  					}
+				};
            };
 
-           scope.filterByRegisteredStudents = function(){
-
+           /*scope.filterByRegisteredStudents = function(){
              //check if course code is included in url and updates dropDownCourseList so the current course is not included
-             updateDropdownCourseList();
+             
 
-             if (scope.searchStudents === '' || scope.searchStudents === null || scope.searchStudents === undefined){
+             if (scope.notAdded === '' || scope.notAdded === null || scope.notAdded === undefined){
                  return true;
              }
 
              return RegStudent.filter(function(RegStudent) {
                //if course name entered
-                 return RegStudent.name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1 //returns a bool
+                 return RegStudent.name.toLowerCase().indexOf(scope.notAdded.toLowerCase()) > -1 //returns a bool
                  //if course code entered
-                   || RegStudent.last_name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1 //returns a bool
-                   || RegStudent.first_name.toLowerCase().indexOf(scope.searchStudents.toLowerCase()) > -1; //returns a bool
+                   || RegStudent.last_name.toLowerCase().indexOf(scope.notAdded.toLowerCase()) > -1 //returns a bool
+                   || RegStudent.first_name.toLowerCase().indexOf(scope.notAdded.toLowerCase()) > -1; //returns a bool
              }).length > 0; //returns a bool
-           }
+           }*/
 
             //filters studentlist according to registered courses
           scope.filterByCourse = function(student) {
 
-              if (scope.byCourse === '' || scope.byCourse === null || scope.byCourse === undefined){
-    			      	return true;
-    			    }
+          	  console.log("filter by course");
+          	  updateDropdownCourseList();
+
+              if (scope.byCourse === '' || scope.byCourse === null ||scope.byCourse === undefined){                         return true;
+			  }
 
     			    return student.courses.filter(function(course) {
     			    	  //if course name entered

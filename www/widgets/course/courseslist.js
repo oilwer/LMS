@@ -20,12 +20,8 @@ app.directive('courseCourseslist', [
 
       var getCourse = function(course)
       {
-        Course.get({_id: course._id}, function(course)
-        {
-
+        Course.get({_id: course._id}, function(course){
           return course[0];
-
-
         });
       }
 
