@@ -51,7 +51,6 @@ app.directive('courseCreateCreatecourse', [
         var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
           ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
             console.log(slackChannel);
-            alert(slackChannel);
             if(slackChannel.error != null){
               return;
             }

@@ -12,7 +12,7 @@ app.directive('adminUsermanager', [
       link: function($scope, element, attrs) {
 
         $scope.btnAddOrUpdateTextUser = 'Add user';
-        
+
         // Updates the GUI according to edit/add-state
         var isEditing = false;
 
@@ -20,8 +20,8 @@ app.directive('adminUsermanager', [
         var refresh = function(){
           $scope.userlist = User.get();
         };
-        
-      
+
+
         //Runs on page update
         refresh();
 
@@ -29,7 +29,7 @@ app.directive('adminUsermanager', [
         $scope.addOrUpdateUser = function() {
 
             // TODO: Check if not empty - FIX IN MOONGOSE
-             
+
               // If it's not editing
               if(!isEditing){
                   var user = $scope.user;
@@ -62,13 +62,12 @@ app.directive('adminUsermanager', [
                   $scope.user = "";
                   user = null;
               }
-              
-              // If editing 
+
+              // If editing
               else {
 
                 $scope.btnAddOrUpdateTextUser = 'Add user';
                 var user = $scope.user;
-                console.log(user._id);
                 //Asks UserService to update User
                 User.update({
                     //searchObject
@@ -105,22 +104,21 @@ app.directive('adminUsermanager', [
                 isEditing = false;
               }
           };
-          
+
           $scope.remove = function(targetUser) {
                 if ($window.confirm("Do you want to delete "+ targetUser.first_name)) {
-                    console.log("Removed: ", targetUser);
                     $scope.user = "";
                     $scope.btnAddOrUpdateTextUser = 'Add user';
-          
+
             // removes user with a surtain id
                     User.remove({_id: targetUser._id});
-                    
+
                     refresh();
                 } else {
                     refresh();
                 }
             }
-          
+
 
           //Gui function fetch selected user data for editing
           $scope.prepareEdit = function (id){
@@ -129,11 +127,8 @@ app.directive('adminUsermanager', [
               //get info from db to put in the form boxes
               $scope.user = User.getById(id);
           };
-            
-          //Gui function remove user
-          
-      
 
+          //Gui function remove use
       }
     };
   }

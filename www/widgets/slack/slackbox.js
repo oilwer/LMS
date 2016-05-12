@@ -43,14 +43,12 @@ app.directive('slackSlackbox', [
 
         var sendMessage = function(channelName, text, UserIdentifier, callback){
 
-          console.log(channelName, savedUser);
 
           var name = channelName;
           var obj = savedUser.courses.filter(function ( obj ) {
             return obj.code === name;
           })[0];
 
-          console.log(obj);
 
           ChatService.sendMessage(obj.slack_channels[0].channelId, text, UserIdentifier).success(function(response){
             //console.log("Response", response);
@@ -240,7 +238,6 @@ app.directive('slackSlackbox', [
           User.get({_id: response.user._id, _populate: "courses"}, function(user){
             var coursesWithToken = [];
 
-            console.log(user[0]);
 
             for (var i = 0; i < user[0].courses.length; i++) {
               if(user[0].courses[i].slack_channels != 0){
@@ -251,7 +248,6 @@ app.directive('slackSlackbox', [
             scope.courselist = coursesWithToken;
             savedUser = user[0];
 
-            console.log(scope.slackcourses);
           });
         });
 
