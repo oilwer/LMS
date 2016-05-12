@@ -101,6 +101,14 @@ app.directive('courseCoursepage', [
       scope.castTheAssignmentModal = function() {
           scope.$root.$broadcast('showTheAssignmentModal');
       };
+          
+      scope.castTheResourceModal = function() {
+          scope.$root.$broadcast('showTheResourceModal');
+      };
+          
+          
+                    
+
 
 
 

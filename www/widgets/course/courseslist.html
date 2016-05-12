@@ -24,21 +24,17 @@
                 <tr ng-repeat="course in courses track by $index">
 
 
-                    <td ng-if="course.status == true">
+                    <td ng-if="course.status == true" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
-                        <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                             {{course.name}}
-                        </a>
                     </td>
-                    <td ng-if="course.status == true">
-
+                    <td ng-if="course.status == true" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                             {{course.code}}
-
                     </td>
-                    <td ng-if="course.status == true">
+                    <td ng-if="course.status == true" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                       {{course.end | date:'shortDate' }}
                     </td>
-                    <td>
+                    <td ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <i ng-if ="course.status == true"class="fa fa-dot-circle-o">
                             <span ng-class="class" ng-if=""></span>
                         </i>
