@@ -117,6 +117,16 @@ app.directive('courseCoursepage', [
         //     //display changes in view (notifications)
         //     //Progress
         // };
+
+        //show hide modal create course
+        scope.modalShown = false;
+
+        scope.toggleModal = function() {
+          scope.modalShown = !scope.modalShown;
+          //fix for toolbar toggle, element event don't fire on modalshow()
+          scope.isToolbarPersonalOpen = false;
+          scope.isToolbarCreateOpen = false;
+        };
       }
     };
   }

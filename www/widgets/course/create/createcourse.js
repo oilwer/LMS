@@ -101,6 +101,11 @@ app.directive('courseCreateCreatecourse', [
 
         //Gui function add course
         scope.addOrUpdateCourse = function(){
+            if(typeof scope.course.name !== 'undefined'){
+
+              var result = AvailableCourses.filter(function( obj ) {
+              return obj.name == selectedCourseName;
+            });
 
           console.log("c name", scope.course.name);
 
@@ -133,7 +138,7 @@ app.directive('courseCreateCreatecourse', [
                           createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
                           console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
                       });
-                  } 
+                  }
                   else{
                     console.log("You need to add your slack token");
                   }
@@ -341,8 +346,8 @@ app.directive('courseCreateCreatecourse', [
           obj.start = new Date(obj.start);
 
           scope.course = obj;
-            scope.incrementStep();  
-        
+            scope.incrementStep();
+
         }
 
 
