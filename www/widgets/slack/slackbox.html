@@ -3,7 +3,6 @@
         <div class="btn-slackbox" ng-click="toggleCreateSlackBar()">
             <i class="fa fa-commenting-o fa-2x"></i>
         </div>
-
         <ul class=" slackbox-options slackbox-options--create" ng-show="isToolbarCreateSlackOpen">
             <div class="slackbox-option_content">
                 <li>Channels<i ng-click="toggleCreateSlackBar()" class="fa fa-times exit2" aria-hidden="true"></i>
@@ -20,24 +19,18 @@
 </ul>
 
 <div id="slackbar" style="position:fixed; width:100%; bottom:220px; height:100px;">
-
-<div ng-repeat="course in slackcourses track by $index"  class="col-md-6 wind-slackbox" ng-show="course.isOpen" style="position: static; display:block;">
-    <div class="col-md-24 box__header">#{{course.name}} <i ng-click="toggleCloseChatBox(course)" class="fa fa-times exit" aria-hidden="true"></i></div>
-
-    <div class="col-md-24 windowcont-slackbox">
-
-      <div class="msg" ng-repeat="msg in course.messages">
-        <div style="font-weight: bold;">{{msg.user}}</div>
-        <div>{{msg.text}}</div>
-        <hr>
-
+  <div ng-repeat="course in slackcourses track by $index"  class="col-md-6 wind-slackbox" ng-show="course.isOpen" style="position: static; display:block;">
+      <div class="col-md-24 box__header">#{{course.name}} <i ng-click="toggleCloseChatBox(course)" class="fa fa-times exit" aria-hidden="true"></i></div>
+      <div class="col-md-24 windowcont-slackbox">
+        <div class="msg" ng-repeat="msg in course.messages">
+          <div style="font-weight: bold;">{{msg.user}}</div>
+          <div>{{msg.text}}</div>
+          <hr>
+        </div>
       </div>
-
-    </div>
-    <form class="form--chat" ng:submit="sendM(course)">
-      <input ng-model="course.input" type="text" name="Fname" autocomplete="off"
-      class="form-control" placeholder="Write message..." rows="3">
-  </form>
-</div>
-
+      <form class="form--chat" ng:submit="sendM(course)">
+        <input ng-model="course.input" type="text" name="Fname" autocomplete="off"
+        class="form-control" placeholder="Write message..." rows="3">
+    </form>
+  </div>
 </div>
