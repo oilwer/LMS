@@ -1,24 +1,23 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
         <div class="row table-row heightfull">
-
              <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
-
-            <div class="col-sm-21 col-md-21">
+            <div class="col-sm-22 col-md-22 col-md-offset-1">
               <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
-                <div class="box">
-                    <!-- HEADER -->
-                    <div class="box__header">
-                       <h2>
-                           <i class="fa fa-user"></i>
-                           Participants
-                       </h2>
-<a ng-if="showParticipants" ng-href="/courses/{{course.url}}/participants/edit" class="edit">Add<i class="fa fa-cog cog"></i>                        </a>
-                    </div>
+
+
                     <!-- SEARCH -->
-                    <div class="box__content list--publicstudents">
+                    <div class="box box__content list--publicstudents">
+                      <div class="col-sm-24">
+                        <h1>
+
+                            Participants
+                            <a ng-if="showParticipants" ng-href="/courses/{{course.url}}/participants/edit" class="btn btn--courses edit"><i class="fa fa-pencil"></i> Edit</a>
+                        </h1>
+
+                      </div>
                         <form id="newsearch" method="get">
                            <input type="text" id="hej" ng-model="searchStudents" placeholder="Search participants">
                         </form>
@@ -29,8 +28,8 @@
                             </ul>
                         </div>  <!-- END LIST -->
                     </div><!--.box__content-->
-                </div>
-            </div><!--.col-->
+
+          </div>
         </div><!--.row-->
     </div><!--.container-->
 </div><!--.app_container-->
