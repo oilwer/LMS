@@ -74,9 +74,7 @@ app.directive('resourcesResources', [
             {
               //request user details, fallback if user changed
               User.get({_id: session_user._id}, function(user){
-                  console.log(user);
                   var courses = user[0].courses;
-                  console.log(user[0]);
 
                   //loop the courses for resources
                   for(var i = 0; i < courses.length; i++) {

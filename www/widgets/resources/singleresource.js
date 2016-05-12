@@ -20,7 +20,6 @@ app.directive('resourcesSingleresource', [
       link: function(scope, element, attrs) {
 
 
-          var session_user;
           var theLocation;
           var theLocationPath;
           var url;
@@ -51,11 +50,22 @@ app.directive('resourcesSingleresource', [
               //console.log(theLocation);
               Resource.get({url: theLocation.pop()}, function(resource) {
                   scope.theResource = resource[0];
-                  console.log(scope.theResource);
+                  
+                  User.get({_id: scope.theResource.uploaded_by}, function(user) {
+                      scope.theResource.uploaded_by = user[0].first_name + " " + user[0].last_name;
+                  });
+                  
                   $(".resourceContent").append(scope.theResource.content);
-                  var file = scope.theResource.filename.split(".").pop();
-                  var fileUrl = "uploads/" + scope.theResource.filename;
 
+                  if (scope.theResource.filename) {
+                    var file = scope.theResource.filename.split(".").pop();
+                    var fileUrl = "uploads/" + scope.theResource.filename;
+                  }
+                  else {
+                      var file = undefined;
+                      var fileUrl = undefined;
+                  }
+                  
                   //check file type; stored as String in DB - update to check for filetype
                   if (file === "jpg" || file === "png" || file === "gif") {
                       var theFile = '<a target="_self" class="download--picture" href="' + fileUrl + '" download><img src="uploads/' + scope.theResource.filename+ '"></a>';
@@ -67,11 +77,12 @@ app.directive('resourcesSingleresource', [
                   }
                   else if (file === "mp4" || file === "ogg" || file === "m4v") {
                       console.log("video");
-                      $('.resourceFile').empty().append('<video controls><source src="' + fileUrl + '" type="video/mp4"><source src="' + scope.theResource.filename + '" type="video/ogg"></video>');
-
+                      $('.resourceFile').empty().append('<video controls><source src="' + fileUrl + '" type="video/mp4"><source src="' + scope.theResource.filename + '" type="video/ogg"></video>');                    
+                  } 
+                  else if ( file === undefined) {
+                      //print nothing, content is good enought
                   }
                   else {
-                      console.log(file);
                     $('.resourceFile').empty().append('<a target="_self" href="uploads/' + scope.theResource.filename + '" download>' + scope.theResource.filename + '</a>');
                   }
 
@@ -83,6 +94,12 @@ app.directive('resourcesSingleresource', [
         scope.updateLocation = function(resourceUrl) {
             $location.path(theLocationPath + resourceUrl);
         }
+        
+        //show hide modal update resources
+        scope.updateResourceModalShown = false;
+        scope.toggleUpdateResourceModal = function() {
+            scope.updateResourceModalShown = !scope.updateResourceModalShown;
+        };
 
       } //link
     };
