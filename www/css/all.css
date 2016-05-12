@@ -9907,7 +9907,7 @@ box--label--resources h2 {
 .profile__stuff__skills .fa-pencil,
 .profile__stuff__projects .fa-pencil,
 .profile__stuff__other .fa-pencil,
-.fa-plus {
+.profile__stuff__ex .fa-plus {
   position: absolute;
   top: 35px;
   right: 20px;
@@ -9918,9 +9918,17 @@ ul > li > .fa-trash {
   float: right;
   margin-left: 10px;
   color: rgba(62, 71, 79, 0.75);
+  margin-top: 2px;
+}
+.experienceList p:first-child {
+  margin: 0 -3%;
+  cursor: pointer;
+  display: inline-block;
+  width: 80%;
 }
 .experienceList p {
   margin: 3% -1%;
+  cursor: pointer;
 }
 .experienceList p .bold {
   font-weight: 600;
