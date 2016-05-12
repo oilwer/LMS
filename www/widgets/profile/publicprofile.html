@@ -64,14 +64,18 @@
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
                         </div>
                     </div>
-                    <div class="col-sm-12 col-md-12 col-lg-12">
+                    <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
                             <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
-                             <ul ng-repeat = 'experience in experiences'>
-                                <li>{{experience.company_school}} - {{experience.title_education}}</li>
+                            <ul class="experienceList" ng-repeat = 'experience in experiences'>
+                                <li>     
+                                    <p ng-click="showMoreExpInfo(experience)">{{experience.title_education}} - {{experience.company_school}}</p>
+                                    <p ng-show="showOnClickMoreInfo"><span class="bold">Location: </span>{{experience.location}}</p>
+                                    <p ng-show="showOnClickMoreInfo"><span class="bold">Description: </span>{{experience.info}}</p>
+                                </li>
                             </ul>
-                        </div>
-                    </div>
+                        </div><!--Empty div to get spacing-->
+                    </div> <!-- .col -->
                 </div>
                 <div class="row">
                     <div class="col-sm-24 col-md-24 col-sm-24">

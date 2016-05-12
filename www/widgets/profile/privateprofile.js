@@ -7,6 +7,7 @@ app.directive('profilePrivateprofile', [
   "$http",
   "$window",
   "Upload",
+  "Tags",
   function(
     settings,
     User,
@@ -15,7 +16,8 @@ app.directive('profilePrivateprofile', [
     $location,
     $http,
     $window,
-    Upload
+    Upload,
+    Tags
      ) {
 
     return {
@@ -25,7 +27,6 @@ app.directive('profilePrivateprofile', [
   		var redirectSuccess = function(){
 	    	var code = $location.search().code; //slack code returned in url if auth success
 	    	if(code != undefined){
-
 	    		//Name of the slackTeam changes for each company using LMS, for example
 	    		//the following means the user will be connected to lmsproject.slack.com
 	    		var slackTeam = "lmsproject"
@@ -35,10 +36,8 @@ app.directive('profilePrivateprofile', [
 	    		//uses temp code to get access token
 	    		$http.get(url).then(function(response) {
 		    		var token = response.data.access_token;
-            var slack_username = response.data.user_id;
-
-            console.log(response);
-
+            		var slack_username = response.data.user_id;
+     
 		    		//gets session
 		    		SessionService.getSession().success(function(response) {
 		    				//returns user from session
@@ -91,6 +90,21 @@ app.directive('profilePrivateprofile', [
 	            $scope.courses = data.courses;
 
 	            $scope.experiences = data.experiences;
+	            $scope.skills = data.skills;
+
+	            $scope.tags = [];
+	            Tags.get({}, function(res){
+	            	for (var i = 0; i < res.length; i++) {
+	            		$scope.tags.push(res[i].tag);
+	            	};
+
+            	  	$( "#skills" ).autocomplete({
+			        	source: $scope.tags,
+			        	select: function(e, ui) {
+					        $scope.searchTags = ui.item.value;
+					    }
+			        });
+	            });
 
 	            obj = data;
 
@@ -244,8 +258,7 @@ app.directive('profilePrivateprofile', [
 	            });
 
 	            if(obj != null){
-		            $scope.user = obj;
-                    
+		            $scope.user = obj;                    
 		   		}
 
 	            //$scope.expEnabled = true;
@@ -273,8 +286,6 @@ app.directive('profilePrivateprofile', [
             }
             
         };
-        
-          
 
 	    editExp = function(){  
             
@@ -297,9 +308,7 @@ app.directive('profilePrivateprofile', [
 				"experiences.$.info": $scope.info
             }, function(res){
                 console.log(res);
-            });
-            
-            
+            });                     
             
             $('.show_add_div').css({
                 'display': 'none'
@@ -311,7 +320,7 @@ app.directive('profilePrivateprofile', [
                 
                 $('.fa-plus').css({
                 'display': 'block'
-                })
+            })
 	    };
 
 	    $scope.prepareEditExp = function(exp){
@@ -354,8 +363,68 @@ app.directive('profilePrivateprofile', [
                $pull: { 
                    experiences : exp
                }
-           });
+           });            
+        };
+    
+
+        $scope.addSkill = function () {
+	        if(obj.skills === undefined){
+        		obj.skills = [];
+        	}
+
+        	Tags.get({tag: $scope.searchTags},function(tags){
+				if(tags.length === 0){
+					Tags.create({
+              			tag: $scope.searchTags 
+          			});
+          			$scope.tags.push($scope.searchTags);
+				}
+			});
+
+			var exist = false;
+
+			for (var i = obj.skills.length - 1; i >= 0; i--) {
+				if(obj.skills[i].tag === $scope.searchTags)
+				{
+					exist = true;
+				}
+			}
+
+			if(exist === false){
+				obj.skills.push({
+            		tag : $scope.searchTags
+				});
+
+	        	User.update({
+	                _id: obj._id
+	            },{ $push: {
+	                  skills:{
+	                    tag : $scope.searchTags
+	                  }
+	              }
+	            });
+
+	            if(obj != null){
+		            $scope.user = obj;
+		            $('input').val('');
+		   		}
+			}        
+	    };
+
+	    $scope.removeSkill = function(skill){ 
+            var i = obj.skills.indexOf(skill)
             
+            if(i != -1){
+                obj.skills.splice(i,1);
+            }
+            
+           User.update({
+                  _id: obj._id,
+           },{
+               $pull: { 
+                   skills : skill
+               }
+           });            
         };
 
 	    var getUser = function () {
@@ -393,20 +462,21 @@ app.directive('profilePrivateprofile', [
             });
         }
 
-	   showPicture = function(){
+	    showPicture = function(){
 	   		var pic = ""
-        if(obj == null){ return }
-	   		if(obj.profile_pic === undefined || obj.profile_pic === ""){
-	   			pic = "/img/profile_default.png";
-                $('.upload_img').css({
-                    'opacity': '1',
-                    'cursor': 'pointer'
-                })
-	   		}else{
-                showUploadDivOnHover();
-	   			pic = './uploads/' + obj.profile_pic;
-	   		}
-	    	$('.profile__about__img').css({
+        	if(obj == null){ return }
+
+   			if(obj.profile_pic === undefined || obj.profile_pic === ""){
+   				pic = "/img/profile_default.png";
+            	$('.upload_img').css({
+                	'opacity': '1',
+                	'cursor': 'pointer'
+            	})
+   			}else{
+            	showUploadDivOnHover();
+   				pic = './uploads/' + obj.profile_pic;
+   			}
+    		$('.profile__about__img').css({
 	    		'background' : 'url('+ pic + ')',
 	    		'-webkit-background-size': 'contain',
 			    '-moz-background-size': 'contain',
@@ -446,7 +516,6 @@ app.directive('profilePrivateprofile', [
 	            console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
 	        });
     	};
-
 
 		getUser();
       }

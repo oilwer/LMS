@@ -1,6 +1,7 @@
 <div class="app_container heightfull">
     <div class="container-fluid profile heightfull">
 
+
         <div class="row heightfull table-row newtable-row">
             <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container">
                 <div class="profile__about">
@@ -105,9 +106,16 @@
                 <div class="row">
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__skills">
-                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
-                            <i class="fa fa-pencil"></i>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
+
+                            <input id="skills" ng-model="searchTags">
+
+                            <i ng-click="addSkill()" class="fa fa-plus"></i>
+
+                            <ul ng-repeat = 'skill in skills'>  
+                                <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
+                            </ul>                          
+                    
                         </div><!--Empty div to get spacing-->
                     </div><!-- .col -->
                     
@@ -134,7 +142,7 @@
                             </div><!---.profile__description-->
                             <ul class="experienceList" ng-repeat = 'experience in experiences'>
                                 <li>     
-                                    <p ng-click="showMoreExpInfo(experience)">{{experience.company_school}} - {{experience.title_education}}</p><i class="fa fa-trash" ng-click="removeExp(experience)" aria-hidden="true"></i><i class="fa fa-pencil" ng-click="prepareEditExp(experience)"></i>
+                                    <p ng-click="showMoreExpInfo(experience)">{{experience.title_education}} - {{experience.company_school}}</p><i class="fa fa-trash" ng-click="removeExp(experience)" aria-hidden="true"></i><i class="fa fa-pencil" ng-click="prepareEditExp(experience)"></i>
                                 <p ng-show="showOnClickMoreInfo"><span class="bold">Location: </span>{{experience.location}}</p>
                                     <p ng-show="showOnClickMoreInfo"><span class="bold">Description: </span>{{experience.info}}</p></li>
                             </ul>

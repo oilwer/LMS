@@ -56,7 +56,7 @@ module.exports = function(mongoose){
    slack_token: String, //holds slack token
    slack_username: String,
    skills: [{
-        type: mongoose.Schema.Types.ObjectId, ref: 'Tags'
+      tag: String
     }],
     experiences:[{
       company_school: String,

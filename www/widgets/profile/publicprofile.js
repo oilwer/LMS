@@ -52,8 +52,18 @@ app.directive('profilePublicprofile', [
               $scope.first_name = "No profile found";
           }
             showPicture();
-
         }); 
+
+        $scope.showMoreExpInfo = function() {
+          if (this.showOnClickMoreInfo == true){
+              this.showOnClickMoreInfo = false;
+          } else{
+              this.showOnClickMoreInfo = true;
+          }
+            
+        };
+        
+
       } 
     };
   }
