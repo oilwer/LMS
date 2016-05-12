@@ -9359,18 +9359,12 @@ dashboard-activities button:focus {
 .box__header h2 {
   display: inline;
 }
-.box__header .edit {
-  text-decoration: underline;
+.box__content .edit {
   font-size: 15px;
-  margin-right: 10px;
-  margin-top: 0%;
-  float: right;
   color: white;
 }
-.box__header .edit .done {
-  margin-right: 4px;
-  margin-top: 2%;
-  color: white;
+.box__content .edit .done {
+  color: black;
   background-color: transparent;
 }
 .box__header .fa-cog {

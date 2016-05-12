@@ -1,21 +1,21 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row heightfull">
-
+        <div class="row table-row ">
             <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
+              <div class="col-sm-22 col-md-22 col-md-offset-1">
+                    <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+                    <div class="box box__content">
+                      <div class="col-sm-24">
+                        <h1>
+                          Edit participants
+                          <a ng-href="courses/{{ courseUrl }}/participants" class="btn btn--courses edit">Done
+                          </a>
+                        </h1>
 
-            <div class="col-sm-21 col-md-21">
-                <div class="box body--margin col-sm-24">
-                    <div class="box__header">
-                        <h2>
-                            <i class="fa fa-cog "></i>Edit participants
-                        </h2>
-                        <a ng-href="courses/{{ courseUrl }}/participants" class="edit"><i class="fa fa-check done"></i>Back
-                        </a>
-                    </div>
-                    <div class="box__content">
+                      </div>
+
 
                         <div class="col-sm-12">
                             <div class="list--students_options">
@@ -31,7 +31,7 @@
                             </div>
                             <div class="list--students">
                                 <h3>Add people</h3>
-                                <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name...">
+                                <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name">
                                 <select ng-model="byCourse" class="form-control">
                                     <option value="" ng-selected=true>-- All Courses --</option>
                                     <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
@@ -60,7 +60,7 @@
                         <div class="col-sm-12">
                             <div class="list--students list--students--added">
                                 <h3>Participants in {{ course.name }}</h3>
-                                <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name...">
+                                <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
 
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
@@ -83,6 +83,7 @@
                             </div><!--.list--students-->
                         </div><!--.col-->
                     </div><!--.box-content -->
+                  </div>
                 </div><!--.box .col-->
             </div><!--.col-->
 

@@ -46,12 +46,14 @@
                             <h1 class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
                                 <i class="fa--heading fa fa-info-circle"></i>
                                 Course details
-                                <button ng-if="auth" href="" ng-click="toggleModal()" class="btn btn--courses"><i class="fa fa-leaf"></i> Edit</button>
+
 
                                 <modal-dialog show='modalShown' width='80%'>
                                     <div course-create-editcourse></div>
                                 </modal-dialog>
-                                <i ng-hide="isCoursesOpen" class="fa--toggle fa fa-chevron-down"></i><i ng-show="isCoursesOpen" class="fa--toggle fa fa-chevron-up"></i>
+                                <button ng-if="showCourseinfo" href="" ng-click="toggleModal()" class="fa--toggle btn btn--courses"><i class="fa fa-pencil"></i> Edit</button>
+                                <button ng-hide="isCoursesOpen" class="btn btn--courses"><i class="fa fa-chevron-down"></i> Show</button>
+                                <button ng-show="isCoursesOpen" class=" btn btn--courses"><i class="fa fa-chevron-up"></i> Hide</button>
                             </h1>
 
           <!--  <div class="profile__contact">

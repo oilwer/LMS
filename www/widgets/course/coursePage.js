@@ -25,7 +25,11 @@ app.directive('courseCoursepage', [
 
         var session_user;
         SessionService.getSession().success(function(response){
-          session_user = response.user;
+          if(response.user.role == "student"){
+            scope.showCourseinfo = false;
+          } else {
+            scope.showCourseinfo = true;
+          }
         });
 
 
@@ -101,13 +105,13 @@ app.directive('courseCoursepage', [
       scope.castTheAssignmentModal = function() {
           scope.$root.$broadcast('showTheAssignmentModal');
       };
-          
+
       scope.castTheResourceModal = function() {
           scope.$root.$broadcast('showTheResourceModal');
       };
-          
-          
-                    
+
+
+
 
 
 
