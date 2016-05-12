@@ -8160,6 +8160,20 @@ input[type=checkbox] {
 .btn-toolbar--personal:hover .toolbar-options--personal {
     display: inline-block;
 }*/
+#slackbar {
+  position: fixed;
+  width: 70%;
+  bottom: 220px;
+  z-index: 9999;
+  height: 50px;
+}
+#slackbar .slackwindow {
+  position: static;
+  float: right;
+  z-index: 9999;
+  width: 50%!important;
+  display: block;
+}
 .slackbox {
   position: fixed;
   right: 7px;
@@ -8209,15 +8223,6 @@ input[type=checkbox] {
   width: 200px;
   right: 10px;
   height: auto;
-}
-.wind-slackbox {
-  margin-right: 15em;
-  bottom: 100%;
-  position: fixed;
-  right: 13em;
-  bottom: 0em;
-  margin-right: 4em;
-  z-index: 40;
 }
 .windowcont-slackbox {
   border-right: 2px solid #3e474f;
