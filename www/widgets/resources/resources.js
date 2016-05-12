@@ -70,9 +70,88 @@ app.directive('resourcesResources', [
               });
           }
 
+          function findWithAttr(array, attr, value) {
+              for(var i = 0; i < array.length; i += 1) {
+                  if(array[i][attr] === value) {
+                      return i;
+                  }
+              }
+          }
+
             var getAllResources = function()
             {
+
+              scope.resourceList = [];
+
+              SessionService.getSession().success(function(session) {
+
+            //    console.log(session.user);
+                // Updates session
+                SessionService.updateSession(session.user.email).success(function(session) {
+              //    console.log("Updated session: ", session);
+                  session_user[0] = session;
+
+                    Course.get({students: session._id, _populate:"resources"}, function(mycourses)
+                    {
+                      console.log(mycourses);
+
+                      for (var i = 0; i < mycourses.length; i++) {
+                        for (var x = 0; x < mycourses[i].resources.length; x++) {
+
+                          console.log(mycourses[i].resources[x]);
+
+                          scope.resourceList.push(mycourses[i].resources[x]);
+
+                          var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
+
+                        //  console.log(User.get({_id: mycourses[i].resources[x].uploaded_by}));
+
+                          //  scope.resourceList[indexOfResource].author;
+                             User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+                           {
+                             scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
+                           });
+
+                          /*
+                          User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+                          {
+                            // returnAllResources(user);
+                            console.log(i, x);
+
+                            console.log(user[0]);
+
+                            console.log(mycourses[i].resources[x]);
+
+                            scope.resourceList.push(mycourses[i].resources[x]);
+
+                          });
+                          */
+
+
+                        }
+                      }
+
+                    });
+
+
+              //    console.log(session.courses);
+
+
+                  // Get an array of all courses i can access
+                      // Loop thorugh my courses
+                          // Loop through theses course's resoucres
+                              // Add to resourceslist
+
+
+                // GUI stuff
+
+                });
+
+              });
+
+
               //request user details, fallback if user changed
+              /*
               User.get({_id: session_user._id}, function(user){
                   var courses = user[0].courses;
 
@@ -104,6 +183,8 @@ app.directive('resourcesResources', [
                       });
                   }
               });
+
+              */
             }
 
 
