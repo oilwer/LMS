@@ -41,11 +41,11 @@
 .btn--manager {
     float:right;
     margin-top: 12em;
-    background: @RGBresources;
+    background: @RGBmanager;
     color: #fff;
     transition: all 0.3s ease-in-out;
     &:hover {
-        background: fade(@RGBresources,85%);
+        background: fade(@RGBmanager,85%);
         transition: all 0.3s ease-in-out;
     }
     &:active, &:focus {
@@ -107,6 +107,19 @@
     transition: all 0.3s ease-in-out;
     &:hover {
         background-color: fade(@RGBassignments,85%) !important;
+        transition: all 0.3s ease-in-out;
+    }
+    &:active, &:focus {
+        outline: none;
+    }
+}
+
+.fileupload--resource .btn-file {
+        background-color: @RGBresources !important;
+    border:none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+        background-color: fade(@RGBresources,85%) !important;
         transition: all 0.3s ease-in-out;
     }
     &:active, &:focus {

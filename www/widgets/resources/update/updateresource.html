@@ -1,0 +1,29 @@
+<div class="row row--modal modal--resources">
+    <div class="col-sm-20 col-sm-offset-2 vcenter">
+        <h2>Update resource details</h2>
+        
+        <form class="resourceDetails">
+            <div class="col-sm-12">
+                <label for="name">Resource Title</label>
+                <input type="text" name="name" class="form-control" ng-model="newResource.name" required="true">
+                <span 
+                class="error" 
+                ng-show="resourceDetails.name.$touched && resourceDetails.name.$invalid"
+                class="formError">
+                <i class="fa fa-times"></i>
+                </span>
+            </div>
+
+            <div class="col-sm-24">
+                <fileupload-fileupload class="fileupload--resource"></fileupload-fileupload>
+                <input id="resourceContent" type="hidden" name="content">
+                <trix-editor input="resourceContent" id="resourceEditor"></trix-editor>
+            </div>
+            <div class="col-sm-24">
+                <button class="btn btn--resources" ng-click="closeUpdateResource()">Close</button>
+                <button class="btn btn--resources" ng-click="deleteResource()">Delete resource</button>
+                <button class="btn btn--resources" ng-click="updateResourceDetails()">Update resource details</button>
+            </div>
+        </form>
+    </div><!--.col-->
+</div><!--.row-->

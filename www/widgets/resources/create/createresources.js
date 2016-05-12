@@ -42,8 +42,13 @@ app.directive('resourcesCreateCreateresources', [
             
             scope.$$childTail.submit();
             
-            var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-            console.log(strippedFileName);
+            if (scope.file) {
+                var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                console.log(strippedFileName);
+            }
+            else {
+                var strippedFileName = undefined;
+            }
             
             var description = $("#createNewResource").attr("value");
             var resourceUrl = scope.resourceTitle.replace(/[\n\t\r\x20]/g, "_");
