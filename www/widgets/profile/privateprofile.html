@@ -108,10 +108,12 @@
                         <div class="profile__stuff__skills">
                             <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
 
+                            <h2 class="uppercase">Add skill</h2>
                             <input id="skills" ng-model="searchTags">
 
                             <i ng-click="addSkill()" class="fa fa-plus"></i>
-
+                            <br>
+                            <br>
                             <ul ng-repeat = 'skill in skills'>  
                                 <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
                             </ul>                          
@@ -122,10 +124,8 @@
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
                             <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
-                            <i ng-click="showAddDiv()" class="fa fa-plus"></i>
-                            <div class="col-lg-24 show_add_div">
-                                
-
+                            <i ng-click="showAddDiv()" id="addExp" class="fa fa-plus"></i>
+                            <div class="col-lg-24 show_add_div">                               
                                 <h2 class="uppercase">Company / School</h2>
                                 <input ng-model="company_school"></input>
                                 <br>
