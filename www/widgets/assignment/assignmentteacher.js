@@ -43,14 +43,14 @@ app.directive('assignmentAssignmentteacher', [
                       return obj.assignment === scope.assignment._id;
                     })[0];
 
-                    
-                    if(scope.answer_file !== undefined) {
-                        scope.answer_file = obj.answer_file.replace(/[\n\t\r\x20]/g, "_");
+
+                    if(scope.teacher_instruction_file !== undefined) {
+                        scope.teacher_instruction_file = obj.teacher_instruction_file.replace(/[\n\t\r\x20]/g, "_");
                     }
 
                     $(".assignment_description").append(scope.assignment.description);
-                    if (scope.answer_file) {
-                        $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.answer_file + '">' + scope.answer_file + '</a>');
+                    if (scope.teacher_instruction_file) {
+                        $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.teacher_instruction_file + '">' + scope.teacher_instruction_file + '</a>');
                     }
 
                     User.get({_id: scope.assignment.responsible_teacher }, function(user){
@@ -87,13 +87,13 @@ app.directive('assignmentAssignmentteacher', [
                                   if(users[a].assignments[b].assignment === scope.assignment._id) {
                                       notFound = false; //found
                                       var Item = {
-                                      assignmentId: scope.assignment._id,
-                                      name: users[a].first_name + " " + users[a].last_name,
-                                      userId: users[a]._id,
-                                      submissionDate: new Date(users[a].assignments[b].submissionDate),
-                                      status: users[a].assignments[b].status,
-                                    };
-                                    scope.assignmentAnswers.push(Item);
+                                          assignmentId: scope.assignment._id,
+                                          name: users[a].first_name + " " + users[a].last_name,
+                                          userId: users[a]._id,
+                                          submissionDate: new Date(users[a].assignments[b].submissionDate),
+                                          status: users[a].assignments[b].status,
+                                      };
+                                      scope.assignmentAnswers.push(Item);
                                       break; //assignment found, break loop - no need to continue
                                   }
                               };
