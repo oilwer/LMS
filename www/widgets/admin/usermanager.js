@@ -123,7 +123,12 @@ app.directive('adminUsermanager', [
             isEditing = true;
             $scope.btnAddOrUpdateTextUser = 'Update';
             //get info from db to put in the form boxes
-            $scope.user = User.getById(id);
+            User.get({_id: id}, function(user)
+          {
+            user[0].password = undefined;
+            console.log(user[0]);
+            $scope.user = user[0];
+          });
         }
       }
     }

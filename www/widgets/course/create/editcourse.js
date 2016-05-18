@@ -6,6 +6,10 @@ app.directive('courseCreateEditcourse', [
     "Course",
     "ChatService",
     "SessionService",
+    "User",
+    "Resource",
+    "Assignment",
+    "ChatService",
   function(
     settings,
     $location,
@@ -13,7 +17,11 @@ app.directive('courseCreateEditcourse', [
     $routeParams,
     Course,
     ChatService,
-    SessionService
+    SessionService,
+    User,
+    Resource,
+    Assignment,
+    ChatService
   ) {
 
     return {
@@ -22,7 +30,6 @@ app.directive('courseCreateEditcourse', [
 
         var update = function() {
             //update view
-            console.log("lol",scope.course);
             var textEditor = document.querySelector("trix-editor");
             textEditor.editor.insertHTML(scope.course.description);
             scope.course.start = new Date(scope.course.start);
@@ -35,9 +42,6 @@ app.directive('courseCreateEditcourse', [
               start: scope.course.start,
               end: scope.course.end
             };
-
-            console.log(scope.newCourse);
-
         };
 
         setTimeout(update,500);
@@ -46,7 +50,6 @@ app.directive('courseCreateEditcourse', [
         //create function
         scope.newCourse.description = $("#x").attr("value");
 
-        console.log("new course", scope.newCourse);
         Course.update({_id: scope.course._id}, {
             name: scope.newCourse.name,
             code: scope.newCourse.code,
@@ -67,33 +70,78 @@ app.directive('courseCreateEditcourse', [
 
       };
 
-        scope.closeUpdateCourse = function() {
-            if (confirm('Do you want to close without saving?')) {
-                scope.$parent.hideModal();
-                scope.newCourse = {
-                    name: scope.course.name,
-                    code: scope.course.code,
-                    url: scope.course.url,
-                    start: scope.course.start,
-                    end: scope.course.end,
-                    description: scope.course.description
-                };
-                //console.log(scope.assignment.description);
-                var textEditor = document.querySelector("trix-editor");
-                // empty all
-                textEditor.editor.insertHTML(scope.course.description);
-            } };
-
-          scope.deleteCourse = function() {
-            if (confirm('Do you want to delete ' + scope.course.name + '?')) {
-
-              Course.remove({_id: scope.course._id});
+      scope.closeUpdateCourse = function() {
+          if (confirm('Do you want to close without saving?')) {
               scope.$parent.hideModal();
+              scope.newCourse = {
+                  name: scope.course.name,
+                  code: scope.course.code,
+                  url: scope.course.url,
+                  start: scope.course.start,
+                  end: scope.course.end,
+                  description: scope.course.description
+              };
+              //console.log(scope.assignment.description);
+              var textEditor = document.querySelector("trix-editor");
+              // empty all
+              textEditor.editor.insertHTML(scope.course.description);
+          } };
 
-              $location.path('/courses/');
-            }
+        var leaveChannel = function(channelId, UserIdentifier){
+          ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
+          });
+        }
 
-          };
+        scope.deleteCourse = function() {
+          if (confirm('Do you want to delete ' + scope.course.name + '?')) {
+
+            Course.get({ _id: scope.course._id }, function(course){
+
+              User.get({}, function(users){
+                //Loopar Users
+                for (var i = 0; i < users.length; i++) {
+                  //Om mina courses contains this course, delete it from my courses
+                  if(users[i].courses.indexOf(course[0]._id) != -1){
+                    User.update({ _id: users[i]._id }, { $pull: { 'courses': course[0]._id }});
+                  }
+                  //Om mina pinned courses contains this course, delete it from my pinned courses
+                  for (var x = 0; x < users[i].courses_pinned.length; x++) {
+                    if(users[i].courses_pinned[x].course == course[0]._id){
+                      User.update({ _id: users[i]._id }, { $pull: { 'courses_pinned': { _id: users[i].courses_pinned[x]._id }}});
+                    }
+                  }
+                  //Remove all users from channel, even people who were not in the course, just in case
+                  leaveChannel(course[0].slack_channels[0].channelId, users[i].email);
+                }
+              });
+
+              Resource.get({}, function(resources){
+                //loopar Resources
+                for (var i = 0; i < resources.length; i++) {
+                  if(resources[i].course == course[0]._id){
+                    //If this resource is linked to the removed course, remove resource
+                    Resource.remove({_id: resources[i]._id});
+                  }
+                }
+              });
+
+              Assignment.get({}, function(assignments){
+                //loopar assignments
+                for (var i = 0; i < assignments.length; i++) {
+                  if(assignments[i].course == course[0]._id){
+                    Assignment.remove({_id: assignments[i]._id});
+                  }
+                }
+              });
+            });
+
+            Course.remove({_id: scope.course._id});
+
+            scope.$parent.hideModal();
+
+            $location.path('/courses/');
+          }
+        };
       }//end link
     };
   }
