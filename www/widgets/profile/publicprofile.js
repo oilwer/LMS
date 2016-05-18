@@ -48,6 +48,7 @@ app.directive('profilePublicprofile', [
             $scope.personality = data.personality;
             $scope.courses = data.courses;
             $scope.experiences = data.experiences;
+            $scope.skills = data.skills;
           }else {
               $scope.first_name = "No profile found";
           }

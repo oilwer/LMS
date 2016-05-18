@@ -204,7 +204,7 @@ app.directive('profilePrivateprofile', [
           
         $scope.showAddDiv = function () {
            
-            $('.fa-plus').css({
+            $("#addExp").css({
                 'display': 'none'
             })
             
@@ -227,7 +227,7 @@ app.directive('profilePrivateprofile', [
                 'display': 'block'
             })
             
-            $('.fa-plus').css({
+            $("#addExp").css({
                 'display': 'block'
             })
             isEditing = false;

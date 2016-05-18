@@ -61,7 +61,9 @@
                     <div class="col-sm-12 col-md-12 col-lg-12">
                         <div class="profile__stuff__skills">
                             <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus.</p>
+                            <ul ng-repeat = 'skill in skills'>
+                                <li>{{skill.tag}}</li>
+                            </ul>
                         </div>
                     </div>
                     <div class="col-sm-24 col-md-12 col-lg-12">
@@ -77,14 +79,7 @@
                         </div><!--Empty div to get spacing-->
                     </div> <!-- .col -->
                 </div>
-                <div class="row">
-                    <div class="col-sm-24 col-md-24 col-sm-24">
-                        <div class="profile__stuff__other">
-                            <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
-                        </div>
-                    </div>
-                </div>
+               
             </div>
             <!---.col-->
         </div>
