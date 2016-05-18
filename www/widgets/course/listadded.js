@@ -29,8 +29,6 @@ app.directive('courseListadded', [
 
       var c = Course.get({_id:scope.course._id,_populate:"assignments"});
       scope.assignments = c.assignments;
-      console.log(scope.assignments);
-
 
 
 
@@ -41,6 +39,7 @@ app.directive('courseListadded', [
               for (var i = 0; i < scope.myCourses.length; i++) {
                 if(user[0].courses[i].courses_pinned.pinned){
                   scope.myPinnedCourses = user[0].courses;
+
                 }
               };
 
