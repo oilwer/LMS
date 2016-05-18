@@ -77,6 +77,32 @@ app.directive('resourcesResources', [
               }
           }
 
+          var updateAuthor = function(i, x, mycourses)
+          {
+            console.log("updateAuthor (", i, x, ")");
+
+
+            //get author name
+            User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
+             {
+
+               for (var y = 0; y < scope.resourceList.length; y++) {
+                 if(scope.resourceList[y].uploaded_by == user[0]._id)
+                 {
+                    scope.resourceList[y].author = (user[0].first_name + " " + user[0].last_name);
+                    console.log(scope.resourceList[y]);
+                 }
+
+               }
+
+               var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
+            //   console.log(scope.resourceList[indexOfResource]);
+
+               scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
+
+             });
+          }
+
             var getAllResources = function()
             {
 
@@ -89,26 +115,25 @@ app.directive('resourcesResources', [
 
                     Course.get({students: session._id, _populate:"resources"}, function(mycourses)
                     {
-                        if (typeof mycourses !== "undefined") 
+                        if (typeof mycourses !== "undefined")
                         {
-                          for (var i = 0; i < mycourses.length; i++) 
+                          for (var i = 0; i < mycourses.length; i++)
                           {
                               if(typeof mycourses[i].resources !== "undefined")
                               {
                                 scope.courseFilter.push(mycourses[i].name);
 
-                                for (var x = 0; x < mycourses[i].resources.length; x++) 
-                                {      
+                                for (var x = 0; x < mycourses[i].resources.length; x++)
+                                {
                                   mycourses[i].resources[x].course = mycourses[i].name;
                                   scope.resourceList.push(mycourses[i].resources[x]);
 
-                                  var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
 
-                                  //get author name
-                                  User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
-                                   {
-                                     scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
-                                   });
+
+                              //     console.log(mycourses[i].resources[x]);
+                                  updateAuthor(i, x, mycourses);
+
+
                                 } //lopp resources
                             } //if
                           } //lopp courses
