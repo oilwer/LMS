@@ -1,0 +1,92 @@
+<div class="app_container heightfull">
+    <div class="container-fluid heightfull ng-scope">
+        <div class="row">
+            <div class="col-sm-22 col-md-22 col-md-offset-1">
+                <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+                <ul class="nav nav-tabs">
+                  <li><a ng-href="/manager/edit-users">Edit Users</a></li>
+                  <li class="active"><a href="#">Edit Participants</a></li>
+                </ul>
+                    <div class="box box__content">
+                      <h1><center>
+                            Edit Participants
+                      <center></h1>
+
+
+
+                        <div class="col-sm-12">
+                            <div class="list--students_options">
+                                <!--<select id="selectCourse"
+                                        ng-change="selectCourseChanged(id)"
+                                        ng-model="courseSelect.repeatSelect"
+                                        name="repeatSelect"
+                                        class="form-control">
+                                    <option value=""> --- Program list ---</option>
+                                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> {{ option.name }}
+                                    </option>
+                                </select>-->
+                            </div>
+                            <div class="list--students">
+                                <h3>Add people</h3>
+                                <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name">
+                                <select ng-model="byCourse" class="form-control">
+                                    <option value="" ng-selected=true>-- All Courses --</option>
+                                    <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                                </select>
+                                <ul ng-repeat="student in students | filter: filterByCourse | filter: notAdded">
+
+                                    <li ng-init="index=0;
+                                        classes=['list--students_item', 'list--students_item--active']"
+                                         ng-click="stageMeToCourse($index)"
+                                         ng-class="classes[index % classes.length]"
+                                         class="col-xs-24"
+                                         >
+
+                                        <img src="/img/profile_default.png">
+                                        <h4>
+                                            {{ student.first_name }} {{ student.last_name }}
+                                            <span class="role">{{ student.role }}</span>
+                                            <i class="fa fa-chevron-right"></i>
+                                        </h4>
+                                        <p class="student_nr">{{ student._id }}</p>
+                                    </li>
+                                </ul>
+                            </div><!--list-students-->
+                        </div><!--.col-->
+
+                        <div class="col-sm-12">
+                            <div class="list--students list--students--added">
+                                <h3>Participants in {{ course.name }}</h3>
+                                <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
+                                <select ng-model="byCourse" class="form-control"><!--PLACEHOLDER FILTER-->
+                                    <option value="" ng-selected=true>-- Choose Course --</option>
+                                    <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                                </select>
+                                <ul>
+                                    <li ng-init="index=0; classes=['list--students_item--added',
+                                                                    'list--students_item--active']"
+                                         ng-click="unstageMeToCourse($index)"
+                                         ng-class="classes[index % classes.length]"
+                                         ng-repeat="RegStudent in studentsToBeAdded | filter: studentsAdded"
+                                         class="col-xs-24 studlist_card">
+
+
+                                        <img src="/img/profile_default.png" alt="profile picture of {{ RegStudent.first_name }}">
+                                        <h4>
+                                            <span class="role">{{ RegStudent.role }}</span>
+                                            {{ RegStudent.first_name }} {{ RegStudent.last_name }}
+                                            <i class="fa fa-chevron-left"></i>
+                                        </h4>
+                                        <p class="student_nr">{{ RegStudent._id }}</p>
+                                    </li>
+                                </ul>
+                            </div><!--.list--students-->
+                        </div><!--.col-->
+                    </div><!--.box-content -->
+                  </div>
+                </div><!--.box .col-->
+            </div><!--.col-->
+
+        </div> <!--.row-->
+    </div><!--.container -->
+</div><!--.app_container-->
