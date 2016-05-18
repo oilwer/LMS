@@ -1,16 +1,20 @@
 app.directive('adminUsermanager', [
   "settings",
   "User",
-    "$window",
+  "$window",
+  "$location",
   function(
     settings,
     User,
-    $window
+    $window,
+    $location
   ) {
+
 
     return {
       templateUrl: settings.widgets + 'admin/usermanager.html',
       link: function($scope, element, attrs) {
+
 
         $scope.btnAddOrUpdateTextUser = 'Add user';
 
