@@ -1,4 +1,4 @@
-    <div class="row row--modal">
+    <div class="row row--modal modal--updatecourse">
         <div class="col-sm-20 col-sm-offset-2 vcenter">
 
               <h2>Update course details</h2>
@@ -59,16 +59,26 @@
                         <div class="col-sm-24">
 
                             <label for="content">Description</label>
-                            <input id="x" type="hidden" name="content">
-                            <trix-editor input="x" id="descriptionEditor"></trix-editor>
+                            <input id="updateCourseEditor" type="hidden" name="content">
+                            <trix-editor input="updateCourseEditor" id="descriptionEditor"></trix-editor>
 
                         </div>
                     </form>
 
                     <div class="col-xs-24 pager">
-                      <button class="btn btn--courses" ng-click="closeUpdateCourse()">Close</button>
-                        <a ng-href="/courses/"><button class="btn btn-danger" ng-click="deleteCourse()">Delete course</button></a>
-                      <button class="btn btn--courses" ng-click="updateCourseDetails()">Update course details</button>
+                        <button 
+                              class="btn btn--courses" 
+                              ng-click="closeUpdateCourse()">Close
+                        </button>
+                        <button 
+                            class="btn btn--courses" 
+                            ng-click="deleteCourse()">Delete course
+                        </button>
+                        <button 
+                              class="btn btn--courses" 
+                              ng-class="{btndisabled: courseDetails.$invalid}"
+                              ng-click="courseDetails.$valid && updateCourseDetails()">Update course details
+                        </button>
                     </div>
 
         </div><!--col-->

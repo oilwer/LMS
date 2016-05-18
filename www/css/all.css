@@ -8182,7 +8182,7 @@ input[type=checkbox] {
 #slackbar {
   position: fixed;
   width: 70%;
-  bottom: 220px;
+  bottom: 0px;
   z-index: 9999;
   height: 50px;
 }
@@ -8190,6 +8190,7 @@ input[type=checkbox] {
   position: static;
   float: right;
   z-index: 9999;
+  margin-top: -220px;
   width: 50%!important;
   display: block;
 }
@@ -8404,6 +8405,19 @@ input[type=checkbox] {
   font-family: 'Roboto', 'arial', sans-serif;
   color: rgba(62, 71, 79, 0.75);
 }
+.modal--updateresource {
+  cursor: auto;
+}
+.modal--updateresource h2 {
+  font-size: 1.5em;
+  font-family: 'Roboto', 'arial', sans-serif;
+  padding: 20px 0px 5px 0px;
+}
+.modal--updatecourse h2 {
+  font-size: 1.5em;
+  font-family: 'Roboto', 'arial', sans-serif;
+  padding: 20px 0px 5px 0px;
+}
 .modal--createResources {
   padding-bottom: 40px;
   overflow: hidden;
@@ -8553,6 +8567,7 @@ trix-toolbar .button_group input[type=button] {
 .btn--courses:active,
 .btn--courses:focus {
   outline: none;
+  color: #fff;
 }
 .btn--resources {
   background: #00B5B5;
@@ -8566,6 +8581,7 @@ trix-toolbar .button_group input[type=button] {
 .btn--resources:active,
 .btn--resources:focus {
   outline: none;
+  color: #fff;
 }
 .btn--manager {
   float: right;
@@ -8581,6 +8597,7 @@ trix-toolbar .button_group input[type=button] {
 .btn--manager:active,
 .btn--manager:focus {
   outline: none;
+  color: #fff;
 }
 .btn--users {
   background: #D8335B;
@@ -8594,6 +8611,7 @@ trix-toolbar .button_group input[type=button] {
 .btn--users:active,
 .btn--users:focus {
   outline: none;
+  color: #fff;
 }
 .assignmentList .btn {
   margin-left: 20px;
@@ -8774,6 +8792,25 @@ table {
 .table--manager tr:active,
 .table--courses tr:active {
   background: rgba(62, 71, 79, 0.4);
+  transition: all 0.3s ease-in-out;
+}
+.table--courses--pinned {
+  margin-top: -2px;
+  font-size: 10px;
+}
+.table--courses--pinned thead {
+  border-bottom: 2px solid rgba(62, 71, 79, 0.75);
+}
+.table--courses--pinned th {
+  width: 30%;
+  font-weight: 600;
+}
+.table--courses--pinned th:first-child {
+  width: 70%;
+}
+.table--courses--pinned tr:hover {
+  cursor: pointer;
+  background: rgba(62, 71, 79, 0.05);
   transition: all 0.3s ease-in-out;
 }
 .table--resources {
@@ -9175,6 +9212,21 @@ form[name="assignmentType"] {
   position: absolute;
   right: 20px;
   bottom: 40px;
+}
+.nav-tabs {
+  border: 0px solid white;
+  border-bottom: 1px solid white;
+}
+.nav-tabs li a:hover {
+  border-bottom: 1px solid white;
+}
+.nav-tabs li.active a {
+  border: 1px solid white;
+}
+.nav-tabs li.active a:active,
+.nav-tabs li.active a:hover {
+  border: 1px solid white;
+  border-bottom: 1px solid white;
 }
 .listdiv {
   list-style-type: none;
