@@ -70,6 +70,7 @@ app.directive('courseCourseslist', [
              }
            });
          });
+
        }
 
         //Runs on page update
@@ -85,7 +86,10 @@ app.directive('courseCourseslist', [
 
         //pins course in database
         scope.pinCourse = function(course){
+
+          course.pin = "hej";
           // Updates session
+
           SessionService.updateSession(session_user[0].email).success(function(session) {
             session_user[0] = session;
           });
