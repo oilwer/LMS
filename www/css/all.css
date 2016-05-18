@@ -8339,7 +8339,7 @@ input[type=checkbox] {
   opacity: 0.8;
 }
 .ng-modal-dialog {
-  z-index: 1000;
+  z-index: 9999;
   position: fixed;
   width: 100%;
   /* Default */
