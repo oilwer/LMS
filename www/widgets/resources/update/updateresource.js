@@ -22,8 +22,6 @@ app.directive('resourcesUpdateUpdateresource', [
 
 
         var setupUpdate = function() {
-            console.log("the resource", scope.theResource);
-
             scope.newResource = {
             name: scope.theResource.title,
             file: scope.theResource.filename,
@@ -36,8 +34,6 @@ app.directive('resourcesUpdateUpdateresource', [
               var textEditor = document.querySelector("trix-editor[input='resourceContent']");
               textEditor.editor.insertHTML(scope.theResource.content);
             }
-            console.log(scope);
-
         }
 
         scope.$root.$on('setupUpdateScope', function() {
@@ -45,7 +41,6 @@ app.directive('resourcesUpdateUpdateresource', [
         });
 
       scope.updateResourceDetails = function() {
-          console.log("kör update");
         if (scope.file) {
             if (scope.file[0]) {
                 var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
@@ -84,7 +79,6 @@ app.directive('resourcesUpdateUpdateresource', [
 
         scope.closeUpdateResource = function() {
 
-            console.log("körs");
             if (confirm('Do you want to close without saving?')) {
                 scope.$parent.hideModal();
                 scope.newResource = {
