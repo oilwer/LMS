@@ -102,6 +102,7 @@ app.directive('profilePrivateprofile', [
 			        	source: $scope.tags,
 			        	select: function(e, ui) {
 					        $scope.searchTags = ui.item.value;
+
 					    }
 			        });
 	            });
@@ -233,7 +234,14 @@ app.directive('profilePrivateprofile', [
             isEditing = false;
         }
 
+        notFilled = function(field){
+        	return (field === undefined || field === "")
+        }
+
 	    addExp = function () {
+	    	if(notFilled($scope.company_school) && notFilled($scope.title_education) && notFilled($scope.location)){
+	    		return;
+	    	}
             if(obj.experiences === undefined){
 	        		obj.experiences = [];
 	        	}
@@ -288,6 +296,9 @@ app.directive('profilePrivateprofile', [
         };
 
 	    editExp = function(){  
+	    	if(notFilled($scope.company_school) && notFilled($scope.title_education) && notFilled($scope.location)){
+	    		return;
+	    	}
             
             $.each(obj.experiences, function(){
                 if(this._id == $scope.exp._id){
@@ -368,6 +379,10 @@ app.directive('profilePrivateprofile', [
     
 
         $scope.addSkill = function () {
+        	if(notFilled($scope.searchTags)){
+        		return;
+        	}
+
 	        if(obj.skills === undefined){
         		obj.skills = [];
         	}

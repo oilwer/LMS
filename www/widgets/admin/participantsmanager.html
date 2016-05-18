@@ -1,20 +1,17 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row ">
-            <nav class="col-sm-2 col-md-2 nav--local" >
-                <course-courseNav></course-courseNav>
-            </nav>
-              <div class="col-sm-22 col-md-22">
-                    <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+        <div class="row">
+            <div class="col-sm-22 col-md-22 col-md-offset-1">
+                <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+                <ul class="nav nav-tabs">
+                  <li><a ng-href="/manager/edit-users">Edit Users</a></li>
+                  <li class="active"><a href="#">Edit Participants</a></li>
+                </ul>
                     <div class="box box__content">
-                      <div class="col-sm-24">
-                        <h1>
-                          Edit participants
-                          <a ng-href="courses/{{ courseUrl }}/participants" class="btn btn--courses edit">Done
-                          </a>
-                        </h1>
+                      <h1><center>
+                            Edit Participants
+                      <center></h1>
 
-                      </div>
 
 
                         <div class="col-sm-12">
@@ -61,7 +58,10 @@
                             <div class="list--students list--students--added">
                                 <h3>Participants in {{ course.name }}</h3>
                                 <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
-
+                                <select ng-model="byCourse" class="form-control"><!--PLACEHOLDER FILTER-->
+                                    <option value="" ng-selected=true>-- Choose Course --</option>
+                                    <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                                </select>
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
                                                                     'list--students_item--active']"

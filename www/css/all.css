@@ -8339,7 +8339,7 @@ input[type=checkbox] {
   opacity: 0.8;
 }
 .ng-modal-dialog {
-  z-index: 1000;
+  z-index: 9999;
   position: fixed;
   width: 100%;
   /* Default */
@@ -9273,6 +9273,11 @@ dashboard-activities button:focus {
   border-radius: 3px;
   overflow-y: scroll;
 }
+.list--students h1 {
+  display: inline-block;
+  padding-bottom: 8px;
+  padding-top: 20px;
+}
 .list--students ul {
   list-style: none;
 }
@@ -9427,6 +9432,11 @@ dashboard-activities button:focus {
   padding: 7px;
   width: 100%;
 }
+.list--publicstudents h1 {
+  display: inline-block;
+  padding-bottom: 8px;
+  padding-top: 20px;
+}
 .list--publicstudents ul {
   list-style: none;
 }
@@ -9482,6 +9492,8 @@ dashboard-activities button:focus {
 }
 .box__header h2 {
   display: inline;
+  padding-bottom: 8px;
+  padding-top: 20px;
 }
 .box__header .edit {
   text-decoration: underline;
@@ -9606,6 +9618,8 @@ h2 {
 }
 .course .box--label h1,
 .course .box--label h2 {
+  line-height: 2.5em;
+  display: inline;
   font-size: 1.2em;
   letter-spacing: 0.02em;
   padding-bottom: 0px;
