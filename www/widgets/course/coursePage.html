@@ -43,74 +43,46 @@
                     <div class="col-md-10 padding--none">
                         <!--left content / details / assignment / resources-->
                         <div class="col-sm-24 box--label box--label--courses coursor--pointer">
-                            <h1 class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
+                            <div class="box--label_heading--courses" ng-click="isCoursesOpen = !isCoursesOpen">
                                 <i class="fa--heading fa fa-info-circle"></i>
-                                Course details
+                                <h2>Course details</h2>
 
-                                <modal-dialog show='modalShown' width='80%'>
-                                    <div course-create-editcourse></div>
-                                </modal-dialog>
                                 <button ng-hide="isCoursesOpen" class="fa--toggle btn btn--courses"><i class="fa fa-chevron-down"></i> Show</button>
                                 <button ng-show="isCoursesOpen" class="fa--toggle btn btn--courses"><i class="fa fa-chevron-up"></i> Hide</button>
                                 <button ng-if="showCourseinfo" href="" ng-click="toggleModal()" class="fa--toggle btn btn--courses"><i class="fa fa-pencil"></i> Edit</button>
-                            </h1>
+                            </div>
 
-          <!--  <div class="profile__contact">
-                    <i ng-class="contact_class" class="fa-first" ng-click="editContact()"></i>
-                    <h2 class="uppercase">Contact details</h2>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-envelope-o"></i><p>{{ email }} </p>
-                    </div>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-phone"></i><p ng-show="contactEnabled"> {{ phone_number }} </p>
-                        <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
-                    </div>
-
-
-                    <div class="profile__icon_first">
-                        <i class="fa fa-home"></i>
-
-
-                         <p ng-show="contactEnabled"> {{homepage}}</p>
-
-                        <input type="text" ng-hide="contactEnabled" ng-model="homepage">
-
-
-                    </div>
-                </div> -->
-
-
-<!-- COURSE INFO -->
                             <div class="row box--label_content course--details" ng-show="isCoursesOpen">
 
                                 <i ng-class="info_class" ng-click="editInfo()"></i>
 
                                 <div class="col-sm-24">
-                                    <h2 class="coursedescription_titel">Name:</h2>
+                                    <h3 class="coursedescription_titel">Name:</h3>
 
-                                    <p  >{{ course.name }}</p>
-
+                                    <p>{{ course.name }}</p>
 
                                 </div>
 
-
-
                                 <div class="col-sm-24">
-                                    <h2 class="coursedescription_titel">Coursecode:</h2>
+                                    <h3 class="coursedescription_titel">Course code:</h3>
                                     <p> {{ course.code }}</p>
                                 </div>
                                 <div class="col-sm-24">
+<<<<<<< HEAD
                                     <h2 class="coursedescription_titel">Date:</h2>
                                     <p> {{ course.start | date:'short' }} - {{ course.end | date:'short'}}</p>
+=======
+                                    <h3 class="coursedescription_titel">Date:</h3>
+                                    <p> {{ course.start | date }} - {{ course.end | date}}</p>
+>>>>>>> editCoursebugs
                                 </div>
                                 <div class="col-sm-24">
-                                    <h2 class="coursedescription_titel">Description:</h2>
-                                    <p> {{ course.description }}</p>
+                                    <h3 class="coursedescription_titel">Description:</h3>
+                                    <div class="courseDescriptionContent"> </div>
                                 </div>
                                 <div class="col-md-24">
-                                    <h2 class="coursedescription_titel">Teaching:</h2>
+                                    <h3 class="coursedescription_titel">Teaching:</h3>
                                     <a href="/profile/{{teacherUrl}}"><p> {{teacher}} </p></a>
-
                                 </div>
 
                             </div>
@@ -145,8 +117,6 @@
                                 </ul>
                                 <button class="btn btn--resources" ng-show="auth" ng-click="castTheResourceModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
                             </div>
-
-
                         </div>
 
                         <!--
@@ -179,3 +149,7 @@
         </div><!--table row-->
     </div><!--.container-->
 </div><!--.app_container-->
+
+<modal-dialog show='modalShown' width='80%'>
+    <div course-create-editcourse></div>
+</modal-dialog>

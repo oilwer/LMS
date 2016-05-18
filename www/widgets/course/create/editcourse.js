@@ -29,11 +29,15 @@ app.directive('courseCreateEditcourse', [
       link: function(scope, element, attrs) {
 
         var update = function() {
-            //update view
-            var textEditor = document.querySelector("trix-editor");
-            textEditor.editor.insertHTML(scope.course.description);
             scope.course.start = new Date(scope.course.start);
             scope.course.end = new Date(scope.course.end);
+            if(scope.course.description !== undefined) {
+                
+              var textEditor = document.querySelector("trix-editor[input='updateCourseEditor']");
+              textEditor.editor.setSelectedRange([0, 200000000000000]); //empty view
+              textEditor.editor.deleteInDirection("forward");
+              textEditor.editor.insertHTML(scope.course.description);
+            }
 
             scope.newCourse = {
               name: scope.course.name,
@@ -42,13 +46,17 @@ app.directive('courseCreateEditcourse', [
               start: scope.course.start,
               end: scope.course.end
             };
+
         };
 
-        setTimeout(update,500);
+        scope.$root.$on('setUpdateCourseScope', function() {
+            update();
+        });
 
       scope.updateCourseDetails = function() {
         //create function
-        scope.newCourse.description = $("#x").attr("value");
+        scope.newCourse.description = $("#updateCourseEditor").attr("value");
+
 
         Course.update({_id: scope.course._id}, {
             name: scope.newCourse.name,
@@ -63,6 +71,7 @@ app.directive('courseCreateEditcourse', [
             scope.course.start= scope.newCourse.start;
             scope.course.end = scope.newCourse.end;
             scope.course.description = scope.newCourse.description;
+            $('.courseDescriptionContent').empty().append(scope.course.description);
             //todo: show user the success (GUI)
             scope.$parent.hideModal();
 
@@ -70,22 +79,24 @@ app.directive('courseCreateEditcourse', [
 
       };
 
-      scope.closeUpdateCourse = function() {
-          if (confirm('Do you want to close without saving?')) {
-              scope.$parent.hideModal();
-              scope.newCourse = {
-                  name: scope.course.name,
-                  code: scope.course.code,
-                  url: scope.course.url,
-                  start: scope.course.start,
-                  end: scope.course.end,
-                  description: scope.course.description
-              };
-              //console.log(scope.assignment.description);
-              var textEditor = document.querySelector("trix-editor");
-              // empty all
-              textEditor.editor.insertHTML(scope.course.description);
-          } };
+
+        scope.closeUpdateCourse = function() {
+            if (confirm('Do you want to close without saving?')) {
+                scope.$parent.hideModal();
+                scope.newCourse = {
+                    name: scope.course.name,
+                    code: scope.course.code,
+                    url: scope.course.url,
+                    start: scope.course.start,
+                    end: scope.course.end,
+                    description: scope.course.description
+                };
+                var textEditor = document.querySelector("trix-editor");
+                // empty all
+                textEditor.editor.insertHTML(scope.course.description);
+                } 
+            };
+
 
         var leaveChannel = function(channelId, UserIdentifier){
           ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
@@ -96,6 +107,7 @@ app.directive('courseCreateEditcourse', [
           if (confirm('Do you want to delete ' + scope.course.name + '?')) {
 
             Course.get({ _id: scope.course._id }, function(course){
+
 
               User.get({}, function(users){
                 //Loopar Users

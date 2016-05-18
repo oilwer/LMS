@@ -49,6 +49,7 @@ app.directive('courseCoursepage', [
 
         Course.get({url: url, _populate:"assignments"}, function(course){
             scope.course = course[0];
+            $('.courseDescriptionContent').empty().append(scope.course.description);
             scope.assignments = scope.course.assignments;
 
             User.get({_id: scope.course.creator}, function(user){
@@ -126,6 +127,7 @@ app.directive('courseCoursepage', [
         scope.modalShown = false;
 
         scope.toggleModal = function() {
+          scope.$root.$broadcast('setUpdateCourseScope');
           scope.modalShown = !scope.modalShown;
           //fix for toolbar toggle, element event don't fire on modalshow()
           scope.isToolbarPersonalOpen = false;
