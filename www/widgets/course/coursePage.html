@@ -47,13 +47,12 @@
                                 <i class="fa--heading fa fa-info-circle"></i>
                                 Course details
 
-
                                 <modal-dialog show='modalShown' width='80%'>
                                     <div course-create-editcourse></div>
                                 </modal-dialog>
+                                <button ng-hide="isCoursesOpen" class="fa--toggle btn btn--courses"><i class="fa fa-chevron-down"></i> Show</button>
+                                <button ng-show="isCoursesOpen" class="fa--toggle btn btn--courses"><i class="fa fa-chevron-up"></i> Hide</button>
                                 <button ng-if="showCourseinfo" href="" ng-click="toggleModal()" class="fa--toggle btn btn--courses"><i class="fa fa-pencil"></i> Edit</button>
-                                <button ng-hide="isCoursesOpen" class="btn btn--courses"><i class="fa fa-chevron-down"></i> Show</button>
-                                <button ng-show="isCoursesOpen" class=" btn btn--courses"><i class="fa fa-chevron-up"></i> Hide</button>
                             </h1>
 
           <!--  <div class="profile__contact">
