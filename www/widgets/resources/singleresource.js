@@ -112,8 +112,9 @@ app.directive('resourcesSingleresource', [
         //show hide modal update resources
         scope.updateResourceModalShown = false;
         scope.toggleUpdateResourceModal = function() {
-            scope.updateResourceModalShown = !scope.updateResourceModalShown;
             scope.$root.$broadcast('setupUpdateScope');
+            scope.updateResourceModalShown = !scope.updateResourceModalShown;
+            
         };
           
           
