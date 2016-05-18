@@ -34,6 +34,9 @@ app.directive('resourcesUpdateUpdateresource', [
             if(scope.theResource.content !== undefined) {
 
               var textEditor = document.querySelector("trix-editor[input='resourceContent']");
+              textEditor.editor.setSelectedRange([0, 200000000000000]);
+              textEditor.editor.deleteInDirection("forward");
+
               textEditor.editor.insertHTML(scope.theResource.content);
             }
             console.log(scope);
