@@ -369,6 +369,10 @@ app.directive('profilePrivateprofile', [
     
 
         $scope.addSkill = function () {
+        	if($scope.searchTags === undefined || $scope.searchTags === ""){
+        		return;
+        	}
+
 	        if(obj.skills === undefined){
         		obj.skills = [];
         	}
