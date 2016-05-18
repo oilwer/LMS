@@ -1,4 +1,4 @@
-<li class="col-xs-24">
+<li class="col-md-12">
     <a class="list--students_item" ng-href="profile/{{ user.public_url }}">
       <!-- Statisk info, lägga till grupptillhörighet - prioritera grupper?
         <div class="whole_container_individual_label_IA">
@@ -8,7 +8,6 @@
 
       <img class="{{ user._id }}"></img>
       <h3>{{user.first_name}} {{user.last_name}}</h3>
-      <p>
-      {{ user.description }} </p>
+      <p>{{ user.role }}</p>
     </a>
 </li>

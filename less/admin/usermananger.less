@@ -1,6 +1,21 @@
 
 
-
+.nav-tabs {
+  border: 0px solid white;
+  border-bottom: 1px solid white;
+  li a {
+    &:hover {
+      border-bottom: 1px solid white;
+    }
+  }
+  li.active a {
+    border: 1px solid white;
+    &:active, &:hover {
+      border: 1px solid white;
+      border-bottom: 1px solid white;
+    }
+  }
+}
 .listdiv {
     list-style-type: none;
 }
