@@ -14,19 +14,15 @@
 
 
 
-                        <div class="col-sm-12">
+                        <div class="col-sm-12 col-md-offset-6">
                             <div class="list--students_options">
-                                <!--<select id="selectCourse"
-                                        ng-change="selectCourseChanged(id)"
-                                        ng-model="courseSelect.repeatSelect"
-                                        name="repeatSelect"
-                                        class="form-control">
-                                    <option value=""> --- Program list ---</option>
-                                    <option ng-repeat="option in courseSelect.availableOptions" value="{{ option.name }}"> {{ option.name }}
-                                    </option>
-                                </select>-->
+                              <select ng-model="byCourse" class="form-control"><!--PLACEHOLDER FILTER TO CHOOSE THE COURSE TO EDIT-->
+                                  <option value="" ng-selected=true>-- Choose Course to Edit --</option>
+                                  <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                              </select>
                             </div>
-                            <div class="list--students">
+                        </div>
+                            <div class="col-sm-12 list--students">
                                 <h3>Add people</h3>
                                 <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name">
                                 <select ng-model="byCourse" class="form-control">
@@ -52,16 +48,13 @@
                                     </li>
                                 </ul>
                             </div><!--list-students-->
-                        </div><!--.col-->
+
 
                         <div class="col-sm-12">
                             <div class="list--students list--students--added">
                                 <h3>Participants in {{ course.name }}</h3>
                                 <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
-                                <select ng-model="byCourse" class="form-control"><!--PLACEHOLDER FILTER-->
-                                    <option value="" ng-selected=true>-- Choose Course --</option>
-                                    <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
-                                </select>
+
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
                                                                     'list--students_item--active']"

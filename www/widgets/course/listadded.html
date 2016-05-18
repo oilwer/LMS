@@ -6,6 +6,7 @@
               <h2 class="box--label_heading--courses"><i class="fa--heading fa fa-leaf"></i>
                 <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">{{course.name}}</a>
 
+
                 <button class="btn btn--pin--active" ng-click="pinCourse(course)">
                 <i class="fa fa-thumb-tack" ></i>
                 Unpin
@@ -17,7 +18,7 @@
 
           <div class="box__content">
 
-              <table class="table--courses">
+              <table class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
 
@@ -29,10 +30,13 @@
                           <th>Resources</th>
                           <th>Active</th> -->
                       </tr>
+
                   </thead>
 
+
+
                   <!--repeat all courses that the user belongs to -->
-                  <tbody>
+                  <tbody ng-repeat="assignment in assignments | limitTo:'2'"><!--????-->
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
 
                         <!-- <td ng-if="course.status == true">
@@ -48,14 +52,14 @@
                           </td> -->
                           <td ng-if="course.status == true">
                               <i class="fa fa-file-text-o"></i>
-                                  <span>assignment name</span>
+                                  <span>assignment.name</span><!--????-->
                               </i>
                           </td>
                           <!-- <td ng-if="course.status == true">
                             {{course.start | date:'shortDate' }}
                           </td> -->
                             <td ng-if="course.status == true">
-                              20/5/2013
+                              assignment.end<!--????-->
                             </td>
                           <!-- <td ng-if="course.status == true">
                               <i class="fa fa-question-circle"></i>
@@ -76,32 +80,31 @@
                           </td> -->
 
                   </tbody>
+
+
               </table>
 
-              <table class="table--courses">
+              <table class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
-
-
                           <th>Resourses</th>
-
                           <th>Uploaded</th>
 
                       </tr>
                   </thead>
 
                   <!--repeat all courses that the user belongs to -->
-                  <tbody>
+                  <tbody ng-repeat="resource in resouces | limitTo:'2'"><!--????-->
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
 
                             <td ng-if="course.status == true">
                                 <i class="fa fa-file-text-o"></i>
-                                    <span ng-class="class">Bild Title</span>
+                                    <span ng-class="class">resources.name</span><!--????-->
                                 </i>
                             </td>
 
                             <td ng-if="course.status == true">
-                              <span>12/12/2013</span>
+                              <span>resources.date</span><!--????-->
                             </td>
 
                   </tbody>

@@ -8776,6 +8776,25 @@ table {
   background: rgba(62, 71, 79, 0.4);
   transition: all 0.3s ease-in-out;
 }
+.table--courses--pinned {
+  margin-top: -2px;
+  font-size: 10px;
+}
+.table--courses--pinned thead {
+  border-bottom: 2px solid rgba(62, 71, 79, 0.75);
+}
+.table--courses--pinned th {
+  width: 30%;
+  font-weight: 600;
+}
+.table--courses--pinned th:first-child {
+  width: 70%;
+}
+.table--courses--pinned tr:hover {
+  cursor: pointer;
+  background: rgba(62, 71, 79, 0.05);
+  transition: all 0.3s ease-in-out;
+}
 .table--resources {
   margin-bottom: 40px;
 }

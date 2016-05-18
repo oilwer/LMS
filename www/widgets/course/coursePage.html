@@ -101,7 +101,7 @@
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Date:</h2>
-                                    <p> {{ course.start }} - {{ course.end }}</p>
+                                    <p> {{ course.start | date:'short' }} - {{ course.end | date:'short'}}</p>
                                 </div>
                                 <div class="col-sm-24">
                                     <h2 class="coursedescription_titel">Description:</h2>

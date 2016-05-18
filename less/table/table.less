@@ -40,6 +40,29 @@ table {
     }
 }
 
+.table--courses--pinned {
+    margin-top: -2px;
+    font-size: 10px;
+    thead {
+        border-bottom: 2px solid @LMSmid;
+      }
+      th {
+          width: 30%;
+          font-weight: 600;
+          &:first-child {
+            width: 70%;
+          }
+      }
+      tr {
+          &:hover {
+              cursor: pointer;
+              background: fade(@LMSdark,5%);
+              transition: all 0.3s ease-in-out;
+            }
+          }
+
+
+}
 .table--resources {
     margin-bottom: 40px;
     td, th {
@@ -177,4 +200,3 @@ course-courseslist, dashboard-courseslistdash {
         padding: 3px 2px 2px 2px;
     }
 }
-
