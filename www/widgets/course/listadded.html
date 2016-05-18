@@ -52,14 +52,16 @@
                           </td> -->
                           <td ng-if="course.status == true">
                               <i class="fa fa-file-text-o"></i>
-                                  <span>assignment.name</span><!--????-->
+                                  <span ng-if="assignment">assignment.name</span>
+                                  <span ng-if="!assignment">None</span><!--????-->
                               </i>
                           </td>
                           <!-- <td ng-if="course.status == true">
                             {{course.start | date:'shortDate' }}
                           </td> -->
-                            <td ng-if="course.status == true">
-                              assignment.end<!--????-->
+                            <td>
+                              <span ng-if="assignment">assignment.end</span>
+                              <span ng-if="!assignment">None</span><!--????-->
                             </td>
                           <!-- <td ng-if="course.status == true">
                               <i class="fa fa-question-circle"></i>
@@ -97,14 +99,16 @@
                   <tbody ng-repeat="resource in resouces | limitTo:'2'"><!--????-->
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
 
-                            <td ng-if="course.status == true">
+                            <td>
                                 <i class="fa fa-file-text-o"></i>
-                                    <span ng-class="class">resources.name</span><!--????-->
+                                    <span ng-if="resource" ng-class="class">resource.name</span>
+                                    <span ng-if="!resource" ng-class="class">None</span><!--????-->
                                 </i>
                             </td>
 
-                            <td ng-if="course.status == true">
-                              <span>resources.date</span><!--????-->
+                            <td>
+                              <span ng-if="resource">resource.date</span><!--????-->
+                              <span ng-if="!resource">None</span>
                             </td>
 
                   </tbody>
