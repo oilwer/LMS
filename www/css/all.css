@@ -8055,6 +8055,9 @@ input[type="datetime-local"].form-control {
 .process_view .pager .btn {
   margin: 0px 10px;
 }
+.processview_preview {
+  text-align: center;
+}
 .myCheckbox label {
   font-size: 1em;
   margin-right: 5%;

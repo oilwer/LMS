@@ -17,7 +17,7 @@ app.directive('resourcesUpdateUpdateresource', [
   ) {
         
     return {
-      templateUrl: settings.widgets + 'resources/update/updateResource.html',
+      templateUrl: settings.widgets + 'resources/update/updateresource.html',
       link: function(scope, element, attrs) {
           
         
@@ -33,14 +33,16 @@ app.directive('resourcesUpdateUpdateresource', [
             if(scope.theResource.content !== undefined) {
                 $("#resourceContent").attr("value", scope.theResource.content);
             }
+            console.log(scope);
+            
         }
         
-          
         scope.$root.$on('setupUpdateScope', function() {
             setupUpdate();
         });
           
       scope.updateResourceDetails = function() {
+          console.log("kör update");
         if (scope.file) {
             if (scope.file[0]) {
                 var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
@@ -77,6 +79,7 @@ app.directive('resourcesUpdateUpdateresource', [
       };
           
         scope.closeUpdateResource = function() {
+            console.log("körs");
             if (confirm('Do you want to close without saving?')) {
                 scope.$parent.hideModal();
                 scope.newResource = {
@@ -84,7 +87,6 @@ app.directive('resourcesUpdateUpdateresource', [
                     fileName: scope.theResource.filename,
                     content: scope.theResource.content
                 };
-                //console.log(scope.assignment.description);
                 var textEditor = document.querySelector("trix-editor");
                 // empty all
                 textEditor.editor.insertHTML(scope.theResource.content);

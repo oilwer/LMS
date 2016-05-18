@@ -166,15 +166,14 @@
                     </div>
             </div><!--.stepTwo-->
             <div class="stepTree" ng-switch-when="Preview">
-                <div class="col-sm-24">
-                <p>Name: {{course.name}}</p>
-                <p>Course code: {{course.code}}</p>
-                <p>Description: {{course.description}}</p>
-                <p>Period: {{course.start | date }} - {{course.end | date }}</p>
+                <div class="col-sm-24 processview_preview">
+                <p><strong>Name:</strong> {{course.name}}</p>
+                <p><strong>ID:</strong> {{course._id}}</p>
+                <p><strong>Course code:</strong> {{course.code}}</p>
+                <p><strong>Description:</strong> {{course.description}}</p>
+                <p><strong>Period:</strong> {{course.start | date }} - {{course.end | date }}</p>
 
-                <p>Url: {{course.url}}</p>
-                <p>ID: {{course._id}}</p>
-
+                <p><strong>Url:</strong> {{course.url}}</p>
 
                 </div>
                 <div class="col-xs-24 pager">

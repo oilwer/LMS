@@ -21,15 +21,24 @@
                 <fileupload-fileupload class="fileupload--resource"></fileupload-fileupload>
                 
                 <label for="resourceContent">Update description/content</label>
-                <input id="resourceContent" type="hidden" name="content">
+                <input 
+                       id="resourceContent" 
+                       type="hidden" 
+                       name="content">
                 <trix-editor input="resourceContent" id="resourceEditor"></trix-editor>
 
             <div class="col-sm-24">
-                <button class="btn btn--resources" ng-click="closeUpdateResource()">Close</button>
-                <button class="btn btn--resources" ng-click="deleteResource()">Delete resource</button>
+                <button 
+                        class="btn btn--resources" 
+                        ng-click="closeUpdateResource()">Close
+                </button>
+                <button class="btn btn--resources" 
+                        ng-click="deleteResource()">Delete resource
+                </button>
                 <button 
                         class="btn btn--resources" 
                         ng-class="{btndisabled: updateResourceDetials.$invalid}"
+                        type="submit" 
                         ng-click="updateResourceDetails() && updateResourceDetials.$valid">Update resource details
                 </button>
             </div>

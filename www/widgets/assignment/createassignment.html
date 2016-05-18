@@ -162,16 +162,16 @@
 
          <div class="stepFive" ng-switch-when="Preview">
            <div class="col-sm-12 col-sm-offset-6 processview_preview">
-             <h2 ng-if="assignment.name">{{assignment.name}}</b> </h2> <br/>
-             <p ng-if="assignment.due_date">Due Date: {{assignment.due_date | date}}</p>
+              <p ng-if="assignment.name"><strong>Name:</strong> {{assignment.name}}</p>
+             <p ng-if="assignment.due_date"><strong>Due Date:</strong> {{assignment.due_date | date}}</p>
 
-             <p ng-if="assignment.added_on"> Added on: {{assignment.added_on}}</p>
-             <p ng-if="assignment.course"> Course: {{assignment.course}}</p>
-             <p ng-if="assignment.is_published"> Is published: {{assignment.is_published}}</p>
-             <p ng-if="assignment.teacher_instruction_file"> teacher_instruction_file: {{assignment.teacher_instruction_file}}</p>
-             <p ng-if="assignment.assessment"> Assessment: {{assignment.assessment}}</p>
-             <p ng-if="assignment.obligatory"> Obligatory assignment <span class="glyphicon glyphicon-check"></span>
-             <p ng-if="!assignment.obligatory"> Optional assignment <span class="glyphicon glyphicon-check"></span>
+             <p ng-if="assignment.added_on"> <strong>Added on:</strong> {{assignment.added_on}}</p>
+             <p ng-if="assignment.course"> <strong>Course:</strong> {{assignment.course}}</p>
+             <p ng-if="assignment.is_published"> <strong>Is published:</strong> {{assignment.is_published}}</p>
+             <p ng-if="assignment.teacher_instruction_file"> teacher_instruction_file:</strong> {{assignment.teacher_instruction_file}}</p>
+             <p ng-if="assignment.assessment"> <strong>Assessment:</strong> {{assignment.assessment}}</p>
+             <p ng-if="assignment.obligatory"> <strong>Obligatory assignment<span class="glyphicon glyphicon-check"></span>
+             <p ng-if="!assignment.obligatory"> <strong>Optional assignment <span class="glyphicon glyphicon-check"></span>
                  <hr/>
              <div class="col-sm-24 assignmentDescription">
 

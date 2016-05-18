@@ -93,10 +93,8 @@ app.directive('resourcesSingleresource', [
                   }
                   else {
                     $('.resourceFile').empty().append('<a target="_self" href="uploads/' + scope.theResource.filename + '" download>' + scope.theResource.filename + '</a>');
-                  }
+                  }                  
                   
-                  
-                  scope.$root.$broadcast('setupUpdateScope');
               });
           }
 
@@ -115,6 +113,7 @@ app.directive('resourcesSingleresource', [
         scope.updateResourceModalShown = false;
         scope.toggleUpdateResourceModal = function() {
             scope.updateResourceModalShown = !scope.updateResourceModalShown;
+            scope.$root.$broadcast('setupUpdateScope');
         };
           
           
