@@ -45,8 +45,8 @@ app.directive('assignmentAssignmentstudent', [
               checkIfSubmitted();
 
               User.get({_id: scope.assignment.responsible_teacher}, function(user){
-              scope.teacher = user[0].first_name + " " + user[0].last_name;
-              scope.teacherUrl = user[0].public_url;
+                  scope.teacher = user[0].first_name + " " + user[0].last_name;
+                  scope.teacherUrl = user[0].public_url;
             });
           });
 

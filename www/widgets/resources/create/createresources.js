@@ -10,15 +10,15 @@ app.directive('resourcesCreateCreateresources', [
     $location,
     $window,
     Course,
-     Resource,
+    Resource,
     SessionService
   ) {
 
     return {
       templateUrl: settings.widgets + 'resources/create/createresources.html',
       link: function(scope, element, attrs) {
-          
-          
+
+
         //get session_user
         scope.session_user;
         SessionService.getSession().success(function(response){
@@ -37,12 +37,12 @@ app.directive('resourcesCreateCreateresources', [
             selectedCourseName = scope.courseSelect.repeatSelect;
             console.log("selected course on change", selectedCourseName);
         }
-          
+
         //create a new course and set GUI edit options
         scope.createResource = function(){
-            
+
             scope.$$childTail.submit();
-            
+
             if (scope.file) {
                 var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
                 console.log(strippedFileName);
@@ -50,7 +50,7 @@ app.directive('resourcesCreateCreateresources', [
             else {
                 var strippedFileName = undefined;
             }
-            
+
             var description = $("#createNewResource").attr("value");
             var resourceUrl = scope.resourceTitle.replace(/[\n\t\r\x20]/g, "_");
             var resource = {
@@ -79,7 +79,7 @@ app.directive('resourcesCreateCreateresources', [
               console.log(res);
               scope.closeModalSession();
               scope.castTheResourceList();
-                  
+
             });
             */
             Resource.create(resource, function(res) {
@@ -101,7 +101,7 @@ app.directive('resourcesCreateCreateresources', [
             });
         }
 
-        
+
         scope.castTheResourceList = function() {
            scope.$root.$broadcast('refreshResourceList');
         };

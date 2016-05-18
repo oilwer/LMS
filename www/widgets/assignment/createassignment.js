@@ -5,6 +5,7 @@ app.directive('assignmentCreateassignment', [
     "Course",
     "User",
     "Assignment",
+    "Resource",
     "SessionService",
   function(
     settings,
@@ -13,6 +14,7 @@ app.directive('assignmentCreateassignment', [
     Course,
     User,
     Assignment,
+    Resource,
     SessionService
   ) {
     return {
@@ -155,33 +157,57 @@ app.directive('assignmentCreateassignment', [
 							              	Assignment.create(scope.assignment, function(res) {
 								          		Course.get({ _id: res[0].course}, function(x) {
 								          			//Update Course and Continue
-										  			Course.update({_relate:{items:x[0],assignments:res[0] }});
+										  			//Course.update({_relate:{items:x[0],assignments:res[0] }});
 									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
+
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
-                                                            console.log("ass, id", newAssignment[0]._id);
-                                                            console.log("file:",scope.$$childTail.file[0].name);
+                                                            //console.log("ass, id", newAssignment[0]._id);
+                                                            //console.log("file:",scope.$$childTail.file[0].name);
                                                             //console.log(scope.file);
 
                                                             var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
 
-                                                            User.update({
-                                                                _id: scope.session_user._id
-                                                            },{ $push: {
-                                                                assignments:{
-                                                                  assignment: newAssignment[0]._id,
-                                                                  comment: newAssignmentDescription,
-                                                                  submissionDate: new Date(),
-                                                                  status: "Submitted",
-                                                                  answer_file: strippedFileName
-                                                                }
-                                                              }
-                                                            }, function(res)
-                                                          {
-                                                            console.log(res);
-                                                          });
-											  				scope.incrementStep();
+                                                            var resource = {
+                                                                title: strippedFileName,
+                                                                filename: strippedFileName,
+                                                                url: strippedFileName,
+                                                                assignment: newAssignment,
+                                                                content: strippedFileName,
+                                                                uploaded_by: scope.session_user._id,
+                                                                uploaded_on: new Date()
+                                                            };
 
+                                                            Resource.create(resource, function(res) {
+
+                                                                    //Update Course and Continue
+                                                                    Assignment.update({_relate:{items:newAssignment[0],resources:res[0] }});
+                                                                    Resource.update({ _relate:{ items:res[0], assignment:newAssignment[0]}}, function(newres){
+
+                                                                        //console.log("UPLOADED: ",newres);
+
+                                                                    });
+
+                                                            });
+
+                                                        //     User.update({
+                                                        //         _id: scope.session_user._id
+                                                        //     },{ $push: {
+                                                        //         assignments:{
+                                                        //           assignment: newAssignment[0]._id,
+                                                        //           comment: newAssignmentDescription,
+                                                        //           submissionDate: new Date(),
+                                                        //           status: "Submitted",
+                                                        //           answer_file: strippedFileName
+                                                        //         }
+                                                        //       }
+                                                        //     }, function(res)
+                                                        //   {
+                                                        //     console.log("FILEUPLOADED",res);
+                                                        //   });
+
+
+											  				scope.incrementStep();
 										  				});
 									  				});
 					                    		});
