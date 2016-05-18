@@ -102,6 +102,7 @@ app.directive('profilePrivateprofile', [
 			        	source: $scope.tags,
 			        	select: function(e, ui) {
 					        $scope.searchTags = ui.item.value;
+
 					    }
 			        });
 	            });
