@@ -8446,9 +8446,6 @@ input[type=checkbox] {
   display: inline;
   padding-right: 10px;
 }
-.assignment-meta .assignment_description {
-  padding: 20px 0px 15px 0px;
-}
 .assignment-meta em {
   font-weight: 600;
   text-transform: uppercase;
@@ -8459,6 +8456,9 @@ input[type=checkbox] {
   margin-top: 20px;
   width: 200px;
   text-align: center;
+}
+.assignment_description_file {
+  padding: 20px 0px;
 }
 .assignment--feedback {
   background: rgba(62, 71, 79, 0.05);
@@ -8475,7 +8475,7 @@ input[type=checkbox] {
   padding-bottom: 10px;
 }
 .assignment_description {
-  padding: 0px 40px 15px 40px;
+  padding: 20px 0px 0px 0px;
 }
 .assignment-answer {
   padding: 40px;

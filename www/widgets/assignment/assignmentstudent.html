@@ -9,14 +9,18 @@
             <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
             <li><em>by: </em>{{teacher}}</li>
         </ul>
-        <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
-        <!--<button class="btn btn--assignments toggleClass" ng-show="default" ng-click="toggleSubmit()">{{showHideSubmit}} <i ng-show="noAnswer" class="fa fa fa-angle-up"></i><i ng-hide="noAnswer" class="fa fa fa-angle-down"></i></button>-->
+        <button 
+            class="btn btn--assignments toggleClass" 
+            ng-click="toggleDescription()">{{showHideBtn}} 
+            <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i>
+            <i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i>
+        </button>
         <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
-
+            <div class="assignment_description_content"></div>
+            <div class="assignment_description_file"></div>
         </div>
-
     </div><!--.assignment_meta-->
-</section><!--.box .assignment-->
+</section>
 
 <!--SUBMIT ANSWER-->
 <!--<section ng-show="noAnswer" class="box assignment assignment-answer col-lg-24 animate-show">-->

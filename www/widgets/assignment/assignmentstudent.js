@@ -41,7 +41,10 @@ app.directive('assignmentAssignmentstudent', [
                   scope.assignment.obligatory = "No";
               }
               console.log("ass:", scope.assignment);
-              $(".assignment_description").append(scope.assignment.description);
+              $(".assignment_description_content").append(scope.assignment.description);
+                if (scope.assignment.teacher_instruction_file !== undefined) {
+                    $('.assignment_description_file').empty().append('<a target="_blank" href="uploads/' + scope.assignment.teacher_instruction_file + '" download>' + scope.assignment.teacher_instruction_file + '</a>');
+                }
               checkIfSubmitted();
 
               User.get({_id: scope.assignment.responsible_teacher}, function(user){
