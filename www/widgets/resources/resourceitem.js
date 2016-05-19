@@ -23,7 +23,6 @@ app.directive('resourcesResourceitem', [
                 //scope.resourceList.push(course[0].resources[i]);
                 Resource.get({_id: course[0].resources[i]}, function(resource){
                     scope.resourceList.push(resource[0]);
-                    console.log(resource[0]);
                 });
             }
           }
