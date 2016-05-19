@@ -1,7 +1,6 @@
-<section class="box assignment">
-    <!-- Assignment info - to be editable -->
+<section class="box assignment col-sm-24">
     <div class="assignment-meta">
-    <h2>{{assignment.name}}</h2>
+        <h2>{{assignment.name}}</h2>
         <ul>
             <li><em>Deadline: </em>{{assignment.due_date | date:"MMMM d, y  'at' HH:mm"}}</li>
             <li><em>Obligatory:</em> {{obligatoryText}}</li>
@@ -10,15 +9,22 @@
             <li><em> Published:</em> {{assignment.added_on | date:"MMMM d, y 'at' HH:mm"}} </li>
             <li><em>by: </em>{{teacher}}</li>
         </ul>
-        <button class="btn btn--assignments toggleClass" ng-click="toggleDescription()">{{showHideBtn}} <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i><i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i></button>
-        <button class="btn btn-default btn--assignments" ng-click="toggleUpdateAssignmentModal()"><i class="fa fa-pencil" aria-hidden="true"></i> Edit assignment</button>
-    </div>
-    <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
-
-        <!-- List files/resources uploaded by teacher -->
-        <div class="submittedFile"></div>
-    </div>
-
+        <button 
+            class="btn btn--assignments toggleClass" 
+            ng-click="toggleDescription()">{{showHideBtn}} 
+            <i ng-show="isDescriptionOpen" class="fa fa fa-angle-up"></i>
+            <i ng-hide="isDescriptionOpen" class="fa fa fa-angle-down"></i>
+        </button>
+        <button 
+            class="btn btn-default btn--assignments" 
+            ng-click="toggleUpdateAssignmentModal()">
+            <i class="fa fa-pencil" aria-hidden="true"></i> Edit assignment
+        </button>
+        <div class="assignment_description animate-show" ng-show="isDescriptionOpen">
+            <div class="assignment_description_content"></div>
+            <div class="assignment_description_file"></div>
+        </div>
+    </div><!--.assignment-meta-->
 </section>
 <section class="box assignment col-sm-24 assignment-answer" ng-show="assignmentListView">
     <!-- Assignmentlist from students ng-repeate-->
