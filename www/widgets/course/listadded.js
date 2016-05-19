@@ -43,7 +43,7 @@ app.directive('courseListadded', [
                 }
               };
 
-              console.log(user[0].courses[i]);
+              // console.log(user[0].courses[i]);
 
             });
           });

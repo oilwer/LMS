@@ -27,10 +27,12 @@ app.directive('courseCourseslist', [
 
         var refresh = function(){
           SessionService.getSession().success(function(response) {
-            User.get({_id: response.user._id, _populate:"courses", _populate:"assignments"}, function(user){
-              session_user = user;
+            User.get({_id: response.user._id, _populate:"courses"}, function(user1){
 
+              User.get({_id: response.user._id, _populate:"assignments"}, function(user){
+                user1[0].assignments = user[0].assignments;
 
+                session_user = user1;
 
               if(session_user[0].role == "admin"){
                 scope.heading = "All courses";
@@ -78,9 +80,12 @@ app.directive('courseCourseslist', [
                  scope.courses = Course.get();
                }
                else if(session_user[0].role === "student") {
+
                  scope.courses = session_user[0].courses;
+
                }
              }
+           });
            });
          });
 
