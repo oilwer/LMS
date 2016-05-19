@@ -159,8 +159,9 @@ app.directive('assignmentCreateassignment', [
 									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
                                                         if(scope.$$childTail.file){
                                                             var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                                        } else {
+                                                            var strippedFileName = "undefined";
                                                         }
-                                                        var strippedFileName = "undefined";
 
                                                         Assignment.update({
                                                             _id: newres._id
@@ -196,7 +197,11 @@ app.directive('assignmentCreateassignment', [
 												console.log("res ass: ", resAssignment);
 												scope.assignment.added_on = undefined;
 												var ass = scope.assignment;
-                                                var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                                if(scope.$$childTail.file){
+                                                    var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                                } else {
+                                                    var strippedFileName = "undefined";
+                                                }
 												Assignment.update({_id: resAssignment[0]._id}, {
 													name: scope.assignment.name,
 													description: scope.assignment.description,
