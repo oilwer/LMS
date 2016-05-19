@@ -19,6 +19,7 @@ app.directive('courseCoursenav', [
        var fullUrl = $location.path();
        var url = fullUrl.split(/[\s/]+/)[2];
         var nextPath = fullUrl.split(/[\s/]+/)[3];
+          console.log("next", nextPath);
         scope.course = "";
         Course.get({url: url,_populate:"resources"}, function(course){
             scope.course = course[0];
@@ -27,7 +28,12 @@ app.directive('courseCoursenav', [
 
         var c = Course.get({_id:scope.course._id,_populate:"assignments"});
         scope.assignments = c.assignments;
-          console.log(scope.assignments);
+          
+         Course.get({url: url, _populate:"assignments"}, function(course){
+            scope.course = course[0];
+            $('.courseDescriptionContent').empty().append(scope.course.description);
+            scope.assignments = scope.course.assignments;
+        });
 
 
       	scope.hasAssignment = function(assignments)
@@ -54,11 +60,11 @@ app.directive('courseCoursenav', [
       		return route === $location.path();
       	}
         
-        scope.isInActive = function(route){
-
-      		return nextPath;
+        scope.isSingleResource = function(route){
+            console.log("single", nextPath);
+      		return route === nextPath;
       	}
-
+        
     }
   };
 }]);

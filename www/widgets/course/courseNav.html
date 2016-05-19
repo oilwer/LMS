@@ -17,7 +17,7 @@
             <i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-up"></i>
         </a>
         <ul ng-show="isChildOpen" ng-repeat="assignment in assignments">
-            <li ng-class="{'active': isInActive(assignment._id)}">
+            <li ng-class="{'active': isActive('/courses/' + course.url + '/assignment/' + assignment._id)}">
                 <a href="courses/{{course.url}}/assignment/{{ assignment._id }}">
                     <i class="fa--itemtype fa fa-file-text-o"></i>{{assignment.name}}                  
                 </a>
@@ -26,7 +26,7 @@
     </li>
 
     <!--Resources-->
-    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/')}" ng-if = "hasResource(course.resources)">
+    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/') || isSingleResource('resources')}" ng-if = "hasResource(course.resources)">
         <a ng-href="courses/{{course.url}}/resources">Resources </a>
         <!--<ul ng-show="isChild2Open" ng-repeat="resource in resourceList">
             <li><a href={{resource.url}}><i class={{resourceType}}></i>{{resource.name}}</a></li>
