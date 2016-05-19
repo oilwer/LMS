@@ -4,12 +4,14 @@ app.directive('courseCourseslist', [
   "SessionService",
   "User",
   "Course",
+  "Assignment",
   function(
     settings,
     $location,
     SessionService,
     User,
-    Course
+    Course,
+    Assignment
   ) {
     return {
       templateUrl: settings.widgets + 'course/courseslist.html',
@@ -25,8 +27,10 @@ app.directive('courseCourseslist', [
 
         var refresh = function(){
           SessionService.getSession().success(function(response) {
-            User.get({_id: response.user._id, _populate:"courses"}, function(user){
+            User.get({_id: response.user._id, _populate:"courses", _populate:"assignments"}, function(user){
               session_user = user;
+
+
 
               if(session_user[0].role == "admin"){
                 scope.heading = "All courses";
@@ -42,14 +46,23 @@ app.directive('courseCourseslist', [
                 for (i = 0; i < user[0].courses_pinned.length; i++) {
                   currentObj = session_user[0].courses_pinned[i];
                   if(currentObj.pinned) {
-                    Course.get({_id: currentObj.course}, function(course) {
-                      scope.pinnedCourses.push(course[0]);
-                      if(session_user[0].role == "admin") {
-                        scope.courses = Course.get();
-                      } else if (session_user[0].role == "student") {
-                        scope.courses = session_user[0].courses;
-                      }
+                    Course.get({_id: currentObj.course, _populate:"resources"}, function(course1) {
+
+
+                        Course.get({_id: course1[0]._id, _populate:"assignments"}, function(course) {
+
+                          course[0].resources = course1[0].resources;
+
+
+                          scope.pinnedCourses.push(course[0]);
+                          if(session_user[0].role == "admin") {
+                            scope.courses = Course.get();
+                          } else if (session_user[0].role == "student") {
+                            scope.courses = session_user[0].courses;
+                          }
+                        });
                     });
+
                   } else {
                     if(session_user[0].role == "admin") {
                       scope.courses = Course.get();
@@ -110,7 +123,7 @@ app.directive('courseCourseslist', [
                           course: course._id,
                           pinned: true
                         }}}, function(res){
-                          scope.pinnedCourses.push(course);
+                          // scope.pinnedCourses.push(course);
                   });
               } else {
                 // Set pinned to false
@@ -118,15 +131,12 @@ app.directive('courseCourseslist', [
                     courses_pinned: {$elemMatch: {course: course._id} }
                   },{ "courses_pinned.$.pinned" : !obj.pinned }, function(res) {
 
-                    if(obj.pinned) {
-                      scope.pinnedCourses.splice(findWithAttr(scope.pinnedCourses, "_id", course._id), 1);
-                    } else {
-                      scope.pinnedCourses.push(course);
-                    }
+
                 });
               }
             });
           });
+          refresh();
         }
 
         scope.class = "assignClass"

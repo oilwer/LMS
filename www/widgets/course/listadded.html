@@ -36,8 +36,8 @@
 
 
                   <!--repeat all courses that the user belongs to -->
-                  <tbody ng-repeat="assignment in assignments | limitTo:'2'"><!--????-->
-                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                  <tbody ng-repeat="assignment in course.assignments | limitTo:'2'"><!--????-->
+                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignment/{{assignment._id}}">
 
                         <!-- <td ng-if="course.status == true">
                           {{course.start | date:'shortDate' }}
@@ -52,16 +52,17 @@
                           </td> -->
                           <td ng-if="course.status == true">
                               <i class="fa fa-file-text-o"></i>
-                                  <span ng-if="assignment">assignment.name</span>
-                                  <span ng-if="!assignment">None</span><!--????-->
+                              <span ng-class="class">{{assignment.name}}</span>
+
                               </i>
                           </td>
                           <!-- <td ng-if="course.status == true">
                             {{course.start | date:'shortDate' }}
                           </td> -->
                             <td>
-                              <span ng-if="assignment">assignment.end</span>
-                              <span ng-if="!assignment">None</span><!--????-->
+                              <span ng-if="assignment" ng-class="class">{{assignment.due_date | date:'shortDate'}}</span>
+                              <span ng-if="!assignment" ng-class="class">None</span><!--????-->
+
                             </td>
                           <!-- <td ng-if="course.status == true">
                               <i class="fa fa-question-circle"></i>
@@ -96,18 +97,18 @@
                   </thead>
 
                   <!--repeat all courses that the user belongs to -->
-                  <tbody ng-repeat="resource in resouces | limitTo:'2'"><!--????-->
-                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
+                  <tbody ng-repeat="resource in course.resources | limitTo:'2'"><!--????-->
+                      <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
 
                             <td>
                                 <i class="fa fa-file-text-o"></i>
-                                    <span ng-if="resource" ng-class="class">resource.name</span>
+                                    <span ng-if="resource" ng-class="class">{{resource.title}}</span>
                                     <span ng-if="!resource" ng-class="class">None</span><!--????-->
                                 </i>
                             </td>
 
                             <td>
-                              <span ng-if="resource">resource.date</span><!--????-->
+                              <span ng-if="resource">{{resource.uploaded_on | date:'shortDate' }}</span><!--????-->
                               <span ng-if="!resource">None</span>
                             </td>
 
