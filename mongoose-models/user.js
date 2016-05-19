@@ -45,12 +45,8 @@ module.exports = function(mongoose){
       //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
     }],
     plugs:[{
-            id: String,
             name: String,
-            path: String,
-            isActive: Boolean,
-            x: Number,
-            y: Number
+            isActive: Boolean
    }],
    role: String, //student/admin/teacher
    slack_token: String, //holds slack token

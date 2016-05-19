@@ -34,6 +34,14 @@ app.directive('adminUsermanager', [
             // TODO: Check if not empty - FIX IN MOONGOSE
             // If it's not editing
             if(!isEditing){
+                var plug = "";
+                if($scope.user.role === "teacher"){
+                  plug = "teacherpanel";
+                }
+                else if($scope.user.role === "admin"){
+                  plug = "adminpanel";
+                }
+
                 var user = $scope.user;
                 //Asks the UserService to add a user
                 User.create({
@@ -46,17 +54,17 @@ app.directive('adminUsermanager', [
                     phone_number: user.phone_number,
                     password: user.password,
                     public_url: user.public_url,
-                    dashboard_config:[{
-                        plug:{
-                            id: user.id,
-                            name: user.name,
-                            path: user.path,
-                            isActive: user.Boolean,
-                            x: user.x,
-                            y: user.y
-                        }
-                    }],
-                    role: user.role //student/admin/teacher
+                    role: user.role, //student/admin/teacher
+                    plugs:[
+                      {                                
+                          name: plug,
+                          isActive: true                    
+                      },
+                      {                                
+                          name: "courselist",
+                          isActive: true                    
+                      }
+                    ]                                 
                 });
 
                 // Pushes (updates) the GUI with the new user
@@ -83,19 +91,6 @@ app.directive('adminUsermanager', [
                   personality: user.personality,
                   phone_number: user.phone_number,
                   public_url: user.public_url,
-                  //courses: {
-                    //  course_name: user.course_name
-                  //},
-                  dashboard_config:[{
-                      plug:{
-                          id: user.id,
-                          name: user.name,
-                          path: user.path,
-                          isActive: user.Boolean,
-                          x: user.x,
-                          y: user.y
-                      }
-                  }],
                   role: user.role //student/admin/teacher
                 });
               // Refresh GUI

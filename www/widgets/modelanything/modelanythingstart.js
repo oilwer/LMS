@@ -29,18 +29,43 @@ app.directive('modelanythingModelanythingstart', [
   			  // console.log(user);
 
          // console.log(user.plugs.length);
+         var nr = 0;
 
   			  for(var i = 0; i < user.plugs.length; i++) {
   				  if(user.plugs[i].isActive == true){
   					  // Adds html to all plugins
-  					  var plug = user.plugs[i].name;
-  					  var id = user.plugs[i].id;
-  					  console.log(plug);
-  					  scope.html += "<div class='plugin' id='" + plug + id + "'> <" + "modelanything-plugins-" + plug + "/> </div>";
-  			  	  }
+  					     var plug = user.plugs[i].name;
+  					     var id = user.plugs[i]._id;
+
+                 if((i % 2) === 0){
+                  console.log(i);
+                  scope.html += "<div class='row'>";
+                 }
+  					  
+  					     scope.html += "<div class='col-md-12' id='" + plug + id + "' ><" +
+                               "modelanything-plugins-" + plug + "/></div>";
+
+                if((i % 2) === 1){
+                  scope.html += "</div>";
+                  console.log(i);
+                 }
+              }
   			  }
   		      //scope.html = '<div class="col-xs-12" form-base>';
 	      }
+
+        scope.deletePlug = function(name){
+          console.log(name);
+          SessionService.getSession().success(function(response) {
+              User.update({
+                _id:response.user._id
+              },{
+                $pull: { 
+                    plugs : { name: name }
+                }
+              });
+          });
+        }
 
 	      // User.onQueueDone (loadPlugs);
   	      // console.log(kk);
