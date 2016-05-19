@@ -63,6 +63,10 @@ app.directive('courseCoursenav', [
       		return route === nextPath;
       	}
         
+        scope.isSingleAssignment = function(route){
+      		return route === nextPath;
+      	}
+        
     }
   };
 }]);

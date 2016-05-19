@@ -31,12 +31,15 @@ app.config([
        .when("/courses/", {
         templateUrl: "templates/courses.html",
       })
-       .when("/courses/:name/assignment/:id", {
+       .when("/courses/:name/assignments/:id", {
         templateUrl: "templates/assignment.html",
       })
        //
        .when("/courses/:id", {
         templateUrl: "templates/course.html",
+      })
+        .when("/courses/:id/assignments/", {
+        templateUrl: "templates/assignmentoverview.html",
       })
         .when("/courses/:id/participants/", {
             templateUrl: "templates/connectstudents.html",

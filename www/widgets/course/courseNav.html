@@ -1,39 +1,36 @@
-<h1 class="nav--course_heading"><i class="fa--heading fa fa-leaf"></i> {{ course.code }} - {{course.name}}</h1>
+<h1 class="nav--course_heading">
+    <i class="fa--heading fa fa-leaf"></i> 
+    {{course.name}} ({{ course.code }})
+</h1>
+
 <ul>
     <li ng-class="{'active': isActive('/courses/' + course.url) }">
-        <a ng-href="courses/{{course.url}}">Overview</a>
+        <a ng-href="courses/{{course.url}}">
+            Overview
+        </a>
     </li>
 
     <li ng-class="{'active': isActive('/courses/' + course.url + '/participants/') || isActive('/courses/' + course.url + '/participants/edit') }">
-        <a ng-href="courses/{{course.url}}/participants/">Participants</a>
+        <a ng-href="courses/{{course.url}}/participants/">
+            Participants
+        </a>
     </li>
 
     <!--<li><a href="">Questions and Answers</a></li>
 
     <!--Assignments-->
-    <li ng-if = "hasAssignment(course.assignments)">
-        <a  ng-click="isChildOpen = !isChildOpen">Assignments 
-            <i ng-hide="isChildOpen" class="fa--toggle fa fa-chevron-down"></i>
-            <i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-up"></i>
+    <li ng-if = "hasAssignment(course.assignments)" 
+        ng-class="{'active': isActive('/courses/' + course.url + '/assignments/') || isSingleAssignment('assignments')}">
+        <a ng-href="courses/{{course.url}}/assignments">
+            Assignments 
         </a>
-        <ul ng-show="isChildOpen" ng-repeat="assignment in assignments">
-            <li ng-class="{'active': isActive('/courses/' + course.url + '/assignment/' + assignment._id)}">
-                <a href="courses/{{course.url}}/assignment/{{ assignment._id }}">
-                    <i class="fa--itemtype fa fa-file-text-o"></i>{{assignment.name}}                  
-                </a>
-            </li>
-        </ul>
     </li>
 
     <!--Resources-->
-    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/') || isSingleResource('resources')}" ng-if = "hasResource(course.resources)">
-        <a ng-href="courses/{{course.url}}/resources">Resources </a>
-        <!--<ul ng-show="isChild2Open" ng-repeat="resource in resourceList">
-            <li><a href={{resource.url}}><i class={{resourceType}}></i>{{resource.name}}</a></li>
-
-            <li><a href=""><i class="fa--itemtype fa fa-file-pdf-o"></i>Information as a pdf 1</a></li>
-            <li><a href=""><i class="fa--itemtype fa fa-video-camera"></i>JS movie module 2</a></li>
-            <li><a href=""><i class="fa--itemtype fa fa-book"></i>Digital text heading by Name Speres</a></li>
-        </ul>-->
+    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/') || isSingleResource('resources')}" 
+        ng-if = "hasResource(course.resources)">
+        <a ng-href="courses/{{course.url}}/resources">
+            Resources 
+        </a>
     </li>
 </ul>
