@@ -65,6 +65,8 @@ app.directive('slackSlackbox', [
           })[0];
 
           ChatService.getMessages(obj.slack_channels[0].channelId, UserIdentifier).success(function(response){
+            console.log(response, "the response");
+            console.log(UserIdentifier, "user id");
             if(response.error == "not_authed"){
               callback(response.error);
             } else {
@@ -82,7 +84,8 @@ app.directive('slackSlackbox', [
                   }
                 }
                 else {
-                  if(response.messages[i].subtype !== 'undefined') {
+                  if(response.messages[i].subtype == 'channel_join' || response.messages[i].subtype == 'channel_leave') {
+                    console.log(" I spliced this guy ", response.messages[i]);
                     response.messages.splice(i, 1);
                   }
                 }

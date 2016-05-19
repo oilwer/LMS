@@ -6,7 +6,7 @@ module.exports = function(mongoose) {
 
       var User = mongoose.model('User');
 
-    //var myChannelID = "C0RRZEDK4"; //HARD CODED FOR NOW  
+    //var myChannelID = "C0RRZEDK4"; //HARD CODED FOR NOW
 
     if(req.method == 'DELETE') {
       User.findOne({email: req.query.userIdentifier}, function(err, user) {
@@ -20,16 +20,16 @@ module.exports = function(mongoose) {
           var slack = new Slack(apiToken);
 
           if(req.query.action == "leave"){
-          
+
             slack.api('channels.leave', {
                 token:apiToken,
                 channel:req.query.id, //this is actually the channel id
             }, function(err, response){
               res.json(response);
-            });  
+            });
           }
       });
-    }      
+    }
 
     if(req.method == 'GET') {
       User.findOne({email: req.query.userIdentifier}, function(err, user) {
@@ -48,7 +48,7 @@ module.exports = function(mongoose) {
               count:20,
               channel:req.query.id }, function(err, response){
                   res.json(response);
-          });          
+          });
         }
 
         if(req.query.action == "getChannels"){
@@ -58,7 +58,7 @@ module.exports = function(mongoose) {
               res.json(response);
           });
         }
-      });      
+      });
     }
 
     if (req.method == 'POST') {
@@ -89,7 +89,7 @@ module.exports = function(mongoose) {
             }, function(err, response){
               res.json(response);
             });
-            
+
           } else {
             //User.get();
             //If posting a message
@@ -99,9 +99,9 @@ module.exports = function(mongoose) {
                       as_user:true,
                       channel:req.body.channel,
                   }, function(err, response){
-                       res.json(response);   
-                  });        
-          }  
+                       res.json(response);
+                  });
+          }
         });
     }
   }];
