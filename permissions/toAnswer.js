@@ -1,5 +1,5 @@
 module.exports = function(modelName, method, query, req, result) {
-	
+
 	// If somebody not logged in trying to recieve API calls - block them
 	if(req.session.user == undefined)
 	{
@@ -7,11 +7,11 @@ module.exports = function(modelName, method, query, req, result) {
 		result = "";
 		return true;
 	}
-	
+
 	// If logged in
 	else if(req.session.user != undefined)
 	{
-		
+
 		// If admin - Allow anything
 		if(req.session.user.role == "admin")
 		{
@@ -24,7 +24,7 @@ module.exports = function(modelName, method, query, req, result) {
 					{
 						console.log("No results");
 					}
-					
+
 					else
 					{
 						// For each user, remove protected data
@@ -34,7 +34,7 @@ module.exports = function(modelName, method, query, req, result) {
 						}
 					}
 				}
-				
+
 				 // Admin gets his own data
 				else if(query._id == req.session.user._id)
 				{
@@ -42,25 +42,25 @@ module.exports = function(modelName, method, query, req, result) {
 				}
 			}
 		}
-		
+
 		// If not admin
 		else
 		{
 			if(modelName == "User")
 			{
-				
+
 				if(method == "GET")
 				{
 
 					// No query specifyed, Get all users
 					if(query._id == undefined)
 					{
-	
+
 						if(result.length == 0)
 						{
 							console.log("No results");
 						}
-						
+
 						else
 						{
 							// For each user, remove protected data
@@ -79,14 +79,14 @@ module.exports = function(modelName, method, query, req, result) {
 							}
 						}
 					}
-					
+
 					 // User gets his own data
 					else if(query._id == req.session.user._id)
 					{
 						console.log("i want to get my own data");
 						result.password = undefined;
 					}
-					
+
 					// User gets somebodys elses data
 					else if(query._id == req.session.user._id)
 					{
@@ -102,13 +102,13 @@ module.exports = function(modelName, method, query, req, result) {
 						result[i].courses = undefined;
 						result[i].password = undefined;
 					}
-					
-					
+
+
 				}
 			}
 		}
 	}
-	
+
   result = "";
   return true;
 };
