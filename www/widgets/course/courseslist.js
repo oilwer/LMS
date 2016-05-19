@@ -18,6 +18,8 @@ app.directive('courseCourseslist', [
       link: function(scope, element, attrs) {
 
         var session_user;
+          
+          scope.currentDate = new Date(); //used to filter assignments in the pinned course box
 
         var getCourse = function(course){
           Course.get({_id: course._id}, function(course) {
@@ -50,9 +52,18 @@ app.directive('courseCourseslist', [
 
 
                         Course.get({_id: course1[0]._id, _populate:"assignments"}, function(course) {
-
+                            
                           course[0].resources = course1[0].resources;
-
+                                                    
+                         if(course[0].assignments !== undefined) {
+                             var filteredAssignments = [];
+                             for (var i = 0; i < course[0].assignments.length; i++) {
+                                 if (new Date(course[0].assignments[i].due_date) > scope.currentDate) {
+                                     filteredAssignments.push(course[0].assignments[i]);
+                                    };
+                             }
+                             course[0].assignments = filteredAssignments;
+                         }
 
                           scope.pinnedCourses.push(course[0]);
                           if(session_user[0].role == "admin") {

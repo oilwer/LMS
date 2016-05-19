@@ -9,7 +9,6 @@
                 <course-courseNav></course-courseNav>
             </nav>
 
-
             <div class="col-sm-22 col-md-22">
                 <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
                 <div class="row">
@@ -68,7 +67,7 @@
                                 </div>
                                 <div class="col-sm-24">
 
-                                    <h2 class="coursedescription_titel">Date:</h2>
+                                    <h3 class="coursedescription_titel">Date:</h3>
                                     <p> {{ course.start | date:'short' }} - {{ course.end | date:'short'}}</p>
 
                                 </div>
@@ -88,14 +87,14 @@
                         <div class="col-sm-24 box--label box--label--courses box--label--assignments">
                             <h2 class="box--label_heading--assignments">
                                 <i class="fa--heading fa fa-file-text-o"></i>
-                                Assignments
+                                Upcoming assignments
                             </h2>
                             <div class="assignmentList">
                                 <ul class="courses_assignments">
                                     <p class="course_heading">
                                         <span>Name</span><span>Deadline</span><span>Status</span>
                                     </p>
-                                     <assignment-item ng-repeat="assignment in assignments | orderBy: 'due_date'"></assignments-item>
+                                     <assignment-item ng-repeat="assignment in assignments | orderBy: 'due_date' | limitTo:'5'"></assignments-item>
                                 </ul>
                                 <button class="btn btn--default btn--assignments" ng-show="auth" ng-click="castTheAssignmentModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
                             </div>
@@ -104,7 +103,7 @@
                         <div class="col-sm-24 box--label box--label--resources">
                             <h2 class="box--label_heading--resources">
                                 <i class="fa--heading fa fa-book"></i>
-                                Resources
+                                Latest resources
                             </h2>
                             <div class="">
                                 <ul class="courses_assignments">

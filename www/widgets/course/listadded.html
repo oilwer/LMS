@@ -1,115 +1,81 @@
 <div class="courses--pinned">
   <div class="col-md-12" ng-repeat="course in pinnedCourses track by $index">
-      <div class="box--label box--label--courses" >
-
-              <h2 class="box--label_heading--courses"><i class="fa--heading fa fa-leaf"></i>
-                <a href="" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">{{course.name}}</a>
-
-
-                <button class="btn btn--pin--active" ng-click="pinCourse(course)">
-                <i class="fa fa-thumb-tack" ></i>
-                Unpin
-              </button>
-              <p name="code"><small>{{course.code}}</small> </p>
-            </h2>
-
-
-
+      <div class="box--label box--label--courses">
           <div class="box__content">
-
+            <div class="box--label_heading--courses">
+                <a href="" 
+                   ng-click="courseLocation($event)" 
+                   dataLocation="{{ course.url }}">
+                    <h2>
+                        <i class="fa fa-leaf"></i> {{course.name}} <span class="course_code">({{course.code}})</span>
+                    </h2>
+                </a>
+                <button 
+                    class="btn btn--pin--active" 
+                    ng-click="pinCourse(course)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                </button>
+            </div><!--.box--label_heading--courses-->
               <table ng-if="course.assignments.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
-
-                          <th>Latest Assignments</th>
+                          <th>Upcoming assignments</th>
                           <th>Deadline</th>
-
                       </tr>
-
                   </thead>
-
-
-
                   <!--repeat all courses that the user belongs to -->
-                  <tbody ng-repeat="assignment in course.assignments | limitTo:'2'"><!--????-->
+                  <tbody ng-repeat="assignment in course.assignments | orderBy:'due_date' | limitTo:'2' ">
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignment/{{assignment._id}}">
-
-
-                          <td ng-if="course.status == true">
-                              <i class="fa fa-file-text-o"></i>
-                              <span ng-class="class">{{assignment.name}}</span>
-
-                              </i>
-                          </td>
-
-                            <td>
-                              <span ng-class="class">{{assignment.due_date | date:'shortDate'}}</span>
-
-
-                            </td>
-
-
+                        <td ng-if="course.status == true">
+                            <i class="fa fa-file-text-o"></i>
+                            <span ng-class="class">{{assignment.name}}</span>
+                            </i>
+                        </td>
+                        <td>
+                            <span ng-class="class">{{assignment.due_date | date:'short'}}</span>
+                        </td>
+                      </tr>
                   </tbody>
-
-
               </table>
-
+            
               <table ng-if="!course.assignments.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
-
-                          <th>Latest Assignments</th>
+                          <th>Upcoming assignments</th>
                           <th>Deadline</th>
-
                       </tr>
-
                   </thead>
-
-                  <!--repeat all courses that the user belongs to -->
-                  <tbody><!--????-->
-                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignment/{{assignment._id}}">
-
-                          <td ng-if="course.status == true">
-                              <i class="fa fa-file-text-o"></i>
-                              <span ng-class="class">---</span>
-
-                              </i>
-                          </td>
-
-                            <td>
-                              <span ng-class="class">---</span>
-
-                            </td>
-
+                  <tbody>
+                      <tr>
+                        <td ng-if="course.status == true">
+                          <i class="fa fa-file-text-o"></i>
+                          <span ng-class="class">---</span>
+                        </td>
+                        <td>
+                          <span ng-class="class">---</span>
+                        </td>
+                      </tr>
                   </tbody>
-
-
               </table>
-
+    
               <table ng-if="course.resources.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
                           <th>Latest Resourses</th>
                           <th>Uploaded</th>
-
                       </tr>
                   </thead>
-
-                  <!--repeat all courses that the user belongs to -->
-                  <tbody ng-repeat="resource in course.resources | limitTo:'2'"><!--????-->
+                  <tbody ng-repeat="resource in course.resources | limitTo:'2'">
                       <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
-
-                            <td>
-                                <i class="fa fa-book"></i>
-                                    <span  ng-class="class">{{resource.title}}</span>
-
-                                </i>
-                            </td>
-
-                            <td>
-                              <span>{{resource.uploaded_on | date:'shortDate' }}</span><!--????-->
-                            </td>
-
+                        <td>
+                            <i class="fa fa-book"></i>
+                                <span  ng-class="class">{{resource.title}}</span>
+                            </i>
+                        </td>
+                        <td>
+                          <span>{{resource.uploaded_on | date:'short' }}</span>
+                        </td>
+                     </tr>
                   </tbody>
               </table>
 
@@ -118,30 +84,23 @@
                       <tr>
                           <th>Latest Resourses</th>
                           <th>Uploaded</th>
-
                       </tr>
                   </thead>
-
-                  <!--repeat all courses that the user belongs to -->
-                  <tbody><!--????-->
+                  <tbody>
                       <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
-                            <td>
-                                    <i class="fa fa-book"></i>
-                                    <span  ng-class="class">---</span>
+                        <td>
+                            <i class="fa fa-book"></i>
+                            <span  ng-class="class">---</span>
+                        </td>
 
-                                </i>
-                            </td>
-
-                            <td>
-                              <span>---</span><!--????-->
-                            </td>
-
+                        <td>
+                          <span>---</span><!--????-->
+                        </td>
+                    </tr>
                   </tbody>
               </table>
 
-
-          </div>
-
-        </div>
-    </div><!--col end-->
+          </div><!--.box-content-->
+        </div><!--.box--label-->
+    </div><!--col repeate-->
 </div><!--col end-->
