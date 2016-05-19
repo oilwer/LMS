@@ -20,10 +20,7 @@
 
             <!--repeat all courses that the user belongs to -->
             <tbody>
-
                 <tr ng-repeat="course in courses track by $index">
-
-
                     <td ng-if="course.status == true" ng-click="courseLocation($event)" dataLocation="{{ course.url }}">
                         <i ng-if="course.configDone == false" class="fa fa-exclamation"></i>
                             {{course.name}}
@@ -44,20 +41,14 @@
                     <td>
                       <button ng-hide="isCoursesPin" class="btn btn--pin--inactive" ng-click="pinCourse(course)">
                       <i class="fa fa-thumb-tack" ></i>
-
-                    </button>
-                    <button ng-show="isCoursesPin" class="btn btn--pin--inactive" ng-click="pinCourse(course)">
-                    <i class="fa fa-thumb-tack" ></i>
+                      </button>
+                      <button ng-show="isCoursesPin" class="btn btn--pin--inactive" ng-click="pinCourse(course)">
+                      <i class="fa fa-thumb-tack" ></i>
                       Unpin
-                  </button>
-
-
-                    </button>
-
+                      </button>
                     </td>
-
                 </tr>
             </tbody>
         </table>
-    </div>
+    </div><!--.box-->
 </div>

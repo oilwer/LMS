@@ -15,10 +15,6 @@ app.directive('courseList', [
 
       $scope.heading = "My courses";
           
-          //placeholder for all the users courses, get from db
-          $scope.courses = "";
-          
-          
           $scope.openClose = function() {
               $scope.class="fa fa-chevron-right"
           };

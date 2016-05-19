@@ -8822,6 +8822,9 @@ table {
   background: rgba(62, 71, 79, 0.05);
   transition: all 0.3s ease-in-out;
 }
+.table--courses--pinned tr i {
+  color: rgba(62, 71, 79, 0.75);
+}
 .table--courses--pinned:not(:first-child) {
   margin-top: 20px;
 }
@@ -9599,7 +9602,11 @@ course-listadded .box--label--courses {
   border-left: 8px solid #2CC990;
   box-shadow: 2px 2px 0px 1px rgba(62, 71, 79, 0.2);
   margin-bottom: 22px;
+<<<<<<< HEAD
   min-height: 320px;
+=======
+  min-height: 300px;
+>>>>>>> fitercss
 }
 course-listadded .box--label_heading--courses a {
   color: #2CC990;
@@ -9607,8 +9614,16 @@ course-listadded .box--label_heading--courses a {
 .courses--pinned {
   overflow: hidden;
 }
-.courses--pinned p {
-  margin-left: 30px;
+.courses--pinned h2 {
+  display: inline-block;
+  margin-bottom: 0px;
+}
+.courses--pinned h2:hover {
+  color: rgba(44, 201, 144, 0.75);
+}
+.courses--pinned .course_code {
+  color: rgba(62, 71, 79, 0.5);
+  font-size: 0.9em;
 }
 .courses--pinned .box__content {
   padding: 5px 20px;
@@ -9616,12 +9631,15 @@ course-listadded .box--label_heading--courses a {
 .btn--pin--active {
   float: right;
   margin-top: -0.5em;
+  margin-right: -15px;
   background: #2CC990;
   color: #fff;
   transition: all 0.3s ease-in-out;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 0.8em;
+  padding: 5px 8px;
   font-weight: 600;
+  position: relative;
 }
 .btn--pin--active:hover {
   background: rgba(44, 201, 144, 0.8);
@@ -9630,6 +9648,10 @@ course-listadded .box--label_heading--courses a {
 .btn--pin--active:active,
 .btn--pin--active:focus {
   outline: none;
+  color: #fff;
+}
+.btn--pin--active i {
+  font-size: 1.2em;
 }
 .btn--pin--inactive {
   float: right;
@@ -9755,12 +9777,8 @@ h2 {
   display: inline-block;
 }
 /*Assignments*/
-.box--label--assignments {
-  padding: 0px 0px 20px 0px !important;
-}
 .box--label--assignments h2,
 box--label--resources h2 {
-  padding: 20px;
   padding-bottom: 20px !important;
 }
 .courses_assignments {

@@ -19,7 +19,6 @@ app.directive('courseListadded', [
       templateUrl: settings.widgets + 'course/listadded.html',
       link: function(scope, element, attrs) {
 
-
       var url = $location.path().split(/[\s/]+/)[2];
        scope.course = "";
        Course.get({url: url,_populate:"resources"}, function(course){
@@ -57,6 +56,8 @@ app.directive('courseListadded', [
           refresh();
         });
       }
+   
+      } //link
     }
   }
 ]);

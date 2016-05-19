@@ -18,6 +18,7 @@ app.directive('resourcesResourceitem', [
 
         scope.resourceList = [];
         Course.get({ url: url}, function(course){
+            console.log("resurser", course[0]);
           if(course[0].resources !== undefined){
             for (var i = 0; i < course[0].resources.length; i++) {
                 //scope.resourceList.push(course[0].resources[i]);
