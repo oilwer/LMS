@@ -122,6 +122,7 @@ app.directive('profilePrivateprofile', [
 	        }
 	    };
 
+        //Edit description code
 	    $scope.editDescription = function () {
 	            $scope.descriptionEnabled = false;
         };
@@ -130,7 +131,7 @@ app.directive('profilePrivateprofile', [
 	            $scope.descriptionEnabled = true;
                 $scope.description = obj.description;
         };
-
+          
         $scope.saveDescription = function (){
             $scope.descriptionEnabled = true;
             obj.description = $scope.description;
@@ -147,61 +148,107 @@ app.directive('profilePrivateprofile', [
             $scope.descriptionEnabled = true;
             $scope.class = "fa fa-pencil";
 	    };
+        
+        //Edit contact code
+        $scope.cancelContact = function () {
+                $(' .profile__contact .fa-pencil, .profile__contact input').css({
+                    opacity: 0
+                })
+	            $scope.contactEnabled = true;
+                $scope.email = obj.email;
+                $scope.phone_number = obj.phone_number;
+                $scope.homepage = obj.homepage;
+        };
+          
+         $scope.saveContact = function (){
+             $('.profile__contact .fa-pencil, .profile__contact input').css({
+                    opacity: 0
+                })
+            $scope.ContactEnabled = true;
+            obj.email = $scope.email;
+            obj.phone_number = $scope.phone_number;
+            obj.homepage = $scope.homepage;
+
+            User.update({
+                _id: obj._id
+            },{
+                email: obj.email,
+                phone_number: obj.phone_number,
+                homepage: obj.homepage
+              });
+
+            if(obj != null){
+                $scope.user = obj;
+            }
+            $scope.contactEnabled = true;
+	    };
+
 
 	    $scope.editContact = function () {
-
-	        if ($scope.contact_class == "fa fa-pencil") {
-	            $scope.contact_class = "fa fa-check"
+            $('.profile__contact .fa-pencil, .profile__contact input').css({
+                    'opacity': 1,
+                    'background-color': 'rgba(150, 150, 150, 0.1)',
+                    'height':'31px'
+                    
+                })
+            $('.pbl-profile-link').css({
+                    'margin-top': '20px!important'
+                    
+                })
+            
+            
 	            $scope.contactEnabled = false;
-	        } else {
-                obj.email = $scope.email;
-	            obj.phone_number = $scope.phone_number;
-	            obj.homepage = $scope.homepage;
-
-	            User.update({
-	                _id: obj._id
-	            },{
-		            phone_number: obj.phone_number,
-		            homepage : obj.homepage
-	            });
-
-		        if(obj != null){
-		            $scope.user = obj;
-		        }
-
-	            $scope.contactEnabled = true;
-	            $scope.contact_class = "fa fa-pencil"
-	        }
 	    };
+
+        //Edit links code
+          
+        $scope.cancelSocial = function () {
+            console.log('hej')
+                $(' .profile__social .fa-pencil, .profile__social input').css({
+                    opacity: 0
+                })
+	            $scope.linksEnabled = true;
+                $scope.linkedin = obj.linkedin;
+                $scope.twitter = obj.twitter;
+                $scope.facebook = obj.facebook;
+                $scope.github = obj.github;
+        };
+          
+         $scope.saveSocial = function (){
+             $('.profile__social .fa-pencil, .profile__social input').css({
+                    opacity: 0
+                })
+            $scope.linksEnabled = true;
+            obj.linkedin = $scope.linkedin;
+            obj.twitter = $scope.twitter;
+            obj.facebook = $scope.facebook;
+            obj.github = $scope.github;
+
+            User.update({
+                _id: obj._id
+            },{
+                linkedin: obj.linkedin,
+                twitter: obj.twitter,
+                facebook: obj.facebook,
+                github: obj.github
+              });
+
+            if(obj != null){
+                $scope.user = obj;
+            }
+            $scope.linksEnabled = true;
+	    };
+
 
 	    $scope.editLinks = function () {
-	        if ($scope.links_class == "fa fa-pencil") {
-	            $scope.links_class = "fa fa-check"
+            $('.profile__social .fa-pencil, .profile__social input').css({
+                    'opacity': 1,
+                    'background-color': 'rgba(150, 150, 150, 0.1)',
+                    'height':'31px'
+                })
 	            $scope.linksEnabled = false;
-	        } else {
-	        	obj.linkedin = $scope.linkedin;
-	            obj.facebook = $scope.facebook;
-	            obj.twitter = $scope.twitter;
-	            obj.github = $scope.github;
-
-	            User.update({
-                //searchObject
-                _id: obj._id
-            	},{
-		            linkedin : obj.linkedin,
-			        facebook : obj.facebook,
-			        twitter : obj.twitter,
-			        github : obj.github
-              	});
-
-	            if(obj != null){
-		            $scope.user = obj;
-		   		}
-
-	            $scope.linksEnabled = true;
-	            $scope.links_class = "fa fa-pencil"
-	        }
 	    };
+
           
         $scope.showAddDiv = function () {
            

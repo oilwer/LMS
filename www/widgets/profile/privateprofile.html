@@ -4,6 +4,7 @@
 
         <div class="row heightfull table-row newtable-row">
             <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container">
+                <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
                 <div class="profile__about">
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
@@ -36,56 +37,38 @@
                     
                     <h2 class="uppercase">Contact details</h2>
                         
-                        <p ng-show="contactEnabled"><i class="fa fa-envelope-o"></i>{{ email }} </p>
+                        <p ng-click="editContact()" ng-show="contactEnabled"><i class="fa fa-envelope-o"></i>{{ email }} </p>
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
+                    <span class="contact-icons">
+                        <i ng-hide="contactEnabled" class="fa fa-envelope-o"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="email">
+                    </span>
 
                         
-                        <p ng-show="contactEnabled"> <i class="fa fa-phone"></i>{{ phone_number }} </p>
+                        <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-phone"></i>{{ phone_number }} </p>
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
+                    <span class="contact-icons">
+                        <i ng-hide="contactEnabled" class="fa fa-phone"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
+                    </span>
 
                         
-                        <p ng-show="contactEnabled"> <i class="fa fa-home"></i>{{homepage}}</p>
+                        <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-home"></i>{{homepage}}</p>
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
+                    <span class="contact-icons">
+                        <i ng-hide="contactEnabled" class="fa fa-home"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="homepage">
+                    </span>
+                    
+                        <button class="btn" ng-hide="contactEnabled" ng-click="cancelContact()">Cancel</button>
+                    <button class="btn" ng-hide="contactEnabled" ng-click="saveContact()">Save</button>
 
                 </div>
                 <!---.profile__contact-->
-
-                <div class="profile__social">
-                    <i ng-class="links_class" class="fa-first" ng-click="editLinks()"></i>
-                    <h2 class="uppercase">Social links</h2>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-linkedin"></i>
-                        <p ng-show="linksEnabled"> {{linkedin}} </p>
-                        <input type="text" ng-hide="linksEnabled" ng-model="linkedin">
-                    </div>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-github"></i>
-                        <p ng-show="linksEnabled"> {{github}} </p>
-                        <input type="text" ng-hide="linksEnabled" ng-model="github">
-                    </div>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-facebook"></i>
-                        <p ng-show="linksEnabled"> {{facebook}} </p>
-                        <input type="text" ng-hide="linksEnabled" ng-model="facebook">
-                    </div>
-                    <div class="profile__icon_first">
-                        <i class="fa fa-twitter"></i>
-                        <p ng-show="linksEnabled"> {{twitter}} </p>
-                        <input type="text" ng-hide="linksEnabled" ng-model="twitter">
-                    </div>
-                    <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
-                </div>
-                <div id="slack_auth">
-                    <a href="https://slack.com/oauth/authorize?client_id=19435876323.23240924768&scope=team%3Aread+users%3Aread+channels%3Awrite+channels%3Ahistory+channels%3Aread+groups%3Awrite+chat%3Awrite%3Auser&redirect_uri=http://localhost:3000/myprofile/&team=T0KCTRS9H"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/Add_to_slack@2x.png 2x" /></a>
-                </div>
-
+               
             </div>
-
+            
             <div class="col-sm-18 col-md-18 col-lg-18 profile__stuff">
-                <div class="row">
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__courses">
                             <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
@@ -93,33 +76,43 @@
                                 <a href="courses/{{course.url}}"><li> {{course.name}}</li></a>
                             </ul>
                         </div><!--Empty div to get spacing-->
+                        
+                    <div class="profile__social">
+                        <h1><i class="fa fa-users" aria-hidden="true"></i>Social links</h1>
+
+                            <p ng-click="editLinks()" ng-show="linksEnabled"> <i class="fa fa-linkedin"></i>{{linkedin}} </p>
+                            <i class="fa fa-pencil fa-first" ng-click="editLinks()"></i>
+                        <span class="social-icons"><i ng-hide="linksEnabled" class="fa fa-linkedin"></i>
+                            <input type="text" ng-hide="linksEnabled" ng-model="linkedin">
+                        </span>
+
+                            <p ng-click="editLinks()" ng-show="linksEnabled"> <i class="fa fa-github"></i>{{github}} </p>
+                            <i class="fa fa-pencil fa-first" ng-click="editLinks()"></i>
+                        <span class="social-icons">
+                            <i ng-hide="linksEnabled" class="fa fa-github"></i>
+                            <input type="text" ng-hide="linksEnabled" ng-model="github">
+                        </span>
+
+                            <p ng-click="editLinks()" ng-show="linksEnabled"><i class="fa fa-facebook"></i> {{facebook}} </p>
+                            <i class="fa fa-pencil fa-first" ng-click="editLinks()"></i>
+                        <span class="social-icons">
+                            <i ng-hide="linksEnabled" class="fa fa-facebook"></i>
+                            <input type="text" ng-hide="linksEnabled" ng-model="facebook">
+                        </span>
+
+                            <p ng-click="editLinks()" ng-show="linksEnabled"> <i class="fa fa-twitter"></i>{{twitter}} </p>
+                            <i class="fa fa-pencil fa-first" ng-click="editLinks()"></i>
+                        <span class="social-icons">
+                            <i ng-hide="linksEnabled" class="fa fa-twitter"></i>
+                            <input type="text" ng-hide="linksEnabled" ng-model="twitter">
+                        </span>
+                        <div class="buttons">
+                            <button class="btn" ng-hide="linksEnabled" ng-click="cancelSocial()">Cancel</button>
+                            <button class="btn" ng-hide="linksEnabled" ng-click="saveSocial()">Save</button>
+                        </div>
+
+                </div>
                     </div> <!--- .col -->
-                    <div class="col-sm-24 col-md-12 col-lg-12">
-                        <div class="profile__stuff__projects">
-                            <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
-                            <i class="fa fa-pencil"></i>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
-                        </div><!--Empty div to get spacing-->
-                    </div> <!-- .col -->
-                </div> <!--- .row-->
-
-                <div class="row">
-                    <div class="col-sm-24 col-md-12 col-lg-12">
-                        <div class="profile__stuff__skills">
-                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
-
-                            <h2 class="uppercase">Add skill</h2>
-                            <input id="skills" ng-model="searchTags" required="true">
-
-                            <i ng-click="addSkill()" class="fa fa-plus"></i>
-                            <br>
-                            <br>
-                            <ul ng-repeat = 'skill in skills'>  
-                                <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
-                            </ul>                          
-                    
-                        </div><!--Empty div to get spacing-->
-                    </div><!-- .col -->
                     
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
@@ -148,8 +141,35 @@
                             </ul>
                                 
                         </div><!--Empty div to get spacing-->
+        <div class="profile__stuff__skills">
+                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
+
+                            <h2 class="uppercase">Add skills</h2>
+                            <input id="skills" ng-model="searchTags" required="true">
+
+                            <i ng-click="addSkill()" class="fa fa-plus"></i>
+          
+                            <ul ng-repeat = 'skill in skills'>  
+                                <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
+                            </ul>                          
+                    
+                        </div><!--Empty div to get spacing-->
                     </div> <!-- .col -->
-                </div><!-- .row -->
+                    
+                    <!--<div class="col-sm-24 col-md-12 col-lg-12">
+                        <div class="profile__stuff__projects">
+                            <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
+                            <i class="fa fa-pencil"></i>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. </p>
+                        </div><!--Empty div to get spacing-->
+                    <!--</div> <!-- .col -->
+
+                         <div id="slack_auth">
+                    <a href="https://slack.com/oauth/authorize?client_id=19435876323.23240924768&scope=team%3Aread+users%3Aread+channels%3Awrite+channels%3Ahistory+channels%3Aread+groups%3Awrite+chat%3Awrite%3Auser&redirect_uri=http://localhost:3000/myprofile/&team=T0KCTRS9H"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/Add_to_slack@2x.png 2x" /></a>
+                </div>
+
+                    
+                    
                 <div class="row">
                     <div ng-if="isStudent" ng-show="isStudent" class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
                         <div class="profile__stuff__other">
