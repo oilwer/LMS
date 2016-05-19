@@ -21,8 +21,13 @@ app.directive('assignmentUpdateUpdateassignment', [
 
         var update = function() {
             //update view
-            var textEditor = document.querySelector("trix-editor");
-            textEditor.editor.insertHTML(scope.assignment.description);
+            if(scope.assignment.description !== undefined) {
+                
+              var textEditor = document.querySelector("trix-editor[input='updateAssignmentEditor']");
+              textEditor.editor.setSelectedRange([0, 200000000000000]); //empty view
+              textEditor.editor.deleteInDirection("forward");
+              textEditor.editor.insertHTML(scope.assignment.description);
+            }
             scope.newAssignment = {
                 name: scope.assignment.name,
                 due_date: scope.assignment.due_date,
@@ -37,7 +42,7 @@ app.directive('assignmentUpdateUpdateassignment', [
       scope.updateAssignmentDetails = function() {
 
         //create function
-        scope.newAssignment.description = $("#x").attr("value");
+        scope.newAssignment.description = $("#updateAssignmentEditor").attr("value");
 
         Assignment.update({_id: scope.assignment._id}, {
             name: scope.assignment.name,
@@ -65,10 +70,10 @@ app.directive('assignmentUpdateUpdateassignment', [
                     due_date: scope.assignment.due_date,
                     description: ""
                 };
-                //console.log(scope.assignment.description);
-                var textEditor = document.querySelector("trix-editor");
-                // empty all
-                textEditor.editor.insertHTML(scope.assignment.description);
+                var textEditor = document.querySelector("trix-editor[input='updateAssignmentEditor']");
+                  textEditor.editor.setSelectedRange([0, 200000000000000]); //empty view
+                  textEditor.editor.deleteInDirection("forward");
+                  textEditor.editor.insertHTML(scope.assignment.description);
             } else {
                 // Do nothing!
             }
