@@ -17,7 +17,7 @@
 
           <div class="box__content">
 
-              <table class="table--courses table--courses--pinned">
+              <table ng-if="course.assignments.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
 
@@ -59,8 +59,8 @@
                             {{course.start | date:'shortDate' }}
                           </td> -->
                             <td>
-                              <span ng-if="assignment" ng-class="class">{{assignment.due_date | date:'shortDate'}}</span>
-                              <span ng-if="!assignment" ng-class="class">None</span><!--????-->
+                              <span ng-class="class">{{assignment.due_date | date:'shortDate'}}</span>
+
 
                             </td>
                           <!-- <td ng-if="course.status == true">
@@ -81,12 +81,16 @@
                                   <span ng-class="class" ng-if=""></span>
                           </td> -->
 
+                          <div ng-if="!course.assignments.length > 0">
+                            <p> No assignments available. </p>
+                          </div>
+
                   </tbody>
 
 
               </table>
 
-              <table class="table--courses table--courses--pinned">
+              <table ng-if="course.resources.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
                           <th>Resourses</th>
@@ -101,18 +105,24 @@
 
                             <td>
                                 <i class="fa fa-file-text-o"></i>
-                                    <span ng-if="resource" ng-class="class">{{resource.title}}</span>
-                                    <span ng-if="!resource" ng-class="class">None</span><!--????-->
+                                    <span  ng-class="class">{{resource.title}}</span>
+
                                 </i>
                             </td>
 
                             <td>
-                              <span ng-if="resource">{{resource.uploaded_on | date:'shortDate' }}</span><!--????-->
-                              <span ng-if="!resource">None</span>
+                              <span>{{resource.uploaded_on | date:'shortDate' }}</span><!--????-->
+
                             </td>
 
                   </tbody>
               </table>
+
+              <div ng-if="!course.resources.length > 0">
+                <p> No resources available. </p>
+              </div>
+
+
           </div>
 
         </div>
