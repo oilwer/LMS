@@ -41,12 +41,16 @@ table {
 }
 
 .table--courses--pinned {
-    margin-top: -2px;
-    font-size: 10px;
+    margin-top: 0px;
+    //font-size: 10px;
     thead {
-        border-bottom: 2px solid @LMSmid;
+        border-bottom: 2px solid @LMSlight;
+        color: rgba(62, 71, 79, 0.75);
+        font-size: .85em;
+        text-transform: uppercase;
       }
       th {
+          padding: 4px 8px;
           width: 30%;
           font-weight: 600;
           &:first-child {
@@ -54,14 +58,17 @@ table {
           }
       }
       tr {
+          font-size: 0.9em;
           &:hover {
               cursor: pointer;
               background: fade(@LMSdark,5%);
               transition: all 0.3s ease-in-out;
-            }
           }
+       }
+}
 
-
+.table--courses--pinned:not(:first-child) {
+        margin-top: 20px;
 }
 .table--resources {
     margin-bottom: 40px;

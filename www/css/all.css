@@ -8795,23 +8795,32 @@ table {
   transition: all 0.3s ease-in-out;
 }
 .table--courses--pinned {
-  margin-top: -2px;
-  font-size: 10px;
+  margin-top: 0px;
 }
 .table--courses--pinned thead {
-  border-bottom: 2px solid rgba(62, 71, 79, 0.75);
+  border-bottom: 2px solid rgba(62, 71, 79, 0.5);
+  color: rgba(62, 71, 79, 0.75);
+  font-size: .85em;
+  text-transform: uppercase;
 }
 .table--courses--pinned th {
+  padding: 4px 8px;
   width: 30%;
   font-weight: 600;
 }
 .table--courses--pinned th:first-child {
   width: 70%;
 }
+.table--courses--pinned tr {
+  font-size: 0.9em;
+}
 .table--courses--pinned tr:hover {
   cursor: pointer;
   background: rgba(62, 71, 79, 0.05);
   transition: all 0.3s ease-in-out;
+}
+.table--courses--pinned:not(:first-child) {
+  margin-top: 20px;
 }
 .table--resources {
   margin-bottom: 40px;
@@ -9596,6 +9605,9 @@ course-listadded .box--label_heading--courses a {
 }
 .courses--pinned p {
   margin-left: 30px;
+}
+.courses--pinned .box__content {
+  padding: 5px 20px;
 }
 .btn--pin--active {
   float: right;
