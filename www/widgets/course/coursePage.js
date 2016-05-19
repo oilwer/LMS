@@ -25,6 +25,7 @@ app.directive('courseCoursepage', [
 
         var session_user;
         SessionService.getSession().success(function(response){
+          session_user = response.user;
           if(response.user.role == "student"){
             scope.showCourseinfo = false;
           } else {
