@@ -5,7 +5,7 @@ table {
 .table--assignment, .table--resources, .table--manager, .table--courses {
     margin-top: 20px;
     td {
-        padding: 8px 8px 8px 0px;
+        padding: 8px 8px 8px 8px;
         border-bottom: 1px solid fade(@LMSlight,9%);
         &:first-child {
             padding-left: 8px;
@@ -73,6 +73,14 @@ table {
             width: 40%;
         }
 
+    }
+}
+
+dashboard-courseslistdash {
+    td:nth-child(n+3) {
+        &:hover {
+            background: fade(@LMSdark, 30%);
+        }
     }
 }
 
@@ -161,7 +169,7 @@ course-courseslist, dashboard-courseslistdash {
             font-size: 1.25em;
             position:relative;
             text-align: center;
-            padding:0px 18px 0px 18px;
+            padding: 0px 18px 0px 18px;
             color:@LMSmid;
         }
 

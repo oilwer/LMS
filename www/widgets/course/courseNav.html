@@ -17,7 +17,7 @@
             <i ng-show="isChildOpen" class="fa--toggle fa fa-chevron-up"></i>
         </a>
         <ul ng-show="isChildOpen" ng-repeat="assignment in assignments">
-            <li>
+            <li ng-class="{'active': isInActive(assignment._id)}">
                 <a href="courses/{{course.url}}/assignment/{{ assignment._id }}">
                     <i class="fa--itemtype fa fa-file-text-o"></i>{{assignment.name}}                  
                 </a>
