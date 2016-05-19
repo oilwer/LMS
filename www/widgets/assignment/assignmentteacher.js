@@ -44,13 +44,13 @@ app.directive('assignmentAssignmentteacher', [
                     })[0];
 
 
-                    if(scope.teacher_instruction_file !== undefined) {
+                    /*if(scope.teacher_instruction_file !== undefined) {
                         scope.teacher_instruction_file = obj.teacher_instruction_file.replace(/[\n\t\r\x20]/g, "_");
-                    }
+                    }*/
 
-                    $(".assignment_description").append(scope.assignment.description);
-                    if (scope.teacher_instruction_file) {
-                        $('.submittedFile').empty().append('<a target="_blank" href="uploads/' + scope.teacher_instruction_file + '">' + scope.teacher_instruction_file + '</a>');
+                    $(".assignment_description_content").append(scope.assignment.description);
+                    if (scope.assignment.teacher_instruction_file !== undefined) {
+                        $('.assignment_description_file').empty().append('<a target="_blank" href="uploads/' + scope.assignment.teacher_instruction_file + '" download>' + scope.assignment.teacher_instruction_file + '</a>');
                     }
 
                     User.get({_id: scope.assignment.responsible_teacher }, function(user){

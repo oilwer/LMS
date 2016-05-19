@@ -19,7 +19,6 @@ app.directive('courseCoursenav', [
        var fullUrl = $location.path();
        var url = fullUrl.split(/[\s/]+/)[2];
         var nextPath = fullUrl.split(/[\s/]+/)[3];
-          console.log("next", nextPath);
         scope.course = "";
         Course.get({url: url,_populate:"resources"}, function(course){
             scope.course = course[0];
@@ -61,7 +60,6 @@ app.directive('courseCoursenav', [
       	}
         
         scope.isSingleResource = function(route){
-            console.log("single", nextPath);
       		return route === nextPath;
       	}
         
