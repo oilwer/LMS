@@ -157,7 +157,10 @@ app.directive('assignmentCreateassignment', [
 								          			//Update Course and Continue
 										  			Course.update({_relate:{items:x[0],assignments:res[0] }});
 									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
-                                                        var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                                        if(scope.$$childTail.file){
+                                                            var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                                        }
+                                                        var strippedFileName = "undefined";
 
                                                         Assignment.update({
                                                             _id: newres._id
