@@ -8118,6 +8118,9 @@ input[type=checkbox] {
   text-align: center;
   margin-left: 0px;
 }
+.btn-toolbar:hover {
+  color: #a0a0a0;
+}
 .btn-toolbar--personal {
   overflow: hidden;
   cursor: pointer;
@@ -9596,10 +9599,7 @@ course-listadded .box--label--courses {
   border-left: 8px solid #2CC990;
   box-shadow: 2px 2px 0px 1px rgba(62, 71, 79, 0.2);
   margin-bottom: 22px;
-<<<<<<< HEAD
-=======
   min-height: 320px;
->>>>>>> listaddedfix
 }
 course-listadded .box--label_heading--courses a {
   color: #2CC990;
