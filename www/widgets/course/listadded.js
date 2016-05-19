@@ -59,5 +59,4 @@ app.directive('courseListadded', [
    
       } //link
     }
-  }
 ]);

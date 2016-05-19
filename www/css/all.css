@@ -7412,6 +7412,7 @@ button.close {
 /*orange*/
 /*yellow*/
 /*orange*/
+/*orange*/
 /* font style variables and mixins */
 body,
 html,
@@ -9017,12 +9018,14 @@ dashboard-courseslistdash .assignClass {
   top: 12px;
   left: 15px;
 }
-.resources h1 {
+.resources h1,
+.assignments h1 {
   display: inline-block;
   padding-bottom: 8px;
   padding-top: 20px;
 }
-.resources .btn--add {
+.resources .btn--add,
+.assignments .btn--add {
   margin-top: -4px;
   margin-left: 10px;
 }
@@ -9602,11 +9605,7 @@ course-listadded .box--label--courses {
   border-left: 8px solid #2CC990;
   box-shadow: 2px 2px 0px 1px rgba(62, 71, 79, 0.2);
   margin-bottom: 22px;
-<<<<<<< HEAD
-  min-height: 320px;
-=======
   min-height: 300px;
->>>>>>> fitercss
 }
 course-listadded .box--label_heading--courses a {
   color: #2CC990;
@@ -9851,13 +9850,14 @@ box--label--resources h2 {
   margin-top: 10px !important;
 }
 .profile__stuff {
-  padding: 2% 0 0 0;
+  padding: 2.5% 0 0 0;
 }
 .profile__stuff ul {
   list-style: none;
   margin: -10px 10px 10px 10px;
 }
-.profile__stuff li {
+.profile__stuff .profile__stuff__courses li,
+.profile__stuff .profile__stuff__skills li {
   display: inline;
   float: left;
   margin: 5px 4px;
@@ -9865,6 +9865,11 @@ box--label--resources h2 {
   background-color: rgba(150, 150, 150, 0.1);
   box-shadow: 2px 1px 4px 0px rgba(150, 150, 150, 0.45);
   font-size: .9em;
+}
+.profile__stuff .profile__stuff__ex li {
+  margin: 4% 0% 0% 0;
+  border-bottom: 1px solid #eee;
+  padding: 2% 3% 3% 0;
 }
 .profile__stuff a {
   text-decoration: none;
@@ -9883,17 +9888,9 @@ box--label--resources h2 {
 .profile__stuff .profile__stuff__skills {
   background-color: #fff;
   margin: 4% -3% 0 0;
-  padding: 0;
-  padding-bottom: 1%;
+  padding: 0 0 3% 0%;
   border-radius: 0 5px 5px 0;
   overflow: hidden;
-}
-.profile__stuff .profile__stuff__ex {
-  background-color: #fff;
-  margin: 3.5% -3% 0 0;
-  padding: 0;
-  padding-bottom: 1%;
-  border-radius: 0 5px 5px 0;
 }
 .profile__stuff .profile__stuff__other {
   background-color: #fff;
@@ -9906,7 +9903,11 @@ box--label--resources h2 {
   height: 100%;
   overflow: auto;
   border-left: 5px solid #FD5B03;
-  padding-bottom: 2%;
+  background-color: #fff;
+  margin: 3.5% -3% 0 0;
+  padding: 0;
+  padding-bottom: 3%;
+  border-radius: 0 5px 5px 0;
 }
 .profile__stuff .profile__stuff__ex li {
   width: 98%;
@@ -9948,6 +9949,10 @@ box--label--resources h2 {
 .profile__stuff .profile__stuff__ex .show_add_div .btn {
   float: right;
 }
+.profile__description,
+.profile__contact {
+  position: relative;
+}
 .profile__description .fa-pencil,
 .profile__contact .fa-pencil {
   opacity: 0;
@@ -9959,9 +9964,9 @@ box--label--resources h2 {
 .profile__description p,
 .profile__contact p {
   display: inline-block;
-  width: 91%;
   padding: 5px 6px;
   transition: all 1s ease;
+  width: 91%;
 }
 .profile__description .btn,
 .profile__contact .btn {
@@ -9971,11 +9976,76 @@ box--label--resources h2 {
   font-size: .85em;
   background-color: #eaeaea;
 }
-.profile__description:hover .fa-pencil,
-.profile__contact:hover .fa-pencil,
-.profile__description:hover p,
-.profile__contact:hover p {
-  opacity: 1;
+.profile__description .contact-icons i,
+.profile__contact .contact-icons i,
+.profile__description .social-icons i,
+.profile__contact .social-icons i {
+  position: absolute;
+  margin: 8px 0 0 6px;
+  font-size: .95em;
+}
+.profile__description input,
+.profile__contact input {
+  width: 91%;
+  text-indent: 27px;
+  margin-top: -1px;
+  border: none;
+}
+.social-icons {
+  display: block;
+  width: 100%;
+}
+.profile__social {
+  position: relative;
+}
+.profile__social .fa-pencil {
+  opacity: 0;
+  padding: 7px 5px 10px 5px;
+  transition: all 1s ease;
+  display: inline;
+  float: right;
+  margin: 0 15px 0 0px!important;
+}
+.profile__social p {
+  display: inline-block;
+  padding: 5px 6px;
+  transition: all 1s ease;
+  width: 91%;
+}
+.profile__social .btn {
+  float: right;
+  padding: 2px 4px;
+  margin: 10px 0px 10px 5px;
+  font-size: .85em;
+  background-color: #eaeaea;
+}
+.profile__social .buttons {
+  margin: 0 15px 0 0;
+}
+.profile__social .contact-icons i,
+.profile__social .social-icons i {
+  position: absolute;
+  margin: 8px 0 0 6px;
+  font-size: .95em;
+}
+.profile__social input {
+  width: 91%;
+  text-indent: 27px;
+  border: none;
+}
+.profile .profile__description:hover .fa-pencil,
+.profile .profile__contact:hover .fa-pencil,
+.profile .profile__social:hover .fa-pencil,
+.profile .profile__description:hover p,
+.profile .profile__contact:hover p,
+.profile .profile__social:hover p {
+  opacity: 1 !important;
+  background-color: rgba(150, 150, 150, 0.1);
+}
+.profile .profile__description:hover input,
+.profile .profile__contact:hover input,
+.profile .profile__social:hover input {
+  opacity: 0;
   background-color: rgba(150, 150, 150, 0.1);
 }
 .profile__container .fa-arrow-right {
@@ -9983,10 +10053,10 @@ box--label--resources h2 {
 }
 .pbl-profile-link {
   position: absolute;
-  bottom: 10px;
-  right: 0px;
+  top: 2px;
   display: inline-block;
   width: 50%;
+  right: 20%;
   color: #404040;
   padding-top: 5%;
   transition: all 1.2s ease;
@@ -10011,8 +10081,7 @@ box--label--resources h2 {
   text-align: left;
 }
 .profile__contact h2,
-.profile__description h2,
-.profile__social h2 {
+.profile__description h2 {
   color: #d8335b;
   margin-bottom: 10px;
   font-size: 1em;
@@ -10023,10 +10092,13 @@ box--label--resources h2 {
   margin-top: 10%;
 }
 .profile__description i,
-.profile__contact .fa-first,
+.profile__contact .fa-first {
+  color: #d8335b !important;
+}
 .profile__social .fa-first {
-  font-size: .9em;
-  float: right;
+  color: #404040 !important;
+}
+.profile__contact .fa-pencil {
   color: #d8335b !important;
 }
 .profile__about__img {
@@ -10088,7 +10160,8 @@ box--label--resources h2 {
 .pbl-profile p {
   font-size: .95em;
 }
-.profile__contact > p .fa {
+.profile__contact > p .fa,
+.profile__social > p .fa {
   padding: 0px 10px 5px 0;
 }
 .profile__stuff__courses .fa-pencil,
@@ -10115,33 +10188,60 @@ ul > li > .fa-trash {
   width: 80%;
 }
 .experienceList p {
-  margin: 3% -1%;
+  margin: 3% -3%;
   cursor: pointer;
 }
 .experienceList p .bold {
-  font-weight: 600;
+  font-style: italic;
 }
 .profile__stuff__courses {
   border-left: 5px solid #2CC990;
 }
-.profile__stuff__skills {
+.profile__stuff__skills,
+.pbl-profile__stuff__skills {
   border-left: 5px solid #D8335B;
+  min-height: 125px;
+  position: relative;
 }
-.profile__stuff__skills h2 {
+.profile__stuff__skills .fa-cogs,
+.pbl-profile__stuff__skills .fa-cogs {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+}
+.profile__stuff__skills h2,
+.pbl-profile__stuff__skills h2 {
   width: 15%;
-  height: 50px;
-  margin: 1;
+  margin: 0 2% 0 5%;
   float: left;
   display: inline-block;
 }
-.profile__stuff__skills input {
-  width: 50%;
+.profile__stuff__skills input,
+.pbl-profile__stuff__skills input {
+  width: 70%;
   display: inline-block;
   float: left;
   margin: 0 0 1% 0;
   border: none;
   border-bottom: 1px solid #eee;
   outline: none;
+}
+.profile__stuff__skills .fa-plus,
+.pbl-profile__stuff__skills .fa-plus {
+  position: absolute;
+  right: 40px;
+}
+.profile__stuff__skills li,
+.pbl-profile__stuff__skills li {
+  margin: 2% 1% !important;
+  padding: 2% 4% 2% 4% !important;
+  position: relative;
+}
+.profile__stuff__skills li div,
+.pbl-profile__stuff__skills li div {
+  overflow: hidden;
+  right: 5px;
+  top: 10px;
 }
 .profile__stuff__projects {
   border-left: 5px solid #00B5B5;
@@ -10152,10 +10252,10 @@ ul > li > .fa-trash {
 .profile__stuff__courses h1,
 .profile__stuff__skills h1,
 .profile__stuff__ex h1,
-.profile__stuff__projects h1 {
+.profile__social h1 {
   font-size: 1.15em;
   text-transform: uppercase;
-  padding: 4% 0 0 14%;
+  padding: 5% 0 1% 14%;
   color: #fff;
   border-radius: 5px 5px 0 0;
   margin-bottom: 5%;
@@ -10178,20 +10278,46 @@ ul > li > .fa-trash {
   padding: 0px 30px 5px 30px;
 }
 .profile .fa-book,
-.profile .fa-cogs,
 .profile .fa-folder-open,
-.profile .fa-certificate,
 .profile .fa-file-text,
 .profile .fa-archive,
 .pbl-profile .fa-book,
-.pbl-profile .fa-cogs,
 .pbl-profile .fa-folder-open,
-.pbl-profile .fa-certificate,
 .pbl-profile .fa-file-text,
 .pbl-profile .fa-archive {
   position: absolute !important;
   left: 40px;
-  top: 30px !important;
+  top: 35px !important;
+}
+.profile .fa-certificate,
+.pbl-profile .fa-certificate {
+  position: absolute !important;
+  left: 40px;
+  top: 32px !important;
+}
+.profile__social .fa-users {
+  position: absolute !important;
+  left: 27px;
+  top: 20px !important;
+  font-size: 1.5em;
+}
+.profile__social {
+  border-left: 5px solid #404040;
+}
+.profile__social input {
+  margin-bottom: 10px;
+  width: 91%;
+  height: 31px;
+  line-height: 31px;
+  padding: 6px 2px;
+  background-color: rgba(150, 150, 150, 0.1) !important;
+}
+.profile__social {
+  background-color: #fff;
+  margin: 4% -3% 0 0;
+  padding: 0 0 3% 5%;
+  border-radius: 0 5px 5px 0;
+  overflow: hidden;
 }
 /*
 courses
@@ -10231,6 +10357,9 @@ ex: #FD5B03
 .profile__stuff__projects i {
   color: #00B5B5;
 }
+.profile__social h1 {
+  color: #404040;
+}
 .profile__stuff__other h1,
 .profile__stuff__other i {
   color: #2C82C9;
@@ -10253,6 +10382,9 @@ ex: #FD5B03
   font-family: 'Open Sans';
   color: #404040;
 }
+.profile .profile__description p {
+  text-align: justify;
+}
 .profile__description textarea:focus {
   outline: none;
 }
@@ -10267,6 +10399,7 @@ ex: #FD5B03
   margin-bottom: 10px;
   width: 91%;
   height: 31px;
+  line-height: 31px;
   padding: 6px 2px;
   background-color: rgba(150, 150, 150, 0.1) !important;
 }
@@ -10279,6 +10412,15 @@ ex: #FD5B03
   position: absolute;
   top: 1px;
   left: 25px;
+}
+#slackbar {
+  bottom: 50px !important;
+  height: 0px !important;
+}
+#slack_auth {
+  position: fixed;
+  bottom: 10px;
+  left: 420px;
 }
 /* * * * * * * * * * * * * * * *   
 
@@ -10294,6 +10436,9 @@ ex: #FD5B03
   font-smoothing: antialiased;
   -webkit-font-smoothing: antialiased;
 }
+.pbl-profile .profile__description {
+  text-align: center !important;
+}
 .pbl-profile__container {
   text-align: center;
   padding-top: 30px!important;
@@ -10305,7 +10450,7 @@ ex: #FD5B03
 }
 .pbl-profile__contact,
 .pbl-profile__links {
-  margin-top: 20%;
+  margin-top: 10%;
 }
 .pbl-profile__about {
   margin-top: 22%;
@@ -10317,4 +10462,10 @@ ex: #FD5B03
 .pbl-profile__links .fa {
   padding: 0 5px;
   font-size: 1.6em;
+  color: #404040;
+}
+.pbl-profile .fa-cogs {
+  position: absolute;
+  left: 20px;
+  top: 20px;
 }

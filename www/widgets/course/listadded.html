@@ -29,6 +29,7 @@
                         <td ng-if="course.status == true">
                             <i class="fa fa-file-text-o"></i>
                             <span ng-class="class">{{assignment.name}}</span>
+                            </i>
                         </td>
                         <td>
                             <span ng-class="class">{{assignment.due_date | date:'short'}}</span>
@@ -66,23 +67,16 @@
                   </thead>
                   <tbody ng-repeat="resource in course.resources | limitTo:'2'">
                       <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
+
                             <td>
                                 <i class="fa fa-folder"></i>
                                     <span  ng-class="class">{{resource.title}}</span>
                             </td>
 
                             <td>
-                              <span>{{resource.uploaded_on | date:'shortDate' }}</span><!--????-->
+                              <span>{{resource.uploaded_on | date:'shortDate' }}</span>
                             </td>
-                        <td>
-                            <i class="fa fa-book"></i>
-                                <span  ng-class="class">{{resource.title}}</span>
-                            </i>
-                        </td>
-                        <td>
-                          <span>{{resource.uploaded_on | date:'short' }}</span>
-                        </td>
-                     </tr>
+                      </tr>
                   </tbody>
               </table>
 
@@ -96,22 +90,14 @@
                   <tbody>
                       <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
                             <td>
-                                    <i class="fa fa-folder-o"></i>
-                                    <span  ng-class="class">---</span>
+                                <i class="fa fa-folder-o"></i>
+                                <span  ng-class="class">---</span>
                             </td>
 
                             <td>
-                              <span>---</span><!--????-->
-                            </td>
-                        <td>
-                            <i class="fa fa-book"></i>
-                            <span  ng-class="class">---</span>
-                        </td>
-
-                        <td>
-                          <span>---</span><!--????-->
-                        </td>
-                    </tr>
+                              <span>---</span>
+                          </td>
+                      </tr>
                   </tbody>
               </table>
 
