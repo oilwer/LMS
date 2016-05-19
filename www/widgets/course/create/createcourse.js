@@ -123,6 +123,7 @@ app.directive('courseCreateCreatecourse', [
                       scope.btnAddOrUpdate = "Update course";
 
                       Course.create(scope.course, function(course){
+                        console.log(scope.course, "the course to be created and its details");
                           scope.$root.$broadcast('addedCourse');
                           console.log("Added course:", course[0]);
                           oldcourse = JSON.parse(JSON.stringify(course[0]));
@@ -130,6 +131,7 @@ app.directive('courseCreateCreatecourse', [
 
                           createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
                           console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
+                          Course.update({_relate:{ items:course[0],creator:scope.session_user }},function(res){});
                       });
                   }
                   else{
