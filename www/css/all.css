@@ -8745,7 +8745,7 @@ table {
 .table--resources td,
 .table--manager td,
 .table--courses td {
-  padding: 8px 8px 8px 0px;
+  padding: 8px 8px 8px 8px;
   border-bottom: 1px solid rgba(62, 71, 79, 0.09);
 }
 .table--assignment td:first-child,
@@ -8822,6 +8822,9 @@ table {
 }
 .table--resources tr td:first-child {
   width: 40%;
+}
+dashboard-courseslistdash td:nth-child(n+3):hover {
+  background: rgba(62, 71, 79, 0.3);
 }
 course-courseslist table,
 dashboard-courseslistdash table {
@@ -9587,6 +9590,9 @@ course-listadded .box--label_heading--courses a {
 }
 .courses--pinned {
   overflow: hidden;
+}
+.courses--pinned p {
+  margin-left: 30px;
 }
 .btn--pin--active {
   float: right;
