@@ -1,34 +1,38 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row heightfull">
-             <nav class="col-sm-2 col-md-2 nav--local" >
+        <div class="row table-row">
+            <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
+            
             <div class="col-sm-22 col-md-22">
               <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+                <!-- SEARCH -->
+                <div class="box box__content list--publicstudents">
+                  <div class="col-sm-24">
+                    <h1>
+                        Participants
+                        <a 
+                           ng-if="showParticipants" 
+                           ng-href="/courses/{{course.url}}/participants/edit" 
+                           class="btn btn--courses edit">
+                            <i class="fa fa-pencil"></i> Edit
+                        </a>
+                    </h1>
 
-
-                    <!-- SEARCH -->
-                    <div class="box box__content list--publicstudents">
-                      <div class="col-md-24">
-                        <h1>
-
-                            Participants
-                            <a ng-if="showParticipants" ng-href="/courses/{{course.url}}/participants/edit" class="btn btn--courses edit"><i class="fa fa-pencil"></i> Edit</a>
-                        </h1>
-
-                      </div>
-                        <form id="newsearch" method="get">
-                           <input type="text" id="hej" ng-model="searchStudents" placeholder="Search participants">
-                        </form>
-                        <!-- LIST -->
-                        <div class="row">
-                            <ul style="list-style-type: none;">
-                                <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>
-                            </ul>
-                        </div>  <!-- END LIST -->
-                    </div><!--.box__content-->
-
+                  </div>
+                    <div class="col-sm-24">
+                    <form id="newsearch" method="get">
+                       <input type="text" id="hej" ng-model="searchStudents" placeholder="Search participants">
+                    </form>
+                    <!-- LIST -->
+                    <div class="row">
+                        <ul style="list-style-type: none;">
+                            <connect-individual ng-repeat="user in users | filter:searchStudents"></connect-individual>
+                        </ul>
+                    </div>  <!-- END LIST -->
+                    </div>
+                </div><!--.box__content-->
           </div>
         </div><!--.row-->
     </div><!--.container-->

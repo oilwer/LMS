@@ -1,21 +1,23 @@
 <div class="app_container heightfull">
     <div class="container-fluid heightfull ng-scope">
-        <div class="row table-row ">
+        <div class="row table-row">
             <nav class="col-sm-2 col-md-2 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
+            
               <div class="col-sm-22 col-md-22">
-                    <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
-                    <div class="box box__content">
+                 <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
+                    <div class="box box__content list--publicstudents">
                       <div class="col-sm-24">
                         <h1>
                           Edit participants
-                          <a ng-href="courses/{{ courseUrl }}/participants" class="btn btn--courses edit">Done
+                          <a ng-href="courses/{{ courseUrl }}/participants" 
+                             class="btn btn--courses edit">
+                              Done
                           </a>
                         </h1>
 
                       </div>
-
 
                         <div class="col-sm-12">
                             <div class="list--students_options">
