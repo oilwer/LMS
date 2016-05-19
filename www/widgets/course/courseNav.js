@@ -14,8 +14,11 @@ app.directive('courseCoursenav', [
     return {
       templateUrl: settings.widgets + 'course/courseNav.html',
       link: function(scope, element, attrs) {
-
-       var url = $location.path().split(/[\s/]+/)[2];
+          
+       scope.isChildOpen;
+       var fullUrl = $location.path();
+       var url = fullUrl.split(/[\s/]+/)[2];
+        var nextPath = fullUrl.split(/[\s/]+/)[3];
         scope.course = "";
         Course.get({url: url,_populate:"resources"}, function(course){
             scope.course = course[0];
@@ -36,6 +39,10 @@ app.directive('courseCoursenav', [
       	{
       		return (typeof rescourcelist !== 'undefined' && rescourcelist.length > 0);
       	}
+        
+        if (nextPath === "assignment") {
+              scope.isChildOpen = true;
+          }
 
       	scope.isActive = function(route){
           if(route !== $location.path()){
@@ -45,6 +52,11 @@ app.directive('courseCoursenav', [
               }
           }
       		return route === $location.path();
+      	}
+        
+        scope.isInActive = function(route){
+
+      		return nextPath;
       	}
 
     }
