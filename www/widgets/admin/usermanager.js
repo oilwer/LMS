@@ -36,10 +36,13 @@ app.directive('adminUsermanager', [
             if(!isEditing){
                 var plug = "";
                 if($scope.user.role === "teacher"){
-                  plug = "teacherpanel";
+                  plug = [{name: "courselist", isActive:true},{name: "teacherpanel", isActive: true}];
                 }
                 else if($scope.user.role === "admin"){
-                  plug = "adminpanel";
+                  plug =  [{name: "courselist", isActive:true},{name: "adminpanel", isActive: true}];
+                }
+                else{
+                  plug =  [{name: "courselist", isActive:true}];
                 }
 
                 var user = $scope.user;
@@ -55,16 +58,7 @@ app.directive('adminUsermanager', [
                     password: user.password,
                     public_url: user.public_url,
                     role: user.role, //student/admin/teacher
-                    plugs:[
-                      {                                
-                          name: plug,
-                          isActive: true                    
-                      },
-                      {                                
-                          name: "courselist",
-                          isActive: true                    
-                      }
-                    ]                                 
+                    plugs: plug                               
                 });
 
                 // Pushes (updates) the GUI with the new user

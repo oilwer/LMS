@@ -18,21 +18,33 @@ app.directive('modelanythingAddplug', [
           
         scope.add = function(){
         	var p = document.getElementById("dropdown");
-
-        	console.log(p);
+          
 
         	SessionService.getSession().success(function(response) {
-				User.update({
-					_id:response.user._id
-				},{
- 					$push: {
-	                  plugs:{
-	                  	name: p.options[p.selectedIndex].value,
-	                  	isActive : true
-	                  }
- 					}
-				});
-			});
+              var double = false;
+
+              User.get({_id: response.user._id}, function(res){
+                for (var i = 0; i < res[0].plugs.length; i++) {
+                  if(res[0].plugs[i].name === p.options[p.selectedIndex].value){
+                    double = true;
+                    break;
+                  }
+                };
+
+                if(double === false){
+                  User.update({
+                     _id:response.user._id
+                    },{
+                      $push: {
+                         plugs:{
+                           name: p.options[p.selectedIndex].value,
+                           isActive : true
+                         }
+                      }
+                  });
+                }
+              });              
+			    });
         }
       }
     };
