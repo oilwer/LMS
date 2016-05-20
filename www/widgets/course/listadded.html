@@ -3,15 +3,15 @@
       <div class="box--label box--label--courses">
           <div class="box__content">
             <div class="box--label_heading--courses">
-                <a href="" 
-                   ng-click="courseLocation($event)" 
+                <a href=""
+                   ng-click="courseLocation($event)"
                    dataLocation="{{ course.url }}">
                     <h2>
                         <i class="fa fa-leaf"></i> {{course.name}} <span class="course_code">({{course.code}})</span>
                     </h2>
                 </a>
-                <button 
-                    class="btn btn--pin--active" 
+                <button
+                    class="btn btn--pin--active"
                     ng-click="pinCourse(course)">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
@@ -27,7 +27,7 @@
                   <tbody ng-repeat="assignment in course.assignments | orderBy:'due_date' | limitTo:'2' ">
                       <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignment/{{assignment._id}}">
                         <td ng-if="course.status == true">
-                            <i class="fa fa-file-text-o"></i>
+                            <i class="fa fa-file-text"></i>
                             <span ng-class="class">{{assignment.name}}</span>
                             </i>
                         </td>
@@ -37,7 +37,7 @@
                       </tr>
                   </tbody>
               </table>
-            
+
               <table ng-if="!course.assignments.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
@@ -48,7 +48,7 @@
                   <tbody>
                       <tr>
                         <td ng-if="course.status == true">
-                          <i class="fa fa-file-text-o"></i>
+                          <i class="fa fa-file-text"></i>
                           <span ng-class="class">---</span>
                         </td>
                         <td>
@@ -57,7 +57,7 @@
                       </tr>
                   </tbody>
               </table>
-    
+
               <table ng-if="course.resources.length > 0" class="table--courses table--courses--pinned">
                   <thead>
                       <tr>
@@ -90,7 +90,7 @@
                   <tbody>
                       <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
                             <td>
-                                <i class="fa fa-folder-o"></i>
+                                <i class="fa fa-folder"></i>
                                 <span  ng-class="class">---</span>
                             </td>
 
