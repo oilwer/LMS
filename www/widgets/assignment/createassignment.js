@@ -292,7 +292,7 @@ app.directive('assignmentCreateassignment', [
 		        scope.goToStep = function(index) {
 			        // If you are going backwards in the flow: No worries
 			        if(scope.getCurrentStepIndex() > index){
-			        	console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+			        	//console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
 			        	if(scope.isCreating){
 							scope.selection = scope.createsteps[index].name;
 						} else {
@@ -304,7 +304,7 @@ app.directive('assignmentCreateassignment', [
 						// If you are going to a step that are finished
 						if(stepFinishedIndex >= index)
 						{
-							console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
+							//console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
 							if(scope.isCreating){
 								scope.selection = scope.createsteps[index].name;
 							} else {
@@ -342,7 +342,6 @@ app.directive('assignmentCreateassignment', [
 			        scope.isEditing = 0;
 			        scope.isCreating = 1;
 			        scope.btnAddOrUpdate = "Create assignment";
-			        console.log("Creating assignment");
 			        scope.incrementStep();
 			    }
 
@@ -350,7 +349,6 @@ app.directive('assignmentCreateassignment', [
 				    scope.assignment = undefined;
 				    scope.isEditing = 0;
 			        scope.isCreating = 0;
-			        console.log("Copying assignment");
 			        scope.btnAddOrUpdate = "Create assignment";
 			        scope.incrementStep();
 			    }
@@ -427,7 +425,7 @@ app.directive('assignmentCreateassignment', [
 		            Assignment.get({name: scope.assignment.name, added_on: scope.assignment.added_on, responsible_teacher: scope.assignment.responsible_teacher, _populate:"course"}, function(fetchedAssignment){
 						console.log("fetched assignmnet: ", fetchedAssignment);
 						scope.$parent.hideModal();
-						$window.location.href = '/courses/' + fetchedAssignment[0].course.url + "/assignment/" + fetchedAssignment[0]._id;
+						$window.location.href = '/courses/' + fetchedAssignment[0].course.url + "/assignments/" + fetchedAssignment[0]._id;
 			       });
 		        }
 

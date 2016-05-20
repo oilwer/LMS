@@ -35,7 +35,6 @@ app.directive('resourcesCreateCreateresources', [
 
         scope.selectCourseChanged = function (){
             selectedCourseName = scope.courseSelect.repeatSelect;
-            console.log("selected course on change", selectedCourseName);
         }
 
         //create a new course and set GUI edit options
@@ -45,7 +44,6 @@ app.directive('resourcesCreateCreateresources', [
 
             if (scope.file) {
                 var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-                console.log(strippedFileName);
             }
             else {
                 var strippedFileName = undefined;
