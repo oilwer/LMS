@@ -40,7 +40,6 @@ app.directive('assignmentAssignmentstudent', [
               else{
                   scope.assignment.obligatory = "No";
               }
-              console.log("ass:", scope.assignment);
               $(".assignment_description_content").append(scope.assignment.description);
                 if (scope.assignment.teacher_instruction_file !== undefined) {
                     $('.assignment_description_file').empty().append('<a target="_blank" href="uploads/' + scope.assignment.teacher_instruction_file + '" download>' + scope.assignment.teacher_instruction_file + '</a>');
@@ -117,8 +116,11 @@ app.directive('assignmentAssignmentstudent', [
               comment += document.getElementsByName("content")[0].value;
 
               //console.log(scope.file);
-              var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-
+                if(scope.file) {
+                    var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                } else {
+                    var strippedFileName = undefined;
+                }
 
                 User.update({
                     _id: scope.session_user._id
@@ -142,8 +144,6 @@ app.directive('assignmentAssignmentstudent', [
             });
 
             scope.hasAnswered = true;
-            //console.log("comment att prepend:", scope.comment, comment);
-            //document.querySelector("trix-editor[input='studentEditAssignment']").editor.insertHTML(scope.comment);
         };
 
           scope.showHideBtn = "Show description"

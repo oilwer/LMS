@@ -38,8 +38,11 @@ app.directive('assignmentUpdateEditassignment', [
             scope.submit();
             //create function
             scope.newAssignment.comment = $("#studentEditAssignment").attr("value");
-            var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-
+            if(scope.file) {
+                var strippedFileName = scope.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+            } else {
+                var strippedFileName = undefined;
+            }
 
             User.update({
                 _id: scope.session_user._id,
@@ -50,8 +53,13 @@ app.directive('assignmentUpdateEditassignment', [
                     "assignments.$.answer_file" : strippedFileName
                   });
 
-            $('.assignment-isAnswered p:first-child').empty().append("<hr>" + scope.newAssignment.comment);
-
+            $('.assignment-isAnswered p:first-child').empty().append(scope.newAssignment.comment);
+            if (strippedFileName !== undefined) {
+                $('.submittedFile').empty().append('<a target="_self" href="uploads/' + strippedFileName + '" download>' + strippedFileName + '</a>');
+            } else {
+                $('.submittedFile').empty();
+            }
+            
             scope.$parent.hideModal();
         };
 
