@@ -38,9 +38,8 @@ app.directive('modelanythingModelanythingstart', [
 
                      if((i % 2) === 0){
                       left += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
-                     }else{
-                        right += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
-
+                     } else{
+                      right += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
                      }
                   }
       			  }
