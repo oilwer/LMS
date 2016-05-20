@@ -8341,6 +8341,10 @@ input[type=checkbox] {
 .plugin_container iframe {
   margin: 20px;
 }
+#forecast_embed {
+  margin: 0px;
+  padding: 20px;
+}
 .plugin_container .box {
   text-align: left;
 }
