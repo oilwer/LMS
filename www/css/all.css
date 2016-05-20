@@ -8482,7 +8482,7 @@ input[type=checkbox] {
 }
 .assignment-answer h2 {
   font-size: 1.4em;
-  padding: 0 0 20px 0;
+  padding: 0 0 10px 0;
 }
 .assignment-answer h3 {
   padding-bottom: 5px;
@@ -9654,6 +9654,9 @@ course-listadded .box--label--courses {
 course-listadded .box--label_heading--courses a {
   color: #2CC990;
 }
+course-listadded h2 {
+  margin-bottom: 1em;
+}
 .courses--pinned {
   overflow: hidden;
 }
@@ -9722,9 +9725,6 @@ course-listadded .box--label_heading--courses a {
 .btn--pin--inactive i {
   padding-right: 0px;
   text-align: center;
-}
-h2 {
-  margin-bottom: 1em;
 }
 /* * * * * * * * * * * * * * * *
 
