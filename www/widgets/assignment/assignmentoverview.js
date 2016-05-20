@@ -46,11 +46,6 @@ app.directive('assignmentAssignmentoverview', [
                 Course.get({url: theLocation, _populate:"assignments"}, function(course)
                 {
                     scope.course = course[0];
-                    //console.log("i", scope.course);
-                    setTimeout(function() {
-                        console.log(scope.course.assignments);
-                    },1000)
-
                 });
             }
             
@@ -64,8 +59,7 @@ app.directive('assignmentAssignmentoverview', [
         });
 
         scope.updateLocation = function(resourceUrl) {
-            resourceUrl = '/courses/another_course/assignments/' + resourceUrl;
-            console.log(resourceUrl);
+            resourceUrl = '/courses/' + scope.course.url + '/assignments/' + resourceUrl;
             try {
                 $location.path(resourceUrl);
             } catch (e) {

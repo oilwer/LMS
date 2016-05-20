@@ -25,7 +25,7 @@
                   </thead>
                   <!--repeat all courses that the user belongs to -->
                   <tbody ng-repeat="assignment in course.assignments | orderBy:'due_date' | limitTo:'2' ">
-                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignment/{{assignment._id}}">
+                      <tr ng-click="courseLocation($event)" dataLocation="{{ course.url }}/assignments/{{assignment._id}}">
                         <td ng-if="course.status == true">
                             <i class="fa fa-file-text-o"></i>
                             <span ng-class="class">{{assignment.name}}</span>
