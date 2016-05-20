@@ -2,8 +2,8 @@
 
 <ul>
     <h1 class="nav--course_heading">
-        <i class="fa--heading fa fa-leaf"></i> 
-        {{course.name}} ({{ course.code }})
+        <i class="fa--heading fa fa-leaf"></i>
+        {{course.name}} <span class="course_code">({{ course.code }})</span>
     </h1>
     <li ng-class="{'active': isActive('/courses/' + course.url) }">
         <a ng-href="courses/{{course.url}}">
@@ -20,18 +20,18 @@
     <!--<li><a href="">Questions and Answers</a></li>
 
     <!--Assignments-->
-    <li ng-if = "hasAssignment(course.assignments)" 
+    <li ng-if = "hasAssignment(course.assignments)"
         ng-class="{'active': isActive('/courses/' + course.url + '/assignments/') || isSingleAssignment('assignments')}">
         <a ng-href="courses/{{course.url}}/assignments">
-            Assignments 
+            Assignments
         </a>
     </li>
 
     <!--Resources-->
-    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/') || isSingleResource('resources')}" 
+    <li ng-class="{'active': isActive('/courses/' + course.url + '/resources/') || isSingleResource('resources')}"
         ng-if = "hasResource(course.resources)">
         <a ng-href="courses/{{course.url}}/resources">
-            Resources 
+            Resources
         </a>
     </li>
 </ul>

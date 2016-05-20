@@ -28,7 +28,7 @@ app.directive('modelanythingPluginsCourselist', [
               session_user = user;
               if(session_user[0].role == "admin") {
                 scope.heading = "All courses";
-              } else if(session_user[0].role == "student") {
+              } else if((session_user[0].role == "student") || (session_user[0].role == "teacher")) {
                 scope.heading = "My courses";
               }
               scope.pinnedCourses = [];
@@ -49,7 +49,7 @@ app.directive('modelanythingPluginsCourselist', [
         }
         //Runs on page update
         refresh();
-        
+
         function findWithAttr(array, attr, value) {
           for(var i = 0; i < array.length; i += 1) {
             if(array[i][attr] === value) {

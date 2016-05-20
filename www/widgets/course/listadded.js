@@ -33,7 +33,10 @@ app.directive('courseListadded', [
 
         var refresh = function(){
           SessionService.getSession().success(function(response) {
-            User.get({_id: response.user._id, _populate:"courses"}, function(user){
+              SessionService.updateSession(response.user.email).success(function(sess_user){
+                  
+              
+            User.get({_id: sess_user._id, _populate:"courses"}, function(user){
               scope.myCourses = [];
               for (var i = 0; i < scope.myCourses.length; i++) {
                 if(user[0].courses[i].courses_pinned.pinned){
@@ -46,6 +49,7 @@ app.directive('courseListadded', [
 
             });
           });
+        });
         }
 
         //Runs on page update
@@ -55,8 +59,9 @@ app.directive('courseListadded', [
         scope.$root.$on('addedCourse', function() {
           refresh();
         });
-      }
-   
+        
       } //link
+   
+      }
     }
 ]);

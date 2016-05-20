@@ -19,7 +19,7 @@ app.directive('connectStudentsaddremove', [
 
         scope.students = [];
 
-        scope.AvailableCourses = Course.get();
+
         var courseUrl = "";
 
         var createNotification = function(UserIdentifier){
@@ -72,6 +72,7 @@ app.directive('connectStudentsaddremove', [
 
 		    var updateGUI = function(){
 			    scope.studentsToBeAdded= [];
+          scope.students = [];
   		  	if(courseUrl===""){
 
   		  	}else{
@@ -115,42 +116,90 @@ app.directive('connectStudentsaddremove', [
   					}
 				  }
         }
+        scope.AvailableCourses = Course.get({}, function(courses){
+          updateDropdownCourseList();
+        });
 
-        //filters studentlist according to registered courses
-        scope.filterByCourse = function(student) {
-      	  updateDropdownCourseList();
-          if(scope.byCourse === '' || scope.byCourse === null ||scope.byCourse === undefined) return true;
-    			return student.courses.filter(function(course) {
-		    	  //if course name entered
-		      	return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-		      	  //if course code entered
-		      		|| course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-		      	  //if student name entered
-		      		|| student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-		      		|| student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool
-			    }).length > 0; //returns a bool
-		  	}
+
+        var changedFilterFunc = function(byCourse){
+          console.log("testing", byCourse);
+          scope.studentsToBeAdded= [];
+          scope.students = [];
+  		  	if(courseUrl===""){
+            console.log("Empty URL")
+  		  	}else{
+  			  	User.get({_populate:"courses"},function(user){
+              console.log("doing get")
+  				  	for(var i = 0; i < user.length; i++) {
+					  	  if(user[i].courses.length > 0) {
+						  	  var added = false;
+                  var second = false;
+						  	  for (var x = 0; x < user[i].courses.length; x++) {
+    								if(user[i].courses[x].url === courseUrl) {
+    							  	scope.studentsToBeAdded.push(user[i]);
+    							  	added = true;
+                      second = true;
+    							  	break;
+    						  	}
+						  	  }
+                  for (var x = 0; x < user[i].courses.length; x++) {
+                    console.log("second for ", user[i].courses[x].name, byCourse)
+    								if(user[i].courses[x].name === byCourse && second != true) {
+    							  	scope.students.push(user[i]);
+                      console.log("added to students ", user[i]);
+    							  	break;
+    						  	}
+						  	  }
+					  	  }
+				  	  }
+			  	  });
+
+    				Course.get({url: courseUrl, _populate:"students"},function(course){
+    					scope.studentsToBeAdded = "";
+    				  scope.studentsToBeAdded = course[0].students;
+    				});
+    	    }
+        }
+
+        scope.changedFilter = function(byCourse) {
+          if(scope.byCourse != undefined && scope.byCourse != ""){
+            changedFilterFunc(byCourse);
+          } else {
+            updateGUI();
+          }
+        }
 
         // Add Item to Checked List and delete from Unchecked List
-  	    scope.stageMeToCourse = function (index) {
-  			  scope.studentsToBeAdded.push(scope.students[index]);
+  	    scope.stageMeToCourse = function (index, student) {
+          console.log(student.first_name, "new stuff 1");
 
-  		    Course.get({url: courseUrl},function(course){
-    			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
-              User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
-  				 		  //Add User to slack channel:
-    				 		if(scope.students[index].slack_token != undefined) {
-    				 			joinChannel(course[0].code, scope.students[index].email);
-    				 		}
-                createNotification(scope.students[index]._id);
-    				 		scope.students.splice(index, 1);
-  				 	  });
-  			 	  });
+  			  scope.studentsToBeAdded.push(student);
+          var participant;
+          User.get({ _id: student._id },function(user){
+            participant = student;
+            Course.get({url: courseUrl},function(course){
+      			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
+                User.update({_relate:{items:participant,courses:course[0]}},function(newres){
+    				 		  //Add User to slack channel:
+      				 		if(participant.slack_token != undefined) {
+      				 			joinChannel(course[0].code, participant.email);
+      				 		}
+                  //createNotification(scope.students[index]._id);
+                  for(var i = 0; i < scope.students.length; i += 1) {
+              			if(scope.students[i]._id === student._id) {
+              					scope.students.splice(i, 1);
+              			}
+              		}
+
+    				 	  });
+    			 	  });
+            });
           });
   	    }
 
   	    // Add Item to Checked List and delete from Unchecked List
-  	    scope.unstageMeToCourse = function (index) {
+  	    scope.unstageMeToCourse = function (index, student) {
+          console.log(student.first_name, "new stuff 2");
   		    // Remove user from course
       	  Course.get({url: courseUrl, _populate: "slack_channels"}, function(course){
   	    	  Course.update({url: courseUrl},
@@ -164,8 +213,12 @@ app.directive('connectStudentsaddremove', [
       						if(scope.studentsToBeAdded[index].slack_token != undefined){
       							leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
       						}
-      						scope.students.push(user[0]);
-      						scope.studentsToBeAdded.splice(index, 1);
+                  if(scope.byCourse != undefined){
+                    changedFilterFunc(scope.byCourse);
+                  } else{
+                    scope.students.push(user[0]);
+        						scope.studentsToBeAdded.splice(index, 1);
+                  }
                 });
   					  });
   				  });

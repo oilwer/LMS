@@ -12,11 +12,11 @@
 
 
 /*
-  Nodebite code style -> jshint settings below, also 
+  Nodebite code style -> jshint settings below, also
   indent = 2 spaces, keep your rows reasonably short
   also your methods below sceen height.
 */
-/* jshint 
+/* jshint
   loopfunc: true,
   trailing: true,
   sub: true,
@@ -29,30 +29,30 @@
 var mongresto = module.exports = (function _mongresto(){ return {
 
   defaults: {
- 
+
     // The MongoDB database to connect to
     dbName: "test",
 
     // The path to the rest api
     apiPath: "/api",
-    
+
     // The path where you should put your Mongoose models
     modelPath: "./mongoose-models/",
-    
+
     // The path where Mongresto will autogenerate
     // frontend JavaScript containing ngResource-based objects
     ngResourcesPath: "/api/ngresources",
-    
+
     // If Angular.js should stop all further requests to the backend
     // if one result comes back as an error
     ngStopQueueOnError: false,
-    
+
     // A function written by you - it gets access to the current question
     // and can deny Mongresto permission to run it
-    
+
     permissionToAsk:
       function(modelName, method, query, req){ return true; },
-    
+
     // A function written by you - it gets access to the current result
     // (and question) and can deny Mongresto permission to return it
     permissionToAnswer:
@@ -101,7 +101,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
     this.mongoose = require("mongoose");
     //this.mongoose.connect('mongodb://admin:dbpass@128.199.49.28:27017/' + dbName); //Server Database
     this.mongoose.connect('mongodb://localhost/' + dbName); //Local Database
-    
+
     // Check connection
     this.mongoose.connection.once('open', function() {
       console.log("Mongresto: Connected to database " + dbName + "!");
@@ -112,14 +112,14 @@ var mongresto = module.exports = (function _mongresto(){ return {
 
     // Important! Since Node.js is single-threaded
     // saving things in the this scope
-    // and depending on them to be there 
+    // and depending on them to be there
     // before and after async db calls
     // is a recipe for disaster / mix-ups
     // of different questions (and users)
 
-    // To avoid this we clone a new instance of the 
+    // To avoid this we clone a new instance of the
     // main object/the library and run from there.
-    // (This is a nice alternative to sending around 
+    // (This is a nice alternative to sending around
     //  a lot of parameters between methods - old school node)
 
     Object.create(this).apiCallHandler(req,res);
@@ -131,7 +131,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
     this.req = req;
     this.res = res;
     this.method = req.method;
-    
+
     // Get the search object and mongoose model from the url
     var url = this.splitUrl(req.url);
     this.search = this.createSearchObject(url[1]);
@@ -202,7 +202,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
     // try to eval to object, otherwise, if truthy,
     // assume it is an _id, otherwise assume it is nothing
 
-    // Jump through some hoops so we can use JSON.parse (instead of evil eval) 
+    // Jump through some hoops so we can use JSON.parse (instead of evil eval)
     var s2 = search
       // add quotation marks around non quoted keys
       .replace(/([\{\,]\s*)([\w|\$]*)(\s*:)/g,'$1"$2"$3')
@@ -224,7 +224,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
       }
     } catch(e){}
     search = s3;
-    
+
     return typeof search == "object" ?
       search : (search ? {_id:search} : {});
   },
@@ -395,7 +395,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
         "pathToApi/" + entity.toLowerCase() + "/:id/",
         {id:"@id"}, methods
       );
-      
+
       // Wrap it in our own special object (queue handling etc)
       var obj = {
         onQueueDone: function(func){
@@ -403,7 +403,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
         }
       };
       for(var i in methods){that.ngCreateMethod(re,obj,methods,i);}
-      
+
       return obj;
     }]);
   },
@@ -455,7 +455,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
     if(args[0] && onlyId && methodSpec.isArray){
       args[0].__forceArray = true;
     }
-    
+
     // Stringify search object
     if(typeof args[0] == "object" && !args[0].id){
       args[0] = {
@@ -510,7 +510,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
     ){
       return;
     }
-    
+
     // Rebuild the search object from the _relate object
     var u = r.orgArgs[0]._relate;
     var obj = {};
@@ -521,7 +521,7 @@ var mongresto = module.exports = (function _mongresto(){ return {
         u[i][j]._id && obj[i].push(u[i][j]._id);
       }
     }
-    
+
     // Add ids to look for to request body
     if(obj.items){
       obj.__idsToLookFor__ = obj.items;

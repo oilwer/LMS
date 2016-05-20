@@ -26,32 +26,34 @@
                 </div><!---.profile__about-->
 
                 <div class="profile__contact">
-                    
+
                     <h2 class="uppercase">Contact details</h2>
-                        
+
                         <p ng-click="editContact()" ng-show="contactEnabled"><i class="fa fa-envelope-o"></i>{{ email }} </p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-envelope-o"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="email">
                     </span>
 
-                        
                         <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-phone"></i>{{ phone_number }} </p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-phone"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="phone_number">
                     </span>
 
-                        
+
                         <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-home"></i>{{homepage}}</p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-home"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="homepage">
                     </span>
-                    
+
                         <button class="btn" ng-hide="contactEnabled" ng-click="cancelContact()">Cancel</button>
                     <button class="btn" ng-hide="contactEnabled" ng-click="saveContact()">Save</button>
 
@@ -67,8 +69,9 @@
                     <button class="btn" ng-hide="descriptionEnabled" ng-click="saveDescription()">Save</button>
                 </div><!---.profile__description-->
                
+
             </div>
-            
+
             <div class="col-sm-18 col-md-18 col-lg-18 profile__stuff">
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__courses">
@@ -77,7 +80,7 @@
                                 <a href="courses/{{course.url}}"><li> {{course.name}}</li></a>
                             </ul>
                         </div><!--Empty div to get spacing-->
-                        
+
                     <div class="profile__social">
                         <h1><i class="fa fa-users" aria-hidden="true"></i>Social links</h1>
 
@@ -114,12 +117,12 @@
 
                 </div>
                     </div> <!--- .col -->
-                    
+
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
                             <h1><i class="fa fa-certificate"></i>Experience</h1>
                             <i ng-click="showAddDiv()" id="addExp" class="fa fa-plus"></i>
-                            <div class="col-lg-24 show_add_div">                               
+                            <div class="col-lg-24 show_add_div">
                                 <h2 class="uppercase">Company / School</h2>
                                 <input ng-model="company_school" required="true"></input>
                                 <br>
@@ -135,12 +138,12 @@
                                 <button class="btn" ng-click="closeAddDiv()">Cancel</button>
                             </div><!---.profile__description-->
                             <ul class="experienceList" ng-repeat = 'experience in experiences'>
-                                <li>     
+                                <li>
                                     <p ng-click="showMoreExpInfo(experience)">{{experience.title_education}} - {{experience.company_school}}</p><i class="fa fa-trash" ng-click="removeExp(experience)" aria-hidden="true"></i><i class="fa fa-pencil" ng-click="prepareEditExp(experience)"></i>
                                 <p ng-show="showOnClickMoreInfo"><span class="bold">Location: </span>{{experience.location}}</p>
                                     <p ng-show="showOnClickMoreInfo"><span class="bold">Description: </span>{{experience.info}}</p></li>
                             </ul>
-                                
+
                         </div><!--Empty div to get spacing-->
         <div class="profile__stuff__skills">
                             <h1><i class="fa fa-cogs"></i>Skills</h1>  
@@ -149,14 +152,14 @@
                             <input id="skills" ng-model="searchTags" required="true">
 
                             <i ng-click="addSkill()" class="fa fa-plus"></i>
-          
-                            <ul ng-repeat = 'skill in skills'>  
+
+                            <ul ng-repeat = 'skill in skills'>
                                 <li ng-mouseenter="show = true" ng-mouseleave="show = false" ng-click="removeSkill(skill)"> {{skill.tag}} <div style="position:absolute;" ng-show="show" class="fa fa-trash"></div> </li>
-                            </ul>                          
-                    
+                            </ul>
+
                         </div><!--Empty div to get spacing-->
                     </div> <!-- .col -->
-                    
+
                     <!--<div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__projects">
                             <h1><i class="fa fa-2x fa-folder-open"></i>Projects</h1>
@@ -165,12 +168,12 @@
                         </div><!--Empty div to get spacing-->
                     <!--</div> <!-- .col -->
 
-                         <div id="slack_auth">
+                         <div ng-show="authButton" id="slack_auth">
                     <a href="https://slack.com/oauth/authorize?client_id=19435876323.23240924768&scope=team%3Aread+users%3Aread+channels%3Awrite+channels%3Ahistory+channels%3Aread+groups%3Awrite+chat%3Awrite%3Auser&redirect_uri=http://localhost:3000/myprofile/&team=T0KCTRS9H"><img alt="Add to Slack" height="40" width="139" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/Add_to_slack@2x.png 2x" /></a>
                 </div>
 
-                    
-                    
+
+
                 <div class="row">
                     <div ng-if="isStudent" ng-show="isStudent" class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
                         <div class="profile__stuff__other">
@@ -184,4 +187,3 @@
         </div><!---.row-->
     </div><!---container-->
 </div>
-
