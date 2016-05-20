@@ -5,29 +5,20 @@ app.directive('courseCreateCreatecourse', [
     "Course",
     "ChatService",
     "SessionService",
+    "User",
   function(
     settings,
     $location,
     $window,
     Course,
     ChatService,
-    SessionService
+    SessionService,
+    User
   ) {
 
     return {
       templateUrl: settings.widgets + 'course/create/createcourse.html',
       link: function(scope, element, attrs) {
-
-
-        // CURRENT COURSE VARIABLES
-        //
-        // session_user : ._id
-        // id : on createCourse()
-        // url : view + create/update course
-        // name : view
-        // description : view
-        // start, end : view
-        //
 
         //get session_user
         scope.session_user;
@@ -50,7 +41,6 @@ app.directive('courseCreateCreatecourse', [
         //it needs to be connected to
         var createSlackChannelwithCourse = function(courseId, channelName, UserIdentifier){
           ChatService.createChannel(channelName, UserIdentifier).success(function(slackChannel){
-            console.log(slackChannel);
             if(slackChannel.error != null){
               return;
             }
@@ -58,11 +48,9 @@ app.directive('courseCreateCreatecourse', [
             ChatService.getChannels(UserIdentifier).success(function(channels){
               for(x = 0; x < channels.channels.length; x++){
                 if(channels.channels[x].name == channelName){
-                  console.log(channels.channels[x]);
                   Course.update({ _id : courseId } , {$push: { slack_channels: { channelId: channels.channels[x].id} } },
                   function (res)
                   {
-                    console.log(res);
                   });
                   break;
                 }
@@ -105,7 +93,6 @@ app.directive('courseCreateCreatecourse', [
         if(typeof scope.course.name !== 'undefined'){
 
             if(dateIsValid(scope.course.start, scope.course.end)){
-              console.log("date valid");
               var result = AvailableCourses.filter(function( obj ) {
                 return obj.name == selectedCourseName;
               });
@@ -123,14 +110,17 @@ app.directive('courseCreateCreatecourse', [
                       scope.btnAddOrUpdate = "Update course";
 
                       Course.create(scope.course, function(course){
-                        console.log(scope.course, "the course to be created and its details");
+                        //console.log(scope.course, "the course to be created and its details");
                           scope.$root.$broadcast('addedCourse');
-                          console.log("Added course:", course[0]);
+                          //console.log("Added course:", course[0]);
                           oldcourse = JSON.parse(JSON.stringify(course[0]));
+                          if(scope.session_user.role === "teacher") {
+                              stageMeToCourse();
+                          }
                           scope.incrementStep();
 
                           createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
-                          console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
+                          //console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
                           Course.update({_relate:{ items:course[0],creator:scope.session_user }},function(res){});
                       });
                   }
@@ -352,7 +342,7 @@ app.directive('courseCreateCreatecourse', [
         console.log(selectedCourseName);
         }
 
-        //create a new course and set GUI edit options
+        //create a new course and set GUI edit options //Not used??
         scope.createCourse = function(){
             Course.create(
             {
@@ -367,8 +357,10 @@ app.directive('courseCreateCreatecourse', [
             }, function(course)
                 {
                     scope.$root.$broadcast('addedCourse');
-                              console.log("You hear me?");
-
+                    console.log("the role", scope.session_user.role)
+                    if(scope.session_user.role === "teacher") {
+                       stageMeToCourse();
+                    }
                     //update GUI edit mode
                     scope.course = course[0];
                     scope.url = "/courses/" + scope.course.url;
@@ -401,7 +393,7 @@ app.directive('courseCreateCreatecourse', [
         //roate location
         scope.pathLocation = function() {
             Course.get({name: scope.course.name, description: scope.course.description, end: scope.course.end}, function(fetchedCourse){
-        console.log("fetched course: ", fetchedCourse);
+        //scope.session_user._idconsole.log("fetched course: ", fetchedCourse);
         scope.$parent.hideModal();
         $window.location.href = '/courses/' + fetchedCourse[0].url;
          });
@@ -417,9 +409,32 @@ app.directive('courseCreateCreatecourse', [
             scope.start = "",
             scope.end = "";
             scope.url = "";
-            console.log(scope.url);
             scope.selection = scope.steps[0].name;
             scope.$parent.hideModal();
+        }
+        
+        scope.messageAdded = "";
+        scope.studentsToBeAdded = [];
+  	    var stageMeToCourse = function() {
+  			  scope.studentsToBeAdded.push(scope.session_user);
+
+  		      Course.get({url: scope.course.url},function(course){
+                  Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
+                      User.update({_relate:{items:scope.session_user,courses:course[0]}},function(newres){
+                      //Add User to slack channel:
+                        if(scope.session_user.slack_token != undefined) {
+                            joinChannel(course[0].code, scope.session_user.email);
+                        }
+                          scope.$root.$broadcast('addedCourse');
+                          scope.messageAdded = "You were added to the course";
+                      });
+                  });
+              });
+  	    }
+        
+        var joinChannel = function(channelName, UserIdentifier){
+          ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
+          });
         }
 
 
