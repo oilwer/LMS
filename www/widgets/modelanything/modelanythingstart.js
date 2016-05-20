@@ -45,7 +45,7 @@ app.directive('modelanythingModelanythingstart', [
   					     scope.html += "<div class='col-md-12' id='" + plug + id + "' ><" +
                                "modelanything-plugins-" + plug + "/></div>";
 
-                if((i % 2) === 1){
+                if((i % 2) === 1 || i === user.plugs.length){
                   scope.html += "</div>";
                   console.log(i);
                  }
