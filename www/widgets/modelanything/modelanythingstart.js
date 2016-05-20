@@ -12,6 +12,8 @@ app.directive('modelanythingModelanythingstart', [
       templateUrl: settings.widgets + 'modelanything/modelanythingstart.html',
       link: function(scope, element, attrs) {
 
+        var user;
+
         var loadPlugs = function() {
   			  scope.html = "";
   			  // console.log(user);
@@ -20,10 +22,10 @@ app.directive('modelanythingModelanythingstart', [
            var nr = 0;
            var left = "";
            var right = "";
-        
-           SessionService.getSession().success(function(response){ 
 
-            var user = response.user;
+           SessionService.getSession().success(function(response){
+
+            user = response.user;
 
             SessionService.updateSession(user.email).success(function(session) {
               user = session;
@@ -35,9 +37,9 @@ app.directive('modelanythingModelanythingstart', [
       					     var id = user.plugs[i]._id;
 
                      if((i % 2) === 0){
-                      left += "<div><" + "modelanything-plugins-" + plug + "/></div>";
+                      left += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
                      }else{
-                        right += "<div><" + "modelanything-plugins-" + plug + "/></div>";
+                        right += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
 
                      }
                   }
@@ -50,22 +52,23 @@ app.directive('modelanythingModelanythingstart', [
 
         loadPlugs();
 
-        scope.$root.$on('refreshPlugList', function() {           
-            loadPlugs();                       
+        scope.$root.$on('refreshPlugList', function() {
+            loadPlugs();
         });
 
-        scope.deletePlug = function(name){
-          console.log(name);
-          SessionService.getSession().success(function(response) {
-              User.update({
-                _id:response.user._id
-              },{
-                $pull: { 
-                    plugs : { name: name }
-                }
-              });
-              loadPlugs();
+        scope.deletePlug = function(id){
+          console.log(id);
+          console.log(user);
+
+          User.update({
+            _id:user._id
+          },{
+            $pull: {
+                plugs : { _id: id }
+            }
           });
+          loadPlugs();
+
         }
 
 	      // User.onQueueDone (loadPlugs);
