@@ -15,7 +15,7 @@
     "mongoose": "*",
     "multer": "^1.1.0",
     "ng-file-upload": "^12.0.4",
-    "nodemailer": "^2.3.0",
+    "nodemailer": "^2.4.1",
     "nodemon": "^1.9.2",
     "serve-favicon": "^2.3.0",
     "sha1": "*",
