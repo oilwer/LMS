@@ -4,14 +4,14 @@
             <nav class="col-sm-24 col-md-24 nav--local" >
                 <course-courseNav></course-courseNav>
             </nav>
-            
+
               <div class="col-sm-22 col-md-22 col-md-offset-1">
                  <breadcrumbs-breadcrumbs></breadcrumbs-breadcrumbs>
                     <div class="box box__content list--publicstudents">
                       <div class="col-sm-24">
                         <h1>
                           Participants (edit mode)
-                          <a ng-href="courses/{{ courseUrl }}/participants" 
+                          <a ng-href="courses/{{ courseUrl }}/participants"
                              class="btn btn--courses edit">
                               Done
                           </a>
@@ -34,15 +34,15 @@
                             <div class="list--students">
                                 <h3>Add people</h3>
                                 <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name">
-                                <select ng-model="byCourse" class="form-control">
+                                <select ng-model="byCourse" class="form-control" ng-change="changedFilter(byCourse)">
                                     <option value="" ng-selected=true>-- All Courses --</option>
                                     <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
                                 </select>
-                                <ul ng-repeat="student in students | filter: filterByCourse | filter: notAdded">
+                                <ul ng-repeat="student in students | filter: notAdded">
 
                                     <li ng-init="index=0;
                                         classes=['list--students_item', 'list--students_item--active']"
-                                         ng-click="stageMeToCourse($index)"
+                                         ng-click="stageMeToCourse($index, student)"
                                          ng-class="classes[index % classes.length]"
                                          class="col-xs-24"
                                          >
@@ -67,7 +67,7 @@
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
                                                                     'list--students_item--active']"
-                                         ng-click="unstageMeToCourse($index)"
+                                         ng-click="unstageMeToCourse($index, RegStudent)"
                                          ng-class="classes[index % classes.length]"
                                          ng-repeat="RegStudent in studentsToBeAdded | filter: studentsAdded"
                                          class="col-xs-24 studlist_card">
