@@ -9773,6 +9773,10 @@ h2 {
   font-size: 1em;
   color: #2cc990;
 }
+.nav--course_heading .course_code {
+  color: rgba(62, 71, 79, 0.5);
+  font-size: 1em;
+}
 .padding--none {
   padding: 0px;
 }
