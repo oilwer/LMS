@@ -36,16 +36,13 @@ app.directive('assignmentCreateassignment', [
 		        var AvailableAssignments, oldassignment, selectedAssignmentName;
 
 		        var getAssignmentsFromCourse = function(){
-			        // console.log("Searching for: ", selectedCourseName);
 			        var courseId;
 
 			        Course.get({name: selectedCourseName}, function(course)
 			        {
-						// console.log(course[0]._id);
 						courseId = course[0]._id;
 
 						Assignment.get({course: courseId}, function(res){
-							// console.log(res);
 							AvailableAssignments = res;
 
 							scope.assignmentSelect = {
@@ -69,13 +66,11 @@ app.directive('assignmentCreateassignment', [
 			        }
 
 					selectedCourseName = scope.courseSelect.repeatSelect;
-					// console.log(selectedCourseName);
 					getAssignmentsFromCourse();
 			    }
 
 			   	scope.selectAssignmentChanged = function (){
 					selectedAssignmentName = scope.assignmentSelect.repeatSelect;
-					// console.log(selectedAssignmentName);
 			   	}
 
 
@@ -99,13 +94,11 @@ app.directive('assignmentCreateassignment', [
                             scope.invalidDateRangeGUI = false;
                         }
                         else {
-                            console.log("invalid date range");
                             scope.invalidDateRange = true;
                             scope.invalidDateRangeGUI = true;
                         }
                     }
                     else {
-                        console.log("invalid date range");
                         scope.invalidDateRange = true;
                         scope.invalidDateRangeGUI = true;
                     }
@@ -142,7 +135,6 @@ app.directive('assignmentCreateassignment', [
 							        if(new Date(scope.assignment.due_date) > new Date(result[0].start)){
 									    // Assignment due date is before the course has ended
 								        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
-											//console.log("Creating the actual assignment");
 											scope.isEditing = 1;
 
 											scope.btnAddOrUpdate = "Update assignment";
@@ -168,7 +160,6 @@ app.directive('assignmentCreateassignment', [
                                                         },{
                                                             teacher_instruction_file: strippedFileName
                                                         }, function(res) {
-                                                            console.log("FILEUPLOADED",res);
                                                         });
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
@@ -188,13 +179,9 @@ app.directive('assignmentCreateassignment', [
 							        if(new Date(scope.assignment.due_date) > new Date(result[0].start)){
 									    // Assignment due date is before the course has ended
 								        if(new Date(scope.assignment.due_date) < new Date(result[0].end)){
-								        	console.log("Updating assignment");
-								        	console.log(scope.assignment);
-								        	console.log("old assignment: ", oldassignment);
 
 								        	oldassignment.due_date = new Date(oldassignment.due_date);
 											Assignment.get({responsible_teacher: oldassignment.responsible_teacher, added_on: oldassignment.added_on, course: oldassignment.course},function(resAssignment){
-												console.log("res ass: ", resAssignment);
 												scope.assignment.added_on = undefined;
 												var ass = scope.assignment;
                                                 if(scope.$$childTail.file){
@@ -354,7 +341,6 @@ app.directive('assignmentCreateassignment', [
 			    }
 
 		        scope.loadDetails = function(){
-			        console.log("loading details");
 			        scope.incrementStep();
 
 			        var obj = AvailableAssignments.filter(function(obj){
@@ -362,7 +348,6 @@ app.directive('assignmentCreateassignment', [
 					})[0];
 
 			        // var assignmentIndex = AvailableAssignments.indexOf(selectedAssignmentName);
-			        console.log(obj);
 
 			        obj.due_date = new Date(obj.due_date);
 			        obj._id = undefined;
@@ -381,9 +366,7 @@ app.directive('assignmentCreateassignment', [
 							scope.selection = scope.createsteps[nextStep].name;
                             //console.log("namnet", scope.createsteps[stepIndex].name);
                             if(scope.createsteps[nextStep].name == "Preview") {
-                                console.log("kör stepp");
                                 setTimeout(previewDescription,50);
-                                console.log("SCOPE", scope.assignment.description);
                                 //$(".assignmentDescription").text("????");
                                // $(".process_view").children(".assignmentDescription").append(scope.assignment.description);
                                 //$(".process_view").children().text("hej");
@@ -395,14 +378,12 @@ app.directive('assignmentCreateassignment', [
 						}
 
 						if(stepIndex >= stepFinishedIndex) {
-						  	console.log("Step ", stepFinishedIndex, " done");
 							stepFinishedIndex++;
 						}
 		            }
 		        };
 
                 var previewDescription = function() {
-                    console.log($(".process_view").children());
                     $(".assignmentDescription").append(scope.assignment.description);
                 };
 
@@ -423,7 +404,6 @@ app.directive('assignmentCreateassignment', [
 		        //roate location
 		        scope.pathLocation = function() {
 		            Assignment.get({name: scope.assignment.name, added_on: scope.assignment.added_on, responsible_teacher: scope.assignment.responsible_teacher, _populate:"course"}, function(fetchedAssignment){
-						console.log("fetched assignmnet: ", fetchedAssignment);
 						scope.$parent.hideModal();
 						$window.location.href = '/courses/' + fetchedAssignment[0].course.url + "/assignments/" + fetchedAssignment[0]._id;
 			       });

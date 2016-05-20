@@ -22,10 +22,6 @@
                             <!--Messages in course-->
                             <course-message ng-repeat="message in course.messages | orderBy:'-date'"></course-message>
 
-                            <!--<div class="wall_loadmore">
-                            <i class="fa fa-plus-circle"></i> Load more
-                            </div>-->
-
                             <form class="form--wall">
                                 <label for="title">Titel</label>
                                 <input class="form-control" type="text" required ng-model="title" name="title" id="title" placeholder="Write your title ...">
@@ -81,65 +77,60 @@
                                 </div>
 
                             </div>
-                        </div>
+                        </div><!--description-->
 
                         <!-- assignment list -->
-                        <div class="col-sm-24 box--label box--label--courses box--label--assignments">
+                        <div class="col-sm-24 box--label box--label--assignments">
                             <h2 class="box--label_heading--assignments">
                                 <i class="fa--heading fa fa-file-text"></i>
                                 Upcoming assignments
                             </h2>
+                            <button 
+                                    class="btn btn--assignments" 
+                                    ng-show="auth" 
+                                    ng-click="castTheAssignmentModal()">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add 
+                            </button>
                             <div class="assignmentList">
-                                <ul class="courses_assignments">
-                                    <p class="course_heading">
-                                        <span>Name</span><span>Deadline</span><span>Status</span>
-                                    </p>
-                                     <assignment-item ng-repeat="assignment in assignments | orderBy: 'due_date' | limitTo:'5'"></assignments-item>
-                                </ul>
-                                <button class="btn btn--default btn--assignments" ng-show="auth" ng-click="castTheAssignmentModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+                                <table class="table--assignmentList">
+                                    <tr>
+                                        <th>Name</th><th>Deadline</th><!--<th>Status</th>-->
+                                    </tr>
+                                     <tr assignment-item 
+                                         ng-repeat="assignment in upcomingAssignments | orderBy: 'due_date' | limitTo:'5'" 
+                                         ng-click="locationPath('/courses/' + course.url + '/assignments/' + assignment._id)">
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
+                        </div> <!--assignments-->
 
                         <div class="col-sm-24 box--label box--label--resources">
                             <h2 class="box--label_heading--resources">
                                 <i class="fa--heading fa fa-folder"></i>
                                 Latest resources
                             </h2>
-                            <div class="">
-                                <ul class="courses_assignments">
-                                    <p class="course_heading"><span>Name</span><span>Added</span></p>
-                                    <resources-resourceitem ></resources-resourceitem>
-                                </ul>
-                                <button class="btn btn--resources" ng-show="auth" ng-click="castTheResourceModal()"><i class="fa fa-plus" aria-hidden="true"></i> Add </button>
+                            <button 
+                                    class="btn btn--resources" 
+                                    ng-show="auth" 
+                                    ng-click="castTheResourceModal()">
+                                <i class="fa fa-plus" aria-hidden="true"></i> Add 
+                            </button>
+                            <div class="table--resourceList">
+                                <table>
+                                    <tr>
+                                        <th>Name</th><th>Added</th>
+                                    </tr>
+                                    <tr resources-resourceitem 
+                                        ng-repeat="resource in resourceList | orderBy:'resources.uploaded_on'"
+                                        ng-click="locationPath('/courses/' + course.url + '/resources/' + resource.url)">
+                                    </tr>
+                                </table>
                             </div>
-                        </div>
-
-                        <!--
-                        <div class="col-sm-24 box--label box--label--questions">
-
-                        </div><!--.col--->
-
-                      <!--QA Comment start
-                      <div class="col-sm-24 box--label box--label--questions">
-
-                            <h2 class="box--label_heading--questions">
-                                <i class="fa--heading fa fa-question-circle"></i>
-                                Questions and Answers
-                            </h2>
-                            <div class="box__content">
-                                <p> </p>
-                            </div>
+                        </div><!--resources-->
 
                         </div><!--.col-->
-
-
-                        </div><!--.col
-                      QA comment end-->
-
                     </div><!--.col-->
-
                 </div><!--.row-->
-
             </div><!--col-->
         </div><!--table row-->
     </div><!--.container-->
