@@ -52,11 +52,12 @@ app.directive('courseCoursepage', [
             scope.course = course[0];
             $('.courseDescriptionContent').empty().append(scope.course.description);
             scope.assignments = scope.course.assignments;
-
-            User.get({_id: scope.course.creator}, function(user){
-              scope.teacher = user[0].first_name + " " + user[0].last_name;
-              scope.teacherUrl = user[0].public_url;
-            });
+            if(scope.course.creator != undefined){
+              User.get({_id: scope.course.creator}, function(user){
+                scope.teacher = user[0].first_name + " " + user[0].last_name;
+                scope.teacherUrl = user[0].public_url;
+              });
+            }
         });
 
 
