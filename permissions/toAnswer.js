@@ -44,7 +44,7 @@ module.exports = function(modelName, method, query, req, result) {
 		}
 
 		// If not admin
-		else
+		else if(req.session.user.role == "student")
 		{
 			if(modelName == "User")
 			{
@@ -88,27 +88,37 @@ module.exports = function(modelName, method, query, req, result) {
 					}
 
 					// User gets somebodys elses data
-					else if(query._id == req.session.user._id)
+					else if(query._id != req.session.user._id)
 					{
-						// Remove protected data
-						result[i]._id = undefined;
-						result[i].__v = undefined;
-						result[i].email = undefined;
-						result[i].password = undefined;
-						result[i].role = undefined;
-						result[i].phone_number = undefined;
-						result[i].personality = undefined;
-						result[i].plugs = undefined;
-						result[i].courses = undefined;
-						result[i].password = undefined;
+						// For each user, remove protected data
+						for (var i = 0; i < result.length; i++)
+						{
+							// Remove protected data
+							result[i]._id = undefined;
+							result[i].__v = undefined;
+							result[i].email = undefined;
+							result[i].password = undefined;
+							result[i].role = undefined;
+							result[i].phone_number = undefined;
+							result[i].personality = undefined;
+							result[i].plugs = undefined;
+							result[i].courses = undefined;
+							result[i].password = undefined;
+						}
 					}
 
 
 				}
 			}
+
+			if(modelName == "Course")
+			{
+
+			}
+
 		}
+
 	}
 
-  result = "";
   return true;
 };

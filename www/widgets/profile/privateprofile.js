@@ -7,7 +7,7 @@ app.directive('profilePrivateprofile', [
   "$http",
   "$window",
   "Upload",
-  "Tags",
+  "Tag",
   function(
     settings,
     User,
@@ -17,7 +17,7 @@ app.directive('profilePrivateprofile', [
     $http,
     $window,
     Upload,
-    Tags
+    Tag
      ) {
 
     return {
@@ -104,16 +104,16 @@ app.directive('profilePrivateprofile', [
 	            $scope.experiences = data.experiences;
 	            $scope.skills = data.skills;
 
-	            $scope.tags = [];
-	            Tags.get({}, function(res){
+	            $scope.tag = [];
+	            Tag.get({}, function(res){
 	            	for (var i = 0; i < res.length; i++) {
-	            		$scope.tags.push(res[i].tag);
+	            		$scope.tag.push(res[i].tag);
 	            	};
 
             	  	$( "#skills" ).autocomplete({
-			        	source: $scope.tags,
+			        	source: $scope.tag,
 			        	select: function(e, ui) {
-					        $scope.searchTags = ui.item.value;
+					        $scope.searchTag = ui.item.value;
 
 					    }
 			        });
@@ -438,7 +438,7 @@ app.directive('profilePrivateprofile', [
 
 
         $scope.addSkill = function () {
-        	if(notFilled($scope.searchTags)){
+        	if(notFilled($scope.searchTag)){
         		return;
         	}
 
@@ -446,19 +446,20 @@ app.directive('profilePrivateprofile', [
         		obj.skills = [];
         	}
 
-        	Tags.get({tag: $scope.searchTags},function(tags){
-				if(tags.length === 0){
-					Tags.create({
-              			tag: $scope.searchTags
+
+        	Tag.get({tag: $scope.searchTag},function(tag){
+				if(tag.length === 0){
+					Tag.create({
+              			tag: $scope.searchTag
           			});
-          			$scope.tags.push($scope.searchTags);
+          			$scope.tag.push($scope.searchTag);
 				}
 			});
 
 			var exist = false;
 
 			for (var i = obj.skills.length - 1; i >= 0; i--) {
-				if(obj.skills[i].tag === $scope.searchTags)
+				if(obj.skills[i].tag === $scope.searchTag)
 				{
 					exist = true;
 				}
@@ -466,14 +467,14 @@ app.directive('profilePrivateprofile', [
 
 			if(exist === false){
 				obj.skills.push({
-            		tag : $scope.searchTags
+            		tag : $scope.searchTag
 				});
 
 	        	User.update({
 	                _id: obj._id
 	            },{ $push: {
 	                  skills:{
-	                    tag : $scope.searchTags
+	                    tag : $scope.searchTag
 	                  }
 	              }
 	            });

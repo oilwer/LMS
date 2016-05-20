@@ -68,7 +68,7 @@ var options = {
 	 // A function written by you - it gets access to the current question
   // and can deny Mongresto permission to run it
 
-/*   permissionToAsk:
+   permissionToAsk:
    require('./permissions/toAsk'),
 
   // A function written by you - it gets access to the current result
@@ -76,7 +76,7 @@ var options = {
   permissionToAnswer:
   require('./permissions/toAnswer'),
 
-*/
+
 
   customRoutes: customRoutes
 };

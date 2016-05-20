@@ -38,14 +38,15 @@
                     <h2 class="uppercase">Contact details</h2>
 
                         <p ng-click="editContact()" ng-show="contactEnabled"><i class="fa fa-envelope-o"></i>{{ email }} </p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-envelope-o"></i>
                         <input type="text" ng-hide="contactEnabled" ng-model="email">
                     </span>
 
-
                         <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-phone"></i>{{ phone_number }} </p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-phone"></i>
@@ -54,6 +55,7 @@
 
 
                         <p ng-click="editContact()" ng-show="contactEnabled"> <i class="fa fa-home"></i>{{homepage}}</p>
+
                         <i class="fa fa-pencil" ng-click="editContact()"></i>
                     <span class="contact-icons">
                         <i ng-hide="contactEnabled" class="fa fa-home"></i>
