@@ -33,7 +33,7 @@
                             <div class="list--students">
                                 <h3>Add people</h3>
 
-                                <input class="form-control" type="text" ng-model="notAdded" placeholder="Search name">
+                                <input class="form-control" type="text" ng-model="notAdded.first_name" placeholder="Search name">
                                 <ul ng-repeat="student in students | filter: notAdded">
 
                                     <li ng-init="index=0;
@@ -59,7 +59,7 @@
                             <div class="list--students list--students--added">
                                 <h3>To {{course.name}}</h3>
 
-                                <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
+                                <input class="form-control" type="text" ng-model="studentsAdded.first_name" placeholder="Search name">
 
                                 <ul>
                                     <li ng-init="index=0; classes=['list--students_item--added',
