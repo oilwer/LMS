@@ -6,7 +6,10 @@
         <select id="dropdown">
             <option value="weather">Weather</option>
             <option value="calendar">Calendar</option>
-            <option value="courselist">Courselist</option>
+            <option value="courselist">Course list</option>
+            <option value="calculator">Calculator</option>
+            <option value="adminpanel" ng-show="admin">Admin panel</option>
+            <option value="teacherpanel" ng-show="teacher">Teacher panel</option>
         </select>
         <button ng-click="add()" class="btn btn--courses">Add plugin</button>
     </div>
