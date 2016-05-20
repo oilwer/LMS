@@ -24,12 +24,14 @@ app.directive('modelanythingModelanythingstart', [
 
 
         var loadPlugs = function(user) {
-
   			  scope.html = "";
   			  // console.log(user);
 
          // console.log(user.plugs.length);
          var nr = 0;
+         var left = "";
+         var right = "";
+        
 
   			  for(var i = 0; i < user.plugs.length; i++) {
   				  if(user.plugs[i].isActive == true){
@@ -38,19 +40,24 @@ app.directive('modelanythingModelanythingstart', [
   					     var id = user.plugs[i]._id;
 
                  if((i % 2) === 0){
-                  console.log(i);
-                  scope.html += "<div class='row'>";
-                 }
-  					  
-  					     scope.html += "<div class='col-md-12' id='" + plug + id + "' ><" +
-                               "modelanything-plugins-" + plug + "/></div>";
+                  left += "<div><" + "modelanything-plugins-" + plug + "/></div>";
+                 }else{
+                    right += "<div><" + "modelanything-plugins-" + plug + "/></div>";
 
-                if((i % 2) === 1 || i === user.plugs.length){
+                 }
+
+
+  					  
+  					     /*scope.html += "<div class='col-md-12' id='" + plug + id + "' ><" +
+                               "modelanything-plugins-" + plug + "/></div>";*/
+
+                /*if((i % 2) === 1 || i === user.plugs.length){
                   scope.html += "</div>";
                   console.log(i);
-                 }
+                 }*/
               }
   			  }
+           scope.html += "<div class='col-md-12 col-left'>" + left+ "</div><div class='col-md-12 col-right'>"+right+"</div>";
   		      //scope.html = '<div class="col-xs-12" form-base>';
 	      }
 

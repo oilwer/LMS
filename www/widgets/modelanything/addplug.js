@@ -15,7 +15,9 @@ app.directive('modelanythingAddplug', [
     return {
       templateUrl: settings.widgets + 'modelanything/addplug.html',
       link: function(scope, element, attrs) {
-
+          $('.box__content').css({
+            'background': "#fff"
+          })
 
            SessionService.getSession().success(function(response) {
               User.get({_id: response.user._id}, function(res){
