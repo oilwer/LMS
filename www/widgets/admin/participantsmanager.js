@@ -19,30 +19,16 @@ app.directive('adminParticipantsmanager', [
       link: function(scope, element, attrs) {
 
         SessionService.getSession().success(function(response){
-        if(response.user.role == "student"){
-          scope.showParticipants = false;
-        } else {
-          scope.showParticipants = true;
-        }
-      });
-
-        var url = $location.path().split(/[\s/]+/)[2];
-
-        scope.course = "";
-
-        //Get all courses by name from url, populate fills all the
-        //connected studests so we can get their data.
-        //ng repeat with response of students
-        Course.get({ url: url , _populate:"students"}, function(res){
-          scope.users = res[0].students;
-          scope.course = res[0];
-      	  Course.get({ url: url , _populate:"assignments"}, function(res){
-      		  scope.assignments = res[0].assignments;
-      	  });
+          if(response.user.role == "student"){
+            scope.showParticipants = false;
+          } else {
+            scope.showParticipants = true;
+          }
         });
+
         scope.students = [];
 
-        scope.AvailableCourses = Course.get();
+
         var courseUrl = "";
 
         var createNotification = function(UserIdentifier){
@@ -60,14 +46,14 @@ app.directive('adminParticipantsmanager', [
         }
 
         var joinChannel = function(channelName, UserIdentifier){
-          console.log(channelName, UserIdentifier);
+  	      console.log(channelName, UserIdentifier);
           ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
               console.log("Response", response);
           });
         }
 
         var leaveChannel = function(channelId, UserIdentifier){
-          console.log(channelId, UserIdentifier);
+     	    console.log(channelId, UserIdentifier);
           ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
             console.log("Response", response);
           });
@@ -80,121 +66,138 @@ app.directive('adminParticipantsmanager', [
 
         courseUrl = $location.path().split(/[\s/]+/)[2];
 
-        scope.courseUrl = courseUrl;
+  	    scope.courseUrl = courseUrl;
 
         var onLoad = function(){
-          scope.course = "";
-          Course.get({url: courseUrl}, function(course){
-            scope.course = course[0];
-            Course.get({ url: courseUrl , _populate:"assignments"}, function(res){
-              scope.assignments = res[0].assignments;
-            });
-            updateGUI();
+          scope.studentsToBeAdded= [];
+          scope.students = [];
+
+          User.get({_populate:"courses"},function(user){
+            for(var i = 0; i < user.length; i++) {
+                scope.students.push(user[i]);
+            }
           });
         }
 
-        var updateGUI = function(){
-          scope.studentsToBeAdded= [];
-          if(courseUrl===""){
+		    var updateGUI = function(){
+			    scope.studentsToBeAdded= [];
+          scope.students = [];
+          courseName = scope.byCourseRight;
+  		  	if(courseName===""){
 
-          }else{
-            User.get({_populate:"courses"},function(user){
-              for(var i = 0; i < user.length; i++) {
-                if(user[i].courses.length > 0) {
-                  var added = false;
-                  for (var x = 0; x < user[i].courses.length; x++) {
-                    if(user[i].courses[x].url === courseUrl) {
-                      scope.studentsToBeAdded.push(user[i]);
-                      added = true;
-                      break;
-                    }
-                  }
-                  if(!added){
-                    scope.students.push(user[i]);
-                  }
-                } else {
-                  scope.students.push(user[i]);
-                }
-              }
-            });
+  		  	}else{
+  			  	User.get({_populate:"courses"},function(user){
+  				  	for(var i = 0; i < user.length; i++) {
+					  	  if(user[i].courses.length > 0) {
+						  	  var added = false;
+						  	  for (var x = 0; x < user[i].courses.length; x++) {
+    								if(user[i].courses[x].name === courseName) {
+    							  	scope.studentsToBeAdded.push(user[i]);
+    							  	added = true;
+    							  	break;
+    						  	}
+						  	  }
+  						  	if(!added){
+  							  	scope.students.push(user[i]);
+  						  	}
+					  	  } else {
+					  		  scope.students.push(user[i]);
+					  	  }
+				  	  }
+			  	  });
 
-            Course.get({url: courseUrl, _populate:"students"},function(course){
-              scope.studentsToBeAdded = "";
-              scope.studentsToBeAdded = course[0].students;
-            });
-          }
-       }
-         //calls updateGUI on page load
+    				Course.get({name: courseName, _populate:"students"},function(course){
+    					scope.studentsToBeAdded = "";
+    				  scope.studentsToBeAdded = course[0].students;
+    				});
+    	    }
+	     }
+	       //calls updateGUI on page load
         onLoad();
 
         var updateDropdownCourseList = function(){
-          //list of courses for dropdown menu
-          scope.dropDownCourseList = [];
-          //loop through list of all courses
-          for (var i = 0; i < scope.AvailableCourses.length; i++) {
-            //if we are not in that course's page, add the course to the dropdown menu
-            if(scope.AvailableCourses[i].url != scope.courseUrl){
-              scope.dropDownCourseList.push(scope.AvailableCourses[i]);
-            }
-          }
+       		//list of courses for dropdown menu
+       		scope.dropDownCourseList = [];
+  				//loop through list of all courses
+  				for (var i = 0; i < scope.AvailableCourses.length; i++) {
+  						scope.dropDownCourseList.push(scope.AvailableCourses[i]);
+				  }
         }
-
-        //filters studentlist according to registered courses
-        scope.filterByCourse = function(student) {
+        scope.AvailableCourses = Course.get({}, function(courses){
           updateDropdownCourseList();
-          if(scope.byCourse === '' || scope.byCourse === null ||scope.byCourse === undefined) return true;
-          return student.courses.filter(function(course) {
-            //if course name entered
-            return course.name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-              //if course code entered
-              || course.code.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-              //if student name entered
-              || student.last_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1 //returns a bool
-              || student.first_name.toLowerCase().indexOf(scope.byCourse.toLowerCase()) > -1; //returns a bool
-          }).length > 0; //returns a bool
+        });
+
+
+
+        scope.changedFilterRight = function(byCourse) {
+            updateGUI();
         }
 
         // Add Item to Checked List and delete from Unchecked List
-        scope.stageMeToCourse = function (index) {
-          scope.studentsToBeAdded.push(scope.students[index]);
+  	    scope.stageMeToCourse = function (index, student) {
+          console.log(student.first_name, "new stuff 1");
+          if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
+            alert("Please select a course to add " + student.first_name + " to!");
+            return null;
 
-          Course.get({url: courseUrl},function(course){
-            Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
-              User.update({_relate:{items:scope.students[index],courses:course[0]}},function(newres){
-                //Add User to slack channel:
-                if(scope.students[index].slack_token != undefined) {
-                  joinChannel(course[0].code, scope.students[index].email);
-                }
-                createNotification(scope.students[index]._id);
-                scope.students.splice(index, 1);
-              });
+          } else {
+
+            courseName = scope.byCourseRight
+          }
+  			  scope.studentsToBeAdded.push(student);
+          var participant;
+          User.get({ _id: student._id },function(user){
+            participant = user;
+            Course.get({name: courseName},function(course){
+      			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
+                User.update({_relate:{items:participant,courses:course[0]}},function(newres){
+    				 		  //Add User to slack channel:
+      				 		if(participant.slack_token != undefined) {
+      				 			joinChannel(course[0].code, participant.email);
+      				 		}
+                  //createNotification(scope.students[index]._id);
+                  for(var i = 0; i < scope.students.length; i += 1) {
+              			if(scope.students[i]._id === student._id) {
+              					scope.students.splice(i, 1);
+              			}
+              		}
+
+    				 	  });
+    			 	  });
             });
           });
-        }
+  	    }
 
-        // Add Item to Checked List and delete from Unchecked List
-        scope.unstageMeToCourse = function (index) {
-          // Remove user from course
-          Course.get({url: courseUrl, _populate: "slack_channels"}, function(course){
-            Course.update({url: courseUrl},
-            { $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
-              User.update({_id: scope.studentsToBeAdded[index]._id},
-              { $pull: { 'courses': course[0]._id}}, function(rnes){
-                User.get({ _id: scope.studentsToBeAdded[index]._id}, function(user){
+  	    // Add Item to Checked List and delete from Unchecked List
+  	    scope.unstageMeToCourse = function (index, studenttoPull) {
+          console.log(studenttoPull, "new stuff 2");
+          courseName = scope.byCourseRight
+  		    // Remove user from course
+      	  Course.get({name: courseName, _populate: "slack_channels"}, function(course){
+  	    	  Course.update({name: courseName},
+          	{ $pull: { 'students': studenttoPull._id}}, function(res){
+  	        	User.update({_id: studenttoPull._id},
+  					  { $pull: { 'courses': course[0]._id}}, function(rnes){
+                User.get({ _id: studenttoPull._id}, function(user){
                   //TODO: For now each course has one channel, when we
-                  //have more channels on course, find the course code for
-                  //current course
-                  if(scope.studentsToBeAdded[index].slack_token != undefined){
-                    leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
-                  }
+      						//have more channels on course, find the course code for
+      						//current course
+      						if(user.slack_token != undefined){
+      							leaveChannel(course[0].slack_channels[0].channelId, studenttoPull.email);
+      						}
+
                   scope.students.push(user[0]);
-                  scope.studentsToBeAdded.splice(index, 1);
+                  for(var i = 0; i < scope.studentsToBeAdded.length; i += 1) {
+              			if(scope.studentsToBeAdded[i]._id === studenttoPull._id) {
+              					scope.studentsToBeAdded.splice(i, 1);
+              			}
+              		}
                 });
-              });
-            });
-          });
-        }
+  					  });
+  				  });
+      	  });
+      	}
       }
-    };
+    }
   }
 ]);
