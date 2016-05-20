@@ -180,17 +180,17 @@
 // NAV LOCAL
 //
 .nav--local {
-    background: rgb(254,254,254);
     padding-right: 0px;
     padding-left: 0px;
-    box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 0px 2px rgba(0,0,0,0.23);
+    /*box-shadow: 0px 0px 0px rgba(0,0,0,0.19), 0 0px 2px rgba(0,0,0,0.23);*/
+    background: rgb(255,255,255); /*rgba(44, 201, 144, 1)*/
 }
 
 .nav--local ul {
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%;
+    border-bottom: 1px solid fade(@LMSdark, 20%);
 }
 
 .nav--local .fa--itemtype {
@@ -198,11 +198,13 @@
 }
 
 .nav--local li:first-child {
-    border-top: 1px solid fade(@LMSdark, 20%);
+    
 }
+
 .nav--local li {
-    width: 100%;
-    border-bottom: 1px solid fade(@LMSdark, 20%);
+    display:inline-block;
+    margin: 0 1px;
+
 }
 
 .nav--local li ul li a {
@@ -217,26 +219,25 @@
     cursor: pointer;
     font-weight: 600;
     font-size: 0.9em;
-    width: 100%;
+    width: auto;
     display: inline-block;
-    padding: 13px 20px;
-    color: rgba(62,71,79,1);
-    border-left: 3px solid rgba(255, 255,255, 1);
+    padding: 19px 20px 13px 20px;
+    color: rgba(44, 201, 144, 1);
+    
 }
 
 .nav--local a:hover {
-    background: rgba(44, 201, 144, 0.5);
-    border-left: 3px solid rgba(44, 201, 144, 1);
-    color: rgba(255,255,255,1);
+    border-bottom: 3px solid rgba(44, 201, 144, 1);
+    color: rgba(44, 201, 144, 1);
     text-decoration: none;
     transition: all 0.2s ease;
+    background: rgba(44, 201, 144, 0.5);
 }
 
 
 .nav--local li.active a {
-    color: rgba(255,255,255,1);
-    background: rgba(44, 201, 144, 1);
-    border-left: 3px solid rgba(36, 163, 116, 1); /*rgba(27, 105, 84, 1);*/
+    color: rgba(36, 163, 116, 1);
+    border-bottom: 3px solid rgba(36, 163, 116, 1); /*rgba(27, 105, 84, 1);*/
 }
 
 .nav--local_notification:after {

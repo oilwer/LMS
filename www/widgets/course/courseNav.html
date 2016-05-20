@@ -1,9 +1,10 @@
-<h1 class="nav--course_heading">
-    <i class="fa--heading fa fa-leaf"></i> 
-    {{course.name}} ({{ course.code }})
-</h1>
+
 
 <ul>
+    <h1 class="nav--course_heading">
+        <i class="fa--heading fa fa-leaf"></i> 
+        {{course.name}} ({{ course.code }})
+    </h1>
     <li ng-class="{'active': isActive('/courses/' + course.url) }">
         <a ng-href="courses/{{course.url}}">
             Overview
