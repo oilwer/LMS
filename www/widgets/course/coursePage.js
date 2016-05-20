@@ -7,6 +7,7 @@ app.directive('courseCoursepage', [
   "$routeParams",
   "Assignment",
   "$filter",
+  "Resource",
   function(
     settings,
     $location,
@@ -15,7 +16,8 @@ app.directive('courseCoursepage', [
     User,
     $routeParams,
     Assignment,
-    $filter
+    $filter,
+    Resource
   ) {
 
     return {
@@ -36,6 +38,7 @@ app.directive('courseCoursepage', [
 
         scope.course = "";
         scope.assignments = "";
+        scope.resourceList = [];
 
         var theLocation = $location.path().split(/[\s/]+/);
         var url;
@@ -43,7 +46,6 @@ app.directive('courseCoursepage', [
           for (var i = 0; i < theLocation.length; i++ ) {
               if(theLocation[i] === "courses") {
                   url = theLocation[i+1];
-                  console.log("hittar");
                   break;
               }
           }
@@ -59,7 +61,18 @@ app.directive('courseCoursepage', [
               });
             }
         });
-
+          
+          
+        Course.get({ url: url, _populate:"resources"}, function(course){
+          if(course[0].resources !== undefined){
+            for (var i = 0; i < course[0].resources.length; i++) {
+                //scope.resourceList.push(course[0].resources[i]);
+                Resource.get({_id: course[0].resources[i]}, function(resource){
+                    scope.resourceList.push(resource[0]);
+                });
+            }
+          }
+        });
 
         var refresh = function(){
             Course.get({url: url}, function(course){
@@ -100,11 +113,6 @@ app.directive('courseCoursepage', [
       }
 
 
-
-      scope.editInfo = function () {
-          console.log("editInfo scope test");
-      };
-
       scope.castTheAssignmentModal = function() {
           scope.$root.$broadcast('showTheAssignmentModal');
       };
@@ -114,16 +122,9 @@ app.directive('courseCoursepage', [
       };
 
 
-
-
-
-
-
-
-        //     //TODO:
-        //     //display changes in view (notifications)
-        //     //Progress
-        // };
+        scope.locationPath = function(newPath) {
+            $location.path(newPath);
+          }
 
         //show hide modal create course
         scope.modalShown = false;

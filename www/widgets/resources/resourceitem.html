@@ -1,6 +1,2 @@
-<li class="courses_assignmentitem" ng-repeat="resources in resourceList | orderBy:'resources.uploaded_on' ">
-    <a  ng-href="courses/{{course.url}}/resources/{{resources.url}}">
-         <span class="assignmentitem_name">{{resources.title}}</span>
-         <span> {{resources.uploaded_on | date:'yyyy-MM-dd'}}</span>
-    </a>
-</li>
+    <td>{{resource.title}} </td>
+    <td>{{resource.uploaded_on | date:'yyyy-MM-dd'}} </td>
