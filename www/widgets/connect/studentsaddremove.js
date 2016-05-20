@@ -198,26 +198,30 @@ app.directive('connectStudentsaddremove', [
   	    }
 
   	    // Add Item to Checked List and delete from Unchecked List
-  	    scope.unstageMeToCourse = function (index, student) {
-          console.log(student.first_name, "new stuff 2");
+  	    scope.unstageMeToCourse = function (index, studenttoPull) {
+          console.log(studenttoPull, "new stuff 2");
   		    // Remove user from course
       	  Course.get({url: courseUrl, _populate: "slack_channels"}, function(course){
   	    	  Course.update({url: courseUrl},
-          	{ $pull: { 'students': scope.studentsToBeAdded[index]._id}}, function(res){
-  	        	User.update({_id: scope.studentsToBeAdded[index]._id},
+          	{ $pull: { 'students': studenttoPull._id}}, function(res){
+  	        	User.update({_id: studenttoPull._id},
   					  { $pull: { 'courses': course[0]._id}}, function(rnes){
-                User.get({ _id: scope.studentsToBeAdded[index]._id}, function(user){
+                User.get({ _id: studenttoPull._id}, function(user){
                   //TODO: For now each course has one channel, when we
       						//have more channels on course, find the course code for
       						//current course
-      						if(scope.studentsToBeAdded[index].slack_token != undefined){
-      							leaveChannel(course[0].slack_channels[0].channelId, scope.studentsToBeAdded[index].email);
+      						if(user.slack_token != undefined){
+      							leaveChannel(course[0].slack_channels[0].channelId, studenttoPull.email);
       						}
-                  if(scope.byCourse != undefined){
+                  if(scope.byCourse != undefined && scope.byCourse != ""){
                     changedFilterFunc(scope.byCourse);
                   } else{
                     scope.students.push(user[0]);
-        						scope.studentsToBeAdded.splice(index, 1);
+                    for(var i = 0; i < scope.studentsToBeAdded.length; i += 1) {
+                			if(scope.studentsToBeAdded[i]._id === studenttoPull._id) {
+                					scope.studentsToBeAdded.splice(i, 1);
+                			}
+                		}
                   }
                 });
   					  });
