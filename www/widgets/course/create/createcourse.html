@@ -35,7 +35,7 @@
                           <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>
                           <span class="stepLabel">Copy an older course</span>
                       </span>
-                              
+
                     </div>
                   </form>
                 </div>
@@ -109,15 +109,6 @@
                             <i class="fa fa-times"></i>
                             </span>
 
-                        <label for="courseUrl">Course url</label>
-                            <input type="text" name="courseUrl" class="form-control" ng-model="$parent.course.url" required="true">
-                            <span
-                            class="error"
-                            ng-show="courseDetails.courseUrl.$touched && courseDetails.courseUrl.$invalid"
-                            class="formError">
-                            <i class="fa fa-times"></i>
-                            </span>
-
                         </div>
 
                         <div class="col-sm-12">
@@ -155,7 +146,9 @@
 
                             <p> <b> Remember that you need to connect your Slack account before you create a course.
                             <br/> Head over to <a href="/myprofile"> your profile </a> to connect Slack! </b> </p>
-
+                            <p ng-show="errortext">
+                              Slack channel taken, choose new course code
+                            </p>
                         </div>
                     </form>
                     </div>
