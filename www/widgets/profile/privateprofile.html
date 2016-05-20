@@ -4,7 +4,7 @@
 
         <div class="row heightfull table-row newtable-row">
             <div class="col-sm-3 col-md-3 col-lg-3 heightfull profile__container">
-                <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
+                
                 <div class="profile__about">
                     <h1> {{ first_name }} {{ last_name }} </h1>
                     <h2> {{ role }} </h2>
@@ -22,16 +22,8 @@
                             />
                         </div>
                     </div>
+                    <a class="pbl-profile-link" href="profile/{{url}}">View public profile<i class="fa fa-arrow-right"></i></a>
                 </div><!---.profile__about-->
-
-                <div class="profile__description">
-                    <h2 class="uppercase">Description</h2>
-                    <p ng-show="descriptionEnabled" ng-click="editDescription()"> {{ description }}</p>
-                    <i ng-show="descriptionEnabled" class="fa fa-pencil" ng-click="editDescription()"></i>
-                    <textarea ng-model="description" ng-hide="descriptionEnabled">{{ description }}</textarea>
-                    <button class="btn" ng-hide="descriptionEnabled" ng-click="cancelDescription()">Cancel</button>
-                    <button class="btn" ng-hide="descriptionEnabled" ng-click="saveDescription()">Save</button>
-                </div><!---.profile__description-->
 
                 <div class="profile__contact">
                     
@@ -65,13 +57,22 @@
 
                 </div>
                 <!---.profile__contact-->
+
+                <div class="profile__description">
+                    <h2 class="uppercase">About me</h2>
+                    <p ng-show="descriptionEnabled" ng-click="editDescription()"> {{ description }}</p>
+                    <i ng-show="descriptionEnabled" class="fa fa-pencil" ng-click="editDescription()"></i>
+                    <textarea ng-model="description" ng-hide="descriptionEnabled">{{ description }}</textarea>
+                    <button class="btn" ng-hide="descriptionEnabled" ng-click="cancelDescription()">Cancel</button>
+                    <button class="btn" ng-hide="descriptionEnabled" ng-click="saveDescription()">Save</button>
+                </div><!---.profile__description-->
                
             </div>
             
             <div class="col-sm-18 col-md-18 col-lg-18 profile__stuff">
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__courses">
-                            <h1><i class="fa fa-2x fa-book"></i>Courses</h1>
+                            <h1><i class="fa fa-book"></i>Courses</h1>
                             <ul ng-repeat = 'course in courses'>
                                 <a href="courses/{{course.url}}"><li> {{course.name}}</li></a>
                             </ul>
@@ -116,7 +117,7 @@
                     
                     <div class="col-sm-24 col-md-12 col-lg-12">
                         <div class="profile__stuff__ex">
-                            <h1><i class="fa fa-2x fa-certificate"></i>Experience</h1>
+                            <h1><i class="fa fa-certificate"></i>Experience</h1>
                             <i ng-click="showAddDiv()" id="addExp" class="fa fa-plus"></i>
                             <div class="col-lg-24 show_add_div">                               
                                 <h2 class="uppercase">Company / School</h2>
@@ -142,7 +143,7 @@
                                 
                         </div><!--Empty div to get spacing-->
         <div class="profile__stuff__skills">
-                            <h1><i class="fa fa-2x fa-cogs"></i>Skills</h1>  
+                            <h1><i class="fa fa-cogs"></i>Skills</h1>  
 
                             <h2 class="uppercase">Add skills</h2>
                             <input id="skills" ng-model="searchTags" required="true">
@@ -173,7 +174,7 @@
                 <div class="row">
                     <div ng-if="isStudent" ng-show="isStudent" class="col-sm-12 col-md-12 col-sm-12 profile__stuff__other">
                         <div class="profile__stuff__other">
-                            <h1><i class="fa fa-2x fa-archive"></i>Other</h1>
+                            <h1><i class="fa fa-archive"></i>Other</h1>
                             <i class="fa fa-pencil"></i>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis hendrerit sapien pharetra dolor vestibulum, ac laoreet ex convallis. Nullam sit amet sollicitudin metus, facilisis convallis metus. In pulvinar metus risus, at scelerisque ex viverra sed. Integer metus nisl, sodales eu ultricies et, bibendum in dolor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis euismod, diam eget laoreet finibus, risus augue mollis metus, nec porta nunc sapien vitae lacus. Suspendisse suscipit tempor ornare. Morbi ut consequat velit.</p>
                         </div><!--Empty div to get spacing-->

@@ -7,11 +7,6 @@
                     <h2> {{ role }} </h2>
                     <div class="profile__about__img"></div>
                 </div><!---.profile__about-->
-                    
-                <div class="text-center profile__description">
-                    <p> {{ description }}</p>
-                </div><!---.profile__description-->
-            
                 
                 <div class="text-center pbl-profile__contact">
                     <h2 class="uppercase">Contact me</h2>                    
@@ -21,8 +16,11 @@
                     
                     <a href={{homepage}} target="_blank" ng-hide="homepage == '' || homepage == null"><i class="fa fa-home"></i> {{ homepage }} </a>
                 </div><!---.profile__contact-->
-            
-            
+
+                <div class="text-center profile__description">
+                    <h2 class="uppercase">About me</h2>
+                    <p> {{ description }}</p>
+                </div><!---.profile__description-->
 
                 <div class="text-center pbl-profile__links">
                     <h2 class="uppercase">Follow me</h2>
@@ -31,6 +29,8 @@
                     <a href={{facebook}} target="_blank" ng-hide="facebook == '' || facebook == null"><i class="fa fa-facebook"></i></a>
                     <a href={{github}} target="_blank" ng-hide="github == '' || github == null"><i class="fa fa-github"></i></a>
                 </div><!---.profile__links-->
+
+
 
                     <!--Hidden for now
                     <p> Password </p>

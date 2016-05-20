@@ -27,13 +27,13 @@
     .profile__stuff__courses li, .profile__stuff__skills li {
         display: inline;
         float: left;
-        margin: 5px 4px;
+        margin: 12px 0px 5px 12px !important;
         padding: 10px;
         background-color: rgba(150,150,150,.1);
         box-shadow: 2px 1px 4px 0px rgba(150, 150, 150, 0.45);
         font-size: .9em;
     }
-    
+
     .profile__stuff__ex li {
         margin: 4% 0% 0% 0;
         border-bottom: 1px solid #eee;
@@ -149,7 +149,7 @@
     
     p {
         display: inline-block;
-        padding:5px 6px;
+        padding:5px 0px;
         transition: all 1s ease;
         width:91%;
     }
@@ -190,7 +190,7 @@
         transition:all 1s ease;
         display: inline;
         float: right;
-    margin: 0 15px 0 0px!important;
+        margin: 0 2% 0 0px!important;
     }
     
     p {
@@ -219,16 +219,22 @@
     }
     
     input {
-        width:91%;
+        margin-bottom:10px;
+        height:31px;
+        line-height: 31px;
+        padding: 6px 2px;
+        background-color: rgba(150, 150, 150, 0.1) !important;
+        width:89%;
         text-indent: 27px;
         border:none;
     }
+} 
+
+@media screen and (max-width: 600px){
+    .profile__social p {
+        width:88%;
+    }
 }
-
-
-
-
- 
 
 .profile .profile__description:hover,.profile  .profile__contact:hover, .profile .profile__social:hover {
     .fa-pencil, p {
@@ -249,11 +255,8 @@
 }
 
 .pbl-profile-link{
-    position: absolute;
-    top:2px;
-    display: inline-block;
-    width:50%;
-    right:20%;
+    display: block;
+    text-align:center;
     color:#404040;
     padding-top:5%;
     transition: all 1.2s ease;
@@ -277,7 +280,7 @@
 
 
 .profile__contact, .profile__description, .profile__social{
-    padding:0 4%;
+    padding:0 20px;
     text-align: left;
 }
 
@@ -343,7 +346,6 @@
 .profile__about {
     background: #fff;
     color: rgba(216, 51, 91, 1);
-    height:210px;
 }
 
 .profile__about h1{
@@ -366,7 +368,7 @@
 }
 
 .profile__description{
-    margin-top: 80px;
+    margin-top: 20px;
 }
 
 .profile p, .pbl-profile p{
@@ -406,6 +408,10 @@ ul > li > .fa-pencil, ul > li > .fa-trash {
     }
 }
 
+.experienceList li{
+    width: 90%!important;
+    margin: 20px 30px 10px 20px !important;
+}
 
 
 
@@ -420,17 +426,12 @@ ul > li > .fa-pencil, ul > li > .fa-trash {
     min-height:125px;
     position:relative;
     
-    .fa-cogs{
-        position: absolute;
-        left:20px;
-        top:20px;
-    }
     h2{
-                width:15%;
-                margin:0 2% 0 5%;
-                float:left;
-                display: inline-block;
-            }
+        width:15%;
+        margin:0px 0 0 25px;
+        float:left;
+        display: inline-block;
+    }
 
     input{
                 width:70%;
@@ -474,23 +475,40 @@ ul > li > .fa-pencil, ul > li > .fa-trash {
 
 
 
-.profile__stuff__courses h1, .profile__stuff__skills h1, .profile__stuff__ex h1, .profile__social h1{
+.profile__stuff__courses h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding:5% 0 1% 14%;
+    padding:25px 60px;
     color:#fff;
     border-radius: 5px 5px 0 0;
-    margin-bottom: 5%;
+    position:relative;
 }
 
-.profile__stuff__other h1{
+.profile__stuff__ex h1{
     font-size: 1.15em;
     text-transform: uppercase;
-    padding: 2% 0 0 8%;
+    padding:25px 60px 15px 60px;
     color:#fff;
     border-radius: 5px 5px 0 0;
-    margin-bottom: 2.5%;
+    position:relative;
 }
+
+.profile__social h1{
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding:25px 42px;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+}
+
+.profile__stuff__skills h1{
+    font-size: 1.15em;
+    text-transform: uppercase;
+    padding:25px 65px 35px 65px;
+    color:#fff;
+    border-radius: 5px 5px 0 0;
+}
+
 
 .profile__stuff__courses p, .profile__stuff__skills p, .profile__stuff__ex p, .profile__stuff__projects p{
     padding:0 4%;
@@ -500,36 +518,15 @@ ul > li > .fa-pencil, ul > li > .fa-trash {
     padding:0px 30px 5px 30px;
 }
 
-.profile .fa-book, .profile .fa-folder-open, .profile .fa-file-text, .profile .fa-archive, .pbl-profile .fa-book, .pbl-profile .fa-folder-open, .pbl-profile .fa-file-text, .pbl-profile .fa-archive {
+.profile .fa-book, .profile .fa-folder-open, .profile .fa-file-text, .profile .fa-archive, .pbl-profile .fa-book, .pbl-profile .fa-folder-open, .pbl-profile .fa-file-text, .pbl-profile .fa-archive, .profile .fa-certificate, .pbl-profile .fa-certificate, .profile__social .fa-users, .profile__stuff__skills .fa-cogs, .pbl-profile__stuff__skills .fa-cogs  {
     position: absolute !important;
-    left: 40px;
-    top: 35px !important;
-}
-
-.profile .fa-certificate, .pbl-profile .fa-certificate{
-   position: absolute !important;
-    left: 40px;
-    top: 32px !important; 
-}
-
-.profile__social .fa-users{
-   position: absolute !important;
     left: 27px;
-    top: 20px !important; 
-    font-size:1.5em;
+    top: 20px !important;
+    font-size: 1.6em;
 }
 
 .profile__social{
     border-left: 5px solid #404040;
-}
-
-.profile__social input{
-    margin-bottom:10px;
-    width:91%;
-    height:31px;
-    line-height: 31px;
-    padding: 6px 2px;
-    background-color: rgba(150, 150, 150, 0.1) !important;
 }
 
 .profile__social {
@@ -609,9 +606,6 @@ ex: #FD5B03
     color:#404040;
 }
 
-.profile .profile__description p {
-    text-align: justify;
-}
 
 .profile__description textarea:focus{
     outline: none;
@@ -650,8 +644,8 @@ ex: #FD5B03
 }
 
 #slack_auth{
-    position:fixed;
+    position:absolute;
     bottom:10px;
-    left:420px;
+    left:15px;
 }
 
