@@ -37,9 +37,9 @@ app.directive('modelanythingModelanythingstart', [
       					     var id = user.plugs[i]._id;
 
                      if((i % 2) === 0){
-                      left += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
+                      left += "<div class='plugin_container'> <button id='deletePlug' class='btn' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
                      }else{
-                        right += "<div> <button id='deletePlug' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
+                        right += "<div class='plugin_container'> <button id='deletePlug' class='btn' ng-click='deletePlug(" + '"' + id + '"' + ")'>   <i class='fa fa-times' aria-hidden='true'></i> </button> <" + "modelanything-plugins-" + plug + "/></div>";
 
                      }
                   }

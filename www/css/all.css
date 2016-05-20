@@ -7525,7 +7525,7 @@ This is a LESS file; only style for the element class .box allowed!
   padding: 5px 0px;
 }
 .box__header {
-  background: #3e474f;
+  background: #F1654C;
   color: #ffffff;
   padding: 12px 10px;
   font-weight: 600;
@@ -7542,6 +7542,9 @@ This is a LESS file; only style for the element class .box allowed!
 }
 .box__header i {
   padding: 0px 10px 0px 0px;
+}
+.box__header--dash {
+  background: #3e474f;
 }
 .box__header--courses {
   background: #2CC990;
@@ -8329,6 +8332,25 @@ input[type=checkbox] {
   border-right: 1px solid #3e474f;
   border-left: 1px solid #3e474f;
 }
+.plugin_container {
+  position: relative;
+  text-align: center;
+  background: #fff;
+  margin: 0px 0px 20px 0px;
+}
+.plugin_container iframe {
+  margin: 20px;
+}
+.plugin_container .box {
+  text-align: left;
+}
+#deletePlug {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  z-index: 9999;
+  background-color: transparent;
+}
 .ng-modal-overlay {
   position: fixed;
   z-index: 999;
@@ -8566,6 +8588,20 @@ trix-toolbar .button_group input[type=button] {
 }
 .btn--courses:active,
 .btn--courses:focus {
+  outline: none;
+  color: #fff;
+}
+.btn--dash {
+  background: #3e474f;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+.btn--dash:hover {
+  background: rgba(62, 71, 79, 0.85);
+  transition: all 0.3s ease-in-out;
+}
+.btn--dash:active,
+.btn--dash:focus {
   outline: none;
   color: #fff;
 }
