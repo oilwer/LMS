@@ -11,7 +11,12 @@
                       <h1><center>
                             Edit Participants
                       <center></h1>
-
+                      <div class="col-md-12 col-md-offset-6">
+                        <select ng-model="byCourseRight" class="form-control filtercourse" ng-change="changedFilterRight(byCourseRight)">
+                                  <option value="" ng-selected=true>-- Choose a Course to Edit --</option>
+                                  <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
+                        </select>
+                      </div>
 
                         <div class="col-sm-12">
                             <div class="list--students_options">
@@ -52,11 +57,8 @@
 
                         <div class="col-sm-12">
                             <div class="list--students list--students--added">
-                                <h3>To {{ course.name }}</h3>
-                                <select ng-model="byCourseRight" class="form-control" ng-change="changedFilterRight(byCourseRight)">
-                                    <option value="" ng-selected=true>-- All Courses --</option>
-                                    <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
-                                </select>
+                                <h3>To {{course.name}}</h3>
+
                                 <input class="form-control" type="text" ng-model="studentsAdded" placeholder="Search name">
 
                                 <ul>

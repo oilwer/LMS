@@ -9397,6 +9397,13 @@ input[type="date"].form-control {
   overflow: hidden;
   max-width: 10em;
 }
+.filtercourse {
+  margin-top: 2em;
+  height: 3em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 .remove {
   text-align: center;
   cursor: pointer;
