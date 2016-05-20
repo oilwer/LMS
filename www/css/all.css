@@ -8835,18 +8835,18 @@ table {
 .table--resources tr td:first-child {
   width: 40%;
 }
-dashboard-courseslistdash td:nth-child(n+3):hover {
+modelanything-plugins-courselist td:nth-child(n+3):hover {
   background: rgba(62, 71, 79, 0.3);
 }
 course-courseslist table,
-dashboard-courseslistdash table {
+modelanything-plugins-courselist table {
   margin-bottom: 40px;
   width: 100%;
   border-collapse: collapse;
   border-spacing: 0 2px;
 }
 course-courseslist thead th,
-dashboard-courseslistdash thead th {
+modelanything-plugins-courselist thead th {
   color: rgba(62, 71, 79, 0.75);
   font-size: .75em;
   text-transform: uppercase;
@@ -8855,61 +8855,61 @@ dashboard-courseslistdash thead th {
   padding-bottom: 5px;
 }
 course-courseslist thead th:first-child,
-dashboard-courseslistdash thead th:first-child {
+modelanything-plugins-courselist thead th:first-child {
   width: 72%;
   padding-left: 12px!important;
   text-align: left;
 }
 course-courseslist tbody p,
-dashboard-courseslistdash tbody p {
+modelanything-plugins-courselist tbody p {
   color: rgba(62, 71, 79, 0.75);
 }
 course-courseslist tbody p:first-child,
-dashboard-courseslistdash tbody p:first-child {
+modelanything-plugins-courselist tbody p:first-child {
   padding-top: 7px;
 }
 course-courseslist tbody a,
-dashboard-courseslistdash tbody a {
+modelanything-plugins-courselist tbody a {
   color: #3e474f;
 }
 course-courseslist tbody a:active,
-dashboard-courseslistdash tbody a:active {
+modelanything-plugins-courselist tbody a:active {
   color: #3e474f;
 }
 course-courseslist tbody a:visited,
-dashboard-courseslistdash tbody a:visited {
+modelanything-plugins-courselist tbody a:visited {
   color: #3e474f;
 }
 course-courseslist tbody a:focus,
-dashboard-courseslistdash tbody a:focus {
+modelanything-plugins-courselist tbody a:focus {
   color: #3e474f;
 }
 course-courseslist tbody a:active,
-dashboard-courseslistdash tbody a:active {
+modelanything-plugins-courselist tbody a:active {
   color: #3e474f;
 }
 course-courseslist tbody td:first-child,
-dashboard-courseslistdash tbody td:first-child {
+modelanything-plugins-courselist tbody td:first-child {
   padding: 2px;
   text-align: left;
 }
 course-courseslist tbody td,
-dashboard-courseslistdash tbody td {
+modelanything-plugins-courselist tbody td {
   padding: 3% 0;
   position: relative;
   width: 30px;
   text-align: center;
 }
 course-courseslist tbody tr,
-dashboard-courseslistdash tbody tr {
+modelanything-plugins-courselist tbody tr {
   border-bottom: 1px solid #eee;
 }
 course-courseslist tbody tr:last-child,
-dashboard-courseslistdash tbody tr:last-child {
+modelanything-plugins-courselist tbody tr:last-child {
   border-bottom: 0px !important;
 }
 course-courseslist tbody .fa-exclamation,
-dashboard-courseslistdash tbody .fa-exclamation {
+modelanything-plugins-courselist tbody .fa-exclamation {
   border-right: none !important;
   color: red;
   margin-right: 2.5% !important;
@@ -8918,7 +8918,7 @@ dashboard-courseslistdash tbody .fa-exclamation {
   padding: 1px 0px 0px 0px !important;
 }
 course-courseslist tbody tr > td > .fa,
-dashboard-courseslistdash tbody tr > td > .fa {
+modelanything-plugins-courselist tbody tr > td > .fa {
   font-size: 1.25em;
   position: relative;
   text-align: center;
@@ -8926,25 +8926,25 @@ dashboard-courseslistdash tbody tr > td > .fa {
   color: rgba(62, 71, 79, 0.75);
 }
 course-courseslist tbody tr > td > .fa-book,
-dashboard-courseslistdash tbody tr > td > .fa-book {
+modelanything-plugins-courselist tbody tr > td > .fa-book {
   border: none;
 }
 course-courseslist tbody tr td a p:last-child,
-dashboard-courseslistdash tbody tr td a p:last-child {
+modelanything-plugins-courselist tbody tr td a p:last-child {
   font-size: .9em;
   font-style: italic;
 }
 course-courseslist tbody tr td a p:first-child,
-dashboard-courseslistdash tbody tr td a p:first-child {
+modelanything-plugins-courselist tbody tr td a p:first-child {
   font-size: 1em;
   font-weight: 600;
 }
 course-courseslist tbody a:hover,
-dashboard-courseslistdash tbody a:hover {
+modelanything-plugins-courselist tbody a:hover {
   text-decoration: none;
 }
 course-courseslist .assignClass,
-dashboard-courseslistdash .assignClass {
+modelanything-plugins-courselist .assignClass {
   -webkit-font-smoothing: subpixel-antialiased;
   text-align: center;
   display: block;
