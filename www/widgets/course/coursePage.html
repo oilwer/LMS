@@ -97,7 +97,7 @@
                                         <th>Name</th><th>Deadline</th><!--<th>Status</th>-->
                                     </tr>
                                      <tr assignment-item 
-                                         ng-repeat="assignment in assignments | orderBy: 'due_date' | limitTo:'5'" 
+                                         ng-repeat="assignment in upcomingAssignments | orderBy: 'due_date' | limitTo:'5'" 
                                          ng-click="locationPath('/courses/' + course.url + '/assignments/' + assignment._id)">
                                     </tr>
                                 </table>

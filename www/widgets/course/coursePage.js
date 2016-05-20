@@ -38,6 +38,7 @@ app.directive('courseCoursepage', [
 
         scope.course = "";
         scope.assignments = "";
+        scope.upcomingAssignments = [];
         scope.resourceList = [];
 
         var theLocation = $location.path().split(/[\s/]+/);
@@ -54,6 +55,12 @@ app.directive('courseCoursepage', [
             scope.course = course[0];
             $('.courseDescriptionContent').empty().append(scope.course.description);
             scope.assignments = scope.course.assignments;
+            var currentDate = new Date();
+            for(var i = 0; i < scope.assignments.length; i++) {
+                if(new Date(scope.assignments[i].due_date) > currentDate) {
+                    scope.upcomingAssignments.push(scope.assignments[i]);
+                }
+            }
             if(scope.course.creator != undefined){
               User.get({_id: scope.course.creator}, function(user){
                 scope.teacher = user[0].first_name + " " + user[0].last_name;

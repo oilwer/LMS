@@ -9000,9 +9000,11 @@ modelanything-plugins-courselist .assignClass {
 .table--assignmentList td,
 .table--resourceList td {
   padding: 7px 0px;
+  width: 30%;
 }
 .table--assignmentList td:first-child,
 .table--resourceList td:first-child {
+  width: 70%;
   padding-left: 7px;
 }
 .resourceContent {
