@@ -32,7 +32,7 @@ app.directive('courseCreateEditcourse', [
             scope.course.start = new Date(scope.course.start);
             scope.course.end = new Date(scope.course.end);
             if(scope.course.description !== undefined) {
-                
+
               var textEditor = document.querySelector("trix-editor[input='updateCourseEditor']");
               textEditor.editor.setSelectedRange([0, 200000000000000]); //empty view
               textEditor.editor.deleteInDirection("forward");
@@ -94,7 +94,7 @@ app.directive('courseCreateEditcourse', [
                 var textEditor = document.querySelector("trix-editor");
                 // empty all
                 textEditor.editor.insertHTML(scope.course.description);
-                } 
+                }
             };
 
 

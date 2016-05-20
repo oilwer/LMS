@@ -109,30 +109,44 @@ app.directive('courseCreateCreatecourse', [
               var result = AvailableCourses.filter(function( obj ) {
                 return obj.name == selectedCourseName;
               });
-
               //scope.assignment.added_on = (new Date()).toJSON();
 
               if(scope.isEditing == 0){
-
                   if(scope.session_user.slack_token != undefined){
-
-                      scope.isEditing = 1;
 
                       scope.course._id = undefined;
 
-                      scope.btnAddOrUpdate = "Update course";
+                      // Check slack channels before create
+                      ChatService.getChannels(scope.session_user.email).success(function(callback){
+                        var ok = true;
 
-                      Course.create(scope.course, function(course){
-                        console.log(scope.course, "the course to be created and its details");
-                          scope.$root.$broadcast('addedCourse');
-                          console.log("Added course:", course[0]);
-                          oldcourse = JSON.parse(JSON.stringify(course[0]));
-                          scope.incrementStep();
+                        for (var i = 0; i < callback.channels.length; i++) {
+                          if(callback.channels[i].name == scope.course.code){
+                            console.log("There is already a slack channel with that code");
+                            scope.errortext = true;
+                            ok = false;
+                            break;
+                          }
+                        }
 
-                          createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
-                          console.log("Created slack channel ", course[0]._id, course[0].code, scope.session_user.email);
-                          Course.update({_relate:{ items:course[0],creator:scope.session_user }},function(res){});
+                        if(ok){
+                          tempName = scope.course.name.replace(/\s+/g, '');
+                          tempCode = scope.course.code.replace(/\s+/g, '');
+                          scope.course.url = tempCode + "_" + tempName;
+
+                          Course.create(scope.course, function(course){
+                              scope.$root.$broadcast('addedCourse');
+                              oldcourse = JSON.parse(JSON.stringify(course[0]));
+                              scope.incrementStep();
+
+                              createSlackChannelwithCourse(course[0]._id, course[0].code, scope.session_user.email);
+                              Course.update({_relate:{ items:course[0], creator:scope.session_user }},function(res){});
+                              scope.isEditing = 1;
+                              scope.btnAddOrUpdate = "Update course";
+                          });
+                        }
                       });
+
                   }
                   else{
                     console.log("You need to add your slack token");
