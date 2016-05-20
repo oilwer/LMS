@@ -19,25 +19,28 @@ app.directive('modelanythingAddplug', [
             'background': "#fff"
           })
 
-   
+
            SessionService.getSession().success(function(response) {
               session_user = response.user;
-             
+
                   if(session_user.role === "admin"){
                     console.log("true");
                     scope.admin = true;
                     scope.teacher = false;
+                    scope.student = false;
                   }
                   else if(session_user.role === "teacher"){
-                     scope.teacher = true;                    
+                     scope.teacher = true;
                       scope.admin = false;
+                      scope.student = false;
                   }
                   else{
-                    scope.teacher = false;                    
+                    scope.teacher = false;
                     scope.admin = false;
-                  }  
+                    scope.student = true;
+                  }
             });
-          
+
           scope.add = function(){
           	var p = document.getElementById("dropdown");
 
@@ -64,9 +67,9 @@ app.directive('modelanythingAddplug', [
                         }
                     });
 
-                    scope.$root.$broadcast('refreshPlugList');                      
+                    scope.$root.$broadcast('refreshPlugList');
                   }
-                });              
+                });
   			    });
           }
       }

@@ -18,7 +18,7 @@ app.directive('courseCourseslist', [
       link: function(scope, element, attrs) {
 
         var session_user;
-          
+
           scope.currentDate = new Date(); //used to filter assignments in the pinned course box
 
         var getCourse = function(course){
@@ -38,7 +38,7 @@ app.directive('courseCourseslist', [
 
               if(session_user[0].role == "admin"){
                 scope.heading = "All courses";
-              } else if (session_user[0].role == "student") {
+              } else if((session_user[0].role == "student") || (session_user[0].role == "teacher")) {
                 scope.heading = "My courses";
               }
 
@@ -54,9 +54,9 @@ app.directive('courseCourseslist', [
 
 
                         Course.get({_id: course1[0]._id, _populate:"assignments"}, function(course) {
-                            
+
                           course[0].resources = course1[0].resources;
-                                                    
+
                          if(course[0].assignments !== undefined) {
                              var filteredAssignments = [];
                              for (var i = 0; i < course[0].assignments.length; i++) {
@@ -70,7 +70,7 @@ app.directive('courseCourseslist', [
                           scope.pinnedCourses.push(course[0]);
                           if(session_user[0].role == "admin") {
                             scope.courses = Course.get();
-                          } else if (session_user[0].role == "student") {
+                          } else if((session_user[0].role == "student") || (session_user[0].role == "teacher")) {
                             scope.courses = session_user[0].courses;
                           }
                         });
@@ -79,7 +79,7 @@ app.directive('courseCourseslist', [
                   } else {
                     if(session_user[0].role == "admin") {
                       scope.courses = Course.get();
-                    } else if (session_user[0].role == "student") {
+                    } else if((session_user[0].role == "student") || (session_user[0].role == "teacher")) {
                       scope.courses = session_user[0].courses;
                     }
                   }
@@ -90,7 +90,7 @@ app.directive('courseCourseslist', [
                {
                  scope.courses = Course.get();
                }
-               else if(session_user[0].role === "student") {
+               else if((session_user[0].role == "student") || (session_user[0].role == "teacher")) {
 
                  scope.courses = session_user[0].courses;
 
