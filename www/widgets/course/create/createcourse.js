@@ -139,12 +139,7 @@ app.directive('courseCreateCreatecourse', [
                   }
               } else if (scope.isEditing == 1){
 
-                  console.log("Updating course");
-                  console.log(scope.course);
-                  console.log("old course: ", oldcourse);
-
                     Course.update({_id: oldcourse._id},scope.course, function(res){
-                        console.log("Update res: ", res);
                         oldcourse = "";
                         oldcourse = JSON.parse(JSON.stringify(scope.course));
                         scope.incrementStep();
@@ -367,7 +362,7 @@ app.directive('courseCreateCreatecourse', [
             }, function(course)
                 {
                     scope.$root.$broadcast('addedCourse');
-                    console.log("the role", scope.session_user.role)
+                    //console.log("the role", scope.session_user.role)
                     if(scope.session_user.role === "teacher") {
                        stageMeToCourse();
                     }

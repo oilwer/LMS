@@ -11,8 +11,6 @@ function (
                 for (i = 0; i < files.length; i++){
                     fileString += files[i].name + ", "
                 }
-
-                console.log(fileString);
                 element.parent().parent().next().val(fileString.substring(0, fileString.length - 2));
             });
 

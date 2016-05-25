@@ -46,16 +46,12 @@ app.directive('adminParticipantsmanager', [
         }
 
         var joinChannel = function(channelName, UserIdentifier){
-  	      console.log(channelName, UserIdentifier);
           ChatService.joinChannel(channelName, UserIdentifier).success(function(response){
-              console.log("Response", response);
           });
         }
 
         var leaveChannel = function(channelId, UserIdentifier){
-     	    console.log(channelId, UserIdentifier);
           ChatService.leaveChannel(channelId, UserIdentifier).success(function(response){
-            console.log("Response", response);
           });
         }
 
@@ -135,7 +131,7 @@ app.directive('adminParticipantsmanager', [
 
         // Add Item to Checked List and delete from Unchecked List
   	    scope.stageMeToCourse = function (index, student) {
-          console.log(student.first_name, "new stuff 1");
+          if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
           if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
             alert("Please select a course to add " + student.first_name + " to!");
             return null;
@@ -170,8 +166,7 @@ app.directive('adminParticipantsmanager', [
 
   	    // Add Item to Checked List and delete from Unchecked List
   	    scope.unstageMeToCourse = function (index, studenttoPull) {
-          console.log(studenttoPull, "new stuff 2");
-          courseName = scope.byCourseRight
+            courseName = scope.byCourseRight
   		    // Remove user from course
       	  Course.get({name: courseName, _populate: "slack_channels"}, function(course){
   	    	  Course.update({name: courseName},

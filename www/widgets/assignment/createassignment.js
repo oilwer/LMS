@@ -163,10 +163,6 @@ app.directive('assignmentCreateassignment', [
                                                         });
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
-                                                            //console.log("ass, id", newAssignment[0]._id);
-                                                            //console.log("file:",scope.$$childTail.file[0].name);
-                                                            //console.log(scope.file);
-
 											  				scope.incrementStep();
 										  				});
 									  				});
@@ -196,7 +192,6 @@ app.directive('assignmentCreateassignment', [
 													due_date: scope.assignment.due_date,
                                                     teacher_instruction_file: strippedFileName
                                                 }, function(res){
-													//console.log("Update res: ", res);
 													oldassignment = "";
 													oldassignment = JSON.parse(JSON.stringify(scope.assignment));
 													scope.incrementStep();
@@ -279,7 +274,6 @@ app.directive('assignmentCreateassignment', [
 		        scope.goToStep = function(index) {
 			        // If you are going backwards in the flow: No worries
 			        if(scope.getCurrentStepIndex() > index){
-			        	//console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
 			        	if(scope.isCreating){
 							scope.selection = scope.createsteps[index].name;
 						} else {
@@ -291,7 +285,6 @@ app.directive('assignmentCreateassignment', [
 						// If you are going to a step that are finished
 						if(stepFinishedIndex >= index)
 						{
-							//console.log("Moving to step:", index, " from step:", scope.getCurrentStepIndex());
 							if(scope.isCreating){
 								scope.selection = scope.createsteps[index].name;
 							} else {
@@ -364,13 +357,8 @@ app.directive('assignmentCreateassignment', [
 
 						if(scope.isCreating){
 							scope.selection = scope.createsteps[nextStep].name;
-                            //console.log("namnet", scope.createsteps[stepIndex].name);
                             if(scope.createsteps[nextStep].name == "Preview") {
                                 setTimeout(previewDescription,50);
-                                //$(".assignmentDescription").text("????");
-                               // $(".process_view").children(".assignmentDescription").append(scope.assignment.description);
-                                //$(".process_view").children().text("hej");
-                                //$(".process_view").append(scope.assignment.description);
                             }
 
 						} else {

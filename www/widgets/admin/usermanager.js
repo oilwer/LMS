@@ -115,7 +115,6 @@ app.directive('adminUsermanager', [
             User.get({_id: id}, function(user)
           {
             user[0].password = undefined;
-            console.log(user[0]);
             $scope.user = user[0];
           });
         }

@@ -33,10 +33,13 @@ app.directive('loginChecklogin', [
 		          scope.loggedin = true;
 	          });
 	          
-	          if(user.role == "admin")
+	          if(user.role == "teacher")
 	          {
 		          scope.auth = true;
 	          }
+              else if (user.role == "admin"){
+                  scope.authForAdmin = true;
+              }
 	          
 	          if(user.role == "student")
 	          {

@@ -23,26 +23,15 @@ app.directive('assignmentAssignmentoverview', [
           scope.course;
 
           var setupAssignments = function() {
-              //scope.showAll = false;
-              //theLocationPath = $location.path();
-              //theLocation = theLocationPath.split("/");
-
-
                 SessionService.getSession().success(function(response) {
                   scope.session_user = response.user;
                 });
                 
               getAllAssignments();
-
-                
-                //scope.courseFilter = [];
-
-
           }
           
 
-            var getAllAssignments = function()
-            {
+            var getAllAssignments = function() {
                 Course.get({url: theLocation, _populate:"assignments"}, function(course)
                 {
                     scope.course = course[0];
@@ -64,9 +53,7 @@ app.directive('assignmentAssignmentoverview', [
                 $location.path(resourceUrl);
             } catch (e) {
                 console.log(e);
-            } finally {
-
-            }
+            } 
         }
       } //link
     };
