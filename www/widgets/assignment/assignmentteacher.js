@@ -30,7 +30,7 @@ app.directive('assignmentAssignmentteacher', [
                 //current assignment
                 Assignment.get({_id: $routeParams.id}, function(assignment){
                     scope.assignment = assignment[0];
-                    assignment = assignment[0];
+                   
                     scope.assignment.due_date = new Date(scope.assignment.due_date); //create object
                     if (scope.assignment.obligatory === true) {
                         scope.obligatoryText = "Yes";
@@ -49,6 +49,7 @@ app.directive('assignmentAssignmentteacher', [
                     }*/
 
                     $(".assignment_description_content").append(scope.assignment.description);
+                    console.log(scope.assignment);
                     if (scope.assignment.teacher_instruction_file !== undefined) {
                         $('.assignment_description_file').empty().append('<a target="_blank" href="uploads/' + scope.assignment.teacher_instruction_file + '" download>' + scope.assignment.teacher_instruction_file + '</a>');
                     }
