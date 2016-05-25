@@ -132,37 +132,38 @@ app.directive('adminParticipantsmanager', [
         // Add Item to Checked List and delete from Unchecked List
   	    scope.stageMeToCourse = function (index, student) {
           if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
-          if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
-            alert("Please select a course to add " + student.first_name + " to!");
-            return null;
+              if(scope.byCourseRight == "" || scope.byCourseRight == undefined) {
+                alert("Please select a course to add " + student.first_name + " to!");
+                return null;
 
-          } else {
+              } else {
 
-            courseName = scope.byCourseRight
-          }
+                courseName = scope.byCourseRight
+              }
   			  scope.studentsToBeAdded.push(student);
-          var participant;
-          User.get({ _id: student._id },function(user){
-            participant = user;
-            Course.get({name: courseName},function(course){
-      			 	Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
-                User.update({_relate:{items:participant,courses:course[0]}},function(newres){
-    				 		  //Add User to slack channel:
-      				 		if(participant.slack_token != undefined) {
-      				 			joinChannel(course[0].code, participant.email);
-      				 		}
-                  //createNotification(scope.students[index]._id);
-                  for(var i = 0; i < scope.students.length; i += 1) {
-              			if(scope.students[i]._id === student._id) {
-              					scope.students.splice(i, 1);
-              			}
-              		}
+              var participant;
+              User.get({ _id: student._id },function(user){
+                participant = user;
+                Course.get({name: courseName},function(course){
+                        Course.update({_relate:{items:course[0],students:scope.studentsToBeAdded}},function(res){
+                    User.update({_relate:{items:participant,courses:course[0]}},function(newres){
+                                  //Add User to slack channel:
+                                if(participant.slack_token != undefined) {
+                                    joinChannel(course[0].code, participant.email);
+                                }
+                      //createNotification(scope.students[index]._id);
+                      for(var i = 0; i < scope.students.length; i += 1) {
+                            if(scope.students[i]._id === student._id) {
+                                    scope.students.splice(i, 1);
+                            }
+                        }
 
-    				 	  });
-    			 	  });
-            });
-          });
-  	    }
+                              });
+                          });
+                });
+              });
+  	       }
+        }
 
   	    // Add Item to Checked List and delete from Unchecked List
   	    scope.unstageMeToCourse = function (index, studenttoPull) {
@@ -193,6 +194,6 @@ app.directive('adminParticipantsmanager', [
       	  });
       	}
       }
-    }
+    } //link
   }
 ]);
