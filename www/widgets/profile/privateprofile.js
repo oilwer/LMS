@@ -438,7 +438,9 @@ app.directive('profilePrivateprofile', [
 
 
         $scope.addSkill = function () {
+
         	if(notFilled($scope.searchTag)){
+                 console.log($scope.searchTag);
         		return;
         	}
 

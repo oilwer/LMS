@@ -165,11 +165,9 @@ module.exports = function(modelName, method, query, rbody) {
 
 			else if(modelName == "Tag")
 			{
-					if(method == "GET")
-					{
-						console.log("User can get tag");
-						return true;
-					}
+					
+				return true;
+
 			}
 
 		}
@@ -257,6 +255,12 @@ module.exports = function(modelName, method, query, rbody) {
 					return true;
 				}
 
+				else if(method == "POST")
+				{
+					return true;
+				}
+
+
 				else if(method == "PUT")
 				{
 					console.log("Course to update", query._id);
@@ -274,14 +278,8 @@ module.exports = function(modelName, method, query, rbody) {
 							// Allow update
 							return true;
 						}
-
 					}
-
-				//	console.log(rbody.session.user);
 				}
-
-
-
 			}
 
 			else if(modelName == "Assignment")
@@ -306,8 +304,14 @@ module.exports = function(modelName, method, query, rbody) {
 							else {
 								return false;
 							}
-		      });
+		      		});
 				}
+
+				else if(method == "POST")
+				{
+					return true;
+				}
+
 
 			}
 
@@ -320,33 +324,27 @@ module.exports = function(modelName, method, query, rbody) {
 
 						//	console.log("found resource's course: ", found.course);
 
-						if(found == null) return false;
+						if(found == null){ 
+							return false;
+						}
 
 
-							if(findWithAttr(rbody.session.user.courses, "_id", found.course) != -1)
-							{
-								console.log("user can get resource");
-								return true;
-							}
-							else {
-								return false;
-							}
-
-
-
+						if(findWithAttr(rbody.session.user.courses, "_id", found.course) != -1)
+						{
+							console.log("user can get resource");
+							return true;
+						}
+						else {
+							return false;
+						}
 				});
-
-
-
 			}
 
 			else if(modelName == "Tag")
 			{
-					if(method == "GET")
-					{
-						console.log("User can get tag");
+					
 						return true;
-					}
+
 			}
 
 		}
