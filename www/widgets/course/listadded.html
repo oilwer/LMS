@@ -66,7 +66,7 @@
                       </tr>
                   </thead>
                   <tbody ng-repeat="resource in course.resources | limitTo:'2'">
-                      <tr ng-click="courseLocation($event)" dataLocation="{{course.code}}/resources/{{ resource.url }}">
+                      <tr ng-click="courseLocation($event)" dataLocation="{{course.url}}/resources/{{ resource.url }}">
 
                             <td>
                                 <i class="fa fa-folder"></i>

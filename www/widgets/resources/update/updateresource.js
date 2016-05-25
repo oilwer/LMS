@@ -64,6 +64,7 @@ app.directive('resourcesUpdateUpdateresource', [
         }, function(res)
         {
             scope.$root.$broadcast('reloadTheResource');
+            scope.$root.$broadcast('refreshResourceList');
             //todo: show user the success (GUI)
             //update view
         $("#resourceContent").attr("value", scope.theResource.content);
