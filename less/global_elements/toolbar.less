@@ -40,7 +40,7 @@
     content: "";
     position: absolute;
     top: -6px;
-    right: 2px;
+    right: 37px;
     width: 20px;
     height: 20px;
     border-style: solid;
@@ -59,6 +59,16 @@
 .btn-toolbar--personal {
     overflow: hidden;
     cursor: pointer;
+    width: auto;
+    background: @LMSdark;
+    border-radius: 20px 20px;
+    p {
+        display: inline;
+        color: #fff;
+        padding: 0px 20px 0px 7px;
+        font-smooting: antialized;
+        -webkit-font-smooting: antialized;
+    }
 }
 
 .profileitem {
@@ -72,7 +82,7 @@
     position: absolute;
     top: 30px;
     width: 200px;
-    right: 1px;
+    right: 0px;
     height: auto;
 }
 
@@ -121,6 +131,21 @@
 .btn-toolbar--personal:hover .toolbar-options--personal {
     display: inline-block;
 }*/
+
+
+//profile tag
+.tag {
+    display: inline-block;
+    height: 32px;
+    font-size: 13px;
+    font-weight: 500;
+    color: rgba(0,0,0,0.6);
+    line-height: 32px;
+    padding: 0 12px;
+    border-radius: 16px;
+    background-color: #e4e4e4;
+}
+
 
 #slackbar
 {
@@ -313,6 +338,6 @@
     position: absolute;
     top: 0px;
     right: 0px;
-    z-index: 9999;
+    //z-index: 9999;
     background-color: transparent; 
 }

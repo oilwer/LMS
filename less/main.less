@@ -79,3 +79,74 @@ body {
         margin-left: 10px;
     }
 }
+
+.coursor--pointer:hover {
+    cursor: pointer;
+}
+
+
+//used on login-page to center-center box
+.container__flexcenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    height: 100vh;
+}
+
+
+@media (min-width: 768px) {
+  .row.table-row {
+      display:table;
+      width:100%;
+      margin-right: -15px;
+      margin-left: -15px;      
+    }
+    
+    /*Fix for profile width problem*/
+    .row.newtable-row{
+        width: 101.2% !important;
+        margin-right: 5px!important;
+    }
+
+  .row.table-row > [class*="col-"] {
+    float:none;
+    display:table-cell;
+    vertical-align:top;
+      overflow: hidden;
+  }
+
+  .row.table-row > .col-sm-11 {
+    width: 91.66666666666666%;
+  }
+  .row.table-row > .col-sm-10 {
+    width: 83.33333333333334%;
+  }
+  .row.table-row > .col-sm-9 {
+    width: 75%;
+  }
+  .row.table-row > .col-sm-8 {
+    width: 66.66666666666666%;
+  }
+  .row.table-row > .col-sm-7 {
+    width: 58.333333333333336%;
+  }
+  .row.table-row > .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-5 {
+    width: 41.66666666666667%;
+  }
+  .col-sm-4 {
+    width: 33.33333333333333%;
+  }
+  .row.table-row > .col-sm-3 {
+    width: 25%;
+  }
+  .row.table-row > .col-sm-2 {
+    width: 16.666666666666664%;
+  }
+  .row.table-row > .col-sm-1 {
+    width: 8.333333333333332%;
+  }
+}

@@ -4,9 +4,6 @@
 
 * * * * * * * * * * * * * * * * */  
 
-.coursor--pointer:hover {
-    cursor: pointer;
-}
 
 
 
@@ -14,7 +11,8 @@
 
 
 
-/*Button Dashboard */
+
+/* Button Dashboard 
 
 .round-button {
     width:11%;
@@ -59,7 +57,7 @@
 
 /*Chat button Dashboard */
 /*Modifiera om du vill, kan funka som rektangulär också, positioneringen är inte bestämd heller. */   
-
+/*
 .message-button {
     background: rgba(62,71,79,1);
     margin-top: 55px;
@@ -104,14 +102,6 @@
 
 
 
-.container__flexcenter {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-    height: 100vh;
-}
-
 
 
 
@@ -128,7 +118,7 @@
             COURSES   
 
 * * * * * * * * * * * * * * * * */  
-
+/*
 .courses_filter {
     border: 2px solid rgba(0,0,0,0.1);
     margin-top: 50px;
@@ -181,7 +171,7 @@
     font-size: 40px;
     cursor: pointer;
     padding-left: 40px;
-}
+}/*
 /* * * * * * * * * * * * * * * *   
 
         BS full height col 
@@ -191,61 +181,6 @@
 
 
 
-@media (min-width: 768px) {
-  .row.table-row {
-      display:table;
-      width:100%;
-      margin-right: -15px;
-      margin-left: -15px;      
-    }
-    
-    /*Fix for profile width problem*/
-    .row.newtable-row{
-        width: 101.2% !important;
-        margin-right: 5px!important;
-    }
-
-  .row.table-row > [class*="col-"] {
-    float:none;
-    display:table-cell;
-    vertical-align:top;
-      overflow: hidden;
-  }
-
-  .row.table-row > .col-sm-11 {
-    width: 91.66666666666666%;
-  }
-  .row.table-row > .col-sm-10 {
-    width: 83.33333333333334%;
-  }
-  .row.table-row > .col-sm-9 {
-    width: 75%;
-  }
-  .row.table-row > .col-sm-8 {
-    width: 66.66666666666666%;
-  }
-  .row.table-row > .col-sm-7 {
-    width: 58.333333333333336%;
-  }
-  .row.table-row > .col-sm-6 {
-    width: 50%;
-  }
-  .col-sm-5 {
-    width: 41.66666666666667%;
-  }
-  .col-sm-4 {
-    width: 33.33333333333333%;
-  }
-  .row.table-row > .col-sm-3 {
-    width: 25%;
-  }
-  .row.table-row > .col-sm-2 {
-    width: 16.666666666666664%;
-  }
-  .row.table-row > .col-sm-1 {
-    width: 8.333333333333332%;
-  }
-}
 
 
 /*==================================================
@@ -254,11 +189,11 @@
 
     /*==========  Mobile First Method  ==========*/
 
-    /* Custom, iPhone Retina */ 
+    /* Custom, iPhone Retina 
     @media only screen and (min-width : 320px) {
         
     }
-    /* Extra Small Devices, Phones */ 
+    /* Extra Small Devices, Phones 
     @media only screen and (max-width : 480px) {
         .profile__stuff{
             padding: 0px;
@@ -267,17 +202,17 @@
 
     }
 
-    /* Small Devices, Tablets */
+    /* Small Devices, Tablets 
     @media only screen and (min-width : 768px) {
 
     }
 
-    /* Medium Devices, Desktops */
+    /* Medium Devices, Desktops 
     @media only screen and (min-width : 992px) {
 
     }
 
-    /* Large Devices, Wide Screens */
+    /* Large Devices, Wide Screens 
     @media only screen and (min-width : 1200px) {
 
     }

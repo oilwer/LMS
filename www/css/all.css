@@ -7502,6 +7502,68 @@ body {
   margin-top: -4px;
   margin-left: 10px;
 }
+.coursor--pointer:hover {
+  cursor: pointer;
+}
+.container__flexcenter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  height: 100vh;
+}
+@media (min-width: 768px) {
+  .row.table-row {
+    display: table;
+    width: 100%;
+    margin-right: -15px;
+    margin-left: -15px;
+  }
+  /*Fix for profile width problem*/
+  .row.newtable-row {
+    width: 101.2% !important;
+    margin-right: 5px!important;
+  }
+  .row.table-row > [class*="col-"] {
+    float: none;
+    display: table-cell;
+    vertical-align: top;
+    overflow: hidden;
+  }
+  .row.table-row > .col-sm-11 {
+    width: 91.66666666666666%;
+  }
+  .row.table-row > .col-sm-10 {
+    width: 83.33333333333334%;
+  }
+  .row.table-row > .col-sm-9 {
+    width: 75%;
+  }
+  .row.table-row > .col-sm-8 {
+    width: 66.66666666666666%;
+  }
+  .row.table-row > .col-sm-7 {
+    width: 58.333333333333336%;
+  }
+  .row.table-row > .col-sm-6 {
+    width: 50%;
+  }
+  .col-sm-5 {
+    width: 41.66666666666667%;
+  }
+  .col-sm-4 {
+    width: 33.33333333333333%;
+  }
+  .row.table-row > .col-sm-3 {
+    width: 25%;
+  }
+  .row.table-row > .col-sm-2 {
+    width: 16.666666666666664%;
+  }
+  .row.table-row > .col-sm-1 {
+    width: 8.333333333333332%;
+  }
+}
 /*Styles for global .box classes
 
 This is a LESS file; only style for the element class .box allowed!
@@ -8107,7 +8169,7 @@ input[type=checkbox] {
   content: "";
   position: absolute;
   top: -6px;
-  right: 2px;
+  right: 37px;
   width: 20px;
   height: 20px;
   border-style: solid;
@@ -8124,6 +8186,16 @@ input[type=checkbox] {
 .btn-toolbar--personal {
   overflow: hidden;
   cursor: pointer;
+  width: auto;
+  background: #3e474f;
+  border-radius: 20px 20px;
+}
+.btn-toolbar--personal p {
+  display: inline;
+  color: #fff;
+  padding: 0px 20px 0px 7px;
+  font-smooting: antialized;
+  -webkit-font-smooting: antialized;
 }
 .profileitem {
   width: 30px;
@@ -8135,7 +8207,7 @@ input[type=checkbox] {
   position: absolute;
   top: 30px;
   width: 200px;
-  right: 1px;
+  right: 0px;
   height: auto;
 }
 .toolbar-option_content {
@@ -8182,6 +8254,17 @@ input[type=checkbox] {
 .btn-toolbar--personal:hover .toolbar-options--personal {
     display: inline-block;
 }*/
+.tag {
+  display: inline-block;
+  height: 32px;
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+  line-height: 32px;
+  padding: 0 12px;
+  border-radius: 16px;
+  background-color: #e4e4e4;
+}
 #slackbar {
   position: fixed;
   width: 70%;
@@ -8352,7 +8435,6 @@ input[type=checkbox] {
   position: absolute;
   top: 0px;
   right: 0px;
-  z-index: 9999;
   background-color: transparent;
 }
 .ng-modal-overlay {

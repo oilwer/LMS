@@ -77,7 +77,10 @@
         </ul>
     </li>
     <li class="btn-toolbar--personal">
-        <img class="profileitem" ng-click="togglePersonalBar()">
+        <span ng-click="togglePersonalBar()">
+            <img class="profileitem">
+            <p>{{ first_name }}</p>
+        </span>
         <ul class="toolbar-options toolbar-options--personal" ng-show="isToolbarPersonalOpen">
             <div class="toolbar-option_content">
                 <li>{{ first_name }} {{ last_name }}</li>
