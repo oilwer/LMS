@@ -10603,3 +10603,7 @@ ex: #FD5B03
   font-size: 1.6em;
   color: #404040;
 }
+.pbl-profile__skills h1 {
+  width: 100%;
+  float: left;
+}
