@@ -143,24 +143,22 @@ app.directive('assignmentCreateassignment', [
 											scope.assignment.responsible_teacher = scope.session_user._id;
                                             scope.assignment.description = $("#createAssignment").attr("value");
                                             newAssignmentDescription = scope.assignment.description;
+                                            if(scope.$$childTail.file){
+                                                scope.assignment.teacher_instruction_file = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
+                                            } 
 
 							              	Assignment.create(scope.assignment, function(res) {
 								          		Course.get({ _id: res[0].course}, function(x) {
-								          			//Update Course and Continue
-										  			Course.update({_relate:{items:x[0],assignments:res[0] }});
-									  				Assignment.update({ _relate:{ items:res[0], course:x[0]}}, function(newres){
-                                                        if(scope.$$childTail.file){
-                                                            var strippedFileName = scope.$$childTail.file[0].name.replace(/[\n\t\r\x20]/g, "_");
-                                                        } else {
-                                                            var strippedFileName = "undefined";
-                                                        }
 
-                                                        Assignment.update({
-                                                            _id: newres._id
-                                                        },{
-                                                            teacher_instruction_file: strippedFileName
-                                                        }, function(res) {
-                                                        });
+								          			
+								          			//Update Course and Continue
+										  			Course.update({
+										  				_relate:{items:x[0],assignments:res[0] },
+										  			});
+									  				Assignment.update({ 
+									  					_relate:{ items:res[0], course:x[0]}
+									  				}, function(newres){
+                                                                                                                              
 										  				Assignment.get({_id: res[0]._id}, function(newAssignment){
 											  				oldassignment = JSON.parse(JSON.stringify(newAssignment[0]));
 											  				scope.incrementStep();
