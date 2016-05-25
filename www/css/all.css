@@ -7406,6 +7406,7 @@ button.close {
 /*colors */
 /*green*/
 /*blue*/
+/*rosa-röd*/
 /*grey*/
 /*pink*/
 /*red*/
@@ -7631,6 +7632,9 @@ This is a LESS file; only style for the element class .box allowed!
 }
 .box__header--activities {
   text-align: center;
+}
+.box__header--slackbox {
+  background: #3e474f;
 }
 .box__content {
   padding: 20px;

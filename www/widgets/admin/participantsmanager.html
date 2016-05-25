@@ -13,7 +13,7 @@
                       <center></h1>
                       <div class="col-md-12 col-md-offset-6">
                         <select ng-model="byCourseRight" class="form-control filtercourse" ng-change="changedFilterRight(byCourseRight)">
-                                  <option value="" ng-selected=true>-- Choose a Course to Edit --</option>
+                                  <option value="" ng-selected=true>Choose a Course to Edit </option>
                                   <option ng-repeat="course in dropDownCourseList" value="{{course.name}}">{{course.name}}</option>
                         </select>
                       </div>
@@ -31,7 +31,7 @@
                                 </select>-->
                             </div>
                             <div class="list--students">
-                                <h3>Add people</h3>
+                                <h3>Add participants</h3>
 
                                 <input class="form-control" type="text" ng-model="notAdded.first_name" placeholder="Search name">
                                 <ul ng-repeat="student in students | filter: notAdded">
@@ -57,7 +57,7 @@
 
                         <div class="col-sm-12">
                             <div class="list--students list--students--added">
-                                <h3>To {{course.name}}</h3>
+                                <h3>Participants in {{byCourseRight}}</h3>
 
                                 <input class="form-control" type="text" ng-model="studentsAdded.first_name" placeholder="Search name">
 
