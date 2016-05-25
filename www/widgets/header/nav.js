@@ -19,8 +19,6 @@ app.directive('headerNav', [
       replace: true,
       link: function(scope, element, attrs) {
 
-
-
         scope.isActive = function(route) {
             var theLocation = $location.path().split("/")[1];
             //fix if location.path() is root
@@ -41,7 +39,11 @@ app.directive('headerNav', [
             //show hide create activites
           if(response.user.role == "admin" || response.user.role == "teacher"){
             scope.buttonDisplay = true;
+            setTooltipPosition();
           }
+            else {
+                setTooltipPosition();
+            }
 
           //Todo, do a get by ID instead of using data from a session
           fetchedUser = response.user;
@@ -152,6 +154,12 @@ app.directive('headerNav', [
             scope.isToolbarCreateOpen = false;
             scope.$apply();
         });
+          
+        $("nav").bind('click', function() {
+            scope.isToolbarPersonalOpen = false;
+            scope.isToolbarCreateOpen = false;
+            scope.$apply();
+        })
 
         //TODO: There should be a function that does all this hiding of drop
         //downs and stuff instead of doing it in each one
@@ -159,7 +167,14 @@ app.directive('headerNav', [
           scope.isToolbarCreateOpen = false;
           scope.isToolbarNotificationOpen = scope.isToolbarNotificationOpen === true ? false: true;
         }
-
+        
+         var setTooltipPosition = function() {
+            //set position of toolbars to fit first_name of user
+            var personalPosition = $(".btn-toolbar--personal").offset();
+            var newPosition = $(window).width() - personalPosition.left;
+            $(".toolbar-options--personal").css( { left: newPosition-175 } );
+            $(".toolbar-options--create").css( { left: newPosition-210 } );
+        }
 
       } //link
 

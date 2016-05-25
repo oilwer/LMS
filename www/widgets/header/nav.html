@@ -43,7 +43,7 @@
 
 <ul class="toolbar">
   <!-- <div >Notifications: {{ notf_number }}</div> -->
-  <li class="btn-toolbar--personal">
+  <!--<li class="btn-toolbar--personal">
       <div class="profileitem" ng-click="toggleNotificationBar()" ng-show="True">
         Notifications: {{notifsNumber}}
       <ul class="toolbar-options toolbar-options--personal" ng-show="isToolbarNotificationOpen">
@@ -53,13 +53,12 @@
               <div>{{ notf.text }}</div>
           </div>
       </ul>
-  </li>
-    <li ng-if="buttonDisplay" class="btn-toolbar--create">
-
+  </li>-->
+    <li class="btn-toolbar--create">
         <div class="btn-toolbar" ng-click="toggleCreateBar()">
             <i class="fa fa-plus" aria-hidden="true"></i>
         </div>
-        <ul class="toolbar-options toolbar-options--create" ng-show="isToolbarCreateOpen">
+        <ul id="createPosition" class="toolbar-options toolbar-options--create" ng-show="isToolbarCreateOpen">
             <div class="toolbar-option_content">
                 <li>
                     Create
