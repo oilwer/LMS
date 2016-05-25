@@ -79,8 +79,6 @@ app.directive('resourcesResources', [
 
           var updateAuthor = function(i, x, mycourses)
           {
-            console.log("updateAuthor (", i, x, ")");
-
 
             //get author name
             User.get({_id: mycourses[i].resources[x].uploaded_by}, function(user)
@@ -90,13 +88,11 @@ app.directive('resourcesResources', [
                  if(scope.resourceList[y].uploaded_by == user[0]._id)
                  {
                     scope.resourceList[y].author = (user[0].first_name + " " + user[0].last_name);
-                    console.log(scope.resourceList[y]);
                  }
 
                }
 
                var indexOfResource = findWithAttr(scope.resourceList, "uploaded_by", mycourses[i].resources[x].uploaded_by);
-            //   console.log(scope.resourceList[indexOfResource]);
 
                scope.resourceList[indexOfResource].author = (user[0].first_name + " " + user[0].last_name);
 
@@ -107,42 +103,68 @@ app.directive('resourcesResources', [
             {
 
               scope.resourceList = [];
-
-              SessionService.getSession().success(function(session) {
-
-                SessionService.updateSession(session.user.email).success(function(session) {
-                  session_user[0] = session;
-
-                    Course.get({students: session._id, _populate:"resources"}, function(mycourses)
-                    {
-                        if (typeof mycourses !== "undefined")
+            
+                if(scope.authForAdmin) {                    
+                    Course.get({_populate:"resources"}, function(mycourses)
                         {
-                          for (var i = 0; i < mycourses.length; i++)
-                          {
-                              if(typeof mycourses[i].resources !== "undefined")
+                            if (typeof mycourses !== "undefined")
+                            {
+                              for (var i = 0; i < mycourses.length; i++)
                               {
-                                scope.courseFilter.push(mycourses[i].name);
+                                  if(typeof mycourses[i].resources !== "undefined")
+                                  {
+                                    scope.courseFilter.push(mycourses[i].name);
 
-                                for (var x = 0; x < mycourses[i].resources.length; x++)
-                                {
-                                  mycourses[i].resources[x].course = mycourses[i].name;
-                                  scope.resourceList.push(mycourses[i].resources[x]);
+                                    for (var x = 0; x < mycourses[i].resources.length; x++)
+                                    {
+                                      mycourses[i].resources[x].course = mycourses[i].name;
+                                      scope.resourceList.push(mycourses[i].resources[x]);
 
+                                      updateAuthor(i, x, mycourses);
 
-
-                              //     console.log(mycourses[i].resources[x]);
-                                  updateAuthor(i, x, mycourses);
-
-
-                                } //lopp resources
+                                    } //lopp resources
+                                } //if
+                              } //lopp courses
                             } //if
-                          } //lopp courses
-                        } //if
 
-                    });
-                 });
-              });
-            }
+                        });
+                    
+                } else {
+                    SessionService.getSession().success(function(session) {
+
+                    SessionService.updateSession(session.user.email).success(function(session) {
+                      session_user[0] = session;
+
+                        Course.get({students: session._id, _populate:"resources"}, function(mycourses)
+                        {
+                            if (typeof mycourses !== "undefined")
+                            {
+                              for (var i = 0; i < mycourses.length; i++)
+                              {
+                                  if(typeof mycourses[i].resources !== "undefined")
+                                  {
+                                    scope.courseFilter.push(mycourses[i].name);
+
+                                    for (var x = 0; x < mycourses[i].resources.length; x++)
+                                    {
+                                      mycourses[i].resources[x].course = mycourses[i].name;
+                                      scope.resourceList.push(mycourses[i].resources[x]);
+
+
+
+                                      updateAuthor(i, x, mycourses);
+
+
+                                    } //lopp resources
+                                } //if
+                              } //lopp courses
+                            } //if
+
+                        });
+                     });
+                  }); //sessionService
+              }
+         }
 
         scope.castTheResourceModal = function() {
           scope.$root.$broadcast('showTheResourceModal');
@@ -158,9 +180,7 @@ app.directive('resourcesResources', [
                 $location.path(theLocationPath + resourceUrl);
             } catch (e) {
                 console.log(e);
-            } finally {
-
-            }
+            } 
         }
       } //link
     };

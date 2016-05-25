@@ -2,7 +2,7 @@
     <div class="box__content">
         <h2>{{ heading }}</h2>
         <button class="btn btn--add btn--courses"
-                ng-show="auth"
+                ng-show="auth || authForAdmin"
                 ng-click="castTheCourseModal()">
             <i class="fa fa-plus" aria-hidden="true"></i>
             Add Course
