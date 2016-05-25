@@ -30,6 +30,10 @@ app.directive('modelanythingModelanythingstart', [
             SessionService.updateSession(user.email).success(function(session) {
               user = session;
 
+              if(user.plugs === undefined){
+                return;
+              }
+
       			  for(var i = 0; i < user.plugs.length; i++) {
       				  if(user.plugs[i].isActive == true){
       					  // Adds html to all plugins
