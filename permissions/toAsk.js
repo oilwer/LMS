@@ -76,6 +76,7 @@ module.exports = function(modelName, method, query, rbody) {
 			}
 
 			else if (modelName == "Course") {
+
 				if (method == "GET") {
 					return true;
 				}
@@ -118,8 +119,12 @@ module.exports = function(modelName, method, query, rbody) {
 
 						//		console.log("found course: ", found.course);
 
+						if(found != null)
+						{
 								// TODO
 		        	// console.log("assignment_Id:", found._id);
+							console.log("Courses", rbody.session.user.courses);
+
 							if(findWithAttr(rbody.session.user.courses, "_id", found.course) != -1)
 							{
 								console.log("user can get assignment");
@@ -129,6 +134,7 @@ module.exports = function(modelName, method, query, rbody) {
 							else {
 								return false;
 							}
+						}
 		      });
 				}
 
@@ -138,28 +144,34 @@ module.exports = function(modelName, method, query, rbody) {
 			{
 				console.log("resource query: ", query.url);
 
+				// Get all resources
+				if(query == undefined)
+				{
+					return true;
+				}
 
-				return Resource.findOne({url: query.url}, function(err, found) {
+			// Get a specific resource
+			else {
 
-						//	console.log("found resource's course: ", found.course);
+					// Check if resource exists
+					return Resource.findOne({url: query.url}, function(err, found) {
 
 						if(found == null) return false;
 
-
-							if(findWithAttr(rbody.session.user.courses, "_id", found.course) != -1)
-							{
-								console.log("user can get resource");
-								return true;
+							for (var i = 0; i < rbody.session.user.courses.length; i++) {
+								if(found.course == rbody.session.user.courses[i])
+								{
+									return true;
+								}
+								else
+								{
+									return false;
+								}
 							}
-							else {
-								return false;
-							}
 
+					});
 
-
-				});
-
-
+			}
 
 			}
 

@@ -3,13 +3,14 @@ module.exports = function(mongoose) {
 
   return [function (req, res) {
     var User = mongoose.model('User');
-    
+
     // check if logged in
     if (req.method == 'GET') {
       res.json(!!req.session.user);
       return;
     }
 
+    // Log in
     if (req.method == 'POST') {
       // if missing params
       if (!req.body.email || !req.body.password) {
@@ -44,7 +45,7 @@ module.exports = function(mongoose) {
       res.json(true);
     }
 
-    // logout
+    // get session
     if (req.method == 'PUT') {
       console.log(req.session);
         res.json(req.session);

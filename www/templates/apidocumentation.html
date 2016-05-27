@@ -1,138 +1,210 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>LMS</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <base href="/"/>
+</head>
+
 <div class="container">
     <h1> API documentation </h1>
+    <p> We are using <a href="https://github.com/ironboy/mongresto/"> Mongresto</a>, A REST service API for Node.js Express + MongoDB + Mongoose that is based on Mongoose models and generates Angular Resource objects on the fly. </p>
     <br/>
 
-
-
-    <h2> API LOGIN </h2>
-    <h3> URI: http://localhost:3000/api/login </h3>
-
-    <p> HTTP REQUEST: POST </p>
-    <b> DESC: Try to login </b>
-    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} </p>
-    <p> RETURNS: bool </p>
+    <h2> Public resources accessible through our API </h2>
     <br/>
 
-    <p> HTTP REQUEST: GET </p>
-    <b> DESC: Check if logged in </b>
-    <p> PAYLOAD: none </p>
-    <p> RETURNS: bool </p>
-    <br/>
+    <h2> User </h2>
+    <p> Allowed HTTP requests; <b> GET </b> </p>
+    <p> URL http://localhost:3000/api/user </p>
+    <p> Payload: {"identifier field from schema below": "value"} </p>
+    <p> Payload example: {"email": "my-email@email.com"}</p>
+    <p> Returns: A list of users matching the search object </p>
+    <b> The user schema </b>
 
-    <p> HTTP REQUEST: DELETE </p>
-    <b> DESC: Logout </b>
-    <p> PAYLOAD: none</p>
-    <p> RETURNS: bool </p>
-    <br/>
+    <pre> var UserSchema = new mongoose.Schema({
+      profile_pic: String,
+      email: String,
+      first_name: String,
+      last_name: String,
+      description: String,
+      personality: String,
+      phone_number: String,
+      password: String,
+      public_url: String,
+      homepage: String,
+      facebook: String,
+      linkedin: String,
+      github: String,
+      twitter: String,
+      courses: [{
+          type: mongoose.Schema.Types.ObjectId, ref: 'Course'
+      }],
+      courses_pinned: [{
+          course: String,
+          pinned: Boolean
+      }],
+      notifications: [{
+        url: String,
+        is_viewed: Boolean,
+        created_on: {type: Date, default: Date.now},
+        title: String,
+        text: String
 
+      }],
+      assignments: [{
+        assignment: {type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
+        grade: Number,
+        comment: String,
+        submissionDate: Date,
+        answer_file: String,
+        answerDate: { type: Date, default:Date.now },
+        answeredBy:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+        answerComment: String, //feedback from teacher
+        status: String // New|Wating|Resubmit|Done
+        //{ New (when created) | Waiting (when submitted/resubmitted) | Resubmit (answered by teacher) | Done (answered by teacher)}
+      }],
+      plugs:[{
+              name: String,
+              isActive: Boolean
+     }],
+     role: String, //student/admin/teacher
+     slack_token: String, //holds slack token
+     slack_username: String,
+     skills: [{
+        tag: String
+      }],
+      experiences:[{
+        company_school: String,
+        title_education: String,
+        location: String,
+        start: { type: Date },
+        end: { type: Date },
+        info: String
+      }]
+  });
+
+    </pre>
+
+    <br/>
     <hr/>
-
-
-
-
-    <h2> API USER </h2>
-    <h3> URI: http://localhost:3000/api/user </h3>
-
-    <p> HTTP REQUEST: POST </p>
-    <b> DESC: Adds user </b>
-    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields) </p>
-    <p> RETURNS: json </p>
     <br/>
 
-    <p> HTTP REQUEST: GET </p>
-    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-    <b> DESC: Gets all the users </b>
-    <p> PAYLOAD: none </p>
-    <p> RETURNS: json </p>
+    <h2> Course </h2>
+    <p> Allowed HTTP requests; <b> GET </b> </p>
+    <p> URL http://localhost:3000/api/course </p>
+    <p> Payload: {"identifier field from schema below": "value"} </p>
+    <p> Payload example: {"name": "webdevelopment"}</p>
+    <p> Returns: A list of courses matching the search object </p>
+    <b> The course schema </b>
+
+    <pre>
+      var CourseSchema = new mongoose.Schema({
+          code: String,
+          status: {type: Boolean, default: true },
+          url: String,
+          teacher: String,
+          name: String,
+          description: String,
+          start: { type: Date, default: Date.now },
+          end: { type: Date, default: Date.now },
+          assignments: [{
+              type: mongoose.Schema.Types.ObjectId, ref: 'Assignment'
+          }],
+          students: [{
+              type: mongoose.Schema.Types.ObjectId, ref: 'User'
+          }],
+          slack_channels: [{
+              channelId: String
+          }],
+          resources: [{
+            type: mongoose.Schema.Types.ObjectId, ref: 'Resource'
+          }],
+          messages: [{
+              title: String,
+              content: String,
+              creator: String,
+              date: { type: Date, default: Date.now }
+          }],
+          creator : { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+      });
+    </pre>
+
     <br/>
-
-
-    <h2> API COURSE </h2>
-    <h3> URI: http://localhost:3000/api/course </h3>
-
-    <p> HTTP REQUEST: POST </p>
-    <b> DESC: Adds course </b>
-    <p> PAYLOAD: {"name":"course2", "code":"course2", "status":"true", "url":"course2", "teacher":"Berit", "description":"very nice course for you"} </p>
-    <p> RETURNS: json </p>
-    <br/>
-
-    <p> HTTP REQUEST: GET </p>
-    <p> URL: /api/course/ (DB ID) </p>
-    <b> DESC: Gets all the courses </b>
-    <p> PAYLOAD: none </p>
-    <p> RETURNS: json </p>
-    <br/>
-
-    <p> HTTP REQUEST: UPDATE </p>
-    <br/>
-
-    <p> HTTP REQUEST: DELETE </p>
-    <br/>
-
     <hr/>
-
-    <p> HTTP REQUEST: UPDATE </p>
-    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-    <b> DESC: Update user </b>
-    <p> PAYLOAD: {"email": "email@domain.se", "password": "pw"} (or all of the fields that you want to update) </p>
-    <p> RETURNS: json </p>
     <br/>
 
-    <p> HTTP REQUEST: DELETE </p>
-    <p> URL: /api/user/557c4349779ef7d82cd8611a (DB ID) </p>
-    <b> DESC: Delete user </b>
-    <p> PAYLOAD: none</p>
-    <p> RETURNS: json </p>
-    <br/>
 
+    <h2> Assignment </h2>
+    <p> Allowed HTTP requests; <b> GET </b> </p>
+    <p> URL http://localhost:3000/api/assignment </p>
+    <p> Payload: {"identifier field from schema below": "value"} </p>
+    <p> Payload example: {"name": "essay"}</p>
+    <p> Returns: A list of assignments matching the search object </p>
+    <b> The assignment schema </b>
+
+    <pre>
+      var AssignmentSchema = new mongoose.Schema({
+          name: String,
+          url: String,
+          due_date: Date,
+          description: String,
+          added_on: Date,
+          course:  { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+          resources: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Resource' }],
+          responsible_teacher:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+          teachers:  [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+          is_published: Boolean,
+          teacher_instruction_file: String,
+          assessment: String,
+          obligatory: Boolean
+      });
+    </pre>
+
+    <br/>
     <hr/>
-
-
-
-    <h2> API ASSIGNMENT </h2>
-    <h3> URI: http://localhost:3000/api/assignment </h3>
-
-    <p> HTTP REQUEST: POST </p>
-    <b> DESC: Adds assignment </b>
-    <p> PAYLOAD: {"name": "Test assignment",
-    "due_date": "2014-01-01",
-    "description": "Test description",
-    "added_on": "2013-01-01",
-    "course": "56fd26a05fffee50039ba05a",
-    "participants": {
-    "User": "5704b1971db5b07514785765",
-    	"grade": 1,
-    "comment": "Epic good job bruh!",
-    "is_answerd": 1,
-    "answer_file": "Nice_file.zip",
-    "answer": "Here is my answer!",
-    "answer_date": "2014-01-01"
-                 },
-    "responsible_teacher": "5704b1971db5b07514785765",
-    "teachers": "5704b1971db5b07514785765",
-    "is_published": 1,
-    "teacher_instruction_file": "Nice_file.zip",
-    "assessment": "G, VG",
-    "obligatory": 1,
-    "answer_date": "2014-01-01"} </p>
-    <p> RETURNS: json </p>
     <br/>
 
-    <p> HTTP REQUEST: GET </p>
-    <p> URL: /api/assignment/ (DB ID) </p>
-    <b> DESC: Gets all the assignments </b>
-    <p> PAYLOAD: none </p>
-    <p> RETURNS: json </p>
-    <br/>
 
-    <p> HTTP REQUEST: UPDATE </p>
-    <br/>
+    <h2> Resource </h2>
+    <p> Allowed HTTP requests; <b> GET </b> </p>
+    <p> URL http://localhost:3000/api/resource </p>
+    <p> Payload: {"identifier field from schema below": "value"} </p>
+    <p> Payload example: {"title": "uploadedimage"}</p>
+    <p> Returns: A list of resources matching the search object </p>
+    <b> The resource schema </b>
 
-    <p> HTTP REQUEST: DELETE </p>
-    <br/>
+    <pre>
+      var ResourceSchema = new mongoose.Schema({
+          title: String,
+          filename: String,
+          categories: String,
+          tags: String,
+          filetype: String,
+          url: String,
+          content: String,
+          uploaded_on: Date,
+          assignment: { type: mongoose.Schema.Types.ObjectId, ref: 'Assignment' },
+          course:  { type: mongoose.Schema.Types.ObjectId, ref: 'Course' },
+          uploaded_by:  { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
+      });
+    </pre>
 
+    <br/>
     <hr/>
+    <br/>
 
 
+    <h1> Custom API routes </h1>
+    <br/>
+
+    <h2> Login </h2>
+    <p> Allowed HTTP requests; <b> GET, POST, DELETE</b> </p>
+    <p> GET = Check if logged in. </p>
+    <p> POST = Log in. </p>
+    <p> POST Payload: {"email": "email@domain.se", "password": "pw"} </p>
+    <p> Delete = Log out. </p>
 
 </div>
