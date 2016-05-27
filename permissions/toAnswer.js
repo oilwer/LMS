@@ -1,5 +1,13 @@
 module.exports = function(modelName, method, query, req, result) {
 
+	function findWithAttr(array, attr, value) {
+		for(var i = 0; i < array.length; i += 1) {
+			if(array[i][attr] === value) {
+					return i;
+			}
+		}
+	}
+
 	// If somebody not logged in trying to recieve API calls - block them
 	if(req.session.user == undefined)
 	{
@@ -13,7 +21,7 @@ module.exports = function(modelName, method, query, req, result) {
 	{
 
 		// If admin - Allow anything
-		if(req.session.user.role == "admin")
+		if(req.session.user.role == "admin" || req.session.user.role == "teacher")
 		{
 			if(method == "GET")
 			{
@@ -76,6 +84,12 @@ module.exports = function(modelName, method, query, req, result) {
 								result[i].plugs = undefined;
 								result[i].courses = undefined;
 								result[i].password = undefined;
+								result[i].assignments = undefined;
+								result[i].experiences = undefined;
+								result[i].slack_token = undefined;
+								result[i].skills = undefined;
+								result[i].notifications = undefined;
+								result[i].courses_pinned = undefined;
 							}
 						}
 					}
@@ -111,8 +125,62 @@ module.exports = function(modelName, method, query, req, result) {
 				}
 			}
 
-			if(modelName == "Course")
+			else if(modelName == "Course")
 			{
+				if(method == "GET")
+				{
+					// Get all courses
+					if(query._id == undefined)
+					{
+						// For each course, remove protected data
+						for (var i = 0; i < result.length; i++)
+						{
+							// For each course the user has access to
+							for (var x = 0; x < req.session.user.courses.length; x++)
+							{
+									// if the user dont have the resource's course in his course list
+									if(result[i]._id != req.session.user.courses[x])
+									{
+										result[i] = null;
+									}
+							}
+						}
+					}
+				}
+			}
+
+			else if(modelName == "Resource")
+			{
+					// Get all resources
+					if(query._id == undefined)
+					{
+
+						if(result.length == 0)
+						{
+							console.log("No results");
+						}
+
+						else{
+							// For each resource, remove protected data
+							for (var i = 0; i < result.length; i++)
+							{
+
+								// For each course the user has access to
+								for (var x = 0; x < req.session.user.courses.length; x++) {
+
+									// if the user dont have the resource's course in his course list
+									if(result[i].course != req.session.user.courses[x])
+									{
+										 result[i] = null;
+									}
+								}
+
+							}
+					}
+			}
+
+			// Get a specific resource
+			else {
 
 			}
 
@@ -120,5 +188,7 @@ module.exports = function(modelName, method, query, req, result) {
 
 	}
 
+}
   return true;
+
 };
