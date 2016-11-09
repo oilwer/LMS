@@ -92,7 +92,7 @@ app.directive('adminUsermanager', [
               $scope.user = "";
               isEditing = false;
             }
-          }
+          };
 
         $scope.remove = function(targetUser) {
           if ($window.confirm("Do you want to delete "+ targetUser.first_name)) {
@@ -105,7 +105,7 @@ app.directive('adminUsermanager', [
           } else {
               refresh();
           }
-        }
+        };
 
         //Gui function fetch selected user data for editing
         $scope.prepareEdit = function (id){
